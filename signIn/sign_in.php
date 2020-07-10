@@ -13,57 +13,55 @@ include "header.html";
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputName4">Nombre</label>
-      <input type="text" class="form-control" id="inputName" placeholder="Nombre">
+      <input type="text" class="form-control" id="inputName" placeholder="Nombre" onchange="validarNombre()" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputSurname4">Apellido</label>
-      <input type="text" class="form-control" id="inputSurname" placeholder="Apellido">
+      <input type="text" class="form-control" id="inputSurname" placeholder="Apellido" onchange="validarApellido()" required>
     </div>
 </div>  
         
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputDNI">DNI</label>
-      <input type="number" class="form-control" id="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()">
+      <input type="number" class="form-control" id="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputLegajo">Legajo</label>
-      <input type="number" class="form-control" id="inputSurname" placeholder="Legajo">
+      <input type="number" class="form-control" id="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" required>
     </div>
 </div>  
         
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      <input type="email" class="form-control" id="inputEmail" placeholder="Email" onchange="validarEmail()" required>
     </div>
     <div class="form-group col-md-3">
       <label for="inputPassword4">Contraseña</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña">
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" required>
     </div>
     <div class="form-group col-md-3">
       <label for="inputUser">Usuario</label>
-      <input type="text" class="form-control" id="inputUser" placeholder="Usuario">
+      <input type="text" class="form-control" id="inputUser" placeholder="Usuario" required>
     </div>
   </div>
-    <div class="form-group">
-     <div class="form-group col-md-15">
+    
+    <div class="form-row">
+     <div class="form-group col-md-6">
       <label for="inputDate">Fecha de nacimiento</label>
-      <input id="inputDate" type="date" class="form-control">
+      <input id="inputDate" type="date" class="form-control" onkeydown="return false" onchange="validarFechaNac()" required>
     </div>
-  </div>
-  <div class="form-group">
-     <div class="form-group col-md-15">
-      <label for="inputState">Rol a registrarse</label>
-      <select id="inputState" class="form-control">
-        <option selected></option>
-            <option>Docente</option>
-            <option>Alumno</option>
-            <option>Administrativo</option>
+        <div class="form-group col-md-6">
+      <label for="inputRole">Rol a registrarse</label>
+      <select id="inputRole" class="form-control" required>
+          <option selected value="alumno">Alumno</option>  
+          <option value="docente">Docente</option>  
       </select>
     </div>
   </div>
-  
+    
+
   
   <button type="submit" class="btn btn-primary">Registrarse</button>
 </div>
