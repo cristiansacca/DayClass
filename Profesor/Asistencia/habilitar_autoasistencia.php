@@ -1,16 +1,16 @@
 <?php
-include "header.html";
+include "../../header.html";
 ?>
 
-<div class="text-center my-5 mx-4 form-row row-cols-2">
-    <div>
+<div class="text-center my-5 mx-4 form-row">
+    <div class="form-group col-md-6">
         <h3>Código de auto-asistencia</h3>
         <br>
         <input type="text" readonly value="XXXXXXXXX" class="form-control m-auto text-center" style="width: 30%; font-size: x-large;">
         <br>
         <input type="button" class="btn btn-primary" value="Generar">
     </div>    
-    <div>
+    <div class="form-group col-md-6">
         <h3>Seleccione la duración del código</h3>
         <br>
         <select class="form-control m-auto" style="width: 30%;">
@@ -27,5 +27,5 @@ include "header.html";
 </div>
 
 <?php
-include "footer.html";
+include "../../footer.html";
 ?>
