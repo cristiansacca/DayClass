@@ -1,6 +1,9 @@
 <?php
 include "header.html";
 ?>
+<script src="signIn_funciones.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 
 <div class="text-center m-auto" style="width:45%; height:55%;">
 <form>
@@ -21,7 +24,7 @@ include "header.html";
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputDNI">DNI</label>
-      <input type="number" class="form-control" id="inputName" placeholder="Documento Nacional de Identidad">
+      <input type="number" class="form-control" id="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()">
     </div>
     <div class="form-group col-md-6">
       <label for="inputLegajo">Legajo</label>
