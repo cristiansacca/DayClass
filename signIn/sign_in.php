@@ -14,6 +14,7 @@ include "header.html";
     <div class="form-group col-md-6">
       <label for="inputName4">Nombre</label>
       <input type="text" class="form-control" id="inputName" placeholder="Nombre" onchange="validarNombre()" required>
+        <h9 class="msg" id="msjValidacionNombre"></h9>
     </div>
     <div class="form-group col-md-6">
       <label for="inputSurname4">Apellido</label>

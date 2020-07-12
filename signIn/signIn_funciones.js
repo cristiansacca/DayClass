@@ -2,16 +2,17 @@ function validarDNI() {
     var elem = document.getElementById('inputDNI').value;
     var cantDigitos = elem.length;
     var rtdo = false;
+    var msg = "";
     
     if(cantDigitos > 6 && cantDigitos < 9){
         rtdo = numbers(elem);
         if(rtdo == false){
-            alert("En el DNI solo van números");  
+            msg = "En el DNI solo van números";
         }
         
-       }else{
-           alert("El número de DNI deben ser 8 números");
-       }
+    }else{
+        msg = "El número de DNI deben ser 8 números";
+    }
     
     changeColor('inputDNI',rtdo);
 }
@@ -39,39 +40,45 @@ function validarNombre(){
     var elem = document.getElementById('inputName').value;
     var cantLetras = elem.length;
     var rtdo = false;
+    var msg = "";
     
     if(cantLetras >= 3 && cantLetras < 20){
         rtdo = letters(elem);
         
         if(rtdo == false){
-            alert("En el Nombre solo van letras");  
+            msg = "En el Nombre solo van letras";  
         }
-        changeColor('inputName', rtdo);
     }else{
-        alert("El nombre debe contener mas de 3 y menos de 20 letras ");
-        changeColor('inputName', rtdo);
+        msg= "El nombre debe contener mas de 3 y menos de 20 letras ";
+        
     }
+    
+    changeColor('inputName', rtdo);
+    setValitationMesage('msjValidacionNombre', rtdo, msg);
+    
 }
 
 function validarApellido(){
     var elem = document.getElementById('inputSurname').value;
     var cantLetras = elem.length;
     var rtdo = false;
+    var msg = "";
     
     if(cantLetras >= 3 && cantLetras < 20){
         
         rtdo = letters(elem);
         
         if(rtdo == false){
-            alert("En el Apellido solo van letras");  
+            msg = "En el Apellido solo van letras";  
         }
         
-        changeColor('inputSurname',rtdo);
-        
     }else{
-        alert("El apellido debe contener mas de 3 y menos de 20 letras ");
-        changeColor('inputSurname',rtdo);
+        msg = "El apellido debe contener mas de 3 y menos de 20 letras ";
     }
+  
+    changeColor('inputSurname',rtdo);
+    setValitationMesage('msjValidacionApellido', rtdo, msg);
+    
 }
 
 function validarEmail(){
@@ -136,4 +143,19 @@ function changeColor(elementID, rtdo){
             document.getElementById(elementID).style.backgroundColor = "Azure";  
             document.getElementById(elementID).style.color = "Black";
         }
+}
+
+
+function setValitationMesage(elementID, rtdo, msg){
+    if(rtdo == false){
+        document.getElementById(elementID).style.visibility='visible';
+        document.getElementById(elementID).style.display='show';
+        document.getElementById(elementID).style.color = "Red"
+        document.getElementById(elementID).innerHTML = msg;
+    }else{
+        document.getElementById(elementID).style.visibility='hidden';
+        document.getElementById(elementID).style.display='none';
+    }
+    
+    
 }
