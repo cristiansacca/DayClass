@@ -9,11 +9,11 @@ function validarDNI() {
             alert("En el DNI solo van números");  
         }
         
-        changeColor('inputDNI',rtdo);
        }else{
            alert("El número de DNI deben ser 8 números");
-           changeColor('inputDNI',rtdo);
        }
+    
+    changeColor('inputDNI',rtdo);
 }
 
 function validarLegajo() {

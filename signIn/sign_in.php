@@ -8,7 +8,7 @@ include "header.html";
 <div class="text-center m-auto" style="width:45%; height:55%;">
 <form>
 <h1 class="title"><u>Registro de nuevo usuario</u></h1>
-<h6 class="light_txt">Todos los datos aquí ingresados serán validados contra los ya almacenados por la institución, cualquier falsedad en los mismos conllevará una anulación total de la cuenta, imposibilitando su uso por un período no menor a 10(días) hábiles</h6>
+<h6 class="light_txt">Todos los datos aquí ingresados serán validados contra los ya almacenados por la institución, cualquier falsedad en los mismos conllevará a una panalización por parte de las autoridades</h6>
 <div class="fill_fields">
 <div class="form-row">
     <div class="form-group col-md-6">
@@ -37,13 +37,9 @@ include "header.html";
       <label for="inputEmail4">Email</label>
       <input type="email" class="form-control" id="inputEmail" placeholder="Email" onchange="validarEmail()" required>
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-6">
       <label for="inputPassword4">Contraseña</label>
       <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" required>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="inputUser">Usuario</label>
-      <input type="text" class="form-control" id="inputUser" placeholder="Usuario" required>
     </div>
   </div>
     
@@ -52,7 +48,7 @@ include "header.html";
       <label for="inputDate">Fecha de nacimiento</label>
       <input id="inputDate" type="date" class="form-control" onkeydown="return false" onchange="validarFechaNac()" required>
     </div>
-        <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
       <label for="inputRole">Rol a registrarse</label>
       <select id="inputRole" class="form-control" required>
           <option selected value="alumno">Alumno</option>  
