@@ -31,7 +31,7 @@ function validarLegajo() {
         }
         
        }else{
-           msg = "El número de Legajo deben ser 5 números");
+           msg = "El número de Legajo deben ser 5 números";
        }
     
     changeColor('inputLegajo',rtdo);
@@ -74,16 +74,9 @@ function validarApellido(){
             msg = "En el Apellido solo van letras";  
         }
         
-<<<<<<< HEAD
+
     }else{
-        msg = "El apellido debe contener mas de 3 y menos de 20 letras ";
-=======
-        changeColor('inputSurname',rtdo);
-        
-         }else{
-             alert("El apellido debe contener mas de 3 y menos de 20 letras ");
-             changeColor('inputSurname',rtdo);
->>>>>>> dcef9755dbb699b27c26953420db56ab763cba71
+        msg = "El apellido debe contener mas de 3 y menos de 20 letras "; 
     }
   
     changeColor('inputSurname',rtdo);
@@ -94,35 +87,78 @@ function validarApellido(){
 function validarEmail(){
     var elem = document.getElementById('inputEmail').value;
     var rtdo = false;
+    var msg = "";
     
     rtdo = validateEmail(elem);
-    alert(rtdo);
-    if(rtdo == false){
-            alert("Lo que se ha escrito no es una direccion de mail valida falta el @");  
-      
-        }
     
-        changeColor('inputEmail',rtdo);
+    if(rtdo == false){
+            msg = "Lo que se ha escrito no es una direccion de mail valida, revisar @ y .com";    
+    }
+    
+    changeColor('inputEmail',rtdo);
+    setValitationMesage('msjValidacionEmail', rtdo, msg);
 }
 
 
 
 function validarContrasenia()
 {
-   
     var contrasenna = document.getElementById('inputPassword4').value;
     var rtdo = validar_clave(contrasenna);
+    var msg = "";
 
     if(rtdo == true)
     {
-        alert('Cotraseña fuerte');
+        msg ='Cotraseña fuerte';
     }
     else
     {
-        alert('La contraseña ingresada no es fuerte');
+        msg = 'La contraseña ingresada no es fuerte';
     }
 
     changeColor('inputPassword4',rtdo);
+    setValitationMesage('msjValidacionPass', rtdo, msg);
+    
+}
+
+
+
+function validarFechaNac(){
+    var elem = document.getElementById('inputDate').value;
+    var date = new Date(elem);
+    var dateYear = date.getFullYear();
+    var rtdo = false;
+    var msg = "";
+    
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    
+    if(dateYear < todayYear-4){
+        rtdo = true;
+    }else{
+        msg = "No es una fecha de nacimeinto valida para este sistema";  
+    }
+    
+    changeColor('inputDate',rtdo);
+    setValitationMesage('msjValidacionFchNac', rtdo, msg);
+    
+}
+
+
+function letters(letras){
+	var patron = /^[A-Za-z]*$/;
+	return patron.test(letras);
+}
+
+function numbers(nros){
+	var patron = /^[0-9]*$/;
+	return patron.test(nros);
+}
+
+function validateEmail(email) 
+{
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
 }
 
 function validar_clave(contrasenna)
@@ -161,47 +197,6 @@ function validar_clave(contrasenna)
     return false;
 }
 
-function validarFechaNac(){
-    var elem = document.getElementById('inputDate').value;
-    var date = new Date(elem);
-    var dateYear = date.getFullYear();
-    var rtdo = false;
-    
-    var today = new Date();
-    var todayYear = today.getFullYear();
-    
-    if(dateYear < todayYear-4){
-        rtdo = true;
-    }else{
-        alert("No es una fecha de nacimeinto valida para este sistema");  
-    }
-    
-    changeColor('inputDate',rtdo);
-    
-}
-
-
-function letters(letras){
-	var patron = /^[A-Za-z]*$/;
-	return patron.test(letras);
-}
-
-function numbers(nros){
-	var patron = /^[0-9]*$/;
-	return patron.test(nros);
-}
-
-function passvalidation(pass){
-    var patron = /^[A-Za-z0-9]*$/;
-    return patron.test(pass);
-}
-
-function validateEmail(email) 
-{
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-}
-
 
 function changeColor(elementID, rtdo){
     if(rtdo == false){
@@ -224,6 +219,5 @@ function setValitationMesage(elementID, rtdo, msg){
         document.getElementById(elementID).style.visibility='hidden';
         document.getElementById(elementID).style.display='none';
     }
-    
-    
+      
 }

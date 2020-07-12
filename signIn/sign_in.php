@@ -40,10 +40,12 @@ include "header.html";
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
       <input type="email" class="form-control" id="inputEmail" placeholder="Email" onchange="validarEmail()" required>
+        <h9 class="msg" id="msjValidacionEmail"></h9>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Contraseña</label>
       <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" onchange="validarContrasenia()" required>
+        <h9 class="msg" id="msjValidacionPass"></h9>
     </div>
   </div>
     
@@ -51,6 +53,7 @@ include "header.html";
      <div class="form-group col-md-6">
       <label for="inputDate">Fecha de nacimiento</label>
       <input id="inputDate" type="date" class="form-control" onkeydown="return false" onchange="validarFechaNac()" required>
+         <h9 class="msg" id="msjValidacionFchNac"></h9>
     </div>
     <div class="form-group col-md-6">
       <label for="inputRole">Rol a registrarse</label>
