@@ -1,3 +1,4 @@
+<link href="../../DayClassStyle.css" rel="stylesheet" type="text/css">
 <?php
 include "../../header.html";
 ?>
@@ -8,7 +9,7 @@ include "../../header.html";
         <br>
         <input type="text" readonly value="XXXXXXXXX" class="form-control m-auto text-center" style="width: 30%; font-size: x-large;">
         <br>
-        <input type="button" class="btn btn-primary" value="Generar">
+        <input type="button" class="btn btn-lg btn-primary" value="Generar">
     </div>    
     <div class="form-group col-md-6">
         <h3>Seleccione la duración del código</h3>
