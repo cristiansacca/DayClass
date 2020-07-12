@@ -212,7 +212,7 @@ function changeColor(elementID, rtdo){
 function setValitationMesage(elementID, rtdo, msg){
     if(rtdo == false){
         document.getElementById(elementID).style.visibility='visible';
-        document.getElementById(elementID).style.display='show';
+        document.getElementById(elementID).style.display='contents';
         document.getElementById(elementID).style.color = "Red"
         document.getElementById(elementID).innerHTML = msg;
     }else{
@@ -220,4 +220,8 @@ function setValitationMesage(elementID, rtdo, msg){
         document.getElementById(elementID).style.display='none';
     }
       
+}
+
+function blockE(){
+    
 }

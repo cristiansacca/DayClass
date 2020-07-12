@@ -26,12 +26,12 @@ include "header.html";
 <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputDNI">DNI</label>
-      <input type="number" class="form-control" id="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" required>
+      <input type="number" class="form-control" id="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
         <h9 class="msg" id="msjValidacionDNI"></h9>
     </div>
     <div class="form-group col-md-6">
       <label for="inputLegajo">Legajo</label>
-      <input type="number" class="form-control" id="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" required>
+      <input type="number" class="form-control" id="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
         <h9 class="msg" id="msjValidacionLegajo"></h9>
     </div>
 </div>  
