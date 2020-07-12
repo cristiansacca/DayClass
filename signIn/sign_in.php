@@ -19,6 +19,7 @@ include "header.html";
     <div class="form-group col-md-6">
       <label for="inputSurname4">Apellido</label>
       <input type="text" class="form-control" id="inputSurname" placeholder="Apellido" onchange="validarApellido()" required>
+        <h9 class="msg" id="msjValidacionApellido"></h9>
     </div>
 </div>  
         
@@ -26,10 +27,12 @@ include "header.html";
     <div class="form-group col-md-6">
       <label for="inputDNI">DNI</label>
       <input type="number" class="form-control" id="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" required>
+        <h9 class="msg" id="msjValidacionDNI"></h9>
     </div>
     <div class="form-group col-md-6">
       <label for="inputLegajo">Legajo</label>
       <input type="number" class="form-control" id="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" required>
+        <h9 class="msg" id="msjValidacionLegajo"></h9>
     </div>
 </div>  
         

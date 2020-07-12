@@ -15,24 +15,27 @@ function validarDNI() {
     }
     
     changeColor('inputDNI',rtdo);
+    setValitationMesage('msjValidacionDNI', rtdo, msg);
 }
 
 function validarLegajo() {
     var elem = document.getElementById('inputLegajo').value;
     var cantDigitos = elem.length;
     var rtdo = false;
+    var msg = "";
     
     if(cantDigitos == 5){
         rtdo = numbers(elem);
         if(rtdo == false){
-            alert("En el Legajo solo van números");  
+            msg = "En el Legajo solo van números";  
         }
-        changeColor('inputLegajo',rtdo);
         
        }else{
-           alert("El número de Legajo deben ser 5 números");
-           changeColor('inputLegajo',rtdo);
+           msg = "El número de Legajo deben ser 5 números");
        }
+    
+    changeColor('inputLegajo',rtdo);
+    setValitationMesage('msjValidacionLegajo', rtdo, msg);
 }
 
 function validarNombre(){
