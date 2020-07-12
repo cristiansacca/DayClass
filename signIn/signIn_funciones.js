@@ -70,13 +70,20 @@ function validarApellido(){
     if(cantLetras >= 3 && cantLetras < 20){
         
         rtdo = letters(elem);
-        
         if(rtdo == false){
             msg = "En el Apellido solo van letras";  
         }
         
+<<<<<<< HEAD
     }else{
         msg = "El apellido debe contener mas de 3 y menos de 20 letras ";
+=======
+        changeColor('inputSurname',rtdo);
+        
+         }else{
+             alert("El apellido debe contener mas de 3 y menos de 20 letras ");
+             changeColor('inputSurname',rtdo);
+>>>>>>> dcef9755dbb699b27c26953420db56ab763cba71
     }
   
     changeColor('inputSurname',rtdo);
@@ -92,8 +99,66 @@ function validarEmail(){
     alert(rtdo);
     if(rtdo == false){
             alert("Lo que se ha escrito no es una direccion de mail valida falta el @");  
+      
         }
-    changeColor('inputEmail',rtdo);
+    
+        changeColor('inputEmail',rtdo);
+}
+
+
+
+function validarContrasenia()
+{
+   
+    var contrasenna = document.getElementById('inputPassword4').value;
+    var rtdo = validar_clave(contrasenna);
+
+    if(rtdo == true)
+    {
+        alert('Cotraseña fuerte');
+    }
+    else
+    {
+        alert('La contraseña ingresada no es fuerte');
+    }
+
+    changeColor('inputPassword4',rtdo);
+}
+
+function validar_clave(contrasenna)
+{
+    if(contrasenna.length >= 8)
+    {		
+        var mayuscula = false;
+        var minuscula = false;
+        var numero = false;
+        var caracter_raro = false;
+        
+        for(var i = 0;i<contrasenna.length;i++)
+        {
+            if(contrasenna.charCodeAt(i) >= 65 && contrasenna.charCodeAt(i) <= 90)
+            {
+                mayuscula = true;
+            }
+            else if(contrasenna.charCodeAt(i) >= 97 && contrasenna.charCodeAt(i) <= 122)
+            {
+                minuscula = true;
+            }
+            else if(contrasenna.charCodeAt(i) >= 48 && contrasenna.charCodeAt(i) <= 57)
+            {
+                numero = true;
+            }
+            else
+            {
+                caracter_raro = true;
+            }
+        }
+        if(mayuscula == true && minuscula == true && caracter_raro == true && numero == true)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 function validarFechaNac(){

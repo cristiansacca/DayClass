@@ -43,7 +43,7 @@ include "header.html";
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Contraseña</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" required>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" onchange="validarContrasenia()" required>
     </div>
   </div>
     
