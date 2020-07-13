@@ -1,4 +1,3 @@
-<link href="../../DayClassStyle.css" rel="stylesheet" type="text/css">
 <?php
 include "../../header.html";
 ?>

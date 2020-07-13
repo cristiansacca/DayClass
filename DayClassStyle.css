@@ -4,11 +4,20 @@
 
 .abajo-pagina{
     position: absolute;
-    bottom: 0;
+    bottom: auto;
     width: 100%;
 }
 
-.fondo-body{
+body{
+    padding-top: 4rem; /*Esto es para que el navbar no tape la primer parte de la pagina*/
     background-image: linear-gradient(white, white, mediumpurple);
     background-attachment: fixed;
+}
+
+.fill_fields{
+    margin-top: 20px;
+}
+
+.light_txt{
+    color: dimgray;
 }

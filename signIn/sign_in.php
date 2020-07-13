@@ -1,6 +1,7 @@
 <?php
-include "header.html";
+include "../header.html";
 ?>
+<link rel="stylesheet" href="../DayClassStyle.css">
 <script src="signIn_funciones.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
@@ -72,5 +73,5 @@ include "header.html";
 </div>
 
 <?php
-include "footer.html";
+include "../footer.html";
 ?>

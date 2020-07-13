@@ -1,7 +1,7 @@
 <?php
 include "../../header.html";
 ?>
-<link rel="stylesheet" href="../../DayClassStyle.css">
+
 <div class="text-center my-5">
     <img src="../../bootstrap-icons-1.0.0-alpha5/person-fill.svg" width="10%" height="10%">
     <br>
