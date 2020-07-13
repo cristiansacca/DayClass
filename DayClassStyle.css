@@ -10,7 +10,9 @@
 
 body{
     padding-top: 4rem; /*Esto es para que el navbar no tape la primer parte de la pagina*/
-    background-image: linear-gradient(white, white, mediumpurple);
+    /*background-image: linear-gradient(white, white, mediumpurple);*/
+    background-image: url("/DayClass/images/school.jpg");
+    background-repeat: repeat;
     background-attachment: fixed;
 }
 
