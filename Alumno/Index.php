@@ -2,10 +2,12 @@
 include "../header.html";
 ?>
 
+<link rel="stylesheet" href="../DayClassStyle.css">
+
 <div class="container">
 
     <div class="jumbotron my-4">
-      <h3 class=>ApellidoUsuario, NombreUsuario</h3>
+      <h3 class="">ApellidoUsuario, NombreUsuario</h3>
       <p class="lead"></p>
       <a href="#" class="btn btn-primary btn-lg">Ver Perfil</a>
     </div>
@@ -15,7 +17,7 @@ include "../header.html";
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="../images/Banner-cursos (2).png" alt="">
+          <img class="card-img-top" src="../images/cursos.png" alt="">
           <div class="card-body">
             <h4 class="card-title">Cursos</h4>
             <p class="card-text">en los que esta inscripto actualmente</p>
@@ -28,7 +30,7 @@ include "../header.html";
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top imagen" src="../images/l_1527842247.jpg" alt="">
+          <img class="card-img-top imagen" src="../images/asistencias.png" alt="">
           <div class="card-body">
             <h4 class="card-title">Asistencias</h4>
             <p class="card-text">Concurrencia al aula</p>
@@ -41,7 +43,7 @@ include "../header.html";
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="../images/maxresdefault.jpg" alt="">
+          <img class="card-img-top" src="../images/justificativos.png" alt="">
           <div class="card-body">
             <h4 class="card-title">Justificativos</h4>
             <p class="card-text">Carga de justificaciones de inasistencias a clases</p>

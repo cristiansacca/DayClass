@@ -168,7 +168,7 @@ function validar_clave(contrasenna)
         var mayuscula = false;
         var minuscula = false;
         var numero = false;
-        var caracter_raro = false;
+        
         
         for(var i = 0;i<contrasenna.length;i++)
         {
@@ -184,12 +184,9 @@ function validar_clave(contrasenna)
             {
                 numero = true;
             }
-            else
-            {
-                caracter_raro = true;
-            }
+            
         }
-        if(mayuscula == true && minuscula == true && caracter_raro == true && numero == true)
+        if(mayuscula == true && minuscula == true && numero == true)
         {
             return true;
         }
@@ -220,8 +217,4 @@ function setValitationMesage(elementID, rtdo, msg){
         document.getElementById(elementID).style.display='none';
     }
       
-}
-
-function blockE(){
-    
 }

@@ -1,7 +1,7 @@
 <?php
 include "header.html";
 ?>
-
+<link href="DayClassStyle.css" rel="stylesheet" type="text/css">
 <div class="text-center m-auto" style="width:45%; height:55%;">
     <form class="form-group m-4">
       <svg width="6em" height="6em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
