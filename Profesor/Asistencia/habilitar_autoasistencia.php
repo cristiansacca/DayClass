@@ -1,14 +1,16 @@
 <?php
 include "../../header.html";
 ?>
+<script src="funciones_habilitarAutoasistencia.js"></script>
+
 
 <div class="text-center my-5 mx-4 form-row">
     <div class="form-group col-md-6">
         <h3>Código de auto-asistencia</h3>
         <br>
-        <input type="text" readonly value="XXXXXXXXX" class="form-control m-auto text-center" style="width: 30%; font-size: x-large;">
+        <input type="text" readonly value="XXXXXXXXX" class="form-control m-auto text-center" style="width: auto; font-size: large;" id="outCodigoAutoasist">
         <br>
-        <input type="button" class="btn btn-lg btn-primary" value="Generar">
+        <input type="button" class="btn btn-lg btn-primary" value="Generar" id="btnCodigoAutoasist" onclick="generarCodigo()">
     </div>    
     <div class="form-group col-md-6">
         <h3>Seleccione la duración del código</h3>
@@ -23,7 +25,7 @@ include "../../header.html";
     </div>
 </div>
 <div class="text-center">
-    <input type="button" value="Habiliar" class="btn btn-lg btn-success">
+    <input type="button" value="Habilitar" class="btn btn-lg btn-success">
 </div>
 
 <?php
