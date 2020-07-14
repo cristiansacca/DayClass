@@ -2,8 +2,6 @@
 include "../header.html";
 ?>
 
-<link rel="stylesheet" href="../DayClassStyle.css">
-
 <div class="container">
 
     <div class="jumbotron my-4">
