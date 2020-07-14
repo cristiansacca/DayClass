@@ -72,9 +72,9 @@ include "../header.html";
           <div class="form-group col-12 ">
             <h3>Ingrese el código dado por el profesor</h3><br>
             <h6 class="text-muted">Sin guiones ni espacios</h6>
-            <input type="text" class="form-control m-auto " style="width: 230px; font-size: large; border-width: 4px;">
-            <input type="button" class="btn btn-lg btn-secondary my-3" value="Dar Presente"
-              style=" background-color: mediumpurple; border-color: mediumpurple">
+            <input type="text"  class="form-control m-auto " style="width: 230px; font-size: large; border-width: 4px;" id = "inputCodigoIngresado">
+            <h9 id = "msgValidacionCodigo" ></h9> <br>
+            <input type="button" class="btn btn-lg btn-secondary my-3" value="Dar Presente" style=" background-color: mediumpurple; border-color: mediumpurple" id ="btnVerificarCodIngresado" onclick = "validarLongCodIngresado()">
           </div>
         </div>
       </div>
