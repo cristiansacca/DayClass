@@ -52,7 +52,7 @@ function validarNombre(){
             msg = "En el Nombre solo van letras";  
         }
     }else{
-        msg= "El nombre debe contener mas de 3 y menos de 20 letras ";
+        msg= "El nombre debe contener más de 3 y menos de 20 letras ";
         
     }
     
@@ -76,7 +76,7 @@ function validarApellido(){
         
 
     }else{
-        msg = "El apellido debe contener mas de 3 y menos de 20 letras "; 
+        msg = "El apellido debe contener más de 3 y menos de 20 letras "; 
     }
   
     changeColor('inputSurname',rtdo);
@@ -92,7 +92,7 @@ function validarEmail(){
     rtdo = validateEmail(elem);
     
     if(rtdo == false){
-            msg = "Lo que se ha escrito no es una direccion de mail valida, revisar @ y .com";    
+            msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ y .com";    
     }
     
     changeColor('inputEmail',rtdo);
@@ -136,7 +136,7 @@ function validarFechaNac(){
     if(dateYear < todayYear-4){
         rtdo = true;
     }else{
-        msg = "No es una fecha de nacimeinto valida para este sistema";  
+        msg = "No es una fecha de nacimiento válida para este sistema";  
     }
     
     changeColor('inputDate',rtdo);
