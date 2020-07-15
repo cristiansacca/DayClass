@@ -14,6 +14,43 @@ function abrirModal(){
     $("#staticBackdrop").modal("show");
 }
 
+$('.custom-file-input').on('change', function() { 
+    let fileName = $(this).val().split('\\').pop(); 
+    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+});
+
+function validarLongCodIngresado(){
+
+    var codigoIngresado = document.getElementById('inputCodigoIngresado').value;
+    var rtdo = false ; 
+    var msg = "";
+    if (codigoIngresado.length == 0){
+
+       msg =  "El código esta vacío" ;
+        
+    } else {
+        if(codigoIngresado.length < 11 || codigoIngresado.length > 11){
+            msg = "El código no está completo" ;
+        } else {
+
+       			 var letras = codigoIngresado.substring(0,2); 
+       			 var num = codigoIngresado.substring(2,11); 
+
+                    if(letters(letras)){
+                        if(numbers(num)){
+                            msg ="Código Válido";
+                            rtdo= true; 
+                        }else {
+                            msg ="Código No Válido";
+                        }
+                    }else {
+                        msg ="Código No Válido";
+                    }
+        }
+  }
+  setValitationMesage("msgValidacionCodigo", rtdo, msg);
+
+}
 
 function letters(letras){
 	var patron = /^[A-Za-z]*$/;
@@ -138,4 +175,10 @@ function setValitationMesage(elementID, rtdo, msg){
         document.getElementById(elementID).style.display='none';
     }
       
+}
+
+document.getElementById("btnCerrar").onclick = limpiarContenidoModal();
+
+function limpiarContenidoModal(){
+    document.getElementById("inputCodigoIngresado").value = "";
 }
