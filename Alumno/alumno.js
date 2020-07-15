@@ -20,7 +20,7 @@ $('.custom-file-input').on('change', function() {
 });
 
 function validarLongCodIngresado(){
-
+eval("debugger;");
     var codigoIngresado = document.getElementById('inputCodigoIngresado').value;
     var rtdo = false ; 
     var msg = "";
@@ -48,7 +48,7 @@ function validarLongCodIngresado(){
                     }
         }
   }
-  setValitationMesage("msgValidacionCodigo", rtdo, msg);
+  setValitationMesageAutoAsist("msgValidacionCodigo", rtdo, msg);
 
 }
 
@@ -176,6 +176,23 @@ function setValitationMesage(elementID, rtdo, msg){
     }
       
 }
+
+function setValitationMesageAutoAsist(elementID, rtdo, msg){
+    if(rtdo == false){
+        document.getElementById(elementID).style.visibility='visible';
+        document.getElementById(elementID).style.display='contents';
+        document.getElementById(elementID).style.color = "Red"
+        document.getElementById(elementID).innerHTML = msg;
+    }else{
+       document.getElementById(elementID).style.visibility='visible';
+        document.getElementById(elementID).style.display='contents';
+        document.getElementById(elementID).style.color = "Green"
+        document.getElementById(elementID).innerHTML = msg;
+    }
+      
+}
+
+
 
 document.getElementById("btnCerrar").onclick = limpiarContenidoModal();
 

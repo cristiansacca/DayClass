@@ -87,6 +87,8 @@ include "../header.html";
 
 
 </div>
+    </div>
+    
 
 <?php
 include "../footer.html";
