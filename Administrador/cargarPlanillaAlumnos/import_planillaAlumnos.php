@@ -11,7 +11,7 @@ include "../../header.html";
         <div class="container" style="margin-top:50px;">
 
             <div class="custom-file">
-                <input type="file" class="custom-file-input" required name="name" id="name" accept=".xlsx"
+                <input type="file" class="custom-file-input" required name="inpGetFile" id="inpGetFile" accept=".xlsx"
                     onchange="comprobar()" lang="es">
 
                 <label class="custom-file-label" for="validatedCustomFile">Seleccionar archivo</label>
@@ -20,7 +20,7 @@ include "../../header.html";
             <!-- la funcion comrobar esta en funciones_import_planillaAlumnos.js -->
             <br>
             <br>
-            <button name="importar" type="submit" class="btn btn-lg btn-secondary my-3"
+            <button name="importar" id="btnImportFile" type="submit" class="btn btn-lg btn-secondary my-3"
                 style="background-color: mediumpurple; border-color: mediumpurple" disabled=true>Importar Datos</button>
         </div>
     </form>

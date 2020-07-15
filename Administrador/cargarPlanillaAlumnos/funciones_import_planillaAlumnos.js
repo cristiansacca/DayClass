@@ -1,8 +1,10 @@
 function comprobar(){
-        if(document.addproduct.name.value ==""){
-            alert("");
+    eval("debugger;");
+    var elem = document.getElementById('inpGetFile').value;
+        if(elem == ""){
+            alert("no esra cargado el documento");
         }else{
-            document.importPlanilla.importar.disabled=false;
+            document.getElementById('btnImportFile').disabled = false;
         }
 }
 
