@@ -1,59 +1,41 @@
 <?php
 include "../header.html";
 ?>
-
+<style>.custom-file-label::after { content: "Elegir";}</style>
 <div class="container">
-
-  <div class="jumbotron my-4">
-    <h3 class="">ApellidoUsuario, NombreUsuario</h3>
-    <p class="lead"></p>
-    <a href="#" class="btn btn-primary btn-lg">Ver Perfil</a>
-  </div>
-
-  <!-- Page Features -->
-  <div class="row text-center">
-
-    <div class="col-lg-4 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="../images/cursos.png" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Cursos</h4>
-          <p class="card-text">en los que esta inscripto actualmente</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Ver</a>
-        </div>
-      </div>
+    <div>
+        <h2 class="display-4">Justificativos</h2>
     </div>
-
-    <div class="col-lg-4 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top imagen" src="../images/asistencias.png" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Asistencias</h4>
-          <p class="card-text">Concurrencia al aula</p>
+    <form action="#">
+        <h4>Cargar justificativo de inasistencias</h4>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mb-6 my-2">
+                <label>Seleccione la imagen del justificativo:</label>
+                <div class="custom-file my-2">
+                    <input id="imgJustificativo" type="file" accept="image/*" class="custom-file-input" required>
+                    <label for="imgJustificativo" class="custom-file-label">Elija el justificativo</label>
+                    <button type="submit" class="btn btn-primary my-3">Cargar</button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mb-6 my-2">
+                <label>Seleccione el periodo al que corresponde el justificativo:</label>
+                <div class="my-2">
+                    <label for="fechaDesde">Desde:</label>
+                    <input type="date" id="fechaDesde" class="form-control" required>
+                    <label for="fechaHasta">Hasta:</label>
+                    <input type="date" id="fechaHasta" class="form-control" required>
+                </div>
+            </div>
         </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Ver</a>
+    </form>
+    <div>
+        <h4>Justificativos pendientes de confirmación</h4>
+        <div id="pendientes">
+            <div class="alert alert-info" role="alert">
+                No tenés justificativos pendientes de confirmación
+            </div>
         </div>
-      </div>
     </div>
-
-    <div class="col-lg-4 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="../images/justificativos.png" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Justificativos</h4>
-          <p class="card-text">Carga de justificaciones de inasistencias a clases</p>
-        </div>
-
-        <div class="card-footer">
-          <a href="carga-justificativo.php" class="btn btn-primary">Ver</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <!-- Modal -->
@@ -85,6 +67,7 @@ include "../header.html";
   </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="alumno.js"></script>
 
 <?php

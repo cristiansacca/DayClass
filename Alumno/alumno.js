@@ -13,6 +13,11 @@ function abrirModal(){
     $("#staticBackdrop").modal("show");
 }
 
+$('.custom-file-input').on('change', function() { 
+    let fileName = $(this).val().split('\\').pop(); 
+    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+});
+
 function validarLongCodIngresado(){
 
     var codigoIngresado = document.getElementById('inputCodigoIngresado').value;
@@ -69,4 +74,10 @@ function setValitationMesage(elementID, rtdo, msg){
         document.getElementById(elementID).innerHTML = msg;
     }
       
+}
+
+document.getElementById("btnCerrar").onclick = limpiarContenidoModal();
+
+function limpiarContenidoModal(){
+    document.getElementById("inputCodigoIngresado").value = "";
 }
