@@ -7,7 +7,7 @@ include "../header.html";
   <div class="jumbotron my-4">
     <h3 class="">ApellidoUsuario, NombreUsuario</h3>
     <p class="lead"></p>
-    <a href="#" class="btn btn-primary btn-lg">Ver Perfil</a>
+    <a href="editar_perfil.php" class="btn btn-primary btn-lg">Ver Perfil</a>
   </div>
 
   <!-- Page Features -->
