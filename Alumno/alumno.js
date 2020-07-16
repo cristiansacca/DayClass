@@ -6,17 +6,27 @@ function cambiarContenidoNavbar(){
     contenido += "<li class='nav-item'><a class='nav-link' href='Index.php'>Inicio</a></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'>Novedades</a></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#' onclick='abrirModal()'>Auto-asistencia</a></li>";
-    contenido += "<li class='nav-item'><input type='button' class='btn btn-secondary' value='Cerrar sesión' /></li>";
+    contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
+}
+
+//El botón salir vuelve al Login
+document.getElementById("btnSalir").onclick = function(){
+    location.href="/DayClass/Index.php";
 }
 
 function abrirModal(){
     $("#staticBackdrop").modal("show");
 }
 
-$('.custom-file-input').on('change', function() { 
+//Si se cierra el popup de Auto-asistencia se borra el codigo escrito
+document.getElementById("btnCerrar").onclick = function(){
+    document.getElementById("inputCodigoIngresado").value = "";
+}
+
+$(".custom-file-input").on("change", function() { 
     let fileName = $(this).val().split('\\').pop(); 
-    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+    $(this).next(".custom-file-label").addClass("selected").html(fileName); 
 });
 
 function validarLongCodIngresado(){
@@ -190,12 +200,4 @@ function setValitationMesageAutoAsist(elementID, rtdo, msg){
         document.getElementById(elementID).innerHTML = msg;
     }
       
-}
-
-
-
-document.getElementById("btnCerrar").onclick = limpiarContenidoModal();
-
-function limpiarContenidoModal(){
-    document.getElementById("inputCodigoIngresado").value = "";
 }

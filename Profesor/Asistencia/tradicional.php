@@ -2,8 +2,10 @@
 include "../../header.html";
 ?>
 
+<script src="funciones_habilitarAutoasistencia.js"></script>
+
 <div class="text-center my-5">
-    <img src="../../bootstrap-icons-1.0.0-alpha5/person-fill.svg" width="10%" height="10%">
+    <i class="fa fa-user-circle-o fa-5x"></i>
     <br>
     <label id="labelNombre" style="font-size:x-large;">Apellido, Nombre</label>
     <div>
@@ -11,8 +13,8 @@ include "../../header.html";
         <button class="btn btn-lg btn-success mx-5">Presente</button>
     </div>
     <div class="my-4">
-        <a class="mx-5"><img src="../../bootstrap-icons-1.0.0-alpha5/arrow-left-square.svg" width="30px" height="30px"></a>
-        <a class="mx-5"><img src="../../bootstrap-icons-1.0.0-alpha5/arrow-right-square.svg" width="30px" height="30px"></a>
+        <a><i class="fa fa-arrow-circle-left fa-2x mx-5"></i></a>
+        <a><i class="fa fa-arrow-circle-right fa-2x mx-5"></i></a>
     </div>
 </div>
 
