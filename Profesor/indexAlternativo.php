@@ -28,7 +28,7 @@ include "../header.html";
             
             
             $aux = $i+1;
-            echo " <div class='col-lg-6 col-md-3 mb-4' >
+            echo "<div class='col-lg-6 col-md-3 mb-4' >
             <div class='card h-100 color$contador' id='tajeta$i' >
                 <div class='card-body'>
                     <h4 class='card-title'>Materia $aux</h4>

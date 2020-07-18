@@ -2,6 +2,27 @@
 include "../header.html";
 ?>
 <script src="administrador.js"></script>
+<style>
+    .color0{
+        background-color: LightSteelBlue;
+    }
+
+.color1{
+        background-color: LightBlue;
+    }
+    
+.color2{
+        background-color: Thistle;
+    }
+    
+.color3{
+        background-color: lightskyblue;
+    }
+
+
+</style>
+
+
 <div class="container ">
     <div class="my-5">
       <a href="editar_perfil.php" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#staticBackdrop">Nuevo Curso </a>
@@ -9,64 +30,44 @@ include "../header.html";
     <!-- Page Features -->
     <div class="row text-center my-5">
 
-        <div class="col-lg-12 col-md-12 mb-4" >
-            <div class="card h-100" style="background-color:LightSteelBlue">
-                <div class="card-body text-left">
-                    <h3 class="card-title">Curso 1</h3>
-                    <h5 class="card-title">Division 3k9</h5>
-                    <h6  class="mx-5">Profesores</h6>
-                    <ul class="mx-5" style="list-style: none;">
+       <?php
+        $contador = 0;
+        for ($i = 0; $i < 20; $i++) {
+            if($contador == 4){
+                $contador = 0;
+            }
+            
+            
+            $aux = $i+1;
+            
+            
+            echo "<div class='col-lg-12 col-md-12 mb-4' >
+            <div class='card h-100 color$contador' id='tajeta$i'>
+                <div class='card-body text-left'>
+                    <h3 class='card-title'>Curso $aux</h3>
+                    <h5 class='card-title'>Division 3k9</h5>
+                    <h6  class='mx-5'>Profesores</h6>
+                    <ul class='mx-5' style='list-style: none;'>
                        <li> Adjunto: </li>
                        <li> Titular:</li>
                     </ul>
                 </div>
 
-                <div class="card-footer">
-                <a href="cargarPlanillaAlumnos/import_planillaAlumnos.php" class="btn btn-dark m-2">Importar Alumnos</a>
-                    <a href="añadirProfesor.php" class="btn btn-dark m-2">Añadir Profesores</a>
+                <div class='card-footer'>
+                <a href='cargarPlanillaAlumnos/import_planillaAlumnos.php' class='btn btn-dark m-2'>Importar Alumnos</a>
+                    <a href='añadirProfesor.php' class='btn btn-dark m-2'>Añadir Profesores</a>
                 </div>
             </div>
-        </div>
-
-        <div class="col-lg-12 col-md-12 mb-4">
-            <div class="card h-100" style="background-color:LightBlue">
-                <div class="card-body text-left" >
-                    <h3 class="card-title">Curso 2</h3>
-                    <h5 class="card-title">Division 3k9</h5>
-                    <h6  class="mx-5">Profesores</h6>
-                    <ul class="mx-5" style="list-style: none;">
-                       <li> Adjunto: </li>
-                       <li> Titular:</li>
-                    </ul>
-                </div>
-
-                <div class="card-footer">
-                <a href="cargarPlanillaAlumnos/import_planillaAlumnos.php" class="btn btn-dark m-2">Importar Alumnos</a>
-                    <a href="añadirProfesor.php" class="btn btn-dark m-2">Añadir Profesores</a>
-                </div>
-            </div>
-        </div>
+        </div>" ;
+            
+            $contador ++;
+       
+        }
         
-        <div class="col-lg-12 col-md-12 mb-4">
-            <div class="card h-100" style="background-color:Thistle">
-                <div class="card-body text-left" >
-                    <h3 class="card-title">Curso x</h3>
-                    <h5 class="card-title">Division 4k9</h5>
-                    <h6  class="mx-5">Profesores</h6>
-                    <ul class="mx-5" style="list-style: none;">
-                       <li> Adjunto: </li>
-                       <li> Titular:</li>
-                    </ul>
-                </div>
-
-                <div class="card-footer">
-                    <a href="cargarPlanillaAlumnos/import_planillaAlumnos.php" class="btn btn-dark m-2">Importar Alumnos</a>
-                    <a href="añadirProfesor.php" class="btn btn-dark m-2">Añadir Profesores</a>
-                </div>
-            </div>
-        </div>
-
-
+    ?> 
+        
+        
+     
     </div>
 
 </div>
