@@ -125,9 +125,21 @@ function setValitationMesage(elementID, rtdo, msg) {
 
 }
 
-document.getElementById("btnconfirmar").onclick = function () {
 
 
+ function setEstado(estado) {
+    eval("debugger;");
+
+    if (estado == "Validado"){
+
+        document.getElementById('estadoBtn').innerHTML = "Aprobado" ;
+
+    } else if( estado == "Denegado"){
+        document.getElementById('estadoBtn').innerHTML = "Denegado" ;
+    }
+}
+
+document.getElementById("btnconfirmar").onclick = function() {
     var elem = document.reporteadmin.tipo.value;
 
     if (elem == "curso") {
@@ -139,9 +151,7 @@ document.getElementById("btnconfirmar").onclick = function () {
 
 }
 
-
-document.getElementById("btnaceptar").onclick = function {
-
+document.getElementById("btnaceptar").onclick = function(){
     var elem = document.getElementById("cursoseleccionado").value;
 
     if (elem == "Seleccione un curso") {
@@ -151,17 +161,3 @@ document.getElementById("btnaceptar").onclick = function {
         location.href = "/DayClass/Administrador/validar_justificativos.php";
     }
 }
-
- function setEstado() {
-
-    eval("debugger;");
-
-    if (estado == "Validado"){
-
-        document.getElementById('Estado').innerHTML = "Aprobado" ;
-
-    } else if( estado == "Denegado"){
-        document.getElementById('Estado').innerHTML = "Denegado" ;
-    }
-}
-

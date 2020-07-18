@@ -97,9 +97,9 @@ include "../header.html";
     </div>
   </div>
 
+</div>
 
-
-  <<!-- Modal -->
+  <!-- Modal -->
     <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">

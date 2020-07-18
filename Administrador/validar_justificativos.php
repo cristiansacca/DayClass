@@ -20,36 +20,19 @@ include "../header.html";
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="/DayClass/images/justificativos.png">Justificativo 1 </td>
+                        <td> <a href="/DayClass/images/justificativos.png">Justificativo 1 </td>
                         <td>Ruiz Graciela</td>
                         <td>Materia N </td>
                         <td>DD/MM/AAAA - DD/MM/AAAA</td>
-                        <td><button id="btnvalidar" class="btn btn-success" onclick="setEstado()"> Validar
+                        <td><button id="btnvalidar" class="btn btn-success" onclick="setEstado('Validado')"> Validar
                             </button>
-                            <button id="btndenegar" class="btn btn-danger " onclick="setEstado()">
+                            <button id="btndenegar" class="btn btn-danger " onclick="setEstado('Denegado')">
                                 Denegar</button></td>
                         <td>
-                            <h3 id="Estado"></h3>
+                            <h9 id="estadoBtn"></h9>
                         </td>
                     </tr>
-                    <tr>
-                        <td><a href="/DayClass/images/justificativos.png">Justificativo 2 </td>
-                        <td>Perez Clara</td>
-                        <td>Materia N </td>
-                        <td>DD/MM/AAAA - DD/MM/AAAA</td>
-                        <td><button class="btn btn-success">Validar</button>
-                            <button class="btn btn-danger">Denegar</button></td>
-                        <td> <label id="Estado1" onchange="setEstado()" for=""></label> </td>
-                    </tr>
-                    <tr>
-                        <td><a href="/DayClass/images/justificativos.png">Justificativo 3 </td>
-                        <td>Ramos Ramon</td>
-                        <td>Materia N </td>
-                        <td>DD/MM/AAAA - DD/MM/AAAA</td>
-                        <td><button class="btn btn-success">Validar</button>
-                            <button class="btn btn-danger">Denegar</button></td>
-                        <td>Estado</td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
