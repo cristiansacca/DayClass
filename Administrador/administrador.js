@@ -139,7 +139,8 @@ document.getElementById("btnconfirmar").onclick = function () {
 
 }
 
-document.getElementById("btnaceptar").onclick = function () {
+
+document.getElementById("btnaceptar").onclick = function {
 
     var elem = document.getElementById("cursoseleccionado").value;
 
@@ -149,7 +150,18 @@ document.getElementById("btnaceptar").onclick = function () {
     } else {
         location.href = "/DayClass/Administrador/validar_justificativos.php";
     }
-
-
-
 }
+
+ function setEstado() {
+
+    eval("debugger;");
+
+    if (estado == "Validado"){
+
+        document.getElementById('Estado').innerHTML = "Aprobado" ;
+
+    } else if( estado == "Denegado"){
+        document.getElementById('Estado').innerHTML = "Denegado" ;
+    }
+}
+
