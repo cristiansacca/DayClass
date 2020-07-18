@@ -4,7 +4,7 @@ include "../header.html";
 
 <div class="container">
 
-    <div class="jumbotron my-4" style="background-color:LightSteelBlue">
+    <div class="jumbotron my-4" style="background-color:Silver">
         <h3 class="">Nombre materia</h3>
         <h4>Nombre curso</h4>
         <p class="lead"></p>
@@ -15,7 +15,7 @@ include "../header.html";
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top" src="../images/reportes.png" alt="">
+                <img class="card-img-top" src="../images/reportes.png" alt="" oncontextmenu="return false">
                 <div class="card-body">
                     <h4 class="card-title">Reportes y estadísticas</h4>
                     <p class="card-text">Genere reportes y estadisticas de asistencias</p>
@@ -29,7 +29,7 @@ include "../header.html";
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top imagen" src="../images/Pizzarra-de-novedades.png" alt="pizarra-novedades">
+                <img class="card-img-top imagen" src="../images/Pizzarra-de-novedades.png" alt="pizarra-novedades" oncontextmenu="return false">
                 <div class="card-body">
                     <h4 class="card-title">Pizzarra de novedades</h4>
                     <p class="card-text">Publica novedades para los alumnos del curso</p>
@@ -42,7 +42,7 @@ include "../header.html";
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top imagen" src="../images/asistencias.png" alt="">
+                <img class="card-img-top imagen" src="../images/asistencias.png" alt="" oncontextmenu="return false">
                 <div class="card-body">
                     <h4 class="card-title">Asistencias</h4>
                     <p class="card-text">Concurrencia al aula de los alumnos </p>
