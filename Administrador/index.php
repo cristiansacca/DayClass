@@ -22,7 +22,7 @@ include "../header.html";
           <h6 class="card-text">Administrar Cursos</h6>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary">Ir</a>
+          <a href="/DayClass/Administrador/admcurso.php" class="btn btn-primary">Ir</a>
         </div>
       </div>
     </div>
@@ -61,22 +61,22 @@ include "../header.html";
           </div>
           <div class="modal-body text-center  ">
 
-            <div class="input-group text m-auto">         
+            <div class="input-group text m-auto">
 
-              <form name = "reporteadmin" action="" class="m-auto">
+              <form name="reporteadmin" action="" class="m-auto">
                 <input type="radio" id="curso" name="tipo" value="curso">
                 <label for="curso">Curso</label><br>
                 <input type="radio" id="alumno" name="tipo" value="alumno">
                 <label for="alumno">Alumno</label><br>
               </form>
-             
+
             </div>
 
           </div>
 
           <div class="modal-footer m-auto">
-            <button type="button" class="btn btn-success " id = "btnconfirmar"  data-dismiss="modal">Aceptar</button>
-            <button type="button" class="btn btn-danger" id = "btncancelar" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success " id="btnconfirmar" data-dismiss="modal">Aceptar</button>
+            <button type="button" class="btn btn-danger" id="btncancelar" data-dismiss="modal">Cancelar</button>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@ include "../header.html";
         </div>
 
         <div class="card-footer">
-          <a href="#" class="btn btn-primary">Ver</a>
+          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1">Ir</a>
         </div>
       </div>
     </div>
@@ -99,38 +99,35 @@ include "../header.html";
 
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">AutoAsistencia</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class=" text-center my-3 mx-4 form-row">
-            <div class="form-group col-12 ">
-              <h3>Ingrese el código dado por el profesor</h3><br>
-              <h6 class="text-muted">Sin guiones ni espacios</h6>
-              <input type="text" class="form-control m-auto "
-                style="width: 230px; font-size: large; border-width: 4px;">
-              <input type="button" class="btn btn-lg btn-secondary my-3" value="Dar Presente"
-                style=" background-color: mediumpurple; border-color: mediumpurple">
-            </div>
+  <<!-- Modal -->
+    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Curso para validar justificativos:</h5>
+          </div>
+          <div class="modal-body">
+
+            <select id="cursoseleccionado" class="custom-select my-3 ">
+              <option selected> Seleccione un curso </option>
+              <option value="1">Curso 1</option>
+              <option value="2">Curso 2</option>
+              <option value="3">Curso 3</option>
+            </select>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success"  id="btnaceptar" data-dismiss="modal">Aceptar</button>
+            <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        </div>
       </div>
     </div>
-  </div>
 
-  <script src="administrador.js"></script>
+    <script src="administrador.js"></script>
 
-  <?php
+    <?php
 include "../footer.html";
 ?>
