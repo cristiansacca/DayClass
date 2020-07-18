@@ -137,3 +137,17 @@ function setValitationMesage(elementID, rtdo, msg){
     }
       
 }
+
+document.getElementById("btnconfirmar").onclick = function(){
+
+      
+      var elem = document.reporteadmin.tipo.value;
+
+      if(elem == "curso"){
+          location.href = "/DayClass/Administrador/reporte_curso.php";
+      }
+      else if( elem == "alumno"){
+            location.href = "/DayClass/Administrador/reporte_alumno.php";
+      }
+
+}

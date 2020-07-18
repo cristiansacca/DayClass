@@ -32,6 +32,7 @@ include "../header.html";
         </div>
     </form>
 <div>
+
     <div class="card ">
         <div class="card-header">
             <b> Datos del Curso </b> 
@@ -92,6 +93,8 @@ include "../header.html";
         <p class="lead"></p>
     </div>
 </div>
+
+<script src="administrador.js"></script>
 
 <?php
 include "../footer.html";
