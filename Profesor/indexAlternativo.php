@@ -2,6 +2,29 @@
 include "../header.html";
 ?>
 
+
+<style>
+    .color1{
+        background-color: orchid;
+    }
+    
+    .color0{
+        background-color: mediumspringgreen;
+    }
+
+     .color2{
+        background-color: darksalmon;
+    }
+    
+    .color3{
+        background-color: lightskyblue;
+    }
+    
+
+</style>
+
+
+
 <div class="container">
 
     <div class="jumbotron my-4">
@@ -13,49 +36,41 @@ include "../header.html";
     <!-- Page Features -->
     <div class="row text-center">
 
-        <div class="col-lg-6 col-md-3 mb-4" >
-            <div class="card h-100" style="background-color:LightSteelBlue">
-                <div class="card-body">
-                    <h4 class="card-title">Materia 1</h4>
-                    <h5 class="card-title">Curso 1</h5>
-                </div>
-
-                <div class="card-footer">
-                    <a href="indexCurso.php" class="btn btn-primary btn-lg">Ingresar</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-3 mb-4">
-            <div class="card h-100" style="background-color:LightBlue">
-                <div class="card-body" >
-                    <h4 class="card-title">Materia 1</h4>
-                    <h5 class="card-title">Curso 3</h5>
-                </div>
-
-                <div class="card-footer">
-                    <a href="indexCurso.php" class="btn btn-primary btn-lg">Ingresar</a>
-                </div>
-            </div>
-        </div>
         
-        <div class="col-lg-6 col-md-3 mb-4">
-            <div class="card h-100" style="background-color:Thistle">
-                <div class="card-body" >
-                    <h4 class="card-title">Materia 63</h4>
-                    <h5 class="card-title">Curso 2</h5>
+    <?php
+        $contador = 0;
+        for ($i = 0; $i < 15; $i++) {
+            if($contador == 4){
+                $contador = 0;
+            }
+            
+            
+            $aux = $i+1;
+            echo " <div class='col-lg-6 col-md-3 mb-4' >
+            <div class='card h-100 color$contador' id='tajeta$i' >
+                <div class='card-body'>
+                    <h4 class='card-title'>Materia $aux</h4>
+                    <h5 class='card-title'>Curso 1</h5>
                 </div>
 
-                <div class="card-footer">
-                    <a href="indexCurso.php" class="btn btn-primary btn-lg">Ingresar</a>
+                <div class='card-footer'>
+                    <a href='indexCurso.php' class='btn btn-primary btn-lg'>Ingresar</a>
                 </div>
             </div>
-        </div>
-
-
+        </div>";
+            
+            $contador ++;
+       
+        }
+        
+    ?>
+       
     </div>
 
 </div>
+
+        
+
 
 <script src="profesor.js"></script>
 

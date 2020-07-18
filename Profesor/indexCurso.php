@@ -49,7 +49,7 @@ include "../header.html";
                 </div>
                 <div class="card-footer">
                     <a href="#" class="btn btn-primary">Autoasistencia</a>
-                    <a href="#" class="btn btn-primary">Tradicional</a>
+                    <a href="#" class="btn btn-success">Tradicional</a>
                     
                 </div>
             </div>
