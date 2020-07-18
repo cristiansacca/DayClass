@@ -3,25 +3,7 @@ include "../header.html";
 ?>
 
 
-<style>
-    .color1{
-        background-color: orchid;
-    }
-    
-    .color0{
-        background-color: mediumspringgreen;
-    }
-
-     .color2{
-        background-color: darksalmon;
-    }
-    
-    .color3{
-        background-color: lightskyblue;
-    }
-    
-
-</style>
+<link rel="stylesheet" href="styleCards.css">
 
 
 
@@ -39,7 +21,7 @@ include "../header.html";
         
     <?php
         $contador = 0;
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             if($contador == 4){
                 $contador = 0;
             }
