@@ -4,7 +4,7 @@ include "../../header.html";
 
 <style>.custom-file-label::after { content: "Elegir";}</style>
 
-<div class="text-center m-auto" style="width:45%; height:55%;">
+<div class="text-center mx-auto my-5" style="width:45%; height:55%;">
 
     <form method="#" id="importPlanilla" name="importPlanilla" action="#" enctype="multipart/form-data" role="form">
         <h1>Importar Lista de alumnos</h1>

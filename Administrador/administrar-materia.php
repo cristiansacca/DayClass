@@ -33,7 +33,7 @@ include "../header.html";
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Matemática</td>
+                    <td><a href="admcurso.php">Matemática</td>
                     <td>2020</td>
                     <td>Habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
@@ -41,7 +41,7 @@ include "../header.html";
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Lengua</td>
+                    <td><a href="admcurso.php">Lengua</td>
                     <td>2020</td>
                     <td>Habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
@@ -49,7 +49,7 @@ include "../header.html";
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Estadística</td>
+                    <td><a href="admcurso.php">Estadística</td>
                     <td>2020</td>
                     <td>No habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
@@ -57,7 +57,7 @@ include "../header.html";
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>Química</td>
+                    <td><a href="admcurso.php">Química</td>
                     <td>2020</td>
                     <td>Habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>

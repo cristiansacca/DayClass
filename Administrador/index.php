@@ -14,22 +14,22 @@ include "../header.html";
     <!-- Page Features -->
     <div class="row text-center">
 
-      <div class="col-lg-4 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="../images/admCursos.png" alt="">
+          <img class="card-img-top" src="../images/admCursos.png" alt=" Cursos">
           <div class="card-body">
           
             <h6 class="card-text">Administrar Cursos</h6>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Ver</a>
+            <a href="administrar-materia.php" class="btn btn-primary">Ver</a>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top imagen" src="../images/reportes.png" alt="">
+          <img class="card-img-top imagen" src="../images/reportes.png" alt="Reportes y estadisticas">
           <div class="card-body">
           <h6 class="card-text">Generar reportes y estadísticas</h6>
           </div>
@@ -39,9 +39,9 @@ include "../header.html";
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="../images/justificativos.png" alt="">
+          <img class="card-img-top" src="../images/justificativos.png" alt="Justificativos">
           <div class="card-body">
           <h6 class="card-text">Evaluar justificativos</h6>
           </div>
@@ -51,8 +51,19 @@ include "../header.html";
           </div>
         </div>
       </div>
-    </div>
 
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top imagen" src="../images/configuraciones.png" alt="Configuraciones">
+          <div class="card-body">
+          <h6 class="card-text">Ingresar a configuraciones</h6>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Ver</a>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
 <!-- Modal -->
