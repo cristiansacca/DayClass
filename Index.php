@@ -14,7 +14,7 @@ include "header.html";
       <label class="my-2">Recordar</label>
     </div>
     <button class="btn btn-primary btn-block m-auto" style="width:6rem; font-size: large;" type="submit">Ingresar</button>
-    <a href="#">Olvidé mi contraseña</a>
+    <a href="#" class="btn btn-link my-2">Olvidé mi contraseña</a>
   </form>
 </div>
 

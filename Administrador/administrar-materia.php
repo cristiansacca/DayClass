@@ -25,7 +25,6 @@ include "../header.html";
             <thead>
                 <th>Id</th>
                 <th>Nombre materia</th>
-                <th>Año</th>
                 <th>Estado</th>
                 <th>Editar</th>
                 <th>Cargar programa</th>
@@ -33,32 +32,28 @@ include "../header.html";
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td><a href="admcurso.php">Matemática</td>
-                    <td>2020</td>
+                    <td><a href="admcurso.php">Matemática</a></td>
                     <td>Habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
                     <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td><a href="admcurso.php">Lengua</td>
-                    <td>2020</td>
+                    <td><a href="admcurso.php">Lengua</a></td>
                     <td>Habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
                     <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td><a href="admcurso.php">Estadística</td>
-                    <td>2020</td>
+                    <td><a href="admcurso.php">Estadística</a></td>
                     <td>No habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
                     <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td><a href="admcurso.php">Química</td>
-                    <td>2020</td>
+                    <td><a href="admcurso.php">Química</a></td>
                     <td>Habilitada</td>
                     <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
                     <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>

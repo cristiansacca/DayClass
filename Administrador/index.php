@@ -19,10 +19,10 @@ include "../header.html";
         <img class="card-img-top" src="../images/admCursos.png" alt="">
         <div class="card-body">
 
-          <h6 class="card-text">Administrar Cursos</h6>
+          <h6 class="card-text">Administrar materias y cursos</h6>
         </div>
         <div class="card-footer">
-          <a href="/DayClass/Administrador/admcurso.php" class="btn btn-primary">Ir</a>
+          <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-primary">Ir</a>
         </div>
       </div>
     </div>
