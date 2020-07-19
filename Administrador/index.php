@@ -14,9 +14,9 @@ include "../header.html";
   <!-- Page Features -->
   <div class="row text-center">
 
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="../images/admCursos.png" alt="">
+        <img class="card-img-top" src="../images/admCursos.png" alt="Cursos">
         <div class="card-body">
 
           <h6 class="card-text">Administrar materias y cursos</h6>
@@ -27,9 +27,9 @@ include "../header.html";
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top imagen" src="../images/reportes.png" alt="">
+        <img class="card-img-top imagen" src="../images/reportes.png" alt="Estadisticas">
         <div class="card-body">
           <h6 class="card-text">Generar estadísticas </h6>
         </div>
@@ -39,9 +39,9 @@ include "../header.html";
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top imagen" src="../images/reportes.png" alt="">
+        <img class="card-img-top imagen" src="../images/reportes.png" alt="Reportes">
         <div class="card-body">
           <h6 class="card-text">Generar reportes </h6>
         </div>
@@ -83,9 +83,9 @@ include "../header.html";
     </div>
 
 
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="../images/justificativos.png" alt="">
+        <img class="card-img-top" src="../images/justificativos.png" alt="Justificativos">
         <div class="card-body">
           <h6 class="card-text">Evaluar justificativos</h6>
         </div>
