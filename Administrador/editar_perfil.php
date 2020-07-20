@@ -82,6 +82,7 @@ include "../header.html";
       </div>
     </form>
   </div>
+    </div>
 
   <?php
 include "../footer.html";
