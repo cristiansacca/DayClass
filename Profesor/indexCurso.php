@@ -4,7 +4,7 @@ include "../header.html";
 
 <div class="container">
 
-    <div class="jumbotron my-4" style="background-color:Silver">
+    <div class="jumbotron my-4">
         <h3 class="">Nombre materia</h3>
         <h4>Nombre curso</h4>
         <p class="lead"></p>
