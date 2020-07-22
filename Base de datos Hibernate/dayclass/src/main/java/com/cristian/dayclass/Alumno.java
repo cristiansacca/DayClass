@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
  * @author Cristian
  */
 @Entity
-@Table(name="alumno", schema="gimnasio")
+@Table(name="Alumno", schema="dayclass")
 public class Alumno implements Serializable {
     
     private static final long serialVersionUID = 1L;    
@@ -26,7 +26,7 @@ public class Alumno implements Serializable {
     private int id;
     private String apellidoAlum;
     private String contraseniaAlum;
-    private int dni;
+    private int dniAlum;
     private String emailAlum;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaAltaAlumno;
@@ -38,7 +38,7 @@ public class Alumno implements Serializable {
     private String nombreAlum;
     
     @OneToMany
-    private ContraseniaRestablecida contraseniaRestablecida;
+    private List<ContraseniaRestablecida> contraseniaRestablecida;
     @ManyToOne
     private Permiso permiso;
 
