@@ -25,7 +25,7 @@ include "../header.html";
 
 <div class="container ">
     <div class="my-5">
-      <a href="editar_perfil.php" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#staticBackdrop">Nuevo Curso </a>
+      <a href="" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#staticBackdrop">Nuevo Curso </a>
     </div>
     <!-- Page Features -->
     <div class="row text-center my-5">

@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
  * @author Cristian
  */
 @Entity
-@Table(name="alumno", schema="gimnasio")
+@Table(name="Alumno", schema="dayclass")
 public class Alumno implements Serializable {
     
     private static final long serialVersionUID = 1L;    
