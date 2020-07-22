@@ -3,32 +3,38 @@ include "../header.html";
 ?>
 <style>.custom-file-label::after { content: "Elegir";}</style>
 <div class="container">
-    <div>
+    <div class="my-2">
         <h2 class="display-4">Justificativos</h2>
     </div>
     <form action="#">
         <h4>Cargar justificativo de inasistencias</h4>
         <div class="row">
             <div class="col-lg-6 col-md-6 mb-6 my-2">
-                <label>Seleccione la imagen del justificativo:</label>
-                <div class="custom-file my-2">
-                    <input id="imgJustificativo" type="file" accept="image/*" class="custom-file-input" required>
-                    <label for="imgJustificativo" class="custom-file-label">Elija el justificativo</label>
-                    <button type="submit" class="btn btn-primary my-3">Cargar</button>
+                <label>Seleccione el periodo al que corresponde el justificativo:</label>
+                <div class="my-2">
+                    <div class="form-inline my-2">
+                      <label style="margin-right: 1rem;" for="fechaDesde">Desde:</label>
+                      <input type="date" id="fechaDesde" onchange="validarFechasJustificativo();" class="form-control mr-2" <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
+                      <h9 id="msgDesde"></h9>
+                    </div>
+                    <div class="form-inline my-2">
+                      <label style="margin-right: 1.2rem;" for="fechaHasta">Hasta:</label>
+                      <input type="date" id="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2" <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
+                      <h9 id="msgHasta"></h9>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 mb-6 my-2">
-                <label>Seleccione el periodo al que corresponde el justificativo:</label>
-                <div class="my-2">
-                    <label for="fechaDesde">Desde:</label>
-                    <input type="date" id="fechaDesde" class="form-control" required>
-                    <label for="fechaHasta">Hasta:</label>
-                    <input type="date" id="fechaHasta" class="form-control" required>
-                </div>
-            </div>
+              <label>Seleccione la imagen del justificativo:</label>
+              <div class="custom-file my-2">
+                  <input id="imgJustificativo" type="file" accept="image/*" class="custom-file-input" required>
+                  <label for="imgJustificativo" class="custom-file-label">Elija el justificativo</label>
+                  <button type="submit" id="btnCargar" class="btn btn-primary my-3 disabled">Cargar</button>
+              </div>
+          </div>
         </div>
     </form>
-    <div>
+    <div class="my-2">
         <h4>Justificativos pendientes de confirmación</h4>
         <div id="pendientes">
             <div class="alert alert-info" role="alert">

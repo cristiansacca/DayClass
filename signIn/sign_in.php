@@ -9,7 +9,7 @@ include "../header.html";
 <div class="text-center m-auto" style="width:45%; height:55%;">
 <form>
 <h1 class="title"><u>Registro de nuevo usuario</u></h1>
-<h6 class="light_txt">Todos los datos aquí ingresados serán validados contra los ya almacenados por la institución, cualquier falsedad en los mismos conllevará a una panalización por parte de las autoridades</h6>
+<h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
 <div class="fill_fields">
 <div class="form-row">
     <div class="form-group col-md-6">
