@@ -127,8 +127,6 @@ function setValitationMesage(elementID, rtdo, msg) {
 
 }
 
-
-
  function setEstado(estado) {
     eval("debugger;");
 

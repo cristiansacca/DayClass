@@ -3,7 +3,7 @@ include "../header.html";
 ?>
 
 
-<link rel="stylesheet" href="styleCards.css">
+<link rel="stylesheet" href="../styleCards.css">
 
 
 
