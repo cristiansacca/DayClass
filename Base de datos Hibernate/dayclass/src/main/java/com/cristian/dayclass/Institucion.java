@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -23,6 +21,15 @@ public class Institucion implements Serializable {
     private static final long serialVersionUID = 1L;    
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaAltaInstitucion;
     @Temporal(javax.persistence.TemporalType.DATE)

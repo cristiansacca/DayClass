@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal; 
 
 @Entity
-@Table(name="alumno", schema="dayclass")
+@Table(name="ContraseniaRestablecida", schema="dayclass")
 public class ContraseniaRestablecida implements Serializable {
     private static final long serialVersionUID = 1L;    
     @Id

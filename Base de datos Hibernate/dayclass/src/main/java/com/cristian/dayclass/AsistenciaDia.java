@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name="alumno", schema="dayclass")
+@Table(name="AsistenciaDia", schema="dayclass")
 public class AsistenciaDia implements Serializable {
     private static final long serialVersionUID = 1L;    
     @Id
@@ -21,10 +21,10 @@ public class AsistenciaDia implements Serializable {
     private int id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaHoraAsisDia;
-     @ManyToOne
+    @ManyToOne
     private TipoAsistencia tipoAsistencia;
     
-     @ManyToOne
+    @ManyToOne
     private Asistencia asistencia;
     
      public AsistenciaDia() {

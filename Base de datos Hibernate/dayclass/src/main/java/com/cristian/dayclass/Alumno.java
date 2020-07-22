@@ -2,6 +2,7 @@ package com.cristian.dayclass;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -69,14 +70,6 @@ public class Alumno implements Serializable {
         this.contraseniaAlum = contraseniaAlum;
     }
 
-    public int getDni() {
-        return dni;
-    }
-
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
-
     public String getEmailAlum() {
         return emailAlum;
     }
@@ -125,20 +118,28 @@ public class Alumno implements Serializable {
         this.nombreAlum = nombreAlum;
     }
 
-    public ContraseniaRestablecida getContraseniaRestablecida() {
-        return contraseniaRestablecida;
-    }
-
-    public void setContraseniaRestablecida(ContraseniaRestablecida contraseniaRestablecida) {
-        this.contraseniaRestablecida = contraseniaRestablecida;
-    }
-
     public Permiso getPermiso() {
         return permiso;
     }
 
     public void setPermiso(Permiso permiso) {
         this.permiso = permiso;
+    }
+
+    public int getDniAlum() {
+        return dniAlum;
+    }
+
+    public void setDniAlum(int dniAlum) {
+        this.dniAlum = dniAlum;
+    }
+
+    public List<ContraseniaRestablecida> getContraseniaRestablecida() {
+        return contraseniaRestablecida;
+    }
+
+    public void setContraseniaRestablecida(List<ContraseniaRestablecida> contraseniaRestablecida) {
+        this.contraseniaRestablecida = contraseniaRestablecida;
     }
 
 }

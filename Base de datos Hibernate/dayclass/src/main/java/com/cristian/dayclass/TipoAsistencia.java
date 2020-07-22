@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name="alumno", schema="dayclass")
+@Table(name="TipoAsistencia", schema="dayclass")
 public class TipoAsistencia implements Serializable{
     private static final long serialVersionUID = 1L;    
     @Id
@@ -63,10 +63,4 @@ public class TipoAsistencia implements Serializable{
     public void setNombreTipoAsistencia(String nombreTipoAsistencia) {
         this.nombreTipoAsistencia = nombreTipoAsistencia;
     }
-    
-    
-    
-    
-    
-    
 }

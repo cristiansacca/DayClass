@@ -7,12 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name="alumno", schema="dayclass")
+@Table(name="CodigoAsitencia", schema="dayclass")
 public class CodigoAsistencia implements Serializable{
     private static final long serialVersionUID = 1L;    
     @Id
@@ -23,7 +22,7 @@ public class CodigoAsistencia implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaHoraInicioCodigo;
     private int numCodigo; 
-     @ManyToOne
+    @ManyToOne
     private Curso curso; 
 
     public CodigoAsistencia() {

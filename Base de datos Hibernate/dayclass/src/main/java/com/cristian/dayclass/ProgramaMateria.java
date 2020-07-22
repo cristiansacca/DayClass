@@ -2,6 +2,7 @@ package com.cristian.dayclass;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class ProgramaMateria implements Serializable {
     private static final long serialVersionUID = 1L;    
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    private int id;
     private int anioPrograma;
     private int cargaHorariaMateria;
     private String descripcionPrograma;
@@ -32,11 +34,19 @@ public class ProgramaMateria implements Serializable {
     @ManyToOne
     private Materia materia;
     
-    @ManyToMany
-    private TemasMateria temasMateria;
+    @OneToMany
+    private List<TemasMateria> temasMateria;
     
     public ProgramaMateria(){
         
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getAnioPrograma() {
@@ -79,11 +89,11 @@ public class ProgramaMateria implements Serializable {
         this.materia = materia;
     }
 
-    public TemasMateria getTemasMateria() {
+    public List<TemasMateria> getTemasMateria() {
         return temasMateria;
     }
 
-    public void setTemasMateria(TemasMateria temasMateria) {
+    public void setTemasMateria(List<TemasMateria> temasMateria) {
         this.temasMateria = temasMateria;
     }
 }  

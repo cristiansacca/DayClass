@@ -1,4 +1,4 @@
-/package com.cristian.dayclass;
+package com.cristian.dayclass;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +23,7 @@ public class Division implements Serializable {
     private static final long serialVersionUID = 1L;    
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    private int id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaAltaCurso;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -35,6 +36,14 @@ public class Division implements Serializable {
     
     public Division(){
         
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getFechaAltaCurso() {

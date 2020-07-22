@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name="alumno", schema="dayclass")
+@Table(name="Asistencia", schema="dayclass")
 public class Asistencia implements Serializable{
     private static final long serialVersionUID = 1L;    
     @Id
@@ -62,15 +62,5 @@ public class Asistencia implements Serializable{
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
