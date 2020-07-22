@@ -78,11 +78,11 @@ include "../header.html";
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary ">Guardar Cambios</button>
+        <button type="submit" class="btn btn-primary"  >Guardar Cambios</button>
       </div>
     </form>
   </div>
-    </div>
+</div>
 
   <?php
 include "../footer.html";
