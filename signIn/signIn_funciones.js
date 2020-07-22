@@ -28,6 +28,7 @@ function validarDNI() {
     
     changeColor('inputDNI',rtdo);
     setValitationMesage('msjValidacionDNI', rtdo, msg);
+    validar();
 }
 
 function validarLegajo() {
@@ -48,6 +49,7 @@ function validarLegajo() {
     
     changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
+    validar();
 }
 
 function validarNombre(){
@@ -70,7 +72,7 @@ function validarNombre(){
     
     changeColor('inputName', rtdo);
     setValitationMesage('msjValidacionNombre', rtdo, msg);
-    
+    validar();
 }
 
 function validarApellido(){
@@ -93,6 +95,7 @@ function validarApellido(){
   
     changeColor('inputSurname',rtdo);
     setValitationMesage('msjValidacionApellido', rtdo, msg);
+    validar()
     
 }
 
@@ -109,6 +112,7 @@ function validarEmail(){
     
     changeColor('inputEmail',rtdo);
     setValitationMesage('msjValidacionEmail', rtdo, msg);
+    validar();
 }
 
 
@@ -130,32 +134,47 @@ function validarContrasenia()
 
     changeColor('inputPassword4',rtdo);
     setValitationMesage('msjValidacionPass', rtdo, msg);
+    validar();
     
 }
 
 
 
 function validarFechaNac(){
+    eval("debugger;");
     var elem = document.getElementById('inputDate').value;
-    var date = new Date(elem);
-    var dateYear = date.getFullYear();
+    
     var rtdo = false;
     var msg = "";
+    
+    rtdo = validateDate(elem);
+    
+    if(rtdo == false){
+        msg = "No es una fecha de nacimiento válida para este sistema"; 
+    }
+   
+    
+    changeColor('inputDate',rtdo);
+    setValitationMesage('msjValidacionFchNac', rtdo, msg);
+    validar();
+    
+}
+
+function validateDate(fecha){
+    var rtdo = false;
+    var date = new Date(fecha);
+    var dateYear = date.getFullYear();
     
     var today = new Date();
     var todayYear = today.getFullYear();
     
+    
     if(dateYear < todayYear-4){
         rtdo = true;
-    }else{
-        msg = "No es una fecha de nacimiento válida para este sistema";  
     }
     
-    changeColor('inputDate',rtdo);
-    setValitationMesage('msjValidacionFchNac', rtdo, msg);
-    
+    return rtdo;
 }
-
 
 function letters(letras){
 	var patron = /^[A-Za-z]*$/;
@@ -229,4 +248,22 @@ function setValitationMesage(elementID, rtdo, msg){
         document.getElementById(elementID).style.display='none';
     }
       
+}
+
+function validar(){
+    var v_dni = document.getElementById('inputDNI').style.backgroundColor;
+    var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
+    var v_name = document.getElementById('inputName').style.backgroundColor;
+    var v_surname = document.getElementById('inputSurname').style.backgroundColor;
+    var v_mail = document.getElementById('inputEmail').style.backgroundColor;
+    var v_pass =document.getElementById('inputPassword4').style.backgroundColor;
+    var v_date = document.getElementById('inputDate').style.backgroundColor;
+    
+   
+    if(v_date == "azure" && v_dni == "azure" && v_legajo == "azure" && v_mail == "azure" && v_name == "azure" && v_pass == "azure" && v_surname =="azure"){
+       document.getElementById('btnRegistrarse').disabled=false; 
+    }else{
+        document.getElementById('btnRegistrarse').disabled=true;  
+    }
+         
 }
