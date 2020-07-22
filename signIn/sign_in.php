@@ -67,7 +67,7 @@ include "../header.html";
     
 
   
-  <button type="submit" class="btn btn-primary">Registrarse</button>
+  <button type="submit" class="btn btn-primary" id="btnRegistrarse" disabled>Registrarse</button>
 </div>
 </form>
 </div>
