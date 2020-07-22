@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -28,7 +29,9 @@ public class Curso implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaDesdeCurActual;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaHastaCurActul;
     private String nombreCurso;
     

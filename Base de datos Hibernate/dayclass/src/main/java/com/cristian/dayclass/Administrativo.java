@@ -17,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-package com.cristian.dayclass;
-
 /**
  *
  * @author Leandro
@@ -58,6 +56,14 @@ public class Administrativo implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<ContraseniaRestablecida> getContraseniaRestablecida() {
+        return contraseniaRestablecida;
+    }
+
+    public void setContraseniaRestablecida(List<ContraseniaRestablecida> contraseniaRestablecida) {
+        this.contraseniaRestablecida = contraseniaRestablecida;
     }
 
     public String getApellidoAdm() {
@@ -130,14 +136,6 @@ public class Administrativo implements Serializable {
 
     public void setNombreAdm(String nombreAdm) {
         this.nombreAdm = nombreAdm;
-    }
-
-    public <any> getContraseniaRestablecida() {
-        return contraseniaRestablecida;
-    }
-
-    public void setContraseniaRestablecida(<any> contraseniaRestablecida) {
-        this.contraseniaRestablecida = contraseniaRestablecida;
     }
 
     public Permiso getPermiso() {

@@ -5,8 +5,8 @@
  */
 package com.cristian.dayclass;
 
-import java.awt.Image;
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class Justificativo implements Serializable {
     private Date fechaPresentacion;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaRevision;
-    private Image imagenJustificativo;
+    private Blob imagenJustificativo;
     
     @ManyToOne
     private Alumno alumno;
@@ -81,11 +81,11 @@ public class Justificativo implements Serializable {
         this.fechaPresentacion = fechaPresentacion;
     }
 
-    public Image getImagenJustificativo() {
+    public Blob getImagenJustificativo() {
         return imagenJustificativo;
     }
 
-    public void setImagenJustificativo(Image imagenJustificativo) {
+    public void setImagenJustificativo(Blob imagenJustificativo) {
         this.imagenJustificativo = imagenJustificativo;
     }
 

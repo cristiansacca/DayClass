@@ -6,6 +6,7 @@
 package com.cristian.dayclass;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -134,13 +135,12 @@ public class Profesor implements Serializable{
         this.permiso = permiso;
     }
 
-    public <any> getContraseniaRestablecida() {
+    public List<ContraseniaRestablecida> getContraseniaRestablecida() {
         return contraseniaRestablecida;
     }
 
-    public void setContraseniaRestablecida(<any> contraseniaRestablecida) {
+    public void setContraseniaRestablecida(List<ContraseniaRestablecida> contraseniaRestablecida) {
         this.contraseniaRestablecida = contraseniaRestablecida;
     }
-    
     
 }
