@@ -190,19 +190,48 @@ function setValitationMesageAutoAsist(elementID, rtdo, msg) {
 }
 
 function validarFechasJustificativo(){
-    var desde = document.getElementById("fechaDesde").value;
-    var hasta = document.getElementById("fechaHasta").value;
+    let desde = document.getElementById("fechaDesde").value;
+    let hasta = document.getElementById("fechaHasta").value;
     if(desde!=""&&hasta!=""){
         if(desde>hasta){
             setValitationMesage("msgDesde",false,"El periodo no es válido");
             setValitationMesage("msgHasta",false,"El periodo no es válido");
-            $("#btnCargar").addClass("disabled");
+            return false;
         }
         else{
             setValitationMesage("msgDesde",true,"");
             setValitationMesage("msgHasta",true,"");
-            $("#btnCargar").removeClass("disabled");
+            return true;
         }
+    }else{
+        return false;
     }
 }
 
+function validar_checkbox() {
+    let cont = document.getElementsByName("materia");
+    let i = 0;
+    let al_menos_uno = false;
+    while (i < cont.length) {
+        // Verifica si esta checked
+        if (cont[i].checked) {
+            al_menos_uno = true;
+        }
+        i++
+    }
+    if(!al_menos_uno){
+        setValitationMesage("msgMaterias",false,"Seleccione al menos una materia");
+    }else{
+        setValitationMesage("msgMaterias",true,"");
+    }
+    return al_menos_uno;
+}
+
+function validarCampos(){
+    if(validarFechasJustificativo() && validar_checkbox()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
