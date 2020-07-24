@@ -34,7 +34,7 @@ include "../header.html";
           <p class="card-text">Concurrencia al aula</p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary">Ver</a>
+          <a href="asistencias.php" class="btn btn-primary">Ver</a>
         </div>
       </div>
     </div>
