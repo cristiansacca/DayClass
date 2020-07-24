@@ -1,8 +1,7 @@
 <?php
 include "header.html";
 ?>
-<link href="DayClassStyle.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 <div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 25rem;">
   <form class="form-group m-4">
     <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
@@ -13,7 +12,7 @@ include "header.html";
       <input type="checkbox">
       <label class="my-2">Recordar</label>
     </div>
-    <button class="btn btn-primary btn-block m-auto" style="width:6rem; font-size: large;" type="submit">Ingresar</button>
+    <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-2"></i>Ingresar</button><br>
     <a class="btn btn-link my-2" href="restablecer-contrasenia.php">Olvidé mi contraseña</a>
   </form>
 </div>

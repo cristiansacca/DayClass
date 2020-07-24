@@ -192,43 +192,60 @@ function setValitationMesageAutoAsist(elementID, rtdo, msg) {
 function validarFechasJustificativo(){
     let desde = document.getElementById("fechaDesde").value;
     let hasta = document.getElementById("fechaHasta").value;
+    let cont = document.getElementsByName("materia");
+    let al_menos_uno = false;
+    
+    for (let index = 0; index < cont.length; index++) {
+        if (cont[index].checked) {
+            al_menos_uno = true;
+        }   
+    }
     if(desde!=""&&hasta!=""){
         if(desde>hasta){
             setValitationMesage("msgDesde",false,"El periodo no es válido");
             setValitationMesage("msgHasta",false,"El periodo no es válido");
-            return false;
+            $("#btnCargar").attr("disabled", "disabled" );
         }
         else{
             setValitationMesage("msgDesde",true,"");
             setValitationMesage("msgHasta",true,"");
-            return true;
+            if(al_menos_uno){
+                $("#btnCargar").removeAttr("disabled");
+            }
         }
-    }else{
-        return false;
     }
 }
 
 function validar_checkbox() {
+    let desde = document.getElementById("fechaDesde").value;
+    let hasta = document.getElementById("fechaHasta").value;
     let cont = document.getElementsByName("materia");
-    let i = 0;
     let al_menos_uno = false;
-    while (i < cont.length) {
-        // Verifica si esta checked
-        if (cont[i].checked) {
+    
+    for (let index = 0; index < cont.length; index++) {
+        if (cont[index].checked) {
             al_menos_uno = true;
-        }
-        i++
+        }   
     }
+
     if(!al_menos_uno){
         setValitationMesage("msgMaterias",false,"Seleccione al menos una materia");
+        $("#btnCargar").attr("disabled", "disabled" );
     }else{
         setValitationMesage("msgMaterias",true,"");
+        if(desde!=""&&hasta!=""){
+            if(desde<=hasta){
+                $("#btnCargar").removeAttr("disabled");  
+            }
+        }
     }
-    return al_menos_uno;
 }
 
 function validarCampos(){
-    if(validarFechasJustificativo() && validar_checkbox()){
+    eval("debugger;");
+    let check = validar_checkbox();
+    let just = validarFechasJustificativo();
+    if(check==true && just==true){
         return true;
     }
     else{

@@ -50,6 +50,10 @@ include "../header.html";
     </div>
 </div>
 
+<?php
+include "modal-autoasistencia.html";
+?>
+
 <script src="alumno.js"></script>
 
 <?php

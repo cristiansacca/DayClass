@@ -9,7 +9,7 @@
 }
 
 body{
-    padding-top: 4rem; /*Esto es para que el navbar no tape la primer parte de la pagina*/
+    padding-top: 4.5rem; /*Esto es para que el navbar no tape la primer parte de la pagina*/
     /*background-image: linear-gradient(white, white, mediumpurple);*/
     background-image: url("/DayClass/images/school.jpg");
     background-repeat: repeat;
@@ -22,4 +22,15 @@ body{
 
 .light_txt{
     color: dimgray;
+}
+
+.btn-dayclass{
+    background-color: mediumpurple;
+    border-color: mediumpurple;
+    color: white;
+}
+.btn-dayclass:hover{
+    background-color: slateblue;
+    border-color: slateblue;
+    color: white;
 }
