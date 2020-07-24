@@ -6,7 +6,7 @@ function cambiarContenidoNavbar() {
     contenido += "<li class='nav-item'><a class='nav-link' href='index.php'>Inicio</a></li>";
     contenido += "<li class='nav-item'><li class='nav-item dropdown'>";
     contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Configuraciones</a>";
-    contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='#'>Profesores</a><div class='dropdown-divider'></div>";
+    contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='config_profesores.php'>Profesores</a><div class='dropdown-divider'></div>";
     contenido += "<a class='dropdown-item' href='#'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Parametros</a></div></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
     contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
@@ -165,3 +165,18 @@ document.getElementById("btnaceptar").onclick = function(){
         location.href = "/DayClass/Administrador/validar_justificativos.php";
     }
 }
+/*Para importar lista de profesores*/
+function comprobar(){
+    eval("debugger;");
+    var elem = document.getElementById('inpGetFile').value;
+        if(elem == ""){
+            alert("no esra cargado el documento");
+        }else{
+            document.getElementById('btnImportFile').disabled = false;
+        }
+}
+
+$('.custom-file-input').on('change', function() { 
+    let fileName = $(this).val().split('\\').pop(); 
+    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+});
