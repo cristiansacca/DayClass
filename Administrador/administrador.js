@@ -7,7 +7,7 @@ function cambiarContenidoNavbar() {
     contenido += "<li class='nav-item'><li class='nav-item dropdown'>";
     contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Configuraciones</a>";
     contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='config_profesores.php'>Profesores</a><div class='dropdown-divider'></div>";
-    contenido += "<a class='dropdown-item' href='#'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Parametros</a></div></li>";
+    contenido += "<a class='dropdown-item' href='config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='#'>Parametros</a></div></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
     contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
@@ -170,7 +170,7 @@ function comprobar(){
     eval("debugger;");
     var elem = document.getElementById('inpGetFile').value;
         if(elem == ""){
-            alert("no esra cargado el documento");
+            alert("No esta cargado el documento");
         }else{
             document.getElementById('btnImportFile').disabled = false;
         }
@@ -180,3 +180,14 @@ $('.custom-file-input').on('change', function() {
     let fileName = $(this).val().split('\\').pop(); 
     $(this).next('.custom-file-label').addClass("selected").html(fileName); 
 });
+
+/*Para importar lista de alumnos*/
+function comprobarListaAlumnos(){
+    eval("debugger;");
+    var elem = document.getElementById('inpGetFil').value;
+        if(elem == ""){
+            alert("No esta cargado el documento");
+        }else{
+            document.getElementById('btnImportFile').disabled = false;
+        }
+}

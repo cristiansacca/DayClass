@@ -105,15 +105,15 @@ include "../header.html";
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Curso para validar justificativos:</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">Modalidad para validar justificativos:</h5>
           </div>
           <div class="modal-body">
 
             <select id="cursoseleccionado" class="custom-select my-3 ">
-              <option selected> Seleccione un curso </option>
-              <option value="1">Curso 1</option>
-              <option value="2">Curso 2</option>
-              <option value="3">Curso 3</option>
+              <option selected> Seleccione una modalidad </option>
+              <option value="1">Modalidad 1</option>
+              <option value="2">Modalidad 2</option>
+              <option value="3">Modalidad 3</option>
             </select>
 
           </div>
