@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 public class Asistencia implements Serializable{
     private static final long serialVersionUID = 1L;    
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private int nroFichaAsistencia;
     @ManyToOne

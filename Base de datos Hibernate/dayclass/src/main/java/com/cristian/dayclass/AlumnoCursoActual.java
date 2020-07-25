@@ -25,7 +25,7 @@ public class AlumnoCursoActual implements Serializable {
     
     private static final long serialVersionUID = 1L;    
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaDesdeAlumCurAc;

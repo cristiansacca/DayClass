@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
 @Table(name="VigenciaSesion", schema="dayclass")
 public class VigenciaSesion implements Serializable{
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     
     private int duracionSesion;

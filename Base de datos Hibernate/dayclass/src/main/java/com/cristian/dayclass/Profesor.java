@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
 public class Profesor implements Serializable{
     private static final long serialVersionUID = 1L;    
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private String apellidoProf;
     private String contraseniaProf;
