@@ -2,7 +2,7 @@
 include "../../header.html";
 ?>
 
-<script src="funciones_habilitarAutoasistencia.js"></script>
+<script src="../profesor.js"></script>
 <h2 class="text-center my-4">Nombre del curso</h2>
 <div class="text-center my-5">
     <i class="fa fa-user-circle-o fa-5x"></i>
