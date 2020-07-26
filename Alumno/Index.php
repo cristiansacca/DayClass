@@ -20,7 +20,7 @@ include "../header.html";
           <p class="card-text">Que cursa actualmente</p>
         </div>
         <div class="card-footer">
-          <a href="cursosAlumno.php" class="btn btn-primary">Ver</a>
+          <a href="materiasAlumno.php" class="btn btn-primary">Ver</a>
         </div>
       </div>
     </div>
