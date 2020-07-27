@@ -208,3 +208,113 @@ document.getElementById("btnconfirmarestadistica").onclick = function() {
     }
 
 }
+
+
+//funciones para validar nombre, apellido, legajo y DNI de alumno y porfeso usan las funciones letters, numbers, changeColor y setValidationMessage
+function validarDNI() {
+    var elem = document.getElementById('inputDNI').value;
+    var cantDigitos = elem.length;
+    var rtdo = false;
+    var msg = "";
+    
+    if(cantDigitos > 6 && cantDigitos < 9){
+        rtdo = numbers(elem);
+        if(rtdo == false){
+            msg = "En el DNI solo van números";
+        }
+        
+    }else{
+        msg = "El número de DNI deben ser 8 números";
+    }
+    
+    changeColor('inputDNI',rtdo);
+    setValitationMesage('msjValidacionDNI', rtdo, msg);
+    validar();
+}
+
+function validarLegajo() {
+    var elem = document.getElementById('inputLegajo').value;
+    var cantDigitos = elem.length;
+    var rtdo = false;
+    var msg = "";
+    
+    if(cantDigitos == 5){
+        rtdo = numbers(elem);
+        if(rtdo == false){
+            msg = "En el Legajo solo van números";  
+        }
+        
+       }else{
+           msg = "El número de Legajo deben ser 5 números";
+       }
+    
+    changeColor('inputLegajo',rtdo);
+    setValitationMesage('msjValidacionLegajo', rtdo, msg);
+    validar();
+}
+
+function validarNombre(){
+    eval("debugger;");
+    var elem = document.getElementById('inputName').value;
+    var cantLetras = elem.length;
+    var rtdo = false;
+    var msg = "";
+    
+    if(cantLetras >= 3 && cantLetras < 20){
+        rtdo = letters(elem);
+        
+        if(rtdo == false){
+            msg = "En el Nombre solo van letras";  
+        }
+    }else{
+        msg= "El nombre debe contener más de 3 y menos de 20 letras ";
+        
+    }
+    
+    changeColor('inputName', rtdo);
+    setValitationMesage('msjValidacionNombre', rtdo, msg);
+    validar();
+}
+
+function validarApellido(){
+    var elem = document.getElementById('inputSurname').value;
+    var cantLetras = elem.length;
+    var rtdo = false;
+    var msg = "";
+    
+    if(cantLetras >= 3 && cantLetras < 20){
+        
+        rtdo = letters(elem);
+        if(rtdo == false){
+            msg = "En el Apellido solo van letras";  
+        }
+        
+
+    }else{
+        msg = "El apellido debe contener más de 3 y menos de 20 letras "; 
+    }
+  
+    changeColor('inputSurname',rtdo);
+    setValitationMesage('msjValidacionApellido', rtdo, msg);
+    validar()
+    
+}
+
+function validar(){
+    var v_dni = document.getElementById('inputDNI').style.backgroundColor;
+    var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
+    var v_name = document.getElementById('inputName').style.backgroundColor;
+    var v_surname = document.getElementById('inputSurname').style.backgroundColor;
+    
+    
+    if(v_dni == "azure" && v_legajo == "azure" && v_name == "azure" && v_surname =="azure"){
+       document.getElementById('btnCrear').disabled=false; 
+    }else{
+        document.getElementById('btnCrear').disabled=true;  
+    }
+         
+}
+
+
+
+
