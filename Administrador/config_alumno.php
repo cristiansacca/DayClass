@@ -3,6 +3,8 @@ include "../header.html";
 ?>
 <script src="administrador.js"></script>
 
+
+
 <style>.custom-file-label::after { content: "Elegir";}</style>
 <div class="container">
     <h1 class="display-4 my-2">Alumnos</h1>
@@ -57,30 +59,38 @@ include "../header.html";
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Nuevo Alumno</h5>
             </div>
-            <div class="modal-body">
-                <div class="my-2">
-                    <label for="nombrecurso"> Nombre </label>
-                    <input type="text" name="nombreProfe" id="nombreProfe" class="form-control" >
-                </div>
-                <div class="my-2">
-                    <label for="apellidoProfe">Apellido </label>
-                    <input type="text" name="apellidoProfe" id="apellidoProfe" class="form-control" >
-                </div>
-                <div class="my-2">
-                    <label for="legajoProfe">Legajo </label>
-                    <input type="text" name="legajoProfe" id="legajoProfe" class="form-control" >
-                </div>
-                <div class="my-2">
-                    <label for="dniProfe">Numero Dni </label>
-                    <input type="text" name="dniProfe" id="dniProfe" class="form-control" >
-                </div>
-                
+            <form method="POST" id="insertAlumno" name="insertAlumno" action="insertAlumno.php" enctype="multipart/form-data" role="form"> 
+                <div class="modal-body"> 
+                    <div class="my-2">
+                        <label for="inputName"> Nombre </label>
+                        <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Nombre" onchange="validarNombre()" required>
+                        <h9 class="msg" id="msjValidacionNombre"></h9>
+                    </div>
+                    <div class="my-2">
+                        <label for="inputSurname">Apellido </label>
+                        <input type="text" name="inputSurname" id="inputSurname" class="form-control" placeholder="Apellido" onchange="validarApellido()" required>
+                        <h9 class="msg" id="msjValidacionApellido"></h9>
+                    </div>
+                    <div class="my-2">
+                        <label for="inputLegajo">Legajo </label>
+                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" required>
+                        <h9 class="msg" id="msjValidacionLegajo"></h9>
+                    </div>
+                    <div class="my-2">
+                        <label for="inputDNI">Numero Dni </label>
+                        <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
+                        <h9 class="msg" id="msjValidacionDNI"></h9>
+                    </div>
+              
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"> Crear </button>
+                <button type="submit" class="btn btn-primary" id="btnCrear"  disabled> Crear </button>
             </div>
+            </form>
+        
         </div>
+             
     </div>
 </div>
 

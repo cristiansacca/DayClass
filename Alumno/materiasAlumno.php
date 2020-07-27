@@ -2,25 +2,8 @@
 include "../header.html";
 ?>
 <script src="administrador.js"></script>
-<style>
-    .color0{
-        background-color: LightSteelBlue;
-    }
+<link rel="stylesheet" href="../styleCards.css">
 
-.color1{
-        background-color: LightBlue;
-    }
-    
-.color2{
-        background-color: Thistle;
-    }
-    
-.color3{
-        background-color: lightskyblue;
-    }
-
-
-</style>
 
 
 <div class="container ">
