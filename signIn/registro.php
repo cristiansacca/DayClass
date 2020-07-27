@@ -23,9 +23,10 @@ if(mysqli_num_rows($consulta1)!=0){
     $consulta2 = $con -> query("SELECT * FROM permiso WHERE nombrePermiso = UPPER('$rol')");
     $resultado2 = $consulta2 -> fetch_assoc();
     $id_permiso = $resultado2['id'];
-    
+    $fechaActual = date("Y-m-d");
+
     $actualizacion = $con -> query("UPDATE alumno SET emailAlum = '$email', contraseniaAlum = '$password', fechaNacAlumno = '$fechaNac', 
-    permiso_id = '$id_permiso' WHERE id='$id_alumno'");
+    fechaAltaAlumno = '$fechaActual' ,permiso_id = '$id_permiso' WHERE id='$id_alumno'");
     
     if($actualizacion){
         echo "<div class='alert alert-success' role='alert'>
@@ -45,7 +46,7 @@ if(mysqli_num_rows($consulta1)!=0){
       echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a>";
 }
 echo "</div>";
-echo "<script>document.getElementById('contenidoNavbar').ineerHTML = '';</script>";
+echo "<script>document.getElementById('contenidoNavbar').innerHTML = '';</script>";
 ?>
 
 <?php
