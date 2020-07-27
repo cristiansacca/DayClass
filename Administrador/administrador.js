@@ -151,16 +151,18 @@ document.getElementById("btnconfirmar").onclick = function() {
     }
     else if (elem == "alumno") {
         location.href = "/DayClass/Administrador/reporte_alumno.php";
+    }else {
+        alert("Seleccione una opción por favor");
     }
 
 }
 
 document.getElementById("btnaceptar").onclick = function(){
-    var elem = document.getElementById("cursoseleccionado").value;
+    var elem = document.getElementById("modalidadseleccionado").value;
 
-    if (elem == "Seleccione un curso") {
+    if (elem == "Seleccione una modalidad") {
         
-        alert("Por favor seleccione un curso");
+        alert("Por favor seleccione una modalidad");
     } else {
         location.href = "/DayClass/Administrador/validar_justificativos.php";
     }
@@ -190,4 +192,19 @@ function comprobarListaAlumnos(){
         }else{
             document.getElementById('btnImportFile').disabled = false;
         }
+}
+
+document.getElementById("btnconfirmarestadistica").onclick = function() {
+    eval("debugger;");
+    var elem = document.estadisticaadmin.tipo1.value;
+
+    if (elem == "curso") {
+        location.href = "/DayClass/Administrador/estadistica_curso.php";
+    }
+    else if (elem == "materia") {
+        location.href = "/DayClass/Administrador/estadistica_materia.php";
+    }else {
+        alert("Seleccione una opción por favor");
+    }
+
 }
