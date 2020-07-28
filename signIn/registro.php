@@ -13,20 +13,32 @@ $password = $_POST["password"];
 $fechaNac = $_POST["fechaNac"];
 $rol = $_POST["rol"];
 
-$consulta1 = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
+if($rol == "alumno"){
+  $consulta1 = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
+}
+if($rol == "docente"){
+  $consulta1 = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni' AND legajoProf = '$legajo'");
+}
+
 $resultado1 = $consulta1->fetch_assoc();
 
 echo "<div class='container'><br>";
 
 if (mysqli_num_rows($consulta1) != 0) {
-    $id_alumno = $resultado1['id'];
+    $id_usuario = $resultado1['id'];
     $consulta2 = $con->query("SELECT * FROM permiso WHERE nombrePermiso = UPPER('$rol')");
     $resultado2 = $consulta2->fetch_assoc();
     $id_permiso = $resultado2['id'];
     $fechaActual = date("Y-m-d");
 
-    $actualizacion = $con->query("UPDATE alumno SET emailAlum = '$email', contraseniaAlum = '$password', fechaNacAlumno = '$fechaNac', 
-    fechaAltaAlumno = '$fechaActual' ,permiso_id = '$id_permiso' WHERE id='$id_alumno'");
+    if($rol == "alumno"){
+      $actualizacion = $con->query("UPDATE alumno SET emailAlum = '$email', contraseniaAlum = '$password', fechaNacAlumno = '$fechaNac', 
+    fechaAltaAlumno = '$fechaActual' ,permiso_id = '$id_permiso' WHERE id='$id_usuario'");
+    }
+    if($rol == "docente"){
+      $actualizacion = $con->query("UPDATE profesor SET emailProf = '$email', contraseniaProf = '$password', fechaNacProf = '$fechaNac', 
+    fechaAltaProf = '$fechaActual' ,permiso_id = '$id_permiso' WHERE id='$id_usuario'");
+    }
 
     if ($actualizacion) {
         echo "<div class='alert alert-success' role='alert'>
