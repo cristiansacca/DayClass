@@ -44,13 +44,23 @@ $consulta1 = $con->query("SELECT * FROM alumno");
             </thead>
             <tbody>
                 <?php
-                while ($resultado1 = $consulta1->fetch_assoc()) {
-                    echo "<tr>
-                <td>" . $resultado1['legajoAlumno'] . "</td>
-                <td>" . $resultado1['apellidoAlum'] . "</td>
-                <td>" . $resultado1['nombreAlum'] . "</td>
-                <td>" . $resultado1['dniAlum'] . "</td>
-                </tr>";
+                if (!($consulta1->num_rows) == 0) {
+                    while ($resultado1 = $consulta1->fetch_assoc()) {
+                            echo "<tr>
+                        <td>" . $resultado1['legajoAlumno'] . "</td>
+                        <td>" . $resultado1['apellidoAlum'] . "</td>
+                        <td>" . $resultado1['nombreAlum'] . "</td>
+                        <td>" . $resultado1['dniAlum'] . "</td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>";
+                    echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                    No hay alumnos cargados en el sistema.
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                      <span aria-hidden='true'>&times;</span>
+                    </button>
+                  </div>";
                 }
                 ?>
             </tbody>

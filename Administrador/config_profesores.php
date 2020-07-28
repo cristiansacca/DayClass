@@ -44,13 +44,23 @@ $consulta1 = $con->query("SELECT * FROM profesor");
             </thead>
             <tbody>
                 <?php
-                while ($resultado1 = $consulta1->fetch_assoc()) {
-                    echo "<tr>
-                <td>" . $resultado1['legajoProf'] . "</td>
-                <td>" . $resultado1['apellidoProf'] . "</td>
-                <td>" . $resultado1['nombreProf'] . "</td>
-                <td>" . $resultado1['dniProf'] . "</td>
-                </tr>";
+                if (!($consulta1->num_rows) == 0) {
+                    while ($resultado1 = $consulta1->fetch_assoc()) {
+                            echo "<tr>
+                        <td>" . $resultado1['legajoProf'] . "</td>
+                        <td>" . $resultado1['apellidoProf'] . "</td>
+                        <td>" . $resultado1['nombreProf'] . "</td>
+                        <td>" . $resultado1['dniProf'] . "</td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>";
+                    echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                    No hay profesores cargados en el sistema.
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                      <span aria-hidden='true'>&times;</span>
+                    </button>
+                  </div>";
                 }
                 ?>
             </tbody>
