@@ -31,12 +31,15 @@ if (mysqli_num_rows($consulta1) != 0) {
     $id_permiso = $resultado2['id'];
     $fechaActual = date("Y-m-d");
 
+    //password_has(pass, PASSWORD_DEFAULT) se usa para cifrar la contraseña y password_verify(pass, pass_cifrada) -> true o false para descifrarla.
+    $password_cifrada = password_hash($password, PASSWORD_DEFAULT);
+
     if($rol == "alumno"){
-      $actualizacion = $con->query("UPDATE alumno SET emailAlum = '$email', contraseniaAlum = '$password', fechaNacAlumno = '$fechaNac', 
+      $actualizacion = $con->query("UPDATE alumno SET emailAlum = '$email', contraseniaAlum = '$password_cifrada', fechaNacAlumno = '$fechaNac', 
     fechaAltaAlumno = '$fechaActual' ,permiso_id = '$id_permiso' WHERE id='$id_usuario'");
     }
     if($rol == "docente"){
-      $actualizacion = $con->query("UPDATE profesor SET emailProf = '$email', contraseniaProf = '$password', fechaNacProf = '$fechaNac', 
+      $actualizacion = $con->query("UPDATE profesor SET emailProf = '$email', contraseniaProf = '$password_cifrada', fechaNacProf = '$fechaNac', 
     fechaAltaProf = '$fechaActual' ,permiso_id = '$id_permiso' WHERE id='$id_usuario'");
     }
 
