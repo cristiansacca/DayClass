@@ -35,7 +35,7 @@ include "../header.html";
                     <p class="card-text">Publica novedades para los alumnos del curso</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Ingresar</a>
+                    <a href="pizarra.php" class="btn btn-primary">Ingresar</a>
                 </div>
             </div>
         </div>

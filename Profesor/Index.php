@@ -2,6 +2,11 @@
 include "../header.html";
 ?>
 
+
+<link rel="stylesheet" href="../styleCards.css">
+
+
+
 <div class="container">
 
     <div class="jumbotron my-4">
@@ -13,62 +18,41 @@ include "../header.html";
     <!-- Page Features -->
     <div class="row text-center">
 
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="../images/reportes.png" oncontextmenu="return false"alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Reportes y estadísticas</h4>
-                    <p class="card-text">Genere reportes y estadisticas de asistencias</p>
+        
+    <?php
+        $contador = 0;
+        for ($i = 0; $i < 5; $i++) {
+            if($contador == 4){
+                $contador = 0;
+            }
+            
+            
+            $aux = $i+1;
+            echo "<div class='col-lg-6 col-md-3 mb-4' >
+            <div class='card h-100 color$contador' id='tajeta$i' >
+                <div class='card-body'>
+                    <h4 class='card-title'>Materia $aux</h4>
+                    <h5 class='card-title'>Curso 1</h5>
                 </div>
 
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Ver</a>
+                <div class='card-footer'>
+                    <a href='indexCurso.php' class='btn btn-primary btn-lg'>Ingresar</a>
                 </div>
             </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="../images/cursos.png" oncontextmenu="return false" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Cursos</h4>
-                    <p class="card-text">En los que dica actualmente</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Ver</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top imagen" src="../images/Pizzarra-de-novedades.png" oncontextmenu="return false" alt="pizarra-novedades">
-                <div class="card-body">
-                    <h4 class="card-title">Pizzarra de novedades</h4>
-                    <p class="card-text">Publica novedades para los alumnos de un curso</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Ver</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top imagen" src="../images/asistencias.png" oncontextmenu="return false" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Asistencias</h4>
-                    <p class="card-text">Concurrencia al aula</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Ver</a>
-                </div>
-            </div>
-        </div>
-
+        </div>";
+            
+            $contador ++;
+       
+        }
+        
+    ?>
+       
     </div>
 
 </div>
+
+        
+
 
 <script src="profesor.js"></script>
 
