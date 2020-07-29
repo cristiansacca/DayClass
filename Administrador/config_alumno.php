@@ -2,7 +2,7 @@
 include "../header.html";
 include "../databaseConection.php";
 
-$consulta1 = $con->query("SELECT * FROM alumno");
+$consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum` FROM `alumno` ORDER BY apellidoAlum ASC");
 
 ?>
 <script src="administrador.js"></script>
@@ -12,7 +12,12 @@ $consulta1 = $con->query("SELECT * FROM alumno");
         content: "Elegir";
     }
 </style>
+
+
 <div class="container">
+    
+    
+    
     <h1 class="display-4 my-2">Alumnos</h1>
     <label> Buscar por:</label>
     <div class="form-inline">
@@ -34,6 +39,7 @@ $consulta1 = $con->query("SELECT * FROM alumno");
         <button class="btn btn-success mx-3" data-toggle="modal" data-target="#staticBackdrop1">Importar Lista</button>
 
     </div>
+
     <div class="my-5">
         <table class="table table-bordered text-center table-info">
             <thead>
@@ -118,23 +124,34 @@ $consulta1 = $con->query("SELECT * FROM alumno");
                 <h3 class="modal-title " id="staticBackdropLabel"> Importar Lista</h3>
             </div>
             <div class="modal-body">
+                
+                <div>
+                    <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como sigue: </h9>
+                    
+                    <table class="table table-bordered text-center table-info">
+                        <thead>
+                            <th>DNI</th>
+                            <th>Legajo</th>
+                            <th>Apellido</th>
+                            <th>Nombre </th>
+                        </thead>
+                    </table>
+                
+                </div>
 
-                <form method="#" id="importPlanilla" name="importPlanilla" action="#" enctype="multipart/form-data" role="form">
+                <form method="POST" id="importPlanilla" name="importPlanilla" action="insertBDAlumnos.php" enctype="multipart/form-data" role="form">
                     <div class="container" style="margin-top:50px;">
 
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" required name="inpGetFil" id="inpGetFil" accept=".xlsx" onchange="comprobarListaAlumnos()" lang="es">
-
-                            <label class="custom-file-label" for="validatedCustomFile">Seleccionar archivo</label>
+                            <input type="file" class="form-control-file" name="inpGetFile" id="inpGetFile" accept=".xlsx" onchange="comprobarLista()" lang="es"required >
 
                         </div>
                     </div>
                     <!-- la funcion comrobar esta en administrador.js -->
-                    <br>
-                    <br>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                        <button type="button" class="btn btn-primary " data-dismiss="modal"> Importar </button>
+                        <button id="btnImportar" type="submit" class="btn btn-primary " disabled> Importar </button>
                     </div>
 
                 </form>

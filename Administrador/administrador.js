@@ -184,13 +184,13 @@ $('.custom-file-input').on('change', function() {
 });
 
 /*Para importar lista de alumnos*/
-function comprobarListaAlumnos(){
+function comprobarLista(){
     eval("debugger;");
-    var elem = document.getElementById('inpGetFil').value;
+    var elem = document.getElementById('inpGetFile').value;
         if(elem == ""){
             alert("No esta cargado el documento");
         }else{
-            document.getElementById('btnImportFile').disabled = false;
+            document.getElementById('btnImportar').disabled = false;
         }
 }
 
