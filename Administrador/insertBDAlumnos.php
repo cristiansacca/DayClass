@@ -16,6 +16,7 @@ if(isset($_FILES["inpGetFile"])){
             $objReader = PHPExcel_IOFactory::createReader($inputFileType);//creamos un objeto tipo Reader 
             $objPHPExcel = $objReader->load($archivo);
             $sheet = $objPHPExcel->getSheet(0); 
+            
             $highestRow = $sheet->getHighestRow();
             $highestColumn = $sheet->getHighestColumn();
             $colNumber = PHPExcel_Cell::columnIndexFromString($highestColumn);
@@ -25,13 +26,15 @@ if(isset($_FILES["inpGetFile"])){
             $resultado1 = $consulta1->fetch_assoc();
             $id_permiso = $resultado1['id'];
             
+            
+            
             for ($row = 2; $row <= $highestRow; $row++){ 
             
                 $dni = $sheet->getCell("A".$row)->getValue();
                 $legajo = $sheet->getCell("B".$row)->getValue();
                 $apellido = $sheet->getCell("C".$row)->getValue();
                 $nombre = $sheet->getCell("D".$row)->getValue();
-                $x_row = $row-1;
+                //$x_row = $row-1;
                 
                 
                 $consulta2 = $con->query("SELECT nombreAlum FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");

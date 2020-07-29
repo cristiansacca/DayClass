@@ -2,7 +2,7 @@
 include "../header.html";
 include "../databaseConection.php";
 
-$consulta1 = $con->query("SELECT * FROM profesor");
+$consulta1 = $con->query("SSELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf` FROM `profesor` ORDER by apellidoProf ASC");
 
 ?>
 <script src="administrador.js"></script>

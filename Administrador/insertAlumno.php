@@ -13,7 +13,6 @@ $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "ALUMNO
 $resultado1 = $consulta1->fetch_assoc();
 $id_permiso = $resultado1['id'];
 
-    
 $con->query('INSERT INTO `alumno`(`nombreAlum`,`apellidoAlum`, `dniAlum`, `fechaAltaAlumno`, `legajoAlumno`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');');
 
 echo "<script> window.location = 'config_alumno.php' </script>";

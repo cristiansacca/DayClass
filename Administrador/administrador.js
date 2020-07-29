@@ -167,7 +167,7 @@ document.getElementById("btnaceptar").onclick = function(){
         location.href = "/DayClass/Administrador/validar_justificativos.php";
     }
 }
-/*Para importar lista de profesores*/
+/*Para importar lista de profesores y alumnos*/
 function comprobar(){
     eval("debugger;");
     var elem = document.getElementById('inpGetFile').value;
@@ -314,7 +314,3 @@ function validar(){
     }
          
 }
-
-
-
-
