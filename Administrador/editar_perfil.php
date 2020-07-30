@@ -85,7 +85,8 @@ if (!isset($_SESSION['administrador']))
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <input type="button" value="Volver" class="btn btn-secondary" onclick="location.href='/DayClass/Administrador/index.php'">
+        <input type="submit" value="Guardar cambios" class="btn btn-primary">
       </div>
     </form>
   </div>

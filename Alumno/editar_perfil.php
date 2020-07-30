@@ -86,7 +86,8 @@ if (!isset($_SESSION['alumno']))
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary ">Guardar Cambios</button>
+        <input type="button" value="Volver" class="btn btn-secondary" onclick="location.href='/DayClass/Alumno/index.php'">
+        <input type="submit" value="Guardar cambios" class="btn btn-primary">
       </div>
     </form>
     

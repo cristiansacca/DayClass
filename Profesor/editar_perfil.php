@@ -83,7 +83,8 @@ include "../header.html";
           </div>
 
         </div>
-        <button type="submit" class="btn btn-primary ">Guardar Cambios</button>
+        <input type="button" value="Volver" class="btn btn-secondary" onclick="location.href='/DayClass/Profesor/index.php'">
+        <input type="submit" value="Guardar cambios" class="btn btn-primary">
       </div>
     </form>
   </div>
