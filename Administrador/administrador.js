@@ -15,7 +15,7 @@ function cambiarContenidoNavbar() {
 
 //El botón salir vuelve al Login
 document.getElementById("btnSalir").onclick = function () {
-    location.href = "/DayClass/Index.php";
+    location.href = "/DayClass/logout.php";
 }
 
 function letters(letras) {

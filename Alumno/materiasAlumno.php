@@ -1,7 +1,18 @@
 <?php
 include "../header.html";
+
+//Se inicia o restaura la sesión
+session_start();
+ 
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['alumno'])) 
+{
+   //Nos envía a la página de inicio
+   header("location:/DayClass/index.php"); 
+}
+
 ?>
-<script src="administrador.js"></script>
+
 <link rel="stylesheet" href="../styleCards.css">
 
 

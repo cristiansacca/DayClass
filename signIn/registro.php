@@ -24,7 +24,7 @@ $resultado1 = $consulta1->fetch_assoc();
 
 echo "<div class='container'><br>";
 
-if (mysqli_num_rows($consulta1) != 0) {
+if (($consulta1->num_rows) > 0) {
     $id_usuario = $resultado1['id'];
     $consulta2 = $con->query("SELECT * FROM permiso WHERE nombrePermiso = UPPER('$rol')");
     $resultado2 = $consulta2->fetch_assoc();

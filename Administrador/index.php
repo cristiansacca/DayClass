@@ -1,12 +1,23 @@
 <?php
 include "../header.html";
+
+//Se inicia o restaura la sesión
+session_start();
+ 
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['administrador'])) 
+{
+   //Nos envía a la página de inicio
+   header("location:/DayClass/index.php"); 
+}
+
 ?>
 
 <div class="container">
 
   <div class="jumbotron my-4">
     <p class="card-text">Administrador</p>
-    <h3 class="">ApellidoUsuario, NombreUsuario</h3>
+    <h3 class="">Bienvenido<?php echo " ".$_SESSION["administrador"]["nombreAdm"] ?></h3>
     <p class="lead"></p>
     <a href="editar_perfil.php" class="btn btn-primary btn-lg">Ver Perfil</a>
   </div>
