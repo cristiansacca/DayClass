@@ -1,5 +1,18 @@
 <?php
 include "../header.html";
+include "../databaseConection.php";
+//Se inicia o restaura la sesión
+session_start();
+ 
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['administrador'])) 
+{
+   //Nos envía a la página de inicio
+   header("location:/DayClass/index.php"); 
+}
+
+$consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
+
 ?>
 
 <div class="container">
@@ -23,41 +36,28 @@ include "../header.html";
     <div class="my-2">
         <table class="table table-bordered text-center table-info">
             <thead>
-                <th>Id</th>
+                <th>N°</th>
                 <th>Nombre materia</th>
                 <th>Estado</th>
                 <th>Editar</th>
                 <th>Cargar programa</th>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="admcurso.php">Matemática</a></td>
+            <?php
+                
+                $aux=1 ;
+                while ($resultado1 = $consulta1->fetch_assoc()) {
+                    
+                    echo "<tr>
+                    <td>$aux</td>
+                    <td><a href='admcurso.php'>" . $resultado1['nombreMateria'] . "</a></td>
                     <td>Habilitada</td>
-                    <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
-                    <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="admcurso.php">Lengua</a></td>
-                    <td>Habilitada</td>
-                    <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
-                    <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="admcurso.php">Estadística</a></td>
-                    <td>No habilitada</td>
-                    <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
-                    <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><a href="admcurso.php">Química</a></td>
-                    <td>Habilitada</td>
-                    <td><button class="btn btn-primary"><i class="fa fa-edit"></i></button></td>
-                    <td><button class="btn btn-success"><i class="fa fa-upload"></i></button></td>
-                </tr>
+                    <td><button class='btn btn-primary'><i class='fa fa-edit'></i></button></td>
+                    <td><button class='btn btn-success'><i class='fa fa-upload'></i></button></td>
+                    </tr>";
+                    $aux++ ;
+                }
+                ?>
             </tbody>
         </table>
     </div>
