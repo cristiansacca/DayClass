@@ -1,5 +1,29 @@
 <?php
 include "header.html";
+
+//Se inicia o restaura la sesión
+session_start();
+ 
+//Si hay una sesión activa
+
+if (isset($_SESSION['alumno'])) 
+{
+   //Nos envía a la página de inicio de cada usuario
+   header("location:/DayClass/Alumno/index.php"); 
+}
+
+if (isset($_SESSION['profesor'])) 
+{
+   //Nos envía a la página de inicio de cada usuario
+   header("location:/DayClass/Profesor/index.php"); 
+}
+
+if (isset($_SESSION['administrador'])) 
+{
+   //Nos envía a la página de inicio de cada usuario
+   header("location:/DayClass/administrador/index.php"); 
+}
+
 ?>
 
 <div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 25rem;">
