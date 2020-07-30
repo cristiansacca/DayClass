@@ -26,26 +26,50 @@ if(isset($_FILES["inpGetFile"])){
             $resultado1 = $consulta1->fetch_assoc();
             $id_permiso = $resultado1['id'];
             
+            $first_row = 1;
             
+            $dni = $sheet->getCell("A".$first_row)->getValue();
+            $legajo = $sheet->getCell("B".$first_row)->getValue();
+            $apellido = $sheet->getCell("C".$first_row)->getValue();
+            $nombre = $sheet->getCell("D".$first_row)->getValue();
             
-            for ($row = 2; $row <= $highestRow; $row++){ 
+            $contador = 0;
+            
+            //valido que la primera fila de la tabla excel sea
+            //dni, legajo, apellido nombre, en ese orden, sino esta asi no importa la lista 
+            
+            $dni_p = strtolower($dni);
+            $legajo_p = strtolower($legajo);
+            $nombre_p=strtolower($nombre);
+            $apellido_p = strtolower($apellido);
+            
+            if(( $dni_p == "dni" || $dni_p == "Documento") && $legajo_p == "legajo" && $nombre_p == "nombre" && $apellido_p == "apellido"){
+                for ($row = 2; $row <= $highestRow; $row++){ 
             
                 $dni = $sheet->getCell("A".$row)->getValue();
                 $legajo = $sheet->getCell("B".$row)->getValue();
                 $apellido = $sheet->getCell("C".$row)->getValue();
                 $nombre = $sheet->getCell("D".$row)->getValue();
-                //$x_row = $row-1;
                 
                 
                 $consulta2 = $con->query("SELECT nombreAlum FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
                 $resultado2 = $consulta2->fetch_assoc();
                 
-                if(mysqli_num_rows($consulta2) == 0){
-                    $sql = 'INSERT INTO `alumno`(`nombreAlum`,`apellidoAlum`, `dniAlum`, `fechaAltaAlumno`, `legajoAlumno`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');';
-                    $rtdo = $con->query($sql);
-                }
+                    if(mysqli_num_rows($consulta2) == 0){
+                        $sql = 'INSERT INTO `alumno`(`nombreAlum`,`apellidoAlum`, `dniAlum`, `fechaAltaAlumno`, `legajoAlumno`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');';
+                        $rtdo = $con->query($sql);
+                    }else{
+                       $contador = $contador + 1; 
+                    }
                 
-            }    
+                }    
+            }else{
+                echo "<script> alert('error en el formato de la primera fila') </script>";
+            }
+            
+            
+           
+            
     	unlink($archivo);  	
     }
 }

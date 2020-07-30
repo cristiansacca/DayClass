@@ -1,8 +1,6 @@
 <?php
 include "../header.html";
-include "../databaseConection.php";
 
-$consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum` FROM `alumno` ORDER BY apellidoAlum ASC");
 
 ?>
 <script src="administrador.js"></script>
@@ -57,7 +55,11 @@ $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dni
             
             <tbody>
                 <?php
-                if (!($consulta1->num_rows) == 0) {
+                include "../databaseConection.php";
+                
+                $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum` FROM `alumno` ORDER BY apellidoAlum ASC");
+                
+                if (mysqli_num_rows($consulta1) != 0) {
                     while ($resultado1 = $consulta1->fetch_assoc()) {
                             echo "<tr>
                         <td>" . $resultado1['legajoAlumno'] . "</td>

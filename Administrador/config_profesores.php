@@ -1,8 +1,6 @@
 <?php
 include "../header.html";
-include "../databaseConection.php";
 
-$consulta1 = $con->query("SSELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf` FROM `profesor` ORDER by apellidoProf ASC");
 
 ?>
 <script src="administrador.js"></script>
@@ -44,7 +42,12 @@ $consulta1 = $con->query("SSELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniP
             </thead>
             <tbody>
                 <?php
-                if (!($consulta1->num_rows) == 0) {
+                
+                include "../databaseConection.php";
+
+                $consulta1 = $con->query("SELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf` FROM `profesor` ORDER by apellidoProf ASC");
+                
+                if (mysqli_num_rows($consulta1) != 0) {
                     while ($resultado1 = $consulta1->fetch_assoc()) {
                             echo "<tr>
                         <td>" . $resultado1['legajoProf'] . "</td>
@@ -75,32 +78,40 @@ $consulta1 = $con->query("SSELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniP
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Nuevo Profesor</h5>
             </div>
-            <div class="modal-body">
-                <div class="my-2">
-                    <label for="nombrecurso"> Nombre </label>
-                    <input type="text" name="nombreProfe" id="nombreProfe" class="form-control">
-                </div>
-                <div class="my-2">
-                    <label for="apellidoProfe">Apellido </label>
-                    <input type="text" name="apellidoProfe" id="apellidoProfe" class="form-control">
-                </div>
-                <div class="my-2">
-                    <label for="legajoProfe">Legajo </label>
-                    <input type="text" name="legajoProfe" id="legajoProfe" class="form-control">
-                </div>
-                <div class="my-2">
-                    <label for="dniProfe">Numero Dni </label>
-                    <input type="text" name="dniProfe" id="dniProfe" class="form-control">
-                </div>
+            <form method="POST" id="insertProfesor" name="insertProfesor" action="insertProfesor.php" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="inputName"> Nombre </label>
+                        <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Nombre" onchange="validarNombre()" required>
+                        <h9 class="msg" id="msjValidacionNombre"></h9>
+                    </div>
+                    <div class="my-2">
+                        <label for="inputSurname">Apellido </label>
+                        <input type="text" name="inputSurname" id="inputSurname" class="form-control" placeholder="Apellido" onchange="validarApellido()" required>
+                        <h9 class="msg" id="msjValidacionApellido"></h9>
+                    </div>
+                    <div class="my-2">
+                        <label for="inputLegajo">Legajo </label>
+                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" required>
+                        <h9 class="msg" id="msjValidacionLegajo"></h9>
+                    </div>
+                    <div class="my-2">
+                        <label for="inputDNI">Numero Dni </label>
+                        <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
+                        <h9 class="msg" id="msjValidacionDNI"></h9>
+                    </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"> Crear </button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear" disabled> Crear </button>
+                </div>
+            </form>
+
         </div>
+
     </div>
-</div>
+</div>               
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
