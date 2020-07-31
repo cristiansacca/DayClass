@@ -15,7 +15,8 @@ $id_permiso = $resultado1['id'];
 
 $con->query('INSERT INTO `alumno`(`nombreAlum`,`apellidoAlum`, `dniAlum`, `fechaAltaAlumno`, `legajoAlumno`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');');
 
-echo "<script> window.location = 'config_alumno.php' </script>";
+//echo "<script> window.location = 'config_alumno.php' </script>";
+header("Location:/DayClass/Administrador/config_alumno.php?resultado=true")
 //https://bootstrapious.com/p/how-to-build-a-working-bootstrap-contact-form
 	
 ?>

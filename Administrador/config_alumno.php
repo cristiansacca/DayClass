@@ -27,6 +27,19 @@ if (!isset($_SESSION['administrador']))
 
     <h1 class="display-4 my-2">Alumnos</h1>
 
+    <?php
+    
+    if(isset($_GET["resultado"])){
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        <h5>Se creó correctamente</h5>
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>";
+    }
+
+    ?>
+
     <div class="my-3">
         <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-2"></i>Crear nuevo</button>
         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-download mr-2"></i>Importar lista</button>
