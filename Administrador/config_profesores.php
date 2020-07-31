@@ -114,23 +114,35 @@ if (!isset($_SESSION['administrador']))
                 <h3 class="modal-title " id="staticBackdropLabel">Importar lista</h3>
             </div>
             <div class="modal-body">
+                
+                 <div>
+                    <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como sigue: </h9>
 
-                <form method="#" id="importPlanilla" name="importPlanilla" action="#" enctype="multipart/form-data" role="form">
+                    <table class="table table-bordered text-center table-info">
+                        <thead>
+                            <th>DNI</th>
+                            <th>Legajo</th>
+                            <th>Apellido</th>
+                            <th>Nombre </th>
+                        </thead>
+                    </table>
+
+                </div>
+
+                <form method="POST" id="importPlanilla" name="importPlanilla" action="importMasivoPROFES.php" enctype="multipart/form-data" role="form">
                     <div class="container" style="margin-top:50px;">
 
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" required name="inpGetFile" id="inpGetFile" accept=".xlsx" onchange="comprobar()" lang="es">
-
-                            <label class="custom-file-label" for="validatedCustomFile">Seleccionar archivo</label>
-
+                            <input type="file" class="form-control-file"  name="inpGetFile" id="inpGetFile" accept=".xlsx" onchange="comprobarLista()" lang="es" required>
+                            
                         </div>
                     </div>
                     <!-- la funcion comrobar esta en administrador.js -->
                     <br>
                     <br>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                        <button type="button" class="btn btn-primary " data-dismiss="modal"> Importar </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button id="btnImportar" type="submit" class="btn btn-primary " disabled>Importar</button>
                     </div>
 
                 </form>

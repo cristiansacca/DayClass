@@ -46,7 +46,12 @@ include "../header.html";
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword4">Contraseña</label>
-          <input type="password" class="form-control" id="inputPassword4" name="password" placeholder="Contraseña" onchange="validarContrasenia()" required>
+          <div class="input-group">
+            <input type="password" class="form-control" id="inputPassword4" name="password" placeholder="Contraseña" onchange="validarContrasenia()" required>
+            <div class="input-group-append">
+              <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"><span class="fa fa-eye-slash icon"></span></button>
+            </div>
+          </div>
           <h9 class="msg" id="msjValidacionPass"></h9>
         </div>
       </div>
@@ -71,6 +76,19 @@ include "../header.html";
     </div>
   </form>
 </div>
+
+<script type="text/javascript">
+   function mostrarPassword() {
+      var cambio = document.getElementById("inputPassword4");
+      if (cambio.type == "password") {
+         cambio.type = "text";
+         $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      } else {
+         cambio.type = "password";
+         $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      }
+   }
+</script>
 
 <?php
 include "../footer.html";
