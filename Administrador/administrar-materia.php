@@ -50,18 +50,22 @@ $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id
                     
                     echo "<tr>
                     <td>$aux</td>
-                    <td><a href='admcurso.php'>" . $resultado1['nombreMateria'] . "</a></td>
+                    <td><a id='storage' href='admcurso.php' onclick='guardarStorage();' >" . $resultado1['nombreMateria'] . "</a></td>
                     <td>Habilitada</td>
-                    <td><button class='btn btn-primary'><i class='fa fa-edit'></i></button></td>
+                    <td><button class='btn btn-primary' onClick='guardarStorage'><i class='fa fa-edit'></i></button></td>
                     <td><button class='btn btn-success'><i class='fa fa-upload'></i></button></td>
                     </tr>";
+                   
                     $aux++ ;
+                    $resultado= $resultado1['nombreMateria'] ;
                 }
+                
                 ?>
             </tbody>
         </table>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
@@ -87,6 +91,20 @@ $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id
 </div>
 
 <script src="administrador.js"></script>
+
+
+
+<script>
+
+  function guardarStorage(){
+    var storage= document.getElementById("storage")
+
+   localStorage.setItem("Materia", "<?php echo $resultado; ?>")
+
+  }
+ </script>
+    
+
 
 <?php
 include "../footer.html";
