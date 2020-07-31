@@ -1,5 +1,12 @@
 <?php
 include "../header.html";
+include "../databaseConection.php";
+$id_materia = $_GET["id"];
+$consulta1 = $con->query("SELECT * FROM `curso` WHERE materia_id= '$id_materia'");
+$resultadoCurso= $consulta1->fetch_assoc();
+$division = $resultadoCurso['division_id'];
+$consulta2 =  $con->query("SELECT * FROM `division` WHERE id= '$division'");
+$resultado2 = $consulta2->fetch_assoc();
 ?>
 <script src="administrador.js"></script>
 
@@ -22,27 +29,28 @@ include "../header.html";
             
             $aux = $i+1;
             
-            
+            while ($resultado1 = $consulta1->fetch_assoc()) {
             echo "<div class='col-lg-12 col-md-12 mb-4' >
             <div class='card h-100 color$contador' id='tajeta$i'>
                 <div class='card-body text-left'>
-                    <h3 class='card-title'>Curso $aux</h3>
-                    <h5 class='card-title'>Division 3k9</h5>
+                    <h3 class='card-title'>Curso " . $resultado1['nombreCurso'] . "</h3>
+                    <h5 class='card-title'>Division " . $resultado2['nombreDivision'] . "</h5>
                     <h6  class='mx-5'>Profesores</h6>
                     <ul class='mx-5' style='list-style: none;'>
                        <li> Adjunto: </li>
                        <li> Titular:</li>
                     </ul>
                 </div>
-
+           
                 <div class='card-footer'>
                 <a href='cargarPlanillaAlumnos/import_planillaAlumnos.php' class='btn btn-dark m-2'>Importar Alumnos</a>
                     <a href='añadirProfesor.php' class='btn btn-dark m-2'>Añadir Profesores</a>
                 </div>
             </div>
         </div>" ;
+        $contador ++;
+    }
             
-            $contador ++;
        
         }
         

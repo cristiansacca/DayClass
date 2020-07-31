@@ -50,14 +50,16 @@ $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id
                     
                     echo "<tr>
                     <td>$aux</td>
-                    <td><a id='storage' href='admcurso.php' onclick='guardarStorage();' >" . $resultado1['nombreMateria'] . "</a></td>
+                      
+                    <td><a id='storage' href='admcurso.php?id=".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</a></td>
                     <td>Habilitada</td>
                     <td><button class='btn btn-primary' onClick='guardarStorage'><i class='fa fa-edit'></i></button></td>
                     <td><button class='btn btn-success'><i class='fa fa-upload'></i></button></td>
+
                     </tr>";
-                   
-                    $aux++ ;
                     $resultado= $resultado1['nombreMateria'] ;
+                    $aux++ ;
+                    
                 }
                 
                 ?>
@@ -75,16 +77,19 @@ $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Nueva materia</h5>
             </div>
+            <form method="POST" id="insertMateria" name="insertMateria" action="insertMateria.php" enctype="multipart/form-data" role="form">
             <div class="modal-body">
-                <div class="container">
-                    <div>
-                        
-                    </div>
-                </div>
+            <div class="my-2">
+                    <label for="inputNombreMateria"> Nombre Curso </label>
+                    <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control" >
+            </div>
+            <div class="my-2">
+                    <label for="inputNivel"> Nivel Materia </label>
+                    <input type="text" name="inputNivel" id="inputNivel" class="form-control" >
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-success" data-dismiss="modal"> Confirmar </button>
+                <button type="submit" class="btn btn-success"  id="btnCrear"> Confirmar </button>
             </div>
         </div>
     </div>
@@ -94,15 +99,7 @@ $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id
 
 
 
-<script>
 
-  function guardarStorage(){
-    var storage= document.getElementById("storage")
-
-   localStorage.setItem("Materia", "<?php echo $resultado; ?>")
-
-  }
- </script>
     
 
 
