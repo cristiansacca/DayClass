@@ -133,7 +133,7 @@ if (!isset($_SESSION['administrador']))
 
                 </div>
 
-                <form method="POST" id="importPlanilla" name="importPlanilla" action="insertBDAlumnos.php" enctype="multipart/form-data" role="form">
+                <form method="POST" id="importPlanilla" name="importPlanilla" action="importMasivoALUMNOS.php" enctype="multipart/form-data" role="form">
                     <div class="container" style="margin-top:50px;">
 
                         <div class="custom-file">
