@@ -36,6 +36,24 @@ if (isset($_SESSION['administrador'])) {
 
       <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-2"></i>Ingresar</button><br>
       <a class="btn btn-link my-2" href="restablecer-contrasenia.php">Olvidé mi contraseña</a>
+
+      <?php
+      if (isset($_GET["error"])) {
+         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+         switch ($_GET["error"]) {
+            case 0:
+               echo "<h6>Contraseña incorrecta</h6>";
+               break;
+            case 1:
+               echo "<h6>Correo electrónico no registrado</h6>";
+               break;
+         }
+         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </button>
+         </div>";
+      }
+      ?>
    </form>
 </div>
 

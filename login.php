@@ -17,16 +17,15 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
     $cifrada = $resultado1["contraseniaAlum"];
     
     if (password_verify($contrasenia, $cifrada)) {
-        
+        //Si la contraseña cifrada coincide con lo ingresado se inicia la sesión
         session_start();
+        //En la variable de sesión se guardan los datos del usuario que ingresó
         $_SESSION["alumno"] = $resultado1;
+        //Se redirigue a la página principal correspondiente al usuario
         header("Location: /DayClass/Alumno/index.php");
 
     } else {
-        echo "<div class='container'><br><div class='alert alert-danger' role='alert'>
-        <h3>Contraseña incorrecta</h3>
-        </div>";
-        echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a></div>";
+        header("Location: /DayClass/index.php?error=0");
     }
 } else {
 
@@ -44,10 +43,7 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
             header("Location: /DayClass/Profesor/index.php");
 
         } else {
-            echo "<div class='container'><br><div class='alert alert-danger' role='alert'>
-            <h3>Contraseña incorrecta</h3>
-            </div>";
-            echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a></div>";
+            header("Location: /DayClass/index.php?error=0");
         }
     } else {
 
@@ -65,16 +61,10 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
                 header("Location: /DayClass/Administrador/index.php");
 
             } else {
-                echo "<div class='container'><br><div class='alert alert-danger' role='alert'>
-                <h3>Contraseña incorrecta</h3>
-                </div>";
-                echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a></div>";
+                header("Location: /DayClass/index.php?error=0");
             }
         } else { //Si ninguna consulta obtnien resultado el email ingresado no existe en la base de datos
-            echo "<div class='container'><br><div class='alert alert-danger' role='alert'>
-                <h3>El correo electrónico ingresado no se encuentra registrado</h3>
-              </div>";
-            echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a></div>";
+            header("Location: /DayClass/index.php?error=1");
         }
     }
 }
