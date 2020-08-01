@@ -46,20 +46,21 @@ function validarEmail(){
 
 function validarContrasenia()
 {
+    eval("debugger;");
     var contrasenna = document.getElementById('inputPassNew').value;
     var rtdo = validar_clave(contrasenna);
     var msg = "";
 
-    if(rtdo == true)
-    {
-        msg ='Cotraseña fuerte';
+    if (rtdo == true) {
+        msg = 'Cotraseña fuerte';
+        document.getElementById('inputPassNewRep').disabled = false;
     }
-    else
-    {
+    else {
         msg = 'La contraseña ingresada no es fuerte';
+         document.getElementById('inputPassNewRep').disabled = true;
     }
 
-    changeColor('inputPassNew',rtdo);
+    changeColor('inputPassNew', rtdo);
     setValitationMesage('msjValidacionPass', rtdo, msg);
     
 }
@@ -68,16 +69,23 @@ function validarRepeticion()
 {
     var contrasenna = document.getElementById('inputPassNewRep').value;
     var rtdo = validar_clave(contrasenna);
-    var c= document.getElementById('inputPassNew').value;
+    var c = document.getElementById('inputPassNew').value;
     var msg = "";
+    var dev = true;
 
-    if(rtdo != c)
-    {
-        msg ='Cotraseña no coincide';
+    if (contrasenna != c) {
+        msg = 'Las Cotraseñas no coinciden';
+        dev = false;
+    }
+    
+    if(c == ""){
+        dev = true;
     }
 
-    changeColor('inputPassNewRep',rtdo);
-    setValitationMesage('msjValidacionRepeticion', rtdo, msg);
+    changeColor('inputPassNewRep', rtdo);
+    setValitationMesage('msjValidacionRepeticion', rtdo, msg); 
+    return dev;
+
     
 }
 
