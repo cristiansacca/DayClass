@@ -6,8 +6,7 @@
     $pasNueva = $_POST["inputPassNew"];
     $email = $_POST["inputEmailNew"];
 
-    try{
-      $consulta1 = $con->query("SELECT id FROM alumno WHERE legajoAlumno = '$legajoTraido'");
+    $consulta1 = $con->query("SELECT id FROM alumno WHERE legajoAlumno = '$legajoTraido'");
     $resultado1 = $consulta1->fetch_assoc(); 
     $id_usuario = $resultado1['id'];
     
@@ -68,11 +67,7 @@
         }
     }
 }
-  
-    }catch(Exception $e){
-        header("Location:/DayClass/Alumno/editar_perfil.php?resultado=3"); 
-    }
-    
+
 
 
 

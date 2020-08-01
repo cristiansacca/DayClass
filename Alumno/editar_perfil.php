@@ -46,7 +46,6 @@ $_SESSION['alumno']= $resultado1;
                         </button>
                     </div>";
                 break;
-            case 3:
                 
         }
         
