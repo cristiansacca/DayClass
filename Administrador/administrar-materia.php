@@ -11,30 +11,21 @@ if (!isset($_SESSION['administrador']))
    header("location:/DayClass/index.php"); 
 }
 
-$consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
-
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+<style>
+.custom-file-label::after {
+    content: "Elegir";
+}
+</style>
 
 <div class="container">
     <h1 class="display-4">Materias</h1>
-    <div class="form-inline">
-        <div class="form-inline my-2">
-            <label for="selectEstadoMateria" style="margin-right: 8px;">Mostrar:</label>
-            <select id="selectEstadoMateria" class="custom-select" style="margin-right: 8px;">
-                <option value="1">Habilitadas</option>
-                <option value="2">No habilitadas</option>
-                <option value="3" selected>Todas</option>
-            </select>
-        </div>
-        <div class="form-inline my-2">
-            <label for="buscarMateria" style="margin-right: 8px;">Nombre: </label>
-            <input type="text" id="buscarMateria" class="form-control" style="margin-right: 8px;">
-            <button class="btn btn-outline-primary my-2" id="btnBuscarMateria">Buscar</button>
-        </div>
-    </div>
-    <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">Nueva materia</button>
+    <button class="btn btn-success my-3" data-toggle="modal" data-target="#staticBackdrop">Nueva materia</button>
     <div class="my-2">
-        <table class="table table-bordered text-center table-info">
+        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
             <thead>
                 <th>N°</th>
                 <th>Nombre materia</th>
@@ -43,21 +34,25 @@ $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id
                 <th>Cargar programa</th>
             </thead>
             <tbody>
-            <?php
+                <?php
                 
                 $aux=1 ;
+                $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
                 while ($resultado1 = $consulta1->fetch_assoc()) {
-                    
+                    $idmateria = $resultado1['id'];
+                    $consulta2 = $con->query("SELECT * FROM `programamateria` WHERE materia_id= '$idmateria'");
+                    $programa = $consulta2->fetch_assoc();
                     echo "<tr>
                     <td>$aux</td>
                       
-                    <td><a id='storage' href='admcurso.php?id=".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</a></td>
+                    <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</a></td>
                     <td>Habilitada</td>
-                    <td><button class='btn btn-primary' onClick='guardarStorage'><i class='fa fa-edit'></i></button></td>
-                    <td><button class='btn btn-success'><i class='fa fa-upload'></i></button></td>
+                    <td><button class='btn btn-primary'><i class='fa fa-edit'></i></button></td>
+
+                    <td><button class='btn btn-success'><i class='fa fa-upload'></i></button> ".$programa['descripcionPrograma'] . "</td>
 
                     </tr>";
-                    $resultado= $resultado1['nombreMateria'] ;
+                   
                     $aux++ ;
                     
                 }
@@ -77,32 +72,37 @@ $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Nueva materia</h5>
             </div>
-            <form method="POST" id="insertMateria" name="insertMateria" action="insertMateria.php" enctype="multipart/form-data" role="form">
-            <div class="modal-body">
-            <div class="my-2">
-                    <label for="inputNombreMateria"> Nombre Curso </label>
-                    <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control" >
-            </div>
-            <div class="my-2">
-                    <label for="inputNivel"> Nivel Materia </label>
-                    <input type="text" name="inputNivel" id="inputNivel" class="form-control" >
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                <button type="submit" class="btn btn-success"  id="btnCrear"> Confirmar </button>
-            </div>
+            <form method="POST" id="insertMateria" name="insertMateria" action="insertMateria.php"
+                enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="inputNombreMateria"> Nombre Materia</label>
+                        <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control">
+                    </div>
+                    <div class="my-2">
+                        <label for="inputNivel"> Nivel Materia </label>
+                        <input type="text" name="inputNivel" id="inputNivel" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
+                        <button type="submit" class="btn btn-success" id="btnCrear"> Confirmar </button>
+                    </div>
+                </div>
         </div>
     </div>
-</div>
 
-<script src="administrador.js"></script>
-
-
-
-
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="administrador.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="paginadoDataTable.js"></script>
 
 
-<?php
+
+
+
+
+
+    <?php
 include "../footer.html";
 ?>

@@ -8,7 +8,8 @@ $fechaHora= date('Y-m-d H:i:s');
     
 $con->query('INSERT INTO `materia`(`nombreMateria`,`fechaAltaMateria`,`nivelMateria`) VALUES ("'.$materia.'","'.$fechaHora.'", "'.$nivel.'");');
 
-echo "<script> window.location = 'administrar-materia.php' </script>";
+header("Location:/DayClass/Administrador/administrar-materia.php");
+
 
 	
 

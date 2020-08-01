@@ -7,6 +7,7 @@ $resultadoCurso= $consulta1->fetch_assoc();
 $division = $resultadoCurso['division_id'];
 $consulta2 =  $con->query("SELECT * FROM `division` WHERE id= '$division'");
 $resultado2 = $consulta2->fetch_assoc();
+
 ?>
 <script src="administrador.js"></script>
 
@@ -75,11 +76,16 @@ $resultado2 = $consulta2->fetch_assoc();
             <div class="modal-body">
                 <div class="my-2">
                     <label for="nombrecurso"> Nombre Curso </label>
-                    <input type="text" name="nombrecurso" id="nombrecurso" class="form-control" >
+                    <select name="nombrecurso" id="nombrecurso"class="custom-select">
+                       <option>IA</option>
+                       <option>Lengua</option>
+                       <option>Frances</option>
+                    </select>
+                    
                 </div>
                 <div class="my-2">
-                    <label for=""> Division </label>
-                    <select id="selectdivision" class="custom-select">
+                    <label for="selectdivision"> Division </label>
+                    <select id="selectdivision" name="selectdivision" class="custom-select">
                        <option>3k9</option>
                        <option>3k10</option>
                        <option>2x10</option>
