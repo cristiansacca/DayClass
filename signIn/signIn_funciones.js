@@ -32,20 +32,24 @@ function validarDNI() {
 }
 
 function validarLegajo() {
+    eval("debugger;");
     var elem = document.getElementById('inputLegajo').value;
     var cantDigitos = elem.length;
-    var rtdo = false;
+    var rtdo = numbers(elem);
     var msg = "";
     
-    if(cantDigitos == 5){
-        rtdo = numbers(elem);
-        if(rtdo == false){
-            msg = "En el Legajo solo van números";  
+    
+    if(rtdo){
+        if((cantDigitos == 1 && elem == 0) || cantDigitos > 4){
+            
+        }else{
+           msg = "El número de Legajo deben ser mas números"; 
+            rtdo = false;
         }
-        
-       }else{
-           msg = "El número de Legajo deben ser 5 números";
-       }
+    }else{
+        msg = "En el Legajo solo van números";  
+        rtdo = false;
+    }
     
     changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
@@ -177,7 +181,7 @@ function validateDate(fecha){
 }
 
 function letters(letras){
-	var patron = /^[A-Za-z]*$/;
+	var patron = /^[A-Za-zÑñ ]*$/;
 	return patron.test(letras);
 }
 
