@@ -1,5 +1,16 @@
 <?php
 include "../header.html";
+include "../databaseConection.php";
+
+//Se inicia o restaura la sesión
+session_start();
+
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['profesor'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
 ?>
 
 
@@ -10,51 +21,52 @@ include "../header.html";
 <div class="container">
 
     <div class="jumbotron my-4">
-        <h3 class="">ApellidoUsuario, NombreUsuario</h3>
-        <p class="lead"></p>
-        <a href="editar_perfil.php" class="btn btn-primary btn-lg">Ver Perfil</a>
+        <h3 class=""><?php echo " " . $_SESSION["profesor"]["nombreProf"] . " " . $_SESSION["profesor"]["apellidoProf"] ?></h3>
+        <a href="editar_perfil.php" class="btn btn-success btn-lg"><i class="fa fa-edit mr-2"></i>Editar Perfil</a>
     </div>
-
+    <h3 class="font-weight-normal">Cursos que dicta actualmente:</h3><br>
     <!-- Page Features -->
     <div class="row text-center">
 
-        
-    <?php
+
+        <?php
         $contador = 0;
-        for ($i = 0; $i < 5; $i++) {
-            if($contador == 4){
+        $id_prof = $_SESSION['profesor']['id'];
+        $consultaCargo = $con->query("SELECT * FROM cargoprofesor WHERE profesor_id= '$id_prof'");
+
+        while ($cargos = $consultaCargo->fetch_assoc()) {
+            if ($contador == 4) {
                 $contador = 0;
             }
             
-            
-            $aux = $i+1;
-            echo "<div class='col-lg-6 col-md-3 mb-4' >
-            <div class='card h-100 color$contador' id='tajeta$i' >
-                <div class='card-body'>
-                    <h4 class='card-title'>Materia $aux</h4>
-                    <h5 class='card-title'>Curso 1</h5>
-                </div>
+            $consultaCursos = $con->query("SELECT * FROM curso WHERE id='" . $cargos['curso_id'] . "'");
+            $resultadoCursos = $consultaCursos->fetch_assoc();
 
-                <div class='card-footer'>
-                    <a href='indexCurso.php' class='btn btn-primary btn-lg'>Ingresar</a>
+            echo "<div class='col-lg-6 col-md-3 mb-4' >
+                <div class='card h-100 color$contador' >
+                    <div class='card-body'>
+                        <h4 class='card-title'>".$resultadoCursos["nombreCurso"]."</h4>
+                    </div>
+                    <div class='card-footer'>
+                        <a href='indexCurso.php?id_curso=".$resultadoCursos["id"]."' class='btn btn-primary btn-lg'>Ingresar</a>
+                    </div>
                 </div>
-            </div>
-        </div>";
-            
-            $contador ++;
-       
+            </div>";
+
+            $contador++;
         }
-        
-    ?>
-       
+
+        ?>
+
     </div>
 
 </div>
 
-        
-
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="profesor.js"></script>
+<script>
+    $("#temaDia").attr("hidden", "hidden")
+</script>
 
 <?php
 include "../footer.html";

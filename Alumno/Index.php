@@ -16,9 +16,9 @@ if (!isset($_SESSION['alumno']))
 <div class="container">
 
   <div class="jumbotron my-4">
-    <h3 class="">Bienvenido<?php echo " ".$_SESSION["alumno"]["nombreAlum"] ?></h3>
+    <h3 class=""><?php echo " ".$_SESSION["alumno"]["nombreAlum"]." ".$_SESSION["alumno"]["apellidoAlum"] ?></h3>
     <p class="lead"></p>
-    <a href="editar_perfil.php" class="btn btn-primary btn-lg">Ver Perfil</a>
+    <a href="editar_perfil.php" class="btn btn-success btn-lg"><i class="fa fa-edit mr-2"></i>Editar perfil</a>
   </div>
 
   <div class="row text-center">

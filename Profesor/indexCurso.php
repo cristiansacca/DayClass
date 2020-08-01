@@ -1,13 +1,33 @@
 <?php
 include "../header.html";
+include "../databaseConection.php";
+
+//Se inicia o restaura la sesión
+session_start();
+
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['profesor'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(isset($_GET["id_curso"])){
+    $id_curso = $_GET["id_curso"];
+
+    $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+    $curso = $consulta1->fetch_assoc();
+    
+} else {
+    header("location:/DayClass/Profesor/index.php");
+}
+
 ?>
 
 <div class="container">
 
     <div class="jumbotron my-4">
-        <h3 class="">Nombre materia</h3>
-        <h4>Nombre curso</h4>
-        <p class="lead"></p>
+        <h3 class=""><?php echo $curso["nombreCurso"] ?></h3>
+        <button class="btn btn-lg btn-info"><i class="fa fa-list-alt mr-2"></i>Ver inscriptos</button>
     </div>
 
     <!-- Page Features -->

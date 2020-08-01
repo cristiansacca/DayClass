@@ -25,7 +25,7 @@ if (!isset($_SESSION['administrador']))
     <h1 class="display-4">Materias</h1>
     <button class="btn btn-success my-3" data-toggle="modal" data-target="#staticBackdrop">Nueva materia</button>
     <div class="my-2">
-        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
+        <table id="dataTable" class="table table-info table-bordered table-hover">
             <thead>
                 <th>N°</th>
                 <th>Nombre materia</th>
@@ -76,12 +76,12 @@ if (!isset($_SESSION['administrador']))
                 enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="inputNombreMateria"> Nombre Materia</label>
+                        <label for="inputNombreMateria"> Nombre materia</label>
                         <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control">
                     </div>
                     <div class="my-2">
-                        <label for="inputNivel"> Nivel Materia </label>
-                        <input type="text" name="inputNivel" id="inputNivel" class="form-control">
+                        <label for="inputNivel"> Nivel materia </label>
+                        <input type="number" name="inputNivel" id="inputNivel" class="form-control">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
