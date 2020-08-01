@@ -27,23 +27,30 @@ $_SESSION['alumno']= $resultado1;
 <div class="container">
     
     <?php
-    
     if(isset($_GET["resultado"])){
-        if($_GET["resultado"]==1){
-            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                <h5>Modificacion Exitosa</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>";
-        } else {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>El mail ingresado ya existe</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>";
+        
+        switch ($_GET["resultado"]) {
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <h5>Modificacion Exitosa</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>El mail ingresado ya existe</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                break;
+            case 3:
+                
         }
+        
+
     }
 
     ?>
