@@ -14,14 +14,31 @@ if (!isset($_SESSION['alumno']))
 ?>
 
 <div class="container">
-    <h1 class="display-4">Información de asistencias</h1>
+    <div class="py-4 my-3 jumbotron bg-light">
+        <h2>Información de asistencias</h2>
+        <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
+    </div>
     <div class="form-group">
         <label for="">Seleccione la materia:</label>
         <select name="" id="materias" class="custom-select">
-            <option value="1">Materia 1</option>
-            <option value="2">Materia 2</option>
+        <?php
+              include "../databaseConection.php";
+
+              //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
+              $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
+              
+              while ($alumnocursoactual = $consulta1->fetch_assoc()) {
+                  
+                //Por cada instancia de AlumnoCursoActual se obtiene el curso asociado
+                  $curso = $con->query("SELECT * FROM curso WHERE id = '".$alumnocursoactual['curso_id']."'")->fetch_assoc();
+
+                  echo "<option value='".$curso['id']."'>".$curso['nombreCurso']."</option>";
+
+              }
+        ?>
         </select>
     </div>
+    <h3 class="text-danger">De acá para abajo está hardcodeado</h3>
     <div class="form-gruup">
         <label for="" class="mr-2">Cantidad de clases: 4</label><br>
         <label for="">Faltas disponibles: 8</label><br>

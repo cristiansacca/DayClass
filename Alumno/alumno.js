@@ -4,7 +4,7 @@ cambiarContenidoNavbar();
 function cambiarContenidoNavbar() {
     var contenido = "";
     contenido += "<li class='nav-item'><a class='nav-link' href='Index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
-    contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-newspaper-o mr-1'></i>Novedades</a></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell mr-1'></i>Novedades</a></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#' onclick='abrirModal()'><i class='fa fa-check-square mr-1'></i>Auto-asistencia</a></li>";
     contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;

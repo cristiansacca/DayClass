@@ -18,9 +18,9 @@ if (!isset($_SESSION['alumno']))
 
 
 <div class="container ">
-    <div class="my-5">
-        <h3 class="">Materias en las que está inscipto</h3>
-        <p class="lead"></p>
+    <div class="py-4 my-3 jumbotron bg-light">
+        <h2>Materias en las que está inscipto</h2>
+        <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
     </div>
     <!-- Page Features -->
     <div class="row text-center my-5">
@@ -31,6 +31,7 @@ if (!isset($_SESSION['alumno']))
         //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
         $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
         $contador = 0;
+        
         while ($alumnocursoactual = $consulta1->fetch_assoc()) {
             if($contador == 4){
                 $contador = 0;
