@@ -30,7 +30,7 @@ $_SESSION['profesor']= $resultado1;
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div class="container">
-    
+    <div class="mt-3 mx-auto" style="width:85%; height:55%;">
     <?php
     if(isset($_GET["resultado"])){
         
@@ -58,7 +58,7 @@ $_SESSION['profesor']= $resultado1;
     }
 
     ?>
-
+    </div>
   <div class=" m-auto " style="width:85%; height:55%;">
     <form method="post" id="editarProfesor" name="editarProfesor" action="actualizarDatosProf.php" onsubmit="return validarRepeticion()" enctype="multipart/form-data" role="form">
       <h2 class="title">Perfil</h2>
