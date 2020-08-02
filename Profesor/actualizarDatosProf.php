@@ -15,12 +15,14 @@
     
     if(mysqli_num_rows($consultaProfesor) == 0){
         
-        $mailAlumno = $con->query("SELECT id FROM alumno WHERE emailAlumno = '$email'");
+        $mailAlumno = $con->query("SELECT id FROM alumno WHERE emailAlum = '$email'");
         $mailAdmin = $con->query("SELECT id FROM administrativo WHERE emailAdm = '$email'");
         
         if(mysqli_num_rows($mailAlumno) == 0 && mysqli_num_rows($mailAdmin) == 0){
             
             $actualizacion = $con->query("UPDATE profesor SET emailProf = '$email' WHERE id='$id_usuario'");
+           
+            echo "entra a actaulizar el mail";
             header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
         }else{
            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
@@ -32,9 +34,9 @@
         $legajoConsulta = $resultado2['legajoProf'];
         if($legajoTraido == $legajoConsulta ){
            
-            header("Location:/DayClass/Profesor/editar_perfil.php");
+           // header("Location:/DayClass/Profesor/editar_perfil.php");
         }else{
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
+           // header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
            
         }
     }
@@ -51,9 +53,9 @@
         
         if(mysqli_num_rows($mailAlumno) == 0 && mysqli_num_rows($mailAdmin) == 0){
             $actualizacion = $con->query("UPDATE profesor SET emailProf = '$email', contraseniaProf = '$newPass_cifrada' WHERE id='$id_usuario'");
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
         }else{
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
         }
         
     }else{
@@ -61,9 +63,9 @@
         $legajoConsulta = $resultado2['legajoProf'];
         if($legajoTraido == $legajoConsulta ){
             $actualizacion = $con->query("UPDATE profesor SET contraseniaProf = '$newPass_cifrada' WHERE id='$id_usuario'");
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
         }else{
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
         }
     }
 }

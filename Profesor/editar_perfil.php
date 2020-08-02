@@ -13,7 +13,7 @@ if (!isset($_SESSION['profesor'])) {
 
 $id_profesor = $_SESSION["profesor"]["id"];
 
-$consulta1 = $con->query("SELECT `legajoProf`,`apellidoProf`,`nombreProf`,`dniProf`, `emaiProf`, `fechaNacProf`, `id` FROM `profesor` WHERE id = '$id_profesor'");
+$consulta1 = $con->query("SELECT `legajoProf`,`apellidoProf`,`nombreProf`,`dniProf`,`emailProf`, `fechaNacProf`, `id` FROM `profesor` WHERE id = '$id_profesor'");
 $resultado1 = $consulta1->fetch_assoc();
 
 $_SESSION['profesor']= $resultado1;
@@ -66,13 +66,13 @@ $_SESSION['profesor']= $resultado1;
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputName4">Nombre</label>
-            <input type="text" readonly class="form-control" id="inputName" placeholder="Nombre" required <?php echo "value='".$_SESSION["profesor"]["nombreProf"]."'"; ?>>
+            <input type="text" readonly class="form-control" id="inputName" name="inputName" placeholder="Nombre" required <?php echo "value='".$_SESSION["profesor"]["nombreProf"]."'"; ?>>
             <h9 class="msg" id="msjValidacionNombre"></h9>
           </div>
 
           <div class="form-group col-md-6">
             <label for="inputSurname4">Apellido</label>
-            <input type="text" readonly class="form-control" id="inputSurname" placeholder="Apellido" required <?php echo "value='".$_SESSION["profesor"]["apellidoProf"]."'"; ?>>
+            <input type="text" readonly class="form-control" id="inputSurname" name="inputSurname" placeholder="Apellido" required <?php echo "value='".$_SESSION["profesor"]["apellidoProf"]."'"; ?>>
             <h9 class="msg" id="msjValidacionApellido"></h9>
           </div>
         </div>
@@ -80,14 +80,14 @@ $_SESSION['profesor']= $resultado1;
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputDNI">DNI</label>
-            <input type="number" readonly class="form-control" id="inputDNI"
+            <input type="number" readonly class="form-control" id="inputDNI" name="inputDNI"
               placeholder="Documento Nacional de Identidad" required <?php echo "value='".$_SESSION["profesor"]["dniProf"]."'"; ?>>
             <h9 class="msg" id="msjValidacionDNI"></h9>
           </div>
 
           <div class="form-group col-md-6">
             <label for="inputLegajo">Legajo</label>
-            <input type="number" readonly class="form-control" id="inputLegajo" placeholder="Legajo" required <?php echo "value='".$_SESSION["profesor"]["legajoProf"]."'"; ?>>
+            <input type="number" readonly class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" required <?php echo "value='".$_SESSION["profesor"]["legajoProf"]."'"; ?>>
             <h9 class="msg" id="msjValidacionLegajo"></h9>
           </div>
         </div>
@@ -95,12 +95,12 @@ $_SESSION['profesor']= $resultado1;
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputDate">Fecha de nacimiento</label>
-            <input id="inputDate" type="date" readonly class="form-control" required <?php echo "value='".$_SESSION["profesor"]["fechaNacProf"]."'"; ?>>
+            <input id="inputDate" name="inputDate" type="date" readonly class="form-control" required <?php echo "value='".$_SESSION["profesor"]["fechaNacProf"]."'"; ?>>
             <h9 class="msg" id="msjValidacionFchNac"></h9>
           </div>
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmailNew" placeholder="Email" onchange="validarEmail()"
+            <input type="email" class="form-control" id="inputEmailNew" name="inputEmailNew" placeholder="Email" onchange="validarEmail()"
               required <?php echo "value='".$_SESSION["profesor"]["emailProf"]."'"; ?>>
             <h9 class="msg" id="msjValidacionEmail"></h9>
           </div>
@@ -117,14 +117,14 @@ $_SESSION['profesor']= $resultado1;
 
           <div class="form-group col-md-4">
             <label for="inputPassNew">Nueva Contraseña</label>
-            <input type="password" class="form-control" id="inputPassNew" placeholder="Escribir Contraseña"
+            <input type="password" class="form-control" id="inputPassNew" name="inputPassNew" placeholder="Escribir Contraseña"
               onchange="validarContrasenia()">
             <h9 class="msg" id="msjValidacionPass"></h9>
           </div>
 
           <div class="form-group col-md-4">
             <label for="inputPassNewRep">Confirmar Contraseña</label>
-            <input type="password" class="form-control" id="inputPassNewRep" placeholder="Escribir Contraseña"
+            <input type="password" class="form-control" id="inputPassNewRep" name="inputPassNewRep" placeholder="Escribir Contraseña"
               onchange="validarRepeticion()" required disabled>
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
           </div>
