@@ -1,5 +1,6 @@
 <?php
 include "../header.html";
+include "../databaseConection.php";
 
 //Se inicia o restaura la sesión
 session_start();
@@ -13,7 +14,7 @@ if (!isset($_SESSION['administrador']))
 
 $id_admin = $_SESSION['administrador']["id"];
 
-$consulta1 = $con->query("SELECT `legajoAdm`,`apellidoAdm`,`nombreAdm`,`dniAdm`, `emailAdm`, `fechaNacAdm`, `id` FROM `administrativo` WHERE id = '$id_alumno'");
+$consulta1 = $con->query("SELECT `legajoAdm`,`apellidoAdm`,`nombreAdm`,`dniAdm`, `emailAdm`, `fechaNacAdm`, `id` FROM `administrativo` WHERE id = '$id_admin'");
 $resultado1 = $consulta1->fetch_assoc();
 
 $_SESSION['administrador']= $resultado1;
@@ -117,7 +118,7 @@ $_SESSION['administrador']= $resultado1;
           <div class="form-group col-md-4">
             <label for="inputPassNewRep">Confirmar Contraseña</label>
             <input type="password" class="form-control" id="inputPassNewRep" name="inputPassNewRep" placeholder="Escribir Contraseña"
-              onchange="validarRepeticion()" required>
+              onchange="validarRepeticion()" required disabled>
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
           </div>
         </div>

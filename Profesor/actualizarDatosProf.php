@@ -22,7 +22,7 @@
             
             $actualizacion = $con->query("UPDATE profesor SET emailProf = '$email' WHERE id='$id_usuario'");
            
-            echo "entra a actaulizar el mail";
+            //echo "entra a actaulizar el mail";
             header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
         }else{
            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 

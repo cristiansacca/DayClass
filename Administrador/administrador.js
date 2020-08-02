@@ -50,15 +50,18 @@ function validarEmail() {
 }
 
 function validarContrasenia() {
+    eval("debugger;");
     var contrasenna = document.getElementById('inputPassNew').value;
     var rtdo = validar_clave(contrasenna);
     var msg = "";
 
     if (rtdo == true) {
         msg = 'Cotraseña fuerte';
+        document.getElementById('inputPassNewRep').disabled = false;
     }
     else {
         msg = 'La contraseña ingresada no es fuerte';
+         document.getElementById('inputPassNewRep').disabled = true;
     }
 
     changeColor('inputPassNew', rtdo);
