@@ -71,13 +71,20 @@ function validarRepeticion() {
     var rtdo = validar_clave(contrasenna);
     var c = document.getElementById('inputPassNew').value;
     var msg = "";
+    var dev = true;
 
-    if (rtdo != c) {
-        msg = 'Cotraseña no coincide';
+    if (contrasenna != c) {
+        msg = 'Las Cotraseñas no coinciden';
+        dev = false;
+    }
+    
+    if(c == ""){
+        dev = true;
     }
 
     changeColor('inputPassNewRep', rtdo);
-    setValitationMesage('msjValidacionRepeticion', rtdo, msg);
+    setValitationMesage('msjValidacionRepeticion', rtdo, msg); 
+    return dev;
 
 }
 
@@ -210,7 +217,7 @@ document.getElementById("btnconfirmarestadistica").onclick = function() {
 }
 
 
-//funciones para validar nombre, apellido, legajo y DNI de alumno y porfeso usan las funciones letters, numbers, changeColor y setValidationMessage
+//funciones para validar nombre, apellido, legajo y DNI de alumno y profesor, usan las funciones letters, numbers, changeColor y setValidationMessage
 function validarDNI() {
     var elem = document.getElementById('inputDNI').value;
     var cantDigitos = elem.length;

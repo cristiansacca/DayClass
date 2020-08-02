@@ -34,9 +34,9 @@
         $legajoConsulta = $resultado2['legajoProf'];
         if($legajoTraido == $legajoConsulta ){
            
-            header("Location:/DayClass/Profesor/editar_perfil.php");
+           // header("Location:/DayClass/Profesor/editar_perfil.php");
         }else{
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
+           // header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
            
         }
     }
@@ -53,9 +53,9 @@
         
         if(mysqli_num_rows($mailAlumno) == 0 && mysqli_num_rows($mailAdmin) == 0){
             $actualizacion = $con->query("UPDATE profesor SET emailProf = '$email', contraseniaProf = '$newPass_cifrada' WHERE id='$id_usuario'");
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
         }else{
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
         }
         
     }else{
@@ -63,9 +63,9 @@
         $legajoConsulta = $resultado2['legajoProf'];
         if($legajoTraido == $legajoConsulta ){
             $actualizacion = $con->query("UPDATE profesor SET contraseniaProf = '$newPass_cifrada' WHERE id='$id_usuario'");
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=1");
         }else{
-            header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
+            //header("Location:/DayClass/Profesor/editar_perfil.php?resultado=2"); 
         }
     }
 }
