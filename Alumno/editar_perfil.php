@@ -25,14 +25,14 @@ $_SESSION['alumno']= $resultado1;
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div class="container">
-    
+  <div class="mt-3 mx-auto" style="width:85%; height:55%;">
     <?php
     if(isset($_GET["resultado"])){
         
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <h5>Modificacion Exitosa</h5>
+                        <h5>Modificación exitosa</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -53,7 +53,7 @@ $_SESSION['alumno']= $resultado1;
     }
 
     ?>
-
+  </div>
 
   <div class="mt-2 mx-auto" style="width:85%; height:55%;">
     <form method="post" id="editarAlumno" name="editarAlumno" action="actualizarDatos.php" onsubmit="return validarRepeticion()" enctype="multipart/form-data" role="form">
