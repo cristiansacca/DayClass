@@ -15,7 +15,7 @@
     
     if(mysqli_num_rows($consultaAlumno) == 0){
         /*echo "entra a mail alumno de PASS VACIA";*/
-         $mailDocente = $con->query("SELECT id FROM profesor WHERE emailProf = '$email'");
+        $mailDocente = $con->query("SELECT id FROM profesor WHERE emailProf = '$email'");
         $mailAdmin = $con->query("SELECT id FROM administrativo WHERE emailAdm = '$email'");
         
         if(mysqli_num_rows($mailDocente) == 0 && mysqli_num_rows($mailAdmin) == 0){
@@ -35,7 +35,7 @@
             header("Location:/DayClass/Alumno/editar_perfil.php");
         }else{
             header("Location:/DayClass/Alumno/editar_perfil.php?resultado=2"); 
-            echo "////entra a mail ALUMNO de PASS VACIA, EXISTE MAIL IGUAL EN OTRO ALUMNO";
+            //echo "////entra a mail ALUMNO de PASS VACIA, EXISTE MAIL IGUAL EN OTRO ALUMNO";
         }
     }
     

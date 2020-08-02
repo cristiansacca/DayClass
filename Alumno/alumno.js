@@ -85,7 +85,7 @@ function validarEmail() {
     rtdo = validateEmail(elem);
 
     if (rtdo == false) {
-        msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ y .com";
+        msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ , .com y espacio al final";
     }
 
     changeColor('inputEmail', rtdo);

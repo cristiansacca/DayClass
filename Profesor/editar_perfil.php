@@ -11,6 +11,14 @@ if (!isset($_SESSION['profesor'])) {
     header("location:/DayClass/index.php");
 }
 
+$id_profesor = $_SESSION["profesor"]["id"];
+
+$consulta1 = $con->query("SELECT `legajoProf`,`apellidoProf`,`nombreProf`,`dniProf`, `emaiProf`, `fechaNacProf`, `id` FROM `profesor` WHERE id = '$id_profesor'");
+$resultado1 = $consulta1->fetch_assoc();
+
+$_SESSION['profesor']= $resultado1;
+
+
 ?>
 
 
@@ -22,9 +30,37 @@ if (!isset($_SESSION['profesor'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div class="container">
+    
+    <?php
+    if(isset($_GET["resultado"])){
+        
+        switch ($_GET["resultado"]) {
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <h5>Modificacion Exitosa</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>El mail ingresado ya existe</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                break;
+                
+        }
+        
+
+    }
+
+    ?>
 
   <div class=" m-auto " style="width:85%; height:55%;">
-    <form>
+    <form method="post" id="editarProfesor" name="editarProfesor" action="actualizarDatosProf.php" onsubmit="return validarRepeticion()" enctype="multipart/form-data" role="form">
       <h2 class="title">Perfil</h2>
       <div class="fill_fields">
         <div class="form-row">
@@ -72,7 +108,7 @@ if (!isset($_SESSION['profesor'])) {
 
         <div class="form-row">
           <div class=" form-group col-md-4 control-label ">
-            <button class="btn btn-link " data-toggle="collapse" data-target="#oculto" aria-controls="oculto"
+            <button type="button" class="btn btn-link " data-toggle="collapse" data-target="#oculto" aria-controls="oculto"
               aria-expanded="false">Cambiar Contraseña</button>
           </div>
         </div>
@@ -82,14 +118,14 @@ if (!isset($_SESSION['profesor'])) {
           <div class="form-group col-md-4">
             <label for="inputPassNew">Nueva Contraseña</label>
             <input type="password" class="form-control" id="inputPassNew" placeholder="Escribir Contraseña"
-              onchange="validarContrasenia()" required>
+              onchange="validarContrasenia()">
             <h9 class="msg" id="msjValidacionPass"></h9>
           </div>
 
           <div class="form-group col-md-4">
             <label for="inputPassNewRep">Confirmar Contraseña</label>
             <input type="password" class="form-control" id="inputPassNewRep" placeholder="Escribir Contraseña"
-              onchange="validarRepeticion()" required>
+              onchange="validarRepeticion()" required disabled>
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
           </div>
 
