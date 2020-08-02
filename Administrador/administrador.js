@@ -7,7 +7,7 @@ function cambiarContenidoNavbar() {
     contenido += "<li class='nav-item'><li class='nav-item dropdown'>";
     contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Configuraciones</a>";
     contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='config_profesores.php'>Profesores</a><div class='dropdown-divider'></div>";
-    contenido += "<a class='dropdown-item' href='config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_parametros.php'>Parametros</a></div></li>";
+    contenido += "<a class='dropdown-item' href='config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_parametros.php'>Parametros</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_admin.php'>Administradores</a></div></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
     contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
@@ -19,7 +19,7 @@ document.getElementById("btnSalir").onclick = function () {
 }
 
 function letters(letras) {
-    var patron = /^[A-Za-z]*$/;
+    var patron = /^[A-Za-zÑñ ]*$/;
     return patron.test(letras);
 }
 
