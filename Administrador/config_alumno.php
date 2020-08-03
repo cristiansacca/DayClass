@@ -30,21 +30,26 @@ if (!isset($_SESSION['administrador']))
     <?php
     
     if(isset($_GET["resultado"])){
-        if($_GET["resultado"]==true){
-            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                <h5>Se creó correctamente</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>";
-        } else {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Ocurrió un error</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>";
+        if(isset($_GET["resultado"])){
+        switch ($_GET["resultado"]) {
+                case 1:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Usuario agregado exitosamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 2:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El documento o Legajo ingresado ya se encuentra registrado</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
         }
+    }
     }
 
     ?>
