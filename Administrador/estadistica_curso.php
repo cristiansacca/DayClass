@@ -3,48 +3,41 @@ include "../header.html";
 ?>
 <div class="container">
 
-    <h1 class="display-4 my-2"> Estadística de asistencia para el curso X: </h1>
+    <h1 class="display-4 my-2"> Estadística de asistencia por CURSOS: </h1>
 
-    <form action="#">
-
+    <form action="#">       
         <div class="row">
+            <div class="col-lg-6 col-md-6 mb-6 my-9">
+            <br>
+        <div >
+          <label for="materias">Seleccione los cursos que desee:</label><br>
+          <h9 id="msgMaterias"></h9>
+          <div class="form-group" id="materias">
             <div>
-
-                <table class="table">
-                    <tbody>
-                        <tr>
-                           
-                                <select id="temas" class="custom-select my-3 ">
-                                    <option selected> Seleccione un curso </option>
-                                    <option value="1">Curso 1</option>
-                                    <option value="2">Curso 2</option>
-                                    <option value="3">Curso 3</option>
-                                </select>     
-                           
-                                                
-                        </tr>
-                        
-                        <tr>
-                            
-                            <select id="temas" class="custom-select my-4">
-                                <option selected> Seleccione el legajo del alumno </option>
-                                <option value="1">Alumno 1</option>
-                                <option value="2">Alumno 2</option>
-                                <option value="3">Alumno 3</option>
-                            </select>
-                          
-                        </tr>
-                    </tbody>
-                </table>
+              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Curso 1</label>
             </div>
+            <div>
+              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Curso 2</label>
+            </div>
+            <div>
+              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Curso 3</label>
+            </div>
+            <div>
+              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Curso 4</label>
+            </div>
+            <div>
+              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Curso 5</label>
+            </div>
+          </div>
+        </div>
 
-
+            </div>
             <div class="col-lg-6 col-md-6 mb-6 my-2">
-                <label>Seleccione el período al que corresponde el reporte del alumno:</label>
-                <div class="m-auto">
+                <label>Seleccione el período al que corresponde la estadistica:</label>
+                <div class="my-2">
                     <label for="fechaDesde"> <b> Desde:</b> </label>
                     <input type="date" id="fechaDesde" class="form-control" required>
-                    <label for="fechaHasta"> <b> Hasta: </b></label>
+                    <label for="fechaHasta"> <b>  Hasta: </b></label>
                     <input type="date" id="fechaHasta" class="form-control" required>
                 </div>
             </div>
@@ -54,27 +47,20 @@ include "../header.html";
 
         <div class="card ">
             <div class="card-header">
-                <b> Datos del Alumno </b>
+                <b> Datos Generales </b>
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>Nombre Alumno:</td>
-                                <td>NombreN</td>
-                                <td>Legajo:</td>
+                                <td>Institución:</td>
+                                <td>NombreI</td>
+                                <td>Ciclo_Lectivo:</td>
                                 <td>XXXX</td>
-                                <td>Curso:</td>
-                                <td>CursoN</td>
+                               
                             </tr>
 
-                            <tr>
-                                <td>DNI:</td>
-                                <td>XXXX</td>
-                                <td>Email:</td>
-                                <td>XXXXX</td>
-                            </tr>
                         </tbody>
                     </table>
                 </blockquote>
@@ -95,13 +81,15 @@ include "../header.html";
                             <tr>
                                 <td>ID Reporte:</td>
                                 <td>XXX</td>
+                                <td>Generado por:</td>
+                                <td>nombre_usuario</td>
                                 <td>Date:</td>
                                 <td>DD/MM/AAAA</td>
                             </tr>
 
                             <tr>
-                                <td>Período dek Reporte:</td>
-                                <td>MateriN</td>
+                                <td>Período del Reporte:</td>
+                                
 
                             </tr>
                         </tbody>
@@ -111,7 +99,11 @@ include "../header.html";
         </div>
     </div>
     <div class="jumbotron my-4">
-        <h3 class=" text-center">PLANILLA DE ASISTENCIA DEL ALUMNO</h3>
+        <h3 class=" text-center">GRAFICO DE ASISTENCIA VS INASISTENCIA </h3>
+        <p class="lead"></p>
+    </div>
+    <div class="jumbotron my-4">
+        <h3 class=" text-center">GRAFICO DE ASISTENCIA VS INASISTENCIA POR CURSO/S </h3>
         <p class="lead"></p>
     </div>
 </div>

@@ -78,7 +78,7 @@ include "../header.html";
                         </tr>
                         
                         <tr>
-                            <td>Período dek Reporte:</td>
+                            <td>Período del Reporte:</td>
                             <td>MateriN</td>
                           
                         </tr>
@@ -93,6 +93,7 @@ include "../header.html";
         <p class="lead"></p>
     </div>
 </div>
+
 
 <script src="administrador.js"></script>
 

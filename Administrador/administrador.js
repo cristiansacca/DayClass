@@ -194,7 +194,7 @@ function comprobarLista(){
         }
 }
 
-document.getElementById("btnconfirmarestadistica").onclick = function() {
+ function EstadisticaBtn() {
     eval("debugger;");
     var elem = document.estadisticaadmin.tipo1.value;
 

@@ -62,7 +62,7 @@ if (!isset($_SESSION['administrador']))
 
             <div class="input-group text m-auto">
 
-              <form name="estadisticaadmin"  action="" class="m-auto">
+              <form name ="estadisticaadmin"  action="" class="m-auto">
                 <input type="radio" id="curso" name="tipo1" value="curso">
                 <label for="curso">Curso</label><br>
                 <input type="radio" id="materia" name="tipo1" value="materia">
@@ -74,7 +74,7 @@ if (!isset($_SESSION['administrador']))
           </div>
 
           <div class="modal-footer m-auto">
-            <button type="button" class="btn btn-success " id="btnconfirmarestadistica" data-dismiss="modal">Aceptar</button>
+            <button type="button" class="btn btn-success " id="btnconfirmarestadistica" data-dismiss="modal" onclick= "EstadisticaBtn()" >Aceptar</button>
             <button type="button" class="btn btn-danger" id="btncancelarestadistica" data-dismiss="modal">Cancelar</button>
           </div>
         </div>
