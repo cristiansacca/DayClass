@@ -81,6 +81,7 @@ if (!isset($_SESSION['administrador']))
                 <th>Apellido</th>
                 <th>Nombre </th>
                 <th>DNI</th>
+                <th></th>
             </thead>
 
             <tbody>
@@ -98,7 +99,7 @@ if (!isset($_SESSION['administrador']))
                     <td>" . $resultado1['apellidoAdm'] . "</td>
                     <td>" . $resultado1['nombreAdm'] . "</td>
                     <td>" . $resultado1['dniAdm'] . "</td>
-                    <td> <a class='btn btn-danger' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'>Baja Admin</a></td>
+                    <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-ban mr-1'></i>Dar baja</a></td>
                     </tr>";
                 }
                 ?>
