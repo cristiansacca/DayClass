@@ -92,12 +92,13 @@ if (!isset($_SESSION['administrador']))
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     
                     $url = 'bajaAdmin.php?id='.$resultado1["id"];
+                    $id = $resultado1["id"];
                     echo "<tr>
                     <td>" . $resultado1['legajoAdm'] . "</td>
                     <td>" . $resultado1['apellidoAdm'] . "</td>
                     <td>" . $resultado1['nombreAdm'] . "</td>
                     <td>" . $resultado1['dniAdm'] . "</td>
-                    <td><a href='$url' class='btn btn-danger'>Baja Admin</a></td>
+                    <td> <a class='btn btn-danger' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'>Baja Admin</a></td>
                     </tr>";
                 }
                 ?>
@@ -105,6 +106,7 @@ if (!isset($_SESSION['administrador']))
         </table>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="administrador.js"></script>
