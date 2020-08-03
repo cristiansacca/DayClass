@@ -7,7 +7,7 @@ function cambiarContenidoNavbar() {
     contenido += "<li class='nav-item'><li class='nav-item dropdown'>";
     contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Configuraciones</a>";
     contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='config_profesores.php'>Profesores</a><div class='dropdown-divider'></div>";
-    contenido += "<a class='dropdown-item' href='config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_parametros.php'>Parametros</a></div></li>";
+    contenido += "<a class='dropdown-item' href='config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_parametros.php'>Parametros</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_admin.php'>Administradores</a></div></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
     contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
@@ -19,7 +19,7 @@ document.getElementById("btnSalir").onclick = function () {
 }
 
 function letters(letras) {
-    var patron = /^[A-Za-z]*$/;
+    var patron = /^[A-Za-zÑñ ]*$/;
     return patron.test(letras);
 }
 
@@ -50,15 +50,18 @@ function validarEmail() {
 }
 
 function validarContrasenia() {
+    eval("debugger;");
     var contrasenna = document.getElementById('inputPassNew').value;
     var rtdo = validar_clave(contrasenna);
     var msg = "";
 
     if (rtdo == true) {
         msg = 'Cotraseña fuerte';
+        document.getElementById('inputPassNewRep').disabled = false;
     }
     else {
         msg = 'La contraseña ingresada no es fuerte';
+         document.getElementById('inputPassNewRep').disabled = true;
     }
 
     changeColor('inputPassNew', rtdo);
@@ -71,13 +74,20 @@ function validarRepeticion() {
     var rtdo = validar_clave(contrasenna);
     var c = document.getElementById('inputPassNew').value;
     var msg = "";
+    var dev = true;
 
-    if (rtdo != c) {
-        msg = 'Cotraseña no coincide';
+    if (contrasenna != c) {
+        msg = 'Las Cotraseñas no coinciden';
+        dev = false;
+    }
+    
+    if(c == ""){
+        dev = true;
     }
 
     changeColor('inputPassNewRep', rtdo);
-    setValitationMesage('msjValidacionRepeticion', rtdo, msg);
+    setValitationMesage('msjValidacionRepeticion', rtdo, msg); 
+    return dev;
 
 }
 
@@ -210,7 +220,7 @@ function comprobarLista(){
 }
 
 
-//funciones para validar nombre, apellido, legajo y DNI de alumno y porfeso usan las funciones letters, numbers, changeColor y setValidationMessage
+//funciones para validar nombre, apellido, legajo y DNI de alumno y profesor, usan las funciones letters, numbers, changeColor y setValidationMessage
 function validarDNI() {
     var elem = document.getElementById('inputDNI').value;
     var cantDigitos = elem.length;

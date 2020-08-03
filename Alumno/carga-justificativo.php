@@ -18,9 +18,10 @@ if (!isset($_SESSION['alumno']))
   }
 </style>
 <div class="container">
-  <div class="my-2">
-    <h2 class="display-4">Justificativos</h2>
-  </div>
+    <div class="py-4 my-3 jumbotron bg-light">
+        <h2>Justificativos</h2>
+        <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
+    </div>
   <form action="#">
     <h4>Cargar justificativo de inasistencias</h4>
     <div class="row">
@@ -36,21 +37,25 @@ if (!isset($_SESSION['alumno']))
           <label for="materias">Seleccione las materias que correspondan:</label><br>
           <h9 id="msgMaterias"></h9>
           <div class="form-group" id="materias">
-            <div>
-              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Materia 1</label>
-            </div>
-            <div>
-              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Materia 2</label>
-            </div>
-            <div>
-              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Materia 3</label>
-            </div>
-            <div>
-              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Materia 4</label>
-            </div>
-            <div>
-              <input type="checkbox" onchange="validar_checkbox()" name="materia"><label class="m-2">Materia 5</label>
-            </div>
+            <?php
+              include "../databaseConection.php";
+
+              //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
+              $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
+              $contador = 0;
+              
+              while ($alumnocursoactual = $consulta1->fetch_assoc()) {
+                  
+                //Por cada instancia de AlumnoCursoActual se obtiene el curso asociado
+                  $curso = $con->query("SELECT * FROM curso WHERE id = '".$alumnocursoactual['curso_id']."'")->fetch_assoc();
+
+                  echo "<div>
+                  <input type='checkbox' onchange='validar_checkbox()' name='materia' value='".$curso['id']."'><label class='m-2'>".$curso['nombreCurso']."</label>
+                </div>";
+
+              }
+            ?>
+
           </div>
         </div>
       </div>

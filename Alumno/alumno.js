@@ -3,9 +3,9 @@ cambiarContenidoNavbar();
 
 function cambiarContenidoNavbar() {
     var contenido = "";
-    contenido += "<li class='nav-item'><a class='nav-link' href='Index.php'>Inicio</a></li>";
-    contenido += "<li class='nav-item'><a class='nav-link' href='#'>Novedades</a></li>";
-    contenido += "<li class='nav-item'><a class='nav-link' href='#' onclick='abrirModal()'>Auto-asistencia</a></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='Index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell mr-1'></i>Novedades</a></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='#' onclick='abrirModal()'><i class='fa fa-check-square mr-1'></i>Auto-asistencia</a></li>";
     contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
 }
@@ -85,7 +85,7 @@ function validarEmail() {
     rtdo = validateEmail(elem);
 
     if (rtdo == false) {
-        msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ y .com";
+        msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ , .com y espacio al final";
     }
 
     changeColor('inputEmail', rtdo);

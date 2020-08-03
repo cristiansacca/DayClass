@@ -15,7 +15,7 @@ if (!isset($_SESSION['alumno']))
 
 <div class="container">
 
-  <div class="jumbotron my-4">
+  <div class="jumbotron my-4 py-4 bg-light">
     <h3 class=""><?php echo " ".$_SESSION["alumno"]["nombreAlum"]." ".$_SESSION["alumno"]["apellidoAlum"] ?></h3>
     <p class="lead"></p>
     <a href="editar_perfil.php" class="btn btn-success btn-lg"><i class="fa fa-edit mr-2"></i>Editar perfil</a>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['alumno']))
         <img class="card-img-top" src="../images/justificativos.png" alt="" oncontextmenu="return false">
         <div class="card-body">
           <h4 class="card-title">Justificativos</h4>
-          <p class="card-text">Carga de justificaciones de inasistencias a clases</p>
+          <p class="card-text">Carga y consulta de justificativos pendientes</p>
         </div>
 
         <div class="card-footer">
