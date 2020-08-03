@@ -15,7 +15,7 @@ if (!isset($_SESSION['alumno']))
 
 <div class="container">
     <div class="py-4 my-3 jumbotron bg-light">
-        <h2>Información de asistencias</h2>
+        <h1>Información de asistencias</h1>
         <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
     </div>
     <div class="form-group">
@@ -46,7 +46,7 @@ if (!isset($_SESSION['alumno']))
         <label for="" class="mr-2">Ausentes: 2</label><br>
     </div>
     <div>
-        <table class="table table-bordered text-center table-info">
+        <table class="table table-bordered text-center table-info table-sm">
             <thead>
                 <th>Fecha</th>
                 <th>Asistencia</th>

@@ -16,9 +16,9 @@ if (!isset($_SESSION['alumno']))
 <div class="container">
 
   <div class="jumbotron my-4 py-4 bg-light">
-    <h3 class=""><?php echo " ".$_SESSION["alumno"]["nombreAlum"]." ".$_SESSION["alumno"]["apellidoAlum"] ?></h3>
+    <h1 class=""><?php echo " ".$_SESSION["alumno"]["nombreAlum"]." ".$_SESSION["alumno"]["apellidoAlum"] ?></h1>
     <p class="lead"></p>
-    <a href="editar_perfil.php" class="btn btn-success btn-lg"><i class="fa fa-edit mr-2"></i>Editar perfil</a>
+    <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-2"></i>Editar perfil</a>
   </div>
 
   <div class="row text-center">
@@ -58,7 +58,7 @@ if (!isset($_SESSION['alumno']))
         </div>
 
         <div class="card-footer">
-          <a href="carga-justificativo.php" class="btn btn-primary">Ver</a>
+          <a href="justificativos.php" class="btn btn-primary">Ver</a>
         </div>
       </div>
     </div>

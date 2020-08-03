@@ -6,7 +6,7 @@ function cambiarContenidoNavbar() {
     contenido += "<li class='nav-item'><a class='nav-link' href='Index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell mr-1'></i>Novedades</a></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#' onclick='abrirModal()'><i class='fa fa-check-square mr-1'></i>Auto-asistencia</a></li>";
-    contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
+    contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out mr-1'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
 }
 
@@ -203,7 +203,7 @@ function setValitationMesageAutoAsist(elementID, rtdo, msg) {
 function validarFechasJustificativo(){
     let desde = document.getElementById("fechaDesde").value;
     let hasta = document.getElementById("fechaHasta").value;
-    let cont = document.getElementsByName("materia");
+    let cont = document.getElementsByClassName("checkMateria");
     let al_menos_uno = false;
     
     for (let index = 0; index < cont.length; index++) {
@@ -230,7 +230,7 @@ function validarFechasJustificativo(){
 function validar_checkbox() {
     let desde = document.getElementById("fechaDesde").value;
     let hasta = document.getElementById("fechaHasta").value;
-    let cont = document.getElementsByName("materia");
+    let cont = document.getElementsByClassName("checkMateria");
     let al_menos_uno = false;
     
     for (let index = 0; index < cont.length; index++) {

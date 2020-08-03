@@ -19,17 +19,43 @@ if (!isset($_SESSION['alumno']))
 </style>
 <div class="container">
     <div class="py-4 my-3 jumbotron bg-light">
-        <h2>Justificativos</h2>
+        <h1>Justificativos</h1>
         <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
     </div>
-  <form action="#">
+
+    <?php
+      if(isset($_GET['resultado'])) {
+        $resultado = $_GET['resultado'];
+        if($resultado == 1){
+
+          echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+              <h5>Se cargó el justificativo correctamente</h5>
+              <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+              </button>
+          </div>";
+
+        } else {
+
+          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+              <h5>Ocurrió un error al cargar el justificativo</h5>
+              <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+              </button>
+          </div>";
+
+        }
+      }
+    ?>
+
+  <form action="cargaJustificativo.php" method="POST">
     <h4>Cargar justificativo de inasistencias</h4>
     <div class="row">
       <div class="col-lg-6 col-md-6 mb-6 my-2">
         <div class="my-2">
           <label>Seleccione la imagen del justificativo:</label>
           <div class="custom-file my-2">
-            <input id="imgJustificativo" type="file" accept="image/*" class="custom-file-input" required>
+            <input id="imgJustificativo" name="imgJust" type="file" accept="image/*" class="custom-file-input" required>
             <label for="imgJustificativo" class="custom-file-label">Elija el justificativo</label>
           </div>
         </div>
@@ -42,7 +68,6 @@ if (!isset($_SESSION['alumno']))
 
               //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
               $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
-              $contador = 0;
               
               while ($alumnocursoactual = $consulta1->fetch_assoc()) {
                   
@@ -50,7 +75,7 @@ if (!isset($_SESSION['alumno']))
                   $curso = $con->query("SELECT * FROM curso WHERE id = '".$alumnocursoactual['curso_id']."'")->fetch_assoc();
 
                   echo "<div>
-                  <input type='checkbox' onchange='validar_checkbox()' name='materia' value='".$curso['id']."'><label class='m-2'>".$curso['nombreCurso']."</label>
+                  <input class='checkMateria' type='checkbox' onchange='validar_checkbox()' name='materia[]' value='".$curso['id']."'><label class='m-2'>".$curso['nombreCurso']."</label>
                 </div>";
 
               }
@@ -65,13 +90,13 @@ if (!isset($_SESSION['alumno']))
           <div class="my-2">
             <div class="form-inline my-2">
               <label style="margin-right: 1rem;" for="fechaDesde">Desde:</label>
-              <input type="date" id="fechaDesde" onchange="validarFechasJustificativo();" class="form-control mr-2"
+              <input type="date" id="fechaDesde" name="fechaDesde" onchange="validarFechasJustificativo();" class="form-control mr-2"
                 <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
               <h9 id="msgDesde"></h9>
             </div>
             <div class="form-inline my-2">
               <label style="margin-right: 1.2rem;" for="fechaHasta">Hasta:</label>
-              <input type="date" id="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2"
+              <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2"
                 <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
               <h9 id="msgHasta"></h9>
             </div>
@@ -84,11 +109,34 @@ if (!isset($_SESSION['alumno']))
     </div>
   </form>
   <div class="my-2">
-    <h4>Justificativos pendientes de confirmación</h4>
+    <h4>Estado de tus justificativos</h4>
     <div id="pendientes">
-      <div class="alert alert-info" role="alert">
-        No tenés justificativos pendientes de confirmación
-      </div>
+      <?php
+        $consulta2 = $con->query("SELECT * FROM justificativo WHERE alumno_id ='".$_SESSION['alumno']['id']."'");
+        if(!$consulta2->num_rows == 0){
+          echo "<table class='table table-bordered table-info table-hover'><thead>
+          <th>Fecha de presentación</th><th>Fecha de revisión</th><th>Estado</th><th>Comentario</th>
+          </thead><tbody>";
+          while($justificativo = $consulta2->fetch_assoc()){
+            $estado = 'No revisado';
+            $colorTexto = '';
+            if(!$justificativo['fechaRevision'] == null){
+              if($justificativo['aprobado'] == true){
+                $estado = 'Aprobado';
+                $colorTexto = 'text-success';
+              } else {
+                $estado = 'Rechazado';
+                $colorTexto = 'text-danger';
+              }
+            }
+            echo "<tr><td>".$justificativo['fechaPresentacion']."</td><td>".$justificativo['fechaRevision']."</td>
+            <td class=$colorTexto >".$estado."</td><td>".$justificativo['comentarioJustificativo']."</td></tr>";
+          }
+          echo "</tbody></table>";
+        } else {
+          echo "<div class='alert alert-info' role='alert'>No tenés justificativos pendientes</div>";
+        }
+      ?>
     </div>
   </div>
 </div>
