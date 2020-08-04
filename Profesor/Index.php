@@ -20,9 +20,9 @@ if (!isset($_SESSION['profesor'])) {
 
 <div class="container">
 
-    <div class="jumbotron my-4">
-        <h3 class=""><?php echo " " . $_SESSION["profesor"]["nombreProf"] . " " . $_SESSION["profesor"]["apellidoProf"] ?></h3>
-        <a href="editar_perfil.php" class="btn btn-success btn-lg"><i class="fa fa-edit mr-2"></i>Editar Perfil</a>
+    <div class="jumbotron my-4 py-4">
+        <h1><?php echo " " . $_SESSION["profesor"]["nombreProf"] . " " . $_SESSION["profesor"]["apellidoProf"] ?></h1>
+        <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar Perfil</a>
     </div>
     <h3 class="font-weight-normal">Cursos que dicta actualmente:</h3><br>
     <!-- Page Features -->

@@ -1,50 +1,86 @@
 <?php
 include "../header.html";
-
 include "../databaseConection.php";
 
-$consulta1 = $con->query("SELECT `asunto`,`fechaHoraNotif`,`mensaje` FROM `notificacionprofe` ORDER BY fechaHoraNotif ASC");
+//Se inicia o restaura la sesión
+session_start();
+
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['profesor'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(isset($_GET["id_curso"])){
+    $id_curso = $_GET["id_curso"];
+
+    $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+    $curso = $consulta1->fetch_assoc();
+    
+} else {
+    header("location:/DayClass/Profesor/index.php");
+}
+
+$_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESSION['profesor']['id']."'")->fetch_assoc();
+
 ?>
 <div class="container">
 
-    <h1 class="display-4 "> Pizarra de Novedades</h1>
+    <div class="jumbotron my-4 py-4">
+        <h1>Pizarra de novedades</h1>
+        <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
+        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
 
-    <button class="btn btn-primary my-2" id="AniadirPublicacion " data-toggle="modal" data-target="#staticBackdrop">
-        Añadir publicación </button>
+    <button class="btn btn-success my-2" id="AniadirPublicacion " data-toggle="modal" data-target="#staticBackdrop">
+        <i class="fa fa-commenting mr-1"></i>Añadir publicación</button>
 
+    <?php
+        if(isset($_GET['resultado'])){
+            if($_GET['resultado']==1){
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <h5>Se publicó correctamente</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+                </button></div>";
+            } else {
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <h5>Ocurrió un error al publicar</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+                </button></div>";
+            }
+        }
+    ?>
     <table style= "background-color:rgb(204, 153, 241);" class="table table-striped table-hover  table-bordered text-center my-2">
         <thead>
             <tr>
-                <th>
-                  Tema  
-                </th>
-                <th>
-                    Realizado por 
-                </th>
-                <th>
-                    Fecha 
-                </th>
+                <th>Tema</th>
+                <th>Mensaje</th>
+                <th>Fecha</th>
             </tr>
         </thead>
         <tbody id= "Publicaciones">
         <?php
-                if (!($consulta1->num_rows) == 0) {
-                    while ($resultado1 = $consulta1->fetch_assoc()) {
-                            echo "<tr>
-                        <td>" . $resultado1['asunto'] . "</td>
-                        <td>" . $resultado1['mensaje'] . "</td>
-                        <td>" . $resultado1['fechaHoraNotif'] . "</td>
-                      
-                        </tr>";
-                    }
-                } else {
-                    
-                    echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                    No se han realizado publicaciones<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                  </button></div> ";
+            $consulta1 = $con->query("SELECT * FROM notificacionprofe ORDER BY fechaHoraNotif ASC WHERE curso_id = '$id_curso'");
+            
+            if (($consulta1->num_rows) > 0) {
+                while ($resultado1 = $consulta1->fetch_assoc()) {
+                        echo "<tr>
+                    <td>" . $resultado1['asunto'] . "</td>
+                    <td>" . $resultado1['mensaje'] . "</td>
+                    <td>" . $resultado1['fechaHoraNotif'] . "</td>   
+                    </tr>";
                 }
-                ?>
+            } else {
+                
+                echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <h5>No se han realizado publicaciones</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+                </button></div> ";
+            }
+        ?>
         </tbody>
     </table>
     
@@ -57,27 +93,29 @@ $consulta1 = $con->query("SELECT `asunto`,`fechaHoraNotif`,`mensaje` FROM `notif
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Publicación </h5>
             </div>
-            <form method="POST" id="insertPublicacion" name="insertPublcacion" action="insertPublicacion.php" enctype="multipart/form-data" role="form">
-            <div class="modal-body">
-                <div>
-                    <label for=""> Asunto </label>
-                    <input type="text" name="inputAsunto" id="inputAsunto" class="form-control" placeholder="Escribir asunto">
+            <form method="POST" id="insertPublicacion" name="insertPublcacion" action="insertPublicacion.php">
+                <div class="modal-body">
+                    <input type="text" name="id_curso" <?php echo "value=$id_curso"; ?> hidden>
+                    <div>
+                        <label for=""> Asunto </label>
+                        <input type="text" name="inputAsunto" id="inputAsunto" class="form-control" placeholder="Escribir asunto" required>
+                    </div>
+                    <div class="my-2">
+                        <label for=""> Mensaje </label>
+                        <textarea class="form-control " name="textMensaje" id="textMensaje" cols="30" rows="10" style="resize:none;"
+                            placeholder="Escribir mensaje" required></textarea>
+                    </div>
                 </div>
-                <div class="my-2">
-                    <label for=""> Mensaje </label>
-                    <textarea class="form-control " name="textMensaje" id="textMensaje" cols="30" rows="10" style="resize:none;"
-                        placeholder="Escribir mensaje"></textarea>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
+                    <button type="submit" class="btn btn-success"  id="btnCrear"> Confirmar </button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                <button type="submit" class="btn btn-success"  id="btnCrear"> Confirmar </button>
-            </div>
             </form>
         </div>
     </div>
 </div>
 
+<script src="profesor.js"></script>
 
 <?php
 include "../footer.html";

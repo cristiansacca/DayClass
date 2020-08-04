@@ -15,11 +15,10 @@ if (!isset($_SESSION['administrador']))
 
 <div class="container">
 
-  <div class="jumbotron my-4">
+  <div class="jumbotron my-4 py-4">
     <p class="card-text">Administrador</p>
-    <h3 class="">Bienvenido<?php echo " ".$_SESSION["administrador"]["nombreAdm"] ?></h3>
-    <p class="lead"></p>
-    <a href="editar_perfil.php" class="btn btn-primary btn-lg">Ver Perfil</a>
+    <h1>Bienvenido<?php echo " ".$_SESSION["administrador"]["nombreAdm"] ?></h1>
+    <a href="editar_perfil.php" class="btn btn-primary">Ver Perfil</a>
   </div>
 
   <!-- Page Features -->
