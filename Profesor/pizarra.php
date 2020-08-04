@@ -11,6 +11,7 @@ if (!isset($_SESSION['profesor'])) {
     header("location:/DayClass/index.php");
 }
 
+//Si la variable id_curso no está definida se vuelve al index
 if(isset($_GET["id_curso"])){
     $id_curso = $_GET["id_curso"];
 
@@ -52,7 +53,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
             }
         }
     ?>
-    <table style= "background-color:rgb(204, 153, 241);" class="table table-striped table-hover  table-bordered text-center my-2">
+    <table class="table table-info table-hover table-bordered text-center">
         <thead>
             <tr>
                 <th>Tema</th>
@@ -62,14 +63,14 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
         </thead>
         <tbody id= "Publicaciones">
         <?php
-            $consulta1 = $con->query("SELECT * FROM notificacionprofe ORDER BY fechaHoraNotif ASC WHERE curso_id = '$id_curso'");
+            $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso'");
             
-            if (($consulta1->num_rows) > 0) {
-                while ($resultado1 = $consulta1->fetch_assoc()) {
+            if (($consulta2->num_rows) > 0) {
+                while ($resultado2 = $consulta2->fetch_assoc()) {
                         echo "<tr>
-                    <td>" . $resultado1['asunto'] . "</td>
-                    <td>" . $resultado1['mensaje'] . "</td>
-                    <td>" . $resultado1['fechaHoraNotif'] . "</td>   
+                    <td>" . $resultado2['asunto'] . "</td>
+                    <td>" . $resultado2['mensaje'] . "</td>
+                    <td>" . $resultado2['fechaHoraNotif'] . "</td>   
                     </tr>";
                 }
             } else {
