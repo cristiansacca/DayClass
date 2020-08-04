@@ -63,14 +63,16 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
         </thead>
         <tbody id= "Publicaciones">
         <?php
+            setlocale(LC_ALL, 'Spanish');//Formato de fechas en español strftime("%A %d %B %Y %H:%M:%S", strtotime(fecha));
             $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso'");
             
             if (($consulta2->num_rows) > 0) {
                 while ($resultado2 = $consulta2->fetch_assoc()) {
-                        echo "<tr>
+                    $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
+                    echo "<tr>
                     <td>" . $resultado2['asunto'] . "</td>
                     <td>" . $resultado2['mensaje'] . "</td>
-                    <td>" . $resultado2['fechaHoraNotif'] . "</td>   
+                    <td>" . $fechaFormateada . "</td>   
                     </tr>";
                 }
             } else {

@@ -10,7 +10,7 @@ if (!isset($_SESSION['profesor'])) {
     header("location:/DayClass/index.php");
 }
 
-date_default_timezone_set('UTC');
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 $asunto = $_POST["inputAsunto"];
 $mensaje= $_POST["textMensaje"];
@@ -20,7 +20,7 @@ $id_curso = $_POST["id_curso"];
 $insert = $con->query("INSERT INTO notificacionprofe (asunto, mensaje, fechaHoraNotif, profesor_id, curso_id)
  VALUES ('$asunto', '$mensaje', '$fechaHoraNotif', '".$_SESSION['profesor']['id']."', '$id_curso')");
 
-if($insert){
+if($insert){//Si se insertó correctamente devuelve 1, sino devuelve 0. Para mostrar los mensajes correspondientes.
     header("location: /DayClass/Profesor/pizarra.php?id_curso=$id_curso&&resultado=1");
 } else {
     header("location: /DayClass/Profesor/pizarra.php?id_curso=$id_curso&&resultado=0");
