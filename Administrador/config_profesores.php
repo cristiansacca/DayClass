@@ -27,7 +27,6 @@ if (!isset($_SESSION['administrador']))
     <?php
     
     if(isset($_GET["resultado"])){
-        if(isset($_GET["resultado"])){
         switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -45,8 +44,23 @@ if (!isset($_SESSION['administrador']))
                             </button>
                         </div>";
                     break;
+                 case 3:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Baja exitosa</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 4:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en la baja</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
         }
-    }
     }
 
     ?>
@@ -63,20 +77,25 @@ if (!isset($_SESSION['administrador']))
                 <th>Apellido</th>
                 <th>Nombre </th>
                 <th>DNI</th>
+                <th></th>
             </thead>
             <tbody>
                 <?php
                 
                 include "../databaseConection.php";
 
-                $consulta1 = $con->query("SELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf` FROM `profesor` ORDER by apellidoProf ASC");
+                $consulta1 = $con->query("SELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf`, `id` FROM `profesor` WHERE `fechaBajaProf` IS NULL ORDER by apellidoProf ASC");
                 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
+                    
+                    $url = 'bajaProf.php?id='.$resultado1["id"];
+                    $id = $resultado1["id"];
                         echo "<tr>
                     <td>" . $resultado1['legajoProf'] . "</td>
                     <td>" . $resultado1['apellidoProf'] . "</td>
                     <td>" . $resultado1['nombreProf'] . "</td>
                     <td>" . $resultado1['dniProf'] . "</td>
+                    <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
                 }
                 ?>

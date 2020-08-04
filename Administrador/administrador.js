@@ -325,5 +325,16 @@ function validar(){
          
 }
 
+//para elimiar registros, la usan config_admin, config_alumno y config_profesor
+
+function confirmDelete() {
+    var confirmar = confirm("¿Realmente desea eliminarlo? ");
+            if (confirmar) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
 
    
