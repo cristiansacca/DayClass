@@ -27,33 +27,82 @@ if (!isset($_SESSION['administrador']))
         <h1>Materias</h1>
         <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
-    <button class="btn btn-secondary my-2" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
-    <button class="btn btn-success my-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-upload mr-1"></i>Cargar programa</button>
+
+    <?php
+    
+    if(isset($_GET["resultado"])){
+        switch ($_GET["resultado"]) {
+                
+                case 1:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Usuario agregado exitosamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 2:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>La materia ya se encuentra registrada</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 3:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Baja exitosa</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 4:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en la baja</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+        }
+    
+    }
+
+    ?>
+
+    <button class="btn btn-success my-2" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
+    <button class="btn btn-primary my-2 mx-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-upload mr-1"></i>Cargar programa</button>
     <div class="my-2">
         <table id="dataTable" class="table table-info table-bordered table-hover">
             <thead>
                 <th>N°</th>
                 <th>Nombre materia</th>
-                <th>Estado</th>
-                <th>Editar</th>
+                <th>Editar </th>
                 <th>Programa Cargado</th>
+                <th>Eliminar Materia</th>
             </thead>
             <tbody>
                 <?php
                 
                 $aux=1 ;
-                $consulta1 = $con->query("SELECT * FROM `materia` ORDER BY id ASC");
+                $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL  ORDER BY id ASC");
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $idmateria = $resultado1['id'];
-                    $consulta2 = $con->query("SELECT * FROM `programamateria` WHERE materia_id= '$idmateria'");
+                    $consulta2 = $con->query("SELECT * FROM `programamateria` `materia` WHERE materia_id= '$idmateria' ");
+                   
                     $programa = $consulta2->fetch_assoc();
+                    $url = 'bajaMateria.php?id='.$idmateria;
+                   
+
                     echo "<tr>
                     <td>$aux</td>   
                     <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</a></td>
-                    <td>Habilitada</td>
-                    <td><button class='btn btn-primary'><i class='fa fa-edit'></i></button></td>
+                    <td><button class='btn btn-primary data-toggle='modal' data-target='#staticBackdrop''><i class='fa fa-edit'></i></button></td>
                     <td>".$programa['descripcionPrograma'] . "</td>
+                    <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
+                   
                    
                     $aux++ ;
                     
@@ -66,7 +115,7 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 
-<!-- Modal -->
+<!-- Modal Crear nueva materia-->
 <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -94,8 +143,37 @@ if (!isset($_SESSION['administrador']))
         </div>
     </div>
     </div>
+
+<!-- Modal Editar Materia-->
+<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Nueva materia</h5>
+            </div>
+            <form method="POST" id="insertMateria" name="insertMateria" action="editarMateria.php" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="inputNombreMateria"> Nombre materia</label>
+                        <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control">
+                    </div>
+                    <div class="my-2">
+                        <label for="inputNivel"> Nivel materia </label>
+                        <input type="number" name="inputNivel" id="inputNivel" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
+                        <button type="submit" class="btn btn-success" id="btnCrear"> Confirmar </button>
+                    </div>
+            </form>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
     
-  <!-- Modal -->
+  <!-- Modal Cargar Programa-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
