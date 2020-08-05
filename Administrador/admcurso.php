@@ -1,12 +1,5 @@
 <?php
 include "../header.html";
-include "../databaseConection.php";
-$id_materia = $_GET["id"];
-$consulta1 = $con->query("SELECT * FROM `curso` WHERE materia_id= '$id_materia'");
-$resultadoCurso= $consulta1->fetch_assoc();
-$division = $resultadoCurso['division_id'];
-$consulta2 =  $con->query("SELECT * FROM `division` WHERE id= '$division'");
-$resultado2 = $consulta2->fetch_assoc();
 
 ?>
 <script src="administrador.js"></script>
@@ -17,52 +10,59 @@ $resultado2 = $consulta2->fetch_assoc();
     <div class="my-5">
       <a href="" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#staticBackdrop">Nuevo Curso </a>
     </div>
-    <!-- Page Features -->
-    <div class="row text-center my-5">
+   
 
-       <?php
-        $contador = 0;
-        for ($i = 0; $i < 20; $i++) {
-            if($contador == 4){
-                $contador = 0;
-            }
-            
-            
-            $aux = $i+1;
-            
-            while ($resultado1 = $consulta1->fetch_assoc()) {
-            echo "<div class='col-lg-12 col-md-12 mb-4' >
-            <div class='card h-100 color$contador' id='tajeta$i'>
-                <div class='card-body text-left'>
-                    <h3 class='card-title'>Curso " . $resultado1['nombreCurso'] . "</h3>
-                    <h5 class='card-title'>Division " . $resultado2['nombreDivision'] . "</h5>
-                    <h6  class='mx-5'>Profesores</h6>
-                    <ul class='mx-5' style='list-style: none;'>
-                       <li> Adjunto: </li>
-                       <li> Titular:</li>
-                    </ul>
-                </div>
-           
-                <div class='card-footer'>
-                <a href='cargarPlanillaAlumnos/import_planillaAlumnos.php' class='btn btn-dark m-2'>Importar Alumnos</a>
-                    <a href='añadirProfesor.php' class='btn btn-dark m-2'>Añadir Profesores</a>
-                </div>
-            </div>
-        </div>" ;
-        $contador ++;
-    }
-            
-       
-        }
-        
-    ?> 
-        
-        
-     
+    <div class="my-4">
+
+        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
+            <thead>
+                <th>Nombre</th>
+                <th>Division</th>
+                <th>Modalidad</th>
+                <th></th>
+            </thead>
+
+            <tbody>
+                <?php
+                include "../databaseConection.php";
+                
+               
+                
+                $id_materia = $_GET["id"];
+                $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia'");
+                
+
+                while ($resultadoCurso = $consulta1->fetch_assoc()) {
+                    
+                $division = $resultadoCurso['division_id'];
+               // echo "<script>alert('$division')</script>";
+                
+                $consulta2 =  $con->query("SELECT * FROM division WHERE id = '$division'");
+                $resultado2 = $consulta2->fetch_assoc();
+                
+                $modalidad = $resultado2['modalidad_id'];
+                 //echo "<script>alert('$modalidad')</script>";
+                $consulta3 = $con->query("SELECT * FROM modalidad WHERE id = '$modalidad'");
+                $resultado3 = $consulta3->fetch_assoc();
+                
+                 //echo "<script>alert('entra a la fc php $id_materia')</script>";
+                    
+                    $url = 'bajaAlum.php?id=';
+                    $id = $resultadoCurso["id"];
+                    //echo "$url";
+                    
+                    echo "<tr>
+                    <td>" . $resultadoCurso['nombreCurso'] . "</td>
+                    <td>" . $resultado2['nombreDivision'] . "</td>
+                    <td>" . $resultado3['nombre'] . "</td>
+                    <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
+                    </tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
-
 </div>
-
 
 
 <!-- Modal -->
@@ -73,33 +73,72 @@ $resultado2 = $consulta2->fetch_assoc();
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
             </div>
+            <form>
             <div class="modal-body">
                 <div class="my-2">
-                    <label for="nombrecurso"> Nombre Curso </label>
-                    <select name="nombrecurso" id="nombrecurso"class="custom-select">
-                       <option>IA</option>
-                       <option>Lengua</option>
-                       <option>Frances</option>
-                    </select>
                     
-                </div>
-                <div class="my-2">
-                    <label for="selectdivision"> Division </label>
-                    <select id="selectdivision" name="selectdivision" class="custom-select">
-                       <option>3k9</option>
-                       <option>3k10</option>
-                       <option>2x10</option>
+                    <label for="divisiones"> Divisiones </label>
+                    <select name="divisiones" id="divisiones" class="custom-select">
+                       
+                            <?php
+                                  include "../databaseConection.php";
+
+                                  $consultaD = $con->query("SELECT * FROM `division`");
+                                
+
+                                  while ($divisiones = $consultaD->fetch_assoc()) {
+                                      
+
+                                      echo "<option value='".$divisiones['id']."'>".$divisiones['nombreDivision']."</option>";
+
+                                  }
+                            ?>
+
                     </select>
+                     
                 </div>
+            <div class="form-group">
+                
+                
+        <table id="dataTable" class="table">
+            <thead>
+                <th>Dia</th>
+                <th>Hora desde</th>
+                <th>Hora hasta</th>
+                
+            </thead>
+
+            <tbody>
+                <?php
+                        include "../databaseConection.php";
+
+                        $consulta = $con->query("SELECT * FROM `cursoDia`");
+
+                        while ($dias = $consulta->fetch_assoc()){
+                                          
+                            echo "<tr>
+                            <td> <input class='checkDia' type='checkbox' id='".$dias['nombreDia']."' onclick='habilitarTimeP(this.id)'><label class='ml-2' name='dia[]'>".$dias['nombreDia']."</label></td>
+                            <td><input type='time'  id='".$dias['nombreDia']."1' onchange='habilitar2do(this.id)' disabled></td>
+                            <td><input type='time' id='".$dias['nombreDia']."2' onchange='validar(this.id)' disabled> </td>
+                            </tr>";
+                        }
+                ?>
+            </tbody>
+        </table>
+                 
+            </div>
+               
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"> Crear </button>
+                <button type="Submit" class="btn btn-primary" data-dismiss="modal"> Crear </button>
             </div>
+             </form>   
         </div>
     </div>
 </div>
 
+<script src="validarDiasCurso.js"></script>
 
 <?php
 include "../footer.html";

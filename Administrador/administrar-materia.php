@@ -88,6 +88,7 @@ if (!isset($_SESSION['administrador']))
                         <button type="submit" class="btn btn-success" id="btnCrear"> Confirmar </button>
                     </div>
                 </div>
+            </form>
         </div>
     </div>
 
