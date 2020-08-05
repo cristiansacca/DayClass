@@ -7,8 +7,15 @@ include "../header.html";
 <link rel="stylesheet" href="../styleCards.css">
 
 <div class="container ">
-    <div class="my-5">
-      <a href="" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#staticBackdrop">Nuevo Curso </a>
+
+    <div class="jumbotron my-4 py-4">
+        <p class="card-text">Administrador</p>
+        <h1>Cursos</h1>
+        <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
+
+    <div class="my-2">
+      <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
     </div>
    
 
@@ -25,8 +32,6 @@ include "../header.html";
             <tbody>
                 <?php
                 include "../databaseConection.php";
-                
-               
                 
                 $id_materia = $_GET["id"];
                 $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia'");
@@ -130,8 +135,8 @@ include "../header.html";
                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
                 <button type="Submit" class="btn btn-primary" data-dismiss="modal"> Crear </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
             </div>
              </form>   
         </div>
