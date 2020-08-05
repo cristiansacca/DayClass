@@ -30,21 +30,41 @@ if (!isset($_SESSION['administrador']))
     <?php
     
     if(isset($_GET["resultado"])){
-        if($_GET["resultado"]==true){
-            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                <h5>Se creó correctamente</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>";
-        } else {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Ocurrió un error</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-                </button>
-            </div>";
+        switch ($_GET["resultado"]) {
+                case 1:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Usuario agregado exitosamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 2:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El documento o Legajo ingresado ya se encuentra registrado</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 3:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Baja exitosa</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 4:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en la baja</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
         }
+    
     }
 
     ?>
@@ -62,20 +82,27 @@ if (!isset($_SESSION['administrador']))
                 <th>Apellido</th>
                 <th>Nombre </th>
                 <th>DNI</th>
+                <th></th>
             </thead>
 
             <tbody>
                 <?php
                 include "../databaseConection.php";
 
-                $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum` FROM `alumno` ORDER BY apellidoAlum ASC");
+                $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum`,`id` FROM `alumno` WHERE `fechaBajaAlumno` IS NULL ORDER BY apellidoAlum ASC");
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
+                    
+                    $url = 'bajaAlum.php?id='.$resultado1["id"];
+                    $id = $resultado1["id"];
+                    //echo "$url";
+                    
                     echo "<tr>
                     <td>" . $resultado1['legajoAlumno'] . "</td>
                     <td>" . $resultado1['apellidoAlum'] . "</td>
                     <td>" . $resultado1['nombreAlum'] . "</td>
-                    <td>" . $resultado1['dniAlum'] . "</td>
+                    <td>" . $resultado1['dniAlum'] . "</td> 
+                    <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
                 }
                 ?>

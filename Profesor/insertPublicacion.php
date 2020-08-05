@@ -1,24 +1,29 @@
 <?php
 include "../databaseConection.php";
 
+//Se inicia o restaura la sesión
+session_start();
+
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['profesor'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 $asunto = $_POST["inputAsunto"];
 $mensaje= $_POST["textMensaje"];
 $fechaHoraNotif = date('Y-m-d H:i:s');
-/*
-$consulta1 = $con->query('SELECT id FROM `curso` WHERE nombreCurso = ""');
-$resultado1 = $consulta1->fetch_assoc();
-$id_curso = $resultado1['id'];
-
-$consulta1 = $con->query('SELECT id FROM `profesor` WHERE legajoProf = ');
-$resultado1 = $consulta1->fetch_assoc();
-$id_profesor = $resultado1['id'];
-*/
+$id_curso = $_POST["id_curso"];
     
-$con->query('INSERT INTO `notificacionprofe`(`asunto`,`fechaHoraNotif`,`mensaje`) VALUES ("'.$asunto.'","'.$fechaHoraNotif.'", "'.$mensaje.'");');
+$insert = $con->query("INSERT INTO notificacionprofe (asunto, mensaje, fechaHoraNotif, profesor_id, curso_id)
+ VALUES ('$asunto', '$mensaje', '$fechaHoraNotif', '".$_SESSION['profesor']['id']."', '$id_curso')");
 
-echo "<script> window.location = 'pizarra.php' </script>";
-
-	
-
+if($insert){//Si se insertó correctamente devuelve 1, sino devuelve 0. Para mostrar los mensajes correspondientes.
+    header("location: /DayClass/Profesor/pizarra.php?id_curso=$id_curso&&resultado=1");
+} else {
+    header("location: /DayClass/Profesor/pizarra.php?id_curso=$id_curso&&resultado=0");
+}
 	
 ?>

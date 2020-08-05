@@ -13,17 +13,25 @@ $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "DOCENT
 $resultado1 = $consulta1->fetch_assoc();
 $id_permiso = $resultado1['id'];
 
-$resultado2 = $con->query('INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');');
 
-//echo "<script> window.location = 'config_profesores.php' </script>";
+$consultaAlumL = $con->query("SELECT id FROM `alumno` WHERE legajoAlum = $legajo");
+$consultaAlumD = $con->query("SELECT id FROM `alumno` WHERE dniAlum = $dni");
 
-if($resultado2){
-    //Enviía por GET resultado=true para que se muestre el mensaje de exito en la otra página
-    header("Location:/DayClass/Administrador/config_profesores.php?resultado=true");
-} else {
-    header("Location:/DayClass/Administrador/config_profesores.php?resultado=false");
+$consultaProfL = $con->query("SELECT id FROM `profesor` WHERE legajoProf = $legajo");
+$consultaProfD = $con->query("SELECT id FROM `profesor` WHERE dniProf = $dni");
+
+$consultaAdminL = $con->query("SELECT id FROM `administrativo` WHERE legajoAdm = $legajo");
+$consultaAdminD = $con->query("SELECT id FROM `administrativo` WHERE dniAdm = $dni");
+
+if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 && mysqli_num_rows($consultaProfL) == 0 && mysqli_num_rows($consultaProfD) == 0 && mysqli_num_rows($consultaAdminL) == 0 && mysqli_num_rows($consultaAdminD) == 0){
+    
+    $resultado2 = $con->query('INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');');
+    
+    header("Location:/DayClass/Administrador/config_profesores.php?resultado=1");
+    
+}else{
+    header("Location:/DayClass/Administrador/config_profesores.php?resultado=2");
 }
 
-//https://bootstrapious.com/p/how-to-build-a-working-bootstrap-contact-form
-	
+
 ?>

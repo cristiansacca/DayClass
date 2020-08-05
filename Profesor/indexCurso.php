@@ -25,9 +25,10 @@ if(isset($_GET["id_curso"])){
 
 <div class="container">
 
-    <div class="jumbotron my-4">
-        <h3 class=""><?php echo $curso["nombreCurso"] ?></h3>
-        <button class="btn btn-lg btn-info"><i class="fa fa-list-alt mr-2"></i>Ver inscriptos</button>
+    <div class="jumbotron my-4 py-4">
+        <h1><?php echo $curso["nombreCurso"] ?></h1>
+        <a class="btn btn-secondary" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a class="btn btn-info" <?php echo "href='inscriptos.php?id_curso=$id_curso'"; ?> ><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
     </div>
 
     <!-- Page Features -->
@@ -55,7 +56,7 @@ if(isset($_GET["id_curso"])){
                     <p class="card-text">Publica novedades para los alumnos del curso</p>
                 </div>
                 <div class="card-footer">
-                    <a href="pizarra.php" class="btn btn-primary">Ingresar</a>
+                    <a <?php echo "href='pizarra.php?id_curso=$id_curso'"; ?> class="btn btn-primary">Ingresar</a>
                 </div>
             </div>
         </div>

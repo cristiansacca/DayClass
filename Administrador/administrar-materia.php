@@ -89,6 +89,7 @@ if (!isset($_SESSION['administrador']))
                     </div>
             </form>
                 </div>
+            </form>
         </div>
     </div>
     </div>
