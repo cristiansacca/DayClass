@@ -62,7 +62,7 @@ if (!isset($_SESSION['alumno']))
                     </div>
                     <div class='card-footer'>
                         <a href='#' class='btn btn-primary m-2'>Ver curso</a>
-                        <a href='#' class='btn btn-success m-2'>Novedades</a>
+                        <a href='novedades.php?id_curso=".$curso['id']."' class='btn btn-success m-2'>Novedades</a>
                     </div>
                 </div>
             </div>" ;
@@ -73,8 +73,6 @@ if (!isset($_SESSION['alumno']))
         
     ?> 
         
-        
-     
     </div>
 
 </div>
