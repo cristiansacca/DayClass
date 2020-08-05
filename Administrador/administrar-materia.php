@@ -22,9 +22,13 @@ if (!isset($_SESSION['administrador']))
 </style>
 
 <div class="container">
-    <h1 class="display-4">Materias</h1>
-    <button class="btn btn-success my-3" data-toggle="modal" data-target="#staticBackdrop1">Nueva materia</button>
-    <button class="btn btn-success my-3" data-toggle="modal" data-target="#staticBackdrop">Cargar Programa</button>
+    <div class="jumbotron my-4 py-4">
+        <p class="card-text">Administrador</p>
+        <h1>Materias</h1>
+        <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
+    <button class="btn btn-secondary my-2" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
+    <button class="btn btn-success my-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-upload mr-1"></i>Cargar programa</button>
     <div class="my-2">
         <table id="dataTable" class="table table-info table-bordered table-hover">
             <thead>
@@ -38,20 +42,17 @@ if (!isset($_SESSION['administrador']))
                 <?php
                 
                 $aux=1 ;
-                $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
+                $consulta1 = $con->query("SELECT * FROM `materia` ORDER BY id ASC");
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $idmateria = $resultado1['id'];
                     $consulta2 = $con->query("SELECT * FROM `programamateria` WHERE materia_id= '$idmateria'");
                     $programa = $consulta2->fetch_assoc();
                     echo "<tr>
-                    <td>$aux</td>
-                      
+                    <td>$aux</td>   
                     <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</a></td>
                     <td>Habilitada</td>
                     <td><button class='btn btn-primary'><i class='fa fa-edit'></i></button></td>
-
                     <td>".$programa['descripcionPrograma'] . "</td>
-
                     </tr>";
                    
                     $aux++ ;

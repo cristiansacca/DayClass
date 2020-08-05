@@ -25,8 +25,13 @@ $_SESSION['alumno']= $resultado1;
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div class="container">
-  <div class="mt-3 mx-auto" style="width:85%; height:55%;">
-    <?php
+
+  <div class="jumbotron my-4 py-4 bg-light">
+      <h1>Editar perfil</h1>
+      <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+  </div>
+
+  <?php
     if(isset($_GET["resultado"])){
         
         switch ($_GET["resultado"]) {
@@ -53,12 +58,9 @@ $_SESSION['alumno']= $resultado1;
     }
 
     ?>
-  </div>
 
-  <div class="mt-2 mx-auto" style="width:85%; height:55%;">
+  <div class="mt-2 mx-auto">
     <form method="post" id="editarAlumno" name="editarAlumno" action="actualizarDatos.php" onsubmit="return validarRepeticion()" enctype="multipart/form-data" role="form">
-
-      <h2 class="title">Perfil</h2>
       <div class="fill_fields">
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -109,21 +111,20 @@ $_SESSION['alumno']= $resultado1;
         </div>
 
         <div class="form-row collapse" id="oculto">
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <label for="inputPassNew">Nueva Contraseña</label>
             <input type="password" class="form-control" id="inputPassNew" name="inputPassNew" placeholder="Escribir Contraseña"
               onchange="validarContrasenia()" >
             <h9 class="msg" id="msjValidacionPass"></h9>
           </div>
           
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <label for="inputPassNewRep">Confirmar Contraseña</label>
             <input type="password" class="form-control" id="inputPassNewRep" name="inputPassNewRep" placeholder="Escribir Contraseña"
               onchange="validarRepeticion()" disabled required>
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
           </div>
         </div>
-        <input type="button" value="Volver" class="btn btn-secondary" onclick="location.href='/DayClass/Alumno/index.php'">
         <input type="submit" value="Guardar cambios" class="btn btn-primary">
       </div>
     </form>

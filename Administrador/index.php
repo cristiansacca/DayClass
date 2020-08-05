@@ -18,7 +18,7 @@ if (!isset($_SESSION['administrador']))
   <div class="jumbotron my-4 py-4">
     <p class="card-text">Administrador</p>
     <h1>Bienvenido<?php echo " ".$_SESSION["administrador"]["nombreAdm"] ?></h1>
-    <a href="editar_perfil.php" class="btn btn-primary">Ver Perfil</a>
+    <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
   </div>
 
   <!-- Page Features -->
@@ -39,9 +39,9 @@ if (!isset($_SESSION['administrador']))
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top imagen" src="../images/reportes.png" oncontextmenu="return false" alt="Estadisticas">
+        <img class="card-img-top imagen" src="../images/estadisticas.png" oncontextmenu="return false" alt="Estadisticas">
         <div class="card-body">
-          <h6 class="card-text">Generar estadísticas </h6>
+          <h6 class="card-text">Generar estadísticas</h6>
         </div>
         <div class="card-footer">
           <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop15">Ir</a>
@@ -83,7 +83,7 @@ if (!isset($_SESSION['administrador']))
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top imagen" src="../images/reportes.png" oncontextmenu="return false" alt="Reportes">
+        <img class="card-img-top imagen" src="../images/reportes1.png" oncontextmenu="return false" alt="Reportes">
         <div class="card-body">
           <h6 class="card-text">Generar reportes </h6>
         </div>
@@ -170,6 +170,6 @@ if (!isset($_SESSION['administrador']))
 
     <script src="administrador.js"></script>
 
-    <?php
+<?php
 include "../footer.html";
 ?>

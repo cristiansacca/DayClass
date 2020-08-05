@@ -25,7 +25,11 @@ if (!isset($_SESSION['administrador']))
 
 <div class="container">
 
-    <h1 class="display-4 my-2">Administradores</h1>
+    <div class="jumbotron my-4 py-4">
+        <p class="card-text">Administrador</p>
+        <h1>Administradores</h1>
+        <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
 
     <?php
     
