@@ -2,7 +2,7 @@ cambiarContenidoNavbar();
 
 function cambiarContenidoNavbar(){
     var contenido = "";
-    contenido += "<li class='nav-item'><a class='nav-link' href='index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Profesor/index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
     contenido += "<li class='nav-item' id='temaDia'><a class='nav-link' href='#'><i class='fa fa-clipboard mr-1'></i>Tema del día</a></li>";
     contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;

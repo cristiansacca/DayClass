@@ -17,6 +17,7 @@ function generarCodigo(){
     var codigoMostrar = grupo1 + " " +grupo2 + " " + grupo3 + " " + grupo4;
 
     document.getElementById('outCodigoAutoasist').value = codigoMostrar;
+    $("#btnHabilitar").removeAttr("disabled");
 }
 
 function randomInt() {
