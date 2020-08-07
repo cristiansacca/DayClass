@@ -1,12 +1,12 @@
 <?php
-    include "../databaseConection.php";
+    /*include "../databaseConection.php";
 
-    $nombreMateria = $_POST["inputLegajo"];
+    $nuevoNombreMateria = $_POST["inputNombreMateria"];
 
-    $nivel = $_POST["inputPassNew"];
+    $nuevoNivel = $_POST["inputNivel"];
   
 
-    $consulta1 = $con->query("SELECT id FROM administrativo WHERE legajoAdm = '$legajoTraido'");
+    $consulta1 = $con->query("SELECT nombreMateria, nivelmateria FROM materia WHERE legajoAdm = '$legajoTraido'");
     $resultado1 = $consulta1->fetch_assoc(); 
     $id_usuario = $resultado1['id'];
     
@@ -69,5 +69,5 @@
         }
     }
 }
-
+*/
 ?>

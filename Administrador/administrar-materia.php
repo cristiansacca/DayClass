@@ -98,7 +98,7 @@ if (!isset($_SESSION['administrador']))
                     echo "<tr>
                     <td>$aux</td>   
                     <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</a></td>
-                    <td><button class='btn btn-primary data-toggle='modal' data-target='#staticBackdrop''><i class='fa fa-edit'></i></button></td>
+                    <td><button class='btn btn-primary' data-toggle='modal' data-target='#staticBackdrop2'><i class='fa fa-edit'></i></button></td>
                     <td>".$programa['descripcionPrograma'] . "</td>
                     <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
@@ -150,7 +150,7 @@ if (!isset($_SESSION['administrador']))
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Nueva materia</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Editar materia</h5>
             </div>
             <form method="POST" id="insertMateria" name="insertMateria" action="editarMateria.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
