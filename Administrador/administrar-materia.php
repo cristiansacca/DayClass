@@ -137,7 +137,7 @@ if (!isset($_SESSION['administrador']))
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
                         <button type="submit" class="btn btn-success" id="btnCrear"> Confirmar </button>
                     </div>
-            </form>
+
                 </div>
             </form>
         </div>
@@ -166,7 +166,7 @@ if (!isset($_SESSION['administrador']))
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
                         <button type="submit" class="btn btn-success" id="btnCrear"> Confirmar </button>
                     </div>
-            </form>
+    
                 </div>
             </form>
         </div>

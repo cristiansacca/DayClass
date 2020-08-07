@@ -79,6 +79,7 @@ include "../header.html";
                 <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
             </div>
             <form>
+                
             <div class="modal-body">
                 <div class="my-2">
                     
@@ -97,6 +98,7 @@ include "../header.html";
                                       echo "<option value='".$divisiones['id']."'>".$divisiones['nombreDivision']."</option>";
 
                                   }
+                        
                             ?>
 
                     </select>

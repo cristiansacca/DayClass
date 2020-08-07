@@ -34,6 +34,8 @@ function validarLongCodIngresado() {
     var codigoIngresado = document.getElementById('inputCodigoIngresado').value;
     var rtdo = false;
     var msg = "";
+    
+    var dev = false;
     if (codigoIngresado.length == 0) {
 
         msg = "El código esta vacío";
@@ -50,6 +52,7 @@ function validarLongCodIngresado() {
                 if (numbers(num)) {
                     msg = "Código Válido";
                     rtdo = true;
+                    dev = true;
                 } else {
                     msg = "Código No Válido";
                 }
@@ -59,7 +62,7 @@ function validarLongCodIngresado() {
         }
     }
     setValitationMesageAutoAsist("msgValidacionCodigo", rtdo, msg);
-
+    return dev;
 }
 
 function letters(letras) {

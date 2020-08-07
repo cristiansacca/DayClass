@@ -69,7 +69,7 @@ if(isset($_GET["id_curso"])){
                     <p class="card-text">Concurrencia al aula de los alumnos </p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Autoasistencia</a>
+                    <a <?php echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'"; ?> class="btn btn-primary">Autoasistencia</a>
                     <a href="#" class="btn btn-success">Tradicional</a>
                     
                 </div>
