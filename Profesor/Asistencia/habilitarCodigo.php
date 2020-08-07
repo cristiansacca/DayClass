@@ -14,14 +14,17 @@ try {
     
     date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-    $codigo = $_POST['codigoAsis'];
+    $codigoConEspacio = $_POST['codigoAsis'];
     $tiempo = $_POST['tiempo'];
     $id_curso = $_POST['id_curso'];
     $fechaActual = date('Y-m-d H:i:s');
 
+    //Quita los espacios en blanco del código generado
+    $codigo = preg_replace('[\s+]','', $codigoConEspacio);
+
+    //Suma la duración del código a la fecha actual
     $time = new DateTime();
     $time->add(new DateInterval('PT' . $tiempo . 'M'));
-
     $stamp = $time->format('Y-m-d H:i:s');
 
     $insert = $con->query("INSERT INTO codigoasitencia (fechaHoraInicioCodigo, fechaHoraFinCodigo, numCodigo, curso_id)
@@ -35,7 +38,7 @@ try {
 
 
 if($insert){//Si se insertó correctamente devuelve 1, sino devuelve 0. Para mostrar los mensajes correspondientes.
-    header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&codigo=$codigo");
+    header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&codigo=$codigoConEspacios");
 } else {
     header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&codigo=");
 }
