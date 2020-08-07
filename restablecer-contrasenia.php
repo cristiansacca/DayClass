@@ -3,11 +3,17 @@ include "header.html";
 ?>
 
 <div class="container">
-  <div class="form-group text-center my-5">
-    <h3 class="font-weight-normal my-4">Ingrese el correo con el que está registrado en DayClass:</h3>
-    <i class="fa fa-key fa-5x mb-4"></i>
-    <input type="email" class="form-control m-auto" style="width: 20rem;" placeholder="Correo electrónico">
-    <input type="button" class="btn btn-primary my-4" value="Restablecer contraseña" data-toggle="modal" data-target="#staticBackdrop">
+  <div class="jumbotron my-4 py-4">
+    <h1>Restablecer contraseña</h1>
+    <a href="/DayClass/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+  </div>
+  <div class="form-group text-center my-2">
+    <form action="" method="POST">
+      <h3 class="font-weight-normal my-4">Ingrese el correo con el que está registrado en DayClass:</h3>
+      <i class="fa fa-key fa-5x mb-4"></i>
+      <input type="email" class="form-control m-auto" style="width: 20rem;" placeholder="Correo electrónico" required>
+      <input type="submit" class="btn btn-primary my-4" value="Restablecer contraseña">
+    </form>
   </div>
 </div>
 
@@ -35,12 +41,8 @@ include "header.html";
 
   function cambiarContenidoNavbar() {
     var contenido = "";
-    contenido += "<li class='nav-item'><button class='btn btn-primary' id='btnVolver'><i class='fa fa-arrow-circle-left mx-1'></i>Volver</button></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/index.php'><i class='fa fa-sign-in fa-lg mr-1'></i>Iniciar sesión</a></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
-  }
-
-  document.getElementById("btnVolver").onclick = function () {
-    location.href = "/DayClass/Index.php"
   }
 </script>
 

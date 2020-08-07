@@ -1,4 +1,5 @@
 <?php
+include "../../header.html";
 include "../../databaseConection.php";
 
 //Se inicia o restaura la sesión
@@ -9,19 +10,29 @@ if (!isset($_SESSION['profesor'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
+try {
+    
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $codigo = $_POST['codigoAsis'];
+    $tiempo = $_POST['tiempo'];
+    $id_curso = $_POST['id_curso'];
+    $fechaActual = date('Y-m-d H:i:s');
 
-$codigo = $_POST['codigoAsis'];
-$tiempo = $_POST['tiempo'];
-$id_curso = $_POST['id_curso'];
-$fechaActual = date('Y-m-d H:i:s');
+    $time = new DateTime();
+    $time->add(new DateInterval('PT' . $tiempo . 'M'));
 
-$fechaAuxiliar  = strtotime ( "".$tiempo." minutes" , strtotime ( $fechaActual ) ) ;  
-$duracion   = date ( 'Y-m-d H:i:s' , $fechaAuxiliar );
+    $stamp = $time->format('Y-m-d H:i:s');
 
-$insert = $con->query("INSERT INTO codigoasistencia (fechaHoraInicioCodigo, fechaHoraFinCodigo, numCodigo, curso_id)
-VALUES ('$fechaActual', '$duracion', '$codigo', '$id_curso')");
+    $insert = $con->query("INSERT INTO codigoasitencia (fechaHoraInicioCodigo, fechaHoraFinCodigo, numCodigo, curso_id)
+    VALUES ('$fechaActual', '$stamp', '$codigo', '$id_curso')");
+
+} catch(Exception $e) {
+
+    echo $e->getMessage();
+
+}
+
 
 if($insert){//Si se insertó correctamente devuelve 1, sino devuelve 0. Para mostrar los mensajes correspondientes.
     header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&codigo=$codigo");
@@ -29,4 +40,5 @@ if($insert){//Si se insertó correctamente devuelve 1, sino devuelve 0. Para mos
     header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&codigo=");
 }
 
+include "../../footer.html";
 ?>

@@ -3,9 +3,9 @@ cambiarContenidoNavbar();
 
 function cambiarContenidoNavbar() {
     var contenido = "";
-    contenido += "<li class='nav-item'><a class='nav-link' href='index.php'>Inicio</a></li>";
-    contenido += "<li class='nav-item'><li class='nav-item dropdown'>";
-    contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Configuraciones</a>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
+    contenido += "<li class='nav-item dropdown'>";
+    contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-gear fa-lg mr-1'></i>Configuraciones</a>";
     contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='config_profesores.php'>Profesores</a><div class='dropdown-divider'></div>";
     contenido += "<a class='dropdown-item' href='config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_parametros.php'>Parametros</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_admin.php'>Administradores</a></div></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
