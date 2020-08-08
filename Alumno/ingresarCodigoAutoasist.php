@@ -22,35 +22,55 @@ $consulta = $con->query("SELECT * FROM `codigoasitencia` WHERE `numCodigo` = '$c
 
 
 if(($consulta->num_rows) == 0){
-    echo "error";
+    //el codigo no existe
+    header("Location:/DayClass/Alumno/Index.php?resultado=2");
 }else{
     $resultado1 = $consulta->fetch_assoc();
     $fchFinCodigo = $resultado1["fechaHoraFinCodigo"];
     
+    //validar que todavia este a tiempo de ingresar el codigo
     if($fchFinCodigo >= $currentDateTime){
         $cursoCodigo = $resultado1["curso_id"];
+        
         $consulta2 = $con -> query("SELECT * FROM alumnocursoactual WHERE curso_id = '".$cursoCodigo."' AND  alumno_id = '".$id_alumno."'");
         
         if(mysqli_num_rows($consulta2) == 0){
-            echo "codigo de un curso no inscripto bestia";
+            //se ingreso el codigo de otra materia en otro curso
+            header("Location:/DayClass/Alumno/Index.php?resultado=4");
         }else{
             $consulta3 = $con -> query("SELECT * FROM asistencia WHERE curso_id = '".$cursoCodigo."' AND  alumno_id = '".$id_alumno."'");
             $resultado3 = $consulta3->fetch_assoc();
             $asistenciaAlumno = $resultado3["id"];
             
-            $consulta4 = $con -> query("INSERT INTO `asistenciadia`(`fechaHoraAsisDia`, `asistencia_id`, `tipoAsistencia_id`) VALUES ('$currentDateTime','$asistenciaAlumno', '1')");
+            $consPresente = $con -> query("SELECT id FROM `tipoasistencia` WHERE `nombreTipoAsistencia` = 'PRESENTE'");
+            $resultado4 = $consPresente->fetch_assoc();
+            $presenteId = $resultado4["id"];
             
-            if($consulta4){
-                echo "tdo correcto";
+            $consAusente = $con -> query("SELECT id FROM `tipoasistencia` WHERE `nombreTipoAsistencia` = 'AUSENTE'");
+            $resultado5 =  $consAusente->fetch_assoc();
+            $ausenteId = $resultado5["id"];
+            
+            
+            $ultimoRegistro = $con -> query("SELECT * FROM asistenciadia WHERE id = (SELECT MAX(id) FROM asistenciadia) AND tipoAsistencia_id = '".$ausenteId."'");
+            $resultado6 = $ultimoRegistro->fetch_assoc();
+            $ultimoRegistroId = $resultado6["id"];
+            
+            $update = $con -> query("UPDATE `asistenciadia` SET `tipoAsistencia_id`= '".$presenteId."',`fechaHoraAsisDia`= '".$currentDateTime."' WHERE `id` = '".$ultimoRegistroId."'");
+            
+            if($update){
+                //registro de presente 
+                header("Location:/DayClass/Alumno/Index.php?resultado=1");
             }else{
-                echo "falla en el insert";
+                //echo problema al registrar le presente del alumno
+                header("Location:/DayClass/Alumno/Index.php?resultado=5");
             }
             
         }
 
         
     }else{
-        echo "se paso el tiempo JODETE";
+        //codigo correcto pero ingresado fuera de tiempo
+        header("Location:/DayClass/Alumno/Index.php?resultado=3");
     }
 }
 
