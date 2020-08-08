@@ -37,12 +37,26 @@ if(isset($_GET["id_curso"])){
                     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button></div>";
-            } else {
-                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                    <h5>Ocurrió un error al habilitar el código</h5>
-                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                    <span aria-hidden='true'>&times;</span>
-                </button></div>";
+            } 
+        }
+
+        if(isset($_GET['error'])){
+            switch ($_GET['error']) {
+                case '1':
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>Ocurrió un error al habilitar el código</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button></div>";
+                    break;
+                
+                case '2':
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>Ya existe un código vigente en este curso para el día de hoy</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button></div>";
+                    break;
             }
         }
     ?>
@@ -60,11 +74,19 @@ if(isset($_GET["id_curso"])){
                     <h3>Duración del código</h3><br>
                     <select class="form-control m-auto" name="tiempo" style="width: auto;" required>
                         <option value="" selected>Seleccione</option>
-                        <option value="5">5 minutos</option>
-                        <option value="10">10 minutos</option>
-                        <option value="15">15 minutos</option>
-                        <option value="20">20 minutos</option>
-                        <option value="30">30 minutos</option>
+                        
+                        <?php
+                        
+                        $tiempoMax = $con->query("SELECT * FROM tiempolimitecodigo")->fetch_assoc();
+                        $max = $tiempoMax['minutosLimite'];
+
+                        for ($i=5; $i <= $max ; $i+=5) { 
+                            
+                            echo "<option value='$i'>$i minutos</option>";
+
+                        }
+
+                        ?>
                     </select>
                 </div>
             </div>
