@@ -39,7 +39,7 @@ $curso = $consulta1->fetch_assoc();
 
         date_default_timezone_set('America/Argentina/Mendoza');
         $currentDateTime = date('Y-m-d H:i:s');
-        //echo "SELECT apellidoAlum, nombreAlum FROM alumno, alumnocursoactual, curso WHERE alumno.id = alumno_id AND curso_id = curso.id AND curso.id = '$id_curso'";
+        
 
         $consulta1 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso WHERE alumno.id = alumno_id AND curso_id = curso.id AND curso.id = '$id_curso' AND `fechaHastaAlumCurAc` IS NULL OR `fechaHastaAlumCurAc` < '$currentDateTime'");
 

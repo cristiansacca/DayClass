@@ -28,7 +28,7 @@ try {
     $stamp = $time->format('Y-m-d H:i:s');
 
     //Verifica si hay un codigo anterior vigente
-    $condigoAnterior = $con->query("SELECT * FROM codigoasitencia WHERE id = (SELECT MAX(id) FROM codigoasitencia) AND curso_id = '$id_curso'")->fetch_assoc();
+    $condigoAnterior = $con->query("SELECT * FROM codigoasitencia WHERE id = (SELECT MAX(id) FROM codigoasitencia WHERE curso_id =  '$id_curso')")->fetch_assoc();
     $fechaCodigoAnterior = date_create($condigoAnterior['fechaHoraInicioCodigo']);
     $fechaCodigoAnterior = date_format($fechaCodigoAnterior, 'Y-m-d');
     
