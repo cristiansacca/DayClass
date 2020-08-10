@@ -27,6 +27,7 @@ $id_curso = $_GET["id_curso"];
 
 ?>
 
+
 <script src="../profesor.js"></script>
 
 <h2 class="text-center my-4"><?php echo $curso["nombreCurso"] ?></h2>
@@ -69,9 +70,6 @@ while($resultado1 = $consulta1->fetch_assoc()){
     
    $contador ++; 
 }
-    
-
-    
 
 ?>   
 
@@ -83,10 +81,14 @@ while($resultado1 = $consulta1->fetch_assoc()){
 
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+
 <script>
 var slideIndex = 1;
 showSlides(slideIndex);
-var rtdosFinales = [["Legajo","Apellido","Nombre","Estado"]];
+var rtdosFinales = [];
     
 function registrarAlumno(estadoNameSur, legajo){
     var arregloDatos = estadoNameSur.split('-');
@@ -118,11 +120,17 @@ function showSlides(n) {
             slides[i].style.display = "none";  
     }
         
-    slides[slideIndex-1].style.display = "block";     
+    
+    if(n <= slides.length){
+        slides[slideIndex-1].style.display = "block";     
+    }
+    
 }
     
     
 function generarTablaResumen(){
+    var cabecera = ["Legajo","Apellido","Nombre","Estado"];
+    
     var contenido = "";
     contenido += "<table id='tabladatos' class='table table-bordered'>";
     contenido += "<thead class='font-weight-bold'>";
@@ -135,7 +143,7 @@ function generarTablaResumen(){
         //Add the header row.
         for (var i = 0; i < columnCount; i++) {
             contenido += "<th>";
-            contenido += rtdosFinales[0][i];
+            contenido += cabecera[i];
             contenido += "</th>";
         }
     
@@ -147,16 +155,16 @@ function generarTablaResumen(){
     contenido += "<tbody>";
     
         //Add the data rows.
-        for (var i = 1; i < rtdosFinales.length; i++) {
+        for (var i = 0; i < rtdosFinales.length; i++) {
             contenido += "<tr>";
             for (var j = 0; j < columnCount; j++) {
-                contenido += "<td>";
+                contenido += "<td id='"+i+"-"+j+"'>";
                 contenido +=  rtdosFinales[i][j];;
                 contenido += "</td>";
             }
             
         contenido += "<td>";
-        contenido += "<button class='btn btn-success' id='"+rtdosFinales[i]+"' onclick='cambiar(this.id)'>";
+        contenido += "<button type='button' class='btn btn-success' onclick='cambiar("+i+")'>";
         contenido += "<i class='fa fa-refresh'></i>";
         contenido += "</button> ";
         contenido += "</td>";
@@ -167,9 +175,38 @@ function generarTablaResumen(){
         
         contenido += "</tbody>";
         contenido += "</table>";
+        contenido += "<button type='submit' class='btn btn-primary' id='btnConfirmar' style='float: right' onclick='confirmar()'>";
+        contenido += "<i class='fa fa-check'></i> Confirmar";
+        contenido += "</button> ";
         document.getElementById("dvTable").innerHTML = contenido;
 }
+    
+function cambiar(fila){
+    eval("debugger;");
+    var filaR = fila +1;
+    var tabla = document.getElementById('tabladatos');
+    var valor = tabla.rows[filaR].cells[3].innerHTML;
+    
+    if(valor == "Presente"){
+        tabla.rows[filaR].cells[3].innerHTML ="Ausente";
+        rtdosFinales[fila][3] ="Ausente";
+        //alert(rtdosFinales[fila][3]);
+    }else{
+        tabla.rows[filaR].cells[3].innerHTML ="Presente";
+        rtdosFinales[fila][3] ="Presente";
+        //alert(rtdosFinales[fila][3]);
+    }
+}
 
+function confirmar(){
+eval("debugger;"); 
+$.ajax({
+    type: "POST",
+    url: "darPresente.php",
+    data: {'array': JSON.stringify(rtdosFinales)},//capturo array     
+    success: function(data){}
+});
+}
 </script>
 
 
