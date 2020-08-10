@@ -50,8 +50,7 @@ if(($consulta->num_rows) == 0){
             $resultado5 =  $consAusente->fetch_assoc();
             $ausenteId = $resultado5["id"];
             
-            
-            $ultimoRegistro = $con -> query("SELECT * FROM asistenciadia WHERE id = (SELECT MAX(id) FROM asistenciadia) AND tipoAsistencia_id = '".$ausenteId."'");
+            $ultimoRegistro = $con -> query("SELECT * FROM asistenciadia WHERE id = (SELECT MAX(id) FROM asistenciadia) AND tipoAsistencia_id = '".$ausenteId."' AND asistencia_id = '".$asistenciaAlumno."'");
             $resultado6 = $ultimoRegistro->fetch_assoc();
             $ultimoRegistroId = $resultado6["id"];
             

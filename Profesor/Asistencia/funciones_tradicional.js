@@ -108,7 +108,7 @@ function cambiar(fila) {
 
 function confirmar() {
     //eval("debugger;"); 
-    alert(JSON.stringify(rtdosFinales));
+    //alert(JSON.stringify(rtdosFinales));
     $.ajax({
         type: 'POST',
         url: 'darPresente.php',
