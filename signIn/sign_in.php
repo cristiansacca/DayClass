@@ -3,7 +3,7 @@ include "../header.html";
 ?>
 
 <script src="signIn_funciones.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
 
 
 <div class="text-center m-auto" style="width:45%; height:55%;">
