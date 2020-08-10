@@ -50,24 +50,24 @@ if (($mailAlumno->num_rows) == 0 && ($mailDocente->num_rows) == 0 && ($mailAdmin
 
     if ($actualizacion) {
       echo "<div class='alert alert-success' role='alert'>
-          <h3>Se registró correctamente</h3>
+          <h5>Se registró correctamente</h5>
         </div>";
       echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a>";
     } else {
       echo "<div class='alert alert-danger' role='alert'>
-          <h3>Ocurrió un error durante el registro</h3>
+          <h5>Ocurrió un error durante el registro</h5>
         </div>";
       echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a>";
     }
   } else {
     echo "<div class='alert alert-danger' role='alert'>
-          <h3>Ocurrió un error durante el registro</h3>
+          <h5>Ocurrió un error durante el registro</h5>
         </div>";
     echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a>";
   }
 } else {
   echo "<div class='alert alert-danger' role='alert'>
-        <h3>La dirección de correo ingresada ya se encuentra registrada en el sistema</h3>
+        <h5>La dirección de correo ingresada ya se encuentra registrada en el sistema</h5>
       </div>";
   echo "<a class='btn btn-primary my-2' href='/DayClass/Index.php'>Volver al inicio</a>";
 }
