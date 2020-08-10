@@ -29,8 +29,15 @@ try {
 
     //Verifica si hay un codigo anterior vigente
     $condigoAnterior = $con->query("SELECT * FROM codigoasitencia WHERE id = (SELECT MAX(id) FROM codigoasitencia WHERE curso_id =  '$id_curso')")->fetch_assoc();
-    $fechaCodigoAnterior = date_create($condigoAnterior['fechaHoraInicioCodigo']);
-    $fechaCodigoAnterior = date_format($fechaCodigoAnterior, 'Y-m-d');
+    
+    $fechaCodigoAnterior;
+    
+    if($condigoAnterior == ""){
+        $fechaCodigoAnterior = "";
+    }else{
+        $fechaCodigoAnterior = date_create($condigoAnterior['fechaHoraInicioCodigo']);
+        $fechaCodigoAnterior = date_format($fechaCodigoAnterior, 'Y-m-d');
+    }
     
     $hoy = date_create($fechaActual);
     $hoy = date_format($hoy, 'Y-m-d');
@@ -38,7 +45,7 @@ try {
     //echo $fechaCodigoAnterior;
     //echo $hoy;
 
-    if($fechaCodigoAnterior !== $hoy) {
+    if($fechaCodigoAnterior !== $hoy || $fechaCodigoAnterior == "") {
         
         //Tipo asistencia AUSENTE
         $consulta1 = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE'")->fetch_assoc();
