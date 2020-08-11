@@ -81,11 +81,16 @@ function generarTablaResumen() {
         contenido += "</td>";
         contenido += "</tr>";
     }
+    
     contenido += "</tbody>";
     contenido += "</table>";
-    contenido += "<button type='button' class='btn btn-primary ml-auto' id='btnConfirmar' onclick='confirmar()'>";
+    contenido += "<form action='darPresente.php' method='post' onsubmit='confirmar()'>";
+    contenido += " <input type='text' hidden id='arregloDatos' name='arregloDatos'>";
+    contenido += " <input type='text' hidden id='idCursoEnviar' name='idCursoEnviar'>";
+    contenido += "<button type='submit' class='btn btn-primary ml-auto' id='btnConfirmar' >";
     contenido += "<i class='fa fa-check'></i> Confirmar";
     contenido += "</button> ";
+    contenido += "</form>"
     document.getElementById("dvTable").innerHTML = contenido;
 }
 
@@ -107,15 +112,9 @@ function cambiar(fila) {
 }
 
 function confirmar() {
-    //eval("debugger;"); 
-    //alert(JSON.stringify(rtdosFinales));
-    $.ajax({
-        type: 'POST',
-        url: 'darPresente.php',
-        data: {'array': JSON.stringify(rtdosFinales)},
-        dataType: 'json',
-        success: function(data) {
-            alert(data.status);
-        }
-    });
+    document.getElementById('arregloDatos').value = JSON.stringify(rtdosFinales);
+    var idCurso = document.getElementById('idCurso').value;
+    document.getElementById('idCursoEnviar').value = idCurso;
+    return true;
+    
 }

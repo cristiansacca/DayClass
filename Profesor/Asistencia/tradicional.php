@@ -36,6 +36,8 @@ $curso = $consulta1->fetch_assoc();
     </div>
     <div class="text-center">
         <?php
+        
+        echo " <input type='text' hidden id='idCurso' name='idCurso' value='$id_curso'>";
 
         date_default_timezone_set('America/Argentina/Mendoza');
         $currentDateTime = date('Y-m-d H:i:s');
@@ -72,8 +74,10 @@ $curso = $consulta1->fetch_assoc();
 
         ?>
     </div>
+   
 
-    <div id="dvTable" class="justify-content-center"></div>
+<div id="dvTable" class="justify-content-center"></div>
+    
 
 </div>
 
