@@ -81,7 +81,7 @@ if (!isset($_SESSION['alumno']))
 include "modal-autoasistencia.html";
 ?>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="alumno.js"></script>
 <?php
 include "../footer.html";

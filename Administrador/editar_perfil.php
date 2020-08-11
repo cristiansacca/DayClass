@@ -23,7 +23,6 @@ $_SESSION['administrador']= $resultado1;
 ?>
 
 <script src="administrador.js"> </script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div class="container">
       

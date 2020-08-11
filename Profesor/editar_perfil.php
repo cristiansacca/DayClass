@@ -27,7 +27,6 @@ $_SESSION['profesor']= $resultado1;
 <script>
     $("#temaDia").attr("hidden", "hidden")
 </script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
 
 <div class="container">
   
