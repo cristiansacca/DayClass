@@ -31,6 +31,30 @@ if(isset($_GET["id_curso"])){
         <a class="btn btn-info" <?php echo "href='inscriptos.php?id_curso=$id_curso'"; ?> ><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
     </div>
 
+    <?php
+        if(isset($_GET['resultado'])){
+            switch ($_GET['resultado']) {
+                case '1':
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <h5>Se guardaron los datos de asistencia correctamente</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                    break;
+                
+                case '2':
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>Ocurió un error al guardar los datos de asistencia</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                    break;
+            }
+        }
+    ?>
+
     <!-- Page Features -->
     <div class="row text-center">
 

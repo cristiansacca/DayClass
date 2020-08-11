@@ -12,9 +12,7 @@ if(isset($_POST['arregloDatos'])){
     
     $tamanioArreglo = count($arrayLimpio);
     
-   echo"$tamanioArreglo";
-    
-    date_default_timezone_set('America/Argentina/Mendoza');
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
     $currentDateTime = date('Y-m-d H:i:s');
             
     $consPresente = $con -> query("SELECT id FROM `tipoasistencia` WHERE `nombreTipoAsistencia` = 'PRESENTE'");
@@ -28,7 +26,6 @@ if(isset($_POST['arregloDatos'])){
     
     for($i = 0; $i < $tamanioArreglo; $i++ ){
         
-        echo "$i";
         $legajo = $arrayLimpio[$i][0];
         $estado = $arrayLimpio[$i][3];
         
@@ -40,20 +37,19 @@ if(isset($_POST['arregloDatos'])){
         $resultado4 = $consultaAsistencia->fetch_assoc();
         $asistenciaAlumno = $resultado4["id"];
         
-        $estadoSetAlumno;
-        
         if($estado == "Presente" ){
             $estadoSetAlumno = $presenteId;
         }else{
             $estadoSetAlumno = $ausenteId;
         }
         
-        
         $con->query("INSERT INTO asistenciadia (tipoAsistencia_id, asistencia_id, fechaHoraAsisDia) VALUES ('".$estadoSetAlumno."', '".$asistenciaAlumno."','".$currentDateTime."')");
             
     }
     
-    
+    header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=1");
+} else {
+    header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=2");
 }
 
 include "../../footer.html";
