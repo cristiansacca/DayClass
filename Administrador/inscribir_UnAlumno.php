@@ -4,7 +4,7 @@ include "../databaseConection.php";
 $id_curso = $_POST["cursoId"];
 $legajo = $_POST["inputLegajo"];
 $dni = $_POST["inputDNI"];
-date_default_timezone_set('America/Argentina/Mendoza');
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d H:i:s');
 
 $consulta1 = $con->query("SELECT * FROM `curso` WHERE id = '$id_curso'");

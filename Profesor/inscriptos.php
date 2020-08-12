@@ -38,6 +38,8 @@ if(isset($_GET["id_curso"])){
             </thead>
             <tbody>
                 <?php
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDateTime = date('Y-m-d H:i:s');
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso");
 
                 while($alumnocursoactual = $consulta2->fetch_assoc()){
