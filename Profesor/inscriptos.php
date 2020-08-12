@@ -38,7 +38,7 @@ if(isset($_GET["id_curso"])){
             </thead>
             <tbody>
                 <?php
-                $consulta2 = $con->query("SELECT * FROM alumnocursoactual WHERE curso_id = '$id_curso' AND fechaHastaAlumCurAc is NULL");
+                $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso");
 
                 while($alumnocursoactual = $consulta2->fetch_assoc()){
                     $alumno = $con->query("SELECT * FROM alumno WHERE id = '".$alumnocursoactual['alumno_id']."'")->fetch_assoc();
