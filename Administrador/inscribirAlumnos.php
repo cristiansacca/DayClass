@@ -210,7 +210,7 @@ if (!isset($_SESSION['administrador']))
 
                 </div>
 
-                <form method="POST" id="importPlanilla" name="importPlanilla" action="importMasivoALUMNOS.php" enctype="multipart/form-data" role="form">
+                <form method="POST" id="importPlanilla" name="importPlanilla" action="inscribir_CursoAlumnos.php" enctype="multipart/form-data" role="form">
                     <div class="container" style="margin-top:50px;">
 
                         <div class="custom-file">
@@ -218,6 +218,8 @@ if (!isset($_SESSION['administrador']))
 
                         </div>
                     </div>
+                    
+                    <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
                     <!-- la funcion comrobar esta en administrador.js -->
 
                     <div class="modal-footer">

@@ -70,12 +70,12 @@ include "../header.html";
                     </td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-warning btn-sm' data-emp-id=".$id." href='inscribirAlumnos.php'><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
+                        <a class='btn btn-warning btn-sm' data-emp-id=".$id." ><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
                                                  
                     </td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-info btn-sm' data-emp-id=".$id." href='$url'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a> 
+                        <a class='btn btn-info btn-sm' data-emp-id=".$id." href='inscribirAlumnos.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a> 
                                                 
                     </td>
                     
