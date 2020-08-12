@@ -43,7 +43,7 @@ $curso = $consulta1->fetch_assoc();
         $currentDateTime = date('Y-m-d H:i:s');
         
 
-        $consulta1 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso WHERE alumno.id = alumno_id AND curso_id = curso.id AND curso.id = '$id_curso' AND `fechaHastaAlumCurAc` IS NULL OR `fechaHastaAlumCurAc` < '$currentDateTime'");
+        $consulta1 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso WHERE alumno.id = alumno_id AND curso_id = curso.id AND curso.id = '$id_curso' AND `fechaHastaAlumCurAc` > '$currentDateTime'");
 
         $contador = 1;
         while ($resultado1 = $consulta1->fetch_assoc()) {
