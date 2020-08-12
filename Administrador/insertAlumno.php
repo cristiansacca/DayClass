@@ -1,8 +1,6 @@
 <?php
 include "../databaseConection.php";
 
-//$con = new mysqli("localhost","root","","dayclass");
-
 $nombre = $_POST["inputName"];
 $apellido= $_POST["inputSurname"];
 $legajo = $_POST["inputLegajo"];

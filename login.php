@@ -1,7 +1,4 @@
 <?php
-include "header.html";
-?>
-<?php
 include "databaseConection.php";
 
 //Obtiene los datos del formulario de inicio de sesión
@@ -69,7 +66,4 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
     }
 }
 
-?>
-<?php
-include "footer.html"
 ?>

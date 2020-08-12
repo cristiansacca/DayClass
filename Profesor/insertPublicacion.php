@@ -1,8 +1,8 @@
 <?php
-include "../databaseConection.php";
-
 //Se inicia o restaura la sesión
 session_start();
+
+include "../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['profesor'])) {

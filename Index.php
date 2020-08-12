@@ -1,8 +1,8 @@
 <?php
-include "header.html";
-
 //Se inicia o restaura la sesión
 session_start();
+
+include "header.html";
 
 //Si hay una sesión activa no se puede iniciar otra
 

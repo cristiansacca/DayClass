@@ -7,7 +7,7 @@ function cambiarContenidoNavbar(){
 }
 
 document.getElementById("btnVolver").onclick=function(){
-    location.href="/DayClass/Index.php"
+    location.href="/DayClass/index.php"
 }
 
 function validarDNI() {

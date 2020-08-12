@@ -1,6 +1,4 @@
-
 <?php
-
 include "../databaseConection.php";
 
 include "class.upload.php";

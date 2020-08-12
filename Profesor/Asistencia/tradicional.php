@@ -1,8 +1,8 @@
 <?php
+session_start();
+
 include "../../header.html";
 include "../../databaseConection.php";
-
-session_start();
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['profesor'])) {

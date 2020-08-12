@@ -1,9 +1,9 @@
 <?php
-include "../header.html";
-include "../databaseConection.php";
-
 //Se inicia o restaura la sesión
 session_start();
+
+include "../header.html";
+include "../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['alumno'])) {
@@ -23,7 +23,7 @@ $consulta = $con->query("SELECT * FROM `codigoasitencia` WHERE `numCodigo` = '$c
 
 if(($consulta->num_rows) == 0){
     //el codigo no existe
-    header("Location:/DayClass/Alumno/Index.php?resultado=2");
+    header("Location:/DayClass/Alumno/index.php?resultado=2");
 }else{
     $resultado1 = $consulta->fetch_assoc();
     $fchFinCodigo = $resultado1["fechaHoraFinCodigo"];
@@ -36,7 +36,7 @@ if(($consulta->num_rows) == 0){
         
         if(mysqli_num_rows($consulta2) == 0){
             //se ingreso el codigo de otra materia en otro curso
-            header("Location:/DayClass/Alumno/Index.php?resultado=4");
+            header("Location:/DayClass/Alumno/index.php?resultado=4");
         }else{
             $consulta3 = $con -> query("SELECT * FROM asistencia WHERE curso_id = '".$cursoCodigo."' AND  alumno_id = '".$id_alumno."'");
             $resultado3 = $consulta3->fetch_assoc();
@@ -58,10 +58,10 @@ if(($consulta->num_rows) == 0){
             
             if($update){
                 //registro de presente 
-                header("Location:/DayClass/Alumno/Index.php?resultado=1");
+                header("Location:/DayClass/Alumno/index.php?resultado=1");
             }else{
                 //echo problema al registrar le presente del alumno
-                header("Location:/DayClass/Alumno/Index.php?resultado=5");
+                header("Location:/DayClass/Alumno/index.php?resultado=5");
             }
             
         }
@@ -69,7 +69,7 @@ if(($consulta->num_rows) == 0){
         
     }else{
         //codigo correcto pero ingresado fuera de tiempo
-        header("Location:/DayClass/Alumno/Index.php?resultado=3");
+        header("Location:/DayClass/Alumno/index.php?resultado=3");
     }
 }
 
