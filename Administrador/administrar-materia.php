@@ -94,11 +94,13 @@ if (!isset($_SESSION['administrador']))
                    
                     $programa = $consulta2->fetch_assoc();
                     $url = 'bajaMateria.php?id='.$idmateria;
+                    
+                    $nombreMateria = utf8_encode($resultado1['nombreMateria']);
                    
 
                     echo "<tr>
                     <td>$aux</td>   
-                    <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</a></td>
+                    <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td><button class='btn btn-primary' data-toggle='modal' data-target='#staticBackdrop2'><i class='fa fa-edit'></i></button></td>
                     <td>".$programa['descripcionPrograma'] . "</td>
                     <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>

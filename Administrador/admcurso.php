@@ -2,6 +2,7 @@
 include "../header.html";
 
 ?>
+
 <script src="administrador.js"></script>
 
 <link rel="stylesheet" href="../styleCards.css">
@@ -57,8 +58,11 @@ include "../header.html";
                     $id = $resultadoCurso["id"];
                     //echo "$url";
                     
+                    $nombreCurso = utf8_encode($resultadoCurso['nombreCurso']);
+                    
+                    
                     echo "<tr>
-                    <td>" . $resultadoCurso['nombreCurso'] . "</td>
+                    <td>" . $nombreCurso . "</td>
                     <td>" . $resultado2['nombreDivision'] . "</td>
                     <td>" . $resultado3['nombre'] . "</td>
                     
