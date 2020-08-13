@@ -28,7 +28,6 @@ include "../header.html";
                 <th>Modalidad</th>
                 <th></th>
                 <th></th>
-                <th></th>
             </thead>
 
             <tbody>
@@ -64,19 +63,14 @@ include "../header.html";
                     <td>" . $resultado3['nombre'] . "</td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-success btn-sm' data-emp-id=".$id." onclick='' href='$url'><i class='fa fa-edit'></i></a>
-                        <a class='btn btn-danger btn-sm' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a>
+                        <a class='btn btn-success btn-sm mb-1' data-emp-id=".$id." onclick='' href='$url'><i class='fa fa-edit'></i></a>
+                        <a class='btn btn-danger btn-sm mb-1' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a>
                                                
                     </td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-warning btn-sm' data-emp-id=".$id." ><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
-                                                 
-                    </td>
-                    
-                    <td class='text-center'>
-                        <a class='btn btn-info btn-sm' data-emp-id=".$id." href='inscribirAlumnos.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a> 
-                                                
+                        <a class='btn btn-warning btn-sm mb-1' data-emp-id=".$id." ><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
+                        <a class='btn btn-info btn-sm mb-1' data-emp-id=".$id." href='inscribirAlumnos.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a>                              
                     </td>
                     
                     

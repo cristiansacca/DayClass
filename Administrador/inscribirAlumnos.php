@@ -28,8 +28,6 @@ if (!isset($_SESSION['administrador']))
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         
-        
-        
         <?php
             include "../databaseConection.php";
             $id_curso = $_GET['id'];
@@ -42,8 +40,8 @@ if (!isset($_SESSION['administrador']))
         
             echo "<h1>$nombreCurso</h1>";
             
-            echo "<h6>Fecha Desde Cursado: $fchDesde</h6>";
-            echo "<h6>Fecha Hasta Cursado: $fchHasta</h6>";
+            echo "<h6>Inicio de cursado: $fchDesde</h6>";
+            echo "<h6>Fin del cursado: $fchHasta</h6>";
         
         ?>
         <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
