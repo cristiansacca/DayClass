@@ -195,7 +195,8 @@ if (!isset($_SESSION['administrador']))
                         //Busca todas las instanias de materias
                         $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
                         while ($resultado1 = $consulta1->fetch_assoc()) {
-                            echo "<option value='".$resultado1['id']."'>" . $resultado1['nombreMateria'] . "</option>";
+                            $nombreMateria = utf8_encode($resultado1['nombreMateria']);
+                            echo "<option value='".$resultado1['id']."'>" . $nombreMateria . "</option>";
 
                         }
                     ?>

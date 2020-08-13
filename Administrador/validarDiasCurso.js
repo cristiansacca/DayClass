@@ -4,7 +4,7 @@ function habilitarTimeP(dia){
     
     elem.addEventListener( 'change', function() {
     if(this.checked) {
-       alert('checkbox esta seleccionado');
+       
         var elem = document.getElementById(dia + "1").disabled =false;
         //var elem = document.getElementById(dia + "2").disabled =false;
     }else{
@@ -37,9 +37,9 @@ function validar(dia){
     
     if(elem1 != "" && elem2 != ""){
         if(elem1 <= elem2){
-            alert("fechas validas");
+            //alert("fechas validas");
         }else{
-          alert("fechas no correctas");  
+          //alert("fechas no correctas");  
         }
     }
 }

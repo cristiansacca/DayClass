@@ -14,7 +14,11 @@ $correcto = [];
 $yaInscriptos = [];
 $inexistente = [];
 
+//echo "llega al archivo";
+
 if (isset($_FILES["inpGetFile"])) {
+    
+   // echo "entra al if";
 
     $up = new Upload($_FILES["inpGetFile"]);
 
@@ -69,33 +73,38 @@ if (isset($_FILES["inpGetFile"])) {
                         //si la cosnulta es vacia, el alumno no existe o esta dado de baja, error 2 = alumno inexistente o dado de baja 
 
                         array_push($inexistente, $legajoA);
+                        //echo "entra al de no existe ese alumno";
                     } else {
                         $resultado3 = $consultaAlumID->fetch_assoc();
                         $id_alumno = $resultado3["id"];
 
                         //verificar que el alumno no vaya a estar inscripto en el ese curso 
-                        $consultaAlumCursAct = $con->query("SELECT id FROM `alumnocursoactual` WHERE fechaDesdeAlumCurAc = '$fchDesde' AND fechaHastaAlumCurAc = '$fchHasta' AND alumno_id = '$id_alumno' AND curso_id = '$id_curso'");
+                        $consultaAlumCursAct = $con->query("SELECT id FROM `alumnocursoactual` WHERE fechaDesdeAlumCurAc = '$fchDesde' AND fechaHastaAlumCurAc = '$fchHasta' AND alumno_id = $id_alumno AND curso_id = $id_curso");
 
                         if (mysqli_num_rows($consultaAlumCursAct) == 0) {
                             //si la consulta es vacia, no hay una inscripcion de ese alumno en ese curso en estas fechas actuales
+                            
+                            //echo "entra al de inscribir";
 
                             //se crea la instancia de inscripcion del alumno
                             $resultadoInsertAlumCursAct = $con->query("INSERT INTO `alumnocursoactual`(`fechaDesdeAlumCurAc`, `fechaHastaAlumCurAc`, `alumno_id`, `curso_id`) VALUES ('$fchDesde','$fchHasta','$id_alumno','$id_curso')");
 
                             //se crea la instancia de planilla de asistencia que llevara la cuenta de las asistencias de los alumnos 
-                            $resultadoInsertAsist = $con->query("INSERT INTO `asistencia`( `alumno_id`, `curso_id`, `fechaHastaFichaAsis`) VALUES ('$id_alumno','$id_curso','$fchHasta')");
+                            $resultadoInsertAsist = $con->query("INSERT INTO `asistencia`( `alumno_id`, `curso_id`, `fechaHastaFichaAsis`) VALUES ($id_alumno,$id_curso,'$fchHasta')");
 
                             //Se inscribe correctamente
                             array_push($correcto, $legajoA);
                         } else {
                             //error 3 = alumno ya inscripto en esa materia, en ese ciclo lectivo
+                            
+                           // echo "entra al de agregar ya inscriptos";
 
                             array_push($yaInscriptos, $legajoA);
                         }
                     }
                 }
             } else {
-                echo "<script> alert('error en el formato de la primera fila') </script>";
+                echo "<script> alert('Error en el formato del archivo, por favor cambielo') </script>";
             }
 
             unlink($archivo);
@@ -104,10 +113,12 @@ if (isset($_FILES["inpGetFile"])) {
 }
 include "../header.html";
 ?>
+
+
 <div class="container">
 <?php
 if(count($inexistente) > 0){
-    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+    echo "<div class='alert alert-danger alert-dismissible fade show mt-4' role='alert'>
         <h5>Alumnos inexistentes</h5>
     <ul>";
     
@@ -123,7 +134,7 @@ if(count($inexistente) > 0){
 }
 
 if(count($yaInscriptos) > 0){
-    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+    echo "<div class='alert alert-warning alert-dismissible fade show mt-4' role='alert'>
         <h5>Alumnos inscriptos anteriormente</h5>
     <ul>";
     
@@ -140,8 +151,8 @@ if(count($yaInscriptos) > 0){
 }
 
 if(count($correcto) > 0){
-    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-        <h5>Alumnos inscriptos anteriormente</h5>
+    echo "<div class='alert alert-success alert-dismissible fade show mt-4' role='alert'>
+        <h5>Alumnos inscriptos satisfactoriamente</h5>
     <ul>";
     
     for ($i=0; $i < count($correcto) ; $i++) { 

@@ -36,7 +36,7 @@ if (!isset($_SESSION['administrador']))
             $resultado = $consultaCurso->fetch_assoc();
             $fchDesde = $resultado["fechaDesdeCursado"];
             $fchHasta = $resultado["fechaHastaCursado"];
-            $nombreCurso = $resultado["nombreCurso"];
+            $nombreCurso = utf8_encode($resultado["nombreCurso"]);
         
             echo "<h1>$nombreCurso</h1>";
             
