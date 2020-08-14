@@ -4,6 +4,7 @@ include "../header.html";
 ?>
 
 <script src="administrador.js"></script>
+<script src="validarDiasCurso.js"></script>
 
 <link rel="stylesheet" href="../styleCards.css">
 
@@ -96,7 +97,7 @@ include "../header.html";
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
             </div>
-            <form>
+            <form onsubmit="enviar()" action="#" method="post">
                 
             <div class="modal-body">
                 <div class="my-2">
@@ -150,20 +151,19 @@ include "../header.html";
                 ?>
             </tbody>
         </table>
-                 
+                <input type="text" id="arregloDiasHorario" name="arregloDiasHorario" hidden>
+                <input type="text" name="materiaId" id="materiaId" <?php echo"value= '".$id_materia."'"; ?> hidden>
             </div>
                
             </div>
             <div class="modal-footer">
-                <button type="Submit" class="btn btn-primary" data-dismiss="modal"> Crear </button>
+                <button type="Submit" class="btn btn-primary"> Crear </button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
             </div>
              </form>   
         </div>
     </div>
 </div>
-
-<script src="validarDiasCurso.js"></script>
 
 <?php
 include "../footer.html";

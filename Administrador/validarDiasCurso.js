@@ -37,9 +37,37 @@ function validar(dia){
     
     if(elem1 != "" && elem2 != ""){
         if(elem1 <= elem2){
-            //alert("fechas validas");
+           // alert("fechas validas");
         }else{
-          //alert("fechas no correctas");  
+           // alert("fechas no correctas");  
         }
     }
+}
+
+function enviar(){
+    eval("debugger;");
+    var arregloDiasHorarios = [];
+    var diaSem = document.getElementsByClassName("checkDia");
+    var rtdo = false;
+    
+    
+    for(let index = 0; index < diaSem.length; index++){
+        var nombreDia = diaSem[index].id;
+        var fechaInicio = document.getElementById(nombreDia+"1").value;
+        var fechaFin = document.getElementById(nombreDia+"2").value;
+    
+        if(diaSem[index].checked){
+           if(fechaInicio < fechaFin){
+               var diaHora = [nombreDia,fechaInicio,fechaFin];
+               arregloDiasHorarios.push(diaHora);
+               rtdo =True;
+           }  
+        }
+    }
+    
+    if(rtdo == true){
+        document.getElementById("arregloDiasHorario").value=JSON.stringify(arregloDiasHorarios);
+    }
+    
+    return rtdo;
 }
