@@ -36,12 +36,12 @@ if (!isset($_SESSION['administrador']))
             $resultado = $consultaCurso->fetch_assoc();
             $fchDesde = $resultado["fechaDesdeCursado"];
             $fchHasta = $resultado["fechaHastaCursado"];
-            $nombreCurso = utf8_encode($resultado["nombreCurso"]);
+            $nombreCurso = $resultado["nombreCurso"];
         
             echo "<h1>$nombreCurso</h1>";
             
-            echo "<h6>Inicio de cursado: $fchDesde</h6>";
-            echo "<h6>Fin del cursado: $fchHasta</h6>";
+            echo "<h6>Inicio del curso: ".strftime('%d/%m/%Y', strtotime($fchDesde))."</h6>";
+            echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
         
         ?>
         <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>

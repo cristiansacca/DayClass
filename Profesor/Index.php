@@ -13,10 +13,7 @@ if (!isset($_SESSION['profesor'])) {
 
 ?>
 
-
 <link rel="stylesheet" href="../styleCards.css">
-
-
 
 <div class="container">
 

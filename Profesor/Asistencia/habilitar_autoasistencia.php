@@ -98,8 +98,12 @@ if(isset($_GET["id_curso"])){
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../profesor.js"></script>
+<script>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=".$id_curso."><i id=icono ></i>Tema del día</a>';"; ?>
+    $("#icono").addClass("fa fa-clipboard mr-1");
+</script>
 <script src="funciones_habilitarAutoasistencia.js"></script>
 
 <?php

@@ -85,24 +85,28 @@ if (!isset($_SESSION['administrador']))
             </thead>
             <tbody>
                 <?php
-                
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDate = date('Y-01-01');          
                 $aux=1 ;
                 $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL  ORDER BY id ASC");
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $idmateria = $resultado1['id'];
-                    $consulta2 = $con->query("SELECT * FROM `programamateria` `materia` WHERE materia_id= '$idmateria' ");
-                   
+                    $consulta2 = $con->query("SELECT * FROM programamateria WHERE materia_id = '$idmateria' AND fechaVigentePrograma > '$currentDate'");
                     $programa = $consulta2->fetch_assoc();
                     $url = 'bajaMateria.php?id='.$idmateria;
+                    $nombreMateria = $resultado1['nombreMateria'];
                     
-                    $nombreMateria = utf8_encode($resultado1['nombreMateria']);
-                   
+                    if(($consulta2->num_rows)!==0){
+                        $cargado = $programa["descripcionPrograma"];
+                    } else {
+                        $cargado = "Sin cargar";
+                    }
 
                     echo "<tr>
                     <td>$aux</td>   
                     <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td><button class='btn btn-primary' data-toggle='modal' data-target='#staticBackdrop2'><i class='fa fa-edit'></i></button></td>
-                    <td>".$programa['descripcionPrograma'] . "</td>
+                    <td>".$cargado."</td>
                     <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
                    

@@ -1,32 +1,81 @@
 <?php
+//Se inicia o restaura la sesión
+session_start();
+
 include "../header.html";
+include "../databaseConection.php";
+
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['profesor'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+//Si la variable id_curso no está definida se vuelve al index
+if(isset($_GET["id_curso"])){
+    $id_curso = $_GET["id_curso"];
+
+    $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+    $curso = $consulta1->fetch_assoc();
+    
+} else {
+    header("location:/DayClass/Profesor/index.php");
+}
 ?>
 
 <div class="container">
-    <h1 class="display-4">Tema del día</h1>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 mb-6 my-2">
-            <label for="">Seleccione la unidad</label>
-            <select id="unidad" class="custom-select">
-                <option value="1">Unidad 1</option>
-                <option value="2">Unidad 2</option>
-                <option value="3">Unidad 3</option>
-            </select>
-        </div>
-        <div class="col-lg-6 col-md-6 mb-6 my-2">
-            <label for="">Seleccione el tema</label>
-            <select id="temas" class="custom-select">
-                <option value="1">Tema 1</option>
-                <option value="2">Tema 2</option>
-                <option value="3">Tema 3</option>
-            </select>
-        </div>
-        <div class="col-lg-12 col-md-6 mb-6 my-2 text-center">
-            <textarea name="" id="" cols="60" rows="5" style="resize: none;" class="form-control"
-                placeholder="Escribe un comentario..."></textarea>
-            <button class="btn btn-primary my-3" data-toggle="modal" data-target="#staticBackdrop">Aceptar</button>
-        </div>
+    <div class="jumbotron my-4 py-4">
+        <h1>Tema del día</h1>
+        <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
+        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
+
+    <?php
+        if(isset($_GET['resultado'])){
+            if($_GET['resultado'] == 1){
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <h5>El tema se cargó correctamente</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+                </button></div>";
+            } elseif($_GET['resultado'] == 0) {
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <h5>Ocurrió un error al cargar el tema</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+                </button></div>";
+            }
+        }
+    ?>
+
+    <form action="cargarTemaDia.php" method="POST" class=" form-group">
+        <h5>Indique el tema del día</>
+        <input type="text" name="id_curso" <?php echo "value=$id_curso" ?> hidden >
+        <div class="my-2">
+            <select id="temas" name="tema" class="custom-select" required>
+                <option value="" selected>Seleccione</option>
+                <?php
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDateTime = date('Y-m-d');
+
+                $materia = $con->query("SELECT * FROM materia WHERE id = '".$curso["materia_id"]."'")->fetch_assoc();
+                $programa = $con->query("SELECT * FROM programamateria WHERE materia_id = '".$materia["id"]."'")->fetch_assoc();
+                $consultaTemas = $con->query("SELECT * FROM temasmateria WHERE programamateria_id = '".$programa["id"]."' AND (fechaHastaTemMat < '$currentDateTime' OR fechaHastaTemMat IS NULL)");
+
+                while($temas = $consultaTemas->fetch_assoc()){
+                    echo "<option value='".$temas["id"]."'>".$temas["nombreTema"]."</option>";
+                }
+
+                ?>
+            </select>
+        </div>
+        <div class="my-2">
+            <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control"
+                placeholder="Escriba un comentario (Opcional)"></textarea>
+        </div>
+        <button class="btn btn-success my-2" type="submit">Aceptar</button>
+    </form>
+
 </div>
 
 <script>
@@ -34,42 +83,12 @@ include "../header.html";
     document.getElementById("unidadpopup").innerHTML
 </script>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Tema del día</h5>
-
-            </div>
-            <div class="modal-body">
-                <table class="table-sm">
-                    <tr>
-                        <td>Unidad:</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>Tema:</td>
-                        <td>Numeros</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha:</td>
-                        <td>16/07/2020</td>
-                    </tr>
-                    <tr>
-                        <td>Comentario:</td>
-                        <td>Hola hola</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">Confirmar</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="profesor.js"></script>
+<script>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=".$id_curso."><i id=icono ></i>Tema del día</a>';"; ?>
+    $("#icono").addClass("fa fa-clipboard mr-1");
+</script>
 
 <?php
 include "../footer.html";

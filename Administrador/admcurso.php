@@ -42,24 +42,20 @@ include "../header.html";
 
                 while ($resultadoCurso = $consulta1->fetch_assoc()) {
                     
-                $division = $resultadoCurso['division_id'];
-               // echo "<script>alert('$division')</script>";
-                
-                $consulta2 =  $con->query("SELECT * FROM division WHERE id = '$division'");
-                $resultado2 = $consulta2->fetch_assoc();
-                
-                $modalidad = $resultado2['modalidad_id'];
-                 //echo "<script>alert('$modalidad')</script>";
-                $consulta3 = $con->query("SELECT * FROM modalidad WHERE id = '$modalidad'");
-                $resultado3 = $consulta3->fetch_assoc();
-                
-                 //echo "<script>alert('entra a la fc php $id_materia')</script>";
+                    $division = $resultadoCurso['division_id'];
                     
+                    $consulta2 =  $con->query("SELECT * FROM division WHERE id = '$division'");
+                    $resultado2 = $consulta2->fetch_assoc();
+                    
+                    $modalidad = $resultado2['modalidad_id'];
+                    
+                    $consulta3 = $con->query("SELECT * FROM modalidad WHERE id = '$modalidad'");
+                    $resultado3 = $consulta3->fetch_assoc();
+                        
                     $url = 'bajaAlum.php?id=';
                     $id = $resultadoCurso["id"];
-                    //echo "$url";
                     
-                    $nombreCurso = utf8_encode($resultadoCurso['nombreCurso']);
+                    $nombreCurso = $resultadoCurso['nombreCurso'];
                     
                     
                     echo "<tr>
@@ -70,7 +66,7 @@ include "../header.html";
                     <td class='text-center'>
                         <a class='btn btn-success btn-sm mb-1' data-emp-id=".$id." onclick='' href='$url'><i class='fa fa-edit'></i></a>
                         <a class='btn btn-danger btn-sm mb-1' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a>
-                                               
+                                                
                     </td>
                     
                     <td class='text-center'>
