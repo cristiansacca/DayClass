@@ -11,6 +11,16 @@ if (!isset($_SESSION['profesor'])) {
     header("location:/DayClass/index.php");
 }
 
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$hora = date('H:i:s');
+if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
+  $saludo = "Buenos días";
+} elseif($hora >= date('12:00:00') && $hora < date('20:00:00')){
+  $saludo = "Buenas tardes";
+} else{
+  $saludo = "Buenas noches";
+}
+
 ?>
 
 <link rel="stylesheet" href="../styleCards.css">
@@ -18,7 +28,7 @@ if (!isset($_SESSION['profesor'])) {
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <h1><?php echo " " . $_SESSION["profesor"]["nombreProf"] . " " . $_SESSION["profesor"]["apellidoProf"] ?></h1>
+        <h1><?php echo "$saludo, " . $_SESSION["profesor"]["nombreProf"] /*. " " . $_SESSION["profesor"]["apellidoProf"]*/ ?></h1>
         <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar Perfil</a>
     </div>
     <h3 class="font-weight-normal">Cursos que dicta actualmente:</h3><br>

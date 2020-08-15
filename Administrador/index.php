@@ -10,6 +10,15 @@ if (!isset($_SESSION['administrador']))
    //Nos envía a la página de inicio
    header("location:/DayClass/index.php"); 
 }
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$hora = date('H:i:s');
+if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
+  $saludo = "Buenos días";
+} elseif($hora >= date('12:00:00') && $hora < date('20:00:00')){
+  $saludo = "Buenas tardes";
+} else{
+  $saludo = "Buenas noches";
+}
 
 ?>
 
@@ -17,7 +26,7 @@ if (!isset($_SESSION['administrador']))
 
   <div class="jumbotron my-4 py-4">
     <p class="card-text">Administrador</p>
-    <h1>Bienvenido<?php echo " ".$_SESSION["administrador"]["nombreAdm"] ?></h1>
+    <h1><?php echo "$saludo, ".$_SESSION["administrador"]["nombreAdm"] ?></h1>
     <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
   </div>
 
