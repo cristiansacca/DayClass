@@ -15,6 +15,50 @@ include "../header.html";
         <h1>Cursos</h1>
         <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
+    
+    
+    <?php
+    
+    if(isset($_GET["resultado"])){
+        switch ($_GET["resultado"]) {
+                case 1:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Usuario agregado exitosamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 2:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El documento o Legajo ingresado ya se encuentra registrado</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 3:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Baja exitosa del curso</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 4:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en la bajadel curso</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+
+            }
+    }
+
+    ?>
+
 
     <div class="my-2">
       <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
@@ -37,7 +81,7 @@ include "../header.html";
                 include "../databaseConection.php";
                 
                 $id_materia = $_GET["id"];
-                $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia'");
+                $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia' AND `fechaHastaCurActul` IS NULL");
                 
 
                 while ($resultadoCurso = $consulta1->fetch_assoc()) {
@@ -52,8 +96,9 @@ include "../header.html";
                     $consulta3 = $con->query("SELECT * FROM modalidad WHERE id = '$modalidad'");
                     $resultado3 = $consulta3->fetch_assoc();
                         
-                    $url = 'bajaAlum.php?id=';
                     $id = $resultadoCurso["id"];
+                    $urlEditarCurso = "editarCurso.php?id=$id";
+                    $urlBajaCurso = "bajaCurso.php?id=$id";
                     
                     $nombreCurso = $resultadoCurso['nombreCurso'];
                     
@@ -64,8 +109,8 @@ include "../header.html";
                     <td>" . $resultado3['nombre'] . "</td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-success btn-sm mb-1' data-emp-id=".$id." onclick='' href='$url'><i class='fa fa-edit'></i></a>
-                        <a class='btn btn-danger btn-sm mb-1' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a>
+                        <a class='btn btn-success btn-sm mb-1' data-emp-id=".$id." onclick='' href='$urlEditarCurso'><i class='fa fa-edit'></i></a>
+                        <a class='btn btn-danger btn-sm mb-1' data-emp-id=".$id." onclick='return confirmDelete()' href='$urlBajaCurso'><i class='fa fa-trash'></i></a>
                                                 
                     </td>
                     
@@ -105,7 +150,7 @@ include "../header.html";
                                   include "../databaseConection.php";
                                 $id_materia = $_GET["id"];
 
-                                  $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia') as A ON A.idDivision = division.id where A.idCurso IS NULL");
+                                  $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia' AND curso.fechaHastaCurActul IS NULL) as A ON A.idDivision = division.id where A.idCurso IS NULL");
                         
                                 //"SELECT * FROM `division`"
 
