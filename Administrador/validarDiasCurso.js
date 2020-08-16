@@ -49,7 +49,9 @@ function enviar(){
     var arregloDiasHorarios = [];
     var diaSem = document.getElementsByClassName("checkDia");
     var rtdo = false;
-    
+    var erroneos = 0;
+    var chequeados = 0;
+    var selectedoption = document.getElementById("divisiones").value;
     
     for(let index = 0; index < diaSem.length; index++){
         var nombreDia = diaSem[index].id;
@@ -60,14 +62,24 @@ function enviar(){
            if(fechaInicio < fechaFin){
                var diaHora = [nombreDia,fechaInicio,fechaFin];
                arregloDiasHorarios.push(diaHora);
-               rtdo =True;
-           }  
+               chequeados ++;
+               
+           }else{
+               erroneos ++;
+           } 
         }
     }
     
-    if(rtdo == true){
+    
+    
+    
+    if(erroneos == 0 && rtdo == false && chequeados > 0 && selectedoption != ""){
+        rtdo = true;
         document.getElementById("arregloDiasHorario").value=JSON.stringify(arregloDiasHorarios);
+        return true;
+    }else{
+        return false;
     }
     
-    return rtdo;
+    //return rtdo;
 }

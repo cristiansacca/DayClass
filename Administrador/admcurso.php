@@ -93,7 +93,7 @@ include "../header.html";
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
             </div>
-            <form onsubmit="enviar()" action="#" method="post">
+            <form id="crearCurso" name="crearCurso" action="crearCurso.php" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviar()">
                 
             <div class="modal-body">
                 <div class="my-2">
@@ -103,9 +103,11 @@ include "../header.html";
                        
                             <?php
                                   include "../databaseConection.php";
+                                $id_materia = $_GET["id"];
 
-                                  $consultaD = $con->query("SELECT * FROM `division`");
-                                
+                                  $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia') as A ON A.idDivision = division.id where A.idCurso IS NULL");
+                        
+                                //"SELECT * FROM `division`"
 
                                   while ($divisiones = $consultaD->fetch_assoc()) {
                                       
