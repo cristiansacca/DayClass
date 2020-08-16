@@ -228,7 +228,7 @@ if (!isset($_SESSION['administrador']))
                         <input type="file" class="form-control-file" name="inpGetFile" id="inpGetFile" accept=".xlsx" onchange="comprobarLista()" lang="es" required>
                     
                     </div>
-                </div>
+                
               <div class="modal-footer">
             <button type="submit" class="btn btn-success" name="importar" id="btnImportFile"  >Aceptar</button>
             <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
