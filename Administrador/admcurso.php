@@ -23,7 +23,7 @@ include "../header.html";
         switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Usuario agregado exitosamente</h5>
+                            <h5>Curso creado exitosamente, ahora puede agregarle docentes en editar</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
