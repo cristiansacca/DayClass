@@ -10,7 +10,7 @@ include "../header.html";
   <form action="registro.php" method="POST">
     <h1 class="title"><u>Registro de nuevo usuario</u></h1>
     <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
-      <h7 class="text-muted">Si usted no posee legajo en su institucion ingrese un 0 (cero).</h7>
+    
     <div class="fill_fields">
 
       <div class="form-row">

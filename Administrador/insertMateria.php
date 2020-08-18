@@ -5,7 +5,7 @@ $materia = $_POST["inputNombreMateria"];
 $nivel = $_POST["inputNivel"];
 $fechaHora= date('Y-m-d H:i:s');
 
-$consulta = $con->query("SELECT id FROM `materia` WHERE nombreMateria = $materia");
+$consulta = $con->query("SELECT id FROM `materia` WHERE nombreMateria = '$materia'");
 
 if(mysqli_num_rows($consulta) == 0){
     

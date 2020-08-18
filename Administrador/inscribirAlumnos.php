@@ -110,13 +110,14 @@ if (!isset($_SESSION['administrador']))
                 include "../databaseConection.php";
                 
                 $id_curso = $_GET['id'];
-
                 date_default_timezone_set('America/Argentina/Mendoza');
                 $currentDateTime = date('Y-m-d H:i:s');
                 
                  
                 
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso");
+                
+                echo "SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso";
 
                 while($alumnocursoactual = $consulta2->fetch_assoc()){
                     $alumno = $con->query("SELECT * FROM alumno WHERE id = '".$alumnocursoactual['alumno_id']."'")->fetch_assoc();
