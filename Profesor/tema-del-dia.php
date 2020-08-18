@@ -60,7 +60,7 @@ if(isset($_GET["id_curso"])){
 
                 $materia = $con->query("SELECT * FROM materia WHERE id = '".$curso["materia_id"]."'")->fetch_assoc();
                 $programa = $con->query("SELECT * FROM programamateria WHERE materia_id = '".$materia["id"]."'")->fetch_assoc();
-                $consultaTemas = $con->query("SELECT * FROM temasmateria WHERE programamateria_id = '".$programa["id"]."' AND (fechaHastaTemMat < '$currentDateTime' OR fechaHastaTemMat IS NULL)");
+                $consultaTemas = $con->query("SELECT * FROM temasmateria WHERE programaMateria_id = '".$programa["id"]."' AND (fechaHastaTemMat < '$currentDateTime' OR fechaHastaTemMat IS NULL)");
 
                 while($temas = $consultaTemas->fetch_assoc()){
                     echo "<option value='".$temas["id"]."'>".$temas["nombreTema"]."</option>";

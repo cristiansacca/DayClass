@@ -12,7 +12,20 @@ if (!isset($_SESSION['administrador'])) {
 
 include "../../databaseConection.php";
 
-$institucion = $con->query("SELECT * FROM institucion")->fetch_assoc();
+$institucion = $con->query("SELECT * FROM institucion");
+
+if(($institucion->num_rows)==0){
+    $nombre = "";
+    $telefono = "";
+    $correo = "";
+    $direccion = "";
+} else {
+    $dataInstitucion = $institucion->fetch_assoc();
+    $nombre = $dataInstitucion['nombreInstitucion'];
+    $telefono = $dataInstitucion['telefonoInstitucion'];
+    $correo = $dataInstitucion['correoInstitucion'];
+    $direccion = $dataInstitucion['direccionInstitucion'];
+}
 
 ?>
 
@@ -57,19 +70,19 @@ $institucion = $con->query("SELECT * FROM institucion")->fetch_assoc();
         <table class="table bg-light table-bordered table-striped">
             <tr>
                 <td class="font-weight-bold">Nombre:</td>
-                <td><?php echo $institucion['nombreInstitucion'] ?></td>
+                <td><?php echo "$nombre" ?></td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Teléfono:</td>
-                <td><?php echo $institucion['telefonoInstitucion'] ?></td>
+                <td><?php echo "$telefono" ?></td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Correo electrónico:</td>
-                <td><?php echo $institucion['correoInstitucion'] ?></td>
+                <td><?php echo "$correo" ?></td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Dirección:</td>
-                <td><?php echo $institucion['direccionInstitucion'] ?></td>
+                <td><?php echo "$direccion" ?></td>
             </tr>
         </table>
     </div>
@@ -89,13 +102,13 @@ $institucion = $con->query("SELECT * FROM institucion")->fetch_assoc();
                 <div class="modal-body">
                     <div>
                         <label>Nombre</label>
-                        <input class="form-control mb-2" type="text" name="nombre" placeholder="Nombre" <?php echo "value=".$institucion['nombreInstitucion'] ?> required>
+                        <input class="form-control mb-2" type="text" name="nombre" placeholder="Nombre" <?php echo "value='$nombre'"; ?> required>
                         <label>Teléfono</label>
-                        <input class="form-control mb-2" type="tel" name="telefono" placeholder="Teléfono" <?php echo "value=".$institucion['telefonoInstitucion'] ?> required>
+                        <input class="form-control mb-2" type="tel" name="telefono" placeholder="Teléfono" <?php echo "value='$telefono'"; ?> required>
                         <label>Correo electrónico</label>
-                        <input class="form-control mb-2" type="email" name="email" placeholder="Correo electrónico" <?php echo "value=".$institucion['correoInstitucion'] ?> required>
+                        <input class="form-control mb-2" type="email" name="email" placeholder="Correo electrónico" <?php echo "value='$correo'"; ?> required>
                         <label>Dirección</label>
-                        <input class="form-control mb-2" type="text" name="direccion" placeholder="Direccion" <?php echo "value=".$institucion['direccionInstitucion'] ?> required>
+                        <input class="form-control mb-2" type="text" name="direccion" placeholder="Direccion" <?php echo "value='$direccion'"; ?> required>
                     </div>
                 </div>
                 <div class="modal-footer">

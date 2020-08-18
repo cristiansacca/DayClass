@@ -16,16 +16,18 @@ $nombre = $_POST['nombre'];
 $telefono = $_POST['telefono'];
 $email = $_POST['email'];
 $direccion = $_POST['direccion'];
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDateTime = date('Y-m-d');
 
 $institucion = $con->query("SELECT * FROM institucion");
 
 if(($institucion->num_rows) == 0){
-    $update = $con->query("INSERT INTO institucion (nombreInstitucion, telefonoInstitucion. correoInstitucion, direccionInstitucion)
-     VALUES ('$nombre', '$telefono', '$email', '$direccion')");
+    $update = $con->query("INSERT INTO `institucion` (`fechaAltaInstitucion`, `nombreInstitucion`, `telefonoInstitucion`,
+     `correoInstitucion`, `direccionInstitucion`) VALUES ('$currentDateTime','$nombre', '$telefono', '$email', '$direccion')");
 } else {
     $id = ($institucion->fetch_assoc())['id'];
-    $update = $con->query("UPDATE institucion SET nombreInstitucion = '$nombre', telefonoInstitucion = '$telefono', correoInstitucion = '$email',
-     direccionInstitucion = '$direccion' WHERE id = '$id'");
+    $update = $con->query("UPDATE institucion SET nombreInstitucion = '$nombre', telefonoInstitucion = '$telefono',
+     correoInstitucion = '$email', direccionInstitucion = '$direccion' WHERE id = '$id'");
 }
 
 if($update){

@@ -149,7 +149,7 @@ if (!isset($_SESSION['administrador']))
             </form>
         </div>
     </div>
-    </div>
+</div>
 
 <!-- Modal Editar Materia-->
 <div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
@@ -178,80 +178,73 @@ if (!isset($_SESSION['administrador']))
             </form>
         </div>
     </div>
-    </div>
+</div>
     
-  <!-- Modal Cargar Programa-->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Cargar programa de materia</h5>
-          </div>
-          <div class="modal-body">
-          
-          <form method="POST" id="importPlanilla" name="importPlanilla" action="import_temas.php" enctype="multipart/form-data" role="form">
-                <div class="my-2">    
-                    <label for="materias">Seleccione la materia:</label>
-                    <select name="selectmaterias" id="selectmaterias" class="custom-select">
-                    <?php
-                        include "../databaseConection.php";
-                        //Busca todas las instanias de materias
-                        $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
-                        while ($resultado1 = $consulta1->fetch_assoc()) {
-                            $nombreMateria = utf8_encode($resultado1['nombreMateria']);
-                            echo "<option value='".$resultado1['id']."'>" . $nombreMateria . "</option>";
-
-                        }
-                    ?>
-                    </select>
-                 </div>
-                    <div class="my-2">
-                        <label for="inputDescripPrograma"> Descripcion/Nombre</label>
-                        <input type="text" name="inputDescripPrograma" id="inputDescripPrograma" class="form-control" required>
-                    </div>
-                    <div class="my-2">
-                        <label for="inputAnioPrograma"> Año del programa</label>
-                        <input type="text" name="inputAnioPrograma" id="inputAnioPrograma" class="form-control" required>
-                    </div>
-                    <div class="my-2">
-                        <label for="inputCargaHoraria"> Carga horaria de la materia</label>
-                        <input type="text" name="inputCargaHoraria" id="inputCargaHoraria" class="form-control" required>
-                    </div>
-                    <br>
-                    <div class="my-2">
-                        <h6>Cargar los temas del programa de</h6>
-                        <h9>La extension para la lista debe ser .xlsx y en la primera columna debe estar el listado de los temas </h9>
-                        <br>
-                    </div>
-                    <div class="custom-file my-3">
-                        <input type="file" class="form-control-file" name="inpGetFile" id="inpGetFile" accept=".xlsx" onchange="comprobarLista()" lang="es" required>
-                    
-                    </div>
-                
-              <div class="modal-footer">
-            <button type="submit" class="btn btn-success" name="importar" id="btnImportFile"  >Aceptar</button>
-            <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
-          </div>
-        </form>
+<!-- Modal Cargar Programa-->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Cargar programa de materia</h5>
         </div>
-      </div>
+        <div class="modal-body">
+        
+        <form method="POST" id="importPlanilla" name="importPlanilla" action="import_temas.php" enctype="multipart/form-data" role="form">
+            <div class="my-2">    
+                <label for="materias">Seleccione la materia:</label>
+                <select name="selectmaterias" id="selectmaterias" class="custom-select">
+                <?php
+                    include "../databaseConection.php";
+                    //Busca todas las instanias de materias
+                    $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
+                    while ($resultado1 = $consulta1->fetch_assoc()) {
+                        $nombreMateria = $resultado1['nombreMateria'];
+                        echo "<option value='".$resultado1['id']."'>" . $nombreMateria . "</option>";
+
+                    }
+                ?>
+                </select>
+                </div>
+                <div class="my-2">
+                    <label for="inputDescripPrograma"> Descripcion/Nombre</label>
+                    <input type="text" name="inputDescripPrograma" id="inputDescripPrograma" class="form-control" required>
+                </div>
+                <div class="my-2">
+                    <label for="inputAnioPrograma"> Año del programa</label>
+                    <input type="text" name="inputAnioPrograma" id="inputAnioPrograma" class="form-control" required>
+                </div>
+                <div class="my-2">
+                    <label for="inputCargaHoraria"> Carga horaria de la materia</label>
+                    <input type="text" name="inputCargaHoraria" id="inputCargaHoraria" class="form-control" required>
+                </div>
+                <br>
+                <div class="my-2">
+                    <h6>Cargar los temas del programa de</h6>
+                    <h9>La extension para la lista debe ser .xlsx y en la primera columna debe estar el listado de los temas </h9>
+                    <br>
+                </div>
+                <div class="custom-file my-3">
+                    <input type="file" class="form-control-file" name="inpGetFile" id="inpGetFile" accept=".xlsx" onchange="comprobarLista()" lang="es" required>
+                
+                </div>
+            
+            <div class="modal-footer">
+        <button type="submit" class="btn btn-success" name="importar" id="btnImportFile"  >Aceptar</button>
+        <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
+        </div>
+    </form>
     </div>
-   
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="administrador.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="paginadoDataTable.js"></script>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="administrador.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script src="paginadoDataTable.js"></script>
-
-
-
-
-
-
-
-    <?php
+<?php
 include "../footer.html";
 ?>
