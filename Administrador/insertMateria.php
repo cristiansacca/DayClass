@@ -3,6 +3,7 @@ include "../databaseConection.php";
 
 $materia = $_POST["inputNombreMateria"];
 $nivel = $_POST["inputNivel"];
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 $fechaHora= date('Y-m-d H:i:s');
 
 $consulta = $con->query("SELECT id FROM `materia` WHERE nombreMateria = '$materia'");
