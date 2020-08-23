@@ -79,6 +79,7 @@ if (!isset($_SESSION['administrador']))
             <thead>
                 <th>N°</th>
                 <th>Nombre materia</th>
+                <th>Nivel</th>
                 <th>Editar </th>
                 <th>Programa Cargado</th>
                 <th>Eliminar Materia</th>
@@ -95,6 +96,7 @@ if (!isset($_SESSION['administrador']))
                     $programa = $consulta2->fetch_assoc();
                     $url = 'bajaMateria.php?id='.$idmateria;
                     $nombreMateria = $resultado1['nombreMateria'];
+                    $nivelMateria = $resultado1['nivelMateria'];
                     
                     if(($consulta2->num_rows)!==0){
                         $cargado = $programa["descripcionPrograma"];
@@ -105,6 +107,7 @@ if (!isset($_SESSION['administrador']))
                     echo "<tr>
                     <td>$aux</td>   
                     <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
+                    <td>$nivelMateria</td>
                     <td><button class='btn btn-primary' data-toggle='modal' data-target='#staticBackdrop2'><i class='fa fa-edit'></i></button></td>
                     <td>".$cargado."</td>
                     <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>

@@ -98,7 +98,7 @@ include "../header.html";
                 <div class="modal-body">
                     
                     <div class="my-2">
-                        <h5 class="msg" id="msjValidacionApellido">Ingrese el DNI o Legajo del alumno que desea inscribir</h5>
+                        <h5 class="msg" id="msjValidacionApellido">Ingrese el DNI y Legajo del docente a agregar y su cargo</h5>
                     </div>
                     <div class="form-inline my-2">
                         <label for="selectcargo">Cargo   </label>
@@ -109,11 +109,8 @@ include "../header.html";
 
                                   $consultaD = $con->query("SELECT * FROM `cargo`");
                         
-                                //"SELECT * FROM `division`"
-
                                   while ($cargo = $consultaD->fetch_assoc()) {
                                       
-
                                       echo "<option value='".$cargo['id']."'>".$cargo['nombreCargo']."</option>";
 
                                   }

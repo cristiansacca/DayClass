@@ -6,7 +6,7 @@ $nivel = $_POST["inputNivel"];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $fechaHora= date('Y-m-d H:i:s');
 
-$consulta = $con->query("SELECT id FROM `materia` WHERE nombreMateria = '$materia'");
+$consulta = $con->query("SELECT id FROM `materia` WHERE nombreMateria = '$materia' AND nivel = $nivel");
 
 if(mysqli_num_rows($consulta) == 0){
     
