@@ -15,55 +15,80 @@ include "../header.html";
         <h1>Cursos</h1>
         <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
-    
-    
+
+
     <?php
-    
-    if(isset($_GET["resultado"])){
+
+    if (isset($_GET["resultado"])) {
         switch ($_GET["resultado"]) {
-                case 1:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Curso creado exitosamente</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 2:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El documento o Legajo ingresado ya se encuentra registrado</h5>
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El documento o legajo ingresado ya se encuentra registrado</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 3:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                break;
+            case 3:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Baja exitosa del curso</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 4:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la bajadel curso</h5>
+                break;
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en la baja del curso</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-
-            }
+                break;
+            case 5:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Modalidad creada correctamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 6:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error al crear la modalidad</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 7:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Ya existe una modaliad con el mismo nombre</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+        }
     }
 
     ?>
 
 
     <div class="my-2">
-      <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
+        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
+        <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-plus-square mr-1"></i>Nueva división </a>
+        <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#staticBackdrop3"><i class="fa fa-plus-square mr-1"></i>Nueva modalidad</a>
     </div>
-   
+
 
     <div class="my-4">
 
@@ -79,44 +104,44 @@ include "../header.html";
             <tbody>
                 <?php
                 include "../databaseConection.php";
-                
+
                 $id_materia = $_GET["id"];
                 $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia' AND `fechaHastaCurActul` IS NULL");
-                
+
 
                 while ($resultadoCurso = $consulta1->fetch_assoc()) {
-                    
+
                     $division = $resultadoCurso['division_id'];
-                    
+
                     $consulta2 =  $con->query("SELECT * FROM division WHERE id = '$division'");
                     $resultado2 = $consulta2->fetch_assoc();
-                    
+
                     $modalidad = $resultado2['modalidad_id'];
-                    
+
                     $consulta3 = $con->query("SELECT * FROM modalidad WHERE id = '$modalidad'");
                     $resultado3 = $consulta3->fetch_assoc();
-                        
+
                     $id = $resultadoCurso["id"];
                     $urlEditarCurso = "editarCurso.php?id=$id";
                     $urlBajaCurso = "bajaCurso.php?id=$id";
-                    
+
                     $nombreCurso = $resultadoCurso['nombreCurso'];
-                    
-                    
+
+
                     echo "<tr>
                     <td>" . $nombreCurso . "</td>
                     <td>" . $resultado2['nombreDivision'] . "</td>
                     <td>" . $resultado3['nombre'] . "</td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-success btn-sm mb-1' data-emp-id=".$id." onclick='' href='$urlEditarCurso'><i class='fa fa-edit'></i></a>
-                        <a class='btn btn-danger btn-sm mb-1' data-emp-id=".$id." onclick='return confirmDelete()' href='$urlBajaCurso'><i class='fa fa-trash'></i></a>
+                        <a class='btn btn-success btn-sm mb-1' data-emp-id=" . $id . " onclick='' href='$urlEditarCurso'><i class='fa fa-edit'></i></a>
+                        <a class='btn btn-danger btn-sm mb-1' data-emp-id=" . $id . " onclick='return confirmDelete()' href='$urlBajaCurso'><i class='fa fa-trash'></i></a>
                                                 
                     </td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-warning btn-sm mb-1' data-emp-id=".$id." href='editarDocentesCurso.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
-                        <a class='btn btn-info btn-sm mb-1' data-emp-id=".$id." href='inscribirAlumnos.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a>                              
+                        <a class='btn btn-warning btn-sm mb-1' data-emp-id=" . $id . " href='editarDocentesCurso.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
+                        <a class='btn btn-info btn-sm mb-1' data-emp-id=" . $id . " href='inscribirAlumnos.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a>                              
                     </td>
                     
                     
@@ -130,90 +155,202 @@ include "../header.html";
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal nuevo curso -->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
             </div>
             <form id="crearCurso" name="crearCurso" action="crearCurso.php" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviar()">
-                
-            <div class="modal-body">
-                <div class="my-2">
-                    
-                    <label for="divisiones"> Divisiones </label>
-                    <select name="divisiones" id="divisiones" class="custom-select">
-                       
+
+                <div class="modal-body">
+                    <div class="my-2">
+
+                        <label for="divisiones"> Divisiones </label>
+                        <select name="divisiones" id="divisiones" class="custom-select">
+
                             <?php
-                                  include "../databaseConection.php";
-                                $id_materia = $_GET["id"];
+                            include "../databaseConection.php";
+                            $id_materia = $_GET["id"];
 
-                                  $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia' AND curso.fechaHastaCurActul IS NULL) as A ON A.idDivision = division.id where A.idCurso IS NULL");
-                        
-                                //"SELECT * FROM `division`"
+                            $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia' AND curso.fechaHastaCurActul IS NULL) as A ON A.idDivision = division.id where A.idCurso IS NULL");
 
-                                  while ($divisiones = $consultaD->fetch_assoc()) {
-                                      
+                            //"SELECT * FROM `division`"
 
-                                      echo "<option value='".$divisiones['id']."'>".$divisiones['nombreDivision']."</option>";
+                            while ($divisiones = $consultaD->fetch_assoc()) {
 
-                                  }
-                        
+
+                                echo "<option value='" . $divisiones['id'] . "'>" . $divisiones['nombreDivision'] . "</option>";
+                            }
+
                             ?>
 
-                    </select>
-                     
-                </div>
-            <div class="form-group">
-                
-                
-        <table id="dataTable" class="table">
-            <thead>
-                <th>Dia</th>
-                <th>Hora desde</th>
-                <th>Hora hasta</th>
-                
-            </thead>
+                        </select>
 
-            <tbody>
-                <?php
-                        include "../databaseConection.php";
+                    </div>
+                    <div class="form-group">
 
-                        $consulta = $con->query("SELECT * FROM `cursoDia`");
 
-                        while ($dias = $consulta->fetch_assoc()){
-                                          
-                            echo "<tr>
-                            <td> <input class='checkDia' type='checkbox' id='".$dias['nombreDia']."' onclick='habilitarTimeP(this.id)'><label class='ml-2' name='dia[]'>".$dias['nombreDia']."</label></td>
-                            <td><input type='time'  id='".$dias['nombreDia']."1' onchange='habilitar2do(this.id)' disabled></td>
-                            <td><input type='time' id='".$dias['nombreDia']."2' onchange='validar(this.id)' disabled> </td>
+                        <table id="dataTable" class="table">
+                            <thead>
+                                <th>Dia</th>
+                                <th>Hora desde</th>
+                                <th>Hora hasta</th>
+
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                include "../databaseConection.php";
+
+                                $consulta = $con->query("SELECT * FROM `cursoDia`");
+
+                                while ($dias = $consulta->fetch_assoc()) {
+
+                                    echo "<tr>
+                            <td> <input class='checkDia' type='checkbox' id='" . $dias['nombreDia'] . "' onclick='habilitarTimeP(this.id)'><label class='ml-2' name='dia[]'>" . $dias['nombreDia'] . "</label></td>
+                            <td><input type='time'  id='" . $dias['nombreDia'] . "1' onchange='habilitar2do(this.id)' disabled></td>
+                            <td><input type='time' id='" . $dias['nombreDia'] . "2' onchange='validar(this.id)' disabled> </td>
                             </tr>";
-                        }
-                ?>
-            </tbody>
-        </table>
-                <input type="text" id="arregloDiasHorario" name="arregloDiasHorario" hidden>
-                <input type="text" name="materiaId" id="materiaId" <?php echo"value= '".$id_materia."'"; ?> hidden>
-            </div>
-               
-            </div>
-            <div class="modal-footer">
-                <button type="Submit" class="btn btn-primary"> Crear </button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-            </div>
-             </form>   
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                        <input type="text" id="arregloDiasHorario" name="arregloDiasHorario" hidden>
+                        <input type="text" name="materiaId" id="materiaId" <?php echo "value= '" . $id_materia . "'"; ?> hidden>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary"> Crear </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+<!-- Modal nueva division -->
+<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
+            </div>
+            <form id="crearCurso" name="crearCurso" action="crearCurso.php" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviar()">
+
+                <div class="modal-body">
+                    <div class="my-2">
+
+                        <label for="divisiones"> Divisiones </label>
+                        <select name="divisiones" id="divisiones" class="custom-select">
+
+                            <?php
+                            include "../databaseConection.php";
+                            $id_materia = $_GET["id"];
+
+                            $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia' AND curso.fechaHastaCurActul IS NULL) as A ON A.idDivision = division.id where A.idCurso IS NULL");
+
+                            //"SELECT * FROM `division`"
+
+                            while ($divisiones = $consultaD->fetch_assoc()) {
+
+
+                                echo "<option value='" . $divisiones['id'] . "'>" . $divisiones['nombreDivision'] . "</option>";
+                            }
+
+                            ?>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+
+
+                        <table id="dataTable" class="table">
+                            <thead>
+                                <th>Dia</th>
+                                <th>Hora desde</th>
+                                <th>Hora hasta</th>
+
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                include "../databaseConection.php";
+
+                                $consulta = $con->query("SELECT * FROM `cursoDia`");
+
+                                while ($dias = $consulta->fetch_assoc()) {
+
+                                    echo "<tr>
+                            <td> <input class='checkDia' type='checkbox' id='" . $dias['nombreDia'] . "' onclick='habilitarTimeP(this.id)'><label class='ml-2' name='dia[]'>" . $dias['nombreDia'] . "</label></td>
+                            <td><input type='time'  id='" . $dias['nombreDia'] . "1' onchange='habilitar2do(this.id)' disabled></td>
+                            <td><input type='time' id='" . $dias['nombreDia'] . "2' onchange='validar(this.id)' disabled> </td>
+                            </tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                        <input type="text" id="arregloDiasHorario" name="arregloDiasHorario" hidden>
+                        <input type="text" name="materiaId" id="materiaId" <?php echo "value= '" . $id_materia . "'"; ?> hidden>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary"> Crear </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal nueva modalidad -->
+<div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Nueva modalidad</h5>
+            </div>
+            <form action="nuevaModalidad.php" method="POST">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="nombreModalidad">Nombre modalidad</label>
+                        <input type="text" placeholder="Modalidad" name="nombreModalidad" class="form-control">
+                        <input type="text" name="materiaId" id="materiaId" <?php echo "value= '" . $id_materia . "'"; ?> hidden>
+                    </div>
+                    <div class="my-2">
+                        <?php
+                            $consultaMod = $con->query("SELECT * FROM modalidad");
+                            if(!($consultaMod->num_rows)==0){
+                                echo "<label>Modalidades existentes</label>";
+                                echo "<div class='list-group' >";   
+                                    while ($modalidades = $consultaMod->fetch_assoc()) {
+                                        echo "<a class='list-group-item list-group-item-action'>".$modalidades['nombre']."</a>";
+                                    }
+                                echo "</div>";
+                            } else {
+                                echo "<div class='alert alert-warning'>No hay modalidades existentes</div>";
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="administrador.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script src="paginadoDataTable.js"></script>
+<script src="administrador.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="paginadoDataTable.js"></script>
 
 <?php
 include "../footer.html";
