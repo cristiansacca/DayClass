@@ -23,61 +23,49 @@ include "../header.html";
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Curso creado exitosamente</h5>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
+                            <h5>Curso creado exitosamente</h5>";
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El documento o legajo ingresado ya se encuentra registrado</h5>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
+                            <h5>El documento o legajo ingresado ya se encuentra registrado</h5>";
                 break;
             case 3:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa del curso</h5>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
+                            <h5>Baja exitosa del curso</h5>";
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja del curso</h5>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
+                            <h5>Error en la baja del curso</h5>";
                 break;
             case 5:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Modalidad creada correctamente</h5>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
+                            <h5>Modalidad creada correctamente</h5>";
                 break;
             case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al crear la modalidad</h5>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
+                            <h5>Error al crear la modalidad</h5>";
                 break;
             case 7:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Ya existe una modaliad con el mismo nombre</h5>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
+                            <h5>Ya existe una modaliad con el mismo nombre</h5>";
+                break;
+            case 8:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>División creada correctamente</h5>";
+                break;
+            case 9:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error al crear la división</h5>";
+                break;
+            case 10:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Ya existe una división con el mismo nombre</h5>";
                 break;
         }
+        echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>";
     }
 
     ?>
@@ -90,9 +78,9 @@ include "../header.html";
     </div>
 
 
-    <div class="my-4">
+    <div class="my-2">
 
-        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
+        <table id="dataTable" class="table table-info table-bordered table-hover">
             <thead>
                 <th>Nombre</th>
                 <th>Division</th>
@@ -236,71 +224,53 @@ include "../header.html";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Nueva división</h5>
             </div>
-            <form id="crearCurso" name="crearCurso" action="crearCurso.php" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviar()">
-
+            <form action="nuevaDivision.php" method="POST">
                 <div class="modal-body">
                     <div class="my-2">
-
-                        <label for="divisiones"> Divisiones </label>
-                        <select name="divisiones" id="divisiones" class="custom-select">
-
-                            <?php
-                            include "../databaseConection.php";
-                            $id_materia = $_GET["id"];
-
-                            $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia' AND curso.fechaHastaCurActul IS NULL) as A ON A.idDivision = division.id where A.idCurso IS NULL");
-
-                            //"SELECT * FROM `division`"
-
-                            while ($divisiones = $consultaD->fetch_assoc()) {
-
-
-                                echo "<option value='" . $divisiones['id'] . "'>" . $divisiones['nombreDivision'] . "</option>";
-                            }
-
-                            ?>
-
-                        </select>
-
-                    </div>
-                    <div class="form-group">
-
-
-                        <table id="dataTable" class="table">
-                            <thead>
-                                <th>Dia</th>
-                                <th>Hora desde</th>
-                                <th>Hora hasta</th>
-
-                            </thead>
-
-                            <tbody>
-                                <?php
-                                include "../databaseConection.php";
-
-                                $consulta = $con->query("SELECT * FROM `cursoDia`");
-
-                                while ($dias = $consulta->fetch_assoc()) {
-
-                                    echo "<tr>
-                            <td> <input class='checkDia' type='checkbox' id='" . $dias['nombreDia'] . "' onclick='habilitarTimeP(this.id)'><label class='ml-2' name='dia[]'>" . $dias['nombreDia'] . "</label></td>
-                            <td><input type='time'  id='" . $dias['nombreDia'] . "1' onchange='habilitar2do(this.id)' disabled></td>
-                            <td><input type='time' id='" . $dias['nombreDia'] . "2' onchange='validar(this.id)' disabled> </td>
-                            </tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                        <input type="text" id="arregloDiasHorario" name="arregloDiasHorario" hidden>
+                        <label for="nombreNombreDivision">Nombre división</label>
+                        <input type="text" placeholder="División" name="nombreDivision" class="form-control" required>
                         <input type="text" name="materiaId" id="materiaId" <?php echo "value= '" . $id_materia . "'"; ?> hidden>
+                        <label for="comboModalidad">Modalidad</label>
+                        <select name="comboModalidad" class="custom-select" required>
+                            <option selected>Seleccione...</option>
+                            <?php
+                                $consultaMod = $con->query("SELECT * FROM modalidad WHERE fechaBajaModalidad IS NULL");
+                                while ($comboMod = $consultaMod->fetch_assoc()) {
+                                    echo "<option value='".$comboMod["id"]."'>".$comboMod["nombre"]."</option>";
+                                }
+                            ?>
+                        </select>
                     </div>
-
+                    <div class="my-2">
+                        <?php
+                            $consultaDiv = $con->query("SELECT division.nombreDivision, modalidad.nombre FROM division, modalidad WHERE division.modalidad_id = modalidad.id");
+                            if(!($consultaDiv->num_rows)==0){
+                                echo "<label>Divisiones existentes</label>";
+                                echo "<table class='table table-sm bg-light table-bordered'>
+                                        <thead>
+                                            <th>División</th>
+                                            <th>Modalidad</th>
+                                        </thead>
+                                        <tbody>";   
+                                    while ($div = $consultaDiv->fetch_assoc()) {
+                                        echo "<tr>
+                                            <td>".$div["nombreDivision"]."</td>
+                                            <td>".$div["nombre"]."</td>
+                                        </tr>";
+                                    }
+                                echo "</tbody>
+                                </table>";
+                            } else {
+                                echo "<div class='alert alert-warning'>No hay divisiones existentes</div>";
+                            }
+                        ?>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="Submit" class="btn btn-primary"> Crear </button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
+                    <button type="Submit" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>
         </div>
@@ -318,12 +288,12 @@ include "../header.html";
                 <div class="modal-body">
                     <div class="my-2">
                         <label for="nombreModalidad">Nombre modalidad</label>
-                        <input type="text" placeholder="Modalidad" name="nombreModalidad" class="form-control">
+                        <input type="text" placeholder="Modalidad" name="nombreModalidad" class="form-control" required>
                         <input type="text" name="materiaId" id="materiaId" <?php echo "value= '" . $id_materia . "'"; ?> hidden>
                     </div>
                     <div class="my-2">
                         <?php
-                            $consultaMod = $con->query("SELECT * FROM modalidad");
+                            $consultaMod = $con->query("SELECT * FROM modalidad WHERE fechaBajaModalidad IS NULL");
                             if(!($consultaMod->num_rows)==0){
                                 echo "<label>Modalidades existentes</label>";
                                 echo "<div class='list-group' >";   
