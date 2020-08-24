@@ -36,6 +36,50 @@ include "../header.html";
         <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     
+    
+    
+    <?php
+    
+    if(isset($_GET["resultado"])){
+        switch ($_GET["resultado"]) {
+                case 1:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Docente agregado exitosamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 2:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El documento o Legajo ingresado no existen o el docente ha sido dado de baja</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 3:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El docente ya esta dicta esa materia</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 4:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en la baja</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+        }
+    
+    }
+
+    ?>
+
     <div class="my-3">
       <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Docente</a>
     </div>
@@ -43,43 +87,44 @@ include "../header.html";
         
 
     <div class="my-4">
-        <table class="table table-bordered text-center table-info">
+        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
             <thead>
                 <th>Legajo</th>
-                <th>Nombre </th>
+                <th>Docente</th>
                 <th>Cargo</th>
                 <th>Estado</th>
-                <th>Ingresar Licencia</th>
+                <th></th>
             </thead>
             <tbody>
                 <?php
                 include "../databaseConection.php";
+                $id_curso = $_GET["id"];
                 
-                $id_curso = $_GET['id'];
-            date_default_timezone_set('America/Argentina/Mendoza');
-                $currentDateTime = date('Y-m-d H:i:s');
-                
-                 
-                
-                $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso");
-                
-                //echo "SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso";
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDateTime = date('Y-m-d');
 
-                while($alumnocursoactual = $consulta2->fetch_assoc()){
-                    $alumno = $con->query("SELECT * FROM alumno WHERE id = '".$alumnocursoactual['alumno_id']."'")->fetch_assoc();
-                    
-                    //$url = 'bajaAlum.php?id='.$resultado1["id"];
-                   // $id = $resultado1["id"];
-                    
+                $consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+                
+                while ($resultadoProf = $consulta1->fetch_assoc()) {
+                     $nombreCompleto = $resultadoProf['apellidoProf'].", ".$resultadoProf['nombreProf'];
+                    $id = $resultadoProf['id'];
                     echo "<tr>
-                        <td>".$alumno['legajoAlumno']."</td>
-                        <td>".$alumno['apellidoAlum']."</td>
-                        <td>".$alumno['nombreAlum']."</td>
-                        <td>".$alumno['dniAlum']."</td>
-                        <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id= onclick='return confirmDelete()' href=''><i class='fa fa-trash'></i></a></td>
+                    <td>" . $resultadoProf['legajoProf'] . "</td>
+                    <td>" . $nombreCompleto . "</td>
+                    <td>" . $resultadoProf['nombreCargo'] . "</td>
+                    <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
+                    
+                    <td class='text-center'>
+                        <a class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit'></i>Editar</a>
+                        <a class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash'></i>Baja</a>
+                        <a class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(".$id.")'><i class='fa fa-address-book-o'></i>Licencia</a> 
+                                                
+                    </td>
+                    
                     </tr>";
                 }
-            
+                
+                
                 ?>
                 
                 </tbody>
@@ -87,22 +132,22 @@ include "../header.html";
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal asociar porfesor-->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Agregar docente</h5>
             </div>
-            <form method="POST" id="insertAlumno" name="insertAlumno" action="inscribir_UnAlumno.php" enctype="multipart/form-data" role="form">
+            <form method="POST" id="insertAlumno" name="insertAlumno" action="ingresarNuevoDocente.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     
                     <div class="my-2">
                         <h5 class="msg" id="msjValidacionApellido">Ingrese el DNI y Legajo del docente a agregar y su cargo</h5>
                     </div>
                     <div class="form-inline my-2">
-                        <label for="selectcargo">Cargo   </label>
-                        <select id="selectcargo" class="custom-select mx-2" style="width:200px">
+                        <label for="cargo">Cargo</label>
+                        <select id="cargo" name="cargo" class="custom-select mx-2" style="width:200px">
                             <?php
                                   include "../databaseConection.php";
                                 
@@ -144,11 +189,56 @@ include "../header.html";
     </div>
 </div>
 
+<!-- Modal de licencias -->
+<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Licencia docente</h5>
+                
+            </div>
+            
+            
+            <form method="POST" id="insertAlumno" name="insertAlumno" action="ingresarLicenciaDocente.php" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                    
+                    <h8>La licencia puede ser a partir del de la fecha o posteriores, no se aceptan licencias pasadas</h8>
+                    
+                    <div class="my-2">
+                        <div class="form-inline my-2">
+                          <label style="margin-right: 1rem;" for="fechaDesde">Desde:</label>
+                          <input type="date" id="fechaDesde" name="fechaDesde" onchange="validarFechasJustificativo();" class="form-control mr-2" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> <?php echo"value= '".$currentDateTime."'"; ?> required >
+                          <h9 id="msgDesde"></h9>
+                        </div>
+                        <div class="form-inline my-2">
+                          <label style="margin-right: 1.2rem;" for="fechaHasta">Hasta:</label>
+                          <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2"
+                            <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
+                          <h9 id="msgHasta"></h9>
+                        </div>
+                    </div>
+                    
+                    <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
+                    <input type="text" id="impIDprof">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear"> Crear</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="administrador.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script src="paginadoDataTable.js"></script>
+<script src="administrador.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="paginadoDataTable.js"></script>
+<script src="funcionesLicencia.js"></script>
 
 
     <?php

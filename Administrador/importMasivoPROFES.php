@@ -67,7 +67,8 @@ if(isset($_FILES["inpGetFile"])){
                 
                 }    
             }else{
-                echo "<script> alert('EEEEEEEERror en el formato de la primera fila') </script>";
+                //echo "<script> alert('EEEEEEEERror en el formato de la primera fila') </script>";
+               header("Location:/DayClass/Administrador/config_profesores.php?resultado=6");
         }
             
             
@@ -78,6 +79,6 @@ if(isset($_FILES["inpGetFile"])){
     }
 }
 }
-echo "<script> window.location = 'config_profesores.php' </script>";
+header("Location:/DayClass/Administrador/config_profesores.php?resultado=5");
 ////fuente:https://evilnapsis.com/2019/03/20/importar-datos-de-un-excel-a-una-base-de-datos-mysql-con-php/
 ?>
