@@ -218,7 +218,7 @@ include "../header.html";
                     </div>
                     
                     <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
-                    <input type="text" id="impIDprof" hidden>
+                    <input type="text" mane="impIDprof" id="impIDprof" hidden>
 
                 </div>
                 <div class="modal-footer">
