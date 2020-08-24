@@ -202,24 +202,23 @@ include "../header.html";
             <form method="POST" id="insertAlumno" name="insertAlumno" action="ingresarLicenciaDocente.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     
-                    <h8>La licencia puede ser a partir del de la fecha o posteriores, no se aceptan licencias pasadas</h8>
+                    <h8>La licencia puede ser a partir de la fecha actual o posterior, no se aceptan licencias pasadas</h8>
                     
                     <div class="my-2">
                         <div class="form-inline my-2">
-                          <label style="margin-right: 1rem;" for="fechaDesde">Desde:</label>
-                          <input type="date" id="fechaDesde" name="fechaDesde" onchange="validarFechasJustificativo();" class="form-control mr-2" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> <?php echo"value= '".$currentDateTime."'"; ?> required >
+                          <label style="margin-right: 1rem;" for="fechaDesde">Inicio Licencia: </label>
+                          <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> <?php echo"value= '".$currentDateTime."'"; ?> required >
                           <h9 id="msgDesde"></h9>
                         </div>
                         <div class="form-inline my-2">
-                          <label style="margin-right: 1.2rem;" for="fechaHasta">Hasta:</label>
-                          <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2"
-                            <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
+                          <label style="margin-right: 1.2rem;" for="fechaHasta">Fin Licencia: </label>
+                          <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2" required disabled>
                           <h9 id="msgHasta"></h9>
                         </div>
                     </div>
                     
                     <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
-                    <input type="text" id="impIDprof">
+                    <input type="text" id="impIDprof" hidden>
 
                 </div>
                 <div class="modal-footer">
