@@ -23,6 +23,8 @@ if (isset($_SESSION['administrador'])) {
 
 ?>
 
+
+
 <div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 25rem;">
    <form action="login.php" method="POST" class="form-group m-4">
       <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
@@ -53,6 +55,31 @@ if (isset($_SESSION['administrador'])) {
             </button>
          </div>";
       }
+       
+    
+        if(isset($_GET["resultado"])){
+
+            switch ($_GET["resultado"]) {
+                case 1:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Registro Exitoso</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 2:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Datos no localizados</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+
+            }
+        }
+
       ?>
    </form>
 </div>

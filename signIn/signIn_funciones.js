@@ -116,7 +116,10 @@ function validarEmail(){
     
     changeColor('inputEmail',rtdo);
     setValitationMesage('msjValidacionEmail', rtdo, msg);
-    validar();
+    return rtdo;
+    
+    //validar();
+    
 }
 
 
@@ -138,7 +141,9 @@ function validarContrasenia()
 
     changeColor('inputPassword4',rtdo);
     setValitationMesage('msjValidacionPass', rtdo, msg);
-    validar();
+    
+    return rtdo;
+    //validar();
     
 }
 
@@ -160,7 +165,10 @@ function validarFechaNac(){
     
     changeColor('inputDate',rtdo);
     setValitationMesage('msjValidacionFchNac', rtdo, msg);
-    validar();
+    
+    return rtdo;
+    
+    //validar();
     
 }
 
@@ -269,6 +277,17 @@ function validar(){
     }else{
         document.getElementById('btnRegistrarse').disabled=true;  
     }
+    
          
 }
 
+function valiarCampos(){
+    var pass = validarContrasenia();
+    var fchNac = validarFechaNac() ;
+    var mail = validarEmail();
+    
+    if(pass && fchNac && mail){
+        return true;
+    }
+    return false;
+}
