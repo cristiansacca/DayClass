@@ -60,7 +60,7 @@ include "../header.html";
                     break;
                 case 3:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El docente ya esta dicta esa materia</h5>
+                            <h5>El docente ya dicta esa materia</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -69,6 +69,14 @@ include "../header.html";
                 case 4:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Error en la baja</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 5:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Licencia cargada exitosamente</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -105,9 +113,17 @@ include "../header.html";
 
                 $consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
                 
+                
+                echo "<input type='date' name='impIDprof' id='hoy' value='$currentDateTime' hidden>";
                 while ($resultadoProf = $consulta1->fetch_assoc()) {
                      $nombreCompleto = $resultadoProf['apellidoProf'].", ".$resultadoProf['nombreProf'];
                     $id = $resultadoProf['id'];
+                    
+                    $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Activo'");
+                    $resultadoLicencia = $consulta2->fetch_assoc();
+                    $inicioLicencia = $resultadoLicencia["fechaDesdeCargoProfesorEstado"];
+                    
+                    
                     echo "<tr>
                     <td>" . $resultadoProf['legajoProf'] . "</td>
                     <td>" . $nombreCompleto . "</td>
@@ -118,10 +134,17 @@ include "../header.html";
                         <a class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit'></i>Editar</a>
                         <a class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash'></i>Baja</a>
                         <a class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(".$id.")'><i class='fa fa-address-book-o'></i>Licencia</a> 
-                                                
+                        <input type='date' name='impIDprof' id='inicLic".$id."' value='$inicioLicencia' hidden>                      
+                        
                     </td>
                     
+                     
                     </tr>";
+                    
+                    
+                    
+                   
+                    
                 }
                 
                 
@@ -202,7 +225,7 @@ include "../header.html";
             <form method="POST" id="insertAlumno" name="insertAlumno" action="ingresarLicenciaDocente.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     
-                    <h8>La licencia puede ser a partir de la fecha actual o posterior, no se aceptan licencias pasadas</h8>
+                    <h8>No se aceptan licencias pasadas, iniciadas antes de la fecha</h8>
                     
                     <div class="my-2">
                         <div class="form-inline my-2">
@@ -218,7 +241,7 @@ include "../header.html";
                     </div>
                     
                     <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
-                    <input type="text" mane="impIDprof" id="impIDprof" hidden>
+                    <input type="text" name="impIDprof" id="impIDprof" hidden>
 
                 </div>
                 <div class="modal-footer">
