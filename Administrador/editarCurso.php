@@ -85,7 +85,7 @@ $_SESSION['administrador']= $resultado1;
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El mail ingresado ya existe</h5>
+                            <h5>Ocurrio un error en la actualizacion</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -99,15 +99,16 @@ $_SESSION['administrador']= $resultado1;
 
         ?>
   <div class="mt-2 mx-auto">
-    <form method="post" id="editarAdmin" name="editarAdmin" action="#" onsubmit="" enctype="multipart/form-data" role="form">
+    <form method="post" id="editarCurso" name="editarCurso" action="modificarCurso.php" onsubmit="" enctype="multipart/form-data" role="form">
       <div class="fill_fields">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputName4">Inicio Cursado:</label>
+            <label for="inputInicio">Inicio Cursado:</label>
             <input type="date" class="form-control" id="inputInicioCursado" name="inputInicioCursado" placeholder="Fecha Inicio Cursado" required 
-                   <?php echo "value='".$fchDesde."'"; 
+                   <?php  
                         if($rtdo){
-                            echo "readonly";
+                            echo "disabled";
+                            echo " value='".$fchDesde."'";
                         }else{
                             echo "onchange='habilitarSegundaFecha()'";
                             echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'";
@@ -115,17 +116,27 @@ $_SESSION['administrador']= $resultado1;
                    ?>
                    >
               
-            <h9 class="msg" id="msjValidacionNombre"></h9>
+            <h9 class="msg" id="msjValidacionFechaI"></h9>
           </div>
          
             <div class="form-group col-md-6">
-            <label for="inputSurname4">Fin Cursado:</label>
-            <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled required <?php echo "value='".$fchHasta."'";?>>
-            <h9 class="msg" id="msjValidacionApellido"></h9>
+            <label for="inputHasta">Fin Cursado:</label>
+            <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled required <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'";
+                 if($rtdo){
+                            echo "disabled";
+                            echo " value='".$fchHasta."'";
+                        }  ?>>
+            <h9 class="msg" id="msjValidacionFechaH"></h9>
           </div>
         </div>
 
-        <input type="submit" value="Guardar cambios" class="btn btn-primary">
+        <input type="submit" value="Guardar cambios" class="btn btn-primary" <?php  
+                        if($rtdo){
+                            echo "disabled";
+                            
+                        }
+                   ?>>
+        <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
       </div>
     </form>
   </div>
