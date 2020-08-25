@@ -77,7 +77,6 @@ if (!isset($_SESSION['administrador']))
     <div class="my-2">
         <table id="dataTable" class="table table-info table-bordered table-hover">
             <thead>
-                <th>N°</th>
                 <th>Nombre materia</th>
                 <th>Nivel</th>
                 <th>Editar </th>
@@ -88,7 +87,6 @@ if (!isset($_SESSION['administrador']))
                 <?php
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDate = date('Y-01-01');          
-                $aux=1 ;
                 $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL  ORDER BY id ASC");
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $idmateria = $resultado1['id'];
@@ -105,16 +103,12 @@ if (!isset($_SESSION['administrador']))
                     }
 
                     echo "<tr>
-                    <td>$aux</td>   
                     <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td>$nivelMateria</td>
                     <td><button class='btn btn-primary' data-toggle='modal' data-target='#staticBackdrop2'><i class='fa fa-edit'></i></button></td>
                     <td>".$cargado."</td>
-                    <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
+                    <td class='text-center'><a class='btn btn-danger' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
-                   
-                   
-                    $aux++ ;
                     
                 }
                 
