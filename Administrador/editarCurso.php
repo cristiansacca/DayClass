@@ -34,6 +34,9 @@ $_SESSION['administrador']= $resultado1;
       <?php
             include "../databaseConection.php";
             $id_curso = $_GET['id'];
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+            $currentDateTime = date('Y-m-d H:i:s');
+
             
             $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
             $resultado = $consultaCurso->fetch_assoc();
@@ -45,6 +48,24 @@ $_SESSION['administrador']= $resultado1;
             
             //echo "<h6>Inicio del curso: ".strftime('%d/%m/%Y', strtotime($fchDesde))."</h6>";
             //echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
+      
+            $rtdo = false;
+      
+            if(($fchDesde < $currentDateTime &&  $fchHasta < $currentDateTime) || ($fchDesde == "" &&  $fchHasta == "")){
+                echo "<div class='alert alert-danger' role='alert'>
+                            <h5>Se deben ingresar las fechas de Cursado para este año</h5>
+                        </div>";
+                
+                
+            }else{
+                echo "<div class='alert alert-success' role='alert'>
+                            <h5>Las fechas de cursado son Correctas</h5>
+                        </div>";
+                $rtdo = true;
+            }
+      
+      
+            
         
         ?>
       
@@ -78,18 +99,28 @@ $_SESSION['administrador']= $resultado1;
 
         ?>
   <div class="mt-2 mx-auto">
-    <form method="post" id="editarAdmin" name="editarAdmin" action="actualizarDatosAdmin.php" onsubmit="return validarRepeticion()" enctype="multipart/form-data" role="form">
+    <form method="post" id="editarAdmin" name="editarAdmin" action="#" onsubmit="" enctype="multipart/form-data" role="form">
       <div class="fill_fields">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputName4">Inicio Cursado:</label>
-            <input type="date" class="form-control" id="inputInicioCursado" name="inputInicioCursado" placeholder="Fecha Inicio Cursado" required <?php echo "value='".$fchDesde."'"; ?>>
+            <input type="date" class="form-control" id="inputInicioCursado" name="inputInicioCursado" placeholder="Fecha Inicio Cursado" required 
+                   <?php echo "value='".$fchDesde."'"; 
+                        if($rtdo){
+                            echo "readonly";
+                        }else{
+                            echo "onchange='habilitarSegundaFecha()'";
+                            echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'";
+                        }
+                   ?>
+                   >
+              
             <h9 class="msg" id="msjValidacionNombre"></h9>
           </div>
          
             <div class="form-group col-md-6">
             <label for="inputSurname4">Fin Cursado:</label>
-            <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" required <?php echo "value='".$fchHasta."'"; ?>>
+            <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled required <?php echo "value='".$fchHasta."'";?>>
             <h9 class="msg" id="msjValidacionApellido"></h9>
           </div>
         </div>

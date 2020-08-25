@@ -337,4 +337,15 @@ function confirmDelete() {
         }
 
 
+function habilitarSegundaFecha(){
+    eval("debugger;");
+    var fchDesde = document.getElementById('inputInicioCursado').value;
+    
+    document.getElementById('inputFinCursado').value = fchDesde;
+    document.getElementById('inputFinCursado').min = fchDesde;
+    document.getElementById('inputFinCursado').disabled = false;
+    document.getElementById('inputFinCursado').readonly = false;
+    
+}
+
    
