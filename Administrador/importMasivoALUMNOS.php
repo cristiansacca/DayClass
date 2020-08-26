@@ -96,9 +96,6 @@ if(count($yaInscriptos) > 0){
     }
 
     echo "</ul>
-    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-        <span aria-hidden='true'>&times;</span>
-        </button>
     </div>";
 }
 
@@ -113,9 +110,6 @@ if(count($correcto) > 0){
     }
 
     echo "</ul>
-    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-        <span aria-hidden='true'>&times;</span>
-        </button>
     </div>";
 }
 ?>
