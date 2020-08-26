@@ -13,7 +13,7 @@ $dni = $_POST["inputDNI"];
 
 $consultaAlum = $con->query("SELECT * FROM `alumno` WHERE legajoAlumno = '$legajo' AND dniAlum = '$dni'");
 
-//echo "SELECT * FROM `alumno` WHERE legajoAlum = '$legajo' AND dniAlum = '$dni'";
+
 
 if(mysqli_num_rows($consultaAlum) == 0){
     $consultaProf = $con->query("SELECT * FROM `profesor` WHERE legajoProf = '$legajo' AND dniProf = '$dni'");
@@ -28,6 +28,16 @@ if(mysqli_num_rows($consultaAlum) == 0){
         $nombre = $resultado2['nombreProf'];
         $apellido = $resultado2['apellidoProf'];
         $rol = "Profesor";
+        
+        $pass = $resultado1['contraseniaProf'];
+        $mail = $resultado1['emailProf'];
+        $nac = $resultado1['fechaNacProf'];
+    
+    
+    if($pass !="" && $mail != "" && nac != ""){
+        header("location: /DayClass/signIn/sign_in.php?resultado=3");
+    }
+        
     }
     
 }else{
@@ -36,6 +46,14 @@ if(mysqli_num_rows($consultaAlum) == 0){
     $nombre = $resultado1['nombreAlum'];
     $apellido = $resultado1['apellidoAlum'];
     $rol = "Alumno";
+    $pass = $resultado1['contraseniaAlum'];
+    $mail = $resultado1['emailAlum'];
+    $nac = $resultado1['fechaNacAlumno'];
+    
+    
+    if($pass !="" && $mail != "" && nac != ""){
+        header("location: /DayClass/signIn/sign_in.php?resultado=3");
+    }
 }
 
 ?>
