@@ -41,6 +41,14 @@ include "../header.html";
                             </button>
                         </div>";
                     break;
+                case 4:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El Correo Electronico, ya es utilizado por otro usuario, proporcione otro</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
 
             }
 

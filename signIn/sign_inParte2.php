@@ -29,9 +29,9 @@ if(mysqli_num_rows($consultaAlum) == 0){
         $apellido = $resultado2['apellidoProf'];
         $rol = "Profesor";
         
-        $pass = $resultado1['contraseniaProf'];
-        $mail = $resultado1['emailProf'];
-        $nac = $resultado1['fechaNacProf'];
+        $pass = $resultado2['contraseniaProf'];
+        $mail = $resultado2['emailProf'];
+        $nac = $resultado2['fechaNacProf'];
     
     
     if($pass !="" && $mail != "" && nac != ""){
@@ -62,7 +62,7 @@ if(mysqli_num_rows($consultaAlum) == 0){
   <form action="updateUser.php" method="POST" onsubmit="return valiarCampos()">
     <h1 class="title"><u>Registro de nuevo usuario</u></h1>
     <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
-    
+      
     <div class="fill_fields">
     <div class="form-row">
         <div class="form-group col-md-6">

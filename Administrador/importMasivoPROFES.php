@@ -97,8 +97,8 @@ include "../header.html";
     <ul>";
 
         for ($i = 0; $i < count($yaInscriptos); $i++) {
-            $consultaIns = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
-            echo "<li>" . $consultaIns['apellidoAlum'] . ", " . $consultaIns['nombreAlum'] . "</li>";
+            $consultaIns = $con->query("SELECT * FROM profesor WHERE legajoProf = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
+            echo "<li>" . $consultaIns['apellidoProf'] . ", " . $consultaIns['nombreProf'] . "</li>";
         }
 
         echo "</ul>
@@ -111,8 +111,8 @@ include "../header.html";
     <ul>";
 
         for ($i = 0; $i < count($correcto); $i++) {
-            $consultaCorrecto = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '" . $correcto[$i] . "'")->fetch_assoc();
-            echo "<li>" . $consultaCorrecto['apellidoAlum'] . ", " . $consultaCorrecto['nombreAlum'] . "</li>";
+            $consultaCorrecto = $con->query("SELECT * FROM profesor WHERE legajoProf = '" . $correcto[$i] . "'")->fetch_assoc();
+            echo "<li>" . $consultaCorrecto['apellidoProf'] . ", " . $consultaCorrecto['nombreProf'] . "</li>";
         }
 
         echo "</ul>
