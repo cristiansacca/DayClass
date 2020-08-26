@@ -28,7 +28,9 @@ function validarDNI() {
     
     changeColor('inputDNI',rtdo);
     setValitationMesage('msjValidacionDNI', rtdo, msg);
-    validar();
+    
+    return rtdo;
+    //validar();
 }
 
 function validarLegajo() {
@@ -53,7 +55,10 @@ function validarLegajo() {
     
     changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
-    validar();
+    
+    return rtdo;
+    
+    //validar();
 }
 
 function validarNombre(){
@@ -289,5 +294,16 @@ function valiarCampos(){
     if(pass && fchNac && mail){
         return true;
     }
+    return false;
+}
+
+function validarDNIyLegajo(){
+    var legajo = validarLegajo();
+    var dni = validarDNI();
+    
+    if(legajo && dni){
+        return true;
+    }
+    
     return false;
 }

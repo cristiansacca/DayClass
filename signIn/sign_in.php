@@ -7,12 +7,11 @@ include "../header.html";
 
 
 <div class="text-center m-auto" style="width:45%; height:55%;">
-  <form action="sign_inParte2.php" method="POST">
+  <form action="sign_inParte2.php" method="POST" onsubmit="return validarDNIyLegajo()">
     <h1 class="title"><u>Registro de nuevo usuario</u></h1>
     <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
     
-      
-      
+      <!--Mensajes de error o exito de registro-->
     <?php
         if(isset($_GET["resultado"])){
 
