@@ -74,7 +74,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 6:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el formato del archivo, Genere uno nuevo</h5>
+                            <h5>Error en el formato del archivo, genere uno nuevo</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>

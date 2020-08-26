@@ -2,6 +2,9 @@
 include "../databaseConection.php";
 include "class.upload.php";//libreria para subir el archivo excel al servidor
 
+$correcto = [];
+$yaInscriptos = [];
+
 if(isset($_FILES["inpGetFile"])){
     echo "<script> alert('EEEEEEEENTRA AL IF') </script>";
     
@@ -35,7 +38,7 @@ if(isset($_FILES["inpGetFile"])){
             $nombre = $sheet->getCell("D".$first_row)->getValue();
             
             
-            $contador = 0;
+           
             
             //valido que la primera fila de la tabla excel sea
             //dni, legajo, apellido nombre, en ese orden, sino esta asi no importa la lista 
@@ -61,8 +64,9 @@ if(isset($_FILES["inpGetFile"])){
                         $sql = 'INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');';
                         
                         $rtdo = $con->query($sql);
+                         array_push($correcto, $legajo);
                     }else{
-                       $contador = $contador + 1; 
+                       array_push($yaInscriptos, $legajo);
                     }
                 
                 }    
@@ -79,6 +83,51 @@ if(isset($_FILES["inpGetFile"])){
     }
 }
 }
-header("Location:/DayClass/Administrador/config_profesores.php?resultado=5");
-////fuente:https://evilnapsis.com/2019/03/20/importar-datos-de-un-excel-a-una-base-de-datos-mysql-con-php/
+include "../header.html";
 ?>
+
+<div class="container">
+<?php
+
+if(count($yaInscriptos) > 0){
+    echo "<div class='alert alert-warning alert-dismissible fade show mt-4' role='alert'>
+        <h5>Docentes ya ingresados anteriormente</h5>
+    <ul>";
+    
+    for ($i=0; $i < count($yaInscriptos) ; $i++) { 
+        $consultaIns = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '".$yaInscriptos[$i]."'")->fetch_assoc();
+        echo "<li>".$consultaIns['apellidoAlum'].", ".$consultaIns['nombreAlum']."</li>";
+    }
+
+    echo "</ul>
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+        </button>
+    </div>";
+}
+
+if(count($correcto) > 0){
+    echo "<div class='alert alert-success alert-dismissible fade show mt-4' role='alert'>
+        <h5>Docentes agregados en el sistema satisfactoriamente</h5>
+    <ul>";
+    
+    for ($i=0; $i < count($correcto) ; $i++) { 
+        $consultaCorrecto = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '".$correcto[$i]."'")->fetch_assoc();
+        echo "<li>".$consultaCorrecto['apellidoAlum'].", ".$consultaCorrecto['nombreAlum']."</li>";
+    }
+
+    echo "</ul>
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+        </button>
+    </div>";
+}
+?>
+
+<a class="btn btn-primary" <?php echo "href='/DayClass/Administrador/config_alumno.php'" ?> ><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+
+</div>
+<?php
+include "../footer.html";
+?>
+
