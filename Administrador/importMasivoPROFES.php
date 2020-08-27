@@ -9,7 +9,7 @@ include "../header.html";
     $yaInscriptos = [];
 
     if (isset($_FILES["inpGetFile"])) {
-        echo "<script> alert('EEEEEEEENTRA AL IF') </script>";
+        //echo "<script> alert('EEEEEEEENTRA AL IF') </script>";
 
         $up = new Upload($_FILES["inpGetFile"]);
 
