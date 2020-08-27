@@ -3,6 +3,9 @@ include "../../header.html";
 include "../../databaseConection.php";
 ?>
 
+<script src="fcParametros.js"></script>
+<script src="../administrador.js"></script>
+
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
@@ -52,8 +55,8 @@ include "../../databaseConection.php";
             <a class="list-group-item list-group-item-action" href="institucion.php"><i class="fa fa-flag fa-lg mr-2"></i>Institución</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop3"><i class="fa fa-briefcase fa-lg mr-2"></i>Modalidades</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-hashtag fa-lg mr-2"></i>Divisiones</a>
-            <a class="list-group-item list-group-item-action" href=""><i class="fa fa-check-circle fa-lg mr-2"></i>Tipo de asistencias</a>
-            <a class="list-group-item list-group-item-action" href=""><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
+            <a class="list-group-item list-group-item-action"><i class="fa fa-check-circle fa-lg mr-2"></i>Tipo de asistencias</a>
+            <a class="list-group-item list-group-item-action" href="" href="" data-toggle="modal" data-target="#staticBackdrop4"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-sign-out fa-lg mr-2"></i>Vigencia de sesión</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia y estados</a>
         </div>
@@ -155,7 +158,41 @@ include "../../databaseConection.php";
     </div>
 </div>
 
-<script src="../administrador.js"></script>
+<!-- Modal tiempo autoasistencia -->
+<div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Tiempo limite codigo Autoasistencia</h5>
+            </div>
+            <form action="limiteCodigoAutoasist.php" method="POST">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="minutosCodigo">Tiempo maximo vigencia codigo Autoasistencia</label>
+                            <input type="number" placeholder="Minutos" name="minutosCodigo" id="minutosCodigo" class="form-control col-md-6" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" onchange="minutosValidos()" required>
+                        <h9 class="msg" id="msjValidacionCodigo"></h9>
+                    </div>
+                    <div class="my-2">
+                        <?php
+                            $consultaLimite = $con->query("SELECT * FROM `tiempolimitecodigo`");
+                            $limiteAnt = $consultaLimite->fetch_assoc();
+                            $tiempoAnt = $limiteAnt["minutosLimite"];
+                            
+                            
+                            echo "<input type='number'  id='minutosCodigoAnt' value='$tiempoAnt' hidden>";
+                        ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 <?php
 include "../../footer.html";
