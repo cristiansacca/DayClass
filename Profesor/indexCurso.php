@@ -21,6 +21,25 @@ if(isset($_GET["id_curso"])){
     header("location:/DayClass/Profesor/index.php");
 }
 
+
+$id_prof = $_SESSION['profesor']["id"];
+$id_curso = $_GET["id_curso"];
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDateTime = date('Y-m-d');
+
+$consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE profesor.id = '$id_prof' AND cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)"); 
+    
+$resultadoProf = $consulta1->fetch_assoc();
+$estadoCargo = $resultadoProf['nombreEstadoCargoProfe'];
+
+$hab =false;
+//si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
+if($estadoCargo == "Activo"){
+    $hab = true;
+}
+
+
+
 ?>
 
 <script src="profesor.js"></script>
@@ -29,6 +48,14 @@ if(isset($_GET["id_curso"])){
 
     <div class="jumbotron my-4 py-4">
         <h1><?php echo $curso["nombreCurso"] ?></h1>
+        
+        <?php 
+                if(!$hab){
+                echo "<div class='alert alert-danger' role='alert'>
+                            <h5>Su estado el dia de hoy, es $estadoCargo no puede tomar Asistencia</h5>
+                        </div>"; 
+            }
+        ?>
         <a class="btn btn-secondary" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <a class="btn btn-info" <?php echo "href='inscriptos.php?id_curso=$id_curso'"; ?> ><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
     </div>
@@ -95,8 +122,27 @@ if(isset($_GET["id_curso"])){
                     <p class="card-text">Concurrencia al aula de los alumnos </p>
                 </div>
                 <div class="card-footer">
-                    <a <?php echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'"; ?> class="btn btn-primary">Autoasistencia</a>
-                    <a <?php echo "href='Asistencia/tradicional.php?id_curso=$id_curso'"; ?>  class="btn btn-success">Tradicional</a>
+                    <a 
+                       <?php
+                            if($hab){
+                                echo 'class="btn btn-primary"'; 
+                               echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'"; 
+                                
+                            }else{
+                                echo 'class="btn btn-primary disabled"';
+                               
+                            }
+                        ?>>Autoasistencia</a>
+                    <a <?php
+                            if($hab){
+                                echo 'class="btn btn-success"'; 
+                               echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'"; 
+                                
+                            }else{
+                                echo 'class="btn btn-success disabled"';
+                               
+                            }
+                        ?>  >Tradicional</a>
                     
                 </div>
             </div>
