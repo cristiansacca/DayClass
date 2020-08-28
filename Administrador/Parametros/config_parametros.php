@@ -216,12 +216,56 @@ include "../../databaseConection.php";
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Formato de Legajo</h5>
             </div>
-            <form action="registrarFormatoLegajo.php" method="POST" onsubmit="enviar()">
+            <form action="registrarFormatoLegajo.php" method="POST" onsubmit="return enviar()">
                 <div class="modal-body">
                     
-                    
-                    
                     <div class="my-2">
+                    <?php
+                            $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+                            $rtdo = false;
+                    
+                            if(!($consultaParamLeg->num_rows)==0){
+                                
+                                echo "<div class='alert alert-success' role='alert'>
+                                        <h5>Ya se ha ingresado un formato de Legajo</h5>
+                                    </div>";
+                                $rtdo =true;
+                            
+                            $formatoLegajo = $consultaParamLeg->fetch_assoc();
+                            $dni = $formatoLegajo["esDNI"];
+                                
+                                if($dni){
+                                  echo "<h6>Se utiliza el número de DNI como legajo</h6>";  
+                                }else{
+                                    echo "<h6>Se utiliza un formato Personalizado como legajo, formado por: </h6>
+                                    <ol>";
+                                    
+                                    $letras = $formatoLegajo["tieneLetras"];
+                                    $numeros = $formatoLegajo["tieneNumeros"];
+                                    
+                                    if($letras){
+                                        $cantLetras = $formatoLegajo["cantLetras"];
+                                        echo "<li>$cantLetras letras mayusculas</li>";
+                                    }
+                                    if($numeros){
+                                        $cantNumeros = $formatoLegajo["cantNumeros"];
+                                        echo "<li>$cantNumeros números</li>";
+                                    }
+                                    
+                                    
+                                    echo "</ol>";
+                                }
+                                   
+                            } 
+                        ?>
+                    </div>
+                    
+                    <div class="my-2" <?php 
+                         if($rtdo){
+                             echo " hidden";
+                         }
+                         
+                         ?> >
                         
                         <h6>Seleccione el formato de legajo de su institucion</h6>
                             
@@ -262,7 +306,12 @@ include "../../databaseConection.php";
                     <input type="text" id="arregloTipos" name="arregloTipos" hidden>
                 </div>
                 <div class="modal-footer">
-                    <button type="Submit" class="btn btn-primary">Crear</button>
+                    <button type="Submit" class="btn btn-primary" <?php 
+                         if($rtdo){
+                             echo " disabled";
+                         }
+                         
+                         ?> >Crear</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>

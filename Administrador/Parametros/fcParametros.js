@@ -105,6 +105,7 @@ function armarMsg(){
 function enviar(){
     eval("debugger;");
     var arregloTipoYcant = [];
+    var chequeados = 0;
     
     var elem = document.getElementById("personalizado").checked;
     
@@ -118,15 +119,27 @@ function enviar(){
                 var cantidad = document.getElementById(tipo + "C").value;
                 var tipoCant = [tipo, cantidad];
                 arregloTipoYcant.push(tipoCant);
+                chequeados ++;
             } 
         }
     
     }else{
         arregloTipoYcant.push("DNI");
     }
-    document.getElementById("arregloTipos").value=JSON.stringify(arregloTipoYcant);
+    
+    if(chequeados > 0 || arregloTipoYcant.length > 0){
+        document.getElementById("arregloTipos").value=JSON.stringify(arregloTipoYcant);
+        mostrarMensaje();
         return true;
+    }else{
+        return false;
+    }
+    
 
+}
+
+function mostrarMensaje(){
+    
 }
 
 
