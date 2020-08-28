@@ -32,7 +32,8 @@ function changeColor(elementID, rtdo){
 
 
 function setValitationMesage(elementID, rtdo, msg){
-    if(rtdo == false){ document.getElementById(elementID).style.visibility='visible';
+    if(rtdo == false){ 
+        document.getElementById(elementID).style.visibility='visible';
         document.getElementById(elementID).style.display='contents';
         document.getElementById(elementID).style.color = "Red"
         document.getElementById(elementID).innerHTML = msg;
@@ -42,3 +43,90 @@ function setValitationMesage(elementID, rtdo, msg){
     }
       
 }
+
+
+
+function unHide(){
+    eval("debugger;");
+    
+    document.getElementById('options').style.display='block';
+    
+    
+}
+
+
+
+
+function hide(){
+    eval("debugger;");
+    
+    document.getElementById('options').style.display='none'; 
+    var elem = document.getElementById("letras").checked =false;
+    var elem = document.getElementById("numeros").checked =false;
+    var elem = document.getElementById("letrasC").value = "";
+    var elem = document.getElementById("numerosC").value = "";
+    var elem = document.getElementById("letrasC").disabled =true;
+    var elem = document.getElementById("numerosC").disabled =true;
+    
+}
+
+
+
+function habilitarCant(id){
+    
+    eval("debugger;");
+    var elem = document.getElementById(id);
+    var idN = id + "N";
+    
+    elem.addEventListener('change', function() {
+    if(this.checked) {
+       
+        var elem = document.getElementById(id + "C").disabled =false;
+        //var elem = document.getElementById(dia + "2").disabled =false;
+    }else{
+         var elem = document.getElementById(id + "C").disabled =true;
+        var elem = document.getElementById(id + "C").value = "";
+    }
+});
+}
+
+
+
+function armarMsg(){
+  var msg ="El formato del legajo es: ";
+    
+    var elemL = document.getElementById("letrasC").value;
+    var elemN = document.getElementById("numerosC").value;
+    
+    
+    
+}
+
+function enviar(){
+    eval("debugger;");
+    var arregloTipoYcant = [];
+    
+    var elem = document.getElementById("personalizado").checked;
+    
+    if(elem){
+        var selecc = document.getElementsByClassName("opciones");
+        
+        for(let index = 0; index < selecc.length; index++){
+            var tipo = selecc[index].id;
+            
+            if(selecc[index].checked){
+                var cantidad = document.getElementById(tipo + "C").value;
+                var tipoCant = [tipo, cantidad];
+                arregloTipoYcant.push(tipoCant);
+            } 
+        }
+    
+    }else{
+        arregloTipoYcant.push("DNI");
+    }
+    document.getElementById("arregloTipos").value=JSON.stringify(arregloTipoYcant);
+        return true;
+
+}
+
+

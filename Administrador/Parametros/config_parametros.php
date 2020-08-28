@@ -41,6 +41,10 @@ include "../../databaseConection.php";
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Ya existe una división con el mismo nombre</h5>";
                 break;
+            case 7:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Parametros legajo cargados correctamente</h5>";
+                break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
@@ -53,6 +57,7 @@ include "../../databaseConection.php";
     <div>
         <div class="list-group">
             <a class="list-group-item list-group-item-action" href="institucion.php"><i class="fa fa-flag fa-lg mr-2"></i>Institución</a>
+            <a class="list-group-item list-group-item-action" href="#" data-toggle="modal" data-target="#staticBackdrop5"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato Legajo</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop3"><i class="fa fa-briefcase fa-lg mr-2"></i>Modalidades</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-hashtag fa-lg mr-2"></i>Divisiones</a>
             <a class="list-group-item list-group-item-action"><i class="fa fa-check-circle fa-lg mr-2"></i>Tipo de asistencias</a>
@@ -178,10 +183,72 @@ include "../../databaseConection.php";
                             $limiteAnt = $consultaLimite->fetch_assoc();
                             $tiempoAnt = $limiteAnt["minutosLimite"];
                             
-                            
-                            echo "<input type='number'  id='minutosCodigoAnt' value='$tiempoAnt' hidden>";
+                            echo "<h6>La duración anterior era de : $tiempoAnt minutos</h6>";
+                            echo "<input type='number' id='minutosCodigoAnt' value='$tiempoAnt' hidden>";
                         ?>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal formato legajo -->
+<div class="modal fade" id="staticBackdrop5" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Formato de Legajo</h5>
+            </div>
+            <form action="registrarFormatoLegajo.php" method="POST" onsubmit="enviar()">
+                <div class="modal-body">
+                    
+                    
+                    
+                    <div class="my-2">
+                        
+                        <h6>Seleccione el formato de legajo de su institucion</h6>
+                            
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio" checked onclick='hide()'> Documento Nacional de Identidad</label>
+                                </div>
+
+                                <div class="radio">
+                                    <label><input type="radio" id="personalizado" name="optradio" onclick='unHide()'> Personalizado</label>
+                                </div>
+                                
+                        
+                        <div name="options" id="options" style="display:none">
+                            <table id="dataTable" class="table">
+                                <tbody>                                       
+                                    <tr>
+                                        <td> <input class='opciones' id="letras" type='checkbox' onclick='habilitarCant(this.id)'><label class='ml-2' name='dia[]'>Letras Mayusculas</label></td>
+                                        <td><input class="form-control col-md-12" type='number' id="letrasC" disabled placeholder="Cantidad" min="1" max="5"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> <input class='opciones' id="numeros" type='checkbox' onclick='habilitarCant(this.id)'><label class='ml-2' name='dia[]'>Numeros</label></td>
+                                        <td><input class="form-control col-md-12" type='number' id="numerosC" disabled placeholder="Cantidad" min="1" max="5"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    
+                    <div class="my-2">
+                        <h9 class="msg" id="msjFormatoLegajo"></h9>
+                    </div>
+                    <input type="text" id="arregloTipos" name="arregloTipos" hidden>
                 </div>
                 <div class="modal-footer">
                     <button type="Submit" class="btn btn-primary">Crear</button>
