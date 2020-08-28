@@ -70,11 +70,11 @@ if(isset($_GET["id_curso"])){
     
 </div>
 
-<?php
-include "modal-autoasistencia.html";
-?>
-
 <script src="alumno.js"></script>
+
+<?php
+include "modal-autoasistencia.php";
+?>
 
 <?php
 include "../footer.html";

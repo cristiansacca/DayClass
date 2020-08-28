@@ -6,16 +6,14 @@ function cambiarContenidoNavbar() {
     contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Administrador/index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
     contenido += "<li class='nav-item dropdown'>";
     contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-gear fa-lg mr-1'></i>Configuraciones</a>";
-    contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='config_profesores.php'>Profesores</a><div class='dropdown-divider'></div>";
-    contenido += "<a class='dropdown-item' href='config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='Parametros/config_parametros.php'>Parametros</a><div class='dropdown-divider'></div><a class='dropdown-item' href='config_admin.php'>Administradores</a></div></li>";
+    contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='/DayClass/Administrador/config_profesores.php'>Profesores</a><div class='dropdown-divider'></div>";
+    contenido += "<a class='dropdown-item' href='/DayClass/Administrador/config_alumno.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/Parametros/config_parametros.php'>Parametros</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/config_admin.php'>Administradores</a></div></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
-    contenido += "<li class='nav-item'><button class='btn btn-danger' id='btnSalir'><i class='fa fa-sign-out'></i>Salir</button></li>";
+    contenido += "<li><div class='dropdown'>";
+    contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-user-circle mr-1'></i><label id='nombreUsuarioNav'>Nombre Apellido</label></button>";
+    contenido += "<div class='dropdown-menu'><a class='dropdown-item' href='/DayClass/Administrador/editar_perfil.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>";
+    contenido += "<a class='dropdown-item' href='/DayClass/logout.php'><i class='fa fa-sign-out mr-1'></i>Salir</a></div></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
-}
-
-//El botón salir vuelve al Login
-document.getElementById("btnSalir").onclick = function () {
-    location.href = "/DayClass/logout.php";
 }
 
 function letters(letras) {

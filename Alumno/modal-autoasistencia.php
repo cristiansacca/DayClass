@@ -29,3 +29,7 @@
     </div>
   </div>
 </div>
+
+<script>
+  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['alumno']['nombreAlum']." ".$_SESSION['alumno']['apellidoAlum']."'" ?>
+</script>

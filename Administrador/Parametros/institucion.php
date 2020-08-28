@@ -121,7 +121,9 @@ if(($institucion->num_rows)==0){
 </div>
 
 <script src="../administrador.js"></script>
-
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+</script>
 <?php
 include "../../footer.html";
 ?>

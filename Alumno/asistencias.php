@@ -78,11 +78,11 @@ if (!isset($_SESSION['alumno']))
     </div>
 </div>
 
-<?php
-include "modal-autoasistencia.html";
-?>
-
 <script src="alumno.js"></script>
+
+<?php
+include "modal-autoasistencia.php";
+?>
 
 <?php
 include "../footer.html";

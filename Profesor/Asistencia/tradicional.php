@@ -88,7 +88,9 @@ $curso = $consulta1->fetch_assoc();
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script src="funciones_tradicional.js"></script>
-
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
+</script>
 
 <?php
 include "../../footer.html";

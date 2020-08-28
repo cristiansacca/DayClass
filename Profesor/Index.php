@@ -72,7 +72,8 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="profesor.js"></script>
 <script>
-    $("#temaDia").attr("hidden", "hidden")
+    $("#temaDia").attr("hidden", "hidden");
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
 </script>
 
 <?php

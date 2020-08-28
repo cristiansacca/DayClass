@@ -132,11 +132,6 @@ include "../header.html";
     </div>
 </div>
 
-
-
-
-
-
 <?php
 include "../databaseConection.php";
 
@@ -154,7 +149,11 @@ $resultado1 = $consulta1->fetch_assoc();
 
 //PARA MOSTRAR LAS FECHAS DE ACTIVIDAD Y LICENCIA DE UN DOCENTE
 $consulta1 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '103' AND cargoprofesor.curso_id = '18' AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id ORDER BY cargoprofesorestado.fechaDesdeCargoProfesorEstado ASC");
-
-
 	
 ?>
+
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+</script>
+
+<?php include "../footer.html"; ?>

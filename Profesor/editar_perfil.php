@@ -138,7 +138,9 @@ $_SESSION['profesor']= $resultado1;
     </form>
   </div>
 </div>
-
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
+</script>
 
 <?php
 include "../footer.html";

@@ -150,34 +150,38 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 
 </div>
 
-  <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modalidad para validar justificativos:</h5>
-          </div>
-          <div class="modal-body">
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modalidad para validar justificativos:</h5>
+      </div>
+      <div class="modal-body">
 
-            <select id="modalidadseleccionado" class="custom-select my-3 ">
-              <option selected> Seleccione una modalidad </option>
-              <option value="1">Modalidad 1</option>
-              <option value="2">Modalidad 2</option>
-              <option value="3">Modalidad 3</option>
-            </select>
+        <select id="modalidadseleccionado" class="custom-select my-3 ">
+          <option selected> Seleccione una modalidad </option>
+          <option value="1">Modalidad 1</option>
+          <option value="2">Modalidad 2</option>
+          <option value="3">Modalidad 3</option>
+        </select>
 
-          </div>
+      </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success"  id="btnaceptar" data-dismiss="modal">Aceptar</button>
-            <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
-          </div>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success"  id="btnaceptar" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
       </div>
     </div>
+  </div>
+</div>
 
-    <script src="administrador.js"></script>
+<script src="administrador.js"></script>
+
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+</script>
 
 <?php
 include "../footer.html";

@@ -129,7 +129,10 @@ $_SESSION['administrador']= $resultado1;
     </form>
   </div>
 </div>
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+</script>
 
-  <?php
+<?php
 include "../footer.html";
 ?>

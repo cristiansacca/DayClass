@@ -1,5 +1,16 @@
 <?php
+//Se inicia o restaura la sesión
+session_start();
+
 include "../../header.html";
+ 
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['administrador'])) 
+{
+   //Nos envía a la página de inicio
+   header("location:/DayClass/index.php"); 
+}
+
 include "../../databaseConection.php";
 ?>
 
@@ -57,10 +68,10 @@ include "../../databaseConection.php";
     <div>
         <div class="list-group">
             <a class="list-group-item list-group-item-action" href="institucion.php"><i class="fa fa-flag fa-lg mr-2"></i>Institución</a>
-            <a class="list-group-item list-group-item-action" href="#" data-toggle="modal" data-target="#staticBackdrop5"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato Legajo</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop5"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato Legajo</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop3"><i class="fa fa-briefcase fa-lg mr-2"></i>Modalidades</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-hashtag fa-lg mr-2"></i>Divisiones</a>
-            <a class="list-group-item list-group-item-action"><i class="fa fa-check-circle fa-lg mr-2"></i>Tipo de asistencias</a>
+            <a class="list-group-item list-group-item-action" href=""><i class="fa fa-check-circle fa-lg mr-2"></i>Tipo de asistencias</a>
             <a class="list-group-item list-group-item-action" href="" href="" data-toggle="modal" data-target="#staticBackdrop4"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-sign-out fa-lg mr-2"></i>Vigencia de sesión</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia y estados</a>
@@ -259,7 +270,9 @@ include "../../databaseConection.php";
     </div>
 </div>
 
-
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+</script>
 
 <?php
 include "../../footer.html";

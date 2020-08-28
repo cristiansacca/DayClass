@@ -26,6 +26,7 @@ if(isset($_GET["id_curso"])){
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <h1>Habilitar auto-asistencia</h1>
+        <h5 class="my-2"><?php echo $curso["nombreCurso"] ?></h5>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     <?php
@@ -105,6 +106,10 @@ if(isset($_GET["id_curso"])){
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script src="funciones_habilitarAutoasistencia.js"></script>
+
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
+</script>
 
 <?php
 include "../../footer.html";

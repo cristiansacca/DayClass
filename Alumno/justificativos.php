@@ -141,12 +141,12 @@ if (!isset($_SESSION['alumno']))
   </div>
 </div>
 
-<?php
-include "modal-autoasistencia.html";
-?>
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="alumno.js"></script>
+
+<?php
+include "modal-autoasistencia.php";
+?>
 
 <?php
 include "../footer.html";

@@ -132,7 +132,7 @@ $_SESSION['alumno']= $resultado1;
     </div>
 
   <?php
-  include "modal-autoasistencia.html";
+  include "modal-autoasistencia.php";
   ?>
 
   <?php
