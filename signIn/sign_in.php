@@ -3,17 +3,18 @@ include "../header.html";
 ?>
 
 <script src="signIn_funciones.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
 
-
-<div class="text-center m-auto" style="width:45%; height:55%;">
-  <form action="sign_inParte2.php" method="POST" onsubmit="return validarDNIyLegajo()">
-    <h1 class="title"><u>Registro de nuevo usuario</u></h1>
-    <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
-    
-      <!--Mensajes de error o exito de registro-->
-    <?php
-        if(isset($_GET["resultado"])){
+<div class="container">
+    <div class="jumbotron my-4 py-4">
+        <h1>Registro de nuevo usuario</h1>
+        <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
+        <a href="/DayClass/index.php" class="btn btn-success"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
+    <form action="sign_inParte2.php" method="POST" onsubmit="return validarDNIyLegajo()">
+        
+        <!--Mensajes de error o exito de registro-->
+        <?php
+        if (isset($_GET["resultado"])) {
 
             switch ($_GET["resultado"]) {
                 case 1:
@@ -48,99 +49,89 @@ include "../header.html";
                             </button>
                         </div>";
                     break;
-
             }
-
-
         }
 
-        ?> 
-      
-      <?php
+        ?>
+
+        <?php
         include "../databaseConection.php";
-          $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
-                            $rtdo = false;
-                    
-                            if(!($consultaParamLeg->num_rows)==0){
-                            $formatoLegajo = $consultaParamLeg->fetch_assoc();
-                            $rtdo =true;
-                            $dni = $formatoLegajo["esDNI"];
-                            
-                                 echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
-                                if($dni){
-                                 
-                                }else{
-                                    
-                                    $letras = $formatoLegajo["tieneLetras"];
-                                    $numeros = $formatoLegajo["tieneNumeros"];
-                                    
-                                    $cantTotal = $formatoLegajo["cantTotalCaracteres"];
-                                    echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
-                                    
-                                    echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
-                                    echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
-                                    
-                                    
-                                    if($letras){
-                                        $cantLetras = $formatoLegajo["cantLetras"];
-                                        
-                                        echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
-                                    }
-                                    if($numeros){
-                                        $cantNumeros = $formatoLegajo["cantNumeros"];
-                                        
-                                        echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
-                                    }   
-                                }
-                                   
-                            }else{
-                                echo "<div class='alert alert-success' role='alert'>
-                                        <h5>Su institucion no ha definido un formato de legajo, no se podrá registrar</h5>
-                                    </div>";
-                                
-                            }
-      
-      ?>
-      
-    <div class="fill_fields">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputDNI">DNI</label>
-          <input type="number" class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
-          <h9 class="msg" id="msjValidacionDNI"></h9>
+        $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+        $rtdo = false;
+
+        if (!($consultaParamLeg->num_rows) == 0) {
+            $formatoLegajo = $consultaParamLeg->fetch_assoc();
+            $rtdo = true;
+            $dni = $formatoLegajo["esDNI"];
+
+            echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+            if ($dni) {
+            } else {
+
+                $letras = $formatoLegajo["tieneLetras"];
+                $numeros = $formatoLegajo["tieneNumeros"];
+
+                $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+
+                echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+
+
+                if ($letras) {
+                    $cantLetras = $formatoLegajo["cantLetras"];
+
+                    echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                }
+                if ($numeros) {
+                    $cantNumeros = $formatoLegajo["cantNumeros"];
+
+                    echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                }
+            }
+        } else {
+            echo "<div class='alert alert-success' role='alert'>
+                <h5>Su institucion no ha definido un formato de legajo, no se podrá registrar</h5>
+            </div>";
+        }
+
+        ?>
+
+        <div class="fill_fields text-center m-auto">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputDNI">DNI</label>
+                    <input type="number" class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
+                    <h9 class="msg" id="msjValidacionDNI"></h9>
+                </div>
+                <div class="form-group col-md-6" <?php
+                                                    if ($dni) {
+                                                        echo "hidden ";
+                                                    } ?>>
+                    <label for="inputLegajo">Legajo</label>
+                    <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
+                    <h9 class="msg" id="msjValidacionLegajo"></h9>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btnRegistrarse">Registrarse</button>
+
         </div>
-            <div class="form-group col-md-6" <?php 
-                    if($dni){
-                        echo "hidden ";
-                    }?>>
-          <label for="inputLegajo">Legajo</label>
-          <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" >
-          <h9 class="msg" id="msjValidacionLegajo"></h9>
-        </div> 
-        
-      </div>
-        
-       
-      
-
-
-      <button type="submit" class="btn btn-primary" id="btnRegistrarse">Registrarse</button>
-
-    </div>
-  </form>
+    </form>
 </div>
 
 <script type="text/javascript">
-   function mostrarPassword() {
-      var cambio = document.getElementById("inputPassword4");
-      if (cambio.type == "password") {
-         cambio.type = "text";
-         $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-      } else {
-         cambio.type = "password";
-         $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-      }
-   }
+    function mostrarPassword() {
+        var cambio = document.getElementById("inputPassword4");
+        if (cambio.type == "password") {
+            cambio.type = "text";
+            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        } else {
+            cambio.type = "password";
+            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        }
+    }
 </script>
 
 <?php

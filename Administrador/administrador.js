@@ -59,7 +59,7 @@ function validarContrasenia() {
     }
     else {
         msg = 'La contraseña ingresada no es fuerte';
-         document.getElementById('inputPassNewRep').disabled = true;
+        document.getElementById('inputPassNewRep').disabled = true;
     }
 
     changeColor('inputPassNew', rtdo);
@@ -78,13 +78,13 @@ function validarRepeticion() {
         msg = 'Las Cotraseñas no coinciden';
         dev = false;
     }
-    
-    if(c == ""){
+
+    if (c == "") {
         dev = true;
     }
 
     changeColor('inputPassNewRep', rtdo);
-    setValitationMesage('msjValidacionRepeticion', rtdo, msg); 
+    setValitationMesage('msjValidacionRepeticion', rtdo, msg);
     return dev;
 
 }
@@ -139,84 +139,44 @@ function setValitationMesage(elementID, rtdo, msg) {
 
 }
 
- function setEstado(estado) {
+function setEstado(estado) {
     eval("debugger;");
 
-    if (estado == "Validado"){
+    if (estado == "Validado") {
 
-        document.getElementById('estadoBtn').innerHTML = "Aprobado" ;
+        document.getElementById('estadoBtn').innerHTML = "Aprobado";
 
-    } else if( estado == "Denegado"){
-        document.getElementById('estadoBtn').innerHTML = "Denegado" ;
+    } else if (estado == "Denegado") {
+        document.getElementById('estadoBtn').innerHTML = "Denegado";
     }
 }
 
-document.getElementById("btnconfirmar").onclick = function() {
-    var elem = document.reporteadmin.tipo.value;
-
-    if (elem == "curso") {
-        location.href = "/DayClass/Administrador/reporte_curso.php";
-    }
-    else if (elem == "alumno") {
-        location.href = "/DayClass/Administrador/reporte_alumno.php";
-    }else {
-        alert("Seleccione una opción por favor");
-    }
-
-}
-
-document.getElementById("btnaceptar").onclick = function(){
-    var elem = document.getElementById("modalidadseleccionado").value;
-
-    if (elem == "Seleccione una modalidad") {
-        
-        alert("Por favor seleccione una modalidad");
-    } else {
-        location.href = "/DayClass/Administrador/validar_justificativos.php";
-    }
-}
 /*Para importar lista de profesores y alumnos*/
-function comprobar(){
+function comprobar() {
     eval("debugger;");
     var elem = document.getElementById('inpGetFile').value;
-        if(elem == ""){
-            alert("No esta cargado el documento");
-        }else{
-            document.getElementById('btnImportFile').disabled = false;
-        }
+    if (elem == "") {
+        alert("No esta cargado el documento");
+    } else {
+        document.getElementById('btnImportFile').disabled = false;
+    }
 }
 
-$('.custom-file-input').on('change', function() { 
-    let fileName = $(this).val().split('\\').pop(); 
-    $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+$('.custom-file-input').on('change', function () {
+    let fileName = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').addClass("selected").html(fileName);
 });
 
 /*Para importar lista de alumnos*/
-function comprobarLista(){
+function comprobarLista() {
     eval("debugger;");
     var elem = document.getElementById('inpGetFile').value;
-        if(elem == ""){
-            alert("No esta cargado el documento");
-        }else{
-            document.getElementById('btnImportar').disabled = false;
-        }
-}
-
- function EstadisticaBtn() {
-    eval("debugger;");
-    var elem = document.estadisticaadmin.tipo1.value;
-
-    if (elem == "curso") {
-        location.href = "/DayClass/Administrador/estadistica_curso.php";
+    if (elem == "") {
+        alert("No esta cargado el documento");
+    } else {
+        document.getElementById('btnImportar').disabled = false;
     }
-    else if (elem == "materia") {
-        location.href = "/DayClass/Administrador/estadistica_materia.php";
-    }else {
-        alert("Seleccione una opción por favor");
-    }
-
 }
-
 
 //funciones para validar nombre, apellido, legajo y DNI de alumno y profesor, usan las funciones letters, numbers, changeColor y setValidationMessage
 function validarDNI() {
@@ -224,18 +184,18 @@ function validarDNI() {
     var cantDigitos = elem.length;
     var rtdo = false;
     var msg = "";
-    
-    if(cantDigitos > 6 && cantDigitos < 9){
+
+    if (cantDigitos > 6 && cantDigitos < 9) {
         rtdo = numbers(elem);
-        if(rtdo == false){
+        if (rtdo == false) {
             msg = "En el DNI solo van números";
         }
-        
-    }else{
+
+    } else {
         msg = "El número de DNI deben ser 8 números";
     }
-    
-    changeColor('inputDNI',rtdo);
+
+    changeColor('inputDNI', rtdo);
     setValitationMesage('msjValidacionDNI', rtdo, msg);
     validar();
 }
@@ -245,105 +205,103 @@ function validarLegajo() {
     var cantDigitos = elem.length;
     var rtdo = false;
     var msg = "";
-    
-    if(cantDigitos == 5){
+
+    if (cantDigitos == 5) {
         rtdo = numbers(elem);
-        if(rtdo == false){
-            msg = "En el Legajo solo van números";  
+        if (rtdo == false) {
+            msg = "En el Legajo solo van números";
         }
-        
-       }else{
-           msg = "El número de Legajo deben ser 5 números";
-       }
-    
-    changeColor('inputLegajo',rtdo);
+
+    } else {
+        msg = "El número de Legajo deben ser 5 números";
+    }
+
+    changeColor('inputLegajo', rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
     validar();
 }
 
-function validarNombre(){
+function validarNombre() {
     eval("debugger;");
     var elem = document.getElementById('inputName').value;
     var cantLetras = elem.length;
     var rtdo = false;
     var msg = "";
-    
-    if(cantLetras >= 3 && cantLetras < 20){
+
+    if (cantLetras >= 3 && cantLetras < 20) {
         rtdo = letters(elem);
-        
-        if(rtdo == false){
-            msg = "En el Nombre solo van letras";  
+
+        if (rtdo == false) {
+            msg = "En el Nombre solo van letras";
         }
-    }else{
-        msg= "El nombre debe contener más de 3 y menos de 20 letras ";
-        
+    } else {
+        msg = "El nombre debe contener más de 3 y menos de 20 letras ";
+
     }
-    
+
     changeColor('inputName', rtdo);
     setValitationMesage('msjValidacionNombre', rtdo, msg);
     validar();
 }
 
-function validarApellido(){
+function validarApellido() {
     var elem = document.getElementById('inputSurname').value;
     var cantLetras = elem.length;
     var rtdo = false;
     var msg = "";
-    
-    if(cantLetras >= 3 && cantLetras < 20){
-        
-        rtdo = letters(elem);
-        if(rtdo == false){
-            msg = "En el Apellido solo van letras";  
-        }
-        
 
-    }else{
-        msg = "El apellido debe contener más de 3 y menos de 20 letras "; 
+    if (cantLetras >= 3 && cantLetras < 20) {
+
+        rtdo = letters(elem);
+        if (rtdo == false) {
+            msg = "En el Apellido solo van letras";
+        }
+
+
+    } else {
+        msg = "El apellido debe contener más de 3 y menos de 20 letras ";
     }
-  
-    changeColor('inputSurname',rtdo);
+
+    changeColor('inputSurname', rtdo);
     setValitationMesage('msjValidacionApellido', rtdo, msg);
     validar()
-    
+
 }
 
-function validar(){
+function validar() {
     var v_dni = document.getElementById('inputDNI').style.backgroundColor;
     var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
     var v_name = document.getElementById('inputName').style.backgroundColor;
     var v_surname = document.getElementById('inputSurname').style.backgroundColor;
-    
-    
-    if(v_dni == "azure" && v_legajo == "azure" && v_name == "azure" && v_surname =="azure"){
-       document.getElementById('btnCrear').disabled=false; 
-    }else{
-        document.getElementById('btnCrear').disabled=true;  
+
+
+    if (v_dni == "azure" && v_legajo == "azure" && v_name == "azure" && v_surname == "azure") {
+        document.getElementById('btnCrear').disabled = false;
+    } else {
+        document.getElementById('btnCrear').disabled = true;
     }
-         
+
 }
 
 //para elimiar registros, la usan config_admin, config_alumno y config_profesor
 
 function confirmDelete() {
     var confirmar = confirm("¿Realmente desea eliminarlo? ");
-            if (confirmar) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+    if (confirmar) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
-function habilitarSegundaFecha(){
+function habilitarSegundaFecha() {
     eval("debugger;");
     var fchDesde = document.getElementById('inputInicioCursado').value;
-    
+
     document.getElementById('inputFinCursado').value = fchDesde;
     document.getElementById('inputFinCursado').min = fchDesde;
     document.getElementById('inputFinCursado').disabled = false;
     document.getElementById('inputFinCursado').readonly = false;
-    
-}
 
-   
+}

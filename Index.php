@@ -23,8 +23,6 @@ if (isset($_SESSION['administrador'])) {
 
 ?>
 
-
-
 <div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 25rem;">
    <form action="login.php" method="POST" class="form-group m-4">
       <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
@@ -93,6 +91,9 @@ if (isset($_SESSION['administrador'])) {
          cambio.type = "password";
       }
    }
+
+   document.getElementById("contenidoNavbar").innerHTML="<a class='btn btn-secondary p-2' href='/DayClass/signIn/sign_in.php' style='width:8rem;'><i class='fa fa-user-plus mx-1'></i>Registrarse</a>";
+
 </script>
 
 <?php

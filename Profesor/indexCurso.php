@@ -49,8 +49,8 @@ if ($estadoCargo == "Activo") {
         <?php
         if (!$hab) {
             echo "<div class='alert alert-danger' role='alert'>
-                            <h5>Su estado el dia de hoy, es $estadoCargo no puede tomar Asistencia</h5>
-                        </div>";
+                <h5>Su estado el dia de hoy es $estadoCargo, no puede tomar asistencia</h5>
+            </div>";
         }
         ?>
         <a class="btn btn-secondary" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
@@ -130,7 +130,7 @@ if ($estadoCargo == "Activo") {
                     <a <?php
                         if ($hab) {
                             echo 'class="btn btn-success"';
-                            echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'";
+                            echo "href='/DayClass/Profesor/Asistencia/tradicional.php?id_curso=$id_curso'";
                         } else {
                             echo 'class="btn btn-success disabled"';
                         }

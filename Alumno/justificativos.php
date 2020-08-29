@@ -134,7 +134,7 @@ if (!isset($_SESSION['alumno']))
           }
           echo "</tbody></table>";
         } else {
-          echo "<div class='alert alert-info' role='alert'>No tenés justificativos pendientes</div>";
+          echo "<div class='alert alert-warning' role='alert'>No tenés justificativos cargados</div>";
         }
       ?>
     </div>

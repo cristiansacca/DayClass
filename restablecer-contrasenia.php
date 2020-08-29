@@ -36,16 +36,6 @@ include "header.html";
   </div>
 </div>
 
-<script>
-  cambiarContenidoNavbar();
-
-  function cambiarContenidoNavbar() {
-    var contenido = "";
-    contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/index.php'><i class='fa fa-sign-in fa-lg mr-1'></i>Iniciar sesión</a></li>";
-    document.getElementById("contenidoNavbar").innerHTML = contenido;
-  }
-</script>
-
 <?php
 include "footer.html";
 ?>

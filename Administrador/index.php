@@ -53,42 +53,10 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
           <h6 class="card-text">Generar estadísticas</h6>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop15">Ir</a>
+          <a href="/DayClass/Administrador/Estadisticas/estadistica_curso.php" class="btn btn-primary">Ir</a>
         </div>
       </div>
-    </div>   
-
- <!-- Modal -->
- <div class="modal fade" id="staticBackdrop15" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-      aria-labelledby="staticBackdropLabel2" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title col-12" id="staticBackdropLabel2">Selecione opción de estadísticas: </h5>
-          </div>
-          <div class="modal-body text-center  ">
-
-            <div class="input-group text m-auto">
-
-              <form name ="estadisticaadmin"  action="" class="m-auto">
-                <input type="radio" id="curso" name="tipo1" value="curso">
-                <label for="curso">Curso</label><br>
-                <input type="radio" id="materia" name="tipo1" value="materia">
-                <label for="alumno">Materia</label><br>
-              </form>
-
-            </div>
-
-          </div>
-
-          <div class="modal-footer m-auto">
-            <button type="button" class="btn btn-success " id="btnconfirmarestadistica" data-dismiss="modal" onclick= "EstadisticaBtn()" >Aceptar</button>
-            <button type="button" class="btn btn-danger" id="btncancelarestadistica" data-dismiss="modal">Cancelar</button>
-          </div>
-        </div>
-      </div>
-    </div>
- 
+    </div>    
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
@@ -97,42 +65,10 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
           <h6 class="card-text">Generar reportes </h6>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Ir</a>
+          <a href="#" class="btn btn-primary">Ir</a>
         </div>
       </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title col-12" id="staticBackdropLabel">Selecione opción de reporte </h5>
-          </div>
-          <div class="modal-body text-center  ">
-
-            <div class="input-group text m-auto">
-
-              <form name="reporteadmin" action="" class="m-auto">
-                <input type="radio" id="curso" name="tipo" value="curso">
-                <label for="curso">Curso</label><br>
-                <input type="radio" id="alumno" name="tipo" value="alumno">
-                <label for="alumno">Alumno</label><br>
-              </form>
-
-            </div>
-
-          </div>
-
-          <div class="modal-footer m-auto">
-            <button type="button" class="btn btn-success " id="btnconfirmar" data-dismiss="modal">Aceptar</button>
-            <button type="button" class="btn btn-danger" id="btncancelar" data-dismiss="modal">Cancelar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
@@ -144,34 +80,6 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         <div class="card-footer">
           <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1">Ir</a>
         </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modalidad para validar justificativos:</h5>
-      </div>
-      <div class="modal-body">
-
-        <select id="modalidadseleccionado" class="custom-select my-3 ">
-          <option selected> Seleccione una modalidad </option>
-          <option value="1">Modalidad 1</option>
-          <option value="2">Modalidad 2</option>
-          <option value="3">Modalidad 3</option>
-        </select>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success"  id="btnaceptar" data-dismiss="modal">Aceptar</button>
-        <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
       </div>
     </div>
   </div>

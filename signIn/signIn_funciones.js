@@ -1,15 +1,3 @@
-cambiarContenidoNavbar();
-
-function cambiarContenidoNavbar(){
-    var contenido = "";
-    contenido += "<li class='nav-item'><button class='btn btn-primary' id='btnVolver'><i class='fa fa-arrow-circle-left mx-1'></i>Volver</button></li>";
-    document.getElementById("contenidoNavbar").innerHTML = contenido;
-}
-
-document.getElementById("btnVolver").onclick=function(){
-    location.href="/DayClass/index.php"
-}
-
 function validarDNI(){
     eval("debugger;");
     var elem = document.getElementById('inputDNI').value;
