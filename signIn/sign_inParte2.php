@@ -73,7 +73,7 @@ if (mysqli_num_rows($consultaAlum) == 0) {
 
         <div class="form-group col-md-6">
           <label for="inputLegajo">Legajo</label>
-          <input type="number" class="form-control" id="inputLegajo" name="inputLegajo" <?php echo "value= '$legajo'"; ?> readonly>
+          <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" <?php echo "value= '$legajo'"; ?> readonly>
           <h9 class="msg" id="msjValidacionLegajo"></h9>
         </div>
       </div>

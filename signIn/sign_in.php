@@ -58,6 +58,7 @@ include "../header.html";
         include "../databaseConection.php";
         $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
         $rtdo = false;
+        $dni = null;
 
         if (!($consultaParamLeg->num_rows) == 0) {
             $formatoLegajo = $consultaParamLeg->fetch_assoc();
@@ -97,25 +98,26 @@ include "../header.html";
 
         ?>
 
-        <div class="fill_fields text-center m-auto">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputDNI">DNI</label>
-                    <input type="number" class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
-                    <h9 class="msg" id="msjValidacionDNI"></h9>
-                </div>
-                <div class="form-group col-md-6" <?php
-                                                    if ($dni) {
-                                                        echo "hidden ";
-                                                    } ?>>
-                    <label for="inputLegajo">Legajo</label>
-                    <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
-                    <h9 class="msg" id="msjValidacionLegajo"></h9>
-                </div>
-
+        <div class="fill_fields text-center m-auto" <?php 
+                                    if($dni == null){ 
+                                        echo "hidden ";} ?>>
+             <label for="">Ingrese el/los datos solictados</label>
+            <div class="form-row" >
+                <input type="number" class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
+                <h9 class="msg" id="msjValidacionDNI"></h9>
+            </div>
+            <br>
+            <div class="form-row" <?php 
+                                    if($dni){ 
+                                        echo "hidden ";} ?>>
+                <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
+                <h9 class="msg" id="msjValidacionLegajo"></h9>
             </div>
 
-            <button type="submit" class="btn btn-primary" id="btnRegistrarse">Registrarse</button>
+            
+                <br>
+                <button type="submit" class="btn btn-primary" id="btnRegistrarse">Registrarse</button>
+           
 
         </div>
     </form>
