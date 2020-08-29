@@ -198,27 +198,85 @@ function validarDNI() {
     changeColor('inputDNI', rtdo);
     setValitationMesage('msjValidacionDNI', rtdo, msg);
     validar();
+    return rtdo;
 }
 
 function validarLegajo() {
+    eval("debugger;");
     var elem = document.getElementById('inputLegajo').value;
     var cantDigitos = elem.length;
     var rtdo = false;
     var msg = "";
-
-    if (cantDigitos == 5) {
-        rtdo = numbers(elem);
-        if (rtdo == false) {
-            msg = "En el Legajo solo van números";
+    
+    if(esDNI == 1){
+    
+    }else{
+       var letras = document.getElementById('letras').value;
+        var numeros = document.getElementById('numeros').value;
+        var cantTotal = document.getElementById('cantTotal').value;
+        var verifLetras = false;
+        var verifNumeros = false;
+        
+    if(cantDigitos != cantTotal){
+        if(cantDigitos < cantTotal){
+            msg = "El número de Legajo deben ser mas caracteres "; 
+            rtdo = false;
+        }else{
+            msg = "El número de Legajo deben ser menos caracteres "; 
+            rtdo = false;
         }
-
-    } else {
-        msg = "El número de Legajo deben ser 5 números";
+          
+    }else{
+        
+        if(letras == 1){
+            var cantLetras = document.getElementById('cantLetras').value;
+            var soloLetras = elem.substring(0,cantLetras);
+            verifLetras = letters(soloLetras);
+            
+        }
+        
+        if(numeros == 1){
+            var cantNumeros = document.getElementById('cantNumeros').value;
+            if(letras == 1){
+                var cantLetras = document.getElementById('cantLetras').value;
+                var soloNumeros = elem.substring(cantLetras,cantTotal);
+                verifNumeros = numbers(soloNumeros);
+                
+            }else{
+                var soloNumeros = elem.substring(0, cantNumeros);
+                verifNumeros = numbers(soloNumeros);
+                
+            }
+        }
+        
+        if(letras == 1 && verifLetras == false){
+            msg = msg + " No se cumple la cantidad de Letras ";  
+        }
+        
+        if(numeros == 1 && verifNumeros ==false){
+            msg = msg + "No se cumple la cantidad de Numeros ";
+        }
     }
-
-    changeColor('inputLegajo', rtdo);
+        
+        if(letras == 1 && numeros == 1 && verifLetras && verifNumeros){
+            rtdo = true;
+        }
+        
+        if(letras == 1 && numeros == 0 && verifLetras){
+            rtdo = true;
+        }
+        
+        if(letras == 0 && numeros == 1  && verifNumeros){
+            rtdo = true;
+        }
+           
+    }
+    
+   changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
     validar();
+    return rtdo; 
+    
 }
 
 function validarNombre() {
@@ -273,15 +331,51 @@ function validar() {
     var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
     var v_name = document.getElementById('inputName').style.backgroundColor;
     var v_surname = document.getElementById('inputSurname').style.backgroundColor;
+    
+    var esDNI = document.getElementById('esDNI').value;
+    
+    if(esDNI == 1){
+        if (v_dni == "azure" && v_name == "azure" && v_surname == "azure") {
+            document.getElementById('btnCrear').disabled = false;
+        } else {
+            document.getElementById('btnCrear').disabled = true;
+        }
+    }else{
+        if (v_dni == "azure" && v_legajo == "azure" && v_name == "azure" && v_surname == "azure") {
+            document.getElementById('btnCrear').disabled = false;
+        } else {
+            document.getElementById('btnCrear').disabled = true;
+        }
 
-
-    if (v_dni == "azure" && v_legajo == "azure" && v_name == "azure" && v_surname == "azure") {
-        document.getElementById('btnCrear').disabled = false;
-    } else {
-        document.getElementById('btnCrear').disabled = true;
+    
     }
 
+
+   
 }
+
+function validarDNIyLegajo(){
+    eval("debugger;");
+   
+    var esDNI = document.getElementById('esDNI').value;
+    
+    if(esDNI == 1){
+        var elem = document.getElementById('inputDNI').value;
+        var dni = validarDNI();
+        document.getElementById('inputLegajo').value = elem;
+        return dni;
+    }else{
+        var legajo = validarLegajo();
+        var dni = validarDNI();
+    
+    if(legajo && dni){
+        return true;
+    }
+        return false;
+    }
+    
+}
+
 
 //para elimiar registros, la usan config_admin, config_alumno y config_profesor
 

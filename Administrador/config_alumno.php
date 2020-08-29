@@ -88,7 +88,7 @@ if (!isset($_SESSION['administrador']))
     }
 
     ?>
-
+    
     <div class="my-3">
         <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-2"></i>Crear nuevo</button>
         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-download mr-2"></i>Importar lista</button>
@@ -109,7 +109,7 @@ if (!isset($_SESSION['administrador']))
                 <?php
                 include "../databaseConection.php";
 
-                $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum`,`id` FROM `alumno` WHERE `fechaBajaAlumno` IS NULL ORDER BY apellidoAlum ASC");
+                $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum`,`id` FROM `alumno` WHERE `fechaBajaAlumno` IS NULL ORDER BY legajoAlumno ASC");
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     
@@ -137,15 +137,63 @@ if (!isset($_SESSION['administrador']))
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="paginadoDataTable.js"></script>
 
-<!-- Modal -->
+<!-- Modal incribir un alumno -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content ">
+        
+        <div class="modal-content " >
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Nuevo alumno</h5>
             </div>
-            <form method="POST" id="insertAlumno" name="insertAlumno" action="insertAlumno.php" enctype="multipart/form-data" role="form">
-                <div class="modal-body">
+            <form method="POST" id="insertAlumno" name="insertAlumno" action="insertAlumno.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
+                <?php
+        include "../databaseConection.php";
+        $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+        $rtdo = false;
+        $dni = null;
+
+        if (!($consultaParamLeg->num_rows) == 0) {
+            $formatoLegajo = $consultaParamLeg->fetch_assoc();
+            $rtdo = true;
+            $dni = $formatoLegajo["esDNI"];
+
+            echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+            if ($dni) {
+            }else {
+
+                $letras = $formatoLegajo["tieneLetras"];
+                $numeros = $formatoLegajo["tieneNumeros"];
+
+                $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+
+                echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+
+
+                if ($letras) {
+                    $cantLetras = $formatoLegajo["cantLetras"];
+
+                    echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                }
+                if ($numeros) {
+                    $cantNumeros = $formatoLegajo["cantNumeros"];
+
+                    echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                }
+            }
+        }else{
+            echo "<div class='alert alert-danger' role='alert'>
+                <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo estudiante</h5>
+            </div>";
+        } 
+
+        ?>
+
+                
+                <div class="modal-body" <?php 
+                                    if($dni == null){ 
+                                        echo "hidden ";} ?>>
                     <div class="my-2">
                         <label for="inputName">Nombre</label>
                         <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Nombre" onchange="validarNombre()" required>
@@ -156,9 +204,11 @@ if (!isset($_SESSION['administrador']))
                         <input type="text" name="inputSurname" id="inputSurname" class="form-control" placeholder="Apellido" onchange="validarApellido()" required>
                         <h9 class="msg" id="msjValidacionApellido"></h9>
                     </div>
-                    <div class="my-2">
+                    <div class="my-2" <?php 
+                                    if($dni){ 
+                                        echo "hidden ";} ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" required>
+                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo">
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
@@ -179,7 +229,7 @@ if (!isset($_SESSION['administrador']))
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal importar nomina completa de alumnos -->
 <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">

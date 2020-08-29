@@ -127,8 +127,55 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Nuevo Administrador</h5>
             </div>
-            <form method="POST" id="insertAdmin" name="insertAdmin" action="insertAdmin.php" enctype="multipart/form-data" role="form" onsubmit="return validarA()">
-                <div class="modal-body">
+            <form method="POST" id="insertAdmin" name="insertAdmin" action="insertAdmin.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoA()">
+                
+                <?php
+        include "../databaseConection.php";
+        $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+        $rtdo = false;
+        $dni = null;
+
+        if (!($consultaParamLeg->num_rows) == 0) {
+            $formatoLegajo = $consultaParamLeg->fetch_assoc();
+            $rtdo = true;
+            $dni = $formatoLegajo["esDNI"];
+
+            echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+            if ($dni) {
+            }else {
+
+                $letras = $formatoLegajo["tieneLetras"];
+                $numeros = $formatoLegajo["tieneNumeros"];
+
+                $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+
+                echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+
+
+                if ($letras) {
+                    $cantLetras = $formatoLegajo["cantLetras"];
+
+                    echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                }
+                if ($numeros) {
+                    $cantNumeros = $formatoLegajo["cantNumeros"];
+
+                    echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                }
+            }
+        }else{
+            echo "<div class='alert alert-danger' role='alert'>
+                <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo Administrador</h5>
+            </div>";
+        } 
+
+        ?>
+
+                <div class="modal-body" <?php 
+                                    if($dni == null){ 
+                                        echo "hidden ";} ?>>
                          <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputName4">Nombre</label>
@@ -143,14 +190,21 @@ if (!isset($_SESSION['administrador']))
       </div>
 
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div <?php 
+                if($dni){ 
+                    echo "class='form-group col-md-12' ";
+                }else{
+                    echo "class='form-group col-md-6' "; 
+                }?>>
           <label for="inputDNI">DNI</label>
           <input type="number" class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNIA()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
           <h9 class="msg" id="msjValidacionDNI"></h9>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6" <?php 
+                                    if($dni){ 
+                                        echo "hidden ";} ?>>
           <label for="inputLegajo">Legajo</label>
-          <input type="number" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajoA()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
+          <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajoA()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
           <h9 class="msg" id="msjValidacionLegajo"></h9>
         </div>
       </div>
@@ -185,7 +239,7 @@ if (!isset($_SESSION['administrador']))
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnRegistrarse"> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnRegistrarse" disabled> Crear</button>
                 </div>
             </form>
 
@@ -193,6 +247,19 @@ if (!isset($_SESSION['administrador']))
 
     </div>
 </div>
+<script type="text/javascript">
+  function mostrarPassword() {
+    var cambio = document.getElementById("inputPassword4");
+    if (cambio.type == "password") {
+      cambio.type = "text";
+      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+    } else {
+      cambio.type = "password";
+      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+    }
+  }
+</script>
+
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
