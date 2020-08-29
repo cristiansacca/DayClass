@@ -67,10 +67,10 @@ include "../../databaseConection.php";
                 <b> Datos Generales </b>
             </div>
             <div class="card-body">
-                <li>Fecha y hora:<label id="fecha"></label></li>
-                <li>Periodo:<label id="periodo"></label></li>
-                <li>Cantidad de presentes:<label id="cantAusentes"></label></li>
-                <li>Cantidad de ausentes:<label id="cantPresentes"></label></li>
+                <li>Fecha y hora:<label class="ml-1" id="fechaHora"></label></li>
+                <li>Periodo:<label class="ml-1" id="periodo"></label></li>
+                <li>Cantidad de presentes:<label class="ml-1" id="cantPresentes"></label></li>
+                <li>Cantidad de ausentes:<label class="ml-1" id="cantAusentes"></label></li>
             </div>
         </div>
     </div>
@@ -108,19 +108,16 @@ include "../../databaseConection.php";
             url:'generarEstadistica.php',
             type: 'POST',
             data: datosEntrada,
-            success: function (dd) {
-                var o = JSON.parse(dd);
-                alert((o['asistencias']));
-            }
-            /*success: function(datosRecibidos) {
+            success: function(datosRecibidos) {
+                json = JSON.parse(datosRecibidos);
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'bar',
+                    type: 'pie',
                     data: {
                         labels: ['Presentes', 'Ausentes'],
                         datasets: [{
                             label: 'Asistencias vs. Inasistencias',
-                            data: [(datosRecibidos[0]['asistencias']), (datosRecibidos[0]['inasistencias'])],
+                            data: [(json.asistencias), (json.inasistencias)],
                             backgroundColor: ['rgba(0, 147, 0, 0.2)', 'rgba(255, 99, 132, 0.2)'],
                             borderColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)'],
                             borderWidth: 1.5
@@ -136,7 +133,12 @@ include "../../databaseConection.php";
                         }
                     }
                 });
-            }*/
+
+                document.getElementById("cantPresentes").innerHTML = json.asistencias;
+                document.getElementById("cantAusentes").innerHTML = json.inasistencias;
+                document.getElementById("periodo").innerHTML = json.periodo;
+                document.getElementById("fechaHora").innerHTML = json.fechaHora;
+            }
         })
     }
 </script>
