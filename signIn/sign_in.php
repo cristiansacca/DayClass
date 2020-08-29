@@ -54,7 +54,54 @@ include "../header.html";
 
         }
 
-        ?>  
+        ?> 
+      
+      <?php
+        include "../databaseConection.php";
+          $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+                            $rtdo = false;
+                    
+                            if(!($consultaParamLeg->num_rows)==0){
+                            $formatoLegajo = $consultaParamLeg->fetch_assoc();
+                            $rtdo =true;
+                            $dni = $formatoLegajo["esDNI"];
+                            
+                                 echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+                                if($dni){
+                                 
+                                }else{
+                                    
+                                    $letras = $formatoLegajo["tieneLetras"];
+                                    $numeros = $formatoLegajo["tieneNumeros"];
+                                    
+                                    $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                                    echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+                                    
+                                    echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                                    echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+                                    
+                                    
+                                    if($letras){
+                                        $cantLetras = $formatoLegajo["cantLetras"];
+                                        
+                                        echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                                    }
+                                    if($numeros){
+                                        $cantNumeros = $formatoLegajo["cantNumeros"];
+                                        
+                                        echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                                    }   
+                                }
+                                   
+                            }else{
+                                echo "<div class='alert alert-success' role='alert'>
+                                        <h5>Su institucion no ha definido un formato de legajo, no se podrá registrar</h5>
+                                    </div>";
+                                
+                            }
+      
+      ?>
+      
     <div class="fill_fields">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -62,13 +109,18 @@ include "../header.html";
           <input type="number" class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
           <h9 class="msg" id="msjValidacionDNI"></h9>
         </div>
-            
-        <div class="form-group col-md-6">
+            <div class="form-group col-md-6" <?php 
+                    if($dni){
+                        echo "hidden ";
+                    }?>>
           <label for="inputLegajo">Legajo</label>
-          <input type="number" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
+          <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" >
           <h9 class="msg" id="msjValidacionLegajo"></h9>
-        </div>
+        </div> 
+        
       </div>
+        
+       
       
 
 

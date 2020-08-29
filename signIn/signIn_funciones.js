@@ -10,15 +10,21 @@ document.getElementById("btnVolver").onclick=function(){
     location.href="/DayClass/index.php"
 }
 
-function validarDNI() {
+function validarDNI(){
+    eval("debugger;");
     var elem = document.getElementById('inputDNI').value;
+   
     var cantDigitos = elem.length;
     var rtdo = false;
     var msg = "";
     
     if(cantDigitos > 6 && cantDigitos < 9){
         rtdo = numbers(elem);
-        if(rtdo == false){
+        
+        if(rtdo){
+            
+        }else{
+            
             msg = "En el DNI solo van números";
         }
         
@@ -33,32 +39,84 @@ function validarDNI() {
     //validar();
 }
 
-function validarLegajo() {
+
+
+function validarLegajo(){
     eval("debugger;");
     var elem = document.getElementById('inputLegajo').value;
     var cantDigitos = elem.length;
-    var rtdo = numbers(elem);
+    var rtdo = false;
     var msg = "";
     
+    if(esDNI == 1){
     
-    if(rtdo){
-        if((cantDigitos == 1 && elem == 0) || cantDigitos > 4){
-            
+    }else{
+       var letras = document.getElementById('letras').value;
+        var numeros = document.getElementById('numeros').value;
+        var cantTotal = document.getElementById('cantTotal').value;
+        var verifLetras = false;
+        var verifNumeros = false;
+        
+    if(cantDigitos != cantTotal){
+        if(cantDigitos < cantTotal){
+            msg = "El número de Legajo deben ser mas caracteres "; 
+            rtdo = false;
         }else{
-           msg = "El número de Legajo deben ser mas números"; 
+            msg = "El número de Legajo deben ser menos caracteres "; 
             rtdo = false;
         }
+          
     }else{
-        msg = "En el Legajo solo van números";  
-        rtdo = false;
+        
+        if(letras == 1){
+            var cantLetras = document.getElementById('cantLetras').value;
+            var soloLetras = elem.substring(0,cantLetras);
+            verifLetras = letters(soloLetras);
+            
+        }
+        
+        if(numeros == 1){
+            var cantNumeros = document.getElementById('cantNumeros').value;
+            if(letras == 1){
+                var cantLetras = document.getElementById('cantLetras').value;
+                var soloNumeros = elem.substring(cantLetras,cantTotal);
+                verifNumeros = numbers(soloNumeros);
+                
+            }else{
+                var soloNumeros = elem.substring(0, cantNumeros);
+                verifNumeros = numbers(soloNumeros);
+                
+            }
+        }
+        
+        if(letras == 1 && verifLetras == false){
+            msg = msg + " No se cumple la cantidad de Letras ";  
+        }
+        
+        if(numeros == 1 && verifNumeros ==false){
+            msg = msg + "No se cumple la cantidad de Numeros ";
+        }
+    }
+        
+        if(letras == 1 && numeros == 1 && verifLetras && verifNumeros){
+            rtdo = true;
+        }
+        
+        if(letras == 1 && numeros == 0 && verifLetras){
+            rtdo = true;
+        }
+        
+        if(letras == 0 && numeros == 1  && verifNumeros){
+            rtdo = true;
+        }
+           
     }
     
-    changeColor('inputLegajo',rtdo);
+   changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
+    return rtdo; 
     
-    return rtdo;
-    
-    //validar();
+
 }
 
 function validarNombre(){
@@ -298,12 +356,25 @@ function valiarCampos(){
 }
 
 function validarDNIyLegajo(){
-    var legajo = validarLegajo();
-    var dni = validarDNI();
+    eval("debugger;");
+   
+    var esDNI = document.getElementById('esDNI').value;
+    
+    if(esDNI == 1){
+        var elem = document.getElementById('inputDNI').value;
+        var dni = validarDNI();
+        document.getElementById('inputLegajo').value = elem;
+        return dni;
+    }else{
+        var legajo = validarLegajo();
+        var dni = validarDNI();
     
     if(legajo && dni){
         return true;
     }
+        return false;
+    }
     
-    return false;
+    
+    
 }
