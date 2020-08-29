@@ -91,7 +91,7 @@ include "../header.html";
                 }
             }
         } else {
-            echo "<div class='alert alert-danger' role='alert'>
+            echo "<div class='alert alert-warning' role='alert'>
                 <h5>Su institucion no ha definido un formato de legajo, no se podrá registrar</h5>
             </div>";
         }

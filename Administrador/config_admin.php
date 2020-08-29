@@ -166,7 +166,7 @@ if (!isset($_SESSION['administrador']))
                 }
             }
         }else{
-            echo "<div class='alert alert-danger' role='alert'>
+            echo "<div class='alert alert-warning' role='alert'>
                 <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo Administrador</h5>
             </div>";
         } 
