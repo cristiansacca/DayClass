@@ -37,6 +37,40 @@ if ($estadoCargo == "Activo") {
     $hab = true;
 }
 
+
+$consultaDiasHorasCurso = $con->query("SELECT cursodia.dayName, horariocurso.horaInicioCurso, horariocurso.horaFinCurso FROM horariocurso, cursodia, curso WHERE curso.id ='$id_curso' AND horariocurso.curso_id = curso.id AND horariocurso.cursoDia_id = cursodia.id ");
+
+$tieneDiaHora = false;
+$diaHoraBien = false;
+$diaBien = false;
+$horaBien = false;
+if(!($consultaDiasHorasCurso)==0){
+    $tieneDiaHora = true;
+    $curretDay = date('l', strtotime($currentDateTime));
+    $currentTime = date('H:i:s');
+    while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()){
+        $dayName = $rtdoDiasHoras['dayName'];
+        
+        if($dayName == $curretDay){
+            $diaBien = true;
+            $horaInicio = $rtdoDiasHoras['horaInicioCurso'];
+            $horaFin = $rtdoDiasHoras['horaFinCurso'];
+            
+            if($currentTime >= $horaInicio && $currentTime <=$horaFin ){
+                $horaBien = true; 
+                
+                
+                if ($horaBien && $diaBien){
+                    $diaHoraBien= true;
+                    
+                    break;
+                }
+            }
+            
+        }
+    }
+}
+
 ?>
 
 <script src="profesor.js"></script>
@@ -48,10 +82,64 @@ if ($estadoCargo == "Activo") {
 
         <?php
         if (!$hab) {
-            echo "<div class='alert alert-danger' role='alert'>
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <h5>Su estado el dia de hoy es $estadoCargo, no puede tomar asistencia</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
             </div>";
         }
+            
+        if(!$tieneDiaHora){
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <h5>No hay horario definido para este curso, no puede tomar asistencia</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+            </div>";
+        }else{
+           if(!$diaHoraBien){
+                            
+               if($diaBien && !$horaBien){
+                   echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>No es el horario en que se cursa en este curso, no puede tomar asistencia</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+               }
+               
+               if(!$diaBien && !$horaBien){
+                   echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>No es el dia ni horario en que se cursa en este curso, no puede tomar asistencia</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>"; 
+               }
+               
+            }else{
+               if(!$diaBien){
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5>Este curso no se dicta este dia, no puede tomar asistencia</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                }
+               
+           }  
+        }
+        
+        
+          
+            
+            
+            
+        
+        
+        
+        
         ?>
         <a class="btn btn-secondary" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <a class="btn btn-info" <?php echo "href='inscriptos.php?id_curso=$id_curso'"; ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
@@ -120,7 +208,7 @@ if ($estadoCargo == "Activo") {
                 </div>
                 <div class="card-footer">
                     <a <?php
-                        if ($hab) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora) {
                             echo 'class="btn btn-primary"';
                             echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'";
                         } else {
@@ -128,7 +216,7 @@ if ($estadoCargo == "Activo") {
                         }
                         ?>>Autoasistencia</a>
                     <a <?php
-                        if ($hab) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora) {
                             echo 'class="btn btn-success"';
                             echo "href='/DayClass/Profesor/Asistencia/tradicional.php?id_curso=$id_curso'";
                         } else {
