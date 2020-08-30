@@ -62,6 +62,24 @@ if(isset($_GET["id_curso"])){
         }
     ?>
     <div class="mt-4">
+    <?php
+        $consultaLimite = $con->query("SELECT * FROM `tiempolimitecodigo`");
+        $limiteAnt = $consultaLimite->fetch_assoc();
+        $tiempoAnt = $limiteAnt["minutosLimite"];
+                            
+        if($tiempoAnt == null){
+            echo "<div class='alert alert-warning' role='alert'>
+                    <h5>No se ha definido un tiempo para los codigos de autoasistencia, solicite que se habilite para que se pueda usar esta funcionalidad</h5>
+                </div>";        
+            }
+    ?>
+    
+    
+    </div>
+    <div class="mt-4" <?php 
+                         if($tiempoAnt == null){
+                             echo " hidden";
+                         }?> >
         <form action="habilitarCodigo.php" method="POST">
             <div class="text-center row">
                 <div class="form-group col-md-6">
