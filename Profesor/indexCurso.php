@@ -75,9 +75,27 @@ $hayFechasCursado = false;
 $hayAlumnos = false;
 
 
+$consulta2 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+$cursoFechas = $consulta2->fetch_assoc();
 
+$fechaD = $cursoFechas["fechaDesdeCursado"];
+$fechaH = $cursoFechas["fechaHastaCursado"];
 
+$fechaDesdeCursado = date_create($cursoFechas["fechaDesdeCursado"]);
+$fechaHastaCursado = date_create($cursoFechas["fechaHastaCursado"]);
 
+$fechaDesdeCursadoF = date_format($fechaDesdeCursado,"d/m/Y");
+$fechaHastaCursadoF = date_format($fechaHastaCursado,"d/m/Y");
+
+if(($fechaDesdeCursado != null && $fechaHastaCursado != "") && ($fechaHastaCursado >= $currentDateTime)){
+    $hayFechasCursado = true;
+    
+    $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaD' AND `fechaHastaAlumCurAc` = '$fechaH'  AND `curso_id` = '$id_curso' ");
+    
+    if(mysqli_num_rows($consultaAlumnos) != 0 ){
+        $hayAlumnos = true;
+    }
+}
 
 ?>
 
@@ -87,8 +105,14 @@ $hayAlumnos = false;
 
     <div class="jumbotron my-4 py-4">
         <h1><?php echo $curso["nombreCurso"] ?></h1>
-        <h1>Fecha desde cursado <?php echo $curso["nombreCurso"]; ?></h1>
-        <h1>Fecha hasta caursado <?php echo $curso["nombreCurso"]; ?></h1>
+        
+        
+        <?php
+            if(($fechaDesdeCursado != null && $fechaHastaCursado != "") && ($fechaHastaCursado >= $currentDateTime)){
+                echo "<h5>Fecha desde cursado: $fechaDesdeCursadoF </h5>";
+                echo "<h5>Fecha hasta cursado: $fechaHastaCursadoF </h5>";
+            }
+        ?>
 
         <?php
         if (!$hab) {
@@ -141,9 +165,35 @@ $hayAlumnos = false;
            }  
         }
         
+        if(!$hayFechasCursado){              
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <h5>Todavia no se han definido las fechas de inicio y fin del cursado</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+            </div>";
+        }
+        
+        if(!$hayAlumnos){
+           echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <h5>Todavia no hay alumnos incriptos para este periodo</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+            </div>"; 
+        }
+        
         ?>
         <a class="btn btn-secondary" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <a class="btn btn-info" <?php echo "href='inscriptos.php?id_curso=$id_curso'"; ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
+        <a <?php 
+           
+           if(!$hayAlumnos){
+             echo 'class="btn btn-info disabled" ';  
+           }else{
+               echo 'class="btn btn-info" ';
+               echo "href='inscriptos.php?id_curso=$id_curso'";
+           }
+           ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
     </div>
 
     <?php
@@ -182,7 +232,15 @@ $hayAlumnos = false;
                 </div>
 
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Crear</a>
+                    <a
+                       <?php 
+                        if ($hab && $hayFechasCursado && $hayAlumnos) {
+                            echo 'class="btn btn-primary"';
+                            echo "href='#' ";
+                        }else {
+                            echo 'class="btn btn-primary disabled"';
+                        } 
+                        ?>>Crear</a>
                 </div>
             </div>
         </div>
@@ -195,7 +253,14 @@ $hayAlumnos = false;
                     <p class="card-text">Publica novedades para los alumnos del curso</p>
                 </div>
                 <div class="card-footer">
-                    <a <?php echo "href='pizarra.php?id_curso=$id_curso'"; ?> class="btn btn-primary">Ingresar</a>
+                    <a <?php 
+                        if ($hab && $hayFechasCursado && $hayAlumnos) {
+                            echo 'class="btn btn-primary"';
+                            echo "href='pizarra.php?id_curso=$id_curso'";
+                        } else {
+                            echo 'class="btn btn-primary disabled"';
+                        } 
+                        ?>>Ingresar</a>
                 </div>
             </div>
         </div>
@@ -209,7 +274,7 @@ $hayAlumnos = false;
                 </div>
                 <div class="card-footer">
                     <a <?php
-                        if ($hab && $diaHoraBien && $tieneDiaHora) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos) {
                             echo 'class="btn btn-primary"';
                             echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'";
                         } else {
@@ -217,7 +282,7 @@ $hayAlumnos = false;
                         }
                         ?>>Autoasistencia</a>
                     <a <?php
-                        if ($hab && $diaHoraBien && $tieneDiaHora) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos) {
                             echo 'class="btn btn-success"';
                             echo "href='/DayClass/Profesor/Asistencia/tradicional.php?id_curso=$id_curso'";
                         } else {
