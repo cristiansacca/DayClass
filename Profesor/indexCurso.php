@@ -87,7 +87,7 @@ $fechaHastaCursado = date_create($cursoFechas["fechaHastaCursado"]);
 $fechaDesdeCursadoF = date_format($fechaDesdeCursado,"d/m/Y");
 $fechaHastaCursadoF = date_format($fechaHastaCursado,"d/m/Y");
 
-if(($fechaDesdeCursado != null && $fechaHastaCursado != "") && ($fechaHastaCursado >= $currentDateTime)){
+if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
     $hayFechasCursado = true;
     
     $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaD' AND `fechaHastaAlumCurAc` = '$fechaH'  AND `curso_id` = '$id_curso' ");
@@ -107,8 +107,15 @@ if(($fechaDesdeCursado != null && $fechaHastaCursado != "") && ($fechaHastaCursa
         <h1><?php echo $curso["nombreCurso"] ?></h1>
         
         
+        
+        
         <?php
-            if(($fechaDesdeCursado != null && $fechaHastaCursado != "") && ($fechaHastaCursado >= $currentDateTime)){
+        if(!$hayFechasCursado){              
+            echo "<div class='alert alert-danger' role='alert'>
+                    <h5>Todavia no se han definido las fechas de inicio y fin del cursado</h5>
+                </div>";
+        }
+            if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                 echo "<h5>Fecha desde cursado: $fechaDesdeCursadoF </h5>";
                 echo "<h5>Fecha hasta cursado: $fechaHastaCursadoF </h5>";
             }
@@ -165,14 +172,7 @@ if(($fechaDesdeCursado != null && $fechaHastaCursado != "") && ($fechaHastaCursa
            }  
         }
         
-        if(!$hayFechasCursado){              
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Todavia no se han definido las fechas de inicio y fin del cursado</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                        </button>
-            </div>";
-        }
+        
         
         if(!$hayAlumnos){
            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
