@@ -8,7 +8,7 @@ function minutosValidos(){
       if(min != minAnt){
          rtdo = true;
         }else{
-           msg ="Es el mismo codigo que esta vigente"; 
+           msg ="Es el mismo tiempo que esta vigente"; 
         }
      }else{
          msg ="El codigo tiene que ser multiplo de 5";

@@ -31,7 +31,7 @@ include "../../databaseConection.php";
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Modalidad creada correctamente</h5>";
-                break;
+            break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Error al crear la modalidad</h5>";
@@ -56,6 +56,14 @@ include "../../databaseConection.php";
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Parametros legajo cargados correctamente</h5>";
                 break;
+            case 8:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Tiempo maximo codigo autoasistencia establecido exitisamente</h5>";
+            break;
+                case 9:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error de carga del tiempo maximo del codigo autoasistencia, intente nuevamente</h5>";
+            break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
@@ -181,21 +189,35 @@ include "../../databaseConection.php";
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Tiempo limite codigo Autoasistencia</h5>
             </div>
-            <form action="limiteCodigoAutoasist.php" method="POST">
+            <form action="insertTiempoAutoAsist.php" method="POST" onsubmit="return minutosValidos()">
+                
+                <div class="my-6">
+                
+                </div>
                 <div class="modal-body">
+                    <?php
+                    $consultaLimite = $con->query("SELECT * FROM `tiempolimitecodigo`");
+                    $limiteAnt = $consultaLimite->fetch_assoc();
+                    $tiempoAnt = $limiteAnt["minutosLimite"];
+                            
+                    if($tiempoAnt == null){
+                        echo "<div class='alert alert-warning' role='alert'>
+                                <h5>No se ha definido un tiempo para los codigos de autoasistencia, habilite uno para que se pueda usar esta funcionalidad</h5>
+                            </div>";        
+                    }
+                    echo "<input type='number' id='minutosCodigoAnt' value='$tiempoAnt' hidden>";
+                     ?>
+                    
                     <div class="my-2">
                         <label for="minutosCodigo">Tiempo maximo vigencia codigo Autoasistencia</label>
-                            <input type="number" placeholder="Minutos" name="minutosCodigo" id="minutosCodigo" class="form-control col-md-6" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" onchange="minutosValidos()" required>
+                            <input type="number" placeholder="Minutos" name="minutosCodigo" id="minutosCodigo" class="form-control col-md-6" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" step="5" onchange="minutosValidos()" required>
                         <h9 class="msg" id="msjValidacionCodigo"></h9>
                     </div>
                     <div class="my-2">
                         <?php
-                            $consultaLimite = $con->query("SELECT * FROM `tiempolimitecodigo`");
-                            $limiteAnt = $consultaLimite->fetch_assoc();
-                            $tiempoAnt = $limiteAnt["minutosLimite"];
-                            
-                            echo "<h6>La duración anterior era de : $tiempoAnt minutos</h6>";
-                            echo "<input type='number' id='minutosCodigoAnt' value='$tiempoAnt' hidden>";
+                            if($tiempoAnt != null){
+                                echo "<h6>La duración anterior era de : $tiempoAnt minutos</h6>"; 
+                            }
                         ?>
                     </div>
                 </div>
