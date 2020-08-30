@@ -392,9 +392,17 @@ function confirmDelete() {
 function habilitarSegundaFecha() {
     eval("debugger;");
     var fchDesde = document.getElementById('inputInicioCursado').value;
-
-    document.getElementById('inputFinCursado').value = fchDesde;
-    document.getElementById('inputFinCursado').min = fchDesde;
+    var fchHoy = document.getElementById('todayDate').value;
+    
+    if(fchDesde < fchHoy){
+       document.getElementById('inputFinCursado').value = fchHoy;
+        document.getElementById('inputFinCursado').min = fchHoy; 
+    }else{
+        document.getElementById('inputFinCursado').value = fchDesde;
+        document.getElementById('inputFinCursado').min = fchDesde; 
+    }
+    
+    
     document.getElementById('inputFinCursado').disabled = false;
     document.getElementById('inputFinCursado').readonly = false;
 

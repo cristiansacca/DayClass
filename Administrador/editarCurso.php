@@ -36,6 +36,7 @@ $_SESSION['administrador']= $resultado1;
             $id_curso = $_GET['id'];
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $currentDateTime = date('Y-m-d H:i:s');
+            $currentDate = date('Y-m-d');
 
             
             $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
@@ -137,6 +138,8 @@ $_SESSION['administrador']= $resultado1;
                         }
                    ?>>
         <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
+        <input type="text" name="todayDate" id="todayDate" <?php echo"value= '".$currentDate."' "; ?> hidden>
+          
       </div>
     </form>
   </div>
