@@ -71,6 +71,14 @@ if(!($consultaDiasHorasCurso)==0){
     }
 }
 
+$hayFechasCursado = false;
+$hayAlumnos = false;
+
+
+
+
+
+
 ?>
 
 <script src="profesor.js"></script>
@@ -79,6 +87,8 @@ if(!($consultaDiasHorasCurso)==0){
 
     <div class="jumbotron my-4 py-4">
         <h1><?php echo $curso["nombreCurso"] ?></h1>
+        <h1>Fecha desde cursado <?php echo $curso["nombreCurso"]; ?></h1>
+        <h1>Fecha hasta caursado <?php echo $curso["nombreCurso"]; ?></h1>
 
         <?php
         if (!$hab) {
@@ -130,15 +140,6 @@ if(!($consultaDiasHorasCurso)==0){
                
            }  
         }
-        
-        
-          
-            
-            
-            
-        
-        
-        
         
         ?>
         <a class="btn btn-secondary" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
