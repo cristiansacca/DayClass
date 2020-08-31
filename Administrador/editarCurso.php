@@ -54,23 +54,18 @@ $_SESSION['administrador']= $resultado1;
       
             if(($fchDesde < $currentDateTime &&  $fchHasta < $currentDateTime) || ($fchDesde == "" &&  $fchHasta == "")){
                 echo "<div class='alert alert-danger' role='alert'>
-                            <h5>Se deben ingresar las fechas de Cursado para este año</h5>
-                        </div>";
-                
-                
+                            <h5>Se deben ingresar las fechas de cursado para este año.</h5>
+                        </div>";          
             }else{
                 echo "<div class='alert alert-success' role='alert'>
-                            <h5>Las fechas de cursado son Correctas</h5>
+                            <h5>Las fechas de cursado son correctas</h5>
                         </div>";
                 $rtdo = true;
-            }
-      
-      
-            
+            }  
         
         ?>
       
-      <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+      <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>
   <?php
         if(isset($_GET["resultado"])){

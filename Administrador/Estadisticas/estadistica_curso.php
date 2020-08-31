@@ -23,11 +23,8 @@ include "../../databaseConection.php";
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="faltanDatos" hidden>
+    <div class="alert alert-danger" role="alert" id="faltanDatos" hidden>
         <h5>Faltan datos por completar</h5>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
     </div>
 
     <div class="row my-2">

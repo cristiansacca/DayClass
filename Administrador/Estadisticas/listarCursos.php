@@ -2,7 +2,7 @@
 include "../../databaseConection.php";
 
 $id_materia = $_POST['id_materia'];
-$consulta1 = $con->query("SELECT id, nombreCurso FROM curso WHERE materia_id = '$id_materia'");
+$consulta1 = $con->query("SELECT id, nombreCurso FROM curso WHERE materia_id = '$id_materia' AND fechaHastaCurActul IS NULL");
 $cursos = array();
 
 while($resultado1 = $consulta1->fetch_assoc()) {

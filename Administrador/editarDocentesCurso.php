@@ -1,5 +1,15 @@
 <?php
+//Se inicia o restaura la sesión
+session_start();
+
 include "../header.html";
+ 
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['administrador'])) 
+{
+   //Nos envía a la página de inicio
+   header("location:/DayClass/index.php"); 
+}
 ?>
 <script src="administrador.js"></script>
 

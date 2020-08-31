@@ -46,7 +46,7 @@ include "../../databaseConection.php";
                 break;
             case 5:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al crear la división</h5>";
+                            <h5>Error al crear división</h5>";
                 break;
             case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
@@ -54,15 +54,15 @@ include "../../databaseConection.php";
                 break;
             case 7:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Parametros legajo cargados correctamente</h5>";
+                            <h5>Parámetros de legajo cargados correctamente</h5>";
                 break;
             case 8:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Tiempo maximo codigo autoasistencia establecido exitisamente</h5>";
+                            <h5>Tiempo máximo del código de auto-asistencia establecido exitosamente</h5>";
             break;
                 case 9:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error de carga del tiempo maximo del codigo autoasistencia, intente nuevamente</h5>";
+                            <h5>Error de carga del tiempo maximo del codigo de auto-asistencia, intente nuevamente</h5>";
             break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -196,10 +196,12 @@ include "../../databaseConection.php";
                 </div>
                 <div class="modal-body">
                     <?php
+                    echo "<div hidden>";
                     $consultaLimite = $con->query("SELECT * FROM `tiempolimitecodigo`");
                     $limiteAnt = $consultaLimite->fetch_assoc();
                     $tiempoAnt = $limiteAnt["minutosLimite"];
-                            
+                    echo "</div>";        
+
                     if($tiempoAnt == null){
                         echo "<div class='alert alert-warning' role='alert'>
                                 <h5>No se ha definido un tiempo para los codigos de autoasistencia, habilite uno para que se pueda usar esta funcionalidad</h5>
