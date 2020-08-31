@@ -23,25 +23,21 @@ include "../../databaseConection.php";
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="faltanDatos" hidden>
+        <h5>Faltan datos por completar</h5>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     <div class="row my-2">
-        <div class="col-lg-6 col-md-6 mb-6">
-            <label>Modalidad:</label><br>
-            <select class="custom-select" id="modalidad">
-                <option value="" selected>Seleccione</option>
-                <option value="TODAS">TODAS</option>
-                <?php
-                include "../../databaseConection.php";
-                $conMod = $con->query("SELECT * FROM modalidad WHERE fechaBajaModalidad IS NULL");
-                while ($modalidades = $conMod->fetch_assoc()) {
-                    echo "<option value='" . $modalidades['id'] . "'>" . $modalidades['nombre'] . "</option>";
-                }
-                ?>
-            </select>
-            <div>
+        <div class="col-md-6">
+            <div class="my-2">
                 <label>Materia:</label><br>
                 <select class="custom-select" id="materia">
                     <option value="" selected>Seleccione</option>
                     <?php
+                    include "../../databaseConection.php";
                     $conMat = $con->query("SELECT * FROM materia WHERE fechaBajaMateria IS NULL");
                     while ($materias = $conMat->fetch_assoc()) {
                         echo "<option value='" . $materias['id'] . "'>" . $materias['nombreMateria'] . " " . $materias['nivelMateria'] . "</option>";
@@ -49,28 +45,41 @@ include "../../databaseConection.php";
                     ?>
                 </select>
             </div>
+            <div class="my-2">
+                <label>Curso:</label><br>
+                <select class="custom-select" id="curso" disabled>
+                    <option value="" selected>Seleccione</option>
+                </select>
+            </div>
         </div>
-        <div class="col-lg-6 col-md-6 mb-6">
-            <label for="fechaDesde" class="mr-2">Desde:</label>
-            <input type="date" id="fechaDesde" class="form-control" required>
-
-            <label for="fechaHasta" class="mr-2">Hasta:</label>
-            <input type="date" id="fechaHasta" class="form-control" required>
+        <div class="col-md-6">
+            <div class="my-2">
+                <label for="fechaDesde" class="mr-2">Desde:</label><label class="text-danger" id="msgPeriodoDesde"></label>
+                <input type="date" id="fechaDesde" class="form-control inputPeriodo" onchange="validarPeriodo();">
+            </div>
+            <div class="my-2">
+                <label for="fechaHasta" class="mr-2">Hasta:</label><label class="text-danger" id="msgPeriodoHasta"></label>
+                <input type="date" id="fechaHasta" class="form-control inputPeriodo" onchange="validarPeriodo();">
+            </div>
         </div>
     </div>
 
-    <button class="btn btn-primary mt-2" id="btnGenerar"><i class="fa fa-pie-chart mr-1"></i>Generar</button>
+    <button class="btn btn-primary mt-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
 
     <div class="my-4">
         <div class="card ">
             <div class="card-header">
-                <b> Datos Generales </b>
+                <b> Datos de la estadística </b>
             </div>
             <div class="card-body">
-                <li>Fecha y hora:<label class="ml-1" id="fechaHora"></label></li>
-                <li>Periodo:<label class="ml-1" id="periodo"></label></li>
-                <li>Cantidad de presentes:<label class="ml-1" id="cantPresentes"></label></li>
-                <li>Cantidad de ausentes:<label class="ml-1" id="cantAusentes"></label></li>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-action font-weight-bold">Materia:<label class="ml-1 font-weight-normal" id="txtMateria"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Curso:<label class="ml-1 font-weight-normal" id="txtCurso"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Fecha y hora:<label class="ml-1 font-weight-normal" id="fechaHora"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Periodo:<label class="ml-1 font-weight-normal" id="periodo"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Cantidad de presentes:<label class="ml-1 font-weight-normal" id="cantPresentes"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Cantidad de ausentes:<label class="ml-1 font-weight-normal" id="cantAusentes"></label></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -83,65 +92,7 @@ include "../../databaseConection.php";
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
 </script>
-<script>
-    document.getElementById("btnGenerar").onclick = function () {
-        var modalidad = document.getElementById('modalidad').value;
-        var materia = document.getElementById('materia').value;
-        var fechaDesde = document.getElementById('fechaDesde').value;
-        var fechaHasta = document.getElementById('fechaHasta').value;
-
-        if(modalidad != "" && materia != "" && fechaDesde != "" && fechaHasta != ""){
-            var datos = {
-                modalidad: modalidad,
-                materia: materia,
-                fechaDesde: fechaDesde,
-                fechaHasta: fechaHasta
-            };
-            generarPieChart(datos);
-        } else {
-            alert("Faltan datos");
-        }
-    }
-
-    function generarPieChart(datosEntrada) {
-        $.ajax({
-            url:'generarEstadistica.php',
-            type: 'POST',
-            data: datosEntrada,
-            success: function(datosRecibidos) {
-                json = JSON.parse(datosRecibidos);
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Presentes', 'Ausentes'],
-                        datasets: [{
-                            label: 'Asistencias vs. Inasistencias',
-                            data: [(json.asistencias), (json.inasistencias)],
-                            backgroundColor: ['rgba(0, 147, 0, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                            borderColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)'],
-                            borderWidth: 1.5
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                    }
-                });
-
-                document.getElementById("cantPresentes").innerHTML = json.asistencias;
-                document.getElementById("cantAusentes").innerHTML = json.inasistencias;
-                document.getElementById("periodo").innerHTML = json.periodo;
-                document.getElementById("fechaHora").innerHTML = json.fechaHora;
-            }
-        })
-    }
-</script>
+<script src="estadisticas.js"></script>
 <?php
 include "../../footer.html";
 ?>

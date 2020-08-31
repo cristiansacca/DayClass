@@ -1,7 +1,7 @@
 <?php
 include "../../databaseConection.php";
 
-$modalidad = $_POST['modalidad'];
+$curso = $_POST['curso'];
 $materia = $_POST['materia'];
 $fechaDesde = $_POST['fechaDesde'];
 $fechaHasta = $_POST['fechaHasta'];
@@ -13,22 +13,29 @@ $tipoPresente = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipo
 $tipoAusente = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'AUSENTE' AND fechaBajaTipoAsistencia IS NULL")->fetch_assoc();
 $cantidadPresentes = 0;
 $cantidadAusentes = 0;
+$consultaNombreMateria = $con->query("SELECT nombreMateria, nivelMateria FROM materia WHERE id = '$materia'")->fetch_assoc();
 
-if($modalidad == "TODAS"){
+if($curso == 0){
+    $nombreCurso = "Todos";
     $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$materia' AND fechaHastaCurActul IS NULL");
-    while($cursos = $consulta1->fetch_assoc()){
-        $consulta2 = $con->query("SELECT * FROM asistencia WHERE fechaHastaFichaAsis >= '$fechaDesde' AND curso_id = '".$cursos['id']."'");
-        while($fichaAsistencia = $consulta2->fetch_assoc()){
-            $presentes = $con->query("SELECT * FROM asistenciadia WHERE fechaHoraAsisDia >= '$fechaDesde' AND fechaHoraAsisDia <= '$fechaHasta'
-            AND asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoPresente['id']."'");
+} else {
+    $consultaNombreCurso = $con->query("SELECT nombreCurso FROM curso WHERE id = '$curso'")->fetch_assoc();
+    $nombreCurso = $consultaNombreCurso['nombreCurso'];
+    $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$curso' AND materia_id = '$materia' AND fechaHastaCurActul IS NULL");
+}
 
-            $cantidadPresentes = $cantidadPresentes + ($presentes->num_rows);
+while($cursos = $consulta1->fetch_assoc()){
+    $consulta2 = $con->query("SELECT * FROM asistencia WHERE fechaHastaFichaAsis >= '$fechaDesde' AND curso_id = '".$cursos['id']."'");
+    while($fichaAsistencia = $consulta2->fetch_assoc()){
+        $presentes = $con->query("SELECT * FROM asistenciadia WHERE fechaHoraAsisDia >= '$fechaDesde' AND fechaHoraAsisDia <= '$fechaHasta'
+        AND asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoPresente['id']."'");
 
-            $ausentes = $con->query("SELECT * FROM asistenciadia WHERE fechaHoraAsisDia >= '$fechaDesde' AND fechaHoraAsisDia <= '$fechaHasta'
-            AND asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoAusente['id']."'");
+        $cantidadPresentes = $cantidadPresentes + ($presentes->num_rows);
 
-            $cantidadAusentes = $cantidadAusentes + ($ausentes->num_rows);
-        }
+        $ausentes = $con->query("SELECT * FROM asistenciadia WHERE fechaHoraAsisDia >= '$fechaDesde' AND fechaHoraAsisDia <= '$fechaHasta'
+        AND asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoAusente['id']."'");
+
+        $cantidadAusentes = $cantidadAusentes + ($ausentes->num_rows);
     }
 }
 
@@ -41,7 +48,10 @@ $obj = array(
     'asistencias' => $cantidadPresentes,
     'inasistencias' => $cantidadAusentes,
     'periodo' => $fechaDesdeFormateada.' - '. $fechaHastaFormateada,
-    'fechaHora' => $fechaFormateada
+    'fechaHora' => $fechaFormateada,
+    'nombreCurso' => $nombreCurso,
+    'nombreMateria' => $consultaNombreMateria['nombreMateria'],
+    'nivelMateria' => $consultaNombreMateria['nivelMateria']
 );
 
 $myJSON = json_encode($obj);
