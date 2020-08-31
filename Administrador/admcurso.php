@@ -65,6 +65,9 @@ include "../header.html";
             <tbody>
                 <?php
                 include "../databaseConection.php";
+                
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDateTime = date('Y-m-d');
 
                 $id_materia = $_GET["id"];
                 $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia' AND `fechaHastaCurActul` IS NULL");
@@ -87,8 +90,27 @@ include "../header.html";
                     $urlBajaCurso = "bajaCurso.php?id=$id";
 
                     $nombreCurso = $resultadoCurso['nombreCurso'];
+                    
+                    $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
+                    $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
+                    
+                    $classHabilitado = "btn btn-danger btn-sm mb-1";
+                    
+                    if($fechaDesdeCursado != null && $fechaHastaCursado != null) {
+                        if($fechaHastaCursado >= $currentDateTime){
+                            $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado'  AND `curso_id` = '$id' ");
 
-
+                            if(mysqli_num_rows($consultaAlumnos) == 0 ){
+                                $classHabilitado = "btn btn-danger btn-sm mb-1";
+                            }else{
+                                $classHabilitado = "btn btn-danger btn-sm mb-1 disabled";
+                            }
+                        }else{
+                            $classHabilitado = "btn btn-danger btn-sm mb-1";
+                        }
+                        
+                    }
+                    
                     echo "<tr>
                     <td>" . $nombreCurso . "</td>
                     <td>" . $resultado2['nombreDivision'] . "</td>
@@ -96,7 +118,7 @@ include "../header.html";
                     
                     <td class='text-center'>
                         <a class='btn btn-success btn-sm mb-1' data-emp-id=" . $id . " onclick='' href='$urlEditarCurso'><i class='fa fa-edit'></i></a>
-                        <a class='btn btn-danger btn-sm mb-1' data-emp-id=" . $id . " onclick='return confirmDelete()' href='$urlBajaCurso'><i class='fa fa-trash'></i></a>
+                        <a class='$classHabilitado' data-emp-id=" . $id . " onclick='return confirmDelete()' href='$urlBajaCurso'><i class='fa fa-trash'></i></a>
                                                 
                     </td>
                     
