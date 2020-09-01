@@ -70,6 +70,7 @@ include "../../databaseConection.php";
     </div>
 
     <button class="btn btn-primary mt-2 mr-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
+    <button class="btn btn-secondary mt-2 mr-2" id="btnLimpiar" hidden><i class="fa fa-eraser mr-1"></i>Limpiar</button>
 
     <div class="my-4">
         <div class="card ">

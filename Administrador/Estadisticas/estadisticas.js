@@ -56,6 +56,7 @@ document.getElementById("btnGenerar").onclick = function () {
             fechaDesde: fechaDesde,
             fechaHasta: fechaHasta
         };
+        document.getElementById("btnLimpiar").click();
         generarPieChart(datos);
         $("#faltanDatos").attr("hidden", "hidden" );
     } else {
@@ -100,6 +101,8 @@ function generarPieChart(datosEntrada) {
             document.getElementById("fechaHora").innerHTML = json.fechaHora;
             document.getElementById("txtCurso").innerHTML = json.nombreCurso;
             document.getElementById("txtMateria").innerHTML = json.nombreMateria+" "+json.nivelMateria;
+            document.getElementById("btnLimpiar").onclick = function(){myChart.destroy();}
+
         }
     })
 }
