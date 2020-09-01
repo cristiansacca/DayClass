@@ -39,6 +39,7 @@ if (!isset($_SESSION['administrador']))
             $fchDesde = $resultado["fechaDesdeCursado"];
             $fchHasta = $resultado["fechaHastaCursado"];
             $nombreCurso = $resultado["nombreCurso"];
+            $id_materia = $resultado["materia_id"];
         
             echo "<h1>$nombreCurso</h1>";
             
@@ -55,7 +56,9 @@ if (!isset($_SESSION['administrador']))
             
         
         ?>
-        <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a  <?php echo "href='/DayClass/Administrador/admcurso.php?id= $id_materia'"?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        
+       
     </div>
 
     <?php
@@ -160,10 +163,17 @@ if (!isset($_SESSION['administrador']))
                 $id_curso = $_GET['id'];
                 date_default_timezone_set('America/Argentina/Mendoza');
                 $currentDateTime = date('Y-m-d H:i:s');
+                    
+            
+                    $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+                    $resultadoCurso = $consultaCurso->fetch_assoc();
+            
+                    $nombreCurso = $resultadoCurso['nombreCurso'];
+                    
+                    $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
+                    $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
                 
-                 
-                
-                $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso");
+                $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
                 
                 
                 while($alumnocursoactual = $consulta2->fetch_assoc()){
