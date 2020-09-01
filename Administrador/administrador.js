@@ -180,6 +180,7 @@ function comprobarLista() {
 
 //funciones para validar nombre, apellido, legajo y DNI de alumno y profesor, usan las funciones letters, numbers, changeColor y setValidationMessage
 function validarDNI() {
+    eval ("debugger;");
     var elem = document.getElementById('inputDNI').value;
     var cantDigitos = elem.length;
     var rtdo = false;

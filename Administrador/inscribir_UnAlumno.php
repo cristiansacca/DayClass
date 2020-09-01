@@ -14,7 +14,7 @@ $fchHasta = $resultado1['fechaHastaCursado'];
 
 echo "$fchDesde";
 //consultar existencia del alumno (habilitado = fecha de baja null) en la BD  de dayclass
-$consultaAlumID = $con->query("SELECT id FROM `alumno` WHERE (dniAlum = $dni OR legajoAlumno = $legajo) AND fechaBajaAlumno IS NULL");
+$consultaAlumID = $con->query("SELECT id FROM `alumno` WHERE (dniAlum = $dni AND legajoAlumno = $legajo) AND fechaBajaAlumno IS NULL");
 
 if(mysqli_num_rows($consultaAlumID) == 0){
     //si la cosnulta es vacia, el alumno no existe o esta dado de baja, error 2 = alumno inexistente o dado de baja 
