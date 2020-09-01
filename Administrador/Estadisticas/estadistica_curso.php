@@ -12,7 +12,7 @@ if (!isset($_SESSION['administrador'])) {
 
 include "../../databaseConection.php";
 ?>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <div class="container">
@@ -48,6 +48,14 @@ include "../../databaseConection.php";
                     <option value="" selected>Seleccione</option>
                 </select>
             </div>
+            <div>
+                <label class="mr-2">Tipo de gráfico:</label>
+                <select class="custom-select" id="tipoGrafico">
+                    <option value="pie">Gráfico de torta</option>
+                    <option value="bar">Gráfico de barras</option>
+                    <option value="doughnut">Gráfico de rosca</option>
+                </select>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="my-2">
@@ -61,7 +69,7 @@ include "../../databaseConection.php";
         </div>
     </div>
 
-    <button class="btn btn-primary mt-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
+    <button class="btn btn-primary mt-2 mr-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
 
     <div class="my-4">
         <div class="card ">

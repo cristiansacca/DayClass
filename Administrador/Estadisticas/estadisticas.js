@@ -72,7 +72,7 @@ function generarPieChart(datosEntrada) {
             json = JSON.parse(datosRecibidos);
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
-                type: 'pie',
+                type: document.getElementById("tipoGrafico").value,
                 data: {
                     labels: ['Presentes', 'Ausentes'],
                     datasets: [{

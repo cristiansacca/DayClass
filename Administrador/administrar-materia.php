@@ -80,8 +80,8 @@ if (!isset($_SESSION['administrador']))
                 <th>Nombre materia</th>
                 <th>Nivel</th>
                 <th>Editar </th>
-                <th>Programa Cargado</th>
-                <th>Eliminar Materia</th>
+                <th>Programa cargado</th>
+                <th>Eliminar materia</th>
             </thead>
             <tbody>
                 <?php
