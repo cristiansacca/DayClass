@@ -294,7 +294,15 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';"; ?>
+    document.getElementById("temaDia").innerHTML = <?php 
+        
+        if($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos){
+            echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";
+
+        }else{
+            echo "'<a class=nav-link disabled><i id=icono ></i>Tema del día</a>';";
+
+        }?>
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script>
