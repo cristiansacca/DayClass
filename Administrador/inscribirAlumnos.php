@@ -31,6 +31,8 @@ if (!isset($_SESSION['administrador']))
         <?php
             include "../databaseConection.php";
             $id_curso = $_GET['id'];
+             date_default_timezone_set('America/Argentina/Mendoza');
+            $currentDateTime = date('Y-m-d');
             
             $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
             $resultado = $consultaCurso->fetch_assoc();
@@ -40,8 +42,17 @@ if (!isset($_SESSION['administrador']))
         
             echo "<h1>$nombreCurso</h1>";
             
-            echo "<h6>Inicio del curso: ".strftime('%d/%m/%Y', strtotime($fchDesde))."</h6>";
-            echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
+        
+        
+            if($fchDesde != null && $fchHasta != null && $fchHasta >= $currentDateTime){
+                echo "<h6>Inicio del curso: ".strftime('%d/%m/%Y', strtotime($fchDesde))."</h6>";
+                echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
+            }else{
+                echo "<div class='alert alert-warning' role='alert'>
+                            <h5>No hay fechas de cursado vigentes, no se puede inscribir alumnos</h5>
+                        </div>";
+            }
+            
         
         ?>
         <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
@@ -88,10 +99,47 @@ if (!isset($_SESSION['administrador']))
     }
 
     ?>
+    
+    <?php
+                include "../databaseConection.php";
+    
+                    $id_curso = $_GET['id'];
+                    date_default_timezone_set('America/Argentina/Mendoza');
+                    $currentDateTime = date('Y-m-d');
+            
+                    $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+                    $resultadoCurso = $consultaCurso->fetch_assoc();
+            
+                    $nombreCurso = $resultadoCurso['nombreCurso'];
+                    
+                    $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
+                    $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
+                    
+                    $habilitado = false;
+                    
+                    if($fechaDesdeCursado != null && $fechaHastaCursado != null){
+                        if($fechaHastaCursado >= $currentDateTime){
+                            $habilitado = true;
+
+                        }    
+                    }
+                ?>
 
     <div class="my-3">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-2"></i>Agregar Alumno</button>
-        <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-download mr-2"></i>Importar lista de inscriptos</button>
+        <button <?php 
+                    if($habilitado){
+                        echo "class='btn btn-primary'";
+                        echo "data-target='#staticBackdrop'";
+                    }else{
+                        echo "class='btn btn-primary disabled'";
+                    }?> data-toggle="modal"><i class="fa fa-user-plus mr-2"></i>Agregar Alumno</button>
+        <button <?php 
+                    if($habilitado){
+                        echo "class='btn btn-success'";
+                        echo "data-target='#staticBackdrop1'";
+                    }else{
+                        echo "class='btn btn-success disabled'";
+                    }?>  data-toggle="modal" ><i class="fa fa-download mr-2"></i>Importar lista de inscriptos</button>
     </div>
 
     <div class="my-4">
@@ -141,6 +189,7 @@ if (!isset($_SESSION['administrador']))
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="administrador.js"></script>
+<script src="fcInscribirAlumno.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="paginadoDataTable.js"></script>
@@ -152,20 +201,68 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Inscribir alumno</h5>
             </div>
-            <form method="POST" id="insertAlumno" name="insertAlumno" action="inscribir_UnAlumno.php" enctype="multipart/form-data" role="form">
-                <div class="modal-body">
+            <form method="POST" id="insertAlumno" name="insertAlumno" action="inscribir_UnAlumno.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
+                <?php
+        include "../databaseConection.php";
+        $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+        $rtdo = false;
+        $dni = null;
+
+        if (!($consultaParamLeg->num_rows) == 0) {
+            $formatoLegajo = $consultaParamLeg->fetch_assoc();
+            $rtdo = true;
+            $dni = $formatoLegajo["esDNI"];
+
+            echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+            if ($dni) {
+            }else {
+
+                $letras = $formatoLegajo["tieneLetras"];
+                $numeros = $formatoLegajo["tieneNumeros"];
+
+                $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+
+                echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+
+
+                if ($letras) {
+                    $cantLetras = $formatoLegajo["cantLetras"];
+
+                    echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                }
+                if ($numeros) {
+                    $cantNumeros = $formatoLegajo["cantNumeros"];
+
+                    echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                }
+            }
+        }else{
+            echo "<div class='alert alert-warning' role='alert'>
+                <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo Alumno</h5>
+            </div>";
+        } 
+
+        ?>
+
+                <div class="modal-body" <?php 
+                                    if($dni == null){ 
+                                        echo "hidden ";} ?>>
                     
                     <div class="my-2">
-                        <h5 class="msg" id="msjValidacionApellido">Ingrese el DNI o Legajo del alumno que desea inscribir</h5>
+                        <h5 class="msg" id="msjValidacionApellido">Ingrese los datos solicitados</h5>
                     </div>
-                    <div class="my-2">
+                    <div class="my-2" <?php 
+                                    if($dni){ 
+                                        echo "hidden ";} ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" required>
+                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajoIns()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo">
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
                         <label for="inputDNI">DNI</label>
-                        <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
+                        <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNIIns()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
                         <h9 class="msg" id="msjValidacionDNI"></h9>
                     </div>
                     
@@ -176,7 +273,7 @@ if (!isset($_SESSION['administrador']))
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear"> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear" disabled> Crear</button>
                 </div>
             </form>
 

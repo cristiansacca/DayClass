@@ -57,7 +57,7 @@ if (!isset($_SESSION['administrador']))
 
 
     <div class="my-2">
-        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
+    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
     </div>
 
 
