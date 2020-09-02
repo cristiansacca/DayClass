@@ -89,7 +89,7 @@ include "../header.html";
     <?php
 
     if (count($yaInscriptos) > 0) {
-        echo "<div class='alert alert-warning alert-dismissible fade show mt-4' role='alert'>
+        echo "<div class='alert alert-warning mt-4' role='alert'>
         <h5>Alumnos ya ingresados anteriormente</h5>
     <ul>";
 
@@ -103,7 +103,7 @@ include "../header.html";
     }
 
     if (count($correcto) > 0) {
-        echo "<div class='alert alert-success alert-dismissible fade show mt-4' role='alert'>
+        echo "<div class='alert alert-success mt-4' role='alert'>
         <h5>Alumnos ingresados en el sistema satisfactoriamente</h5>
     <ul>";
 
