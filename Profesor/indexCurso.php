@@ -244,7 +244,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
             <div class="card h-100">
                 <img class="card-img-top imagen" src="../images/Pizzarra-de-novedades.png" alt="pizarra-novedades" oncontextmenu="return false">
                 <div class="card-body">
-                    <h4 class="card-title">Pizzarra de novedades</h4>
+                    <h4 class="card-title">Pizarra de novedades</h4>
                     <p class="card-text">Publica novedades para los alumnos del curso</p>
                 </div>
                 <div class="card-footer">
