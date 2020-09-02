@@ -27,12 +27,21 @@ if (!isset($_SESSION['alumno']))
 
        <?php
         include "../databaseConection.php";
+        
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $currentDateTime = date('Y-m-d');
 
         //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
-        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
+        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
         $contador = 0;
         
-        while ($alumnocursoactual = $consulta1->fetch_assoc()) {
+       
+        if(($consulta1->num_rows) == 0){
+            echo "<div class='alert alert-warning' role='alert'>
+                    <h5>Todavia no esta inscripto a ninguna materia.</h5>
+                </div>";
+        }else{
+            while ($alumnocursoactual = $consulta1->fetch_assoc()) {
             if($contador == 4){
                 $contador = 0;
             }
@@ -58,7 +67,7 @@ if (!isset($_SESSION['alumno']))
 
                                 echo "<li>".$cargo['nombreCargo'].": ".$profesor['nombreProf']." ".$profesor['apellidoProf']."</li>";
                             }
-            echo "      </ul>
+            echo " </ul>
                     </div>
                     <div class='card-footer'>
                         <a href='#' class='btn btn-primary m-2'>Ver curso</a>
@@ -69,7 +78,11 @@ if (!isset($_SESSION['alumno']))
             
             $contador ++;
        
+            }
         }
+        
+        
+    
         
     ?> 
         

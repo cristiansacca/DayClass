@@ -19,14 +19,22 @@ if (!isset($_SESSION['alumno']))
         <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
     </div>
     <div class="form-group">
-        <label for="">Seleccione la materia:</label>
-        <select name="" id="materias" class="custom-select">
-        <?php
+            <?php
               include "../databaseConection.php";
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDateTime = date('Y-m-d');
 
               //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
-              $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
+              $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
               
+            if(($consulta1->num_rows) == 0){
+            echo "<div class='alert alert-warning' role='alert'>
+                    <h5>Todavia no esta inscripto a ninguna materia, no puede justiticar .</h5>
+                </div>";
+            }else{
+                
+                echo "<label for=''>Seleccione la materia:</label>";
+                echo "<select name='' id='materias' class='custom-select'>";
               while ($alumnocursoactual = $consulta1->fetch_assoc()) {
                   
                 //Por cada instancia de AlumnoCursoActual se obtiene el curso asociado
@@ -35,8 +43,10 @@ if (!isset($_SESSION['alumno']))
                   echo "<option value='".$curso['id']."'>".$curso['nombreCurso']."</option>";
 
               }
+                echo "</select>";
+            }
         ?>
-        </select>
+        
     </div>
     <h3 class="text-danger">De acá para abajo está hardcodeado</h3>
     <div class="form-gruup">
