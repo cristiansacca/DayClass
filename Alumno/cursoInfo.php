@@ -48,6 +48,7 @@ if (isset($_GET["id_curso"])) {
         
         
         <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
+        <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas Dados</button>
     </div>
     <!-- Page Features -->
     <h2>Docentes</h2>
@@ -138,6 +139,59 @@ if (isset($_GET["id_curso"])) {
     </div>
 
 </div>
+
+
+<!-- Modal ver temas dados -->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h3 class="modal-title " id="staticBackdropLabel">Temas dados</h3>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <h9>Temas dados durante el cursado</h9>
+
+                    <table class="table text-center table-striped">
+                        <thead>
+                            <th>Fecha</th>
+                            <th>Tema</th>
+                            <th>Comentario del Docente</th>
+                        </thead>
+                        
+                        <tbody>
+                            <?php
+                                include "../databaseConection.php";
+                                $id_curso = $_GET["id_curso"];
+
+                                $consulta1 = $con->query("SELECT temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id AND temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia ASC");
+
+                                while ($resultado1 = $consulta1->fetch_assoc()) {
+
+                                    echo "<tr>
+                                    <td>" . $resultado1['fechaTemaDia'] . "</td>
+                                    <td>" . $resultado1['nombreTema'] . "</td>
+                                    <td>" . $resultado1['comentarioTema'] . "</td>
+                                    </tr>";
+                                }
+                            ?>
+                        
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="alumno.js"></script>
