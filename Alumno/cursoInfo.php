@@ -111,7 +111,7 @@ if (isset($_GET["id_curso"])) {
             $dia = $horarioCurso["nombreDia"];
             $horaDesde = $horarioCurso["horaInicioCurso"];
             $horaHasta = $horarioCurso["horaFinCurso"];
-            echo "<div class='col-lg-2 col-md-12 mb-4' >
+            echo "<div class='col-lg-3 col-md-12 mb-4' >
                 <div class='card h-100 color$contador'>
                     <div class='card-body text-left'>
                         <h3 class='card-title'>$dia</h3>
