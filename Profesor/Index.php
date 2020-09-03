@@ -48,11 +48,13 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
             
             $consultaCursos = $con->query("SELECT * FROM curso WHERE id='" . $cargos['curso_id'] . "'");
             $resultadoCursos = $consultaCursos->fetch_assoc();
+            $cargoProf = $con->query("SELECT * FROM cargo WHERE id='" . $cargos['cargo_id'] . "'")->fetch_assoc();
 
             echo "<div class='col-lg-6 col-md-3 mb-4' >
-                <div class='card h-100 color$contador' >
+                <div class='card color$contador' >
                     <div class='card-body'>
                         <h4 class='card-title'>".$resultadoCursos["nombreCurso"]."</h4>
+                        <label>".$cargoProf['nombreCargo']."</label>
                     </div>
                     <div class='card-footer'>
                         <a href='indexCurso.php?id_curso=".$resultadoCursos["id"]."' class='btn btn-primary btn-lg'>Ingresar</a>

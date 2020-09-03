@@ -136,9 +136,14 @@ if (!isset($_SESSION['administrador']))
                     
                     $ultimaLicencia =$con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaHastaCargoProfesorEstado DESC");
                     $resultadoUltimaLicencia = $ultimaLicencia->fetch_assoc();
-                    $inicioUtimaLicencia = $resultadoUltimaLicencia["fechaDesdeCargoProfesorEstado"];
-                    $finUtimaLicencia = $resultadoUltimaLicencia["fechaHastaCargoProfesorEstado"];
-                    
+                    if(($ultimaLicencia->num_rows)==0){
+                        $inicioUtimaLicencia = "";
+                        $finUtimaLicencia = "";
+                    } else {
+                        $inicioUtimaLicencia = $resultadoUltimaLicencia["fechaDesdeCargoProfesorEstado"];
+                        $finUtimaLicencia = $resultadoUltimaLicencia["fechaHastaCargoProfesorEstado"];
+                    }
+
                     echo "<tr>
                     <td>" . $resultadoProf['legajoProf'] . "</td>
                     <td>" . $nombreCompleto . "</td>
@@ -146,9 +151,9 @@ if (!isset($_SESSION['administrador']))
                     <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit'></i>Editar</a>
-                        <a class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash'></i>Baja</a>
-                        <a class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(".$id.")'><i class='fa fa-address-book-o'></i>Licencia</a> 
+                        <a href='' class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a href='' class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
+                        <a href='' class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(".$id.")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
                         <input type='date' name='impIDprof' id='inicLic".$id."' value='$inicioLicencia' hidden> 
                         <input type='date' name='impIDprof' id='inicioUltimaLicencia".$id."' value='$inicioUtimaLicencia' hidden>
                         <input type='date' name='impIDprof' id='finUltimaLicencia".$id."' value='$finUtimaLicencia' hidden>
@@ -235,7 +240,7 @@ if (!isset($_SESSION['administrador']))
             <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarLicenciaDocente.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
                 <div class="modal-body">
                     
-                    <h8>No se aceptan licencias pasadas, iniciadas antes de la fecha de hoy</h8>
+                    <label class="text-muted">No se aceptan licencias pasadas, iniciadas antes de la fecha de hoy</label>
                     
                     <div class="my-2">
                         <div class="form-inline my-2">
@@ -248,7 +253,7 @@ if (!isset($_SESSION['administrador']))
                           <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2" required disabled>
                           <h9 id="msgHasta"></h9>
                         </div>
-                        <div class="form-inline my-2" id="tablaLastLicencia"></div>
+                        <div class="my-2" id="tablaLastLicencia"></div>
                     </div>
                     
                     <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>

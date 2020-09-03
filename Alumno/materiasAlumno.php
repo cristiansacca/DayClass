@@ -19,7 +19,7 @@ if (!isset($_SESSION['alumno']))
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron bg-light">
-        <h1>Materias en las que está inscipto</h1>
+        <h1>Materias en las que está inscripto</h1>
         <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
     </div>
     <!-- Page Features -->
