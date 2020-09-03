@@ -73,6 +73,10 @@ if (isset($_GET["id_curso"])) {
                 $apellidoDocente = $docentesCurso["apellidoProf"];
                 $cargoDocente = $docentesCurso["nombreCargo"];
                 $mailDocente = $docentesCurso["emailProf"];
+                    
+                if($mailDocente == "" || $mailDocente == null){
+                    $mailDocente = "Correo electronico no registrado";
+                }
                 
                 echo "<h4>$cargoDocente: <h5 style='display:inline'>$apellidoDocente, $nombreDocente - $mailDocente</h5></h4>";
                     
