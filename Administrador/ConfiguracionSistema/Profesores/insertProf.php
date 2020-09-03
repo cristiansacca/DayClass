@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
 $nombre = $_POST["inputName"];
 $apellido= $_POST["inputSurname"];
@@ -25,10 +25,10 @@ if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 
     
     $resultado2 = $con->query('INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');');
     
-    header("Location:/DayClass/Administrador/config_profesores.php?resultado=1");
+    header("Location:/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php?resultado=1");
     
 }else{
-    header("Location:/DayClass/Administrador/config_profesores.php?resultado=2");
+    header("Location:/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php?resultado=2");
 }
 
 

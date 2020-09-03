@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
+include "../../../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -107,7 +107,7 @@ if (!isset($_SESSION['administrador']))
 
             <tbody>
                 <?php
-                include "../databaseConection.php";
+                include "../../../databaseConection.php";
 
                 $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum`,`id` FROM `alumno` WHERE `fechaBajaAlumno` IS NULL ORDER BY legajoAlumno ASC");
 
@@ -132,10 +132,10 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="administrador.js"></script>
+<script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="paginadoDataTable.js"></script>
+<script src="/Administrador/paginadoDataTable.js"></script>
 
 <!-- Modal incribir un alumno -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -147,7 +147,7 @@ if (!isset($_SESSION['administrador']))
             </div>
             <form method="POST" id="insertAlumno" name="insertAlumno" action="insertAlumno.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
                 <?php
-        include "../databaseConection.php";
+        include "../../../databaseConection.php";
         $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
         $rtdo = false;
         $dni = null;
@@ -191,9 +191,7 @@ if (!isset($_SESSION['administrador']))
         ?>
 
                 
-                <div class="modal-body" <?php 
-                                    if($dni == null){ 
-                                        echo "hidden ";} ?>>
+                <div class="modal-body" <?php if($dni == null){echo "hidden ";} ?>>
                     <div class="my-2">
                         <label for="inputName">Nombre</label>
                         <input type="text" name="inputName" id="inputName" class="form-control" placeholder="Nombre" onchange="validarNombre()" required>
@@ -204,9 +202,7 @@ if (!isset($_SESSION['administrador']))
                         <input type="text" name="inputSurname" id="inputSurname" class="form-control" placeholder="Apellido" onchange="validarApellido()" required>
                         <h9 class="msg" id="msjValidacionApellido"></h9>
                     </div>
-                    <div class="my-2" <?php 
-                                    if($dni){ 
-                                        echo "hidden ";} ?>>
+                    <div class="my-2" <?php if($dni){echo "hidden ";} ?>>
                         <label for="inputLegajo">Legajo</label>
                         <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo">
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
@@ -260,7 +256,6 @@ if (!isset($_SESSION['administrador']))
 
                         </div>
                     </div>
-                    <!-- la funcion comrobar esta en administrador.js -->
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -279,5 +274,5 @@ if (!isset($_SESSION['administrador']))
 </script>
 
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

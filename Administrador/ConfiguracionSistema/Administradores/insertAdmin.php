@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
 $nombre = $_POST["inputName"];
 $apellido= $_POST["inputSurname"];
@@ -29,10 +29,10 @@ $consultaAdminD = $con->query("SELECT id FROM `administrativo` WHERE dniAdm = $d
 if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 && mysqli_num_rows($consultaProfL) == 0 && mysqli_num_rows($consultaProfD) == 0 && mysqli_num_rows($consultaAdminL) == 0 && mysqli_num_rows($consultaAdminD) == 0){
     $resultado2 = $con->query('INSERT INTO `administrativo`(`nombreAdm`,`apellidoAdm`, `dniAdm`, `fechaAltaAdm`, `legajoAdm`, `permiso_id`,`fechaNacAdm`,`emailAdm`,`contraseniaAdm`) VALUES ("'.$nombre.'","'.$apellido.'","'.$dni.'","'.$currentDateTime.'","'.$legajo.'","'.$id_permiso.'","'.$fchNac.'","'.$email.'","'.$Pass_cifrada.'");');
     
-    header("Location:/DayClass/Administrador/config_admin.php?resultado=1");
+    header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=1");
     
 }else{
-     header("Location:/DayClass/Administrador/config_admin.php?resultado=2");
+     header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=2");
 }
 	
 ?>

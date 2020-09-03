@@ -1,7 +1,7 @@
 <?php
-include "../databaseConection.php";
-include "class.upload.php"; //libreria para subir el archivo excel al servidor
-include "../header.html";
+include "../../../databaseConection.php";
+include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
+include "../../../header.html";
 ?>
 <div class="container" hidden>//Oculta todos los Notice que muestra por el error en la libreria
     <?php
@@ -16,7 +16,7 @@ include "../header.html";
             $up->Process("./uploads/");
             if ($up->processed) {
                 /// leer el archivo excel
-                require_once 'PHPExcel/Classes/PHPExcel.php'; //incluimos la librería PHPExcel con la cual leeremos el archivo y tipo de archivo.
+                require_once '../../PHPExcel/Classes/PHPExcel.php'; //incluimos la librería PHPExcel con la cual leeremos el archivo y tipo de archivo.
                 $archivo = "uploads/" . $up->file_dst_name;
                 $inputFileType = PHPExcel_IOFactory::identify($archivo); //abrimos/identificamos el archivo.
                 $objReader = PHPExcel_IOFactory::createReader($inputFileType); //creamos un objeto tipo Reader 
@@ -71,7 +71,7 @@ include "../header.html";
                     }
                 } else {
                     //echo "<script> alert('error en el formato de la primera fila') </script>";
-                    header("Location:/DayClass/Administrador/config_alumno.php?resultado=6");
+                    header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=6");
                 }
 
 
@@ -117,7 +117,7 @@ include "../header.html";
     }
     ?>
 
-    <a class="btn btn-primary" <?php echo "href='/DayClass/Administrador/config_alumno.php'" ?>><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    <a class="btn btn-primary" <?php echo "href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'" ?>><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 
 </div>
 
@@ -126,5 +126,5 @@ include "../header.html";
 </script>
 
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 	$id = $_GET['id'];
@@ -11,10 +11,10 @@ $string = "UPDATE `alumno` SET `fechaBajaAlumno`=' $currentDateTime' WHERE `id`=
 //echo "$consulta";
 
 if($consulta){
-  header("Location:/DayClass/Administrador/config_alumno.php?resultado=3");
+  header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=3");
   
 }else{
-    header("Location:/DayClass/Administrador/config_alumno.php?resultado=4");
+    header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=4");
 
 }
 

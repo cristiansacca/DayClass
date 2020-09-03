@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
+include "../../../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -102,7 +102,7 @@ if (!isset($_SESSION['administrador']))
             <tbody>
                 <?php
                 
-                include "../databaseConection.php";
+                include "../../../databaseConection.php";
 
                 $consulta1 = $con->query("SELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf`, `id` FROM `profesor` WHERE `fechaBajaProf` IS NULL ORDER by apellidoProf ASC");
                 
@@ -125,10 +125,10 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="administrador.js"></script>
+<script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="paginadoDataTable.js"></script>
+<script src="/Administrador/paginadoDataTable.js"></script>
 
 <!-- Modal crear un Docente -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -137,9 +137,9 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Nuevo profesor</h5>
             </div>
-            <form method="POST" id="insertProfesor" name="insertProfesor" action="insertProfesor.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
+            <form method="POST" id="insertProfesor" name="insertProfesor" action="insertProf.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
                 <?php
-        include "../databaseConection.php";
+        include "../../../databaseConection.php";
         $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
         $rtdo = false;
         $dni = null;
@@ -271,5 +271,5 @@ if (!isset($_SESSION['administrador']))
 </script>
 
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

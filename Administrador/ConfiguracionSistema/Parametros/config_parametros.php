@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../header.html";
+include "../../../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -11,11 +11,11 @@ if (!isset($_SESSION['administrador']))
    header("location:/DayClass/index.php"); 
 }
 
-include "../../databaseConection.php";
+include "../../../databaseConection.php";
 ?>
 
 <script src="fcParametros.js"></script>
-<script src="../administrador.js"></script>
+<script src="/Administrador/administrador.js"></script>
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
@@ -348,5 +348,5 @@ include "../../databaseConection.php";
 </script>
 
 <?php
-include "../../footer.html";
+include "../../../footer.html";
 ?>
