@@ -53,7 +53,7 @@ if (!isset($_SESSION['administrador'])) {
 
 
         ?>
-        <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Materia/admCurso.php?id= $id_materia'" ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id= $id_materia'" ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 
 
     </div>

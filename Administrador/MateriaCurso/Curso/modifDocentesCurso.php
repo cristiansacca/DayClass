@@ -228,7 +228,7 @@ if (!isset($_SESSION['administrador']))
                 <h5 class="modal-title " id="staticBackdropLabel">Licencia docente</h5>
                 
             </div>
-            <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarLicenciaDocenteCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
+            <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarDocenteLicenciaCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
                 <div class="modal-body">
                     
                     <label class="text-muted">No se aceptan licencias pasadas, iniciadas antes de la fecha de hoy</label>

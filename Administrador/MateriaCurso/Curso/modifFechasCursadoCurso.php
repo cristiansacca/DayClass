@@ -36,7 +36,6 @@ $_SESSION['administrador']= $resultado1;
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $currentDateTime = date('Y-m-d H:i:s');
             $currentDate = date('Y-m-d');
-
             
             $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
             $resultado = $consultaCurso->fetch_assoc();
@@ -139,5 +138,5 @@ $_SESSION['administrador']= $resultado1;
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

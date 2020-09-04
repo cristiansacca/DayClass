@@ -96,7 +96,7 @@ if (!isset($_SESSION['administrador']))
                     $resultado3 = $consulta3->fetch_assoc();
 
                     $id = $resultadoCurso["id"];
-                    $urlEditarCurso = "editarCurso.php?id=$id";
+                    $urlEditarCurso = "modifFechasCursadoCurso.php?id=$id";
                     $urlBajaCurso = "bajaCurso.php?id=$id";
 
                     $nombreCurso = $resultadoCurso['nombreCurso'];
@@ -133,8 +133,8 @@ if (!isset($_SESSION['administrador']))
                     </td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-warning btn-sm mb-1' data-emp-id=" . $id . " href='editarDocentesCurso.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
-                        <a class='btn btn-info btn-sm mb-1' data-emp-id=" . $id . " href='inscribirAlumnos.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a>                              
+                        <a class='btn btn-warning btn-sm mb-1' data-emp-id=" . $id . " href='modifDocentesCurso.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
+                        <a class='btn btn-info btn-sm mb-1' data-emp-id=" . $id . " href='alumnosCurso.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a>                              
                     </td>
                     
                     
@@ -182,16 +182,12 @@ if (!isset($_SESSION['administrador']))
 
                     </div>
                     <div class="form-group">
-
-
                         <table id="dataTable" class="table">
                             <thead>
                                 <th>Dia</th>
                                 <th>Hora desde</th>
                                 <th>Hora hasta</th>
-
                             </thead>
-
                             <tbody>
                                 <?php
                                 include "../../../databaseConection.php";
