@@ -28,6 +28,7 @@ if(isset($_GET["id_curso"])){
         <h1>Tema del día</h1>
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas Dados</button>
     </div>
 
     <?php
@@ -49,7 +50,7 @@ if(isset($_GET["id_curso"])){
     ?>
 
     <form action="cargarTemaDia.php" method="POST" class=" form-group">
-        <h5>Indique el tema del día</>
+        <h5>Indique el tema del día</h5>
         <input type="text" name="id_curso" <?php echo "value=$id_curso" ?> hidden >
         <div class="my-2">
             <select id="temas" name="tema" class="custom-select" required>
@@ -70,13 +71,79 @@ if(isset($_GET["id_curso"])){
             </select>
         </div>
         <div class="my-2">
-            <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control"
+            <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline"
                 placeholder="Escriba un comentario (Opcional)"></textarea>
         </div>
         <button class="btn btn-success my-2" type="submit">Aceptar</button>
     </form>
 
 </div>
+
+
+<!-- Modal ver temas dados -->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h3 class="modal-title " id="staticBackdropLabel">Temas dados</h3>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <h9>Temas dados anteriormente</h9>
+
+                    <table class="table text-center table-striped">
+                        
+                        
+                        
+                            <?php
+                                include "../databaseConection.php";
+                                $id_curso = $_GET["id_curso"];
+
+                                $consulta1 = $con->query("SELECT temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia ASC");
+                            
+                            
+                                if(($consulta1->num_rows) == 0){
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                            <h5>Todavia no se han cargado temas en este curso</h5>
+                                        </div>";
+                                }else{
+                                   echo "<thead>
+                                            <th>Fecha</th>
+                                            <th>Tema</th>
+                                            <th>Comentario</th>
+                                        </thead>
+                                       <tbody> ";
+                                
+
+                                    while ($resultado1 = $consulta1->fetch_assoc()) {
+
+                                        echo "<tr>
+                                        <td>" . $resultado1['fechaTemaDia'] . "</td>
+                                        <td>" . $resultado1['nombreTema'] . "</td>
+                                        <td>" . $resultado1['comentarioTema'] . "</td>
+                                        </tr>";
+                                    }
+                                    
+                                    echo " </tbody>";
+                                }
+                            ?>
+                        
+                       
+                    </table>
+
+                </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <script>
     var tema = document.getElementById("temas").value;
