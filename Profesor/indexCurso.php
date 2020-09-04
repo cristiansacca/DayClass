@@ -189,6 +189,8 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                echo "href='inscriptos.php?id_curso=$id_curso'";
            }
            ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
+        
+        <button class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-clock-o mr-2"></i>Horarios</button>
     </div>
 
     <?php
@@ -292,6 +294,89 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
     </div>
 
 </div>
+
+<!-- Modal de horarios curso -->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h3 class="modal-title " id="staticBackdropLabel">Horarios de cursado</h3>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <h9></h9>
+                    
+                    <table class="table text-center table-striped">
+
+                    
+                        <?php
+                            include "../databaseConection.php";
+
+                            $id_curso = $_GET["id_curso"];
+
+                            date_default_timezone_set('America/Argentina/Buenos_Aires');
+                            $currentDateTime = date('Y-m-d');
+
+                            $consulta3 = $con->query("SELECT horariocurso.horaInicioCurso, horariocurso.horaFinCurso, cursodia.nombreDia FROM `curso`, horariocurso, cursodia WHERE curso.id = $id_curso AND curso.id = horariocurso.curso_id AND horariocurso.cursoDia_id = cursodia.id ORDER BY cursodia.ordenDia ASC");
+
+                            $contador = 0;
+
+
+                            if(($consulta3->num_rows) == 0){
+                                echo "<div class='alert alert-warning' role='alert'>
+                                        <h5>Todavia no se han definido horaios para este curso</h5>
+                                    </div>";
+                            }else{
+
+                                echo "<thead>
+                                            <th>Día</th>
+                                            <th>Hora desde</th>
+                                            <th>Hora hasta</th>
+                                        </thead>
+                                       <tbody> ";
+                                while ($horarioCurso = $consulta3->fetch_assoc()) {
+                                
+                                $dia = $horarioCurso["nombreDia"];
+                                $horaDesde = $horarioCurso["horaInicioCurso"];
+                                $horaHasta = $horarioCurso["horaFinCurso"];
+                                echo "<tr>
+                                        <td>" . $dia . "</td>
+                                        <td>" . $horaDesde . "</td>
+                                        <td>" . $horaHasta . "</td>
+                                    </tr>";
+
+                                $contador ++;
+
+                                }
+                               
+                                echo " </tbody>";
+                                
+                            }
+                        
+                        
+
+
+
+                        ?> 
+                        
+                        </table>
+
+                </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     document.getElementById("temaDia").innerHTML = <?php 
