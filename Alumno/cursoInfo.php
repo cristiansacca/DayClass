@@ -154,30 +154,43 @@ if (isset($_GET["id_curso"])) {
                     <h9>Temas dados durante el cursado</h9>
 
                     <table class="table text-center table-striped">
-                        <thead>
-                            <th>Fecha</th>
-                            <th>Tema</th>
-                            <th>Comentario del Docente</th>
-                        </thead>
                         
-                        <tbody>
+                        
+                        
                             <?php
                                 include "../databaseConection.php";
                                 $id_curso = $_GET["id_curso"];
 
                                 $consulta1 = $con->query("SELECT temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia ASC");
+                            
+                            
+                                if(($consulta1->num_rows) == 0){
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                            <h5>Todavia no se han cargado temas en este curso</h5>
+                                        </div>";
+                                }else{
+                                   echo "<thead>
+                                            <th>Fecha</th>
+                                            <th>Tema</th>
+                                            <th>Comentario del Docente</th>
+                                        </thead>
+                                       <tbody> ";
+                                
 
-                                while ($resultado1 = $consulta1->fetch_assoc()) {
+                                    while ($resultado1 = $consulta1->fetch_assoc()) {
 
-                                    echo "<tr>
-                                    <td>" . $resultado1['fechaTemaDia'] . "</td>
-                                    <td>" . $resultado1['nombreTema'] . "</td>
-                                    <td>" . $resultado1['comentarioTema'] . "</td>
-                                    </tr>";
+                                        echo "<tr>
+                                        <td>" . $resultado1['fechaTemaDia'] . "</td>
+                                        <td>" . $resultado1['nombreTema'] . "</td>
+                                        <td>" . $resultado1['comentarioTema'] . "</td>
+                                        </tr>";
+                                    }
+                                    
+                                    echo " </tbody>";
                                 }
                             ?>
                         
-                        </tbody>
+                       
                     </table>
 
                 </div>
