@@ -11,7 +11,7 @@ function cambiarContenidoNavbar() {
     contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
     contenido += "<li><div class='dropdown'>";
     contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-user-circle mr-1'></i><label id='nombreUsuarioNav'>Nombre Apellido</label></button>";
-    contenido += "<div class='dropdown-menu'><a class='dropdown-item' href='/DayClass/Administrador/editar_perfil.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>";
+    contenido += "<div class='dropdown-menu'><a class='dropdown-item' href='/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>";
     contenido += "<a class='dropdown-item' href='/DayClass/logout.php'><i class='fa fa-sign-out mr-1'></i>Salir</a></div></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
 }

@@ -2,8 +2,8 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
-include "../databaseConection.php";
+include "../../header.html";
+include "../../databaseConection.php";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -22,14 +22,14 @@ $_SESSION['administrador']= $resultado1;
 
 ?>
 
-<script src="administrador.js"> </script>
+<script src="../administrador.js"> </script>
 
 <div class="container">
       
   <div class="jumbotron my-4 py-4">
       <p class="card-text">Administrador</p>
       <h1>Editar perfil</h1>
-      <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+      <a href="../index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>
   <?php
         if(isset($_GET["resultado"])){
@@ -134,5 +134,5 @@ $_SESSION['administrador']= $resultado1;
 </script>
 
 <?php
-include "../footer.html";
+include "../../footer.html";
 ?>
