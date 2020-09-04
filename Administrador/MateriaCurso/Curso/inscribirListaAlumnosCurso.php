@@ -1,6 +1,6 @@
 <?php
-include "../databaseConection.php";
-include "class.upload.php"; //libreria para subir el archivo excel al servidor
+include "../../../databaseConection.php";
+include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $id_curso = $_POST["cursoId"];
@@ -26,7 +26,7 @@ if (isset($_FILES["inpGetFile"])) {
         $up->Process("./uploads/");
         if ($up->processed) {
             /// leer el archivo excel
-            require_once 'PHPExcel/Classes/PHPExcel.php'; //incluimos la librería PHPExcel con la cual leeremos el archivo y tipo de archivo.
+            require_once '../../PHPExcel/Classes/PHPExcel.php'; //incluimos la librería PHPExcel con la cual leeremos el archivo y tipo de archivo.
             $archivo = "uploads/" . $up->file_dst_name;
             $inputFileType = PHPExcel_IOFactory::identify($archivo); //abrimos/identificamos el archivo.
             $objReader = PHPExcel_IOFactory::createReader($inputFileType); //creamos un objeto tipo Reader 
@@ -111,7 +111,7 @@ if (isset($_FILES["inpGetFile"])) {
         }
     }
 }
-include "../header.html";
+include "../../../header.html";
 ?>
 
 
@@ -159,9 +159,9 @@ if(count($correcto) > 0){
 }
 ?>
 
-<a class="btn btn-primary" <?php echo "href='/DayClass/Administrador/inscribirAlumnos.php?id=$id_curso'" ?> ><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+<a class="btn btn-primary" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso'" ?> ><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 
 </div>
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

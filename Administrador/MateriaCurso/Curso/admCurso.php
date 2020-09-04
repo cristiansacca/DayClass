@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
+include "../../../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -13,17 +13,17 @@ if (!isset($_SESSION['administrador']))
 
 ?>
 
-<script src="administrador.js"></script>
-<script src="validarDiasCurso.js"></script>
+<script src="../..administrador.js"></script>
+<script src="fnValidarDiasCurso.js"></script>
 
-<link rel="stylesheet" href="../styleCards.css">
+<link rel="stylesheet" href="../../../styleCards.css">
 
 <div class="container ">
 
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         <h1>Cursos</h1>
-        <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php
@@ -74,7 +74,7 @@ if (!isset($_SESSION['administrador']))
 
             <tbody>
                 <?php
-                include "../databaseConection.php";
+                include "../../../databaseConection.php";
                 
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDateTime = date('Y-m-d');
@@ -155,7 +155,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel"> Añadir Curso</h5>
             </div>
-            <form id="crearCurso" name="crearCurso" action="crearCurso.php" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviar()">
+            <form id="crearCurso" name="crearCurso" action="altaCurso.php" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviar()">
 
                 <div class="modal-body">
                     <div class="my-2">
@@ -164,7 +164,7 @@ if (!isset($_SESSION['administrador']))
                         <select name="divisiones" id="divisiones" class="custom-select">
 
                             <?php
-                            include "../databaseConection.php";
+                            include "../../../databaseConection.php";
                             $id_materia = $_GET["id"];
 
                             $consultaD = $con->query("SELECT * FROM division LEFT JOIN (SELECT curso.id as idCurso, curso.division_id as idDivision FROM curso WHERE curso.materia_id = '$id_materia' AND curso.fechaHastaCurActul IS NULL) as A ON A.idDivision = division.id where A.idCurso IS NULL");
@@ -194,7 +194,7 @@ if (!isset($_SESSION['administrador']))
 
                             <tbody>
                                 <?php
-                                include "../databaseConection.php";
+                                include "../../../databaseConection.php";
 
                                 $consulta = $con->query("SELECT * FROM `cursoDia`");
 
@@ -224,13 +224,13 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="administrador.js"></script>
+<script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="paginadoDataTable.js"></script>
+<script src="../../paginadoDataTable.js"></script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

@@ -1,7 +1,7 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
-include "class.upload.php";
+include "../../class.upload.php";
 //Obtengo los datos del programa
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
@@ -59,6 +59,6 @@ if (isset($_FILES["inpGetFile"])) {
     }
 }
 
-header("location: /DayClass/Administrador/administrar-materia.php");
+header("location: /DayClass/Administrador/MateriaCurso/Materia/admMateria.php");
 
 ?>

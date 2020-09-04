@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
 $diasYhoras = $_POST["arregloDiasHorario"];
 
@@ -46,5 +46,5 @@ $currentDateTime = date('Y-m-d H:i:s');
             
     }
     
-   header("location: /DayClass/Administrador/admcurso.php?id=$id_materia&&resultado=1");	
+   header("location: /DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=$id_materia&&resultado=1");	
 ?>

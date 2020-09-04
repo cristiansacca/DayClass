@@ -1,5 +1,4 @@
 function habilitarTimeP(dia){
-    eval("debugger;");
     var elem = document.getElementById(dia);
     
     elem.addEventListener( 'change', function() {
@@ -26,7 +25,7 @@ function habilitar2do(dia){
 }
 
 function validar(dia){
-    eval("debugger;");
+
     var len = dia.length;
     
     var hora1 = document.getElementById(dia).value;
@@ -45,7 +44,7 @@ function validar(dia){
 }
 
 function enviar(){
-    eval("debugger;");
+
     var arregloDiasHorarios = [];
     var diaSem = document.getElementsByClassName("checkDia");
     var rtdo = false;

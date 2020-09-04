@@ -1,5 +1,4 @@
 function setIdProf(id){
-    eval("debugger;");
     
     var buscar = "inicLic" + id;
     document.getElementById('impIDprof').value=id;
@@ -29,7 +28,7 @@ function setIdProf(id){
 
 
 function habilitarFechaHasta(){
-     eval("debugger;");
+
    var fchDesde = document.getElementById('fechaDesde').value;
    
     var fechaSig = new Date(fchDesde);

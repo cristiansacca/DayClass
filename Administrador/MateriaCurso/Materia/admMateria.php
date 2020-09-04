@@ -2,8 +2,8 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
-include "../databaseConection.php";
+include "../../../header.html";
+include "../../../databaseConection.php";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -26,7 +26,7 @@ if (!isset($_SESSION['administrador']))
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         <h1>Materias</h1>
-        <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php
@@ -103,7 +103,7 @@ if (!isset($_SESSION['administrador']))
                     }
 
                     echo "<tr>
-                    <td><a href='admcurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
+                    <td><a href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td>$nivelMateria</td>
                     <td><button class='btn btn-primary' data-toggle='modal' data-target='#staticBackdrop2'><i class='fa fa-edit'></i></button></td>
                     <td>".$cargado."</td>
@@ -127,7 +127,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Nueva materia</h5>
             </div>
-            <form method="POST" id="insertMateria" name="insertMateria" action="insertMateria.php" enctype="multipart/form-data" role="form">
+            <form method="POST" id="insertMateria" name="insertMateria" action="altaMateria.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="my-2">
                         <label for="inputNombreMateria"> Nombre materia</label>
@@ -156,7 +156,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Editar materia</h5>
             </div>
-            <form method="POST" id="insertMateria" name="insertMateria" action="editarMateria.php" enctype="multipart/form-data" role="form">
+            <form method="POST" id="insertMateria" name="insertMateria" action="modifMateria.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="my-2">
                         <label for="inputNombreMateria"> Nombre materia</label>
@@ -187,7 +187,7 @@ if (!isset($_SESSION['administrador']))
         </div>
         <div class="modal-body">
         
-        <form method="POST" id="importPlanilla" name="importPlanilla" action="import_temas.php" enctype="multipart/form-data" role="form">
+        <form method="POST" id="importPlanilla" name="importPlanilla" action="altaProgramaMateria.php" enctype="multipart/form-data" role="form">
             <div class="my-2">    
                 <label for="materias">Seleccione la materia:</label>
                 <select name="selectmaterias" id="selectmaterias" class="custom-select">
@@ -236,14 +236,14 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="administrador.js"></script>
+<script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="paginadoDataTable.js"></script>
+<script src="../../paginadoDataTable.js"></script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
 
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

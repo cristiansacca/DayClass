@@ -2,8 +2,8 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
-include "../databaseConection.php";
+include "../../../header.html";
+include "../../../databaseConection.php";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -32,7 +32,6 @@ $_SESSION['administrador']= $resultado1;
       <h5>Editar Curso</h5>
       
       <?php
-            include "../databaseConection.php";
             $id_curso = $_GET['id'];
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $currentDateTime = date('Y-m-d H:i:s');
@@ -46,9 +45,6 @@ $_SESSION['administrador']= $resultado1;
             $nombreCurso = $resultado["nombreCurso"];
         
             echo "<h1>$nombreCurso</h1>";
-            
-            //echo "<h6>Inicio del curso: ".strftime('%d/%m/%Y', strtotime($fchDesde))."</h6>";
-            //echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
       
             $rtdo = false;
       
@@ -65,7 +61,7 @@ $_SESSION['administrador']= $resultado1;
         
         ?>
       
-      <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+      <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>
   <?php
         if(isset($_GET["resultado"])){
@@ -95,7 +91,7 @@ $_SESSION['administrador']= $resultado1;
 
         ?>
   <div class="mt-2 mx-auto">
-    <form method="post" id="editarCurso" name="editarCurso" action="modificarCurso.php" onsubmit="" enctype="multipart/form-data" role="form">
+    <form method="post" id="editarCurso" name="editarCurso" action="modifCurso.php" onsubmit="" enctype="multipart/form-data" role="form">
       <div class="fill_fields">
         <div class="form-row">
           <div class="form-group col-md-6">

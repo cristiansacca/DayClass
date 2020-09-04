@@ -11,10 +11,10 @@ $string = "UPDATE `materia` SET `fechaBajaMateria`=' $currentDateTime' WHERE `id
 
 
 if($consulta){
-  header("Location:/DayClass/Administrador/administrar-materia.php?resultado=3");
+  header("Location:/DayClass/Administrador/MateriaCurso/Materia/admMateria.php?resultado=3");
   
 }else{
-    header("Location:/DayClass/Administrador/administrar-materia.php?resultado=4");
+    header("Location:/DayClass/Administrador/MateriaCurso/Materia/admMateria.php?resultado=4");
 
 }
 

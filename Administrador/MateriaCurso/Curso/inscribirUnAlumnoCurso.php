@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
 $id_curso = $_POST["cursoId"];
 $legajo = $_POST["inputLegajo"];
@@ -18,7 +18,7 @@ $consultaAlumID = $con->query("SELECT id FROM `alumno` WHERE (dniAlum = $dni AND
 
 if(mysqli_num_rows($consultaAlumID) == 0){
     //si la cosnulta es vacia, el alumno no existe o esta dado de baja, error 2 = alumno inexistente o dado de baja 
-    header("Location:/DayClass/Administrador/inscribirAlumnos.php?id=$id_curso&&resultado=2");
+    header("Location:/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso&&resultado=2");
     
     
 }else{
@@ -41,11 +41,11 @@ if(mysqli_num_rows($consultaAlumID) == 0){
         $resultadoInsertAsist = $con->query("INSERT INTO `asistencia`( `alumno_id`, `curso_id`, `fechaHastaFichaAsis`) VALUES ('$id_alumno','$id_curso','$fchHasta')");
         
         //volver a la pagina que llamo, exito 1 = inscripcion exitosa 
-        header("Location:/DayClass/Administrador/inscribirAlumnos.php?id=$id_curso&&resultado=1");
+        header("Location:/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso&&resultado=1");
         
     }else{
         //error 3 = alumno ya inscripto en esa materia, en ese ciclo lectivo
-        header("Location:/DayClass/Administrador/inscribirAlumnos.php?id=$id_curso&&resultado=3");
+        header("Location:/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso&&resultado=3");
     }
 }
 

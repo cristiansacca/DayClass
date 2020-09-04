@@ -41,7 +41,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
           <h6 class="card-text">Administrar materias y cursos</h6>
         </div>
         <div class="card-footer">
-          <a href="/DayClass/Administrador/administrar-materia.php" class="btn btn-primary">Ir</a>
+          <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-primary">Ir</a>
         </div>
       </div>
     </div>

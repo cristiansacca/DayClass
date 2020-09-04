@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
 
 
@@ -15,8 +15,8 @@ $consulta1 = $con->query("UPDATE `curso` SET `fechaDesdeCursado`='$fchDesdeCursa
 header("Location:/DayClass/Administrador/editarCurso.php?id=$id_curso&&resultado=5");
 
 if($consulta1){
-    header("Location:/DayClass/Administrador/editarCurso.php?id=$id_curso&&resultado=1");
+    header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifFechasCursadoCurso.php?id=$id_curso&&resultado=1");
 }else{
-    header("Location:/DayClass/Administrador/editarCurso.php?id=$id_curso&&resultado=2");
+    header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifFechasCursadoCurso.php?id=$id_curso&&resultado=2");
 }
 ?>

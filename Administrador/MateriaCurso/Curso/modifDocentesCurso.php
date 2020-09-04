@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
+include "../../../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) 
@@ -11,7 +11,7 @@ if (!isset($_SESSION['administrador']))
    header("location:/DayClass/index.php"); 
 }
 ?>
-<script src="administrador.js"></script>
+<script src="../../administrador.js"></script>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
@@ -28,7 +28,7 @@ if (!isset($_SESSION['administrador']))
         <p class="card-text">Administrador</p>
         
         <?php
-            include "../databaseConection.php";
+            include "../../../databaseConection.php";
             $id_curso = $_GET['id'];
             
             $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
@@ -43,7 +43,7 @@ if (!isset($_SESSION['administrador']))
             echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
         
         ?>
-        <a href="administrar-materia.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     
     
@@ -100,9 +100,7 @@ if (!isset($_SESSION['administrador']))
 
     <div class="my-3">
       <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Docente</a>
-    </div>
-   
-        
+    </div>  
 
     <div class="my-4">
         <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
@@ -115,7 +113,6 @@ if (!isset($_SESSION['administrador']))
             </thead>
             <tbody>
                 <?php
-                include "../databaseConection.php";
                 $id_curso = $_GET["id"];
                 
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -161,8 +158,7 @@ if (!isset($_SESSION['administrador']))
                     </td> 
                     </tr>";        
                 }
-                
-                
+
                 ?>
                 
                 </tbody>
@@ -187,9 +183,6 @@ if (!isset($_SESSION['administrador']))
                         <label for="cargo">Cargo</label>
                         <select id="cargo" name="cargo" class="custom-select mx-2" style="width:200px">
                             <?php
-                                  include "../databaseConection.php";
-                                
-
                                   $consultaD = $con->query("SELECT * FROM `cargo`");
                         
                                   while ($cargo = $consultaD->fetch_assoc()) {
@@ -235,9 +228,7 @@ if (!isset($_SESSION['administrador']))
                 <h5 class="modal-title " id="staticBackdropLabel">Licencia docente</h5>
                 
             </div>
-            
-            
-            <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarLicenciaDocente.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
+            <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarLicenciaDocenteCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
                 <div class="modal-body">
                     
                     <label class="text-muted">No se aceptan licencias pasadas, iniciadas antes de la fecha de hoy</label>
@@ -272,15 +263,15 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="administrador.js"></script>
+<script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="paginadoDataTable.js"></script>
-<script src="funcionesLicencia.js"></script>
+<script src="../../paginadoDataTable.js"></script>
+<script src="fnLicencia.js"></script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
 
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>

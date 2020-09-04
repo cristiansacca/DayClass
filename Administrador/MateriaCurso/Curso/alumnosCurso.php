@@ -2,13 +2,12 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
- 
+include "../../../header.html";
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) 
-{
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
+if (!isset($_SESSION['administrador'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
 }
 
 ?>
@@ -27,122 +26,117 @@ if (!isset($_SESSION['administrador']))
 
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        
+
         <?php
-            include "../databaseConection.php";
-            $id_curso = $_GET['id'];
-             date_default_timezone_set('America/Argentina/Mendoza');
-            $currentDateTime = date('Y-m-d');
-            
-            $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
-            $resultado = $consultaCurso->fetch_assoc();
-            $fchDesde = $resultado["fechaDesdeCursado"];
-            $fchHasta = $resultado["fechaHastaCursado"];
-            $nombreCurso = $resultado["nombreCurso"];
-            $id_materia = $resultado["materia_id"];
-        
-            echo "<h1>$nombreCurso</h1>";
-            
-        
-        
-            if($fchDesde != null && $fchHasta != null && $fchHasta >= $currentDateTime){
-                echo "<h6>Inicio del curso: ".strftime('%d/%m/%Y', strtotime($fchDesde))."</h6>";
-                echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
-            }else{
-                echo "<div class='alert alert-warning' role='alert'>
+        include "../../../databaseConection.php";
+        $id_curso = $_GET['id'];
+        date_default_timezone_set('America/Argentina/Mendoza');
+        $currentDateTime = date('Y-m-d');
+
+        $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+        $resultado = $consultaCurso->fetch_assoc();
+        $fchDesde = $resultado["fechaDesdeCursado"];
+        $fchHasta = $resultado["fechaHastaCursado"];
+        $nombreCurso = $resultado["nombreCurso"];
+        $id_materia = $resultado["materia_id"];
+
+        echo "<h1>$nombreCurso</h1>";
+
+        if ($fchDesde != null && $fchHasta != null && $fchHasta >= $currentDateTime) {
+            echo "<h6>Inicio del curso: " . strftime('%d/%m/%Y', strtotime($fchDesde)) . "</h6>";
+            echo "<h6>Finalización de curso: " . strftime('%d/%m/%Y', strtotime($fchHasta)) . "</h6>";
+        } else {
+            echo "<div class='alert alert-warning' role='alert'>
                             <h5>No hay fechas de cursado vigentes, no se puede inscribir alumnos</h5>
                         </div>";
-            }
-            
-        
+        }
+
+
         ?>
-        <a  <?php echo "href='/DayClass/Administrador/admcurso.php?id= $id_materia'"?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        
-       
+        <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Materia/admCurso.php?id= $id_materia'" ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+
+
     </div>
 
     <?php
-    
-    if(isset($_GET["resultado"])){
+
+    if (isset($_GET["resultado"])) {
         switch ($_GET["resultado"]) {
-                case 1:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Alumno inscripto exitosamente</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 2:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>El documento o Legajo ingresado no existen o el alumno esta dado de baja</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 3:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                break;
+            case 3:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>El alumno ya esta inscripto</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 4:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                break;
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Error en la baja</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
+                break;
         }
-    
     }
 
     ?>
-    
-    <?php
-                include "../databaseConection.php";
-    
-                    $id_curso = $_GET['id'];
-                    date_default_timezone_set('America/Argentina/Mendoza');
-                    $currentDateTime = date('Y-m-d');
-            
-                    $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
-                    $resultadoCurso = $consultaCurso->fetch_assoc();
-            
-                    $nombreCurso = $resultadoCurso['nombreCurso'];
-                    
-                    $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
-                    $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
-                    
-                    $habilitado = false;
-                    
-                    if($fechaDesdeCursado != null && $fechaHastaCursado != null){
-                        if($fechaHastaCursado >= $currentDateTime){
-                            $habilitado = true;
 
-                        }    
-                    }
-                ?>
+    <?php
+
+    $id_curso = $_GET['id'];
+    date_default_timezone_set('America/Argentina/Mendoza');
+    $currentDateTime = date('Y-m-d');
+
+    $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+    $resultadoCurso = $consultaCurso->fetch_assoc();
+
+    $nombreCurso = $resultadoCurso['nombreCurso'];
+
+    $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
+    $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
+
+    $habilitado = false;
+
+    if ($fechaDesdeCursado != null && $fechaHastaCursado != null) {
+        if ($fechaHastaCursado >= $currentDateTime) {
+            $habilitado = true;
+        }
+    }
+    ?>
 
     <div class="my-3">
-        <button <?php 
-                    if($habilitado){
-                        echo "class='btn btn-primary'";
-                        echo "data-target='#staticBackdrop'";
-                    }else{
-                        echo "class='btn btn-primary disabled'";
-                    }?> data-toggle="modal"><i class="fa fa-user-plus mr-2"></i>Agregar Alumno</button>
-        <button <?php 
-                    if($habilitado){
-                        echo "class='btn btn-success'";
-                        echo "data-target='#staticBackdrop1'";
-                    }else{
-                        echo "class='btn btn-success disabled'";
-                    }?>  data-toggle="modal" ><i class="fa fa-download mr-2"></i>Importar lista de inscriptos</button>
+        <button <?php
+                if ($habilitado) {
+                    echo "class='btn btn-primary'";
+                    echo "data-target='#staticBackdrop'";
+                } else {
+                    echo "class='btn btn-primary disabled'";
+                } ?> data-toggle="modal"><i class="fa fa-user-plus mr-2"></i>Agregar Alumno</button>
+        <button <?php
+                if ($habilitado) {
+                    echo "class='btn btn-success'";
+                    echo "data-target='#staticBackdrop1'";
+                } else {
+                    echo "class='btn btn-success disabled'";
+                } ?> data-toggle="modal"><i class="fa fa-download mr-2"></i>Importar lista de inscriptos</button>
     </div>
 
     <div class="my-4">
@@ -158,39 +152,35 @@ if (!isset($_SESSION['administrador']))
 
             <tbody>
                 <?php
-                include "../databaseConection.php";
-                
+
                 $id_curso = $_GET['id'];
                 date_default_timezone_set('America/Argentina/Mendoza');
                 $currentDateTime = date('Y-m-d H:i:s');
-                    
-            
-                    $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
-                    $resultadoCurso = $consultaCurso->fetch_assoc();
-            
-                    $nombreCurso = $resultadoCurso['nombreCurso'];
-                    
-                    $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
-                    $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
-                
+
+
+                $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+                $resultadoCurso = $consultaCurso->fetch_assoc();
+
+                $nombreCurso = $resultadoCurso['nombreCurso'];
+
+                $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
+                $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
+
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
-                
-                
-                while($alumnocursoactual = $consulta2->fetch_assoc()){
-                    $alumno = $con->query("SELECT * FROM alumno WHERE id = '".$alumnocursoactual['alumno_id']."'")->fetch_assoc();
-                    
-                    //$url = 'bajaAlum.php?id='.$resultado1["id"];
-                   // $id = $resultado1["id"];
-                    
+
+
+                while ($alumnocursoactual = $consulta2->fetch_assoc()) {
+                    $alumno = $con->query("SELECT * FROM alumno WHERE id = '" . $alumnocursoactual['alumno_id'] . "'")->fetch_assoc();
+
                     echo "<tr>
-                        <td>".$alumno['legajoAlumno']."</td>
-                        <td>".$alumno['apellidoAlum']."</td>
-                        <td>".$alumno['nombreAlum']."</td>
-                        <td>".$alumno['dniAlum']."</td>
+                        <td>" . $alumno['legajoAlumno'] . "</td>
+                        <td>" . $alumno['apellidoAlum'] . "</td>
+                        <td>" . $alumno['nombreAlum'] . "</td>
+                        <td>" . $alumno['dniAlum'] . "</td>
                         <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id= onclick='return confirmDelete()' href=''><i class='fa fa-trash'></i></a></td>
                     </tr>";
                 }
-            
+
                 ?>
             </tbody>
         </table>
@@ -198,11 +188,11 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="administrador.js"></script>
-<script src="fcInscribirAlumno.js"></script>
+<script src="../../administrador.js"></script>
+<script src="../../fnInscribirAlumno.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="paginadoDataTable.js"></script>
+<script src="../../paginadoDataTable.js"></script>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -211,61 +201,63 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Inscribir alumno</h5>
             </div>
-            <form method="POST" id="insertAlumno" name="insertAlumno" action="inscribir_UnAlumno.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
+            <form method="POST" id="insertAlumno" name="insertAlumno" action="inscribirUnAlumnoCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
                 <?php
-        include "../databaseConection.php";
-        $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
-        $rtdo = false;
-        $dni = null;
 
-        if (!($consultaParamLeg->num_rows) == 0) {
-            $formatoLegajo = $consultaParamLeg->fetch_assoc();
-            $rtdo = true;
-            $dni = $formatoLegajo["esDNI"];
+                $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+                $rtdo = false;
+                $dni = null;
 
-            echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
-            if ($dni) {
-            }else {
+                if (!($consultaParamLeg->num_rows) == 0) {
+                    $formatoLegajo = $consultaParamLeg->fetch_assoc();
+                    $rtdo = true;
+                    $dni = $formatoLegajo["esDNI"];
 
-                $letras = $formatoLegajo["tieneLetras"];
-                $numeros = $formatoLegajo["tieneNumeros"];
+                    echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+                    if ($dni) {
+                    } else {
 
-                $cantTotal = $formatoLegajo["cantTotalCaracteres"];
-                echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+                        $letras = $formatoLegajo["tieneLetras"];
+                        $numeros = $formatoLegajo["tieneNumeros"];
 
-                echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
-                echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+                        $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                        echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+
+                        echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                        echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
 
 
-                if ($letras) {
-                    $cantLetras = $formatoLegajo["cantLetras"];
+                        if ($letras) {
+                            $cantLetras = $formatoLegajo["cantLetras"];
 
-                    echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
-                }
-                if ($numeros) {
-                    $cantNumeros = $formatoLegajo["cantNumeros"];
+                            echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                        }
+                        if ($numeros) {
+                            $cantNumeros = $formatoLegajo["cantNumeros"];
 
-                    echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
-                }
-            }
-        }else{
-            echo "<div class='alert alert-warning' role='alert'>
+                            echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                        }
+                    }
+                } else {
+                    echo "<div class='alert alert-warning' role='alert'>
                 <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo Alumno</h5>
             </div>";
-        } 
+                }
 
-        ?>
+                ?>
 
-                <div class="modal-body" <?php 
-                                    if($dni == null){ 
-                                        echo "hidden ";} ?>>
-                    
+                <div class="modal-body" <?php
+                                        if ($dni == null) {
+                                            echo "hidden ";
+                                        } ?>>
+
                     <div class="my-2">
                         <h5 class="msg" id="msjValidacionApellido">Ingrese los datos solicitados</h5>
                     </div>
-                    <div class="my-2" <?php 
-                                    if($dni){ 
-                                        echo "hidden ";} ?>>
+                    <div class="my-2" <?php
+                                        if ($dni) {
+                                            echo "hidden ";
+                                        } ?>>
                         <label for="inputLegajo">Legajo</label>
                         <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajoIns()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo">
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
@@ -275,10 +267,10 @@ if (!isset($_SESSION['administrador']))
                         <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNIIns()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
                         <h9 class="msg" id="msjValidacionDNI"></h9>
                     </div>
-                    
-                    
-                    
-                    <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
+
+
+
+                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
 
                 </div>
                 <div class="modal-footer">
@@ -315,7 +307,7 @@ if (!isset($_SESSION['administrador']))
 
                 </div>
 
-                <form method="POST" id="importPlanilla" name="importPlanilla" action="inscribir_CursoAlumnos.php" enctype="multipart/form-data" role="form">
+                <form method="POST" id="importPlanilla" name="importPlanilla" action="inscribirListaAlumnosCurso.php" enctype="multipart/form-data" role="form">
                     <div class="container" style="margin-top:50px;">
 
                         <div class="custom-file">
@@ -323,8 +315,8 @@ if (!isset($_SESSION['administrador']))
 
                         </div>
                     </div>
-                    
-                    <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
+
+                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
                     <!-- la funcion comrobar esta en administrador.js -->
 
                     <div class="modal-footer">
@@ -340,9 +332,9 @@ if (!isset($_SESSION['administrador']))
 </div>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
 </script>
 
 <?php
-include "../footer.html";
+include "../../../footer.html";
 ?>
