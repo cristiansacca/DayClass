@@ -1,5 +1,5 @@
 <?php
-include "../../databaseConection.php";
+include "../../../databaseConection.php";
 
 $tipos = $_POST["arregloTipos"];
 
@@ -40,7 +40,7 @@ if($primerElem == "DNI"){
    $update = $con->query("UPDATE `parametrolegajo` SET `esDNI`= '0',`cantTotalCaracteres`= '$total' WHERE id = '1'"); 
 }
 
- header("location: /DayClass/Administrador/Parametros/config_parametros.php?resultado=7");
+ header("location: /DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php?resultado=7");
 
     
 ?>

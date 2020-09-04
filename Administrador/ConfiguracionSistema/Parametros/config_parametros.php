@@ -15,7 +15,7 @@ include "../../../databaseConection.php";
 ?>
 
 <script src="fcParametros.js"></script>
-<script src="/Administrador/administrador.js"></script>
+<script src="../../administrador.js"></script>
 
 <div class="container">
     <div class="jumbotron my-4 py-4">

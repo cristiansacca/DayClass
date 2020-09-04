@@ -1,5 +1,5 @@
 <?php
-include "../../databaseConection.php";
+include "../../../databaseConection.php";
 
 $nombreDivision = $_POST["nombreDivision"];
 $modalidad = $_POST["comboModalidad"];
@@ -12,12 +12,12 @@ if(($conDivision->num_rows)==0){
     $insert = $con->query("INSERT INTO division (nombreDivision, fechaAltaDivision, modalidad_id) VALUES ('$nombreDivision', '$currentDateTime', '$modalidad')");
 
     if($insert){
-        header("location: /DayClass/Administrador/Parametros/config_parametros.php?resultado=4");
+        header("location: /DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php?resultado=4");
     } else {
-        header("location: /DayClass/Administrador/Parametros/config_parametros.php?resultado=5");
+        header("location: /DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php?resultado=5");
     }
 } else {
-    header("location: /DayClass/Administrador/Parametros/config_parametros.php?resultado=6");
+    header("location: /DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php?resultado=6");
 }
 
 ?>

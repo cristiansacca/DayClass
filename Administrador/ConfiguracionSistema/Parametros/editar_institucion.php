@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../header.html";
+include "../../../header.html";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) {
@@ -10,7 +10,7 @@ if (!isset($_SESSION['administrador'])) {
     header("location:/DayClass/index.php");
 }
 
-include "../../databaseConection.php";
+include "../../../databaseConection.php";
 
 $nombre = $_POST['nombre'];
 $telefono = $_POST['telefono'];
@@ -31,10 +31,10 @@ if(($institucion->num_rows) == 0){
 }
 
 if($update){
-    header("location: /DayClass/Administrador/Parametros/institucion.php?resultado=1");
+    header("location: /DayClass/Administrador/ConfiguracionSistema/Parametros/institucion.php?resultado=1");
 } else {
-    header("location: /DayClass/Administrador/Parametros/institucion.php?resultado=0");
+    header("location: /DayClass/Administrador/ConfiguracionSistema/Parametros/institucion.php?resultado=0");
 }
 
-include "../../footer.html";
+include "../../../footer.html";
 ?>

@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../header.html";
+include "../../../header.html";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) {
@@ -10,7 +10,7 @@ if (!isset($_SESSION['administrador'])) {
     header("location:/DayClass/index.php");
 }
 
-include "../../databaseConection.php";
+include "../../../databaseConection.php";
 
 $institucion = $con->query("SELECT * FROM institucion");
 
@@ -125,5 +125,5 @@ if(($institucion->num_rows)==0){
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
 <?php
-include "../../footer.html";
+include "../../../footer.html";
 ?>
