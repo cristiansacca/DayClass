@@ -29,7 +29,7 @@ if (isset($_FILES["inpGetFile"])) {
         $up->Process("./uploads/");
         if ($up->processed) {
             /// leer el archivo excel
-            require_once 'PHPExcel/Classes/PHPExcel.php'; //incluimos la librería PHPExcel con la cual leeremos el archivo y tipo de archivo.
+            require_once '../../PHPExcel/Classes/PHPExcel.php'; //incluimos la librería PHPExcel con la cual leeremos el archivo y tipo de archivo.
             $archivo = "uploads/" . $up->file_dst_name;
             $inputFileType = PHPExcel_IOFactory::identify($archivo); //abrimos/identificamos el archivo.
             $objReader = PHPExcel_IOFactory::createReader($inputFileType); //creamos un objeto tipo Reader 
