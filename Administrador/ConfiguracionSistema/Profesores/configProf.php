@@ -128,7 +128,7 @@ if (!isset($_SESSION['administrador']))
 <script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="/Administrador/paginadoDataTable.js"></script>
+<script src="../../paginadoDataTable.js"></script>
 
 <!-- Modal crear un Docente -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
