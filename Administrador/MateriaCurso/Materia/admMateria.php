@@ -101,11 +101,14 @@ if (!isset($_SESSION['administrador']))
                     } else {
                         $cargado = "Sin cargar";
                     }
+                    
+                    
+                   $id_materia = $resultado1['id'];
 
                     echo "<tr>
                     <td><a href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td>$nivelMateria</td>
-                    <td><button class='btn btn-primary' data-toggle='modal' data-target='#staticBackdrop2'><i class='fa fa-edit'></i></button></td>
+                    <td><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia'><i class='fa fa-edit'></i></a></td>
                     <td>".$cargado."</td>
                     <td class='text-center'><a class='btn btn-danger' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";

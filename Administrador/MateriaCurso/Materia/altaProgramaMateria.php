@@ -6,13 +6,14 @@ include "../../class.upload.php";
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 $anioprograma = $_POST["inputAnioPrograma"];
-$cargahoraria = $_POST["inputCargaHoraria"];
 $descripcion = $_POST["inputDescripPrograma"];
 $currentDateTime = date('Y-m-d H:i:s');
-$id_materia = $_POST["selectmaterias"];
+$id_materia = $_POST["idMateria"];
 
 //Si existe, se borra la instancia del programa existente relacionado a esa materia
 $con->query("DELETE FROM `programamateria` WHERE `programamateria`.`materia_id` = '$id_materia'");
+
+
 
 // Se crea el la instancia del programa par despues asociarle los temas
 $rtdo1 = $con->query('INSERT INTO `programamateria`(`anioPrograma`,`cargaHorariaMateria`, `descripcionPrograma`, `fechaVigentePrograma`, `materia_id`) VALUES ("' . $anioprograma . '","' . $cargahoraria . '", "' . $descripcion . '","' . $currentDateTime . '","' . $id_materia . '");');

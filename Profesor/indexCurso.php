@@ -354,10 +354,6 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                                 
                             }
                         
-                        
-
-
-
                         ?> 
                         
                         </table>
