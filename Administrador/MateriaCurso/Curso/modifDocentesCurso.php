@@ -148,8 +148,8 @@ if (!isset($_SESSION['administrador']))
                     <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
                     
                     <td class='text-center'>
-                        <a href='' class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit mr-1'></i>Editar</a>
-                        <a href='' class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
+                        <a href='#' class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a href='#' class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
                         <a href='' class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(".$id.")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
                         <input type='date' name='impIDprof' id='inicLic".$id."' value='$inicioLicencia' hidden> 
                         <input type='date' name='impIDprof' id='inicioUltimaLicencia".$id."' value='$inicioUtimaLicencia' hidden>
