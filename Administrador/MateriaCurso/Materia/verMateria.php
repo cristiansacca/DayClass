@@ -34,7 +34,8 @@ if (!isset($_SESSION['administrador']))
             $cargaHorariaMateria = $resultadoMateria["cargaHorariaMateria"];
             
             echo "<h1>$nombreMateria</h1>";
-            echo "<h4>Nivel: $nivelMateria</h3>";
+            echo "<h4>Nivel: $nivelMateria</h4>";
+            echo "<h4>Horas semanales: $cargaHorariaMateria</h4>";
         
         ?>
         
@@ -50,7 +51,7 @@ if (!isset($_SESSION['administrador']))
                 
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Materia agregada correctamente</h5>
+                            <h5>Programa agregado exitosamente</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -58,23 +59,31 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>La materia ya se encuentra registrada</h5>
+                            <h5>Fallo al ingresar el programa</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
                     break;
                 case 3:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa</h5>
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en el formato del archivo</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
                     break;
                 case 4:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Se registraron los cambios en los datos de la materia</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 5:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja</h5>
+                            <h5>Error al registrar los cambios en los datos de la materia</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -98,13 +107,11 @@ if (!isset($_SESSION['administrador']))
             $currentDateTime = date('Y-m-d');
             $currentYear = date('Y');
             
-            
-
-            $consultaPrograma = $con->query("SELECT temasmateria.nombreTema, temasmateria.unidadTema FROM programamateria, materia, temasmateria WHERE materia.id = $id_materia AND materia.id = programamateria.materia_id AND programamateria.fechaDesdePrograma <= '$currentDateTime' AND programamateria.fechaHastaPrograma IS NULL AND programamateria.id = temasmateria.programaMateria_id AND programamateria.anioPrograma  = $currentYear");
+            $consultaPrograma = $con->query("SELECT temasmateria.nombreTema, temasmateria.unidadTema FROM programamateria, materia, temasmateria WHERE materia.id = $id_materia AND materia.id = programamateria.materia_id AND programamateria.fechaDesdePrograma <= '$currentDateTime' AND programamateria.fechaHastaPrograma IS NULL AND programamateria.id = temasmateria.programaMateria_id AND programamateria.anioPrograma = $currentYear ORDER BY temasmateria.id ASC");
         
             if(($consultaPrograma->num_rows) == 0){
                 echo "<div class='alert alert-warning' role='alert'>
-                        <h5>Todavia no se ha cargado un porgram para esta materia, para este año</h5>
+                        <h5>Todavia no se ha cargado un porgrama para esta materia, para este año</h5>
                     </div>";
             }else{
                 
@@ -146,7 +153,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Editar materia</h5>
             </div>
-            <form method="POST" id="insertMateria" name="insertMateria" action="modifMateria.php" enctype="multipart/form-data" role="form">
+            <form method="POST" id="modifMateria" name="modifMateria" action="modifMateria.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="my-2">
                         <label for="inputNombreMateria"> Nombre materia</label>
@@ -209,9 +216,10 @@ if (!isset($_SESSION['administrador']))
             
                 <div class="my-2">
                     <label for="inputAnioPrograma"> Año del programa</label>
-                    <input type="number" name="inputAnioPrograma" id="inputAnioPrograma" class="form-control" required>
+                    <input type="number" name="inputAnioPrograma" id="inputAnioPrograma" class="form-control" <?php echo "value = '$currentYear'";?> required readonly>
                 </div>
                 
+            <input id="idMateria" name="idMateria" <?php echo "value = '$id_materia'";?> hidden> 
             
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary"  id="btncancelar" data-dismiss="modal"> Cancelar </button>

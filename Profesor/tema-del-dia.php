@@ -22,6 +22,8 @@ if(isset($_GET["id_curso"])){
     header("location:/DayClass/Profesor/index.php");
 }
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
@@ -52,23 +54,38 @@ if(isset($_GET["id_curso"])){
     <form action="cargarTemaDia.php" method="POST" class=" form-group">
         <h5>Indique el tema del día</h5>
         <input type="text" name="id_curso" <?php echo "value=$id_curso" ?> hidden >
-        <div class="my-2">
-            <select id="temas" name="tema" class="custom-select" required>
+        <div class="my-2  form-inline">
+            <select id="unidadTema" name="unidadTema" class="custom-select" class="custom-select" style="width:15%" required>
                 <option value="" selected>Seleccione</option>
                 <?php
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $currentDateTime = date('Y-m-d');
+                $currentDate = date('Y-m-d');
 
-                $materia = $con->query("SELECT * FROM materia WHERE id = '".$curso["materia_id"]."'")->fetch_assoc();
-                $programa = $con->query("SELECT * FROM programamateria WHERE materia_id = '".$materia["id"]."'")->fetch_assoc();
-                $consultaTemas = $con->query("SELECT * FROM temasmateria WHERE programaMateria_id = '".$programa["id"]."' AND (fechaHastaTemMat < '$currentDateTime' OR fechaHastaTemMat IS NULL)");
+                $consultaMateria = $con->query("SELECT * FROM materia WHERE id = '".$curso["materia_id"]."'");
+                $materia = $consultaMateria->fetch_assoc();
+                $materia_id = $materia["id"];
+               
+                $consultaPrograma = $con->query("SELECT * FROM programamateria WHERE materia_id = '$materia_id' AND programamateria.fechaDesdePrograma <= '$currentDate' AND programamateria.fechaHastaPrograma IS NULL");
+                $programa = $consultaPrograma->fetch_assoc();
+                $programa_id = $programa["id"];
+               
+                
+                $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
 
                 while($temas = $consultaTemas->fetch_assoc()){
-                    echo "<option value='".$temas["id"]."'>".$temas["nombreTema"]."</option>";
+                    echo "<option value='".$temas["unidadTema"]."'>".$temas["unidadTema"]."</option>";
                 }
 
                 ?>
             </select>
+            
+            <select id="nombreTema" name="nombreTema" class="custom-select" style="width:85%" required disabled>
+                <option value="" selected>Seleccione</option>
+                
+            </select>
+            
+            <input type="text" name="idPrograma" id="idPrograma" <?php echo "value=$programa_id" ?> hidden >
+            
         </div>
         <div class="my-2">
             <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline"
@@ -145,12 +162,8 @@ if(isset($_GET["id_curso"])){
 </div>
 
 
-<script>
-    var tema = document.getElementById("temas").value;
-    document.getElementById("unidadpopup").innerHTML
-</script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script src="profesor.js"></script>
 <script>
     document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=".$id_curso."><i id=icono ></i>Tema del día</a>';"; ?>
@@ -159,6 +172,7 @@ if(isset($_GET["id_curso"])){
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
 </script>
+<script src="fnTemaDia.js"></script>
 <?php
 include "../footer.html";
 ?>

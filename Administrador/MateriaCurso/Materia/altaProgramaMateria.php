@@ -7,17 +7,22 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 $anioprograma = $_POST["inputAnioPrograma"];
 $descripcion = $_POST["inputDescripPrograma"];
-$currentDateTime = date('Y-m-d H:i:s');
+$currentDateTime = date('Y-m-d');
 $id_materia = $_POST["idMateria"];
 
-//Si existe, se borra la instancia del programa existente relacionado a esa materia
-$con->query("DELETE FROM `programamateria` WHERE `programamateria`.`materia_id` = '$id_materia'");
+
+$consProgramaAnt = $con->query("SELECT * FROM `programamateria` WHERE programamateria.materia_id = '$id_materia' AND fechaHastaPrograma IS NULL");
+
+//si existe otro programa asociado a esa materia, se lo da de baja 
+if(($consProgramaAnt->num_rows) != 0){
+    $consProgramaAnt = $con->query("UPDATE `programamateria` SET `fechaHastaPrograma`= '$currentDateTime',`materia_id`=[value-5] WHERE programamateria.materia_id = '$id_materia' ");
+}
 
 
+// Se crea la instancia del programa para despues asociarle los temas
+$rtdo1 = $con->query("INSERT INTO `programamateria`(`anioPrograma`, `descripcionPrograma`, `fechaDesdePrograma`, `materia_id`) VALUES ('$anioprograma','$descripcion','$currentDateTime','$id_materia');");
 
-// Se crea el la instancia del programa par despues asociarle los temas
-$rtdo1 = $con->query('INSERT INTO `programamateria`(`anioPrograma`,`cargaHorariaMateria`, `descripcionPrograma`, `fechaVigentePrograma`, `materia_id`) VALUES ("' . $anioprograma . '","' . $cargahoraria . '", "' . $descripcion . '","' . $currentDateTime . '","' . $id_materia . '");');
-$consulta = $con->query("SELECT id FROM programamateria WHERE materia_id = '$id_materia'");
+$consulta = $con->query("SELECT id FROM programamateria WHERE materia_id = '$id_materia' AND fechaHastaPrograma IS NULL");
 $resultado2 = $consulta->fetch_assoc();
 $id_programa = $resultado2["id"];
 
@@ -43,23 +48,43 @@ if (isset($_FILES["inpGetFile"])) {
 
             $first_row = 1;
 
-            $nombreTema = $sheet->getCell("A" . $first_row)->getValue();
+            $unidad = $sheet->getCell("A" . $first_row)->getValue();
+            $tema = $sheet->getCell("B" . $first_row)->getValue();
 
             $contador = 0;
 
             //Tomo la primer columna solamente
-            $nombreTema_p = strtolower($nombreTema);
-            for ($row = 2; $row <= $highestRow; $row++) {
-                $nombreTema = $sheet->getCell("A" . $row)->getValue();
-                $sql2 = 'INSERT INTO `temasmateria`(`fechaDesdeTemMat`, `nombreTema`, `programaMateria_id`) VALUES ("' . $currentDateTime . '", "' . $nombreTema . '","' . $id_programa . '");';
-                $rtdo2 = $con->query($sql2);
+            $unidad_p = strtolower($unidad);
+            $tema_p = strtolower($tema);
+            
+            
+            if($unidad_p == "unidad" && $tema_p == "tema"){
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $unidadPrograma = $sheet->getCell("A" . $row)->getValue();
+                    $temaPrograma = $sheet->getCell("B" . $row)->getValue();
+                    
+                    $sql2 = "INSERT INTO `temasmateria`(`nombreTema`, `programaMateria_id`, `unidadTema`) VALUES ('$temaPrograma','$id_programa','$unidadPrograma')";
+                    $rtdo2 = $con->query($sql2);
+                    
+                    if($rtdo2){
+                        //insercion correcta del tema 
+                        header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=1");
+                    }else{
+                        //fallo en la insercion
+                        header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=2");
+                    }
+                    
+                }
+            }else{
+               //falla en el formato de la hoja de calculo 
+                header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=3");
             }
-
+            
             unlink($archivo);
         }
     }
 }
 
-header("location: /DayClass/Administrador/MateriaCurso/Materia/admMateria.php");
+
 
 ?>

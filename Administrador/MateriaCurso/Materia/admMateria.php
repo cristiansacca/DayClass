@@ -73,31 +73,33 @@ if (!isset($_SESSION['administrador']))
     ?>
 
     <button class="btn btn-success my-2" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
-    <button class="btn btn-primary my-2 mx-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-upload mr-1"></i>Cargar programa</button>
     <div class="my-2">
         <table id="dataTable" class="table table-info table-bordered table-hover">
             <thead>
                 <th>Nombre materia</th>
                 <th>Nivel</th>
-                <th>Editar </th>
-                <th>Programa cargado</th>
-                <th>Eliminar materia</th>
+                <th>Programa</th>
+                <th>Ver</th>
+                <th>Eliminar</th>
             </thead>
             <tbody>
                 <?php
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $currentDate = date('Y-01-01');          
+                $currentDate = date('Y-m-d');          
                 $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL  ORDER BY id ASC");
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $idmateria = $resultado1['id'];
-                    $consulta2 = $con->query("SELECT * FROM programamateria WHERE materia_id = '$idmateria' AND fechaVigentePrograma > '$currentDate'");
+                    
+                    
+                    
+                    $consulta2 = $con->query("SELECT * FROM programamateria WHERE materia_id = '$idmateria' AND fechaDesdePrograma <= '$currentDate' AND fechaHastaPrograma IS NULL");                    
                     $programa = $consulta2->fetch_assoc();
                     $url = 'bajaMateria.php?id='.$idmateria;
                     $nombreMateria = $resultado1['nombreMateria'];
                     $nivelMateria = $resultado1['nivelMateria'];
                     
-                    if(($consulta2->num_rows)!==0){
-                        $cargado = $programa["descripcionPrograma"];
+                    if(($consulta2->num_rows)!=0){
+                        $cargado = "Cargado";
                     } else {
                         $cargado = "Sin cargar";
                     }
@@ -108,8 +110,8 @@ if (!isset($_SESSION['administrador']))
                     echo "<tr>
                     <td><a href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td>$nivelMateria</td>
-                    <td><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia'><i class='fa fa-edit'></i></a></td>
                     <td>".$cargado."</td>
+                    <td><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia'><i class='fa fa-eye'></i></a></td>
                     <td class='text-center'><a class='btn btn-danger' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
                     
@@ -134,11 +136,15 @@ if (!isset($_SESSION['administrador']))
                 <div class="modal-body">
                     <div class="my-2">
                         <label for="inputNombreMateria"> Nombre materia</label>
-                        <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control">
+                        <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control" required>
                     </div>
                     <div class="my-2">
                         <label for="inputNivel"> Nivel materia </label>
-                        <input type="number" name="inputNivel" id="inputNivel" class="form-control">
+                        <input type="number" name="inputNivel" id="inputNivel" class="form-control" required>
+                    </div>
+                    <div class="my-2">
+                        <label for="inputNivel"> Carga horaria materia </label>
+                        <input type="number" name="inputCargaHoraria" id="inputCargaHoraria" class="form-control" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
@@ -148,93 +154,6 @@ if (!isset($_SESSION['administrador']))
                 </div>
             </form>
         </div>
-    </div>
-</div>
-
-<!-- Modal Editar Materia-->
-<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Editar materia</h5>
-            </div>
-            <form method="POST" id="insertMateria" name="insertMateria" action="modifMateria.php" enctype="multipart/form-data" role="form">
-                <div class="modal-body">
-                    <div class="my-2">
-                        <label for="inputNombreMateria"> Nombre materia</label>
-                        <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control">
-                    </div>
-                    <div class="my-2">
-                        <label for="inputNivel"> Nivel materia </label>
-                        <input type="number" name="inputNivel" id="inputNivel" class="form-control">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                        <button type="submit" class="btn btn-success" id="btnCrear"> Confirmar </button>
-                    </div>
-    
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-    
-<!-- Modal Cargar Programa-->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Cargar programa de materia</h5>
-        </div>
-        <div class="modal-body">
-        
-        <form method="POST" id="importPlanilla" name="importPlanilla" action="altaProgramaMateria.php" enctype="multipart/form-data" role="form">
-            <div class="my-2">    
-                <label for="materias">Seleccione la materia:</label>
-                <select name="selectmaterias" id="selectmaterias" class="custom-select">
-                <?php
-                    include "../databaseConection.php";
-                    //Busca todas las instanias de materias
-                    $consulta1 = $con->query("SELECT `nombreMateria`,`id` FROM `materia` ORDER BY id ASC");
-                    while ($resultado1 = $consulta1->fetch_assoc()) {
-                        $nombreMateria = $resultado1['nombreMateria'];
-                        echo "<option value='".$resultado1['id']."'>" . $nombreMateria . "</option>";
-
-                    }
-                ?>
-                </select>
-                </div>
-                <div class="my-2">
-                    <label for="inputDescripPrograma"> Descripcion/Nombre</label>
-                    <input type="text" name="inputDescripPrograma" id="inputDescripPrograma" class="form-control" required>
-                </div>
-                <div class="my-2">
-                    <label for="inputAnioPrograma"> Año del programa</label>
-                    <input type="text" name="inputAnioPrograma" id="inputAnioPrograma" class="form-control" required>
-                </div>
-                <div class="my-2">
-                    <label for="inputCargaHoraria"> Carga horaria de la materia</label>
-                    <input type="text" name="inputCargaHoraria" id="inputCargaHoraria" class="form-control" required>
-                </div>
-                <br>
-                <div class="my-2">
-                    <h6>Cargar los temas del programa de</h6>
-                    <h9>La extension para la lista debe ser .xlsx y en la primera columna debe estar el listado de los temas </h9>
-                    <br>
-                </div>
-                <div class="custom-file my-3">
-                    <input type="file" class="form-control-file" name="inpGetFile" id="inpGetFile" accept=".xlsx" onchange="comprobarLista()" lang="es" required>
-                
-                </div>
-            
-            <div class="modal-footer">
-        <button type="submit" class="btn btn-success" name="importar" id="btnImportFile"  >Aceptar</button>
-        <button type="button" class="btn btn-danger"  id="btncancelar" data-dismiss="modal"> Cancelar </button>
-        </div>
-    </form>
-    </div>
     </div>
 </div>
 

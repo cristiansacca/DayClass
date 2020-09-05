@@ -1,4 +1,5 @@
 document.getElementById("materia").onchange = function(){
+    eval("debugger;");
     var id_materia = document.getElementById("materia").value;
     var datos = {
         id_materia: id_materia
@@ -9,6 +10,7 @@ document.getElementById("materia").onchange = function(){
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
+            //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
             contenido="<option value='' selected>Seleccione</option>";
             if(json.length != 0){

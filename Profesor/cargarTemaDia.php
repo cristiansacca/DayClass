@@ -2,7 +2,7 @@
 include "../databaseConection.php";
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-$id_tema = $_POST["tema"];
+$id_tema = $_POST["nombreTema"];
 $comentario = $_POST["comentario"];
 $id_curso = $_POST["id_curso"];
 $fechaHoy = date('Y-m-d');
