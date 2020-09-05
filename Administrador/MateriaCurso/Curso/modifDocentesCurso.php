@@ -173,7 +173,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Agregar docente</h5>
             </div>
-            <form method="POST" id="asociarProfesor" name="asociarProfesor" action="ingresarNuevoDocente.php" enctype="multipart/form-data" role="form">
+            <form method="POST" id="asociarProfesor" name="asociarProfesor" action="ingresarDocenteCurso.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     
                     <div class="my-2">
