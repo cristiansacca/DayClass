@@ -22,7 +22,7 @@ $_SESSION['administrador']= $resultado1;
 
 ?>
 
-<script src="administrador.js"> </script>
+<script src="../../administrador.js"> </script>
 
 <div class="container">
       

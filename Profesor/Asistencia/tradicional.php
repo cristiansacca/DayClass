@@ -24,6 +24,9 @@ $id_curso = $_GET["id_curso"];
 $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
 $curso = $consulta1->fetch_assoc();
 
+
+$consultaAsistMismoDia = 
+
 ?>
 
 
