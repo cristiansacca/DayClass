@@ -11,8 +11,10 @@ $currentDateTime = date('Y-m-d H:i:s');
 
 $tipoPresente = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'PRESENTE' AND fechaBajaTipoAsistencia IS NULL")->fetch_assoc();
 $tipoAusente = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'AUSENTE' AND fechaBajaTipoAsistencia IS NULL")->fetch_assoc();
+$tipoJustificado = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'JUSTIFICADO' AND fechaBajaTipoAsistencia IS NULL")->fetch_assoc();
 $cantidadPresentes = 0;
 $cantidadAusentes = 0;
+$cantidadJustificados = 0;
 $consultaNombreMateria = $con->query("SELECT nombreMateria, nivelMateria FROM materia WHERE id = '$materia'")->fetch_assoc();
 
 if($curso == 0){
@@ -36,6 +38,11 @@ while($cursos = $consulta1->fetch_assoc()){
         AND asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoAusente['id']."'");
 
         $cantidadAusentes = $cantidadAusentes + ($ausentes->num_rows);
+
+        $justificados = $con->query("SELECT * FROM asistenciadia WHERE fechaHoraAsisDia >= '$fechaDesde' AND fechaHoraAsisDia <= '$fechaHasta'
+        AND asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoJustificado['id']."'");
+
+        $cantidadJustificados = $cantidadJustificados + ($justificados->num_rows);
     }
 }
 
@@ -47,6 +54,7 @@ $fechaFormateada = strftime("%d/%m/%Y - %H:%M", strtotime($currentDateTime));
 $obj = array(
     'asistencias' => $cantidadPresentes,
     'inasistencias' => $cantidadAusentes,
+    'justificados' => $cantidadJustificados,
     'periodo' => $fechaDesdeFormateada.' - '. $fechaHastaFormateada,
     'fechaHora' => $fechaFormateada,
     'nombreCurso' => $nombreCurso,

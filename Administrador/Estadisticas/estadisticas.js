@@ -75,12 +75,12 @@ function generarPieChart(datosEntrada) {
             var myChart = new Chart(ctx, {
                 type: document.getElementById("tipoGrafico").value,
                 data: {
-                    labels: ['Presentes', 'Ausentes'],
+                    labels: ['Presentes', 'Ausentes', 'Justificados'],
                     datasets: [{
-                        label: 'Asistencias vs. Inasistencias',
-                        data: [(json.asistencias), (json.inasistencias)],
-                        backgroundColor: ['rgba(0, 147, 0, 0.5)', 'rgba(255, 99, 132, 0.5)'],
-                        borderColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)'],
+                        label: 'Asistencias vs. Inasistencias vs. Justificados',
+                        data: [(json.asistencias), (json.inasistencias), (json.justificados)],
+                        backgroundColor: ['rgba(0, 147, 0, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 255, 0, 0.5)'],
+                        borderColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                         borderWidth: 1.5
                     }]
                 },
