@@ -190,7 +190,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
            }
            ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
         
-        <button class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-clock-o mr-2"></i>Horarios</button>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-clock-o mr-1"></i>Horarios</button>
     </div>
 
     <?php

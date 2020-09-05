@@ -5,7 +5,7 @@ function cambiarContenidoNavbar(){
     contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Profesor/index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
     contenido += "<li class='nav-item' id='temaDia'></li>";
     contenido += "<li><div class='dropdown'>";
-    contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-user-circle mr-1'></i><label id='nombreUsuarioNav'>Nombre Apellido</label></button>";
+    contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i></button>";
     contenido += "<div class='dropdown-menu'><a class='dropdown-item' href='/DayClass/Profesor/editar_perfil.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>";
     contenido += "<a class='dropdown-item' href='/DayClass/logout.php'><i class='fa fa-sign-out mr-1'></i>Salir</a></div></li>";
     document.getElementById("contenidoNavbar").innerHTML = contenido;
