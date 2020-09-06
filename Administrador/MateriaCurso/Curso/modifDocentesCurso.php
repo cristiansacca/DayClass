@@ -221,7 +221,7 @@ if (!isset($_SESSION['administrador']))
                 
                                 $cargos = null;
                 
-                                if(($consultaD->num_rows) != 0){
+                                if(($consultaD->num_rows) == 0){
                                     echo "<div class='alert alert-warning' role='alert'>
                                         <h5>No se han definido cargos para los docentes, no se podrá agregar un nuevo docente en el curso</h5>
                                     </div>";
