@@ -21,6 +21,24 @@ if(isset($_GET["id_curso"])){
 } else {
     header("location:/DayClass/Profesor/index.php");
 }
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDate = date('Y-m-d');
+
+$consultaMateria = $con->query("SELECT * FROM materia WHERE id = '".$curso["materia_id"]."'");
+$materia = $consultaMateria->fetch_assoc();
+$materia_id = $materia["id"];
+               
+$consultaPrograma = $con->query("SELECT * FROM programamateria WHERE materia_id = '$materia_id' AND programamateria.fechaDesdePrograma <= '$currentDate' AND programamateria.fechaHastaPrograma IS NULL");
+$programa = $consultaPrograma->fetch_assoc();
+$programa_id = $programa["id"];
+
+
+$hab =false;
+if($programa_id == "" || $programa_id == null){
+    $hab = true;
+}
+
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -50,25 +68,22 @@ if(isset($_GET["id_curso"])){
             }
         }
     ?>
+    
+    <?php
+        if($hab){
+                echo "<div class='alert alert-warning' role='alert'>
+                <h5>Aún no se ha cargado el programa de esta materia, no podra leccionar temas de clase</h5>
+                </div>";
+        }
+    ?>
 
-    <form action="cargarTemaDia.php" method="POST" class=" form-group">
+    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if($hab){echo "hidden";}  ?>>
         <h5>Indique el tema del día</h5>
-        <input type="text" name="id_curso" <?php echo "value=$id_curso" ?> hidden >
+        <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden >
         <div class="my-2  form-inline">
             <select id="unidadTema" name="unidadTema" class="custom-select" class="custom-select" style="width:15%" required>
                 <option value="" selected>Seleccione</option>
                 <?php
-                date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $currentDate = date('Y-m-d');
-
-                $consultaMateria = $con->query("SELECT * FROM materia WHERE id = '".$curso["materia_id"]."'");
-                $materia = $consultaMateria->fetch_assoc();
-                $materia_id = $materia["id"];
-               
-                $consultaPrograma = $con->query("SELECT * FROM programamateria WHERE materia_id = '$materia_id' AND programamateria.fechaDesdePrograma <= '$currentDate' AND programamateria.fechaHastaPrograma IS NULL");
-                $programa = $consultaPrograma->fetch_assoc();
-                $programa_id = $programa["id"];
-               
                 
                 $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
 
@@ -84,7 +99,7 @@ if(isset($_GET["id_curso"])){
                 
             </select>
             
-            <input type="text" name="idPrograma" id="idPrograma" <?php echo "value=$programa_id" ?> hidden >
+            <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden >
             
         </div>
         <div class="my-2">
@@ -107,7 +122,7 @@ if(isset($_GET["id_curso"])){
             <div class="modal-body">
 
                 <div>
-                    <h9>Temas dados anteriormente</h9>
+                    
 
                     <table class="table text-center table-striped">
                         
@@ -125,6 +140,7 @@ if(isset($_GET["id_curso"])){
                                             <h5>Todavia no se han cargado temas en este curso</h5>
                                         </div>";
                                 }else{
+                                    echo "<h9>Temas dados anteriormente</h9>";
                                    echo "<thead>
                                             <th>Fecha</th>
                                             <th>Tema</th>
