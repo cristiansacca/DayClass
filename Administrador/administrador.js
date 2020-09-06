@@ -45,6 +45,7 @@ function validarEmail() {
 
     changeColor('inputEmailNew', rtdo);
     setValitationMesage('msjValidacionEmail', rtdo, msg);
+    return rtdo;
 }
 
 function validarContrasenia() {
@@ -64,6 +65,7 @@ function validarContrasenia() {
 
     changeColor('inputPassNew', rtdo);
     setValitationMesage('msjValidacionPass', rtdo, msg);
+    return rtdo;
 
 }
 
@@ -198,7 +200,6 @@ function validarDNI() {
 
     changeColor('inputDNI', rtdo);
     setValitationMesage('msjValidacionDNI', rtdo, msg);
-    validar();
     return rtdo;
 }
 
@@ -275,7 +276,6 @@ function validarLegajo() {
     
    changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
-    validar();
     return rtdo; 
     
 }
@@ -300,7 +300,7 @@ function validarNombre() {
 
     changeColor('inputName', rtdo);
     setValitationMesage('msjValidacionNombre', rtdo, msg);
-    validar();
+    return rtdo;
 }
 
 function validarApellido() {
@@ -323,37 +323,10 @@ function validarApellido() {
 
     changeColor('inputSurname', rtdo);
     setValitationMesage('msjValidacionApellido', rtdo, msg);
-    validar()
+    return rtdo;
 
 }
 
-function validar() {
-    var v_dni = document.getElementById('inputDNI').style.backgroundColor;
-    var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
-    var v_name = document.getElementById('inputName').style.backgroundColor;
-    var v_surname = document.getElementById('inputSurname').style.backgroundColor;
-    
-    var esDNI = document.getElementById('esDNI').value;
-    
-    if(esDNI == 1){
-        if (v_dni == "azure" && v_name == "azure" && v_surname == "azure") {
-            document.getElementById('btnCrear').disabled = false;
-        } else {
-            document.getElementById('btnCrear').disabled = true;
-        }
-    }else{
-        if (v_dni == "azure" && v_legajo == "azure" && v_name == "azure" && v_surname == "azure") {
-            document.getElementById('btnCrear').disabled = false;
-        } else {
-            document.getElementById('btnCrear').disabled = true;
-        }
-
-    
-    }
-
-
-   
-}
 
 function validarDNIyLegajo(){
     eval("debugger;");

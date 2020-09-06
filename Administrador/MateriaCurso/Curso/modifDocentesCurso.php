@@ -173,17 +173,76 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Agregar docente</h5>
             </div>
-            <form method="POST" id="asociarProfesor" name="asociarProfesor" action="ingresarDocenteCurso.php" enctype="multipart/form-data" role="form">
-                <div class="modal-body">
+            <form method="POST" id="asociarProfesor" name="asociarProfesor" action="ingresarDocenteCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
+                <?php
+                                  
+                                include "../../../databaseConection.php";
+                                $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+                                $rtdo = false;
+                                $dni = null;
+
+                                if (!($consultaParamLeg->num_rows) == 0) {
+                                    $formatoLegajo = $consultaParamLeg->fetch_assoc();
+                                    $rtdo = true;
+                                    $dni = $formatoLegajo["esDNI"];
+
+                                    echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+                                    if ($dni) {
+                                    }else {
+
+                                        $letras = $formatoLegajo["tieneLetras"];
+                                        $numeros = $formatoLegajo["tieneNumeros"];
+
+                                        $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                                        echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+
+                                        echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                                        echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+
+
+                                        if ($letras) {
+                                            $cantLetras = $formatoLegajo["cantLetras"];
+
+                                            echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                                        }
+                                        if ($numeros) {
+                                            $cantNumeros = $formatoLegajo["cantNumeros"];
+
+                                            echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                                        }
+                                    }
+                                }else{
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                        <h5>No se ha definido un formato de Legajo, no se podrá cargar un nuevo docente en el curso</h5>
+                                    </div>";
+                                } 
+                
+                                $consultaD = $con->query("SELECT * FROM `cargo`");
+                
+                                $cargos = null;
+                
+                                if(($consultaD->num_rows) != 0){
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                        <h5>No se han definido cargos para los docentes, no se podrá agregar un nuevo docente en el curso</h5>
+                                    </div>";
+                                }else{
+                                    $cargos = true;
+                                }
+                
+                
+                                
+
+                            ?>
+                <div class="modal-body" <?php if($dni == null || $cargos == null){echo "hidden ";}?> >
                     
                     <div class="my-2">
-                        <h5 class="msg" id="msjValidacionApellido">Ingrese el DNI y Legajo del docente a agregar y su cargo</h5>
+                        <h5 class="msg" id="msjValidacionApellido">Ingrese los datos del docente a agregar y su cargo en esta materia</h5>
                     </div>
                     <div class="form-inline my-2">
                         <label for="cargo">Cargo</label>
                         <select id="cargo" name="cargo" class="custom-select mx-2" style="width:200px">
                             <?php
-                                  $consultaD = $con->query("SELECT * FROM `cargo`");
+                                  
                         
                                   while ($cargo = $consultaD->fetch_assoc()) {
                                       
@@ -193,9 +252,9 @@ if (!isset($_SESSION['administrador']))
                             ?>
                         </select>
                     </div>
-                    <div class="my-2">
+                    <div class="my-2" <?php if($dni){echo "hidden ";} ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" required>
+                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" <?php if(!($dni)){echo "required ";} ?>>
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
@@ -211,7 +270,7 @@ if (!isset($_SESSION['administrador']))
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear"> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear" <?php if($dni==null|| $cargos == null){echo "style='display:none;'";} ?>> Crear</button>
                 </div>
             </form>
 
