@@ -30,7 +30,7 @@ $currentDate = date('Y-m-d');
 
 $consultaAsistMismoDia = $con->query("SELECT * FROM `asistenciadia`, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
 
-if(!($consultaAsistMismoDia)==0){
+if(($consultaAsistMismoDia->num_rows)!=0){
     header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=3");
 }
 
@@ -53,7 +53,7 @@ if(!($consultaAsistMismoDia)==0){
         $currentDateTime = date('Y-m-d H:i:s');
         
 
-        $consulta1 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso WHERE alumno.id = alumno_id AND curso_id = curso.id AND curso.id = '$id_curso' AND `fechaHastaAlumCurAc` > '$currentDateTime'");
+        $consulta1 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado WHERE alumno.id = alumnocursoactual.alumno_id AND alumnocursoactual.curso_id = curso.id AND curso.id = '$id_curso' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDateTime' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
         $contador = 1;
         while ($resultado1 = $consulta1->fetch_assoc()) {

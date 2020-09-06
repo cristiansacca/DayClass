@@ -17,7 +17,7 @@ $consulta1 = $con->query("SELECT * FROM `curso` WHERE id = '$id_curso'");
 $resultado1 = $consulta1->fetch_assoc();
 
 
-$consultaDocenteID = $con->query("SELECT id FROM `profesor` WHERE (dniProf = $dni AND legajoProf = $legajo) AND fechaBajaProf IS NULL");
+$consultaDocenteID = $con->query("SELECT id FROM `profesor` WHERE dniProf = '$dni' AND legajoProf = '$legajo' AND fechaBajaProf IS NULL");
 
 if(mysqli_num_rows($consultaDocenteID) == 0){
     //si la cosnulta es vacia, el docente no existe o esta dado de baja, error 2 = docente inexistente o dado de baja 
