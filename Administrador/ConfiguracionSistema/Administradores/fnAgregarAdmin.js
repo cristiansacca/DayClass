@@ -162,30 +162,6 @@ function validarEmailA(){
 }
 
 
-
-function validarContraseniaA()
-{
-    var contrasenna = document.getElementById('inputPassword4').value;
-    var rtdo = validar_clave(contrasenna);
-    var msg = "";
-
-    if(rtdo == true)
-    {
-        msg ='Cotraseña fuerte';
-    }
-    else
-    {
-        msg = 'La contraseña ingresada no es fuerte';
-    }
-
-    changeColor('inputPassword4',rtdo);
-    setValitationMesage('msjValidacionPass', rtdo, msg);
-    return rtdo;
-    
-}
-
-
-
 function validarFechaNacA(){
     eval("debugger;");
     var elem = document.getElementById('inputDate').value;
@@ -238,38 +214,6 @@ function validateEmail(email)
     return re.test(email);
 }
 
-function validar_clave(contrasenna)
-{
-    if(contrasenna.length >= 8)
-    {		
-        var mayuscula = false;
-        var minuscula = false;
-        var numero = false;
-        
-        
-        for(var i = 0;i<contrasenna.length;i++)
-        {
-            if(contrasenna.charCodeAt(i) >= 65 && contrasenna.charCodeAt(i) <= 90)
-            {
-                mayuscula = true;
-            }
-            else if(contrasenna.charCodeAt(i) >= 97 && contrasenna.charCodeAt(i) <= 122)
-            {
-                minuscula = true;
-            }
-            else if(contrasenna.charCodeAt(i) >= 48 && contrasenna.charCodeAt(i) <= 57)
-            {
-                numero = true;
-            }
-            
-        }
-        if(mayuscula == true && minuscula == true && numero == true)
-        {
-            return true;
-        }
-    }
-    return false;
-}
 
 
 function changeColor(elementID, rtdo){
@@ -297,18 +241,20 @@ function setValitationMesage(elementID, rtdo, msg){
 }
 
 function validarA(){
-   var v_dni = validarDNIA();
+    eval("debugger;");
+    var v_dni = validarDNIA();
     var v_legajo = validarLegajoA();
     var v_name = validarNombreA();
     var v_surname = validarApellidoA();
     var v_mail = validarEmailA();
-    var v_pass = validarContraseniaA();
     var v_fchNac = validarFechaNacA();
     
     var esDNI = document.getElementById('esDNI').value;
     
     if(esDNI == 1){
         if (v_dni && v_name && v_surname && v_mail && v_pass && v_fchNac) {
+            var dni = document.getElementById('inputDNI').value;
+            document.getElementById('inputLegajo').value = dni;
             return true;
         }else{
             return false;

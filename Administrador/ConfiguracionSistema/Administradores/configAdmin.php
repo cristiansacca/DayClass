@@ -207,23 +207,14 @@ if (!isset($_SESSION['administrador']))
                       <h9 class="msg" id="msjValidacionEmail"></h9>
                 </div>
                 <div class="form-group col-md-6">
-                      <label for="inputPassword4">Contraseña</label>
-                          <div class="input-group">
-                                <input type="password" class="form-control" id="inputPassword4" name="inputPassword4" placeholder="Contraseña" onchange="validarContraseniaA()" required>
-                                <div class="input-group-append">
-                                    <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"><span class="fa fa-eye-slash icon"></span></button>
-                                </div>
-                          </div>
-                      <h9 class="msg" id="msjValidacionPass"></h9>
-                </div>
-          </div>
-
-          <div class="form-row">
-                <div class="form-group col-md-6">
                       <label for="inputDate">Fecha de nacimiento</label>
                       <input id="inputDate" name="inputDate" type="date" class="form-control" onkeydown="return false" onchange="validarFechaNacA()" required>
                       <h9 class="msg" id="msjValidacionFchNac"></h9>
                 </div>
+          </div>
+
+          <div class="form-row">
+                
           </div>
 
         </div>
