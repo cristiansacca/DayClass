@@ -21,6 +21,22 @@ if(isset($_GET["id_curso"])){
     header("location:/DayClass/Profesor/index.php");
 }
 
+
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDate = date('Y-m-d');
+
+//se consulta si ya se tomo asistencia en ese curso en el dia de hoy
+$consultaAsistMismoDia = $con->query("SELECT * FROM `asistenciadia`, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
+
+//si ya se tomo asistencia, redirige al index curso con mensaje de error
+if(($consultaAsistMismoDia->num_rows)!=0){
+    header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=3");
+}
+
+
+
+
 ?>
 
 <div class="container">
