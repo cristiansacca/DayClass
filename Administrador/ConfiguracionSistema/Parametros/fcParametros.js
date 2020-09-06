@@ -138,7 +138,15 @@ function enviar(){
 
 }
 
-function mostrarMensaje(){
+function capitalize(id){
+    eval("debugger;");
+    var elem = document.getElementById(id).value;
+    var primerLetra = elem.substring(0,1);
+    var restoPalabra = elem.substring(1);
+    
+    primerLetra = primerLetra.toUpperCase();
+    
+    document.getElementById(id).value = primerLetra + restoPalabra;
     
 }
 

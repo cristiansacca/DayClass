@@ -64,6 +64,18 @@ include "../../../databaseConection.php";
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Error de carga del tiempo maximo del codigo de auto-asistencia, intente nuevamente</h5>";
             break;
+                case 10:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                <h5>Cargo creado correctamente</h5>";
+            break;
+                case 11:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                <h5>Error al crear el cargo</h5>";
+            break;
+                case 12:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                <h5>Ya existe un cargo con el mismo nombre</h5>";
+            break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
@@ -76,19 +88,19 @@ include "../../../databaseConection.php";
     <div>
         <div class="list-group">
             <a class="list-group-item list-group-item-action" href="institucion.php"><i class="fa fa-flag fa-lg mr-2"></i>Institución</a>
-            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop5"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato Legajo</a>
-            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop3"><i class="fa fa-briefcase fa-lg mr-2"></i>Modalidades</a>
-            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-hashtag fa-lg mr-2"></i>Divisiones</a>
-            <a class="list-group-item list-group-item-action" href=""><i class="fa fa-check-circle fa-lg mr-2"></i>Tipo de asistencias</a>
-            <a class="list-group-item list-group-item-action" href="" href="" data-toggle="modal" data-target="#staticBackdrop4"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#formatoLegajo"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato Legajo</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#nuevaModalidad"><i class="fa fa-briefcase fa-lg mr-2"></i>Modalidades</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#nuevaDivision"><i class="fa fa-hashtag fa-lg mr-2"></i>Divisiones</a>
+            <a class="list-group-item list-group-item-action" href="" href="" data-toggle="modal" data-target="#tiempoAutoasistencia"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-sign-out fa-lg mr-2"></i>Vigencia de sesión</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia y estados</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos Docentes</a>
         </div>
     </div>
 </div>
 
 <!-- Modal nueva division -->
-<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="nuevaDivision" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
@@ -145,7 +157,7 @@ include "../../../databaseConection.php";
 </div>
 
 <!-- Modal nueva modalidad -->
-<div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="nuevaModalidad" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
@@ -183,7 +195,7 @@ include "../../../databaseConection.php";
 </div>
 
 <!-- Modal tiempo autoasistencia -->
-<div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="tiempoAutoasistencia" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
@@ -234,7 +246,7 @@ include "../../../databaseConection.php";
 
 
 <!-- Modal formato legajo -->
-<div class="modal fade" id="staticBackdrop5" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="formatoLegajo" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
@@ -336,6 +348,54 @@ include "../../../databaseConection.php";
                          }
                          
                          ?> >Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal cargos docentes -->
+<div class="modal fade" id="cargoDocente" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Nuevo cargo docente</h5>
+            </div>
+            <form action="nuevoCargoDocente.php" method="POST" onsubmit="capitalize(inputNombreCargo)">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="nombreNombreDivision">Nombre cargo</label>
+                        <input type="text" placeholder="Cargo" name="inputNombreCargo" id="inputNombreCargo" class="form-control" onchange="capitalize(this.id)" required>
+                    </div>
+                    <div class="my-2">
+                        <?php
+                            date_default_timezone_set('America/Argentina/Buenos_Aires');
+                            $currentDate = date('Y-m-d');
+                            $consultaCargos = $con->query("SELECT * FROM `cargo` WHERE `fechaAltaCargo` <= '$currentDate' AND `fechaFinCargo` IS NULL");
+                            if(!($consultaCargos->num_rows)==0){
+                                echo "<label>Cargos existentes</label>";
+                                echo "<table class='table table-sm bg-light table-bordered'>
+                                        <thead>
+                                            <th>Cargos</th>
+                                        </thead>
+                                        <tbody>";   
+                                    while ($cargo = $consultaCargos->fetch_assoc()) {
+                                        echo "<tr>
+                                            <td>".$cargo["nombreCargo"]."</td>
+                                        </tr>";
+                                    }
+                                echo "</tbody>
+                                </table>";
+                            } else {
+                                echo "<div class='alert alert-warning'>No hay cargos existentes</div>";
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary">Crear</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </form>
