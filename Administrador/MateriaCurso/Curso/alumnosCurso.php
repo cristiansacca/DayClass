@@ -277,12 +277,12 @@ if (!isset($_SESSION['administrador'])) {
 
 
 
-                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
+                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '$id_curso'"; ?> hidden>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear" disabled> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear"> Crear</button>
                 </div>
             </form>
 
