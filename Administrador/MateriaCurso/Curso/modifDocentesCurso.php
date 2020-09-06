@@ -223,7 +223,7 @@ if (!isset($_SESSION['administrador']))
                 
                                 if(($consultaD->num_rows) == 0){
                                     echo "<div class='alert alert-warning' role='alert'>
-                                        <h5>No se han definido cargos para los docentes, no se podrá agregar un nuevo docente en el curso</h5>
+                                        <h5>No se han definido cargos para los docentes, no se podrá agregar uno nuevo en el curso</h5>
                                     </div>";
                                 }else{
                                     $cargos = true;
@@ -269,7 +269,7 @@ if (!isset($_SESSION['administrador']))
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btnCrear" <?php if($dni==null|| $cargos == null){echo "style='display:none;'";} ?>> Crear</button>
                 </div>
             </form>
