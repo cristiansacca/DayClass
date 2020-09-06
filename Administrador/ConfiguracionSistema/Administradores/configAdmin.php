@@ -127,7 +127,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Nuevo Administrador</h5>
             </div>
-            <form method="POST" id="insertAdmin" name="insertAdmin" action="insertAdmin.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoA()">
+            <form method="POST" id="insertAdmin" name="insertAdmin" action="insertAdmin.php" enctype="multipart/form-data" role="form" onsubmit="return validarA()">
                 
                 <?php
                     include "../../../databaseConection.php";
@@ -193,7 +193,7 @@ if (!isset($_SESSION['administrador']))
                       <input type="number" class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" onchange="validarDNIA()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" required>
                       <h9 class="msg" id="msjValidacionDNI"></h9>
                 </div>
-                <div class="form-group col-md-6" <?php if($dni){ echo "hidden ";} ?>>
+                <div class="form-group col-md-6" <?php if($dni){ echo "hidden ";}else{echo "required ";} ?>>
                       <label for="inputLegajo">Legajo</label>
                       <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajoA()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
                       <h9 class="msg" id="msjValidacionLegajo"></h9>
@@ -229,7 +229,7 @@ if (!isset($_SESSION['administrador']))
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" id="btnRegistrarse" disabled> Crear</button>
+            <button type="submit" class="btn btn-primary" id="btnRegistrarse"> Crear</button>
         </div>
         </form>
 

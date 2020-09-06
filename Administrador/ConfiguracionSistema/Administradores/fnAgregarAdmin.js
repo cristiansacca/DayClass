@@ -17,7 +17,7 @@ function validarDNIA(){
     changeColor('inputDNI',rtdo);
     setValitationMesage('msjValidacionDNI', rtdo, msg);
     return rtdo;
-    validarA();
+    
 }
 
 function validarLegajoA() {
@@ -93,7 +93,6 @@ function validarLegajoA() {
     
    changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
-    validarA();
     return rtdo; 
     
 
@@ -119,7 +118,7 @@ function validarNombreA(){
     
     changeColor('inputName', rtdo);
     setValitationMesage('msjValidacionNombre', rtdo, msg);
-    validarA();
+    return rtdo;
 }
 
 function validarApellidoA(){
@@ -142,7 +141,7 @@ function validarApellidoA(){
   
     changeColor('inputSurname',rtdo);
     setValitationMesage('msjValidacionApellido', rtdo, msg);
-    validarA();
+    return rtdo;
     
 }
 
@@ -159,7 +158,7 @@ function validarEmailA(){
     
     changeColor('inputEmail',rtdo);
     setValitationMesage('msjValidacionEmail', rtdo, msg);
-    validarA();
+    return rtdo;
 }
 
 
@@ -181,7 +180,7 @@ function validarContraseniaA()
 
     changeColor('inputPassword4',rtdo);
     setValitationMesage('msjValidacionPass', rtdo, msg);
-    validarA();
+    return rtdo;
     
 }
 
@@ -203,7 +202,7 @@ function validarFechaNacA(){
     
     changeColor('inputDate',rtdo);
     setValitationMesage('msjValidacionFchNac', rtdo, msg);
-    validarA();
+    return rtdo;
     
 }
 
@@ -298,54 +297,32 @@ function setValitationMesage(elementID, rtdo, msg){
 }
 
 function validarA(){
-   var v_dni = document.getElementById('inputDNI').style.backgroundColor;
-    var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
-    var v_name = document.getElementById('inputName').style.backgroundColor;
-    var v_surname = document.getElementById('inputSurname').style.backgroundColor;
-    var v_mail = document.getElementById('inputEmail').style.backgroundColor;
-    var v_pass = document.getElementById('inputPassword4').style.backgroundColor;
-    var v_fchNac = document.getElementById('inputDate').style.backgroundColor;
+   var v_dni = validarDNIA();
+    var v_legajo = validarLegajoA();
+    var v_name = validarNombreA();
+    var v_surname = validarApellidoA();
+    var v_mail = validarEmailA();
+    var v_pass = validarContraseniaA();
+    var v_fchNac = validarFechaNacA();
     
     var esDNI = document.getElementById('esDNI').value;
     
     if(esDNI == 1){
-        if (v_dni == "azure" && v_name == "azure" && v_surname == "azure" && v_mail == "azure" && v_pass == "azure" && v_fchNac == "azure" ) {
-            document.getElementById('btnRegistrarse').disabled = false;
-        } else {
-            document.getElementById('btnRegistrarse').disabled = true;
+        if (v_dni && v_name && v_surname && v_mail && v_pass && v_fchNac) {
+            return true;
+        }else{
+            return false;
         }
     }else{
-        if (v_legajo == "azure" && v_dni == "azure" && v_name == "azure" && v_surname == "azure" && v_mail == "azure" && v_pass == "azure" && v_fchNac == "azure" ) {
-            document.getElementById('btnRegistrarse').disabled = false;
+        if(v_dni && v_name && v_surname && v_mail && v_pass && v_fchNac && v_legajo) {
+            return true;
         } else {
-            document.getElementById('btnRegistrarse').disabled = true;
+           return false;
         }
 
     
     }
 }
 
-function validarDNIyLegajoA(){
-    eval("debugger;");
-   
-    var esDNI = document.getElementById('esDNI').value;
-    
-    if(esDNI == 1){
-        var elem = document.getElementById('inputDNI').value;
-        var dni = validarDNIA();
-        document.getElementById('inputLegajo').value = elem;
-        return dni;
-    }else{
-        var legajo = validarLegajoA();
-        var dni = validarDNIA();
-    
-    if(legajo && dni){
-        return true;
-    }
-        return false;
-    }
-    
-    
-    
-}
+
 
