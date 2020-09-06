@@ -50,10 +50,11 @@ try {
         //Tipo asistencia AUSENTE
         $consulta1 = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE'")->fetch_assoc();
 
-        //Todos los alumnos actualmente inscriptos
-        $consulta2 = $con->query("SELECT * FROM asistencia WHERE curso_id = '$id_curso' AND fechaHastaFichaAsis IS NULL");
+        //Todos los alumnos actualmente inscriptos, con estado inscripto en el dia de hoy
+        $consulta2 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado WHERE alumno.id = alumnocursoactual.alumno_id AND alumnocursoactual.curso_id = curso.id AND curso.id = '$id_curso' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDateTime' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
         while($resultado2 = $consulta2->fetch_assoc()){
+            
             $con->query("INSERT INTO asistenciadia (tipoAsistencia_id, asistencia_id) VALUES ('".$consulta1['id']."', '".$resultado2['id']."')");
         }
 

@@ -75,6 +75,14 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                             </button>
                         </div>";
                     break;
+                case 6:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Actualemnte estas libre en esta materia, no puedes registrar asistencia</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
 
             }
     }
