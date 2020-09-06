@@ -17,7 +17,6 @@ function validarDNIIns() {
 
     changeColor('inputDNI', rtdo);
     setValitationMesage('msjValidacionDNI', rtdo, msg);
-    validar();
     return rtdo;
 }
 
@@ -92,40 +91,12 @@ function validarLegajoIns() {
            
     }
     
-   changeColor('inputLegajo',rtdo);
+    changeColor('inputLegajo',rtdo);
     setValitationMesage('msjValidacionLegajo', rtdo, msg);
-    validar();
-    return rtdo; 
-    
+    return rtdo;   
 }
 
 
-function validar() {
-    var v_dni = document.getElementById('inputDNI').style.backgroundColor;
-    var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
-    
-    
-    var esDNI = document.getElementById('esDNI').value;
-    
-    if(esDNI == 1){
-        if (v_dni == "azure") {
-            document.getElementById('btnCrear').disabled = false;
-        } else {
-            document.getElementById('btnCrear').disabled = true;
-        }
-    }else{
-        if (v_dni == "azure" && v_legajo == "azure" ) {
-            document.getElementById('btnCrear').disabled = false;
-        } else {
-            document.getElementById('btnCrear').disabled = true;
-        }
-
-    
-    }
-
-
-   
-}
 
 function validarDNIyLegajoIns(){
     eval("debugger;");

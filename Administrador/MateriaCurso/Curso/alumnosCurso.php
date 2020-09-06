@@ -140,18 +140,9 @@ if (!isset($_SESSION['administrador'])) {
     </div>
 
     <div class="my-4">
-
         <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
-            <thead>
-                <th>Legajo</th>
-                <th>Apellido</th>
-                <th>Nombre </th>
-                <th>DNI</th>
-                <th></th>
-            </thead>
-
-            <tbody>
-                <?php
+         
+            <?php
 
                 $id_curso = $_GET['id'];
                 date_default_timezone_set('America/Argentina/Mendoza');
@@ -167,22 +158,38 @@ if (!isset($_SESSION['administrador'])) {
                 $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
 
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
+            
+            
+                if(!($consulta2 ->num_rows) == 0){
+                    echo "<thead>
+                            <th>Legajo</th>
+                            <th>Apellido</th>
+                            <th>Nombre </th>
+                            <th>DNI</th>
+                            <th></th>
+                        </thead>
+                        <tbody>";
+                    while ($alumnocursoactual = $consulta2->fetch_assoc()) {
+                        $alumno = $con->query("SELECT * FROM alumno WHERE id = '" . $alumnocursoactual['alumno_id'] . "'")->fetch_assoc();
 
+                            echo "<tr>
+                                <td>" . $alumno['legajoAlumno'] . "</td>
+                                <td>" . $alumno['apellidoAlum'] . "</td>
+                                <td>" . $alumno['nombreAlum'] . "</td>
+                                <td>" . $alumno['dniAlum'] . "</td>
+                                <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id= onclick='return confirmDelete()' href=''><i class='fa fa-trash'></i></a></td>
+                            </tr>";
+                    }
+                    
+                    echo "</tbody>";
 
-                while ($alumnocursoactual = $consulta2->fetch_assoc()) {
-                    $alumno = $con->query("SELECT * FROM alumno WHERE id = '" . $alumnocursoactual['alumno_id'] . "'")->fetch_assoc();
-
-                    echo "<tr>
-                        <td>" . $alumno['legajoAlumno'] . "</td>
-                        <td>" . $alumno['apellidoAlum'] . "</td>
-                        <td>" . $alumno['nombreAlum'] . "</td>
-                        <td>" . $alumno['dniAlum'] . "</td>
-                        <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id= onclick='return confirmDelete()' href=''><i class='fa fa-trash'></i></a></td>
-                    </tr>";
-                }
-
-                ?>
-            </tbody>
+                        
+                }else{
+                    echo "<div class='alert alert-warning' role='alert'>
+                            <h5>Todavia no hay alumnos Incriptos en este curso</h5>
+                        </div>";
+                }  
+            ?>            
         </table>
     </div>
 </div>
@@ -240,8 +247,8 @@ if (!isset($_SESSION['administrador'])) {
                     }
                 } else {
                     echo "<div class='alert alert-warning' role='alert'>
-                <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo Alumno</h5>
-            </div>";
+                            <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo Alumno</h5>
+                        </div>";
                 }
 
                 ?>
@@ -252,7 +259,7 @@ if (!isset($_SESSION['administrador'])) {
                                         } ?>>
 
                     <div class="my-2">
-                        <h5 class="msg" id="msjValidacionApellido">Ingrese los datos solicitados</h5>
+                        <h5 class="msg">Ingrese los datos solicitados</h5>
                     </div>
                     <div class="my-2" <?php
                                         if ($dni) {
