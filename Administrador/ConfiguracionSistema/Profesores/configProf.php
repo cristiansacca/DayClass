@@ -211,7 +211,7 @@ if (!isset($_SESSION['administrador']))
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear">Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear" <?php if($dni == null){echo "style='display:none' ";} ?>>Crear</button>
                 </div>
             </form>
 
@@ -227,23 +227,64 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h3 class="modal-title " id="staticBackdropLabel">Importar lista</h3>
             </div>
-            <div class="modal-body">
+            
+            
+            
+        <?php
+                include "../../../databaseConection.php";
+                $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+                $rtdo = false;
+                $dni = null;
+
+                if (!($consultaParamLeg->num_rows) == 0) {
+                    $formatoLegajo = $consultaParamLeg->fetch_assoc();
+                    $rtdo = true;
+                    $dni = $formatoLegajo["esDNI"];
+                }else{
+                    echo "<div class='alert alert-warning' role='alert'>
+                        <h5>No se ha definido un formato de Legajo, no se podrán ingresar nuevos Profesores</h5>
+                    </div>";
+                } 
+
+        ?>
+            
+            <form method="POST" id="importPlanilla" name="importPlanilla" action="importMasivoPROFES.php" enctype="multipart/form-data" role="form">
+
+            <div class="modal-body" <?php 
+                                    if($dni == null){ 
+                                        echo "hidden ";} ?>>
+                
                 
                  <div>
                     <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como sigue: </h9>
 
                     <table class="table table-bordered text-center table-info">
-                        <thead>
-                            <th>DNI</th>
-                            <th>Legajo</th>
-                            <th>Apellido</th>
-                            <th>Nombre </th>
-                        </thead>
+                        
+                        <?php
+                        
+                            if($dni){
+                                echo "<thead>
+                                        <th>DNI</th>
+                                        <th>Apellido</th>
+                                        <th>Nombre </th>
+                                    </thead>";
+                            }else{
+                                echo "<thead>
+                                        <th>DNI</th>
+                                        <th>Legajo</th>
+                                        <th>Apellido</th>
+                                        <th>Nombre </th>
+                                    </thead>";
+                            }
+                        
+                        ?>
+                        
+                        
                     </table>
 
                 </div>
 
-                <form method="POST" id="importPlanilla" name="importPlanilla" action="importMasivoPROFES.php" enctype="multipart/form-data" role="form">
+                
                     <div class="container" style="margin-top:50px;">
 
                         <div class="custom-file">
@@ -254,13 +295,15 @@ if (!isset($_SESSION['administrador']))
                     <!-- la funcion comrobar esta en administrador.js -->
                     <br>
                     <br>
+                    
+                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button id="btnImportar" type="submit" class="btn btn-primary " disabled>Importar</button>
+                        <button id="btnImportar" type="submit" class="btn btn-primary " disabled <?php if($dni == null){echo "style='display:none' ";} ?>>Importar</button>
                     </div>
 
                 </form>
-            </div>
+           
 
         </div>
     </div>

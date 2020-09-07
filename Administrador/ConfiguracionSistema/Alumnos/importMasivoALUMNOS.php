@@ -82,7 +82,7 @@ include "../../../header.html";
                         }
                     } else {
                         //echo "<script> alert('error en el formato de la primera fila') </script>";
-                        //header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=6");
+                        header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=6");
                     }
 
                 }else {
@@ -139,7 +139,7 @@ include "../../../header.html";
                         }
                     } else {
                         //echo "<script> alert('error en el formato de la primera fila') </script>";
-                       // header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=6");
+                    header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=6");
                     }
 
 
@@ -244,11 +244,11 @@ function validarDNI($dni){
     
     if(count($formatoIncorrecto) > 0){
         echo "<div class='alert alert-warning mt-4' role='alert'>
-            <h5>Alumnos que tienen formato de legajo o dni incorrecto</h5>
+            <h5>Alumnos que tienen formato de legajo o DNI incorrecto</h5>
         <ul>";
 
         for ($i=0; $i < count($formatoIncorrecto) ; $i++) { 
-            echo "<li>Legajo: ".$formatoIncorrecto[$i]." </li>";
+            echo "<li>".$formatoIncorrecto[$i]." </li>";
         }
 
         echo "</ul>
