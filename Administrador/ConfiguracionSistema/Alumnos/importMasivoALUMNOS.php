@@ -71,7 +71,8 @@ include "../../../header.html";
                                     $rtdo = $con->query($sql);
                                     array_push($correcto, $dni);
                                 }else{
-                                    array_push($formatoIncorrecto, $dni);
+                                    $nombreCompleto = $apellido . ", ".$nombre; 
+                                    array_push($formatoIncorrecto, $nombreCompleto);
                                 }
 
                                 
@@ -124,11 +125,9 @@ include "../../../header.html";
 
                                     array_push($correcto, $legajo);
                                 }else{
-                                    if(validarDNI($dni) == false){
-                                        array_push($formatoIncorrecto, $dni);
-                                    }else{
-                                        array_push($formatoIncorrecto, $legajo);
-                                    }
+                                    $nombreCompleto = $apellido . ", ".$nombre; 
+                                    array_push($formatoIncorrecto, $nombreCompleto);
+                                    
                                     
                                 }
                                    
@@ -230,7 +229,7 @@ function validarDNI($dni){
 
     if (count($yaInscriptos) > 0) {
         echo "<div class='alert alert-warning mt-4' role='alert'>
-        <h5>Alumnos ya ingresados anteriormente</h5>
+        <h5>Alumnos ya ingresados anteriormente:</h5>
     <ul>";
 
         for ($i = 0; $i < count($yaInscriptos); $i++) {
@@ -244,7 +243,7 @@ function validarDNI($dni){
     
     if(count($formatoIncorrecto) > 0){
         echo "<div class='alert alert-warning mt-4' role='alert'>
-            <h5>Alumnos que tienen formato de legajo o DNI incorrecto</h5>
+            <h5>Alumnos que tienen formato de legajo o DNI incorrecto:</h5>
         <ul>";
 
         for ($i=0; $i < count($formatoIncorrecto) ; $i++) { 
@@ -258,7 +257,7 @@ function validarDNI($dni){
 
     if (count($correcto) > 0) {
         echo "<div class='alert alert-success mt-4' role='alert'>
-        <h5>Alumnos ingresados en el sistema satisfactoriamente</h5>
+        <h5>Alumnos ingresados en el sistema satisfactoriamente:</h5>
     <ul>";
 
         for ($i = 0; $i < count($correcto); $i++) {
