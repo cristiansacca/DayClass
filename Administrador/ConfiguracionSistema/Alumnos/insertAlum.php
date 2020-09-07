@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../../databaseConection.php";
 
 $nombre = $_POST["inputName"];
 $apellido= $_POST["inputSurname"];

@@ -210,8 +210,8 @@ if (!isset($_SESSION['administrador']))
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear" disabled>Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear">Crear</button>
                 </div>
             </form>
 
@@ -255,7 +255,7 @@ if (!isset($_SESSION['administrador']))
                     <br>
                     <br>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button id="btnImportar" type="submit" class="btn btn-primary " disabled>Importar</button>
                     </div>
 

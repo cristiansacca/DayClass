@@ -145,7 +145,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Nuevo alumno</h5>
             </div>
-            <form method="POST" id="insertAlumno" name="insertAlumno" action="insertAlumno.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
+            <form method="POST" id="insertAlumno" name="insertAlumno" action="insertAlum.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
                 <?php
         include "../../../databaseConection.php";
         $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
@@ -204,7 +204,7 @@ if (!isset($_SESSION['administrador']))
                     </div>
                     <div class="my-2" <?php if($dni){echo "hidden ";} ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo">
+                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" <?php if($dni == false){echo " required ";} ?>>
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
@@ -216,7 +216,7 @@ if (!isset($_SESSION['administrador']))
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear" disabled> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear">Crear</button>
                 </div>
             </form>
 
