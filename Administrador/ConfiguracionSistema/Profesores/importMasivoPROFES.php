@@ -3,7 +3,7 @@ include "../../../databaseConection.php";
 include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
 include "../../../header.html";
 ?>
-<div class="container" hidden>//Oculta todos los Notice que muestra por el error en la libreria
+<div class="container" hidden><!--Oculta todos los Notice que muestra por el error en la libreria-->
     <?php
     $correcto = [];
     $yaInscriptos = [];
@@ -122,11 +122,8 @@ include "../../../header.html";
                                 array_push($correcto, $legajo);
                                  
                              }else{
-                                 
-                                        $nombreCompleto = $apellido . ", ".$nombre; 
-                                    array_push($formatoIncorrecto, $nombreCompleto);
-                                    
-                                 
+                                 $nombreCompleto = $apellido . ", ".$nombre; 
+                                 array_push($formatoIncorrecto, $nombreCompleto);
                              }
                             
                         } else {
@@ -134,7 +131,6 @@ include "../../../header.html";
                         }
                     }
                 } else {
-                    //echo "<script> alert('EEEEEEEERror en el formato de la primera fila') </script>";
                     header("Location:/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php?resultado=6");
                 }
                 }
@@ -158,6 +154,8 @@ include "../../../header.html";
         
     $formatoLegajo = $consultaParamLeg->fetch_assoc();
     $dni = $formatoLegajo["esDNI"];
+         
+    $dev = false;
 
     if($dni) {
         
@@ -176,9 +174,7 @@ include "../../../header.html";
             if($letras){
                 $cantLetras = $formatoLegajo["cantLetras"];
                 $soloLetras = substr($legajo, 0, $cantLetras);
-                $rtdoLetras = ctype_upper($soloLetras);
-                return $rtdoLetras;
-                
+                $rtdoLetras = ctype_upper($soloLetras);  
             }
             
             
@@ -188,14 +184,26 @@ include "../../../header.html";
                 if($letras){
                    $soloNumeros = substr($legajo, $cantLetras);
                     $rtdoNumeros = is_numeric($soloNumeros);
-                    return $rtdoNumeros;
                 }else{
                     $soloNumeros = substr($legajo, 0, $cantNumeros);
                     $rtdoNumeros = is_numeric($soloNumeros);
-                    return $rtdoNumeros;
                 }
             }
             
+            
+            if($letras && $numeros && $rtdoNumeros && $rtdoLetras){
+                $dev = true;
+            }
+            
+            if($letras && $numeros == false && $rtdoLetras){
+                $dev = true;
+            }
+        
+            if($letras == false && $numeros  && $rtdoNumeros){
+                $dev = true;
+            }
+            
+            return $dev;
             
         }else{
             return false;

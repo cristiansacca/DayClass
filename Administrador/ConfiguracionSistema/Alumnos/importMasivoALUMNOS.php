@@ -161,6 +161,8 @@ include "../../../header.html";
         
     $formatoLegajo = $consultaParamLeg->fetch_assoc();
     $dni = $formatoLegajo["esDNI"];
+         
+    $dev = false;
 
     if($dni) {
         
@@ -179,9 +181,7 @@ include "../../../header.html";
             if($letras){
                 $cantLetras = $formatoLegajo["cantLetras"];
                 $soloLetras = substr($legajo, 0, $cantLetras);
-                $rtdoLetras = ctype_upper($soloLetras);
-                return $rtdoLetras;
-                
+                $rtdoLetras = ctype_upper($soloLetras);  
             }
             
             
@@ -191,14 +191,26 @@ include "../../../header.html";
                 if($letras){
                    $soloNumeros = substr($legajo, $cantLetras);
                     $rtdoNumeros = is_numeric($soloNumeros);
-                    return $rtdoNumeros;
                 }else{
                     $soloNumeros = substr($legajo, 0, $cantNumeros);
                     $rtdoNumeros = is_numeric($soloNumeros);
-                    return $rtdoNumeros;
                 }
             }
             
+            
+            if($letras && $numeros && $rtdoNumeros && $rtdoLetras){
+                $dev = true;
+            }
+            
+            if($letras && $numeros == false && $rtdoLetras){
+                $dev = true;
+            }
+        
+            if($letras == false && $numeros  && $rtdoNumeros){
+                $dev = true;
+            }
+            
+            return $dev;
             
         }else{
             return false;
