@@ -10,7 +10,6 @@ include "../../../header.html";
     $formatoIncorrecto = [];
 
     if (isset($_FILES["inpGetFile"])) {
-        //echo "<script> alert('EEEEEEEENTRA AL IF') </script>";
 
         $up = new Upload($_FILES["inpGetFile"]);
 
@@ -63,10 +62,11 @@ include "../../../header.html";
                         $nombre = $sheet->getCell("C" . $row)->getValue();
 
 
-                        $consulta2 = $con->query("SELECT nombreProf FROM  profesor WHERE dniProf = '$dni'");
-                        $resultado2 = $consulta2->fetch_assoc();
+                       $consultaAl = $con->query("SELECT nombreAlum FROM alumno WHERE dniAlum = '$dni'");
+                        $consultaPr = $con->query("SELECT nombreProf FROM alumno WHERE dniProf = '$dni'");
+                        $consultaAd = $con->query("SELECT nombreAdm FROM alumno WHERE dniAdm = '$dni'");
 
-                        if (mysqli_num_rows($consulta2) == 0 && $apellido != "") {
+                        if ((($consultaAl->num_rows) == 0) && (($consultaPr->num_rows) == 0) && (($consultaAd->num_rows) == 0)) {
                             
                              if(validarDNI($dni)){
                                  
@@ -109,10 +109,11 @@ include "../../../header.html";
                         $nombre = $sheet->getCell("D" . $row)->getValue();
 
 
-                        $consulta2 = $con->query("SELECT nombreProf FROM  profesor WHERE dniProf = '$dni' AND legajoProf = '$legajo'");
-                        $resultado2 = $consulta2->fetch_assoc();
+                        $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
+                            $consultaPr = $con->query("SELECT * FROM alumno WHERE dniProf = '$dni' AND legajoProf = '$legajo'");
+                            $consultaAd = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAdm = '$legajo'");
 
-                        if (mysqli_num_rows($consulta2) == 0 && $apellido != "") {
+                        if ((($consultaAl->num_rows) == 0) && (($consultaPr->num_rows) == 0) && (($consultaAd->num_rows) == 0)) {
                             
                              if(validarDNI($dni) && validarLegajo($legajo)){
                                  
@@ -233,29 +234,28 @@ function validarDNI($dni){
 
     if (count($yaInscriptos) > 0) {
         echo "<div class='alert alert-warning mt-4' role='alert'>
-        <h5>Docentes ya ingresados anteriormente:</h5>
+        <h5>Ya registrados en el sistema:</h5>
     <ul>";
 
         for ($i = 0; $i < count($yaInscriptos); $i++) {
-            $consultaIns = $con->query("SELECT * FROM profesor WHERE legajoProf = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
-            echo "<li>" . $consultaIns['apellidoProf'] . ", " . $consultaIns['nombreProf'] . "</li>";
+            $consultaInsAl = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
+            
+            if((($consultaInsAl->num_rows) > 0)){
+                echo "<li>" . $consultaInsAl['apellidoAlum'] . ", " . $consultaInsAl['nombreAlum'] . "</li>";
+            }else{
+                $consultaInsPr = $con->query("SELECT * FROM profesor WHERE legajoProf = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
+                if((($consultaInsPr->num_rows) > 0)){
+                    echo "<li>" . $consultaInsPr['apellidoProf'] . ", " . $consultaIns['nombreProf'] . "</li>";
+                }else{
+                    $consultaInsAd = $con->query("SELECT * FROM administrativo WHERE legajoAdm = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
+                    echo "<li>" . $consultaInsAd['apellidoAdm'] . ", " . $consultaInsAl['nombreAdm'] . "</li>";
+                }
+            }
+            
         }
 
         echo "</ul>
     </div>";
-    }
-    
-    if(count($formatoIncorrecto) > 0){
-        echo "<div class='alert alert-warning mt-4' role='alert'>
-            <h5>Profesores que tienen formato de legajo o DNI incorrecto:</h5>
-        <ul>";
-
-        for ($i=0; $i < count($formatoIncorrecto) ; $i++) { 
-            echo "<li> ".$formatoIncorrecto[$i]." </li>";
-        }
-
-        echo "</ul>
-        </div>";
     }
 
     if (count($correcto) > 0) {
