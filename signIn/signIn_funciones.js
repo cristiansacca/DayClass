@@ -169,7 +169,7 @@ function validarEmail(){
     setValitationMesage('msjValidacionEmail', rtdo, msg);
     return rtdo;
     
-    //validar();
+    
     
 }
 
@@ -194,7 +194,6 @@ function validarContrasenia()
     setValitationMesage('msjValidacionPass', rtdo, msg);
     
     return rtdo;
-    //validar();
     
 }
 
@@ -218,8 +217,6 @@ function validarFechaNac(){
     setValitationMesage('msjValidacionFchNac', rtdo, msg);
     
     return rtdo;
-    
-    //validar();
     
 }
 
@@ -313,24 +310,6 @@ function setValitationMesage(elementID, rtdo, msg){
       
 }
 
-function validar(){
-    var v_dni = document.getElementById('inputDNI').style.backgroundColor;
-    var v_legajo = document.getElementById('inputLegajo').style.backgroundColor;
-    var v_name = document.getElementById('inputName').style.backgroundColor;
-    var v_surname = document.getElementById('inputSurname').style.backgroundColor;
-    var v_mail = document.getElementById('inputEmail').style.backgroundColor;
-    var v_pass =document.getElementById('inputPassword4').style.backgroundColor;
-    var v_date = document.getElementById('inputDate').style.backgroundColor;
-    
-   
-    if(v_date == "azure" && v_dni == "azure" && v_legajo == "azure" && v_mail == "azure" && v_name == "azure" && v_pass == "azure" && v_surname =="azure"){
-       document.getElementById('btnRegistrarse').disabled=false; 
-    }else{
-        document.getElementById('btnRegistrarse').disabled=true;  
-    }
-    
-         
-}
 
 function valiarCampos(){
     var pass = validarContrasenia();
@@ -365,4 +344,16 @@ function validarDNIyLegajo(){
     
     
     
+}
+
+
+function validarRestPass(){
+    var mail = validarEmail();
+    var legDNI  = validarDNIyLegajo();
+    
+    if(mail && legDNI){
+        return true;
+    }else{
+        return false;
+    }
 }
