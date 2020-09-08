@@ -129,14 +129,14 @@ if (!isset($_SESSION['administrador'])) {
                     echo "data-target='#staticBackdrop'";
                 } else {
                     echo "class='btn btn-primary disabled'";
-                } ?> data-toggle="modal"><i class="fa fa-user-plus mr-2"></i>Agregar Alumno</button>
+                } ?> data-toggle="modal"><i class="fa fa-user-plus mr-1"></i>Agregar un alumno</button>
         <button <?php
                 if ($habilitado) {
                     echo "class='btn btn-success'";
                     echo "data-target='#staticBackdrop1'";
                 } else {
                     echo "class='btn btn-success disabled'";
-                } ?> data-toggle="modal"><i class="fa fa-download mr-2"></i>Importar lista de inscriptos</button>
+                } ?> data-toggle="modal"><i class="fa fa-download mr-1"></i>Importar lista de inscriptos</button>
     </div>
 
     <div class="my-4">
@@ -282,7 +282,7 @@ if (!isset($_SESSION['administrador'])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear"> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear">Inscribir</button>
                 </div>
             </form>
 

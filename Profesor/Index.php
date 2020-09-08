@@ -54,7 +54,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                 <div class='card color$contador' >
                     <div class='card-body'>
                         <h4 class='card-title'>".$resultadoCursos["nombreCurso"]."</h4>
-                        <label>".$cargoProf['nombreCargo']."</label>
+                        <h5 class='font-weight-normal'>".$cargoProf['nombreCargo']."</h5>
                     </div>
                     <div class='card-footer'>
                         <a href='indexCurso.php?id_curso=".$resultadoCursos["id"]."' class='btn btn-primary btn-lg'>Ingresar</a>

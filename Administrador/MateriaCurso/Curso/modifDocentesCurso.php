@@ -3,12 +3,11 @@
 session_start();
 
 include "../../../header.html";
- 
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) 
-{
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
+if (!isset($_SESSION['administrador'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
 }
 ?>
 <script src="../../administrador.js"></script>
@@ -26,81 +25,80 @@ if (!isset($_SESSION['administrador']))
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        
+
         <?php
-            include "../../../databaseConection.php";
-            $id_curso = $_GET['id'];
-            
-            $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
-            $resultado = $consultaCurso->fetch_assoc();
-            $fchDesde = $resultado["fechaDesdeCursado"];
-            $fchHasta = $resultado["fechaHastaCursado"];
-            $nombreCurso = $resultado["nombreCurso"];
-        
-            echo "<h1>$nombreCurso</h1>";
-            
-            echo "<h6>Inicio del curso: ".strftime('%d/%m/%Y', strtotime($fchDesde))."</h6>";
-            echo "<h6>Finalización de curso: ".strftime('%d/%m/%Y', strtotime($fchHasta))."</h6>";
-        
+        include "../../../databaseConection.php";
+        $id_curso = $_GET['id'];
+
+        $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+        $resultado = $consultaCurso->fetch_assoc();
+        $fchDesde = $resultado["fechaDesdeCursado"];
+        $fchHasta = $resultado["fechaHastaCursado"];
+        $nombreCurso = $resultado["nombreCurso"];
+
+        echo "<h1>$nombreCurso</h1>";
+
+        echo "<h6 class='font-weight-normal'>Inicio del curso: " . strftime('%d/%m/%Y', strtotime($fchDesde)) . "</h6>";
+        echo "<h6 class='font-weight-normal'>Finalización de curso: " . strftime('%d/%m/%Y', strtotime($fchHasta)) . "</h6>";
+
         ?>
-        <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado['materia_id']."'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
-    
-    
-    
+
+
+
     <?php
-    
-    if(isset($_GET["resultado"])){
+
+    if (isset($_GET["resultado"])) {
         switch ($_GET["resultado"]) {
-                case 1:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Docente agregado exitosamente</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 2:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>El documento o Legajo ingresado no existen o el docente ha sido dado de baja</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 3:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                break;
+            case 3:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>El docente ya dicta esa materia</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 4:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                break;
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Error en la baja</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 5:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                break;
+            case 5:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Licencia cargada exitosamente</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
+                break;
         }
-    
     }
 
     ?>
 
     <div class="my-3">
-      <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Docente</a>
-    </div>  
+        <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Docente</a>
+    </div>
 
     <div class="my-4">
         <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
@@ -114,26 +112,26 @@ if (!isset($_SESSION['administrador']))
             <tbody>
                 <?php
                 $id_curso = $_GET["id"];
-                
+
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDateTime = date('Y-m-d');
 
                 $consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
-                
-                
+
+
                 echo "<input type='date' name='impIDprof' id='hoy' value='$currentDateTime' hidden>";
                 while ($resultadoProf = $consulta1->fetch_assoc()) {
-                     $nombreCompleto = $resultadoProf['apellidoProf'].", ".$resultadoProf['nombreProf'];
+                    $nombreCompleto = $resultadoProf['apellidoProf'] . ", " . $resultadoProf['nombreProf'];
                     $id = $resultadoProf['id'];
-                    
+
                     $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Activo'");
                     $resultadoLicencia = $consulta2->fetch_assoc();
                     $inicioLicencia = $resultadoLicencia["fechaDesdeCargoProfesorEstado"];
-                    
-                    
-                    $ultimaLicencia =$con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaHastaCargoProfesorEstado DESC");
+
+
+                    $ultimaLicencia = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaHastaCargoProfesorEstado DESC");
                     $resultadoUltimaLicencia = $ultimaLicencia->fetch_assoc();
-                    if(($ultimaLicencia->num_rows)==0){
+                    if (($ultimaLicencia->num_rows) == 0) {
                         $inicioUtimaLicencia = "";
                         $finUtimaLicencia = "";
                     } else {
@@ -150,18 +148,18 @@ if (!isset($_SESSION['administrador']))
                     <td class='text-center'>
                         <a href='#' class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit mr-1'></i>Editar</a>
                         <a href='#' class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
-                        <a href='' class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(".$id.")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
-                        <input type='date' name='impIDprof' id='inicLic".$id."' value='$inicioLicencia' hidden> 
-                        <input type='date' name='impIDprof' id='inicioUltimaLicencia".$id."' value='$inicioUtimaLicencia' hidden>
-                        <input type='date' name='impIDprof' id='finUltimaLicencia".$id."' value='$finUtimaLicencia' hidden>
+                        <a href='' class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(" . $id . ")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
+                        <input type='date' name='impIDprof' id='inicLic" . $id . "' value='$inicioLicencia' hidden> 
+                        <input type='date' name='impIDprof' id='inicioUltimaLicencia" . $id . "' value='$inicioUtimaLicencia' hidden>
+                        <input type='date' name='impIDprof' id='finUltimaLicencia" . $id . "' value='$finUtimaLicencia' hidden>
                 
                     </td> 
-                    </tr>";        
+                    </tr>";
                 }
 
                 ?>
-                
-                </tbody>
+
+            </tbody>
         </table>
     </div>
 </div>
@@ -175,66 +173,68 @@ if (!isset($_SESSION['administrador']))
             </div>
             <form method="POST" id="asociarProfesor" name="asociarProfesor" action="ingresarDocenteCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
                 <?php
-                                  
-                                include "../../../databaseConection.php";
-                                $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
-                                $rtdo = false;
-                                $dni = null;
 
-                                if (!($consultaParamLeg->num_rows) == 0) {
-                                    $formatoLegajo = $consultaParamLeg->fetch_assoc();
-                                    $rtdo = true;
-                                    $dni = $formatoLegajo["esDNI"];
+                include "../../../databaseConection.php";
+                $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+                $rtdo = false;
+                $dni = null;
 
-                                    echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
-                                    if ($dni) {
-                                    }else {
+                if (!($consultaParamLeg->num_rows) == 0) {
+                    $formatoLegajo = $consultaParamLeg->fetch_assoc();
+                    $rtdo = true;
+                    $dni = $formatoLegajo["esDNI"];
 
-                                        $letras = $formatoLegajo["tieneLetras"];
-                                        $numeros = $formatoLegajo["tieneNumeros"];
+                    echo "<input type='text' id='esDNI' name='esDNI' value='$dni' hidden>";
+                    if ($dni) {
+                    } else {
 
-                                        $cantTotal = $formatoLegajo["cantTotalCaracteres"];
-                                        echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+                        $letras = $formatoLegajo["tieneLetras"];
+                        $numeros = $formatoLegajo["tieneNumeros"];
 
-                                        echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
-                                        echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
+                        $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+                        echo "<input type='text' id='cantTotal' name='cantTotal' value='$cantTotal' hidden>";
+
+                        echo "<input type='text' id='letras' name='letras' value='$letras' hidden>";
+                        echo "<input type='text' id='numeros' name='numeros' value='$numeros' hidden>";
 
 
-                                        if ($letras) {
-                                            $cantLetras = $formatoLegajo["cantLetras"];
+                        if ($letras) {
+                            $cantLetras = $formatoLegajo["cantLetras"];
 
-                                            echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
-                                        }
-                                        if ($numeros) {
-                                            $cantNumeros = $formatoLegajo["cantNumeros"];
+                            echo "<input type='text' id='cantLetras' name='cantLetras' value='$cantLetras' hidden>";
+                        }
+                        if ($numeros) {
+                            $cantNumeros = $formatoLegajo["cantNumeros"];
 
-                                            echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
-                                        }
-                                    }
-                                }else{
-                                    echo "<div class='alert alert-warning' role='alert'>
+                            echo "<input type='text' id='cantNumeros' name='cantNumeros' value='$cantNumeros' hidden>";
+                        }
+                    }
+                } else {
+                    echo "<div class='alert alert-warning' role='alert'>
                                         <h5>No se ha definido un formato de Legajo, no se podrá cargar un nuevo docente en el curso</h5>
                                     </div>";
-                                } 
-                
-                                $consultaD = $con->query("SELECT * FROM `cargo`");
-                
-                                $cargos = null;
-                
-                                if(($consultaD->num_rows) == 0){
-                                    echo "<div class='alert alert-warning' role='alert'>
+                }
+
+                $consultaD = $con->query("SELECT * FROM `cargo`");
+
+                $cargos = null;
+
+                if (($consultaD->num_rows) == 0) {
+                    echo "<div class='alert alert-warning' role='alert'>
                                         <h5>No se han definido cargos para los docentes, no se podrá agregar uno nuevo en el curso</h5>
                                     </div>";
-                                }else{
-                                    $cargos = true;
-                                }
-                
-                
-                                
+                } else {
+                    $cargos = true;
+                }
 
-                            ?>
-                <div class="modal-body" <?php if($dni == null || $cargos == null){echo "hidden ";}?> >
-                    
+
+
+
+                ?>
+                <div class="modal-body" <?php if ($dni == null || $cargos == null) {
+                                            echo "hidden ";
+                                        } ?>>
+
                     <div class="my-2">
                         <h5 class="msg" id="msjValidacionApellido">Ingrese los datos del docente a agregar y su cargo en esta materia</h5>
                     </div>
@@ -242,19 +242,22 @@ if (!isset($_SESSION['administrador']))
                         <label for="cargo">Cargo</label>
                         <select id="cargo" name="cargo" class="custom-select mx-2" style="width:200px">
                             <?php
-                                  
-                        
-                                  while ($cargo = $consultaD->fetch_assoc()) {
-                                      
-                                      echo "<option value='".$cargo['id']."'>".$cargo['nombreCargo']."</option>";
 
-                                  }
+
+                            while ($cargo = $consultaD->fetch_assoc()) {
+
+                                echo "<option value='" . $cargo['id'] . "'>" . $cargo['nombreCargo'] . "</option>";
+                            }
                             ?>
                         </select>
                     </div>
-                    <div class="my-2" <?php if($dni){echo "hidden ";} ?>>
+                    <div class="my-2" <?php if ($dni) {
+                                            echo "hidden ";
+                                        } ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" <?php if(!($dni)){echo "required ";} ?>>
+                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" <?php if (!($dni)) {
+                                                                                                                                                                                                                                                                                echo "required ";
+                                                                                                                                                                                                                                                                            } ?>>
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
@@ -262,15 +265,19 @@ if (!isset($_SESSION['administrador']))
                         <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
                         <h9 class="msg" id="msjValidacionDNI"></h9>
                     </div>
-                    
-                    
-                    
-                    <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
+
+
+
+                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrear" <?php if($dni==null|| $cargos == null){echo "style='display:none;'";} ?>> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrear" 
+                    <?php if ($dni == null || $cargos == null) {
+                        echo "style='display:none;'";
+                        } 
+                    ?>>Agregar</button>
                 </div>
             </form>
 
@@ -285,34 +292,35 @@ if (!isset($_SESSION['administrador']))
         <div class="modal-content ">
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Licencia docente</h5>
-                
+
             </div>
             <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarDocenteLicenciaCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
                 <div class="modal-body">
-                    
+
                     <label class="text-muted">No se aceptan licencias pasadas, iniciadas antes de la fecha de hoy</label>
-                    
+
                     <div class="my-2">
                         <div class="form-inline my-2">
-                          <label style="margin-right: 1rem;" for="fechaDesde">Inicio Licencia: </label>
-                          <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> <?php echo"value= '".$currentDateTime."'"; ?> required >
-                          <h9 id="msgDesde"></h9>
+                            <label style="margin-right: 1rem;" for="fechaDesde">Inicio Licencia: </label>
+                            <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" min=<?php $hoy = date("Y-m-d");
+                                                                                                                                                echo $hoy; ?> <?php echo "value= '" . $currentDateTime . "'"; ?> required>
+                            <h9 id="msgDesde"></h9>
                         </div>
                         <div class="form-inline my-2">
-                          <label style="margin-right: 1.2rem;" for="fechaHasta">Fin Licencia: </label>
-                          <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2" required disabled>
-                          <h9 id="msgHasta"></h9>
+                            <label style="margin-right: 1.2rem;" for="fechaHasta">Fin Licencia: </label>
+                            <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2" required disabled>
+                            <h9 id="msgHasta"></h9>
                         </div>
                         <div class="my-2" id="tablaLastLicencia"></div>
                     </div>
-                    
-                    <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
+
+                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
                     <input type="text" name="impIDprof" id="impIDprof" hidden>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrearLicencia"> Crear</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrearLicencia">Agregar</button>
                 </div>
             </form>
 
@@ -328,7 +336,7 @@ if (!isset($_SESSION['administrador']))
 <script src="../../paginadoDataTable.js"></script>
 <script src="fnLicencia.js"></script>
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
 </script>
 
 <?php

@@ -111,7 +111,7 @@ if (!isset($_SESSION['administrador']))
                     <td><a href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td>$nivelMateria</td>
                     <td>".$cargado."</td>
-                    <td><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia'><i class='fa fa-eye'></i></a></td>
+                    <td class='text-center'><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia'><i class='fa fa-eye'></i></a></td>
                     <td class='text-center'><a class='btn btn-danger' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
                     
@@ -135,15 +135,15 @@ if (!isset($_SESSION['administrador']))
             <form method="POST" id="insertMateria" name="insertMateria" action="altaMateria.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="inputNombreMateria"> Nombre materia</label>
+                        <label for="inputNombreMateria"> Nombre</label>
                         <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control" required>
                     </div>
                     <div class="my-2">
-                        <label for="inputNivel"> Nivel materia </label>
+                        <label for="inputNivel"> Nivel </label>
                         <input type="number" name="inputNivel" id="inputNivel" class="form-control" required>
                     </div>
                     <div class="my-2">
-                        <label for="inputNivel"> Carga horaria materia </label>
+                        <label for="inputNivel"> Cantidad de horas semanales </label>
                         <input type="number" name="inputCargaHoraria" id="inputCargaHoraria" class="form-control" required>
                     </div>
                     <div class="modal-footer">

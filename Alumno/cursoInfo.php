@@ -40,9 +40,8 @@ if (isset($_GET["id_curso"])) {
             $nombreDivision = $curso["nombreDivision"];
             $nombreModalidad = $curso["nombreModalidad"];
             
-            echo "<h3>$nombreMateria</h3>";
             echo "<h1>$nombreCurso</h1>";
-            echo "<h3>$nombreDivision - $nombreModalidad</h3>";
+            echo "<h3 class='font-weight-normal'>$nombreModalidad</h3>";
             
         ?>
         
@@ -79,7 +78,7 @@ if (isset($_GET["id_curso"])) {
                     $mailDocente = "Correo electronico no registrado";
                 }
                 
-                echo "<h4>$cargoDocente: <h5 style='display:inline'>$apellidoDocente, $nombreDocente - $mailDocente</h5></h4>";
+                echo "<h4>$cargoDocente:</h4><h5 class='font-weight-normal' style='display:inline'>$apellidoDocente, $nombreDocente - $mailDocente</h5>";
                     
                 
                 }
@@ -87,7 +86,7 @@ if (isset($_GET["id_curso"])) {
         ?>
     </div>
     
-    <div class="row my-5">
+    <div class="row my-4">
        <?php
         include "../databaseConection.php";
         
@@ -116,12 +115,12 @@ if (isset($_GET["id_curso"])) {
             $dia = $horarioCurso["nombreDia"];
             $horaDesde = $horarioCurso["horaInicioCurso"];
             $horaHasta = $horarioCurso["horaFinCurso"];
-            echo "<div class='col-lg-3 col-md-12 mb-4' >
+            echo "<div class='col-lg-4 my-3' >
                 <div class='card h-100 color$contador'>
                     <div class='card-body text-left'>
                         <h3 class='card-title'>$dia</h3>
-                        <h5>Hora desde: $horaDesde</h5>
-                        <h5>Hora hasta: $horaHasta</h5>
+                        <h5 class='font-weight-normal'>Desde: ".strftime("%H:%M", strtotime($horaDesde))."</h5>
+                        <h5 class='font-weight-normal'>Hasta: ".strftime("%H:%M", strtotime($horaHasta))."</h5>
                     </div>
                 </div>
             </div>" ;
