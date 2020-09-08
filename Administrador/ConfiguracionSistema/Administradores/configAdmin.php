@@ -37,7 +37,7 @@ if (!isset($_SESSION['administrador']))
         switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Usuario agregado exitosamente</h5>
+                            <h5>Usuario agregado exitosamente, se le ha enviado un mail al correo proporcionado con la constraseña</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -67,6 +67,16 @@ if (!isset($_SESSION['administrador']))
                             </button>
                         </div>";
                     break;
+                
+                case 6:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en el registro del administrativo, intente nuevamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+
 
             }
     }

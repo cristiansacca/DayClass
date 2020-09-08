@@ -22,7 +22,7 @@ $consultaAdminL = $con->query("SELECT id FROM `administrativo` WHERE legajoAdm =
 $consultaAdminD = $con->query("SELECT id FROM `administrativo` WHERE dniAdm = $dni");
 
 
-if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 && mysqli_num_rows($consultaProfL) == 0 && mysqli_num_rows($consultaProfD) == 0 && mysqli_num_rows($consultaAdminL) == 0 && mysqli_num_rows($consultaAdminD) == 0){
+if((($consultaAlumL->num_rows) == 0) && (($consultaAlumD->num_rows) == 0) && (($consultaProfL->num_rows) == 0) && (($consultaProfD->num_rows) == 0) && (($consultaAdminL->num_rows) == 0) && (($consultaAdminD->num_rows) == 0)){
     
     $pass = passAleatoria();
     $Pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
@@ -34,11 +34,17 @@ if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 
     $resultado1 = $consulta1->fetch_assoc();
     $id_permiso = $resultado1['id'];
     
-    $resultado2 = $con->query('INSERT INTO `administrativo`(`nombreAdm`,`apellidoAdm`, `dniAdm`, `fechaAltaAdm`, `legajoAdm`, `permiso_id`,`fechaNacAdm`,`emailAdm`,`contraseniaAdm`) VALUES ("'.$nombre.'","'.$apellido.'","'.$dni.'","'.$currentDateTime.'","'.$legajo.'","'.$id_permiso.'","'.$fchNac.'","'.$email.'","'.$Pass_cifrada.'");');
     
-    enviarMail($email,$cadenaMail);
+    $resultadoMail = enviarMail($email,$cadenaMail);
     
-    header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=1");
+    if($resultadoMail){
+        $resultado2 = $con->query('INSERT INTO `administrativo`(`nombreAdm`,`apellidoAdm`, `dniAdm`, `fechaAltaAdm`, `legajoAdm`, `permiso_id`,`fechaNacAdm`,`emailAdm`,`contraseniaAdm`) VALUES ("'.$nombre.'","'.$apellido.'","'.$dni.'","'.$currentDateTime.'","'.$legajo.'","'.$id_permiso.'","'.$fchNac.'","'.$email.'","'.$Pass_cifrada.'");');
+        header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=1");
+    }else{
+         header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=6");
+    }
+    
+    
     
 }else{
      header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=2");
@@ -60,7 +66,7 @@ function enviarMail($mail,$mensajeEnviar){
     // Enviamos el email
     $rtdo = mail($destino, 'Alta de cuenta Administrativo en Dayclass', $mensaje);
 
-    return;
+    return $rtdo;
 }
 
 
