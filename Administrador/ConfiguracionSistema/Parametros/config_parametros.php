@@ -148,8 +148,8 @@ include "../../../databaseConection.php";
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="Submit" class="btn btn-primary">Crear</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="Submit" class="btn btn-primary">Crear</button>
                 </div>
             </form>
         </div>
@@ -186,8 +186,8 @@ include "../../../databaseConection.php";
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="Submit" class="btn btn-primary">Crear</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="Submit" class="btn btn-primary">Crear</button>
                 </div>
             </form>
         </div>
@@ -236,8 +236,8 @@ include "../../../databaseConection.php";
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="Submit" class="btn btn-primary">Crear</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="Submit" class="btn btn-primary">Crear</button>
                 </div>
             </form>
         </div>
@@ -342,13 +342,11 @@ include "../../../databaseConection.php";
                     <input type="text" id="arregloTipos" name="arregloTipos" hidden>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="Submit" class="btn btn-primary" <?php 
                          if($rtdo){
                              echo " disabled";
-                         }
-                         
-                         ?> >Crear</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                         }?> >Crear</button>
                 </div>
             </form>
         </div>
@@ -395,8 +393,8 @@ include "../../../databaseConection.php";
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="Submit" class="btn btn-primary">Crear</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="Submit" class="btn btn-primary">Crear</button>
                 </div>
             </form>
         </div>
