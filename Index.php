@@ -35,7 +35,7 @@ if (isset($_SESSION['administrador'])) {
       </div>
 
       <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-2"></i>Ingresar</button><br>
-      <a class="btn btn-link my-2" href="restablecer-contrasenia.php">Olvidé mi contraseña</a>
+      <a class="btn btn-link my-2" href="RestablecerPass/restablecer-contrasenia.php">Olvidé mi contraseña</a>
 
       <?php
       if (isset($_GET["error"])) {

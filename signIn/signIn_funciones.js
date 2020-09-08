@@ -155,6 +155,8 @@ function validarApellido(){
 }
 
 function validarEmail(){
+    
+    eval("debugger;");
     var elem = document.getElementById('inputEmail').value;
     var rtdo = false;
     var msg = "";
