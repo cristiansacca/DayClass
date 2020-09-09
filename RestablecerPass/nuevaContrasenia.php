@@ -19,11 +19,11 @@ $consultaAlum = $con->query("SELECT * FROM `alumno` WHERE legajoAlumno = '$legaj
 
 
 if (mysqli_num_rows($consultaAlum) == 0) {
-  $consultaProf = $con->query("SELECT * FROM `profesor` WHERE legajoProf = '$legajo' AND dniProf = '$dni' emailProf = '$mail'");
+  $consultaProf = $con->query("SELECT * FROM `profesor` WHERE legajoProf = '$legajo' AND dniProf = '$dni' AND emailProf = '$mail'");
 
   if (mysqli_num_rows($consultaProf) == 0) {
     
-      $consultaAdmin = $con->query("SELECT * FROM `administrativo` WHERE legajoAdm = '$legajo' AND dniAdm = '$dni' emailAdm = '$mail'");
+      $consultaAdmin = $con->query("SELECT * FROM `administrativo` WHERE legajoAdm = '$legajo' AND dniAdm = '$dni' AND emailAdm = '$mail'");
       
       if(mysqli_num_rows($consultaAdmin) == 0){
         //no existe esa combinacion 
@@ -31,7 +31,7 @@ if (mysqli_num_rows($consultaAlum) == 0) {
         header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=2");
       }else{
           //es administrativo
-            $resultado3 = $consultaProf->fetch_assoc();
+            $resultado3 = $consultaAdmin->fetch_assoc();
             $nombre = $resultado3['nombreAdm'];
             $apellido = $resultado3['apellidoAdm'];
             $id = $resultado3['id'];
