@@ -81,7 +81,7 @@ $_SESSION['alumno']= $resultado1;
           </div>
           <div class="form-group col-md-6">
             <label for="inputLegajo">Legajo</label>
-            <input type="number" readonly class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" required <?php echo "value='".$_SESSION["alumno"]["legajoAlumno"]."'"; ?>>
+            <input type="text" readonly class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" required <?php echo "value='".$_SESSION["alumno"]["legajoAlumno"]."'"; ?>>
             <h9 class="msg" id="msjValidacionLegajo"></h9>
           </div>
         </div>

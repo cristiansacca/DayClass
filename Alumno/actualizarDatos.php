@@ -3,6 +3,8 @@ include "../databaseConection.php";
 
 $legajoTraido = $_POST["inputLegajo"];
 
+//echo "legajo del alumno: $legajoTraido";
+
 $pasNueva = $_POST["inputPassNew"];
 $email = $_POST["inputEmailNew"];
 
@@ -19,18 +21,18 @@ if ($pasNueva == "") {
         $mailAdmin = $con->query("SELECT id FROM administrativo WHERE emailAdm = '$email'");
 
         if (mysqli_num_rows($mailDocente) == 0 && mysqli_num_rows($mailAdmin) == 0) {
-            /*echo "entra a mail docente y admin de PASS VACIA, Actauliza mail";*/
+            echo "entra a mail docente y admin de PASS VACIA, Actauliza mail";
             $actualizacion = $con->query("UPDATE alumno SET emailAlum = '$email' WHERE id='$id_usuario'");
             header("Location:/DayClass/Alumno/editar_perfil.php?resultado=1");
         } else {
             header("Location:/DayClass/Alumno/editar_perfil.php?resultado=2");
-            /*echo "////entra a mail docente y admin de PASS VACIA, EXISTE MAIL IGUAL EN DOCENTE O ADMIN";*/
+            //echo "////entra a mail docente y admin de PASS VACIA, EXISTE MAIL IGUAL EN DOCENTE O ADMIN";
         }
     } else {
         $resultado2 = $consultaAlumno->fetch_assoc();
         $legajoConsulta = $resultado2['legajoAlumno'];
         if ($legajoTraido == $legajoConsulta) {
-            /*echo "////ENTRA A MISMA VERSION DE SU MAIL"; */
+            //echo "////ENTRA A MISMA VERSION DE SU MAIL"; 
             header("Location:/DayClass/Alumno/editar_perfil.php");
         } else {
             header("Location:/DayClass/Alumno/editar_perfil.php?resultado=2");
