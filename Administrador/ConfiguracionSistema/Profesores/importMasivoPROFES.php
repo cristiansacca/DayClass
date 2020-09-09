@@ -62,11 +62,13 @@ include "../../../header.html";
                         $nombre = $sheet->getCell("C" . $row)->getValue();
 
 
-                       $consultaAl = $con->query("SELECT nombreAlum FROM alumno WHERE dniAlum = '$dni'");
-                        $consultaPr = $con->query("SELECT nombreProf FROM alumno WHERE dniProf = '$dni'");
-                        $consultaAd = $con->query("SELECT nombreAdm FROM alumno WHERE dniAdm = '$dni'");
+                       $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni'");
+                            $consultaPr = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni'");
+                            $consultaAd = $con->query("SELECT * FROM administrativo WHERE dniAdm = '$dni'");
+                            
+                            
 
-                        if ((($consultaAl->num_rows) == 0) && (($consultaPr->num_rows) == 0) && (($consultaAd->num_rows) == 0)) {
+                            if (mysqli_num_rows($consultaAl) == 0 && mysqli_num_rows($consultaPr) == 0 && mysqli_num_rows($consultaAd) == 0) {
                             
                              if(validarDNI($dni)){
                                  
@@ -110,10 +112,11 @@ include "../../../header.html";
 
 
                         $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
-                            $consultaPr = $con->query("SELECT * FROM alumno WHERE dniProf = '$dni' AND legajoProf = '$legajo'");
-                            $consultaAd = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAdm = '$legajo'");
+                            $consultaPr = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni' AND legajoProf = '$legajo'");
+                            $consultaAd = $con->query("SELECT * FROM administrativo WHERE dniAdm = '$dni' AND legajoAdm = '$legajo'");
 
-                        if ((($consultaAl->num_rows) == 0) && (($consultaPr->num_rows) == 0) && (($consultaAd->num_rows) == 0)) {
+                        
+                            if (mysqli_num_rows($consultaAl) == 0 && mysqli_num_rows($consultaPr) == 0 && mysqli_num_rows($consultaAd) == 0) {
                             
                              if(validarDNI($dni) && validarLegajo($legajo)){
                                  
@@ -238,22 +241,23 @@ function validarDNI($dni){
     <ul>";
 
         for ($i = 0; $i < count($yaInscriptos); $i++) {
-            $consultaInsAl = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
+            $consultaInsAl = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '$yaInscriptos[$i]'");
             
-            if((($consultaInsAl->num_rows) > 0)){
+            if((mysqli_num_rows($consultaInsAl) != 0)){
+                $consultaInsAl= $consultaInsAl->fetch_assoc();
                 echo "<li>" . $consultaInsAl['apellidoAlum'] . ", " . $consultaInsAl['nombreAlum'] . "</li>";
             }else{
-                $consultaInsPr = $con->query("SELECT * FROM profesor WHERE legajoProf = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
-                if((($consultaInsPr->num_rows) > 0)){
-                    echo "<li>" . $consultaInsPr['apellidoProf'] . ", " . $consultaIns['nombreProf'] . "</li>";
+                $consultaInsPr = $con->query("SELECT * FROM profesor WHERE legajoProf = '$yaInscriptos[$i]'");
+                if((mysqli_num_rows($consultaInsPr) != 0)){
+                    $consultaInsPr=$consultaInsPr->fetch_assoc();
+                    echo "<li>" . $consultaInsPr['apellidoProf'] . ", " . $consultaInsPr['nombreProf'] . "</li>";
                 }else{
-                    $consultaInsAd = $con->query("SELECT * FROM administrativo WHERE legajoAdm = '" . $yaInscriptos[$i] . "'")->fetch_assoc();
-                    echo "<li>" . $consultaInsAd['apellidoAdm'] . ", " . $consultaInsAl['nombreAdm'] . "</li>";
+                    $consultaInsAd = $con->query("SELECT * FROM administrativo WHERE legajoAdm = '$yaInscriptos[$i]'")->fetch_assoc();
+                    echo "<li>" . $consultaInsAd['apellidoAdm'] . ", " . $consultaInsAd['nombreAdm'] . "</li>";
                 }
             }
             
         }
-
         echo "</ul>
     </div>";
     }
