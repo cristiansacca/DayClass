@@ -21,7 +21,7 @@ $consultaProfD = $con->query("SELECT id FROM `profesor` WHERE dniProf = '$dni'")
 $consultaAdminL = $con->query("SELECT id FROM `administrativo` WHERE legajoAdm = '$legajo'");
 $consultaAdminD = $con->query("SELECT id FROM `administrativo` WHERE dniAdm = '$dni'");
 
-if((($consultaAlumL->num_rows) == 0) && (($consultaAlumD->num_rows) == 0) && (($consultaProfL->num_rows) == 0) && (($consultaProfD->num_rows) == 0) && (($consultaAdminL->num_rows) == 0) && (($consultaAdminD->num_rows) == 0)){
+if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 && mysqli_num_rows($consultaProfL) == 0 && mysqli_num_rows($consultaProfD) == 0 && mysqli_num_rows($consultaAdminL) == 0 && mysqli_num_rows($consultaAdminD) == 0){
     
     $resultado2 = $con->query('INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ("'.$nombre.'","'.$apellido.'", "'.$dni.'","'.$currentDateTime.'","'.$legajo.'",'.$id_permiso.');');
     
