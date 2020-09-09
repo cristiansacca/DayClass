@@ -31,7 +31,7 @@ if (isset($_SESSION['administrador'])) {
 
       <input type="password" id="txtPassword" name="contrasenia" class="form-control my-2" placeholder="Contraseña" required>
       <div>
-         <input type="checkbox" id="show_password" class="mr-1" onchange="mostrarPassword()"><label>Mostrar contraseña</label>
+         <input type="checkbox" id="show_password" class="mr-1" onchange="mostrarPassword()"><label onclick="mostrarPassword()">Mostrar contraseña</label>
       </div>
 
       <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-2"></i>Ingresar</button><br>
@@ -87,8 +87,10 @@ if (isset($_SESSION['administrador'])) {
       var cambio = document.getElementById("txtPassword");
       if (cambio.type == "password") {
          cambio.type = "text";
+        document.getElementById("show_password").checked = true;
       } else {
          cambio.type = "password";
+          document.getElementById("show_password").checked = false;
       }
    }
 
