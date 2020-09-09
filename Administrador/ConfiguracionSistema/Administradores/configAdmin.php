@@ -67,8 +67,7 @@ if (!isset($_SESSION['administrador']))
                             </button>
                         </div>";
                     break;
-                
-                case 6:
+                case 5:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Error en el registro del administrativo, intente nuevamente</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -76,8 +75,14 @@ if (!isset($_SESSION['administrador']))
                             </button>
                         </div>";
                     break;
-
-
+                case 6:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>El mail ingresado ya se encuentra regsitrado por otro usuario</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
             }
     }
 

@@ -24,25 +24,44 @@ $consultaAdminD = $con->query("SELECT id FROM `administrativo` WHERE dniAdm = $d
 
 if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 && mysqli_num_rows($consultaProfL) == 0 && mysqli_num_rows($consultaProfD) == 0 && mysqli_num_rows($consultaAdminL) == 0 && mysqli_num_rows($consultaAdminD) == 0){
     
-    $pass = passAleatoria();
-    $Pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
-
-
-    $cadenaMail = "$nombre $apellido, \r\nSe ha dado de alta su cuenta de administrativo en Dayclass \r\nSu contraseña es la siguiente: $pass";
-
-    $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "ADMINISTRADOR"');
-    $resultado1 = $consulta1->fetch_assoc();
-    $id_permiso = $resultado1['id'];
+    
+    $mailAlumno = $con->query("SELECT id FROM alumno WHERE emailAlum = '$email'");
+    $mailDocente = $con->query("SELECT id FROM profesor WHERE emailProf = '$email'");
+    $mailAdmin = $con->query("SELECT id FROM administrativo WHERE emailAdm = '$email'");
     
     
-    $resultadoMail = enviarMail($email,$cadenaMail);
+    if(mysqli_num_rows($mailAlumno) == 0 && mysqli_num_rows($mailDocente) == 0 && mysqli_num_rows($mailAdmin) == 0 ){
+        
+        $pass = passAleatoria();
+        $Pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
+
+
+        $cadenaMail = "$nombre $apellido, \r\nSe ha dado de alta su cuenta de administrativo en Dayclass \r\nSu contraseña es la siguiente: $pass";
+
+        $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "ADMINISTRADOR"');
+        $resultado1 = $consulta1->fetch_assoc();
+        $id_permiso = $resultado1['id'];
     
-    if($resultadoMail){
-        $resultado2 = $con->query('INSERT INTO `administrativo`(`nombreAdm`,`apellidoAdm`, `dniAdm`, `fechaAltaAdm`, `legajoAdm`, `permiso_id`,`fechaNacAdm`,`emailAdm`,`contraseniaAdm`) VALUES ("'.$nombre.'","'.$apellido.'","'.$dni.'","'.$currentDateTime.'","'.$legajo.'","'.$id_permiso.'","'.$fchNac.'","'.$email.'","'.$Pass_cifrada.'");');
-        header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=1");
+    
+        $resultadoMail = enviarMail($email,$cadenaMail);
+    
+        if($resultadoMail){
+            $resultado2 = $con->query('INSERT INTO `administrativo`(`nombreAdm`,`apellidoAdm`, `dniAdm`, `fechaAltaAdm`, `legajoAdm`, `permiso_id`,`fechaNacAdm`,`emailAdm`,`contraseniaAdm`) VALUES ("'.$nombre.'","'.$apellido.'","'.$dni.'","'.$currentDateTime.'","'.$legajo.'","'.$id_permiso.'","'.$fchNac.'","'.$email.'","'.$Pass_cifrada.'");');
+            header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=1");
+        }else{
+             header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=5");
+        }
+        
+        
+        
     }else{
-         header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=6");
+        header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=6");
     }
+
+    
+    
+    
+    
     
     
     
