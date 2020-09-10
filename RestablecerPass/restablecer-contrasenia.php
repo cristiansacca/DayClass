@@ -62,7 +62,6 @@ include "../header.html";
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                              <h4 class='alert-heading'>¡Correo enviado! <i class='fa fa-paper-plane'></i></h4>
                             <p>Se acaba de enviar una contraseña provisoria al correo indicado.</p>
-                            <br>
                             <p class='mb-0'>Revise su bandeja de entrada o spam.</p>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
