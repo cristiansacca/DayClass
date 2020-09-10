@@ -40,16 +40,15 @@ include "../../../header.html";
                 $formatoLegajo = $consultaParamLeg->fetch_assoc();
                 $dni = $formatoLegajo["esDNI"];
 
-                $dni = $sheet->getCell("A" . $first_row)->getValue();
-                $legajo = $sheet->getCell("B" . $first_row)->getValue();
-                $apellido = $sheet->getCell("C" . $first_row)->getValue();
-                $nombre = $sheet->getCell("D" . $first_row)->getValue();
-                
                 if($dni){
                     
                 //valido que la primera fila de la tabla excel sea
                 //dni, apellido nombre, en ese orden, sino esta asi no importa la lista 
 
+                $dni = $sheet->getCell("A" . $row)->getValue();
+                $apellido = $sheet->getCell("B" . $row)->getValue();
+                $nombre = $sheet->getCell("C" . $row)->getValue();
+                    
                 $dni_p = strtolower($dni);
                 $nombre_p = strtolower($nombre);
                 $apellido_p = strtolower($apellido);
@@ -57,12 +56,8 @@ include "../../../header.html";
                 if (($dni_p == "dni" || $dni_p == "documento") && $nombre_p == "nombre" && $apellido_p == "apellido") {
                     for ($row = 2; $row <= $highestRow; $row++) {
 
-                        $dni = $sheet->getCell("A" . $row)->getValue();
-                        $apellido = $sheet->getCell("B" . $row)->getValue();
-                        $nombre = $sheet->getCell("C" . $row)->getValue();
-
-
-                       $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni'");
+                        
+                            $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni'");
                             $consultaPr = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni'");
                             $consultaAd = $con->query("SELECT * FROM administrativo WHERE dniAdm = '$dni'");
                             
@@ -97,6 +92,12 @@ include "../../../header.html";
                     //valido que la primera fila de la tabla excel sea
                     //dni, legajo, apellido nombre, en ese orden, sino esta asi no importa la lista 
 
+                $dni = $sheet->getCell("A" . $first_row)->getValue();
+                $legajo = $sheet->getCell("B" . $first_row)->getValue();
+                $apellido = $sheet->getCell("C" . $first_row)->getValue();
+                $nombre = $sheet->getCell("D" . $first_row)->getValue();
+                    
+                    
                 $dni_p = strtolower($dni);
                 $legajo_p = strtolower($legajo);
                 $nombre_p = strtolower($nombre);
