@@ -12,7 +12,7 @@ $currentDateTime = date('Y-m-d H:i:s');
 
 
 
-$consultaAlumL = $con->query("SELECT id FROM `alumno` WHERE legajoAlum = $legajo");
+$consultaAlumL = $con->query("SELECT id FROM `alumno` WHERE legajoAlumno = $legajo");
 $consultaAlumD = $con->query("SELECT id FROM `alumno` WHERE dniAlum = $dni");
 
 $consultaProfL = $con->query("SELECT id FROM `profesor` WHERE legajoProf = $legajo");
