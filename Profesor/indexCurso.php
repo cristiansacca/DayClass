@@ -159,7 +159,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
             }else{
                if(!$diaBien){
                     echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                        <h5>Este curso no se dicta este dia, no puede tomar asistencia.</h5>
+                        <h5>Este curso no se dicta este día, no puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
