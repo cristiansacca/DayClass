@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../header.html";
+//include "../../header.html";
 include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
@@ -69,12 +69,14 @@ try {
         VALUES ('$fechaActual', '$stamp', '$codigo', '$id_curso')");
 
         if($insert){//Si se insertó correctamente devuelve 1, sino devuelve 0. Para mostrar los mensajes correspondientes.
+           
+            echo "llega todo bien";
             header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&codigo=$codigoConEspacio");
         } else {
-            header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=1");
+            //header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=1");
         }
     } else {
-        header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=2");   
+       // header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=2");   
     }
 
 } catch(Exception $e) {
@@ -83,5 +85,5 @@ try {
 
 }
 
-include "../../footer.html";
+//include "../../footer.html";
 ?>
