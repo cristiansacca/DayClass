@@ -30,9 +30,15 @@ $currentDate = date('Y-m-d');
 $consultaAsistMismoDia = $con->query("SELECT * FROM `asistenciadia`, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
 
 //si ya se tomo asistencia, redirige al index curso con mensaje de error
-if(($consultaAsistMismoDia->num_rows)!=0){
-    header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=3");
+
+if(isset($_GET['codigo']) || isset($_GET['error'])){  
+    
+}else{
+    if(($consultaAsistMismoDia->num_rows)!=0){
+        header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=3");
+    }
 }
+
 
 
 

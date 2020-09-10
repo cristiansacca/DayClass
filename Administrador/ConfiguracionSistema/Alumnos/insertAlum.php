@@ -11,7 +11,7 @@ $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "ALUMNO
 $resultado1 = $consulta1->fetch_assoc();
 $id_permiso = $resultado1['id'];
 
-$consultaAlumL = $con->query("SELECT id FROM `alumno` WHERE legajoAlum = '$legajo'");
+$consultaAlumL = $con->query("SELECT id FROM `alumno` WHERE legajoAlumno = '$legajo'");
 $consultaAlumD = $con->query("SELECT id FROM `alumno` WHERE dniAlum = '$dni'");
 
 $consultaProfL = $con->query("SELECT id FROM `profesor` WHERE legajoProf = '$legajo'");
@@ -26,7 +26,7 @@ if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 
     header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=1");
     
 }else{
-    header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=2");
+   header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=2");
 }
 
 ?>
