@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
+include "../../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['alumno'])) 
@@ -14,6 +14,7 @@ if (!isset($_SESSION['alumno']))
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <div class="container">
@@ -23,7 +24,7 @@ if (!isset($_SESSION['alumno']))
     </div>
     <div class="form-group">
             <?php
-              include "../databaseConection.php";
+              include "../../databaseConection.php";
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDateTime = date('Y-m-d');
 
@@ -79,13 +80,15 @@ if (!isset($_SESSION['alumno']))
     </div>
 </div>
 
-<script src="alumno.js"></script>
+<script src="../alumno.js"></script>
 <script>
     document.getElementById("materias").onchange = function () {
 
     }
 
-    function mostrarAsistencias(id_curso) {
+    function mostrarAsistencias() {
+        var id_curso = document.getElementById("materias").value;
+        
 
     }
     var ctx = document.getElementById('pieChart').getContext('2d');
@@ -96,7 +99,8 @@ if (!isset($_SESSION['alumno']))
             datasets: [{
                 label: 'Asistencias vs. Inasistencias vs. Justificados',
                 data: [25,5,2],
-                backgroundColor: ['rgba(0, 147, 0, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 255, 0, 0.5)'],
+                //backgroundColor: ['rgba(0, 147, 0, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 255, 0, 0.5)'],
+                backgroundColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                 borderColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                 borderWidth: 1.5
             }]
@@ -109,18 +113,27 @@ if (!isset($_SESSION['alumno']))
                     }
                 }]
             }
-        }
+        },
+        plugins: {
+            labels: {
+                render: 'percentage',
+                fontColor: ['white', 'white', 'white'],
+                precision: 2
+            }
+        },
     });
 
     var ctx2 = document.getElementById('barChart').getContext('2d');
     var myChart2 = new Chart(ctx2, {
-        type: 'bar',
+        type: 'horizontalBar',
         data: {
             labels: ['Presentes', 'Ausentes', 'Justificados'],
             datasets: [{
-                label: 'Asistencias vs. Inasistencias vs. Justificados',
+                label: '',
+                barPercentage: 0.6,
                 data: [25,5,2],
-                backgroundColor: ['rgba(0, 147, 0, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 255, 0, 0.5)'],
+                //backgroundColor: ['rgba(0, 147, 0, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 255, 0, 0.5)'],
+                backgroundColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                 borderColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                 borderWidth: 1.5
             }]
@@ -137,9 +150,9 @@ if (!isset($_SESSION['alumno']))
     });
 </script>
 <?php
-include "modal-autoasistencia.php";
+include "../modal-autoasistencia.php";
 ?>
 
 <?php
-include "../footer.html";
+include "../../footer.html";
 ?>
