@@ -73,11 +73,11 @@ if(($consultaAsistMismoDia->num_rows)!=0){
                 <br>
                 <label id='labelNombreApellido' style='font-size:xx-large;'>$apellidoAlum, $nombreAlum</label>
                 
-                <div>
-                    <button class='btn btn-lg btn-danger mx-2' id='$ausente-$nombreAlum-$apellidoAlum' onclick='currentSlide($aux,this.id,$legajoAlum)'><i class='fa fa-ban mx-1'></i>Ausente</button>
-                    <button class='btn btn-lg btn-success mx-2' id='$presente-$nombreAlum-$apellidoAlum' onclick='currentSlide($aux,this.id,$legajoAlum)'><i class='fa fa-check mx-1'></i>Presente</button>
+                <div>".
+                    '<button class="btn btn-lg btn-danger mx-2" id="'.$ausente.'-'.$nombreAlum.'-'.$apellidoAlum.'" onclick="currentSlide('.$aux.',this.id,\''.$legajoAlum.'\')"><i class="fa fa-ban mx-1"></i>Ausente</button>
+                    <button class="btn btn-lg btn-success mx-2" id="'.$presente.'-'.$nombreAlum.'-'.$apellidoAlum.'" onclick="currentSlide('.$aux.',this.id,\''.$legajoAlum.'\')"><i class="fa fa-check mx-1"></i>Presente</button>
                 </div>
-            </div>";
+            </div>';
 
             $contador++;
         }

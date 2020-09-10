@@ -47,15 +47,21 @@ try {
 
     if($fechaCodigoAnterior !== $hoy || $fechaCodigoAnterior == "") {
         
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $currentDate = date('Y-m-d');
+        $currentDateTime = date('Y-m-d H:i:s');
+        
+        
+        
         //Tipo asistencia AUSENTE
         $consulta1 = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE'")->fetch_assoc();
 
         //Todos los alumnos actualmente inscriptos, con estado inscripto en el dia de hoy
-        $consulta2 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado WHERE alumno.id = alumnocursoactual.alumno_id AND alumnocursoactual.curso_id = curso.id AND curso.id = '$id_curso' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDateTime' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
+        $consulta2 = $con->query("SELECT asistencia.id AS asistID, alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado, asistencia WHERE alumno.id = asistencia.alumno_id AND curso.id = asistencia.curso_id AND alumno.id = alumnocursoactual.alumno_id AND alumnocursoactual.curso_id = curso.id AND curso.id = '$id_curso' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDate' AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDate' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
         while($resultado2 = $consulta2->fetch_assoc()){
             
-            $con->query("INSERT INTO asistenciadia (tipoAsistencia_id, asistencia_id) VALUES ('".$consulta1['id']."', '".$resultado2['id']."')");
+            $con->query("INSERT INTO asistenciadia (tipoAsistencia_id, asistencia_id, fechaHoraAsisDia) VALUES ('".$consulta1['id']."', '".$resultado2['asistID']."','$currentDateTime')");
         }
 
 

@@ -171,7 +171,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
         
         if(!$hayAlumnos){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>Todavia no hay alumnos incriptos para este periodo.</h5>
+                <h5>Todavia no hay alumnos inscriptos para este periodo.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -333,7 +333,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
 
                             if(($consulta3->num_rows) == 0){
                                 echo "<div class='alert alert-warning' role='alert'>
-                                        <h5>Todavia no se han definido horaios para este curso</h5>
+                                        <h5>Todavia no se han definido horarios para este curso.</h5>
                                     </div>";
                             }else{
 

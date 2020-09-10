@@ -3,6 +3,7 @@ showSlides(slideIndex);
 var rtdosFinales = [];
 
 function registrarAlumno(estadoNameSur, legajo) {
+    eval("debugger;");
     var arregloDatos = estadoNameSur.split('-');
     var estado = arregloDatos[0];
     var nombreA = arregloDatos[1];
