@@ -17,7 +17,9 @@
     $fechaHasta = $_POST['fechaHasta'];
     $hoy = date('Y-m-d');
 
-    $justificativo = $con->query("INSERT INTO justificativo (fechaPresentacion, imagenJustificativo, fechaDesdeJustificativo, fechaHastaJustificativo, alumno_id) VALUES ('$hoy','$imagen', '$fechaDesde', '$fechaHasta', '".$_SESSION['alumno']['id']."')");
+    $imgCod = base64_encode ($imagen);
+
+    $justificativo = $con->query("INSERT INTO justificativo (fechaPresentacion, imagenJustificativo, fechaDesdeJustificativo, fechaHastaJustificativo, alumno_id) VALUES ('$hoy','$imgCod', '$fechaDesde', '$fechaHasta', '".$_SESSION['alumno']['id']."')");
     $id_justificativo = $con->insert_id;
     $tipoasistencia = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE'")->fetch_assoc();
     
