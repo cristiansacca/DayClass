@@ -73,10 +73,10 @@ try {
             echo "llega todo bien";
             header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&codigo=$codigoConEspacio");
         } else {
-            //header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=1");
+            header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=1");
         }
     } else {
-       // header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=2");   
+       header("location: /DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso&&error=2");   
     }
 
 } catch(Exception $e) {
