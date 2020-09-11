@@ -157,6 +157,8 @@ if (!isset($_SESSION['administrador'])) {
                 $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
                 $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
 
+            
+                //ampliar la busqueda para que traiga solo los alumnos INCRIPTOS DE ESE CURSO, los libres mostrarlos en otro lado 
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
             
             
@@ -171,6 +173,8 @@ if (!isset($_SESSION['administrador'])) {
                         <tbody>";
                     while ($alumnocursoactual = $consulta2->fetch_assoc()) {
                         $alumno = $con->query("SELECT * FROM alumno WHERE id = '" . $alumnocursoactual['alumno_id'] . "'")->fetch_assoc();
+                        
+                        $url = 'bajaAlumnoCurso.php?alumnoId='.$resultado1["id"].'&&cursoId='.$id_curso;
 
                             echo "<tr>
                                 <td>" . $alumno['legajoAlumno'] . "</td>

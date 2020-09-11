@@ -113,7 +113,7 @@ if (!isset($_SESSION['administrador']))
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     
-                    $url = 'bajaAlum.php?id='.$resultado1["id"];
+                    $url = 'bajaAlum.php?='.$resultado1["id"];
                     $id = $resultado1["id"];
                     //echo "$url";
                     
