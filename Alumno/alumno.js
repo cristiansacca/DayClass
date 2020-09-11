@@ -3,8 +3,7 @@ cambiarContenidoNavbar();
 
 function cambiarContenidoNavbar() {
     var contenido = "";
-    contenido += "<li class='nav-item'><a class='nav-link' href='index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
-    /*contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell mr-1'></i>Novedades</a></li>";*/
+    contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Alumno/index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
     contenido += "<li class='nav-item'><a class='nav-link' href='#' onclick='abrirModal()'><i class='fa fa-check-square mr-1'></i>Auto-asistencia</a></li>";
     contenido += "<li><div class='dropdown'>";
     contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i></button>";
@@ -18,9 +17,9 @@ function abrirModal() {
 }
 
 //Si se cierra el popup de Auto-asistencia se borra el codigo escrito
-document.getElementById("btnCerrar").onclick = function () {
+/*document.getElementById("btnCerrar").onclick = function () {
     document.getElementById("inputCodigoIngresado").value = "";
-}
+}*/
 
 $(".custom-file-input").on("change", function () {
     let fileName = $(this).val().split('\\').pop();
