@@ -66,23 +66,27 @@ if(isset($_GET["id_curso"])){
                         
                         $alumno = $con->query("SELECT cursoestadoalumno.nombreEstado, alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum, alumno.dniAlum FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$alumno_id' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND ('$currentDateTime' >= alumnocursoestado.fechaInicioEstado) AND ('$currentDateTime' < alumnocursoestado.fechaFinEstado) AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
                         
+                        $alumnoEstado = $alumno['nombreEstado'];
+                        $primerLetra = substr($alumnoEstado, 0, 1);
+                        $restoPlabra = strtolower(substr($alumnoEstado, 1));
+                        $alumnoEstado = $primerLetra . $restoPlabra;
+                        
                         if($alumno['nombreEstado'] == "LIBRE"){
-                            $urlReinc = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=2';
                             echo "<tr class='table-danger'>
                                 <td>" . $alumno['legajoAlumno'] . "</td>
                                 <td>" . $alumno['apellidoAlum'] . "</td>
                                 <td>" . $alumno['nombreAlum'] . "</td>
                                 <td>" . $alumno['dniAlum'] . "</td>
-                                <td>".$alumno['nombreEstado']."</td>
+                                <td>".$alumnoEstado."</td>
                             </tr>";
                         }else{
-                            $urlBaja = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=1';
+                            
                            echo "<tr class='table-info'>
                                 <td>" . $alumno['legajoAlumno'] . "</td>
                                 <td>" . $alumno['apellidoAlum'] . "</td>
                                 <td>" . $alumno['nombreAlum'] . "</td>
                                 <td>" . $alumno['dniAlum'] . "</td>
-                                <td>".$alumno['nombreEstado']."</td>
+                                <td>".$alumnoEstado."</td>
                             </tr>"; 
                         }
                          
