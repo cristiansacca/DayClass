@@ -94,6 +94,32 @@ if (!isset($_SESSION['administrador'])) {
                             </button>
                         </div>";
                 break;
+            case 5:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Alumno dado de baja exitosamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+                
+            case 6:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Alumno reincorporado exitosamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 7:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en la reincorporación</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+                
         }
     }
 
@@ -140,7 +166,7 @@ if (!isset($_SESSION['administrador'])) {
     </div>
 
     <div class="my-4">
-        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
+        <table id="dataTable" class="table table-active table-bordered table-hover table-sm">
          
             <?php
 
@@ -159,9 +185,10 @@ if (!isset($_SESSION['administrador'])) {
 
             
                 //ampliar la busqueda para que traiga solo los alumnos INCRIPTOS DE ESE CURSO, los libres mostrarlos en otro lado 
+            
+            
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
-            
-            
+                                
                 if(!($consulta2 ->num_rows) == 0){
                     echo "<thead>
                             <th>Legajo</th>
@@ -172,17 +199,37 @@ if (!isset($_SESSION['administrador'])) {
                         </thead>
                         <tbody>";
                     while ($alumnocursoactual = $consulta2->fetch_assoc()) {
-                        $alumno = $con->query("SELECT * FROM alumno WHERE id = '" . $alumnocursoactual['alumno_id'] . "'")->fetch_assoc();
                         
-                        $url = 'bajaAlumnoCurso.php?alumnoId='.$resultado1["id"].'&&cursoId='.$id_curso;
-
-                            echo "<tr>
+                       $alumno_id = $alumnocursoactual['alumno_id'];
+                        
+                        
+                        $alumno = $con->query("SELECT cursoestadoalumno.nombreEstado, alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum, alumno.dniAlum FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$alumno_id' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND ('$currentDateTime' >= alumnocursoestado.fechaInicioEstado) AND ('$currentDateTime' < alumnocursoestado.fechaFinEstado) AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
+                        
+                        
+                        //$alumno = $con->query("SELECT * FROM alumno WHERE id = '" . $alumnocursoactual['alumno_id'] . "'")
+                        
+                        
+                        
+                        if($alumno['nombreEstado'] == "LIBRE"){
+                            $urlReinc = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=2';
+                            echo "<tr class='table-danger'>
                                 <td>" . $alumno['legajoAlumno'] . "</td>
                                 <td>" . $alumno['apellidoAlum'] . "</td>
                                 <td>" . $alumno['nombreAlum'] . "</td>
                                 <td>" . $alumno['dniAlum'] . "</td>
-                                <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id= onclick='return confirmDelete()' href=''><i class='fa fa-trash'></i></a></td>
+                                <td class='text-center'><a class='btn btn-primary btn-sm' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo'></i></a></td>
                             </tr>";
+                        }else{
+                            $urlBaja = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=1';
+                           echo "<tr class='table-info'>
+                                <td>" . $alumno['legajoAlumno'] . "</td>
+                                <td>" . $alumno['apellidoAlum'] . "</td>
+                                <td>" . $alumno['nombreAlum'] . "</td>
+                                <td>" . $alumno['dniAlum'] . "</td>
+                                <td class='text-center'><a class='btn btn-danger btn-sm' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash'></i></a></td>
+                            </tr>"; 
+                        }
+                         
                     }
                     
                     echo "</tbody>";
@@ -196,6 +243,8 @@ if (!isset($_SESSION['administrador'])) {
             ?>            
         </table>
     </div>
+    
+    
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

@@ -362,6 +362,15 @@ function confirmDelete() {
     }
 }
 
+function confirmComeBack() {
+    var confirmar = confirm("¿Realmente desea reincorporarlo? ");
+    if (confirmar) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function habilitarSegundaFecha() {
     eval("debugger;");
