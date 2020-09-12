@@ -14,15 +14,15 @@ $fichaAsistencia = $con->query("SELECT * FROM asistencia WHERE curso_id = '$curs
 fechaDesdeFichaAsis <= '$currentDateTime' AND fechaHastaFichaAsis >= '$currentDateTime'")->fetch_assoc();
 
 
-$presentes = $con->query("SELECT * FROM asistenciadia WHERE asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoPresente['id']."'");
+$presentes = $con->query("SELECT id FROM asistenciadia WHERE asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoPresente['id']."'");
 
 $cantidadPresentes = ($presentes->num_rows) !== 0 ? ($presentes->num_rows) : 0;
 
-$ausentes = $con->query("SELECT * FROM asistenciadia WHERE asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoAusente['id']."'");
+$ausentes = $con->query("SELECT id FROM asistenciadia WHERE asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoAusente['id']."'");
 
 $cantidadAusentes = ($ausentes->num_rows) !== 0 ? ($ausentes->num_rows) : 0;
 
-$justificados = $con->query("SELECT * FROM asistenciadia WHERE asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoJustificado['id']."'");
+$justificados = $con->query("SELECT id FROM asistenciadia WHERE asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoJustificado['id']."'");
 
 $cantidadJustificados = ($justificados->num_rows) !== 0 ? ($justificados->num_rows) : 0;
 

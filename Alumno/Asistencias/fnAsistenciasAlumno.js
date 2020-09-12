@@ -13,11 +13,43 @@ function mostrarAsistencias() {
         id_alumno: id_alumno
     }
     $.ajax({
+        url: 'listarAsistencias.php',
+        type: 'POST',
+        data: datos,
+        success: function(datosRecibidos) {
+            json = JSON.parse(datosRecibidos);
+            var contenido = "";
+            for (let i = 0; i < json.length; i++) {
+                var tipo;
+                switch ((json[i].tipoAsistencia).toUpperCase()) {
+                    case "PRESENTE":
+                        tipo = "success";
+                        break;
+                    case "AUSENTE":
+                        tipo = "danger";
+                        break;
+                    case "JUSTIFICADO":
+                        tipo = "warning";
+                        break;
+                
+                    default:
+                        tipo = "dark";
+                        break;
+                }
+                
+                contenido += "<tr>"+
+                    "<td>"+json[i].fecha+"</td>"+
+                    "<td class='text-"+tipo+"'>"+json[i].tipoAsistencia+"</td>"+
+                "</tr>";                
+            }
+            document.getElementById("tablaAsistencias").innerHTML = contenido;
+        }
+    })
+    $.ajax({
         url: 'obtenerAsistencias.php',
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
-            alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
             var ctx = document.getElementById('pieChart').getContext('2d');
             var myChart = new Chart(ctx, {
@@ -25,10 +57,10 @@ function mostrarAsistencias() {
                 data: {
                     labels: ['Presentes', 'Ausentes', 'Justificados'],
                     datasets: [{
-                        label: 'Asistencias vs. Inasistencias vs. Justificados',
+                        label: '',
                         data: [(json.asistencias), (json.inasistencias), (json.justificados)],
                         backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
-                        borderWidth: 1.5
+                        borderWidth: 2
                     }]
                 },
                 options: {
@@ -40,13 +72,13 @@ function mostrarAsistencias() {
                         }]
                     }
                 },
-                plugins: {
+                /*plugins: {
                     labels: {
                         render: 'percentage',
-                        fontColor: ['white', 'white', 'white'],
+                        fontColor: ['white', 'green', 'red'],
                         precision: 2
                     }
-                },
+                }*/
             });
 
             var ctx2 = document.getElementById('barChart').getContext('2d');
@@ -55,8 +87,7 @@ function mostrarAsistencias() {
                 data: {
                     labels: ['Presentes', 'Ausentes', 'Justificados'],
                     datasets: [{
-                        label: '',
-                        barPercentage: 0.6,
+                        label: "Cantidad",
                         data: [(json.asistencias), (json.inasistencias), (json.justificados)],
                         backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                         borderWidth: 1.5
@@ -69,8 +100,13 @@ function mostrarAsistencias() {
                                 beginAtZero: true
                             }
                         }]
+                    },
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Asistencias'
                     }
-                }
+                },
             });
             document.getElementById("btnLimpiar").onclick = function(){
                 myChart.destroy();

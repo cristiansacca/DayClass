@@ -36,7 +36,7 @@ if (!isset($_SESSION['alumno'])) {
                 </div>";
         } else {
 
-            echo "<label for=''>Seleccione la materia:</label>";
+            echo "<label for=''>Seleccione una materia:</label>";
             echo "<select name='' id='materias' class='custom-select'>";
             while ($alumnocursoactual = $consulta1->fetch_assoc()) {
 
@@ -65,11 +65,10 @@ if (!isset($_SESSION['alumno'])) {
     </div>
 
     <div>
-        <table class="table table-bordered text-center table-info table-sm">
+        <table class="table table-bordered text-center table-info table-sm" id="dataTable">
             <thead>
                 <th>Fecha</th>
                 <th>Asistencia</th>
-                <th>Justificado</th>
             </thead>
             <tbody id="tablaAsistencias">
 
