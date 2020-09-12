@@ -29,30 +29,75 @@ if(isset($_GET["id_curso"])){
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     <div>
-        <table class="table table-info table-bordered table-hover table-sm">
-            <thead>
-                <th>Legajo</th>
-                <th>Apellido</th>
-                <th>Nombre</th>
-                <th>DNI</th>
-            </thead>
-            <tbody>
+        <table class="table table-active table-bordered table-hover table-sm">
+            
+                
                 <?php
-                date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $currentDateTime = date('Y-m-d H:i:s');
-                $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` < '$currentDateTime' AND `fechaHastaAlumCurAc` > '$currentDateTime' AND `curso_id` =  $id_curso");
 
-                while($alumnocursoactual = $consulta2->fetch_assoc()){
-                    $alumno = $con->query("SELECT * FROM alumno WHERE id = '".$alumnocursoactual['alumno_id']."'")->fetch_assoc();
-                    echo "<tr>
-                        <td>".$alumno['legajoAlumno']."</td>
-                        <td>".$alumno['apellidoAlum']."</td>
-                        <td>".$alumno['nombreAlum']."</td>
-                        <td>".$alumno['dniAlum']."</td>
-                    </tr>";
-                }
-                ?>
-            </tbody>
+                $id_curso = $_GET['id_curso'];
+                date_default_timezone_set('America/Argentina/Mendoza');
+                $currentDateTime = date('Y-m-d H:i:s');
+
+
+                $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+                $resultadoCurso = $consultaCurso->fetch_assoc();
+
+                $nombreCurso = $resultadoCurso['nombreCurso'];
+
+                $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
+                $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
+            
+            
+                $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
+                                
+                if(!($consulta2 ->num_rows) == 0){
+                    echo "<thead>
+                            <th>Legajo</th>
+                            <th>Apellido</th>
+                            <th>Nombre </th>
+                            <th>DNI</th>
+                            <th>Estado</th>
+                        </thead>
+                        <tbody>";
+                    while ($alumnocursoactual = $consulta2->fetch_assoc()) {
+                        
+                       $alumno_id = $alumnocursoactual['alumno_id'];
+                        
+                        
+                        $alumno = $con->query("SELECT cursoestadoalumno.nombreEstado, alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum, alumno.dniAlum FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$alumno_id' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND ('$currentDateTime' >= alumnocursoestado.fechaInicioEstado) AND ('$currentDateTime' < alumnocursoestado.fechaFinEstado) AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
+                        
+                        if($alumno['nombreEstado'] == "LIBRE"){
+                            $urlReinc = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=2';
+                            echo "<tr class='table-danger'>
+                                <td>" . $alumno['legajoAlumno'] . "</td>
+                                <td>" . $alumno['apellidoAlum'] . "</td>
+                                <td>" . $alumno['nombreAlum'] . "</td>
+                                <td>" . $alumno['dniAlum'] . "</td>
+                                <td>".$alumno['nombreEstado']."</td>
+                            </tr>";
+                        }else{
+                            $urlBaja = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=1';
+                           echo "<tr class='table-info'>
+                                <td>" . $alumno['legajoAlumno'] . "</td>
+                                <td>" . $alumno['apellidoAlum'] . "</td>
+                                <td>" . $alumno['nombreAlum'] . "</td>
+                                <td>" . $alumno['dniAlum'] . "</td>
+                                <td>".$alumno['nombreEstado']."</td>
+                            </tr>"; 
+                        }
+                         
+                    }
+                    
+                    echo "</tbody>";
+
+                        
+                }else{
+                    echo "<div class='alert alert-warning' role='alert'>
+                            <h5>Todavia no hay alumnos Incriptos en este curso</h5>
+                        </div>";
+                }  
+            ?>            
+            
         </table>
     </div>
 </div>

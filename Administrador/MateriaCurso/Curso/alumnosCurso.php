@@ -182,9 +182,6 @@ if (!isset($_SESSION['administrador'])) {
 
                 $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
                 $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
-
-            
-                //ampliar la busqueda para que traiga solo los alumnos INCRIPTOS DE ESE CURSO, los libres mostrarlos en otro lado 
             
             
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
@@ -204,11 +201,6 @@ if (!isset($_SESSION['administrador'])) {
                         
                         
                         $alumno = $con->query("SELECT cursoestadoalumno.nombreEstado, alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum, alumno.dniAlum FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$alumno_id' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND ('$currentDateTime' >= alumnocursoestado.fechaInicioEstado) AND ('$currentDateTime' < alumnocursoestado.fechaFinEstado) AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
-                        
-                        
-                        //$alumno = $con->query("SELECT * FROM alumno WHERE id = '" . $alumnocursoactual['alumno_id'] . "'")
-                        
-                        
                         
                         if($alumno['nombreEstado'] == "LIBRE"){
                             $urlReinc = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=2';
