@@ -48,7 +48,7 @@ if(isset($_GET["id_curso"])){
                 $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
             
             
-                $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
+                $consulta2 = $con->query("SELECT DISTINCT alumno_id FROM alumnocursoactual, alumno WHERE alumnocursoactual.alumno_id = alumno.id AND `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso ORDER BY alumno.apellidoAlum ASC");
                                 
                 if(!($consulta2 ->num_rows) == 0){
                     echo "<thead>
