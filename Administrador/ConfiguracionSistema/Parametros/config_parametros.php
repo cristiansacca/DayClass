@@ -76,6 +76,14 @@ include "../../../databaseConection.php";
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                                 <h5>Ya existe un cargo con el mismo nombre</h5>";
             break;
+                case 13:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                <h5>Porcentaje de minimo de asistencias definido correctamente</h5>";
+            break;
+                case 14:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                <h5>Error al cargar el minimo de asistencias</h5>";
+            break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
@@ -91,9 +99,9 @@ include "../../../databaseConection.php";
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#formatoLegajo"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato Legajo</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#nuevaModalidad"><i class="fa fa-briefcase fa-lg mr-2"></i>Modalidades</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#nuevaDivision"><i class="fa fa-hashtag fa-lg mr-2"></i>Divisiones</a>
-            <a class="list-group-item list-group-item-action" href="" href="" data-toggle="modal" data-target="#tiempoAutoasistencia"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#tiempoAutoasistencia"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-sign-out fa-lg mr-2"></i>Vigencia de sesión</a>
-            <a class="list-group-item list-group-item-action" href=""><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia y estados</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#asistenciasMinimas" ><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos Docentes</a>
         </div>
     </div>
@@ -400,6 +408,71 @@ include "../../../databaseConection.php";
         </div>
     </div>
 </div>
+
+<!-- Modal porcentaje de asistencia -->
+<div class="modal fade" id="asistenciasMinimas" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Procentaje minimo de asistencia requerida</h5>
+            </div>
+            <form action="insertMinAsistencia.php" method="POST" onsubmit="return porcentajeValido()">
+                
+                <div class="my-6">
+                
+                </div>
+                <div class="modal-body">
+                    <?php
+                    echo "<div hidden>";
+                    date_default_timezone_set('America/Argentina/Buenos_Aires');
+                    $currentDate = date('Y-m-d');
+                    $consultaPorcentajeVigente = $con->query("SELECT * FROM `paramminimoasistencia` WHERE `fechaAltaMinimoAsistencia` <= '$currentDate' AND `fechaBajaMinimoAsistencia` IS NULL");
+                    
+                    
+                    $porcentajeVigente = $consultaPorcentajeVigente->fetch_assoc();
+                    $porcentajeMinimoVigente = ($porcentajeVigente["porcentajeAsistencia"])*100;
+                    
+                    
+                    echo "</div>"; 
+                    
+                    
+
+                    if($porcentajeMinimoVigente == 0){
+                        echo "<div class='alert alert-warning' role='alert'>
+                                <h6>Todavia no se ha definido el porcentaje mínimo de asistencia requerido por la institución</h6>
+                            </div>";        
+                    }
+                    echo "<input type='number' id='porctajeMinAnt' value='$porcentajeMinimoVigente' hidden>";
+                     ?>
+                    
+                    <div class="my-2">
+                        <label for="minutosCodigo">Minimo de asistencia requierido para no quedar libre</label>
+                        
+                        <div class="form-inline">
+                            <input type="number"  name="minAsistencia" id="minAsistencia" class="form-control col-md-6" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" max="100" min="0" step="5" onchange="porcentajeValido()" required>
+                            <h3 for="minutosCodigo">%</h3>
+                        </div>
+                        
+                        <h9 class="msg" id="msjValidacionMinAsistencia"></h9>
+                    </div>
+                    <div class="my-2">
+                        <?php
+                            if($porcentajeMinimoVigente != 0){
+                                echo "<h6>El porcentaje vigente es del $porcentajeMinimoVigente%</h6>"; 
+                            } 
+                        ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="Submit" class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>

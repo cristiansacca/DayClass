@@ -151,3 +151,34 @@ function capitalize(id){
 }
 
 
+function porcentajeValido(){
+    eval("debugger;");
+    var min = document.getElementById('minAsistencia').value;
+    var minAnt = document.getElementById('porctajeMinAnt').value;
+    var rtdo =false;
+    var msg;
+    if (min  > 0 && (min % 5) == 0){ 
+      if(min != minAnt){
+          if(min > 0 && min <= 100){
+              rtdo = true;
+          }else{
+              msg ="No se permiten esos procetajes"; 
+          }
+            
+        }else{
+           msg ="Es el mismo porcentaje que esta vigente"; 
+        }
+     }else{
+         msg ="El porcentaje tiene que ser multiplo de 5";
+     }
+    
+    
+    
+    changeColor('minAsistencia',rtdo);
+    setValitationMesage('msjValidacionMinAsistencia', rtdo, msg);
+    
+    return rtdo;
+}
+
+
+
