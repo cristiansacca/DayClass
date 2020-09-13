@@ -326,7 +326,7 @@ if (!isset($_SESSION['administrador'])) {
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btnCrear">Inscribir</button>
                 </div>
             </form>
@@ -372,7 +372,7 @@ if (!isset($_SESSION['administrador'])) {
                     <!-- la funcion comrobar esta en administrador.js -->
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button id="btnImportar" type="submit" class="btn btn-primary " disabled>Importar</button>
                     </div>
 

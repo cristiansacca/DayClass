@@ -147,8 +147,8 @@ if (!isset($_SESSION['administrador']))
                         <input type="number" name="inputCargaHoraria" id="inputCargaHoraria" class="form-control" required>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                        <button type="submit" class="btn btn-success" id="btnCrear"> Confirmar </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
+                        <button type="submit" class="btn btn-primary" id="btnCrear"> Crear </button>
                     </div>
 
                 </div>

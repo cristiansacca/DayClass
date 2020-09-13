@@ -353,7 +353,7 @@ include "../../../databaseConection.php";
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="Submit" class="btn btn-primary" <?php 
                          if($rtdo){
-                             echo " disabled";
+                             echo " style='display:none'";
                          }?> >Crear</button>
                 </div>
             </form>
