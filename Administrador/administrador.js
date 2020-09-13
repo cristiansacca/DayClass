@@ -8,7 +8,7 @@ function cambiarContenidoNavbar() {
     contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-gear fa-lg mr-1'></i>Configuraciones</a>";
     contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php'>Profesores</a><div class='dropdown-divider'></div>";
     contenido += "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php'>Administradores</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php'>Parametros</a></div></li>";
-    contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
+    //contenido += "<li class='nav-item'><a class='nav-link' href='#'><i class='fa fa-bell'></i></a></li>";
     contenido += "<li><div class='dropdown'>";
     contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i></button>";
     contenido += "<div class='dropdown-menu'><a class='dropdown-item' href='/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>";

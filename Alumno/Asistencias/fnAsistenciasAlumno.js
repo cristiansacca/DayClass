@@ -62,17 +62,8 @@ function mostrarAsistencias() {
                         backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                         borderWidth: 2
                     }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                },
-                /*plugins: {
+                }/*,
+                plugins: {
                     labels: {
                         render: 'percentage',
                         fontColor: ['white', 'green', 'red'],
@@ -95,7 +86,7 @@ function mostrarAsistencias() {
                 },
                 options: {
                     scales: {
-                        yAxes: [{
+                        xAxes: [{
                             ticks: {
                                 beginAtZero: true
                             }

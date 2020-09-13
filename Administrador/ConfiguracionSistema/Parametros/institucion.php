@@ -39,8 +39,7 @@ if(($institucion->num_rows)==0){
 
     <?php
 
-    if(isset($_GET["resultado"])){
-            
+    if(isset($_GET["resultado"])){          
         switch ($_GET["resultado"]) {
             case 0:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
@@ -57,11 +56,8 @@ if(($institucion->num_rows)==0){
                         <span aria-hidden='true'>&times;</span>
                         </button>
                     </div>";
-                break;
-                
+                break;       
         }
-        
-
     }
 
     ?>

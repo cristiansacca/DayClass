@@ -48,7 +48,7 @@ if (!isset($_SESSION['alumno']))
       }
     ?>
 
-  <form action="cargaJustificativo.php" method="POST">
+  <form enctype="multipart/form-data" action="cargaJustificativo.php" method="POST">
     <h4>Cargar justificativo de inasistencias</h4>
     <div class="row">
       <div class="col-lg-6 col-md-6 mb-6 my-2">

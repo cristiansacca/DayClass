@@ -78,7 +78,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         </div>
 
         <div class="card-footer">
-          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1">Ir</a>
+          <a href="/DayClass/Administrador/Justificativos/validar_justificativos.php" class="btn btn-primary">Ir</a>
         </div>
       </div>
     </div>

@@ -12,24 +12,37 @@
     header("location:/DayClass/index.php"); 
     }
     echo "<div class='container'>";
-    $imagen = $_POST['imgJust'];
+    
+    $file = $_FILES['imgJust']; //Asignamos el contenido del parametro a una variable para su mejor manejo
+		
+    $temName = $file['tmp_name']; //Obtenemos el directorio temporal en donde se ha almacenado el archivo;
+    $fileName = $file['name']; //Obtenemos el nombre del archivo
+    $fileExtension = substr(strrchr($fileName, '.'), 1); //Obtenemos la extensiÃ³n del archivo.
+    
+    //Comenzamos a extraer la informaciÃ³n del archivo
+    $fp = fopen($temName, "rb");//abrimos el archivo con permiso de lectura
+    $contenido = fread($fp, filesize($temName));//leemos el contenido del archivo
+    //Una vez leido el archivo se obtiene un string con caracteres especiales.
+    $contenido = addslashes($contenido);//se escapan los caracteres especiales
+    fclose($fp);//Cerramos el archivo
+
     $fechaDesde = $_POST['fechaDesde'];
     $fechaHasta = $_POST['fechaHasta'];
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
     $hoy = date('Y-m-d');
 
-    $imgCod = base64_encode ($imagen);
-
-    $justificativo = $con->query("INSERT INTO justificativo (fechaPresentacion, imagenJustificativo, fechaDesdeJustificativo, fechaHastaJustificativo, alumno_id) VALUES ('$hoy','$imgCod', '$fechaDesde', '$fechaHasta', '".$_SESSION['alumno']['id']."')");
+    $justificativo = $con->query("INSERT INTO justificativo (fechaPresentacion, imagenJustificativo, descripcionImagen, extensionImagen, fechaDesdeJustificativo, fechaHastaJustificativo, alumno_id) VALUES ('$hoy','$contenido', '$fileName', '$fileExtension', '$fechaDesde', '$fechaHasta', '".$_SESSION['alumno']['id']."')");
     $id_justificativo = $con->insert_id;
-    $tipoasistencia = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE'")->fetch_assoc();
+    $tipoasistencia = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE' AND fechaBajaTipoAsistencia IS NULL");
     
-    if($justificativo && $id_justificativo!==null && $tipoasistencia!==null){
+    if($justificativo && $id_justificativo!==null && ($tipoasistencia->num_rows)!==0){
+        $ausente = $tipoasistencia->fetch_assoc();
         foreach($_POST['materia'] as $id_curso){
             $consulta1 = $con->query("SELECT * FROM asistencia WHERE alumno_id ='".$_SESSION['alumno']['id']."' AND curso_id = '$id_curso'");
             while($asistencia = $consulta1->fetch_assoc()){
                 
                 $consulta2 = $con->query("SELECT * FROM asistenciadia 
-                WHERE tipoasistencia_id ='".$tipoasistencia['id']."' AND asistencia_id = '".$asistencia['id']."' AND 
+                WHERE tipoasistencia_id ='".$ausente['id']."' AND asistencia_id = '".$asistencia['id']."' AND 
                 fechaHoraAsisDia >= '$fechaDesde' AND fechaHoraAsisDia <= '$fechaHasta'");
                 
                 while($asistenciadia = $consulta2->fetch_assoc()){
@@ -46,7 +59,7 @@
         
     } else {
 
-        header("Location:/DayClass/Alumno/justificativos.php?resultado=1");
+        header("Location:/DayClass/Alumno/justificativos.php?resultado=0");
 
     }
     echo "</div>";
