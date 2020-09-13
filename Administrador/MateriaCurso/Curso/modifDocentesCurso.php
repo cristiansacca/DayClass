@@ -91,6 +91,15 @@ if (!isset($_SESSION['administrador'])) {
                             </button>
                         </div>";
                 break;
+                
+             case 6:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5>Cambio de cargo exitoso</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
         }
     }
 
@@ -120,6 +129,7 @@ if (!isset($_SESSION['administrador'])) {
 
 
                 echo "<input type='date' name='impIDprof' id='hoy' value='$currentDateTime' hidden>";
+                echo "<input type='text' name='cursid' id='cursoid' value='$id_curso' hidden>";
                 while ($resultadoProf = $consulta1->fetch_assoc()) {
                     $nombreCompleto = $resultadoProf['apellidoProf'] . ", " . $resultadoProf['nombreProf'];
                     $id = $resultadoProf['id'];
@@ -146,12 +156,13 @@ if (!isset($_SESSION['administrador'])) {
                     <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
                     
                     <td class='text-center'>
-                        <a href='#' class='btn btn-success btn-sm mb-1' ><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a href='' class='btn btn-success btn-sm mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
                         <a href='#' class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
-                        <a href='' class='btn btn-warning btn-sm mb-1'data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(" . $id . ")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
+                        <a href='' class='btn btn-warning btn-sm mb-1' data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(" . $id . ")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
                         <input type='date' name='impIDprof' id='inicLic" . $id . "' value='$inicioLicencia' hidden> 
                         <input type='date' name='impIDprof' id='inicioUltimaLicencia" . $id . "' value='$inicioUtimaLicencia' hidden>
                         <input type='date' name='impIDprof' id='finUltimaLicencia" . $id . "' value='$finUtimaLicencia' hidden>
+                        
                 
                     </td> 
                     </tr>";
@@ -164,7 +175,7 @@ if (!isset($_SESSION['administrador'])) {
     </div>
 </div>
 
-<!-- Modal asociar porfesor-->
+<!-- Modal asociar profesor-->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
@@ -226,10 +237,6 @@ if (!isset($_SESSION['administrador'])) {
                 } else {
                     $cargos = true;
                 }
-
-
-
-
                 ?>
                 <div class="modal-body" <?php if ($dni == null || $cargos == null) {
                                             echo "hidden ";
@@ -255,14 +262,12 @@ if (!isset($_SESSION['administrador'])) {
                                             echo "hidden ";
                                         } ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="number" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" <?php if (!($dni)) {
-                                                                                                                                                                                                                                                                                echo "required ";
-                                                                                                                                                                                                                                                                            } ?>>
+                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Legajo" <?php if (!($dni)) {"required";} ?>>
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
                         <label for="inputDNI">DNI</label>
-                        <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
+                        <input type="number" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
                         <h9 class="msg" id="msjValidacionDNI"></h9>
                     </div>
 
@@ -275,8 +280,7 @@ if (!isset($_SESSION['administrador'])) {
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btnCrear" 
                     <?php if ($dni == null || $cargos == null) {
-                        echo "style='display:none;'";
-                        } 
+                        echo "style='display:none;'";} 
                     ?>>Agregar</button>
                 </div>
             </form>
@@ -302,8 +306,7 @@ if (!isset($_SESSION['administrador'])) {
                     <div class="my-2">
                         <div class="form-inline my-2">
                             <label style="margin-right: 1rem;" for="fechaDesde">Inicio Licencia: </label>
-                            <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" min=<?php $hoy = date("Y-m-d");
-                                                                                                                                                echo $hoy; ?> <?php echo "value= '" . $currentDateTime . "'"; ?> required>
+                            <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" min=<?php $hoy = date("Y-m-d"); echo $hoy; ?> <?php echo "value= '" . $currentDateTime . "'"; ?> required>
                             <h9 id="msgDesde"></h9>
                         </div>
                         <div class="form-inline my-2">
@@ -329,12 +332,51 @@ if (!isset($_SESSION['administrador'])) {
     </div>
 </div>
 
+<!-- Modal de modificar cargo profesor -->
+<div class="modal fade" id="cambioCargoProf" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Editar el cargo de un docente</h5>
+
+            </div>
+            <form method="POST" id="cambioCargoDocente" name="cambioCargoDocente" action="cambioCargoDocenteCurso.php" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+
+                    <div class="my-2">
+                        
+                        <label class="text-muted">Seleccione el nuevo cargo del docente a partir de hoy</label>
+                        
+                        <select id="cargosDisponibles" name="cargosDisponibles" class="custom-select" style="width:85%" required>
+                            <option value="" selected>Seleccione</option>
+                
+                        </select>
+                    </div>
+
+                    <input type="text" name="curso_idCC" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
+                    <input type="text" name="impIDprofCC" id="impIDprofCC" hidden>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btnCrearLicencia">Aceptar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../paginadoDataTable.js"></script>
 <script src="fnLicencia.js"></script>
+<script src="fnCambioCargo.js"></script>
+
+
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
 </script>
