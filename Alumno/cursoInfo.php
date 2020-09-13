@@ -177,9 +177,12 @@ if (isset($_GET["id_curso"])) {
                                 
 
                                     while ($resultado1 = $consulta1->fetch_assoc()) {
+                                        
+                                        $date=date_create($resultado1['fechaTemaDia']);
+                                        $fecha = date_format($date,"d/m/Y");
 
                                         echo "<tr>
-                                        <td>" . $resultado1['fechaTemaDia'] . "</td>
+                                        <td>" . $fecha . "</td>
                                         <td>" . $resultado1['nombreTema'] . "</td>
                                         <td>" . $resultado1['comentarioTema'] . "</td>
                                         </tr>";
