@@ -50,7 +50,9 @@ if (!isset($_SESSION['alumno']))
             $curso = $consulta2->fetch_assoc();
 
             //Se buscan todos los CargoProfesor de ese curso
-            $consulta3 = $con->query("SELECT * FROM cargoprofesor WHERE curso_id ='".$curso['id']."'");
+                
+            $id_curso = $curso['id'];
+            $consulta3 = $con->query("SELECT * FROM cargoprofesor WHERE curso_id ='$id_curso' AND fechaDesdeCargo <= '$currentDateTime' AND fechaHastaCargo IS NULL");
             
             echo "<div class='col-lg-6 col-md-12 mb-4' >
                 <div class='card h-100 color$contador'>
@@ -60,10 +62,12 @@ if (!isset($_SESSION['alumno']))
                         <ul style='list-style: none;'>";
                             while($cargoprofesor = $consulta3->fetch_assoc()){
                                 //Por cada CargoProfesor obtiene el cargo
-                                $cargo = $con->query("SELECT * FROM cargo WHERE id ='".$cargoprofesor['cargo_id']."'")->fetch_assoc();
+                                $id_cargo = $cargoprofesor['cargo_id'];
+                                $cargo = $con->query("SELECT * FROM cargo WHERE id = '$id_cargo' AND fechaAltaCargo <= '$currentDateTime' AND fechaFinCargo IS NULL")->fetch_assoc();
 
                                 //Por cada CargoProfesor obtiene el profesor
-                                $profesor = $con->query("SELECT * FROM profesor WHERE id ='".$cargoprofesor['profesor_id']."'")->fetch_assoc();
+                                $id_prof = $cargoprofesor['profesor_id'];
+                                $profesor = $con->query("SELECT * FROM profesor WHERE id = '$id_prof' AND fechaAltaProf <= '$currentDateTime' AND fechaBajaProf IS NULL")->fetch_assoc();
 
                                 echo "<li>".$cargo['nombreCargo'].": ".$profesor['nombreProf']." ".$profesor['apellidoProf']."</li>";
                             }
