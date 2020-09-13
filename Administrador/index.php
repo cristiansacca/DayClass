@@ -27,7 +27,15 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
   <div class="jumbotron my-4 py-4">
     <p class="card-text">Administrador</p>
     <h1><?php echo "$saludo, ".$_SESSION["administrador"]["nombreAdm"] ?></h1>
-    <a href="/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
+    
+      
+    <div class="form-inline">
+        <a href="/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
+        <form method="POST" enctype="multipart/form-data" role="form" action="AlumnosLibres/buscarAlumnosLibres.php" class="ml-2">
+            <button type="submit" class="btn" style="background-color:plum"><i class="fa fa-user-times mr-1"></i>Alumnos Libres</button>
+
+        </form>
+    </div>
   </div>
 
   <!-- Page Features -->

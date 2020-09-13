@@ -56,14 +56,7 @@ if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 
         
     }else{
         header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=6");
-    }
-
-    
-    
-    
-    
-    
-    
+    }   
     
 }else{
      header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=2");
