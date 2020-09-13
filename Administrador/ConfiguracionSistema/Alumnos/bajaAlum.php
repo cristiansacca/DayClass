@@ -6,10 +6,6 @@ include "../../../databaseConection.php";
     $currentDateTime = date('Y-m-d H:i:s');
 
 
-
-
-
-
 $string = "UPDATE `alumno` SET `fechaBajaAlumno`=' $currentDateTime' WHERE `id`= ".$id;
 //echo "$string";
 	$consulta = $con->query($string);

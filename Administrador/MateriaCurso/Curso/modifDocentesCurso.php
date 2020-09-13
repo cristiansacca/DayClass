@@ -100,6 +100,15 @@ if (!isset($_SESSION['administrador'])) {
                             </button>
                         </div>";
                 break;
+                
+            case 7:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>Error en el cambio de cargo</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
         }
     }
 
