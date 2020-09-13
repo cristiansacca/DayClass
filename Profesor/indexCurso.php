@@ -370,7 +370,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
 
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
 

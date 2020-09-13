@@ -54,19 +54,20 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
         }
     ?>
     <table class="table table-info table-hover table-bordered text-center">
-        <thead>
-            <tr>
-                <th>Tema</th>
-                <th>Mensaje</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-        <tbody id= "Publicaciones">
+        
         <?php
             setlocale(LC_ALL, 'Spanish');//Formato de fechas en español strftime("%A %d %B %Y %H:%M:%S", strtotime(fecha));
             $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso'");
             
             if (($consulta2->num_rows) > 0) {
+                echo "<thead>
+                        <tr>
+                            <th>Tema</th>
+                            <th>Mensaje</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id= 'Publicaciones'>";
                 while ($resultado2 = $consulta2->fetch_assoc()) {
                     $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
                     echo "<tr>
@@ -77,14 +78,14 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
                 }
             } else {
                 
-                echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>No se han realizado publicaciones</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span>
-                </button></div> ";
+                echo "<br><div class='alert alert-warning' role='alert'>
+                        <h5>No se han realizado publicaciones</h5>
+                    </div> ";
             }
+        
+         echo "</tbody>";
         ?>
-        </tbody>
+        
     </table>
     
 </div>
@@ -110,8 +111,8 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancelar </button>
-                    <button type="submit" class="btn btn-success"  id="btnCrear"> Confirmar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
+                    <button type="submit" class="btn btn-primary"  id="btnCrear"> Aceptar </button>
                 </div>
             </form>
         </div>
