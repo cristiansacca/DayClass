@@ -106,7 +106,7 @@ if($programa_id == "" || $programa_id == null){
             <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline"
                 placeholder="Escriba un comentario (Opcional)"></textarea>
         </div>
-        <button class="btn btn-success my-2" type="submit">Aceptar</button>
+        <button class="btn btn-primary my-2" type="submit">Aceptar</button>
     </form>
 
 </div>
@@ -173,7 +173,7 @@ if($programa_id == "" || $programa_id == null){
 
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
 
