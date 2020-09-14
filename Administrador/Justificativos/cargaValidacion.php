@@ -19,8 +19,10 @@ if($validacion == 1) {
 }
 
 if($update){
-    while($justAsistDia = $consulta1->fetch_assoc()){
-        $con->query("UPDATE asistencia SET tipoAsistencia_id = '".$tipoJustificado['id']."' WHERE id = '".$justAsistDia['id']."'");
+    if($validacion == 1){
+        while($justAsistDia = $consulta1->fetch_assoc()){
+            $con->query("UPDATE asistenciadia SET tipoAsistencia_id = '".$tipoJustificado['id']."' WHERE id = '".$justAsistDia['id']."'");
+        }
     }
     echo 1;
 } else {
