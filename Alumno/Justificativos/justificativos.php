@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
+include "../../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['alumno'])) 
@@ -64,7 +64,7 @@ if (!isset($_SESSION['alumno']))
           <h9 id="msgMaterias"></h9>
           <div class="form-group" id="materias">
             <?php
-              include "../databaseConection.php";
+              include "../../databaseConection.php";
 
               //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
               $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
@@ -112,11 +112,17 @@ if (!isset($_SESSION['alumno']))
     <h4>Estado de tus justificativos</h4>
     <div id="pendientes">
       <?php
-        $consulta2 = $con->query("SELECT * FROM justificativo WHERE alumno_id ='".$_SESSION['alumno']['id']."'");
+        $consulta2 = $con->query("SELECT * FROM justificativo WHERE alumno_id ='".$_SESSION['alumno']['id']."' ORDER BY fechaPresentacion");
         if(!$consulta2->num_rows == 0){
-          echo "<table class='table table-bordered table-info table-hover'><thead>
-          <th>Fecha de presentación</th><th>Fecha de revisión</th><th>Estado</th><th>Comentario</th>
-          </thead><tbody>";
+          echo "<table class='table table-bordered table-info table-hover'>
+          <thead>
+            <th>Imagen</th>
+            <th>Fecha de presentación</th>
+            <th>Fecha de revisión</th>
+            <th>Estado</th>
+            <th>Comentario</th>
+          </thead>
+          <tbody>";
           while($justificativo = $consulta2->fetch_assoc()){
             $estado = 'No revisado';
             $colorTexto = '';
@@ -129,8 +135,13 @@ if (!isset($_SESSION['alumno']))
                 $colorTexto = 'text-danger';
               }
             }
-            echo "<tr><td>".$justificativo['fechaPresentacion']."</td><td>".$justificativo['fechaRevision']."</td>
-            <td class=$colorTexto >".$estado."</td><td>".$justificativo['comentarioJustificativo']."</td></tr>";
+            echo "<tr>
+              <td><a href='verImgJustificativo.php?id=".$justificativo['id']."'>".$justificativo['descripcionImagen']."</a></td>
+              <td>".$justificativo['fechaPresentacion']."</td>
+              <td>".$justificativo['fechaRevision']."</td>
+              <td class=$colorTexto >".$estado."</td>
+              <td>".$justificativo['comentarioJustificativo']."</td>
+            </tr>";
           }
           echo "</tbody></table>";
         } else {
@@ -142,12 +153,12 @@ if (!isset($_SESSION['alumno']))
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="alumno.js"></script>
+<script src="../alumno.js"></script>
 
 <?php
-include "modal-autoasistencia.php";
+include "../modal-autoasistencia.php";
 ?>
 
 <?php
-include "../footer.html";
+include "../../footer.html";
 ?>

@@ -128,7 +128,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         </div>
 
         <div class="card-footer">
-          <a href="justificativos.php" class="btn btn-primary">Ver</a>
+          <a href="/DayClass/Alumno/Justificativos/justificativos.php" class="btn btn-primary">Ver</a>
         </div>
       </div>
     </div>
