@@ -21,7 +21,7 @@ if($validacion == 1) {
 if($update){
     if($validacion == 1){
         while($justAsistDia = $consulta1->fetch_assoc()){
-            $con->query("UPDATE asistenciadia SET tipoAsistencia_id = '".$tipoJustificado['id']."' WHERE id = '".$justAsistDia['id']."'");
+            $con->query("UPDATE asistenciadia SET tipoAsistencia_id = '".$tipoJustificado['id']."' WHERE id = '".$justAsistDia['asistenciaDia_id']."'");
         }
     }
     echo 1;
