@@ -12,7 +12,7 @@ function setCargosDisponibles(id){
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
-            alert(datosRecibidos);
+            //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
             contenido="<option value='' selected>Seleccione</option>";
             if(json.length != 0){
