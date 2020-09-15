@@ -28,7 +28,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
   <div class="jumbotron my-4 py-4 bg-light">
     <h1 class=""><?php echo "$saludo, ".$_SESSION["alumno"]["nombreAlum"]/*." ".$_SESSION["alumno"]["apellidoAlum"]*/ ?></h1>
     <p class="lead"></p>
-    <a href="../editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
+    <a href="/Dayclass/Alumno/editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
   </div>
 
      <?php

@@ -191,7 +191,7 @@ function compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantInasiste
         //echo "Justo";
         return "JUSTO";
     }else{
-        echo "entra al else de cantInasistenciasAlumno == maxInasistencias";
+        //echo "entra al else de cantInasistenciasAlumno == maxInasistencias";
         if($maxInasistencias < $cantInasistenciasAlumno){
            //alumnos libre, CAMBIAR ESTADO, ENVIAR MAIL  }}
             //echo "Libre";
