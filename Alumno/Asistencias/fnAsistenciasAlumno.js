@@ -39,8 +39,8 @@ function mostrarAsistencias() {
                 
                 contenido += "<tr>"+
                     "<td>"+json[i].fecha+"</td>"+
-                    "<td class='text-"+tipo+"'>"+json[i].tipoAsistencia+"</td>"+
-                "</tr>";                
+                    "<td class='text-"+tipo+"'><strong>"+json[i].tipoAsistencia+"</strong></td>"+
+                "</tr>";
             }
             document.getElementById("tablaAsistencias").innerHTML = contenido;
         }
@@ -105,5 +105,4 @@ function mostrarAsistencias() {
             }
         }
     })
-
 }

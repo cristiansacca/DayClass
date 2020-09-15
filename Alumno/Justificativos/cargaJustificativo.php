@@ -33,7 +33,7 @@
 
     $justificativo = $con->query("INSERT INTO justificativo (fechaPresentacion, imagenJustificativo, descripcionImagen, extensionImagen, fechaDesdeJustificativo, fechaHastaJustificativo, alumno_id) VALUES ('$hoy','$contenido', '$fileName', '$fileExtension', '$fechaDesde', '$fechaHasta', '".$_SESSION['alumno']['id']."')");
     $id_justificativo = $con->insert_id;
-    $tipoasistencia = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE' AND fechaBajaTipoAsistencia IS NULL");
+    $tipoasistencia = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'AUSENTE' AND fechaBajaTipoAsistencia IS NULL");
     
     if($justificativo && $id_justificativo!==null && ($tipoasistencia->num_rows)!==0){
         $ausente = $tipoasistencia->fetch_assoc();
