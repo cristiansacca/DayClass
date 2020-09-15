@@ -18,7 +18,7 @@ if($consulta){
     if(mysqli_num_rows($consultaDocentesCurso) > 0){
          while ($docentesCurso = $consultaDocentesCurso->fetch_assoc()) {
              
-             $id_prof = $docentesCurso["id"]
+             $id_prof = $docentesCurso["id"];
              $finalizarCargoDocente = $con->query("UPDATE `cargoprofesor` SET `fechaHastaCargo`='$currentDateTime' WHERE `profesor_id` = '$id_prof'");
              
          }
