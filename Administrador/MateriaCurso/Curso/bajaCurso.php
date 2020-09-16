@@ -11,6 +11,9 @@ echo "$string";
 $consulta = $con->query($string);
 echo "$consulta";
 
+$materia = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
+$id = $materia['materia_id'];
+
 if($consulta){
     // si se da de baja el curso se les finaliza el cargo a los docentes, hubiera docentes asociados
     $consultaDocentesCurso = $con->query("SELECT profesor.apellidoProf, profesor.nombreProf, profesor.id FROM cargoprofesor, profesor, curso WHERE curso.id = '$id_curso' AND cargoprofesor.curso_id = curso.id AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.profesor_id = profesor.id");

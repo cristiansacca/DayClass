@@ -93,6 +93,7 @@ function generarTablaResumen() {
     contenido += "</button> ";
     contenido += "</form>"
     document.getElementById("dvTable").innerHTML = contenido;
+    colorearAsistencia();
 }
 
 function cambiar(fila) {
@@ -110,6 +111,7 @@ function cambiar(fila) {
         rtdosFinales[fila][3] = "Presente";
         //alert(rtdosFinales[fila][3]);
     }
+    colorearAsistencia();
 }
 
 function confirmar() {
@@ -118,4 +120,22 @@ function confirmar() {
     document.getElementById('idCursoEnviar').value = idCurso;
     return true;
     
+}
+
+function colorearAsistencia() {
+    var cell = $('td'); 
+
+    cell.each(function() { //loop through all td elements ie the cells
+
+        var cell_value = $(this).html(); //get the value
+
+        if (cell_value == 'Presente'){ //if then for if value is 1
+            $(this).css({'color' : 'green'});
+            $(this).css({'font-weight' : 'bold'});    // changes td to red.
+        };
+        if (cell_value == 'Ausente'){ //if then for if value is 1
+            $(this).css({'color' : 'red'});
+            $(this).css({'font-weight' : 'bold'});   // changes td to red.
+        }
+    });
 }

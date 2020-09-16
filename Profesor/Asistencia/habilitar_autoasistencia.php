@@ -39,16 +39,12 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
     }
 }
 
-
-
-
-
 ?>
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <h1>Habilitar auto-asistencia</h1>
-        <h5 class="my-2"><?php echo $curso["nombreCurso"] ?></h5>
+        <h5 class="font-weight-normal my-2"><?php echo $curso["nombreCurso"] ?></h5>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     <?php
@@ -71,7 +67,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button></div>";
-                    break;
+                break;
                 
                 case '2':
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
@@ -79,7 +75,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button></div>";
-                    break;
+                break;
             }
         }
     ?>
@@ -93,26 +89,24 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
             echo "<div class='alert alert-warning' role='alert'>
                     <h5>No se ha definido un tiempo para los codigos de autoasistencia, solicite que se habilite para que se pueda usar esta funcionalidad</h5>
                 </div>";        
-            }
+        }
     ?>
     
     
     </div>
-    <div class="mt-4" <?php 
-                         if($tiempoAnt == null){
-                             echo " hidden";
-                         }?> >
+    <div class="mt-4" <?php if($tiempoAnt == null){echo " hidden";} ?>>
         <form action="habilitarCodigo.php" method="POST">
             <div class="text-center row">
                 <div class="form-group col-md-6">
-                    <h3>Código de auto-asistencia</h3>
-                    <br>
+                    <h3 class="font-weight-normal">Código de auto-asistencia</h3>
+                    <i class="fa fa-barcode fa-5x mb-2"></i>
                     <input type="text" class="form-control m-auto text-center" style="width: auto" id="outCodigoAutoasist" name="codigoAsis" readonly>
                     <br>
                     <button type="button" class="btn btn-primary" id="btnCodigoAutoasist" onclick="generarCodigo(); return false;"><i class="fa fa-refresh mr-2"></i>Generar</button>
                 </div>    
                 <div class="form-group col-md-6">
-                    <h3>Duración del código</h3><br>
+                    <h3 class="font-weight-normal">Duración del código</h3>
+                    <i class="fa fa-clock-o fa-5x mb-2"></i>
                     <select class="form-control m-auto" name="tiempo" style="width: auto;" required>
                         <option value="" selected>Seleccione</option>
                         

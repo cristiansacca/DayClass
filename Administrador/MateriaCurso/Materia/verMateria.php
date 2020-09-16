@@ -100,7 +100,7 @@ if (!isset($_SESSION['administrador']))
     
     
     <div class="jumbotron my-4 py-4">
-        <table id="dataTable" class="table text-center table-striped">
+        <table id="dataTable" class="table table-bordered bg-light table-striped">
         <?php
             $id_materia = $_GET["id"];
             date_default_timezone_set('America/Argentina/Buenos_Aires');
