@@ -40,7 +40,7 @@ if (!isset($_SESSION['administrador']))
         ?>
         
         <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <button class="btn btn-warning my-2 mx-2" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-upload mr-1"></i>Editar Datos</button>
+        <button class="btn btn-success my-2 mx-2" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-pencil-square-o mr-1"></i>Editar Datos</button>
         <button class="btn btn-primary my-2 mx-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-upload mr-1"></i>Cargar programa</button>
     </div>
 

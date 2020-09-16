@@ -97,6 +97,12 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
     }
 }
 
+$cursadoFuturo = true;
+
+if(($fechaD > $currentDateTime)){
+    $cursadoFuturo = false;
+}
+
 ?>
 
 <script src="profesor.js"></script>
@@ -172,6 +178,15 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
         if(!$hayAlumnos){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                 <h5>Todavía no hay alumnos inscriptos para este periodo.</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+            </div>"; 
+        }
+        
+        if(($fechaD > $currentDateTime)){
+           echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <h5>El cursado todavia no empieza.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -279,7 +294,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                 </div>
                 <div class="card-footer">
                     <a <?php
-                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $cursadoFuturo) {
                             echo 'class="btn btn-primary"';
                             echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'";
                         } else {
@@ -287,7 +302,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                         }
                         ?>>Autoasistencia</a>
                     <a <?php
-                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $cursadoFuturo) {
                             echo 'class="btn btn-success"';
                             echo "href='/DayClass/Profesor/Asistencia/tradicional.php?id_curso=$id_curso'";
                         } else {
@@ -383,15 +398,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    document.getElementById("temaDia").innerHTML = <?php 
-        
-        if($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos){
-            echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";
-
-        }else{
-            echo "'<a class=nav-link disabled><i id=icono ></i>Tema del día</a>';";
-
-        }?>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script>

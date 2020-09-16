@@ -35,9 +35,93 @@ $programa_id = $programa["id"];
 
 
 $hab =false;
-if($programa_id == "" || $programa_id == null){
+if($programa_id != "" || $programa_id != null){
     $hab = true;
 }
+
+
+$id_prof = $_SESSION['profesor']["id"];
+$id_curso = $_GET["id_curso"];
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDateTime = date('Y-m-d');
+
+$consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE profesor.id = '$id_prof' AND cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+
+$resultadoProf = $consulta1->fetch_assoc();
+$estadoCargo = $resultadoProf['nombreEstadoCargoProfe'];
+
+$habP = false;
+//si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
+if ($estadoCargo == "Activo") {
+    $habP = true;
+}
+
+
+$consultaDiasHorasCurso = $con->query("SELECT cursodia.dayName, horariocurso.horaInicioCurso, horariocurso.horaFinCurso FROM horariocurso, cursodia, curso WHERE curso.id ='$id_curso' AND horariocurso.curso_id = curso.id AND horariocurso.cursoDia_id = cursodia.id ");
+
+$tieneDiaHora = false;
+$diaHoraBien = false;
+$diaBien = false;
+$horaBien = false;
+if(!($consultaDiasHorasCurso)==0){
+    $tieneDiaHora = true;
+    $curretDay = date('l', strtotime($currentDateTime));
+    $currentTime = date('H:i:s');
+    while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()){
+        $dayName = $rtdoDiasHoras['dayName'];
+        
+        if($dayName == $curretDay){
+            $diaBien = true;
+            $horaInicio = $rtdoDiasHoras['horaInicioCurso'];
+            $horaFin = $rtdoDiasHoras['horaFinCurso'];
+            
+            if($currentTime >= $horaInicio && $currentTime <=$horaFin ){
+                $horaBien = true; 
+                
+                
+                if ($horaBien && $diaBien){
+                    $diaHoraBien= true;
+                    
+                    break;
+                }
+            }
+            
+        }
+    }
+}
+
+$hayFechasCursado = false;
+$hayAlumnos = false;
+
+
+$consulta2 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+$cursoFechas = $consulta2->fetch_assoc();
+
+$fechaD = $cursoFechas["fechaDesdeCursado"];
+$fechaH = $cursoFechas["fechaHastaCursado"];
+
+$fechaDesdeCursado = date_create($cursoFechas["fechaDesdeCursado"]);
+$fechaHastaCursado = date_create($cursoFechas["fechaHastaCursado"]);
+
+$fechaDesdeCursadoF = date_format($fechaDesdeCursado,"d/m/Y");
+$fechaHastaCursadoF = date_format($fechaHastaCursado,"d/m/Y");
+
+if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
+    $hayFechasCursado = true;
+    
+    $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaD' AND `fechaHastaAlumCurAc` = '$fechaH'  AND `curso_id` = '$id_curso' ");
+    
+    if(mysqli_num_rows($consultaAlumnos) != 0 ){
+        $hayAlumnos = true;
+    }
+}
+
+$cursadoFuturo = true;
+
+if(($fechaD > $currentDateTime)){
+    $cursadoFuturo = false;
+}
+
 
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
@@ -70,14 +154,32 @@ if($programa_id == "" || $programa_id == null){
     ?>
     
     <?php
-        if($hab){
+        if(!$hab){
                 echo "<div class='alert alert-warning' role='alert'>
                 <h5>Aún no se ha cargado el programa de esta materia, no podra leccionar temas de clase</h5>
                 </div>";
         }
+    
+        if (!$habP) {
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <h5>Su estado el dia de hoy es $estadoCargo, no puede cargar temas, solo verlos.</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+            </div>";
+        }
+        
+        if(!$hayAlumnos){
+           echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <h5>Todavía no hay alumnos inscriptos para este periodo.</h5>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+            </div>"; 
+        }
     ?>
 
-    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if($hab){echo "hidden";}  ?>>
+    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo)){ }else{echo "hidden";}  ?>>
         <h5>Indique el tema del día</h5>
         <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden >
         <div class="my-2  form-inline">
@@ -99,13 +201,17 @@ if($programa_id == "" || $programa_id == null){
                 
             </select>
             
-            <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden >
+            
             
         </div>
         <div class="my-2">
             <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline"
                 placeholder="Escriba un comentario (Opcional)"></textarea>
         </div>
+        
+        <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden >
+        <input type="text" name="idProfesor" id="idProfesor" <?php echo "value='$id_prof'" ?> hidden >
+        
         <button class="btn btn-primary my-2" type="submit">Aceptar</button>
     </form>
 
@@ -132,8 +238,7 @@ if($programa_id == "" || $programa_id == null){
                                 include "../databaseConection.php";
                                 $id_curso = $_GET["id_curso"];
 
-                                $consulta1 = $con->query("SELECT temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia ASC");
-                            
+                                $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia ASC");
                             
                                 if(($consulta1->num_rows) == 0){
                                     echo "<div class='alert alert-warning' role='alert'>
@@ -145,11 +250,17 @@ if($programa_id == "" || $programa_id == null){
                                             <th>Fecha</th>
                                             <th>Tema</th>
                                             <th>Comentario</th>
+                                            <th>Docente</th> 
                                         </thead>
                                        <tbody> ";
                                 
 
                                     while ($resultado1 = $consulta1->fetch_assoc()) {
+                                        $profTema = $resultado1['profesor_id'];
+                                        $datosProf = $con->query("SELECT * FROM `profesor` WHERE profesor.id = '$profTema'")->fetch_assoc();
+                                        
+                                        $nombreProf = $datosProf["nombreProf"];
+                                        $apellidoProf = $datosProf["apellidoProf"];
                                         
                                         
                                         $date=date_create($resultado1['fechaTemaDia']);
@@ -159,6 +270,7 @@ if($programa_id == "" || $programa_id == null){
                                         <td>" . $fecha . "</td>
                                         <td>" . $resultado1['nombreTema'] . "</td>
                                         <td>" . $resultado1['comentarioTema'] . "</td>
+                                        <td>" . $nombreProf ." ". $apellidoProf . "</td>
                                         </tr>";
                                     }
                                     
