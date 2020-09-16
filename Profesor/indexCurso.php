@@ -109,7 +109,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
         <?php
         if(!$hayFechasCursado){              
             echo "<div class='alert alert-danger' role='alert'>
-                    <h5>Todavia no se han definido las fechas de inicio y fin del cursado.</h5>
+                    <h5>Todavía no se han definido las fechas de inicio y fin del cursado.</h5>
                 </div>";
         }
             if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
@@ -130,7 +130,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
             
         if(!$tieneDiaHora){
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>No hay horario definido para este curso, no puede tomar asistencia.</h5>
+                <h5>No hay horario definido para este curso. No puede tomar asistencia.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -140,7 +140,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                             
                if($diaBien && !$horaBien){
                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                        <h5>No es el horario de cursado, no puede tomar asistencia.</h5>
+                        <h5>No es el horario de cursado. No puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -149,7 +149,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                
                if(!$diaBien && !$horaBien){
                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                        <h5>No es el día ni horario de cursado, no puede tomar asistencia.</h5>
+                        <h5>No es el día ni horario de cursado. No puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -171,7 +171,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
         
         if(!$hayAlumnos){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>Todavia no hay alumnos inscriptos para este periodo.</h5>
+                <h5>Todavía no hay alumnos inscriptos para este periodo.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -198,7 +198,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
         switch ($_GET['resultado']) {
             case '1':
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <h5>Se guardaron los datos de asistencia correctamente</h5>
+                        <h5>Se guardaron los datos de asistencia correctamente.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -207,7 +207,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
 
             case '2':
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ocurió un error al guardar los datos de asistencia</h5>
+                        <h5>Ocurió un error al guardar los datos de asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -215,7 +215,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                 break;
             case '3':
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ya se tomo asistencia en el dia de hoy en este curso</h5>
+                        <h5>Ya se tomó asistencia el día de hoy en este curso.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -233,7 +233,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                 <img class="card-img-top" src="../images/reportes.png" alt="" oncontextmenu="return false">
                 <div class="card-body">
                     <h4 class="card-title">Reportes y estadísticas</h4>
-                    <p class="card-text">Genere reportes y estadisticas de asistencias</p>
+                    <p class="card-text">Genere reportes y estadisticas de asistencias.</p>
                 </div>
 
                 <div class="card-footer">
@@ -255,7 +255,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                 <img class="card-img-top imagen" src="../images/Pizzarra-de-novedades.png" alt="pizarra-novedades" oncontextmenu="return false">
                 <div class="card-body">
                     <h4 class="card-title">Pizarra de novedades</h4>
-                    <p class="card-text">Publica novedades para los alumnos del curso</p>
+                    <p class="card-text">Publica novedades para los alumnos del curso.</p>
                 </div>
                 <div class="card-footer">
                     <a <?php 
@@ -275,7 +275,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                 <img class="card-img-top imagen" src="../images/asistencias.png" alt="" oncontextmenu="return false">
                 <div class="card-body">
                     <h4 class="card-title">Asistencias</h4>
-                    <p class="card-text">Concurrencia al aula de los alumnos </p>
+                    <p class="card-text">Concurrencia al aula de los alumnos.</p>
                 </div>
                 <div class="card-footer">
                     <a <?php
@@ -315,7 +315,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                 <div>
                     <h9></h9>
                     
-                    <table class="table text-center table-striped">
+                    <table class="table text-center table-bordered bg-light table-striped">
 
                     
                         <?php
@@ -333,7 +333,7 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
 
                             if(($consulta3->num_rows) == 0){
                                 echo "<div class='alert alert-warning' role='alert'>
-                                        <h5>Todavia no se han definido horarios para este curso.</h5>
+                                        <h5>Todavía no se han definido horarios para este curso.</h5>
                                     </div>";
                             }else{
 
@@ -350,8 +350,8 @@ if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
                                 $horaHasta = $horarioCurso["horaFinCurso"];
                                 echo "<tr>
                                         <td>" . $dia . "</td>
-                                        <td>" . $horaDesde . "</td>
-                                        <td>" . $horaHasta . "</td>
+                                        <td>" . strftime("%H:%M", strtotime($horaDesde)) . "</td>
+                                        <td>" . strftime("%H:%M", strtotime($horaHasta)) . "</td>
                                     </tr>";
 
                                 $contador ++;

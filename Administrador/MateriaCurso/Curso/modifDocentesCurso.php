@@ -53,7 +53,7 @@ if (!isset($_SESSION['administrador'])) {
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Docente agregado exitosamente</h5>
+                            <h5>Docente agregado exitosamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['administrador'])) {
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El documento o Legajo ingresado no existen o el docente ha sido dado de baja</h5>
+                            <h5>El documento o legajo ingresado no existen o el docente ha sido dado de baja.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['administrador'])) {
                 break;
             case 3:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El docente ya dicta esa materia</h5>
+                            <h5>El docente seleccionado ya dicta esa materia.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['administrador'])) {
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja</h5>
+                            <h5>Error en la baja.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['administrador'])) {
                 break;
             case 5:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Licencia cargada exitosamente</h5>
+                            <h5>Licencia cargada exitosamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['administrador'])) {
                 
              case 6:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Cambio de cargo exitoso</h5>
+                            <h5>Cambio de cargo exitoso.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['administrador'])) {
                 
             case 7:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el cambio de cargo</h5>
+                            <h5>Error en el cambio de cargo.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -231,7 +231,7 @@ if (!isset($_SESSION['administrador'])) {
                     }
                 } else {
                     echo "<div class='alert alert-warning' role='alert'>
-                                        <h5>No se ha definido un formato de Legajo, no se podrá cargar un nuevo docente en el curso</h5>
+                                        <h5>No se ha definido un formato de legajo, no se puede cargar un nuevo docente en el curso.</h5>
                                     </div>";
                 }
 
@@ -241,7 +241,7 @@ if (!isset($_SESSION['administrador'])) {
 
                 if (($consultaD->num_rows) == 0) {
                     echo "<div class='alert alert-warning' role='alert'>
-                                        <h5>No se han definido cargos para los docentes, no se podrá agregar uno nuevo en el curso</h5>
+                                        <h5>No se han definido cargos para los docentes. No puede agregar docentes nuevos al curso.</h5>
                                     </div>";
                 } else {
                     $cargos = true;
@@ -252,7 +252,7 @@ if (!isset($_SESSION['administrador'])) {
                                         } ?>>
 
                     <div class="my-2">
-                        <h5 class="msg" id="msjValidacionApellido">Ingrese los datos del docente a agregar y su cargo en esta materia</h5>
+                        <h5 class="msg" id="msjValidacionApellido">Ingrese los datos del docente a agregar y su cargo en esta materia.</h5>
                     </div>
                     <div class="form-inline my-2">
                         <label for="cargo">Cargo</label>

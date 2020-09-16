@@ -43,7 +43,7 @@ if(($institucion->num_rows)==0){
         switch ($_GET["resultado"]) {
             case 0:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ocurrió un error al editar los datos</h5>
+                        <h5>Ocurrió un error al editar los datos.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -51,7 +51,7 @@ if(($institucion->num_rows)==0){
                 break;
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <h5>Datos actualizados correctamente</h5>
+                        <h5>Datos actualizados correctamente.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>

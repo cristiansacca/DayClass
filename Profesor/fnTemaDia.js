@@ -1,5 +1,4 @@
 document.getElementById("unidadTema").onchange = function(){
-    eval("debugger;");
     var nro_unidad = document.getElementById("unidadTema").value;
     var id_programa = document.getElementById("idPrograma").value;
     
@@ -12,9 +11,10 @@ document.getElementById("unidadTema").onchange = function(){
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
+            //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
-            contenido="<option value='' selected>Seleccione</option>";
-            if(json.length != 0){
+            contenido="<option value='' selected>Tema</option>";
+            if(json.length !== 0){
                 for (let index = 0; index < json.length; index++) {
                     contenido += "<option value='"+json[index].id+"'>"+json[index].nombreTema+"</option>";
                     document.getElementById("nombreTema").innerHTML = contenido;

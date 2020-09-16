@@ -32,19 +32,19 @@ if (!isset($_SESSION['administrador']))
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Curso creado exitosamente</h5>";
+                            <h5>Curso creado exitosamente.</h5>";
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El documento o legajo ingresado ya se encuentra registrado</h5>";
+                            <h5>El documento o legajo ingresado ya se encuentra registrado.</h5>";
                 break;
             case 3:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa del curso</h5>";
+                            <h5>Baja exitosa del curso.</h5>";
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja del curso</h5>";
+                            <h5>Error en la baja del curso.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>

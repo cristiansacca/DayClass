@@ -37,7 +37,7 @@ if (!isset($_SESSION['administrador']))
         switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Usuario agregado exitosamente</h5>
+                            <h5>Usuario agregado exitosamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El documento o Legajo ingresado ya se encuentra registrado</h5>
+                            <h5>El documento o legajo ingresado ya se encuentra registrado.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 3:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa</h5>
+                            <h5>Baja exitosa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 4:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja</h5>
+                            <h5>Error en la baja.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 5:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Alumnos agregados exitosamente a la Base de datos</h5>
+                            <h5>Alumnos agregados exitosamente a la base de datos.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 6:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el formato del archivo, genere uno nuevo</h5>
+                            <h5>Error en el formato del archivo. Por favor genere uno nuevo.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -184,7 +184,7 @@ if (!isset($_SESSION['administrador']))
             }
         }else{
             echo "<div class='alert alert-warning' role='alert'>
-                <h5>No se ha definido un formato de Legajo, no se podra ingresar un nuevo Alumno</h5>
+                <h5>No se ha definido un formato de legajo, no se puede ingresar un nuevo alumno.</h5>
             </div>";
         } 
 
@@ -245,7 +245,7 @@ if (!isset($_SESSION['administrador']))
                     $dni = $formatoLegajo["esDNI"];
                 }else{
                     echo "<div class='alert alert-warning' role='alert'>
-                        <h5>No se ha definido un formato de Legajo, no se podrán ingresar nuevos Alumnos</h5>
+                        <h5>No se ha definido un formato de legajo, no se pueden ingresar nuevos alumnos.</h5>
                     </div>";
                 } 
 
@@ -259,7 +259,7 @@ if (!isset($_SESSION['administrador']))
                
                 
                 <div>
-                    <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como sigue: </h9>
+                    <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como se muestra a continuación: </h9>
 
                     <table class="table table-bordered text-center table-info">
                         <?php

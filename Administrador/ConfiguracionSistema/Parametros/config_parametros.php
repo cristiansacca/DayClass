@@ -30,59 +30,59 @@ include "../../../databaseConection.php";
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Modalidad creada correctamente</h5>";
+                            <h5>Modalidad creada correctamente.</h5>";
             break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al crear la modalidad</h5>";
+                            <h5>Error al crear la modalidad.</h5>";
                 break;
             case 3:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Ya existe una modaliad con el mismo nombre</h5>";
+                            <h5>Ya existe una modaliad con el mismo nombre.</h5>";
                 break;
             case 4:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>División creada correctamente</h5>";
+                            <h5>División creada correctamente.</h5>";
                 break;
             case 5:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al crear división</h5>";
+                            <h5>Error al crear división.</h5>";
                 break;
             case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Ya existe una división con el mismo nombre</h5>";
+                            <h5>Ya existe una división con el mismo nombre.</h5>";
                 break;
             case 7:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Parámetros de legajo cargados correctamente</h5>";
+                            <h5>Parámetros de legajo cargados correctamente.</h5>";
                 break;
             case 8:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Tiempo máximo del código de auto-asistencia establecido exitosamente</h5>";
+                            <h5>Tiempo máximo del código de auto-asistencia establecido exitosamente.</h5>";
             break;
                 case 9:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error de carga del tiempo maximo del codigo de auto-asistencia, intente nuevamente</h5>";
+                            <h5>Error al cargar del tiempo máximo del código de auto-asistencia, intente nuevamente.</h5>";
             break;
                 case 10:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <h5>Cargo creado correctamente</h5>";
+                                <h5>Cargo creado correctamente.</h5>";
             break;
                 case 11:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <h5>Error al crear el cargo</h5>";
+                                <h5>Error al crear el cargo.</h5>";
             break;
                 case 12:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <h5>Ya existe un cargo con el mismo nombre</h5>";
+                                <h5>Ya existe un cargo con el mismo nombre.</h5>";
             break;
                 case 13:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <h5>Porcentaje de minimo de asistencias definido correctamente</h5>";
+                                <h5>Porcentaje de mínimo de asistencias definido correctamente.</h5>";
             break;
                 case 14:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <h5>Error al cargar el minimo de asistencias</h5>";
+                                <h5>Error al cargar el mínimo de asistencias.</h5>";
             break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -96,13 +96,13 @@ include "../../../databaseConection.php";
     <div>
         <div class="list-group">
             <a class="list-group-item list-group-item-action" href="institucion.php"><i class="fa fa-flag fa-lg mr-2"></i>Institución</a>
-            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#formatoLegajo"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato Legajo</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#formatoLegajo"><i class="fa fa-id-card-o fa-lg mr-2"></i>Formato de legajo</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#nuevaModalidad"><i class="fa fa-briefcase fa-lg mr-2"></i>Modalidades</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#nuevaDivision"><i class="fa fa-hashtag fa-lg mr-2"></i>Divisiones</a>
-            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#tiempoAutoasistencia"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite código de auto-asistencia</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#tiempoAutoasistencia"><i class="fa fa-clock-o fa-lg mr-2"></i>Tiempo límite del código de auto-asistencia</a>
             <a class="list-group-item list-group-item-action" href=""><i class="fa fa-sign-out fa-lg mr-2"></i>Vigencia de sesión</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#asistenciasMinimas" ><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia</a>
-            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos Docentes</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos de docentes</a>
         </div>
     </div>
 </div>
@@ -207,7 +207,7 @@ include "../../../databaseConection.php";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Tiempo limite codigo Autoasistencia</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Tiempo limite del código de auto-asistencia</h5>
             </div>
             <form action="insertTiempoAutoAsist.php" method="POST" onsubmit="return minutosValidos()">
                 
@@ -231,7 +231,7 @@ include "../../../databaseConection.php";
                      ?>
                     
                     <div class="my-2">
-                        <label for="minutosCodigo">Tiempo maximo vigencia codigo Autoasistencia</label>
+                        <label for="minutosCodigo">Tiempo máximo de vigencia de código de auto-asistencia</label>
                             <input type="number" placeholder="Minutos" name="minutosCodigo" id="minutosCodigo" class="form-control col-md-6" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" step="5" onchange="minutosValidos()" required>
                         <h9 class="msg" id="msjValidacionCodigo"></h9>
                     </div>
@@ -258,7 +258,7 @@ include "../../../databaseConection.php";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Formato de Legajo</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Formato de legajo</h5>
             </div>
             <form action="registrarFormatoLegajo.php" method="POST" onsubmit="return enviar()">
                 <div class="modal-body">
@@ -271,7 +271,7 @@ include "../../../databaseConection.php";
                             if(!($consultaParamLeg->num_rows)==0){
                                 
                                 echo "<div class='alert alert-success' role='alert'>
-                                        <h5>Ya se ha ingresado un formato de Legajo</h5>
+                                        <h5>Ya se ha ingresado un formato de legajo.</h5>
                                     </div>";
                                 $rtdo =true;
                             
@@ -279,10 +279,10 @@ include "../../../databaseConection.php";
                             $dni = $formatoLegajo["esDNI"];
                                 
                                 if($dni){
-                                  echo "<h6>Se utiliza el número de DNI como legajo</h6>";  
+                                  echo "<h6>Se utiliza el número de DNI como legajo.</h6>";  
                                 }else{
-                                    echo "<h6>Se utiliza un formato Personalizado como legajo, formado por: </h6>
-                                    <ol>";
+                                    echo "<h6>Se utiliza un formato personalizado como legajo, formado por: </h6>
+                                    <ul>";
                                     
                                     $letras = $formatoLegajo["tieneLetras"];
                                     $numeros = $formatoLegajo["tieneNumeros"];
@@ -297,7 +297,7 @@ include "../../../databaseConection.php";
                                     }
                                     
                                     
-                                    echo "</ol>";
+                                    echo "</ul>";
                                 }
                                    
                             } 
@@ -311,7 +311,7 @@ include "../../../databaseConection.php";
                          
                          ?> >
                         
-                        <h6>Seleccione el formato de legajo de su institucion</h6>
+                        <h6>Seleccione el formato de legajo de su institución</h6>
                             
                                 <div class="radio">
                                     <label><input type="radio" name="optradio" checked onclick='hide()'> Documento Nacional de Identidad</label>
@@ -367,12 +367,12 @@ include "../../../databaseConection.php";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Nuevo cargo docente</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Nuevo cargo de docente</h5>
             </div>
             <form action="nuevoCargoDocente.php" method="POST" onsubmit="capitalize(inputNombreCargo)">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="nombreNombreDivision">Nombre cargo</label>
+                        <label for="nombreNombreDivision">Nombre del cargo</label>
                         <input type="text" placeholder="Cargo" name="inputNombreCargo" id="inputNombreCargo" class="form-control" onchange="capitalize(this.id)" required>
                     </div>
                     <div class="my-2">
@@ -396,7 +396,7 @@ include "../../../databaseConection.php";
                                 echo "</tbody>
                                 </table>";
                             } else {
-                                echo "<div class='alert alert-warning'>No hay cargos existentes</div>";
+                                echo "<div class='alert alert-warning'>No hay cargos existentes.</div>";
                             }
                         ?>
                     </div>
@@ -415,7 +415,7 @@ include "../../../databaseConection.php";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Porcentaje mínimo de asistencia requerida</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Porcentaje mínimo de asistencia requerido</h5>
             </div>
             <form action="insertMinAsistencia.php" method="POST" onsubmit="return porcentajeValido()">
                 
@@ -440,7 +440,7 @@ include "../../../databaseConection.php";
 
                     if($porcentajeMinimoVigente == 0){
                         echo "<div class='alert alert-warning' role='alert'>
-                                <h6>Todavia no se ha definido el porcentaje mínimo de asistencia requerido por la institución</h6>
+                                <h6>Todavia no se ha definido el porcentaje mínimo de asistencia requerido por la institución.</h6>
                             </div>";        
                     }
                     echo "<input type='number' id='porctajeMinAnt' value='$porcentajeMinimoVigente' hidden>";

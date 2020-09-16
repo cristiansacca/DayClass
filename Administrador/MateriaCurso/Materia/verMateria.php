@@ -51,7 +51,7 @@ if (!isset($_SESSION['administrador']))
                 
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Programa agregado exitosamente</h5>
+                            <h5>Programa cargado exitosamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Fallo al ingresar el programa</h5>
+                            <h5>Fallo al cargar el programa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 3:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el formato del archivo</h5>
+                            <h5>Error en el formato del archivo.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -75,7 +75,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 4:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Se registraron los cambios en los datos de la materia</h5>
+                            <h5>Se registraron los cambios correctamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -83,7 +83,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 5:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al registrar los cambios en los datos de la materia</h5>
+                            <h5>Error al registrar los cambios.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -111,7 +111,7 @@ if (!isset($_SESSION['administrador']))
         
             if(($consultaPrograma->num_rows) == 0){
                 echo "<div class='alert alert-warning' role='alert'>
-                        <h5>Todavia no se ha cargado un porgrama para esta materia, para este año</h5>
+                        <h5>Todavía no se ha cargado un porgrama en esta materia para el año en curso.</h5>
                     </div>";
             }else{
                 
@@ -194,7 +194,7 @@ if (!isset($_SESSION['administrador']))
         <form method="POST" id="importPlanilla" name="importPlanilla" action="altaProgramaMateria.php" enctype="multipart/form-data" role="form">
                 <div class="my-2">
                     <div>
-                        <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como sigue: </h9>
+                        <h9>La extensión para la lista debe ser .xlsx y los campos deben estar ordenados como se muestra a continuación: </h9>
 
                         <table class="table table-bordered text-center table-info table-sm">
                             <thead>
@@ -210,7 +210,7 @@ if (!isset($_SESSION['administrador']))
                 </div>
             
                 <div class="my-2">
-                    <label for="inputDescripPrograma"> Descripcion/Nombre</label>
+                    <label for="inputDescripPrograma"> Descripción/Nombre</label>
                     <input type="text" name="inputDescripPrograma" id="inputDescripPrograma" class="form-control" required>
                 </div>
             

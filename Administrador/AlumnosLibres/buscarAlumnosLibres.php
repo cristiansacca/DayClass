@@ -15,7 +15,7 @@ if (!isset($_SESSION['administrador'])) {
 
 <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        <h1>Rvision diaria de alumnos Libres</h1>
+        <h1>Revisión diaria de alumnos libres</h1>
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 </div>
 
@@ -98,7 +98,7 @@ if($selectParamMinimoAsistencia != null){
             }else{
                 //no alumnos inscriptos en ese curso
                 echo "<div class='alert alert-info' role='alert'>
-                    <h5>El curso $nombre_curso no tiene alumnos inscriptos</h5>
+                    <h5>El curso $nombre_curso no tiene alumnos inscriptos.</h5>
                 </div>";
                 
             } 
@@ -107,7 +107,7 @@ if($selectParamMinimoAsistencia != null){
             }else{
                 //no hay dias de cursado
                 echo "<div class='alert alert-warning' role='alert'>
-                    <h5>El curso $id_curso no tiene dias de cursado definidos</h5>
+                    <h5>El curso $id_curso no tiene días de cursado definidos.</h5>
                 </div>";
             } 
            
@@ -117,14 +117,14 @@ if($selectParamMinimoAsistencia != null){
     }else{
         //no hay cursos vigentes
          echo "<div class='alert alert-warning' role='alert'>
-                <h5>No hay Cursos con fechas de cursado vigentes</h5>
+                <h5>No hay cursos con fechas de cursado vigentes.</h5>
         </div>";
     }
     
 }else{
     //no hay porcentaje de minimo de asistencia
     echo "<div class='alert alert-warning' role='alert'>
-                <h5>No hay porcentaje de minimo de asistencias definido</h5>
+                <h5>No hay un porcentaje mínimo de asistencias definido.</h5>
         </div>";
 }
 
@@ -234,7 +234,7 @@ function alumnoSinInasistencias($id_alumno, $id_curso){
     
     
     echo "<div class='alert alert-info' role='alert'>
-                <h5>Se le ha informado a $nombreAlumno $apellidoAlumno que ha llegado al maximo de insistencias en $nombreCurso</h5>
+                <h5>Se le ha informado a $nombreAlumno $apellidoAlumno que ha llegado al máximo de insistencias en $nombreCurso.</h5>
         </div>";
 
     return $rtdo;
@@ -294,7 +294,7 @@ function avisoAlumnoLibre($id_alumno, $id_curso){
     $nombreCurso =  $selectDatosCurso["nombreCurso"];
     
     // Mensaje al alumno 
-    $mensaje = "$nombreAlumno $apellidoAlumno, \r\nEste correo electronico es para informale que que ha quedado LIBRE en $nombreCurso \r\nSu asistencia ya no será contabilizada, ante un error en esta situacion pongase en contacto con administración. \r\nEste correo electronico fue generado de mananera automatica, por favor no lo responda. \r\nSaludos. ";
+    $mensaje = "$nombreAlumno $apellidoAlumno, \r\nEste correo electrónico es para informale que que ha quedado LIBRE en $nombreCurso \r\nSu asistencia ya no será contabilizada, ante un error en esta situacion pongase en contacto con administración. \r\nEste correo electronico fue generado de mananera automatica, por favor no lo responda. \r\nSaludos. ";
 
     // Si cualquier línea es más larga de 200 caracteres, se debería usar wordwrap()
     $mensaje = wordwrap($mensaje, 200, "\r\n");
@@ -307,7 +307,7 @@ function avisoAlumnoLibre($id_alumno, $id_curso){
     
     
     echo "<div class='alert alert-warning' role='alert'>
-                <h5>Se le ha informado a $nombreAlumno $apellidoAlumno que ha quedado libre en $nombreCurso</h5>
+                <h5>Se le ha informado a $nombreAlumno $apellidoAlumno que ha quedado libre en $nombreCurso.</h5>
         </div>";
 
     return $rtdo;
@@ -318,13 +318,13 @@ function avisoAlumnoLibre($id_alumno, $id_curso){
 <?php
     if($cantLibres == 0){
         echo "<div class='alert alert-success' role='alert'>
-                    <h5>Ningun alumno ha quedado libre</h5>
+                    <h5>Ningún alumno ha quedado libre el día de hoy.</h5>
             </div>";
     }
     
     if($cantJustos == 0){
         echo "<div class='alert alert-success' role='alert'>
-                    <h5>No hay alumnos que tengan la cantidad maxima de faltas permitidas</h5>
+                    <h5>No hay alumnos que tengan la cantidad máxima de faltas permitidas.</h5>
             </div>";
     }
 ?>

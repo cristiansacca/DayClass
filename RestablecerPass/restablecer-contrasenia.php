@@ -70,7 +70,7 @@ include "../header.html";
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Los datos propocionados no corresponden a un usuario registrado, intente nuevamente</h5>
+                            <h5>Los datos propocionados no corresponden a un usuario registrado. Intente nuevamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -78,7 +78,7 @@ include "../header.html";
                     break;
                 case 3:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el envio del mail con la nueva contraseña</h5>
+                            <h5>Error en el envio del mail con la nueva contraseña.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>

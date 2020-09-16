@@ -32,7 +32,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
     <div class="form-inline">
         <a href="/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
         <form method="POST" enctype="multipart/form-data" role="form" action="AlumnosLibres/buscarAlumnosLibres.php" class="ml-2">
-            <button type="submit" class="btn" style="background-color:plum"><i class="fa fa-user-times mr-1"></i>Alumnos Libres</button>
+            <button type="submit" class="btn-dayclass my-3"><i class="fa fa-user-times mr-1"></i>Alumnos libres</button>
 
         </form>
     </div>

@@ -48,7 +48,7 @@ if($programa_id == "" || $programa_id == null){
         <h1>Tema del día</h1>
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas Dados</button>
+         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas dados</button>
     </div>
 
     <?php
@@ -82,7 +82,7 @@ if($programa_id == "" || $programa_id == null){
         <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden >
         <div class="my-2  form-inline">
             <select id="unidadTema" name="unidadTema" class="custom-select" class="custom-select" style="width:15%" required>
-                <option value="" selected>Seleccione</option>
+                <option value="" selected>Unidad</option>
                 <?php
                 
                 $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
@@ -95,7 +95,7 @@ if($programa_id == "" || $programa_id == null){
             </select>
             
             <select id="nombreTema" name="nombreTema" class="custom-select" style="width:85%" required disabled>
-                <option value="" selected>Seleccione</option>
+                <option value="" selected>Tema</option>
                 
             </select>
             

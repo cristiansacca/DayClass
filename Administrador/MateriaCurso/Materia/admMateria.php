@@ -36,7 +36,7 @@ if (!isset($_SESSION['administrador']))
                 
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Materia agregada correctamente</h5>
+                            <h5>Materia agregada correctamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>La materia ya se encuentra registrada</h5>
+                            <h5>La materia ya se encuentra registrada.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 3:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa</h5>
+                            <h5>Baja exitosa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -60,7 +60,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 4:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja</h5>
+                            <h5>Error en la baja.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>

@@ -68,7 +68,7 @@ $_SESSION['administrador']= $resultado1;
             switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Modificación exitosa</h5>
+                            <h5>Modificación exitosa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -76,7 +76,7 @@ $_SESSION['administrador']= $resultado1;
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Ocurrio un error en la actualizacion</h5>
+                            <h5>Ocurrio un error en la actualización.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -94,7 +94,7 @@ $_SESSION['administrador']= $resultado1;
       <div class="fill_fields">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputInicio">Inicio Cursado:</label>
+            <label for="inputInicio">Inicio de cursado:</label>
             <input type="date" class="form-control" id="inputInicioCursado" name="inputInicioCursado" placeholder="Fecha Inicio Cursado" required 
                    <?php  
                         if($rtdo){
@@ -111,7 +111,7 @@ $_SESSION['administrador']= $resultado1;
           </div>
          
             <div class="form-group col-md-6">
-            <label for="inputHasta">Fin Cursado:</label>
+            <label for="inputHasta">Fin de cursado:</label>
             <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled required <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'";
                  if($rtdo){
                             echo "disabled";

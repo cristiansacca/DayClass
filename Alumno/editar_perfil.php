@@ -34,7 +34,7 @@ $_SESSION['alumno']= $resultado1;
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <h5>Modificación exitosa</h5>
+                        <h5>Modificación exitosa.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -42,7 +42,7 @@ $_SESSION['alumno']= $resultado1;
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>El mail ingresado ya existe</h5>
+                        <h5>El email ingresado ya existe.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -103,20 +103,20 @@ $_SESSION['alumno']= $resultado1;
         <div class="form-row">
           <div class=" form-group col-md-4 control-label ">
             <button type="button" class="btn btn-link " data-toggle="collapse" data-target="#oculto" aria-controls="oculto"
-              aria-expanded="false">Cambiar Contraseña</button>
+              aria-expanded="false">Cambiar contraseña</button>
           </div>
         </div>
 
         <div class="form-row collapse" id="oculto">
           <div class="form-group col-md-6">
-            <label for="inputPassNew">Nueva Contraseña</label>
+            <label for="inputPassNew">Nueva contraseña</label>
             <input type="password" class="form-control" id="inputPassNew" name="inputPassNew" placeholder="Escribir Contraseña"
               onchange="validarContrasenia()" >
             <h9 class="msg" id="msjValidacionPass"></h9>
           </div>
           
           <div class="form-group col-md-6">
-            <label for="inputPassNewRep">Confirmar Contraseña</label>
+            <label for="inputPassNewRep">Confirmar contraseña</label>
             <input type="password" class="form-control" id="inputPassNewRep" name="inputPassNewRep" placeholder="Escribir Contraseña"
               onchange="validarRepeticion()" disabled required>
             <h9 class="msg" id="msjValidacionRepeticion"></h9>
