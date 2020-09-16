@@ -388,6 +388,7 @@ include "../../../databaseConection.php";
                                         </thead>
                                         <tbody>";   
                                     while ($cargo = $consultaCargos->fetch_assoc()) {
+                                        
                                         echo "<tr>
                                             <td>".$cargo["nombreCargo"]."</td>
                                         </tr>";
@@ -414,7 +415,7 @@ include "../../../databaseConection.php";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Procentaje minimo de asistencia requerida</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Porcentaje mínimo de asistencia requerida</h5>
             </div>
             <form action="insertMinAsistencia.php" method="POST" onsubmit="return porcentajeValido()">
                 
@@ -446,11 +447,11 @@ include "../../../databaseConection.php";
                      ?>
                     
                     <div class="my-2">
-                        <label for="minutosCodigo">Minimo de asistencia requierido para no quedar libre</label>
+                        <label for="minimoAsistencia">Mínimo de asistencia requerido para no quedar libre</label>
                         
                         <div class="form-inline">
                             <input type="number"  name="minAsistencia" id="minAsistencia" class="form-control col-md-6" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" max="100" min="0" step="5" onchange="porcentajeValido()" required>
-                            <h3 for="minutosCodigo">%</h3>
+                            <h3 for="minutosCodigo">. %</h3>
                         </div>
                         
                         <h9 class="msg" id="msjValidacionMinAsistencia"></h9>

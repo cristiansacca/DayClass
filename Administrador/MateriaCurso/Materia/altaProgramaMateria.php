@@ -15,7 +15,10 @@ $consProgramaAnt = $con->query("SELECT * FROM `programamateria` WHERE programama
 
 //si existe otro programa asociado a esa materia, se lo da de baja 
 if(($consProgramaAnt->num_rows) != 0){
-    $consProgramaAnt = $con->query("UPDATE `programamateria` SET `fechaHastaPrograma`= '$currentDateTime',`materia_id`=[value-5] WHERE programamateria.materia_id = '$id_materia' ");
+    
+    $programaAnt = $consProgramaAnt->fetch_assoc();
+    $id_programaAnt =  $programaAnt["id"];
+    $finalizarProgramaAnt = $con->query("UPDATE `programamateria` SET `fechaHastaPrograma`= '$currentDateTime' WHERE programamateria.materia_id = '$id_materia' AND fechaHastaPrograma IS NULL AND programamateria.id = '$id_programaAnt'");
 }
 
 

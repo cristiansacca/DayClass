@@ -90,8 +90,6 @@ if (!isset($_SESSION['administrador']))
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $idmateria = $resultado1['id'];
                     
-                    
-                    
                     $consulta2 = $con->query("SELECT * FROM programamateria WHERE materia_id = '$idmateria' AND fechaDesdePrograma <= '$currentDate' AND fechaHastaPrograma IS NULL");                    
                     $programa = $consulta2->fetch_assoc();
                     $url = 'bajaMateria.php?id='.$idmateria;
@@ -105,14 +103,33 @@ if (!isset($_SESSION['administrador']))
                     }
                     
                     
-                   $id_materia = $resultado1['id'];
-
+                    $classHabilitado = "btn btn-danger btn-sm mb-1";
+                    
+                    $consultaCursosMateria = $con->query("SELECT curso.id AS idCurso, curso.fechaDesdeCursado, curso.fechaHastaCursado FROM curso, materia WHERE materia.id = '$idmateria' AND materia.id = curso.materia_id AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado > '$currentDate'"); 
+                    
+                    if(mysqli_num_rows($consultaCursosMateria) != 0 ){
+                         while ($cursosMateria = $consultaCursosMateria->fetch_assoc()){
+                             $idCurso = $cursosMateria["idCurso"];
+                             $fechaDesdeCursado = $cursosMateria["fechaDesdeCursado"];
+                             $fechaHastaCursado = $cursosMateria["fechaHastaCursado"];
+                             
+                             $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado'  AND `curso_id` = '$idCurso' ");
+                             
+                             if(mysqli_num_rows($consultaAlumnos) != 0 ){
+                                $classHabilitado = "btn btn-danger btn-sm mb-1 disabled";
+                                break;
+                            }
+                         }
+                    }
+                    
+                    
+                    
                     echo "<tr>
                     <td><a href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td>$nivelMateria</td>
                     <td>".$cargado."</td>
-                    <td class='text-center'><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia'><i class='fa fa-eye'></i></a></td>
-                    <td class='text-center'><a class='btn btn-danger' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
+                    <td class='text-center'><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$idmateria'><i class='fa fa-eye'></i></a></td>
+                    <td class='text-center'><a class='$classHabilitado' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
                     
                 }

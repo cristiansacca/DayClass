@@ -7,13 +7,8 @@ $dni = $_POST["inputDNI"];
 
 $mail = $_POST["inputEmail"];
 
-
-
 $pass = passAleatoria();
 $Pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
-
-
-
 
 $consultaAlum = $con->query("SELECT * FROM `alumno` WHERE legajoAlumno = '$legajo' AND dniAlum = '$dni' AND emailAlum = '$mail'");
 
