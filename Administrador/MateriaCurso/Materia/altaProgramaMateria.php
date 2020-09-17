@@ -69,15 +69,16 @@ if (isset($_FILES["inpGetFile"])) {
                     $sql2 = "INSERT INTO `temasmateria`(`nombreTema`, `programaMateria_id`, `unidadTema`) VALUES ('$temaPrograma','$id_programa','$unidadPrograma')";
                     $rtdo2 = $con->query($sql2);
                     
-                    if($rtdo2){
-                        //insercion correcta del tema 
-                        header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=1");
-                    }else{
-                        //fallo en la insercion
-                        header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=2");
-                    }
-                    
                 }
+
+                if($rtdo2){
+                    //insercion correcta del tema 
+                    header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=1");
+                }else{
+                    //fallo en la insercion
+                    header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=2");
+                }
+                
             }else{
                //falla en el formato de la hoja de calculo 
                 header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=3");

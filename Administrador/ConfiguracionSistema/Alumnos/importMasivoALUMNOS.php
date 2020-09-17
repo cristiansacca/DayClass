@@ -3,7 +3,7 @@ include "../../../databaseConection.php";
 include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
 include "../../../header.html";
 ?>
-<div class="container"><!--Oculta todos los Notice que muestra por el error en la libreria-->
+<div class="container" hidden><!--Oculta todos los Notice que muestra por el error en la libreria-->
     <?php
     $correcto = [];
     $yaInscriptos = [];

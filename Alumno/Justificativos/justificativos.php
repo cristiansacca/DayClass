@@ -128,17 +128,17 @@ if (!isset($_SESSION['alumno']))
             $colorTexto = '';
             if(!$justificativo['fechaRevision'] == null){
               if($justificativo['aprobado'] == true){
-                $estado = 'Aprobado';
+                $estado = 'APROBADO';
                 $colorTexto = 'text-success';
               } else {
-                $estado = 'Rechazado';
+                $estado = 'RECHAZADO';
                 $colorTexto = 'text-danger';
               }
             }
             echo "<tr>
               <td><a href='verImgJustificativo.php?id=".$justificativo['id']."'>".$justificativo['descripcionImagen']."</a></td>
-              <td>".$justificativo['fechaPresentacion']."</td>
-              <td>".$justificativo['fechaRevision']."</td>
+              <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaPresentacion']))."</td>
+              <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaRevision']))."</td>
               <td class=$colorTexto >".$estado."</td>
               <td>".$justificativo['comentarioJustificativo']."</td>
             </tr>";

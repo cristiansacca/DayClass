@@ -77,12 +77,11 @@ function generarPieChart(datosEntrada) {
             var myChart = new Chart(ctx, {
                 type: document.getElementById("tipoGrafico").value,
                 data: {
-                    labels: ['Presentes', 'Ausentes', 'Justificados'],
+                    labels: ['Presentes', 'Justificados', 'Ausentes'],
                     datasets: [{
-                        label: 'Asistencias vs. Inasistencias vs. Justificados',
-                        data: [(json.asistencias), (json.inasistencias), (json.justificados)],
-                        backgroundColor: ['rgba(0, 147, 0, 0.5)', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 255, 0, 0.5)'],
-                        borderColor: ['rgba(0, 147, 0, 1)','rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
+                        label: "Cantidad",
+                        data: [(json.asistencias), (json.justificados), (json.inasistencias)],
+                        backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(218, 165, 32, 1)', 'rgba(255, 99, 132, 1)'],
                         borderWidth: 1.5
                     }]
                 },
@@ -93,12 +92,23 @@ function generarPieChart(datosEntrada) {
                                 beginAtZero: true
                             }
                         }]
+                    },
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Gráfico de asistencias'
                     }
                 }
             });
 
-            document.getElementById("cantPresentes").innerHTML = json.asistencias;
-            document.getElementById("cantAusentes").innerHTML = json.inasistencias;
+            function porcentajeAsistencia(valor){
+                var totalAsistencias = json.asistencias+json.inasistencias+json.justificados;
+                return Math.round((valor/totalAsistencias)*100)+"% ("+valor+")";
+            }
+
+            document.getElementById("cantPresentes").innerHTML = porcentajeAsistencia(json.asistencias);
+            document.getElementById("cantAusentes").innerHTML = porcentajeAsistencia(json.inasistencias);
+            document.getElementById("cantJustificados").innerHTML = porcentajeAsistencia(json.justificados);
             document.getElementById("periodo").innerHTML = json.periodo;
             document.getElementById("fechaHora").innerHTML = json.fechaHora;
             document.getElementById("txtCurso").innerHTML = json.nombreCurso;

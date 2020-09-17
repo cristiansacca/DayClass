@@ -13,7 +13,6 @@ if (!isset($_SESSION['administrador'])) {
 include "../../databaseConection.php";
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <div class="container">
 
@@ -83,13 +82,14 @@ include "../../databaseConection.php";
                     <li class="list-group-item list-group-item-action font-weight-bold">Curso:<label class="ml-1 font-weight-normal" id="txtCurso"></label></li>
                     <li class="list-group-item list-group-item-action font-weight-bold">Fecha y hora:<label class="ml-1 font-weight-normal" id="fechaHora"></label></li>
                     <li class="list-group-item list-group-item-action font-weight-bold">Periodo:<label class="ml-1 font-weight-normal" id="periodo"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Cantidad de presentes:<label class="ml-1 font-weight-normal" id="cantPresentes"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Cantidad de ausentes:<label class="ml-1 font-weight-normal" id="cantAusentes"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Presentes:<label class="ml-1 font-weight-normal" id="cantPresentes"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Ausentes:<label class="ml-1 font-weight-normal" id="cantAusentes"></label></li>
+                    <li class="list-group-item list-group-item-action font-weight-bold">Justificados:<label class="ml-1 font-weight-normal" id="cantJustificados"></label></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="jumbotron my-2">
+    <div class="jumbotron py-2 my-2">
         <canvas id="myChart"></canvas>
     </div>
 </div>
