@@ -25,20 +25,21 @@ if (!isset($_SESSION['administrador'])) {
     
     <h4>Seleccione los datos para generar el reporte </h4>
 
-    <form action="">
+    <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportes.php" enctype="multipart/form-data" role="form">
         
         <div class="form-row">
         <div class="form-group col-md-4">
           
-            <select id="unidadTema" name="unidadTema" class="custom-select" class="custom-select" required>
+            <select id="materia" name="materia" class="custom-select" class="custom-select" required>
                 <option value="" selected>Materia</option>
                 <?php
                 
                 $selectMateria = $con->query("SELECT * FROM `materia` WHERE materia.fechaAltaMateria <= '$currentDate' AND materia.fechaBajaMateria IS NULL ORDER BY materia.nombreMateria ASC");
                 
                 if(mysqli_num_rows($selectMateria) != 0){
+                        echo "<option value='Todas'>Todas</option>";
                     while($materia = $selectMateria->fetch_assoc()){
-                        echo "<option value='".$materia["nombreMateria"]."'>".$materia["nombreMateria"]." ".$materia["nivelMateria"]."</option>";
+                        echo "<option value='".$materia["id"]."'>".$materia["nombreMateria"]." ".$materia["nivelMateria"]."</option>";
                     }
                 }
 
@@ -48,7 +49,7 @@ if (!isset($_SESSION['administrador'])) {
 
         <div class="form-group col-md-4">
           
-          <select id="nombreTema" name="nombreTema" class="custom-select" disabled>
+          <select id="curso" name="curso" class="custom-select" disabled>
                 <option value="" selected>Curso</option>
                 
             </select>
@@ -56,7 +57,7 @@ if (!isset($_SESSION['administrador'])) {
             
         <div class="form-group col-md-4">
           
-          <select id="nombreTema" name="nombreTema" class="custom-select" disabled>
+          <select id="alumno" name="alumno" class="custom-select" disabled>
                 <option value="" selected>Alumno</option>
                 
             </select>
@@ -68,14 +69,14 @@ if (!isset($_SESSION['administrador'])) {
         <div class="form-row">
         <div class="form-group col-md-6">
           <label>Fecha Desde</label>
-          <input type="date" class="form-control" id="inputFechaDesdeReporte" name="inputFechaDesdeReporte" required>
-          <h9 class="msg" id="msjValidacionDNI"></h9>
+          <input type="date" class="form-control" id="inputFechaDesdeReporte" name="inputFechaDesdeReporte" onchange="habilitarFechaHasta()" required>
+          
         </div>
 
         <div class="form-group col-md-6">
           <label>Fecha Hasta</label>
-          <input type="date" class="form-control" id="inputFechaHastaReporte" name="inputFechaHastaReporte" required>
-          <h9 class="msg" id="msjValidacionLegajo"></h9>
+          <input type="date" class="form-control" id="inputFechaHastaReporte" name="inputFechaHastaReporte" <?php echo "max='$currentDate'" ?> required disabled>
+         
         </div>
             
         
@@ -93,7 +94,8 @@ if (!isset($_SESSION['administrador'])) {
     
 </div>
 
-<script src="administrador.js"></script>
+<script src="../administrador.js"></script>
+<script src="fnReporte.js"></script>
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
