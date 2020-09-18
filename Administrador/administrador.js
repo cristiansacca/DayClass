@@ -24,8 +24,7 @@ window.onload = function(){
         type: 'POST',
         success: function(datosRecibidos) {
             //alert(datosRecibidos);
-            if(datosRecibidos!==0){
-                //alert("Entra al if");
+            if(datosRecibidos!=0){
                 $('.myPopover').popover({
                     placement: 'bottom',
                     title: 'Justificativos',
@@ -42,6 +41,8 @@ window.onload = function(){
                     html: true,
                     content: 'No hay justificativos pendientes de revisión.'
                 });
+                $("#nroNoti").attr("hidden", "hidden" );
+                document.getElementById("nroNoti").innerHTML = 0;
             }           
         }
     })
@@ -49,7 +50,6 @@ window.onload = function(){
 
 document.getElementById("btnCampana").onclick = function(){
     $("#nroNoti").attr("hidden", "hidden" );
-    document.getElementById("nroNoti").innerHTML = 0;
 }
 
 function letters(letras) {
