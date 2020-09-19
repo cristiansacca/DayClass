@@ -20,6 +20,27 @@ function minutosValidos(){
     return rtdo;
 }
 
+function vigenciaValida(){
+    var min = document.getElementById('minutosVigencia').value;
+    var minAnt = document.getElementById('minutosVigenciaAnterior').value;
+    var rtdo =false;
+    var msg;
+    if (min  > 0 && (min % 5) == 0){ 
+      if(min != minAnt){
+         rtdo = true;
+        }else{
+           msg ="Es el mismo tiempo que esta vigente."; 
+        }
+     }else{
+         msg ="El tiempo tiene que ser múltiplo de 5.";
+     }
+    
+    changeColor('minutosVigencia',rtdo);
+    setValitationMesage('msjValidacionVigencia', rtdo, msg);
+    
+    return rtdo;
+}
+
 function changeColor(elementID, rtdo){
     if(rtdo == false){
         document.getElementById(elementID).style.backgroundColor = "PeachPuff";

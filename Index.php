@@ -53,30 +53,37 @@ if (isset($_SESSION['administrador'])) {
             </button>
          </div>";
       }
-       
-    
-        if(isset($_GET["resultado"])){
 
-            switch ($_GET["resultado"]) {
-                case 1:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+
+      if (isset($_GET["resultado"])) {
+
+         switch ($_GET["resultado"]) {
+            case 1:
+               echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5>Registro exitoso.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-                case 2:
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+               break;
+            case 2:
+               echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5>Datos no localizados.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
-
-            }
-        }
+               break;
+            case 3:
+               echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5>La sesión a caducado.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+               break;
+         }
+      }
 
       ?>
    </form>
@@ -87,15 +94,14 @@ if (isset($_SESSION['administrador'])) {
       var cambio = document.getElementById("txtPassword");
       if (cambio.type == "password") {
          cambio.type = "text";
-        document.getElementById("show_password").checked = true;
+         document.getElementById("show_password").checked = true;
       } else {
          cambio.type = "password";
-          document.getElementById("show_password").checked = false;
+         document.getElementById("show_password").checked = false;
       }
    }
 
-   document.getElementById("contenidoNavbar").innerHTML="<a class='btn btn-secondary p-2' href='/DayClass/signIn/sign_in.php' style='width:8rem;'><i class='fa fa-user-plus mx-1'></i>Registrarse</a>";
-
+   document.getElementById("contenidoNavbar").innerHTML = "<a class='btn btn-secondary p-2' href='/DayClass/signIn/sign_in.php' style='width:8rem;'><i class='fa fa-user-plus mx-1'></i>Registrarse</a>";
 </script>
 
 <?php
