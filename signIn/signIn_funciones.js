@@ -17,7 +17,7 @@ function validarDNI(){
         }
         
     }else{
-        msg = "El número de DNI debe ser de más de 7 números.";
+        msg = "El DNI debe ser de más de 7 números.";
     }
     
     changeColor('inputDNI',rtdo);
