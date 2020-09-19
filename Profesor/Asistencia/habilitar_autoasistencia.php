@@ -99,7 +99,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
             <div class="text-center row">
                 <div class="form-group col-md-6">
                     <h3 class="font-weight-normal">Código de auto-asistencia</h3>
-                    <i class="fa fa-barcode fa-5x mb-2"></i>
+                    <i class="fa fa-qrcode fa-5x mb-2"></i>
                     <input type="text" class="form-control m-auto text-center" style="width: auto" id="outCodigoAutoasist" name="codigoAsis" readonly>
                     <br>
                     <button type="button" class="btn btn-primary" id="btnCodigoAutoasist" onclick="generarCodigo(); return false;"><i class="fa fa-refresh mr-2"></i>Generar</button>

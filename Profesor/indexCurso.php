@@ -256,7 +256,7 @@ if(($fechaD > $currentDateTime)){
                        <?php 
                         if ($hab && $hayFechasCursado && $hayAlumnos) {
                             echo 'class="btn btn-primary"';
-                            echo "href='#' ";
+                            echo "href='/DayClass/Profesor/Estadisticas/estadistica_curso.php?id_curso=$id_curso' ";
                         }else {
                             echo 'class="btn btn-primary disabled"';
                         } 
@@ -393,10 +393,6 @@ if(($fechaD > $currentDateTime)){
     </div>
 </div>
 
-
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
     $("#icono").addClass("fa fa-clipboard mr-1");
