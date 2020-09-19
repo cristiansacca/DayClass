@@ -9,7 +9,7 @@ function cambiarContenidoNavbar() {
     contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php'>Profesores</a><div class='dropdown-divider'></div>";
     contenido += "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php'>Administradores</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php'>Parametros</a></div></li>";
     
-    contenido += "<li class='nav-item'><a id='btnCampana' class='nav-link myPopover'><i id='iconoCampana' class='fa fa-bell fa-fw'></i><div hidden id='nroNoti' class='count-container' data-region='count-container'>1</div></a></li>";
+    contenido += "<li class='nav-item'><a id='btnCampana' class='nav-link myPopover'><i id='iconoCampana' class='fa fa-bell fa-fw ml-n2'></i><div hidden id='nroNoti' class='count-container' data-region='count-container'>1</div></a></li>";
     
     contenido += "<li><div class='dropdown'>";
     contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i></button>";
@@ -24,7 +24,8 @@ window.onload = function(){
         type: 'POST',
         success: function(datosRecibidos) {
             //alert(datosRecibidos);
-            if(datosRecibidos!=0){
+            if(datosRecibidos!==0){
+                //alert("Entra al if");
                 $('.myPopover').popover({
                     placement: 'bottom',
                     title: 'Justificativos',
@@ -41,8 +42,6 @@ window.onload = function(){
                     html: true,
                     content: 'No hay justificativos pendientes de revisión.'
                 });
-                $("#nroNoti").attr("hidden", "hidden" );
-                document.getElementById("nroNoti").innerHTML = 0;
             }           
         }
     })
@@ -50,6 +49,7 @@ window.onload = function(){
 
 document.getElementById("btnCampana").onclick = function(){
     $("#nroNoti").attr("hidden", "hidden" );
+    document.getElementById("nroNoti").innerHTML = 0;
 }
 
 function letters(letras) {

@@ -17,9 +17,9 @@
 		
     $temName = $file['tmp_name']; //Obtenemos el directorio temporal en donde se ha almacenado el archivo;
     $fileName = $file['name']; //Obtenemos el nombre del archivo
-    $fileExtension = substr(strrchr($fileName, '.'), 1); //Obtenemos la extensiÃ³n del archivo.
+    $fileExtension = substr(strrchr($fileName, '.'), 1); //Obtenemos la extensión del archivo.
     
-    //Comenzamos a extraer la informaciÃ³n del archivo
+    //Comenzamos a extraer la información del archivo
     $fp = fopen($temName, "rb");//abrimos el archivo con permiso de lectura
     $contenido = fread($fp, filesize($temName));//leemos el contenido del archivo
     //Una vez leido el archivo se obtiene un string con caracteres especiales.
