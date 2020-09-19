@@ -8,10 +8,10 @@ function minutosValidos(){
       if(min != minAnt){
          rtdo = true;
         }else{
-           msg ="Es el mismo tiempo que esta vigente"; 
+           msg ="Es el mismo tiempo que esta vigente."; 
         }
      }else{
-         msg ="El codigo tiene que ser multiplo de 5";
+         msg ="El código tiene que ser múltiplo de 5.";
      }
     
     changeColor('minutosCodigo',rtdo);
@@ -162,14 +162,14 @@ function porcentajeValido(){
           if(min > 0 && min <= 100){
               rtdo = true;
           }else{
-              msg ="No se permiten esos procetajes"; 
+              msg ="No se permiten esos porcentajes."; 
           }
             
         }else{
-           msg ="Es el mismo porcentaje que esta vigente"; 
+           msg ="Es el mismo porcentaje que esta vigente."; 
         }
      }else{
-         msg ="El porcentaje tiene que ser multiplo de 5";
+         msg ="El porcentaje tiene que ser múltiplo de 5.";
      }
     
     

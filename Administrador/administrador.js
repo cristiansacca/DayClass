@@ -76,7 +76,7 @@ function validarEmail() {
     rtdo = validateEmail(elem);
 
     if (rtdo == false) {
-        msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ y .com";
+        msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ y .com.";
     }
 
     changeColor('inputEmailNew', rtdo);
@@ -95,7 +95,7 @@ function validarContrasenia() {
         document.getElementById('inputPassNewRep').disabled = false;
     }
     else {
-        msg = 'La contraseña ingresada no es fuerte';
+        msg = 'La contraseña ingresada no es fuerte.';
         document.getElementById('inputPassNewRep').disabled = true;
     }
 
@@ -113,7 +113,7 @@ function validarRepeticion() {
     var dev = true;
 
     if (contrasenna != c) {
-        msg = 'Las Cotraseñas no coinciden';
+        msg = 'Las contraseñas no coinciden.';
         dev = false;
     }
 
@@ -210,7 +210,7 @@ function comprobarLista() {
     eval("debugger;");
     var elem = document.getElementById('inpGetFile').value;
     if (elem == "") {
-        alert("No esta cargado el documento");
+        alert("No esta cargado el documento.");
     } else {
         document.getElementById('btnImportar').disabled = false;
     }
@@ -227,11 +227,11 @@ function validarDNI() {
     if (cantDigitos > 6 && cantDigitos < 9) {
         rtdo = numbers(elem);
         if (rtdo == false) {
-            msg = "En el DNI solo van números";
+            msg = "En el DNI sólo van números.";
         }
 
     } else {
-        msg = "El número de DNI deben ser 8 números";
+        msg = "El número de DNI debe contener más de 7 números.";
     }
 
     changeColor('inputDNI', rtdo);
@@ -257,10 +257,10 @@ function validarLegajo() {
         
     if(cantDigitos != cantTotal){
         if(cantDigitos < cantTotal){
-            msg = "El número de Legajo deben ser mas caracteres "; 
+            msg = "El número de Legajo debe contener más caracteres. "; 
             rtdo = false;
         }else{
-            msg = "El número de Legajo deben ser menos caracteres "; 
+            msg = "El número de Legajo deben contener menos caracteres. "; 
             rtdo = false;
         }
           
@@ -288,11 +288,11 @@ function validarLegajo() {
         }
         
         if(letras == 1 && verifLetras == false){
-            msg = msg + " No se cumple la cantidad de Letras ";  
+            msg = msg + " No se cumple la cantidad de Letras. ";  
         }
         
         if(numeros == 1 && verifNumeros ==false){
-            msg = msg + "No se cumple la cantidad de Numeros ";
+            msg = msg + "No se cumple la cantidad de Números. ";
         }
     }
         
@@ -327,10 +327,10 @@ function validarNombre() {
         rtdo = letters(elem);
 
         if (rtdo == false) {
-            msg = "En el Nombre solo van letras";
+            msg = "En el Nombre sólo van letras.";
         }
     } else {
-        msg = "El nombre debe contener más de 3 y menos de 20 letras ";
+        msg = "El Nombre debe contener más de 3 y menos de 20 letras. ";
 
     }
 
@@ -349,12 +349,12 @@ function validarApellido() {
 
         rtdo = letters(elem);
         if (rtdo == false) {
-            msg = "En el Apellido solo van letras";
+            msg = "En el Apellido sólo van letras.";
         }
 
 
     } else {
-        msg = "El apellido debe contener más de 3 y menos de 20 letras ";
+        msg = "El Apellido debe contener más de 3 y menos de 20 letras. ";
     }
 
     changeColor('inputSurname', rtdo);

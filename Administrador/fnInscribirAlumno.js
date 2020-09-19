@@ -8,11 +8,11 @@ function validarDNIIns() {
     if (cantDigitos > 6 && cantDigitos < 9) {
         rtdo = numbers(elem);
         if (rtdo == false) {
-            msg = "En el DNI solo van números";
+            msg = "En el DNI sólo van números.";
         }
 
     } else {
-        msg = "El número de DNI deben ser 8 números";
+        msg = "El número de DNI debe ser mayor a 7 números.";
     }
 
     changeColor('inputDNI', rtdo);
@@ -38,10 +38,10 @@ function validarLegajoIns() {
         
     if(cantDigitos != cantTotal){
         if(cantDigitos < cantTotal){
-            msg = "El número de Legajo deben ser mas caracteres "; 
+            msg = "El número de Legajo debe contener más caracteres. "; 
             rtdo = false;
         }else{
-            msg = "El número de Legajo deben ser menos caracteres "; 
+            msg = "El número de Legajo debe contener menos caracteres. "; 
             rtdo = false;
         }
           
@@ -69,11 +69,11 @@ function validarLegajoIns() {
         }
         
         if(letras == 1 && verifLetras == false){
-            msg = msg + " No se cumple la cantidad de Letras ";  
+            msg = msg + " No se cumple la cantidad de letras. ";  
         }
         
         if(numeros == 1 && verifNumeros ==false){
-            msg = msg + "No se cumple la cantidad de Numeros ";
+            msg = msg + "No se cumple la cantidad de números. ";
         }
     }
         

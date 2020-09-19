@@ -38,8 +38,8 @@ function validarPeriodo (){
             document.getElementById("msgPeriodoHasta").innerHTML = "";
             $("#btnGenerar").removeAttr("disabled"); 
         } else {
-            document.getElementById("msgPeriodoDesde").innerHTML = "Periodo inválido";
-            document.getElementById("msgPeriodoHasta").innerHTML = "Periodo inválido";
+            document.getElementById("msgPeriodoDesde").innerHTML = "Período inválido.";
+            document.getElementById("msgPeriodoHasta").innerHTML = "Período inválido.";
             $("#btnGenerar").attr("disabled", "disabled" );
         }
     }
@@ -96,7 +96,7 @@ function generarPieChart(datosEntrada) {
                     legend: { display: false },
                     title: {
                         display: true,
-                        text: 'Gráfico de asistencias'
+                        text: 'Gráfico de asistencias.'
                     }
                 }
             });
