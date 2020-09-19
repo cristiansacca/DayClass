@@ -35,7 +35,7 @@ function validarEmail(){
     rtdo = validateEmail(elem);
     
     if(rtdo == false){
-            msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ y .com";    
+            msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ y .com .";    
     }
     
     changeColor('inputEmail',rtdo);
@@ -54,7 +54,7 @@ function validarContrasenia()
         document.getElementById('inputPassNewRep').disabled = false;
     }
     else {
-        msg = 'La contraseña ingresada no es fuerte';
+        msg = 'La contraseña ingresada no es fuerte.';
          document.getElementById('inputPassNewRep').disabled = true;
     }
 
@@ -72,7 +72,7 @@ function validarRepeticion()
     var dev = true;
 
     if (contrasenna != c) {
-        msg = 'Las Cotraseñas no coinciden';
+        msg = 'Las contraseñas no coinciden.';
         dev = false;
     }
     

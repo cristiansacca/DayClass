@@ -127,7 +127,7 @@ if(($fechaD > $currentDateTime)){
         <?php
         if (!$hab) {
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Su estado el dia de hoy es $estadoCargo, no puede tomar asistencia.</h5>
+                <h5>Su estado el día de hoy es $estadoCargo, no puede tomar asistencia.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -177,7 +177,7 @@ if(($fechaD > $currentDateTime)){
         
         if(!$hayAlumnos){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>Todavía no hay alumnos inscriptos para este periodo.</h5>
+                <h5>Todavía no hay alumnos inscriptos para este período.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -186,7 +186,7 @@ if(($fechaD > $currentDateTime)){
         
         if(($fechaD > $currentDateTime)){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>El cursado todavia no empieza.</h5>
+                <h5>El cursado todavía no empieza.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -222,7 +222,7 @@ if(($fechaD > $currentDateTime)){
 
             case '2':
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ocurió un error al guardar los datos de asistencia.</h5>
+                        <h5>Ocurrió un error al guardar los datos de asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>

@@ -35,11 +35,11 @@ function validarLongCodIngresado() {
     var dev = false;
     if (codigoIngresado.length == 0) {
 
-        msg = "El código esta vacío";
+        msg = "El código está vacío.";
 
     } else {
         if (codigoIngresado.length < 11 || codigoIngresado.length > 11) {
-            msg = "El código no está completo";
+            msg = "El código no está completo.";
         } else {
 
             var letras = codigoIngresado.substring(0, 2);
@@ -47,14 +47,14 @@ function validarLongCodIngresado() {
 
             if (letters(letras)) {
                 if (numbers(num)) {
-                    msg = "Código válido";
+                    msg = "Código válido.";
                     rtdo = true;
                     dev = true;
                 } else {
-                    msg = "Código no válido";
+                    msg = "Código no válido.";
                 }
             } else {
-                msg = "Código no válido";
+                msg = "Código no válido.";
             }
         }
     }
@@ -85,7 +85,7 @@ function validarEmail() {
     rtdo = validateEmail(elem);
 
     if (rtdo == false) {
-        msg = "Lo que se ha escrito no es una dirección de mail valida, revisar @ , .com y espacio al final";
+        msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ , .com y espacio al final.";
     }
 
     changeColor('inputEmail', rtdo);
@@ -99,11 +99,11 @@ function validarContrasenia(){
     var msg = "";
 
     if (rtdo == true) {
-        msg = 'Cotraseña fuerte';
+        msg = 'Contraseña fuerte.';
         document.getElementById('inputPassNewRep').disabled = false;
     }
     else {
-        msg = 'La contraseña ingresada no es fuerte';
+        msg = 'La contraseña ingresada no es fuerte.';
          document.getElementById('inputPassNewRep').disabled = true;
     }
 
@@ -121,7 +121,7 @@ function validarRepeticion() {
     var dev = true;
 
     if (contrasenna != c) {
-        msg = 'Las Cotraseñas no coinciden';
+        msg = 'Las contraseñas no coinciden.';
         dev = false;
     }
     
@@ -213,8 +213,8 @@ function validarFechasJustificativo(){
     }
     if(desde!=""&&hasta!=""){
         if(desde>hasta){
-            setValitationMesage("msgDesde",false,"El periodo no es válido");
-            setValitationMesage("msgHasta",false,"El periodo no es válido");
+            setValitationMesage("msgDesde",false,"El período no es válido.");
+            setValitationMesage("msgHasta",false,"El período no es válido.");
             $("#btnCargar").attr("disabled", "disabled" );
         }
         else{
@@ -240,7 +240,7 @@ function validar_checkbox() {
     }
 
     if(!al_menos_uno){
-        setValitationMesage("msgMaterias",false,"Seleccione al menos una materia");
+        setValitationMesage("msgMaterias",false,"Seleccione al menos una materia.");
         $("#btnCargar").attr("disabled", "disabled" );
     }else{
         setValitationMesage("msgMaterias",true,"");
