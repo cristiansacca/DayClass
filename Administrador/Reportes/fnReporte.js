@@ -14,7 +14,7 @@ document.getElementById("materia").onchange = function(){
             json = JSON.parse(datosRecibidos);
             contenido="<option value='' selected>Seleccione</option>";
             if(json.length != 0){
-                contenido+="<option value='Todos'>Todos</option>";
+                
                 for (let index = 0; index < json.length; index++) {
                     contenido += "<option value='"+json[index].id+"'>"+json[index].nombreCurso+"</option>";
                     document.getElementById("curso").innerHTML = contenido;
@@ -32,6 +32,8 @@ document.getElementById("materia").onchange = function(){
 
 
 
+var cantAlumnos = 0;
+
 document.getElementById("curso").onchange = function(){
     eval("debugger;");
     var id_curso = document.getElementById("curso").value;
@@ -48,11 +50,11 @@ document.getElementById("curso").onchange = function(){
             json = JSON.parse(datosRecibidos);
             contenido="<option value='' selected>Seleccione</option>";
             if(json.length != 0){
-                contenido+="<option value='Todos'>Todos</option>";
+                cantAlumnos = json.length;
                 for (let index = 0; index < json.length; index++) {
                     contenido += "<option value='"+json[index].id+"'>"+json[index].nombreAlum + " " + json[index].apellidoAlum+"</option>";
                     document.getElementById("alumno").innerHTML = contenido;
-                    $("#alumno").removeAttr("disabled");                
+                    $("#alumno").removeAttr("disabled");  
                 }
             } else {
                 contenido="<option value='' selected>Alumnos</option>";
@@ -73,4 +75,16 @@ function habilitarFechaHasta(){
     document.getElementById('inputFechaHastaReporte').min = fchDesde;
     document.getElementById('inputFechaHastaReporte').disabled = false;
 }
+
+
+function resizeSelect(){
+    if(cantAlumnos > 0){
+        if(cantAlumnos < 10){
+            document.getElementById("alumno").size = cantAlumnos +1;
+        }else{
+            document.getElementById("alumno").size = 10;
+        }
+    }
+}
+
 
