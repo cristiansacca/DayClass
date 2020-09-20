@@ -12,7 +12,7 @@ document.getElementById("materia").onchange = function(){
         success: function(datosRecibidos) {
             //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
-            contenido="<option value='' selected>Seleccione</option>";
+            contenido="<option value='vacio' selected>Seleccione</option>";
             if(json.length != 0){
                 
                 for (let index = 0; index < json.length; index++) {
@@ -20,8 +20,8 @@ document.getElementById("materia").onchange = function(){
                     document.getElementById("curso").innerHTML = contenido;
                     $("#curso").removeAttr("disabled");                
                 }
-            } else {
-                contenido="<option value='' selected>Cursos</option>";
+            }else {
+                contenido="<option value='vacio' selected>Curso</option>";
                 document.getElementById("curso").innerHTML = contenido;
                 $("#curso").attr("disabled", "disabled" );
             }
@@ -48,7 +48,7 @@ document.getElementById("curso").onchange = function(){
         success: function(datosRecibidos) {
             //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
-            contenido="<option value='' selected>Seleccione</option>";
+            contenido="<option value='vacio' selected>Seleccione</option>";
             if(json.length != 0){
                 cantAlumnos = json.length;
                 for (let index = 0; index < json.length; index++) {
@@ -56,8 +56,8 @@ document.getElementById("curso").onchange = function(){
                     document.getElementById("alumno").innerHTML = contenido;
                     $("#alumno").removeAttr("disabled");  
                 }
-            } else {
-                contenido="<option value='' selected>Alumnos</option>";
+            }else{
+                contenido="<option value='vacio' selected>Alumno</option>";
                 document.getElementById("alumno").innerHTML = contenido;
                 $("#alumno").attr("disabled", "disabled" );
             }
