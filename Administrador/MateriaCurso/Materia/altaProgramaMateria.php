@@ -62,12 +62,16 @@ if (isset($_FILES["inpGetFile"])) {
             
             
             if($unidad_p == "unidad" && $tema_p == "tema"){
+                $rtdo2 = false;
                 for ($row = 2; $row <= $highestRow; $row++) {
                     $unidadPrograma = $sheet->getCell("A" . $row)->getValue();
                     $temaPrograma = $sheet->getCell("B" . $row)->getValue();
                     
-                    $sql2 = "INSERT INTO `temasmateria`(`nombreTema`, `programaMateria_id`, `unidadTema`) VALUES ('$temaPrograma','$id_programa','$unidadPrograma')";
-                    $rtdo2 = $con->query($sql2);
+                    
+                    if(($unidadPrograma != "" || $unidadPrograma != null) && ($temaPrograma != "" || $temaPrograma != null)){
+                        $sql2 = "INSERT INTO `temasmateria`(`nombreTema`, `programaMateria_id`, `unidadTema`) VALUES ('$temaPrograma','$id_programa','$unidadPrograma')";
+                        $rtdo2 = $con->query($sql2);
+                    }
                     
                 }
 
