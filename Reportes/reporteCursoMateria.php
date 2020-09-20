@@ -7,8 +7,8 @@ $currentDateTime = date('Y-m-d H:i:s');
 $currentYear = date('Y');
 
 $id_curso = "18";
-$fechaDesdeReporte = '2020-08-01';
-$fechaHastaReporte = '2020-09-30';
+$fechaDesdeReporte = '2020-05-01';
+$fechaHastaReporte = '2020-07-30';
 
 
 //seleccionar todas las fechas de asistencia ese curso 
@@ -30,31 +30,28 @@ $fechaHastaReporteC =date_create($fechaHastaReporte);
 $fechaHastaReporteC =  date_format($fechaHastaReporteC,"d/m/Y");
 
 
-$cadena = "";
-
-while($row = $selectFechas ->fetch_row()){
-    //echo $row[0];
+//crear un arreglo con todas las fechas y horas de asistencia 
+$arregloFechasHoras = [];
+while($row = $selectFechas ->fetch_assoc()){
     
-    $cadena = $cadena . $row[0];
+    $fechaHora = $row["fechaHoraAsisDia"];
+    array_push($arregloFechasHoras, $fechaHora);
     
 }
 
-$arregloFechasHoras = str_split($cadena, 19);
-
-
+//crear un arreglo con todos los ID de las planillas de asistencia de ese curso 
 $arregloIdAsistencias = [];
 while($alumnosAsistencia = $selectAsistenciasAlumnoCurso->fetch_assoc()){
 
     $id_asistencia = $alumnosAsistencia["idAsistencia"];
-    
     array_push($arregloIdAsistencias, $id_asistencia);
     
 }
 
+//libreria de FPDF 
 require_once( "../fpdf/fpdf.php" );
 
 // Begin configuration
-
 $textColour = array( 0, 0, 0 );
 $headerColour = array( 100, 100, 100 );
 
@@ -67,8 +64,7 @@ $logoYPos = 108;
 $logoWidth = 110;
 
 
-/*Create the title page*/
-
+/*Create the title page PORTADA*/
 $pdf = new FPDF( 'P', 'mm', 'A4' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
 $pdf->AddPage();
@@ -76,18 +72,17 @@ $pdf->AddPage();
 // Logo
 $pdf->Image( $logoFile, $logoXPos, $logoYPos, $logoWidth );
 
-// Report Name
+//Report Name
 $pdf->SetFont( 'Arial', 'B', 20);
 $pdf->Ln( $reportNameYPos );
 $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->Ln();
 $pdf->Cell( 0 ,25, "$nombreCurso - $currentYear ",0,0, 'C' );
 $pdf->Ln();
-//$pdf->Cell( 0 ,15, "$nombreAlumno $apellidoAlumno",0,0, 'C' );
 
 
 /*Create the page header, main heading, and intro text*/
-
+//se crea la hoja que va a llevar la tabla 
 $pdf->AddPage('L', 'Legal');
 $pdf->SetTextColor( $headerColour[0], $headerColour[1], $headerColour[2] );
 $pdf->SetFont( 'Arial', '', 17 );
@@ -95,44 +90,33 @@ $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
 $pdf->SetFont( 'Arial', '', 15 );
 
+
+//datos del reporte 
 $codigo = utf8_decode("Código");
-
 $pdf->Ln(2);
-$numeroReporte = generateReportNumber();
-
+$numeroReporte = generateReportNumber();//generar automaticamente el codigo del reporte
 $pdf->Ln(16);
 $pdf->Write(10, "$codigo reporte: $numeroReporte" );
 $pdf->Ln(6);
-$pdf->SetFont( 'Arial', '', 12 );
 
+$pdf->SetFont( 'Arial', '', 12 );
 $currentDateTime = date_create($currentDateTime);
 $currentDateTime =  date_format($currentDateTime,"d/m/Y H:i:s");
 $pdf->Write(10, "Fecha: $currentDateTime" );
-
-$pdf->Ln(5);
-
-
-$pdf->SetFont( 'Arial', '', 12 );
-
-
-$pdf->Ln(5);
+$pdf->Ln(7);
 $pdf->Write( 6, "Curso: $nombreCurso" );
 $pdf->Ln(5);
 $pdf->Write( 6, "Fechas Reporte: $fechaDesdeReporteC - $fechaHastaReporteC" );
-
-
 $pdf->Ln(5);
-
 $pdf->Write( 6, "Referencias:" );
 $pdf->Ln(5);
-
 $pdf->Write( 6, "P = Presente, A = Ausente, J = Justificado, N = No Registra asistencia" );
 $pdf->Ln(10);
 
 
 //verificar que haya alumnos y fechas para generar la tabla 
-
-
+if(count($arregloFechasHoras) != 0 && count($arregloIdAsistencias) != 0){
+    
 //calcular el tamaño de las celdas en funcion de la cantidad de registros 
 $anchoCol = 9.5;
 $cantColumnas = $selectFechas->num_rows;
@@ -144,6 +128,8 @@ if($cantColumnas <= 15){
         $anchoCol = 15;
     }
 }
+
+
 
 $cantFechas = count($arregloFechasHoras);
 $cont = 0;
@@ -171,8 +157,6 @@ while($cont < $cantFechas){
 
         $pdf->SetFont('Arial', '', 7);
 
-        
-            
         for($j = 0; $j < count($arregloIdAsistencias); $j ++){
             
             $id_asistencia = $arregloIdAsistencias[$j];
@@ -184,8 +168,9 @@ while($cont < $cantFechas){
             $nombreAlumno = $alumno["nombreAlum"];
             $apellidoAlumno = $alumno["apellidoAlum"];
             $legajoAlumno = $alumno["legajoAlumno"];
+            $index = $j +1;
 
-            $nombreLista = "$legajoAlumno - $nombreAlumno $apellidoAlumno";
+            $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
 
             $pdf->Cell(40, 6, $nombreLista , 1, 0, 'L', 0);
 
@@ -212,7 +197,7 @@ while($cont < $cantFechas){
                                 break;
 
                             default:
-                                $pdf->Cell($anchoCol, 6, '-', 1, 0, 'C', 0);
+                                $pdf->Cell($anchoCol, 6, 'N', 1, 0, 'C', 0);
                                 break;
 
                             }
@@ -253,8 +238,10 @@ while($cont < $cantFechas){
             $nombreAlumno = $alumno["nombreAlum"];
             $apellidoAlumno = $alumno["apellidoAlum"];
             $legajoAlumno = $alumno["legajoAlumno"];
+            $index = $j +1;
 
-            $nombreLista = "$legajoAlumno - $nombreAlumno $apellidoAlumno";
+            $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
+
 
             $pdf->Cell(40, 6, $nombreLista , 1, 0, 'L', 0);
 
@@ -281,7 +268,7 @@ while($cont < $cantFechas){
                                 break;
 
                             default:
-                                $pdf->Cell($anchoCol, 6, '-', 1, 0, 'C', 0);
+                                $pdf->Cell($anchoCol, 6, 'N', 1, 0, 'C', 0);
                                 break;
 
                             }
@@ -289,27 +276,43 @@ while($cont < $cantFechas){
             }
             $pdf->Ln(6);
         }
- 
-        
-        
     }
-    
-    
     $cont = $cont + 30;
     
-    
+    //si para la proxima ejecuicion del while quedan fechas que registrar se crea una hoja nueva 
     if($cont <= $cantFechas){
         $pdf->AddPage('L', 'Legal');
         
     }
     
 }
+    
+    
+}else{
+    $mensaje = null;
+    if(count($arregloFechasHoras) == 0 && count($arregloIdAsistencias) == 0){
+        $mensaje = "El curso no registra informacion de asistencias ni alumnos inscriptos";
+     
+    }else{
+        if(count($arregloFechasHoras) == 0){
+          $mensaje = "El curso no registra información de asistencias en el periodo seleccionado"; 
+        }else{
+           $mensaje = "El curso no registra información alumnos inscriptos en el periodo seleccionado" ;  
+        }
+    }
+    
+    $mensaje = utf8_decode($mensaje);
+    $pdf -> SetTextColor(255, 0,0);
+    $pdf->SetFont( 'Arial', 'B', 15 );
+    $pdf->Write(15, $mensaje);
+    $pdf->Ln(10); 
+    
+}
 
 /*Serve the PDF*/
-
 $pdf->Output("report.pdf", "I");
 
-
+//generador del codigo del reporte 
 function generateReportNumber(){
     $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $reportNumber = substr(str_shuffle($permitted_chars), 0, 8);
