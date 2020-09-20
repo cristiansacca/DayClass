@@ -1,3 +1,6 @@
+
+
+
 <?php
 
 $materia = $_POST["materia"];
@@ -62,7 +65,6 @@ $nombreAlumno = $alumno["nombreAlum"];
 $apellidoAlumno = $alumno["apellidoAlum"];
 $legajoAlumno = $alumno["legajoAlumno"];
 $dniAlumno = $alumno["dniAlum"];
-
 
 //Datos curso
 $selectCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL");

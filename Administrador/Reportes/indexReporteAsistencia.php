@@ -57,7 +57,7 @@ if (!isset($_SESSION['administrador'])) {
             
         <div class="form-group col-md-4">
           
-          <select id="alumno" name="alumno" class="custom-select" onfocus='resizeSelect();' onblur='this.size=1;' onchange='this.size=1; this.blur();' disabled>
+          <select id="alumno" name="alumno" class="custom-select" onfocus='resizeSelect();' onblur='this.size=1;' onclick='this.size=1; this.blur();' disabled>
                 <option value="" selected>Alumno</option>
                 <!--http://recordarque.blogspot.com/2011/12/filtrar-contenido-combobox-dropdown.html-->
               <!--https://stackoverflow.com/questions/48560072/how-to-add-vertical-scrollbar-to-select-box-options-list/48560262-->

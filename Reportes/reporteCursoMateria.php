@@ -7,16 +7,14 @@ $currentDateTime = date('Y-m-d H:i:s');
 $currentYear = date('Y');
 
 $id_curso = "18";
-$fechaDesdeReporte = '2020-05-01';
-$fechaHastaReporte = '2020-07-30';
-
+$fechaDesdeReporte = '2020-08-01';
+$fechaHastaReporte = '2020-09-30';
 
 //seleccionar todas las fechas de asistencia ese curso 
 $selectFechas = $con->query("SELECT DISTINCT asistenciadia.fechaHoraAsisDia FROM `asistencia`, asistenciadia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' ORDER BY `fechaHoraAsisDia` ASC");
 
 //Datos asistencias, de los alumnos en el periodo seleccionado
 $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, alumno.id, alumno.nombreAlum, alumno.apellidoAlum, alumno.legajoAlumno FROM alumno, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = alumno.id ORDER BY alumno.apellidoAlum ASC");
-
 
 //Datos curso
 $selectCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL");
@@ -291,7 +289,7 @@ while($cont < $cantFechas){
 }else{
     $mensaje = null;
     if(count($arregloFechasHoras) == 0 && count($arregloIdAsistencias) == 0){
-        $mensaje = "El curso no registra informacion de asistencias ni alumnos inscriptos";
+        $mensaje = "El curso no registra información de alumnos inscriptos, ni de asistencias";
      
     }else{
         if(count($arregloFechasHoras) == 0){
