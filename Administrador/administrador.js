@@ -24,7 +24,7 @@ window.onload = function(){
         type: 'POST',
         success: function(datosRecibidos) {
             //alert(datosRecibidos);
-            if(datosRecibidos!==0){
+            if(datosRecibidos!=0){
                 //alert("Entra al if");
                 $('.myPopover').popover({
                     placement: 'bottom',
