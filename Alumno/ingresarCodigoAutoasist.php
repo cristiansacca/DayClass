@@ -47,7 +47,7 @@ if(($consulta->num_rows) == 0){
             
             if($nombreEstadoAlumno == "LIBRE"){
                 //el alumno esta libre en la materia no puede resgistrar asistencia
-                header("Location:/DayClass/Alumno/index.php?resultado=1");
+                header("Location:/DayClass/Alumno/index.php?resultado=6");
             }else{
                $consulta3 = $con -> query("SELECT * FROM asistencia WHERE curso_id = '".$cursoCodigo."' AND  alumno_id = '".$id_alumno."'");
                 $resultado3 = $consulta3->fetch_assoc();
