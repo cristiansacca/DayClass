@@ -252,8 +252,6 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-body" <?php 
                                     if($dni == null){ 
                                         echo "hidden ";} ?>>
-                
-                
                  <div>
                     <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como se muestra a continuación: </h9>
 

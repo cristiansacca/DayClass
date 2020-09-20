@@ -29,6 +29,7 @@ include "../../../header.html";
                 $colNumber = PHPExcel_Cell::columnIndexFromString($highestColumn);
 
                 $currentDateTime = date('Y-m-d H:i:s');
+                //Busqueda del ID del perimiso de docente
                 $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "DOCENTE"');
                 $resultado1 = $consulta1->fetch_assoc();
                 $id_permiso = $resultado1['id'];
@@ -67,7 +68,7 @@ include "../../../header.html";
                             
                              if(validarDNI($dni)){
                                  
-                                 $sql = 'INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ("' . $nombre . '","' . $apellido . '", "' . $dni . '","' . $currentDateTime . '","' . $dni . '",' . $id_permiso . ');';
+                                 $sql = "INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ('$nombre','$apellido','$dni','$currentDateTime','$dni','$id_permiso')";
 
                                  $rtdo = $con->query($sql);
                                 array_push($correcto, $dni);
@@ -112,7 +113,7 @@ include "../../../header.html";
                         $nombre = $sheet->getCell("D" . $row)->getValue();
 
 
-                        $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
+                            $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
                             $consultaPr = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni' AND legajoProf = '$legajo'");
                             $consultaAd = $con->query("SELECT * FROM administrativo WHERE dniAdm = '$dni' AND legajoAdm = '$legajo'");
 
@@ -121,7 +122,7 @@ include "../../../header.html";
                             
                              if(validarDNI($dni) && validarLegajo($legajo)){
                                  
-                                 $sql = 'INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ("' . $nombre . '","' . $apellido . '", "' . $dni . '","' . $currentDateTime . '","' . $legajo . '",' . $id_permiso . ');';
+                                 $sql = "INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ('$nombre','$apellido','$dni','$currentDateTime','$legajo','$id_permiso')";
 
                                  $rtdo = $con->query($sql);
                                 array_push($correcto, $legajo);
@@ -217,8 +218,6 @@ include "../../../header.html";
 }
 
   
-    
-    
 function validarDNI($dni){
     $rtdo = false;
     
