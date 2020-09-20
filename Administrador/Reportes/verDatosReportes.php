@@ -8,17 +8,27 @@ if($materia == "Todas"){
     //reporte de toda la institucion 
     planillaInstitucion($fechaDesdeReporte, $fechaHastaReporte);
 }else{
-    
     if(isset($_POST["curso"])){
         $curso= $_POST["curso"];
         if(isset($_POST["alumno"])){
             //reporte de cierto alumno en una materia en un curso
             $alumno = $_POST["alumno"];
-            planillaAlumno($curso,$alumno,$fechaDesdeReporte,$fechaHastaReporte);
+            
+            if($alumno == "vacio"){
+                planillaCurso($curso,$fechaDesdeReporte, $fechaHastaReporte);
+            }else{
+                planillaAlumno($curso,$alumno,$fechaDesdeReporte,$fechaHastaReporte);
+            }
+            
         }else{
             //reporte de todos los alumnios de un curso en una materia
             //planilla de asistencia 
-            planillaCurso($curso,$fechaDesdeReporte, $fechaHastaReporte);
+            if($curso == "vacio"){
+                planillaMateria($materia, $fechaDesdeReporte, $fechaHastaReporte); 
+            }else{
+                planillaCurso($curso,$fechaDesdeReporte, $fechaHastaReporte);
+            }
+            
         } 
     }else{
        //reporte de todos los cursos de cierta materia
@@ -69,7 +79,6 @@ $nombreCurso = $curso["nombreCurso"];
 require_once( "../../fpdf/fpdf.php" );
 
 // Begin configuration
-
 $textColour = array( 0, 0, 0 );
 $headerColour = array( 100, 100, 100 );
 
@@ -194,7 +203,6 @@ while($selectAsistenciasAlumnoCurso2= $selectAsistenciasDiaAlumnoCurso->fetch_as
 }
 
 /*Serve the PDF*/
-
 $pdf->Output( "reporteAsistencias$nombreAlumno$apellidoAlumno$nombreCurso$currentDateTime.pdf", "I" );
  
 }
