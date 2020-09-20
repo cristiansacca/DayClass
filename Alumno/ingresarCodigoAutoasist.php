@@ -41,7 +41,7 @@ if(($consulta->num_rows) == 0){
             header("Location:/DayClass/Alumno/index.php?resultado=4");
         }else{
             
-            $consultaEstadoAlumno = $con -> query("SELECT cursoestadoalumno.nombreEstado FROM alumno, curso, alumnocursoactual, alumnocursoestado, cursoestadoalumno WHERE alumno.id='$id_alumno'' AND curso.id = '$cursoCodigo' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDate' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDate' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id");
+            $consultaEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM alumno, curso, alumnocursoactual, alumnocursoestado, cursoestadoalumno WHERE alumno.id='$id_alumno' AND curso.id = '$cursoCodigo' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDate' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDate' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id");
             $estadoAlumno = $consultaEstadoAlumno->fetch_assoc();
             $nombreEstadoAlumno = $estadoAlumno["nombreEstado"];
             
