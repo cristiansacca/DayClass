@@ -4,7 +4,7 @@ cambiarContenidoNavbar();
 function cambiarContenidoNavbar() {
     var contenido = "";
     contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Alumno/index.php'><i class='fa fa-home fa-lg mr-1'></i>Inicio</a></li>";
-    contenido += "<li class='nav-item'><a class='nav-link' href='#' onclick='abrirModal()'><i class='fa fa-check-square mr-1'></i>Auto-asistencia</a></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='' data-toggle='modal' data-target='#staticBackdrop'><i class='fa fa-check-square mr-1'></i>Auto-asistencia</a></li>";
     contenido += "<li><div class='dropdown'>";
     contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i></button>";
     contenido += "<div class='dropdown-menu'><a class='dropdown-item' href='/DayClass/Alumno/editar_perfil.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>";
