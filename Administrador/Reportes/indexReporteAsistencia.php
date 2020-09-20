@@ -29,7 +29,7 @@ if (!isset($_SESSION['administrador'])) {
         
         <div class="form-row">
         <div class="form-group col-md-4">
-          
+          <label>Materia</label>
             <select id="materia" name="materia" class="custom-select" class="custom-select" required>
                 <option value="" selected>Materia</option>
                 <?php
@@ -48,7 +48,7 @@ if (!isset($_SESSION['administrador'])) {
         </div>
 
         <div class="form-group col-md-4">
-          
+          <label>Curso</label>
           <select id="curso" name="curso" class="custom-select" disabled>
                 <option value="vacio" selected>Curso</option>
                 
@@ -56,7 +56,7 @@ if (!isset($_SESSION['administrador'])) {
         </div>
             
         <div class="form-group col-md-4">
-          
+          <label>Alumno</label>
           <select id="alumno" name="alumno" class="custom-select" onfocus='resizeSelect();' onblur='this.size=1;' onclick='this.size=1; this.blur();' disabled>
                 <option value="vacio" selected>Alumno</option>
                 <!--http://recordarque.blogspot.com/2011/12/filtrar-contenido-combobox-dropdown.html-->

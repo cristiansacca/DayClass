@@ -12,7 +12,7 @@ document.getElementById("materia").onchange = function(){
         success: function(datosRecibidos) {
             //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
-            contenido="<option value='vacio' selected>Seleccione</option>";
+            contenido="<option value='vacio' selected>Todos</option>";
             if(json.length != 0){
                 
                 for (let index = 0; index < json.length; index++) {
@@ -48,7 +48,7 @@ document.getElementById("curso").onchange = function(){
         success: function(datosRecibidos) {
             //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
-            contenido="<option value='vacio' selected>Seleccione</option>";
+            contenido="<option value='vacio' selected>Todos</option>";
             if(json.length != 0){
                 cantAlumnos = json.length;
                 for (let index = 0; index < json.length; index++) {
