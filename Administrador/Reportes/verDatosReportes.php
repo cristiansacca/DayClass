@@ -116,10 +116,11 @@ $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
 $pdf->SetFont( 'Arial', '', 15 );
 
-$numero = utf8_decode("número");
-
+$codigo = utf8_decode("Código");
+$pdf->Ln(2);
+$numeroReporte = generateReportNumber();//generar automaticamente el codigo del reporte
 $pdf->Ln(16);
-$pdf->Write(10, "Reporte $numero: AHE86589" );
+$pdf->Write(10, "$codigo reporte: $numeroReporte" );
 $pdf->Ln(6);
 $pdf->SetFont( 'Arial', '', 12 );
 $pdf->Write(10, "Fecha: $currentDateTime" );
@@ -190,6 +191,13 @@ while($selectAsistenciasAlumnoCurso2= $selectAsistenciasDiaAlumnoCurso->fetch_as
 
 $pdf->Output( "reporteAsistencias$nombreAlumno$apellidoAlumno$nombreCurso$currentDateTime.pdf", "I" );
  
+}
+
+//generador del codigo del reporte 
+function generateReportNumber(){
+    $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $reportNumber = substr(str_shuffle($permitted_chars), 0, 8);
+    return $reportNumber;
 }
 
 ?>
