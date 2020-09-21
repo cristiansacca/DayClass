@@ -35,7 +35,7 @@ include "../../header.html";
 <div class="container">
     <div class="py-4 my-3 jumbotron bg-light">
         <h1>Justificativo cargado</h1>
-        <a class="btn btn-info" href="/DayClass/Alumno/Justificativos/justificativos.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
+        <a class="btn btn-info" href="/DayClass/Alumno/Justificativos/justificativos.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
     <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
 </div>
