@@ -3,7 +3,7 @@ include "../../databaseConection.php";
 
 $curso = $_POST['curso'];
 $fechaDesde = $_POST['fechaDesde'];
-$fechaHasta = $_POST['fechaHasta'];
+$fechaHasta = $_POST['fechaHasta'].' 23:59:59';
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d H:i:s');

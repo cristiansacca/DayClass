@@ -3,7 +3,8 @@ include "../../../databaseConection.php";
 include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
 include "../../../header.html";
 ?>
-<div class="container" hidden><!--Oculta todos los Notice que muestra por el error en la libreria-->
+<div class="container" hidden>
+    <!--Oculta todos los Notice que muestra por el error en la libreria-->
     <?php
     $correcto = [];
     $yaInscriptos = [];
@@ -35,200 +36,190 @@ include "../../../header.html";
                 $id_permiso = $resultado1['id'];
 
                 $first_row = 1;
-                
+
                 $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
-     
+
                 $formatoLegajo = $consultaParamLeg->fetch_assoc();
                 $dni = $formatoLegajo["esDNI"];
 
-                if($dni){
-                    
-                //valido que la primera fila de la tabla excel sea
-                //dni, apellido nombre, en ese orden, sino esta asi no importa la lista 
+                if ($dni) {
 
-                $dni = $sheet->getCell("A" . $row)->getValue();
-                $apellido = $sheet->getCell("B" . $row)->getValue();
-                $nombre = $sheet->getCell("C" . $row)->getValue();
-                    
-                $dni_p = strtolower($dni);
-                $nombre_p = strtolower($nombre);
-                $apellido_p = strtolower($apellido);
+                    //valido que la primera fila de la tabla excel sea
+                    //dni, apellido nombre, en ese orden, sino esta asi no importa la lista 
 
-                if (($dni_p == "dni" || $dni_p == "documento") && $nombre_p == "nombre" && $apellido_p == "apellido") {
-                    for ($row = 2; $row <= $highestRow; $row++) {
+                    $dni = $sheet->getCell("A" . $row)->getValue();
+                    $apellido = $sheet->getCell("B" . $row)->getValue();
+                    $nombre = $sheet->getCell("C" . $row)->getValue();
 
-                        
+                    $dni_p = strtolower($dni);
+                    $nombre_p = strtolower($nombre);
+                    $apellido_p = strtolower($apellido);
+
+                    if (($dni_p == "dni" || $dni_p == "documento") && $nombre_p == "nombre" && $apellido_p == "apellido") {
+                        for ($row = 2; $row <= $highestRow; $row++) {
+
+
                             $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni'");
                             $consultaPr = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni'");
                             $consultaAd = $con->query("SELECT * FROM administrativo WHERE dniAdm = '$dni'");
-                            
-                            
 
                             if (mysqli_num_rows($consultaAl) == 0 && mysqli_num_rows($consultaPr) == 0 && mysqli_num_rows($consultaAd) == 0) {
-                            
-                             if(validarDNI($dni)){
-                                 
-                                 $sql = "INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ('$nombre','$apellido','$dni','$currentDateTime','$dni','$id_permiso')";
 
-                                 $rtdo = $con->query($sql);
-                                array_push($correcto, $dni);
-                                 
-                                  
-                             }else{
-                                 $nombreCompleto = $apellido . ", ".$nombre; 
+                                if (validarDNI($dni)) {
+
+                                    $sql = "INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ('$nombre','$apellido','$dni','$currentDateTime','$dni','$id_permiso')";
+
+                                    $rtdo = $con->query($sql);
+                                    array_push($correcto, $dni);
+                                } else {
+                                    $nombreCompleto = $apellido . ", " . $nombre;
                                     array_push($formatoIncorrecto, $nombreCompleto);
-                                    
-                             }
-                            
-                        } else {
-                            array_push($yaInscriptos, $dni);
+                                }
+                            } else {
+                                array_push($yaInscriptos, $dni);
+                            }
                         }
+                    } else {
+
+                        header("Location:/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php?resultado=6");
                     }
-                } else{
-                    
-                    header("Location:/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php?resultado=6");
-                }
-                    
-                }else{
+                } else {
                     //valido que la primera fila de la tabla excel sea
                     //dni, legajo, apellido nombre, en ese orden, sino esta asi no importa la lista 
 
-                $dni = $sheet->getCell("A" . $first_row)->getValue();
-                $legajo = $sheet->getCell("B" . $first_row)->getValue();
-                $apellido = $sheet->getCell("C" . $first_row)->getValue();
-                $nombre = $sheet->getCell("D" . $first_row)->getValue();
-                    
-                    
-                $dni_p = strtolower($dni);
-                $legajo_p = strtolower($legajo);
-                $nombre_p = strtolower($nombre);
-                $apellido_p = strtolower($apellido);
+                    $dni = $sheet->getCell("A" . $first_row)->getValue();
+                    $legajo = $sheet->getCell("B" . $first_row)->getValue();
+                    $apellido = $sheet->getCell("C" . $first_row)->getValue();
+                    $nombre = $sheet->getCell("D" . $first_row)->getValue();
 
-                if (($dni_p == "dni" || $dni_p == "documento") && $legajo_p == "legajo" && $nombre_p == "nombre" && $apellido_p == "apellido") {
-                    for ($row = 2; $row <= $highestRow; $row++) {
 
-                        $dni = $sheet->getCell("A" . $row)->getValue();
-                        $legajo = $sheet->getCell("B" . $row)->getValue();
-                        $apellido = $sheet->getCell("C" . $row)->getValue();
-                        $nombre = $sheet->getCell("D" . $row)->getValue();
+                    $dni_p = strtolower($dni);
+                    $legajo_p = strtolower($legajo);
+                    $nombre_p = strtolower($nombre);
+                    $apellido_p = strtolower($apellido);
+
+                    if (($dni_p == "dni" || $dni_p == "documento") && $legajo_p == "legajo" && $nombre_p == "nombre" && $apellido_p == "apellido") {
+                        for ($row = 2; $row <= $highestRow; $row++) {
+
+                            $dni = $sheet->getCell("A" . $row)->getValue();
+                            $legajo = $sheet->getCell("B" . $row)->getValue();
+                            $apellido = $sheet->getCell("C" . $row)->getValue();
+                            $nombre = $sheet->getCell("D" . $row)->getValue();
 
 
                             $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo'");
                             $consultaPr = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni' AND legajoProf = '$legajo'");
                             $consultaAd = $con->query("SELECT * FROM administrativo WHERE dniAdm = '$dni' AND legajoAdm = '$legajo'");
 
-                        
                             if (mysqli_num_rows($consultaAl) == 0 && mysqli_num_rows($consultaPr) == 0 && mysqli_num_rows($consultaAd) == 0) {
-                            
-                             if(validarDNI($dni) && validarLegajo($legajo)){
-                                 
-                                 $sql = "INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ('$nombre','$apellido','$dni','$currentDateTime','$legajo','$id_permiso')";
 
-                                 $rtdo = $con->query($sql);
-                                array_push($correcto, $legajo);
-                                 
-                             }else{
-                                 $nombreCompleto = $apellido . ", ".$nombre; 
-                                 array_push($formatoIncorrecto, $nombreCompleto);
-                             }
-                            
-                        } else {
-                            array_push($yaInscriptos, $legajo);
+                                if (validarDNI($dni) && validarLegajo($legajo)) {
+
+                                    $sql = "INSERT INTO `profesor`(`nombreProf`,`apellidoProf`, `dniProf`, `fechaAltaProf`, `legajoProf`, `permiso_id`) VALUES ('$nombre','$apellido','$dni','$currentDateTime','$legajo','$id_permiso')";
+
+                                    $rtdo = $con->query($sql);
+                                    array_push($correcto, $legajo);
+                                } else {
+                                    $nombreCompleto = $apellido . ", " . $nombre;
+                                    array_push($formatoIncorrecto, $nombreCompleto);
+                                }
+                            } else {
+                                array_push($yaInscriptos, $legajo);
+                            }
                         }
+                    } else {
+                        header("Location:/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php?resultado=6");
                     }
-                } else {
-                    header("Location:/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php?resultado=6");
-                }
                 }
 
                 unlink($archivo);
             }
         }
     }
-    
-    
-    
-    
-     function validarLegajo($legajo){
-    include "../../../databaseConection.php";
-     
-     
-     $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
-     
-    $longitudLegajo = strlen($legajo);
 
-        
-    $formatoLegajo = $consultaParamLeg->fetch_assoc();
-    $dni = $formatoLegajo["esDNI"];
-         
-    $dev = false;
 
-    if($dni) {
-        
-    }else {
 
-        $letras = $formatoLegajo["tieneLetras"];
-        $numeros = $formatoLegajo["tieneNumeros"];
-        
-        $rtdoNumeros = false;
-        $rtdoLetras = false;
 
-        $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+    function validarLegajo($legajo)
+    {
+        include "../../../databaseConection.php";
 
-        
-        if($longitudLegajo == $cantTotal){
-            if($letras){
-                $cantLetras = $formatoLegajo["cantLetras"];
-                $soloLetras = substr($legajo, 0, $cantLetras);
-                $rtdoLetras = ctype_upper($soloLetras);  
-            }
-            
-            
-            if($numeros){
-                $cantNumeros = $formatoLegajo["cantNumeros"]; 
-                
-                if($letras){
-                   $soloNumeros = substr($legajo, $cantLetras);
-                    $rtdoNumeros = is_numeric($soloNumeros);
-                }else{
-                    $soloNumeros = substr($legajo, 0, $cantNumeros);
-                    $rtdoNumeros = is_numeric($soloNumeros);
+
+        $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
+
+        $longitudLegajo = strlen($legajo);
+
+
+        $formatoLegajo = $consultaParamLeg->fetch_assoc();
+        $dni = $formatoLegajo["esDNI"];
+
+        $dev = false;
+
+        if ($dni) {
+        } else {
+
+            $letras = $formatoLegajo["tieneLetras"];
+            $numeros = $formatoLegajo["tieneNumeros"];
+
+            $rtdoNumeros = false;
+            $rtdoLetras = false;
+
+            $cantTotal = $formatoLegajo["cantTotalCaracteres"];
+
+
+            if ($longitudLegajo == $cantTotal) {
+                if ($letras) {
+                    $cantLetras = $formatoLegajo["cantLetras"];
+                    $soloLetras = substr($legajo, 0, $cantLetras);
+                    $rtdoLetras = ctype_upper($soloLetras);
                 }
+
+
+                if ($numeros) {
+                    $cantNumeros = $formatoLegajo["cantNumeros"];
+
+                    if ($letras) {
+                        $soloNumeros = substr($legajo, $cantLetras);
+                        $rtdoNumeros = is_numeric($soloNumeros);
+                    } else {
+                        $soloNumeros = substr($legajo, 0, $cantNumeros);
+                        $rtdoNumeros = is_numeric($soloNumeros);
+                    }
+                }
+
+
+                if ($letras && $numeros && $rtdoNumeros && $rtdoLetras) {
+                    $dev = true;
+                }
+
+                if ($letras && $numeros == false && $rtdoLetras) {
+                    $dev = true;
+                }
+
+                if ($letras == false && $numeros  && $rtdoNumeros) {
+                    $dev = true;
+                }
+
+                return $dev;
+            } else {
+                return false;
             }
-            
-            
-            if($letras && $numeros && $rtdoNumeros && $rtdoLetras){
-                $dev = true;
-            }
-            
-            if($letras && $numeros == false && $rtdoLetras){
-                $dev = true;
-            }
-        
-            if($letras == false && $numeros  && $rtdoNumeros){
-                $dev = true;
-            }
-            
-            return $dev;
-            
-        }else{
-            return false;
         }
     }
-}
 
-  
-function validarDNI($dni){
-    $rtdo = false;
-    
-    $longitudDNI = strlen($dni);
-    if($longitudDNI > 6 && $longitudDNI < 9){
-        $rtdo = is_numeric($dni);   
+
+    function validarDNI($dni)
+    {
+        $rtdo = false;
+
+        $longitudDNI = strlen($dni);
+        if ($longitudDNI > 6 && $longitudDNI < 9) {
+            $rtdo = is_numeric($dni);
+        }
+
+        return $rtdo;
     }
-    
-    return $rtdo;
-}
-    
+
     ?>
 </div>
 
@@ -242,24 +233,36 @@ function validarDNI($dni){
 
         for ($i = 0; $i < count($yaInscriptos); $i++) {
             $consultaInsAl = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '$yaInscriptos[$i]'");
-            
-            if((mysqli_num_rows($consultaInsAl) != 0)){
-                $consultaInsAl= $consultaInsAl->fetch_assoc();
+
+            if ((mysqli_num_rows($consultaInsAl) != 0)) {
+                $consultaInsAl = $consultaInsAl->fetch_assoc();
                 echo "<li>" . $consultaInsAl['apellidoAlum'] . ", " . $consultaInsAl['nombreAlum'] . "</li>";
-            }else{
+            } else {
                 $consultaInsPr = $con->query("SELECT * FROM profesor WHERE legajoProf = '$yaInscriptos[$i]'");
-                if((mysqli_num_rows($consultaInsPr) != 0)){
-                    $consultaInsPr=$consultaInsPr->fetch_assoc();
+                if ((mysqli_num_rows($consultaInsPr) != 0)) {
+                    $consultaInsPr = $consultaInsPr->fetch_assoc();
                     echo "<li>" . $consultaInsPr['apellidoProf'] . ", " . $consultaInsPr['nombreProf'] . "</li>";
-                }else{
+                } else {
                     $consultaInsAd = $con->query("SELECT * FROM administrativo WHERE legajoAdm = '$yaInscriptos[$i]'")->fetch_assoc();
                     echo "<li>" . $consultaInsAd['apellidoAdm'] . ", " . $consultaInsAd['nombreAdm'] . "</li>";
                 }
             }
-            
         }
         echo "</ul>
     </div>";
+    }
+
+    if(count($formatoIncorrecto) > 0){
+        echo "<div class='alert alert-warning mt-4' role='alert'>
+            <h5>Docentes que tienen formato de legajo o DNI incorrecto:</h5>
+        <ul>";
+
+        for ($i=0; $i < count($formatoIncorrecto) ; $i++) { 
+            echo "<li>".$formatoIncorrecto[$i]." </li>";
+        }
+
+        echo "</ul>
+        </div>";
     }
 
     if (count($correcto) > 0) {

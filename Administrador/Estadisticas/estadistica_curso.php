@@ -11,6 +11,7 @@ if (!isset($_SESSION['administrador'])) {
 }
 
 include "../../databaseConection.php";
+$currentDate = date('Y-m-d');
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
@@ -63,7 +64,7 @@ include "../../databaseConection.php";
             </div>
             <div class="my-2">
                 <label for="fechaHasta" class="mr-2">Hasta:</label><label class="text-danger" id="msgPeriodoHasta"></label>
-                <input type="date" id="fechaHasta" class="form-control inputPeriodo" onchange="validarPeriodo();">
+                <input type="date" id="fechaHasta" class="form-control inputPeriodo" onchange="validarPeriodo();" <?php echo "max='$currentDate'" ?>>
             </div>
         </div>
     </div>
