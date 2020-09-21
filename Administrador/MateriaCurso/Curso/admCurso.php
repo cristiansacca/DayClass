@@ -66,7 +66,7 @@ if (!isset($_SESSION['administrador']))
         <table id="dataTable" class="table table-info table-bordered table-hover">
             <thead>
                 <th>Nombre</th>
-                <th>Division</th>
+                <th>División</th>
                 <th>Modalidad</th>
                 <th></th>
                 <th></th>

@@ -216,7 +216,6 @@ $currentDate = date('Y-m-d');
 $currentDateTime = date('Y-m-d H:i:s');
 $currentYear = date('Y');
 
-$id_curso = "18";
 $fechaDesdeReporte = $fechaDesde;
 $fechaHastaReporte = $fechaHasta . ' 23:59:59';
 

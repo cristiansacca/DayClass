@@ -46,7 +46,7 @@ if (isset($_GET["id_curso"])) {
         ?>
         
         
-        <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atras</a>
+        <a class="btn btn-info" href="/DayClass/Alumno/materiasAlumno.php"><i class="fa fa-arrow-circle-left mr-2"></i>Atrás</a>
         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas Dados</button>
     </div>
     <!-- Page Features -->
