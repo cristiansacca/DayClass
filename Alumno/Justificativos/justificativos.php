@@ -135,11 +135,18 @@ if (!isset($_SESSION['alumno']))
                 $colorTexto = 'text-danger';
               }
             }
+
+            if($justificativo['fechaRevision'] == null){
+              $fechaRevision = 'No revisado';
+            } else {
+              $fechaRevision = strftime("%d/%m/%Y", strtotime($justificativo['fechaRevision']));
+            }
+
             echo "<tr>
               <td><a href='verImgJustificativo.php?id=".$justificativo['id']."'>".$justificativo['descripcionImagen']."</a></td>
               <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaPresentacion']))."</td>
-              <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaRevision']))."</td>
-              <td class=$colorTexto >".$estado."</td>
+              <td>".$fechaRevision."</td>
+              <td class=$colorTexto ><b>".$estado."</b></td>
               <td>".$justificativo['comentarioJustificativo']."</td>
             </tr>";
           }
