@@ -75,10 +75,10 @@ if(($consulta->num_rows) == 0){
             
                 if($update){
                     //registro de presente 
-                    //header("Location:/DayClass/Alumno/index.php?resultado=1");
+                    header("Location:/DayClass/Alumno/index.php?resultado=1");
                 }else{
                     //echo problema al registrar le presente del alumno
-                    //header("Location:/DayClass/Alumno/index.php?resultado=5");
+                    header("Location:/DayClass/Alumno/index.php?resultado=5");
                 } 
             }
             
