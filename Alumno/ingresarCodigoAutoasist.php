@@ -61,18 +61,24 @@ if(($consulta->num_rows) == 0){
                 $resultado5 =  $consAusente->fetch_assoc();
                 $ausenteId = $resultado5["id"];
             
-                $ultimoRegistro = $con -> query("SELECT * FROM asistenciadia WHERE id = (SELECT MAX(id) FROM asistenciadia WHERE tipoAsistencia_id = '".$ausenteId."' AND asistencia_id = '".$asistenciaAlumno."' AND fechaHoraAsisDia IS NULL)");
+                $ultimoRegistro = $con -> query("SELECT * FROM asistenciadia WHERE id = (SELECT MAX(id) FROM asistenciadia WHERE tipoAsistencia_id = '".$ausenteId."' AND asistencia_id = '".$asistenciaAlumno."' AND fechaHoraAsisDia LIKE '$currentDate%')");
                 $resultado6 = $ultimoRegistro->fetch_assoc();
+                
+                
+                echo "SELECT * FROM asistenciadia WHERE id = (SELECT MAX(id) FROM asistenciadia WHERE tipoAsistencia_id = '".$ausenteId."' AND asistencia_id = '".$asistenciaAlumno."' AND fechaHoraAsisDia LIKE '$currentDate%')";
+                
                 $ultimoRegistroId = $resultado6["id"];
             
                 $update = $con -> query("UPDATE `asistenciadia` SET `tipoAsistencia_id`= '".$presenteId."',`fechaHoraAsisDia`= '".$currentDateTime."' WHERE `id` = '".$ultimoRegistroId."'");
+                
+                echo "UPDATE `asistenciadia` SET `tipoAsistencia_id`= '".$presenteId."',`fechaHoraAsisDia`= '".$currentDateTime."' WHERE `id` = '".$ultimoRegistroId."'";
             
                 if($update){
                     //registro de presente 
-                    header("Location:/DayClass/Alumno/index.php?resultado=1");
+                    //header("Location:/DayClass/Alumno/index.php?resultado=1");
                 }else{
                     //echo problema al registrar le presente del alumno
-                    header("Location:/DayClass/Alumno/index.php?resultado=5");
+                    //header("Location:/DayClass/Alumno/index.php?resultado=5");
                 } 
             }
             
