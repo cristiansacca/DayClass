@@ -156,7 +156,7 @@ if(($fechaD > $currentDateTime)){
     <?php
         if(!$hab){
                 echo "<div class='alert alert-warning' role='alert'>
-                <h5>Aún no se ha cargado el programa de esta materia, no podra leccionar temas de clase</h5>
+                <h5>Aún no se ha cargado el programa de esta materia, no podrá seleccionar temas de clase.</h5>
                 </div>";
         }
     
@@ -242,7 +242,7 @@ if(($fechaD > $currentDateTime)){
                             
                                 if(($consulta1->num_rows) == 0){
                                     echo "<div class='alert alert-warning' role='alert'>
-                                            <h5>Todavia no se han cargado temas en este curso</h5>
+                                            <h5>Todavía no se han cargado temas en este curso.</h5>
                                         </div>";
                                 }else{
                                     echo "<h9>Temas dados anteriormente</h9>";

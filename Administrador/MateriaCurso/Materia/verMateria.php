@@ -111,7 +111,7 @@ if (!isset($_SESSION['administrador']))
         
             if(($consultaPrograma->num_rows) == 0){
                 echo "<div class='alert alert-warning' role='alert'>
-                        <h5>Todavía no se ha cargado un porgrama en esta materia para el año en curso.</h5>
+                        <h5>Todavía no se ha cargado un programa en esta materia para el año en curso.</h5>
                     </div>";
             }else{
                 
