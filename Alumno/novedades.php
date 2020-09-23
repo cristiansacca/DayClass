@@ -59,7 +59,7 @@ if(isset($_GET["id_curso"])){
             } else {
                 
                 echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>No se han realizado publicaciones</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No se han realizado publicaciones</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div> ";

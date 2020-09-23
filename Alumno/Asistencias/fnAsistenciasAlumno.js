@@ -43,6 +43,16 @@ function mostrarAsistencias() {
                 "</tr>";
             }
             document.getElementById("tablaAsistencias").innerHTML = contenido;
+            paginarTabla();
+            if(json.length==0){
+                //document.getElementById("graficosAsistencias").hidden = true;
+                document.getElementById("tablaAsistenciasCompleta").hidden = true;
+                document.getElementById("alertAsistencias").hidden = false;
+            } else {
+                //document.getElementById("graficosAsistencias").hidden = false;
+                document.getElementById("tablaAsistenciasCompleta").hidden = false;
+                document.getElementById("alertAsistencias").hidden = true;
+            }
         }
     })
     $.ajax({
@@ -105,4 +115,35 @@ function mostrarAsistencias() {
             }
         }
     })
+}
+
+function paginarTabla(){
+    if ( $.fn.dataTable.isDataTable( '#dataTable' ) ) {
+        table = $('#dataTable').DataTable();
+    }
+    else {
+        table = $("#dataTable").DataTable({
+            "language": {
+                processing:     "Procesando...",
+                lengthMenu: "Mostrar _MENU_ por página",
+                zeroRecords: "No hay coincidencias",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No se encontraron datos",
+                infoFiltered: "(Filtrada de _MAX_ filas)",
+                loadingRecords: "Cargando...",
+                infoPostFix:    "",
+                search: "Buscar:",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar de manera ascendente",
+                    sortDescending: ": Ordenar de manera descendente"
+                }
+            }
+        });
+    }
 }

@@ -17,6 +17,8 @@ if (!isset($_SESSION['administrador']))
 <script src="fnValidarDiasCurso.js"></script>
 
 <link rel="stylesheet" href="../../../styleCards.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
 <div class="container ">
 
@@ -32,19 +34,19 @@ if (!isset($_SESSION['administrador']))
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Curso creado exitosamente.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Curso creado exitosamente.</h5>";
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El documento o legajo ingresado ya se encuentra registrado.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El documento o legajo ingresado ya se encuentra registrado.</h5>";
                 break;
             case 3:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa del curso.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Baja exitosa del curso.</h5>";
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja del curso.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la baja del curso.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>

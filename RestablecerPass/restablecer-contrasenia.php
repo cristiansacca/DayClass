@@ -40,7 +40,7 @@ include "../header.html";
             }
         } else {
             echo "<div class='alert alert-warning' role='alert'>
-                <h5>Su institucion no ha definido un formato de legajo</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Su institucion no ha definido un formato de legajo</h5>
             </div>";
         }
 
@@ -70,7 +70,7 @@ include "../header.html";
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Los datos propocionados no corresponden a un usuario registrado. Intente nuevamente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Los datos propocionados no corresponden a un usuario registrado. Intente nuevamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -78,7 +78,7 @@ include "../header.html";
                     break;
                 case 3:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el envio del mail con la nueva contraseña.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en el envio del mail con la nueva contraseña.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>

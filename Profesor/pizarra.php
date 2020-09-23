@@ -40,13 +40,13 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
         if(isset($_GET['resultado'])){
             if($_GET['resultado']==1){
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                <h5>Se publicó correctamente</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Se publicó correctamente</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div>";
             } else {
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Ocurrió un error al publicar</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al publicar</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div>";
@@ -79,7 +79,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
             } else {
                 
                 echo "<br><div class='alert alert-warning' role='alert'>
-                        <h5>No se han realizado publicaciones</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>No se han realizado publicaciones</h5>
                     </div> ";
             }
         

@@ -137,7 +137,7 @@ include "../../../header.html";
 <?php
 if(count($inexistente) > 0){
     echo "<div class='alert alert-danger mt-4' role='alert'>
-        <h5>Alumnos inexistentes</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Alumnos inexistentes</h5>
     <ul>";
     
     for ($i=0; $i < count($inexistente) ; $i++) { 
@@ -150,7 +150,7 @@ if(count($inexistente) > 0){
 
 if(count($yaInscriptos) > 0){
     echo "<div class='alert alert-warning mt-4' role='alert'>
-        <h5>Alumnos inscriptos anteriormente</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Alumnos inscriptos anteriormente</h5>
     <ul>";
     
     for ($i=0; $i < count($yaInscriptos) ; $i++) { 
@@ -164,7 +164,7 @@ if(count($yaInscriptos) > 0){
 
 if(count($correcto) > 0){
     echo "<div class='alert alert-success mt-4' role='alert'>
-        <h5>Alumnos inscriptos satisfactoriamente</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Alumnos inscriptos satisfactoriamente</h5>
     <ul>";
     
     for ($i=0; $i < count($correcto) ; $i++) { 

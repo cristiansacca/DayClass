@@ -37,7 +37,7 @@ if (!isset($_SESSION['administrador']))
         switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Usuario agregado exitosamente, se le ha enviado un mail al correo proporcionado con la constraseña.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuario agregado exitosamente, se le ha enviado un mail al correo proporcionado con la constraseña.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El documento o legajo ingresado ya se encuentra registrado.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El documento o legajo ingresado ya se encuentra registrado.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 3:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Baja exitosa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 4:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la baja.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 5:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el registro del administrativo, intente nuevamente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en el registro del administrativo, intente nuevamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 6:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El email ingresado ya se encuentra regsitrado por otro usuario.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El email ingresado ya se encuentra regsitrado por otro usuario.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -182,7 +182,7 @@ if (!isset($_SESSION['administrador']))
                         }
                     }else{
                         echo "<div class='alert alert-warning' role='alert'>
-                            <h5>No se ha definido un formato de legajo, no se puede ingresar un nuevo administrador.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha definido un formato de legajo, no se puede ingresar un nuevo administrador.</h5>
                         </div>";
                     } 
 

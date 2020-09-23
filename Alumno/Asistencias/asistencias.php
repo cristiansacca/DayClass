@@ -15,6 +15,8 @@ if (!isset($_SESSION['alumno'])) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
 <div class="container">
     <div class="py-4 my-3 jumbotron bg-light">
@@ -32,12 +34,12 @@ if (!isset($_SESSION['alumno'])) {
 
         if (($consulta1->num_rows) == 0) {
             echo "<div class='alert alert-warning' role='alert'>
-                    <h5>Todavia no esta inscripto a ninguna materia, no puede justiticar .</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no esta inscripto a ninguna materia.</h5>
                 </div>";
         } else {
 
             echo "<label for=''>Seleccione una materia:</label>";
-            echo "<select name='' id='materias' class='custom-select'>";
+            echo "<select id='materias' class='custom-select'>";
             while ($alumnocursoactual = $consulta1->fetch_assoc()) {
 
                 //Por cada instancia de AlumnoCursoActual se obtiene el curso asociado
@@ -51,7 +53,13 @@ if (!isset($_SESSION['alumno'])) {
 
     </div>
 
-    <div class="form-inline">
+    <div id="alertAsistencias" hidden>
+        <div class='alert alert-warning'>
+            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay datos de asistencias para esta materia.</h5>
+        </div>
+    </div>
+
+    <div class="form-inline" id="graficosAsistencias">
         <div class="col-md-6 mb-2">
             <div class="jumbotron py-4">
                 <canvas id="pieChart"></canvas>
@@ -64,7 +72,7 @@ if (!isset($_SESSION['alumno'])) {
         </div>
     </div>
 
-    <div>
+    <div id="tablaAsistenciasCompleta">
         <table class="table table-bordered text-center table-info table-sm" id="dataTable">
             <thead>
                 <th>Fecha</th>
@@ -81,6 +89,8 @@ if (!isset($_SESSION['alumno'])) {
 
 <script src="../alumno.js"></script>
 <script src="fnAsistenciasAlumno.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
 <?php
 include "../modal-autoasistencia.php";

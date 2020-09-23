@@ -41,7 +41,7 @@ $_SESSION['profesor']= $resultado1;
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <h5>Modificacion exitosa.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificacion exitosa.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -49,7 +49,7 @@ $_SESSION['profesor']= $resultado1;
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>El email ingresado ya existe.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>El email ingresado ya existe.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>

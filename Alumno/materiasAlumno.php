@@ -38,7 +38,7 @@ if (!isset($_SESSION['alumno']))
        
         if(($consulta1->num_rows) == 0){
             echo "<div class='alert alert-warning' role='alert'>
-                    <h5>Todavia no esta inscripto a ninguna materia.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no esta inscripto a ninguna materia.</h5>
                 </div>";
         }else{
             while ($alumnocursoactual = $consulta1->fetch_assoc()) {

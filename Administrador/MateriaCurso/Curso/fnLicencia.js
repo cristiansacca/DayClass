@@ -48,7 +48,7 @@ function ultimaLicencia(id){
     
     if(fchInicLic == "" && fchFinLic == ""){
        contenido = "<div class='alert alert-warning' role='alert'>"+
-           "<h5>No registra licencias</h5>" +
+           "<h5><i class='fa fa-exclamation-circle mr-2'></i>No registra licencias</h5>" +
             "</div>";
     }else{
         var fechaInicioUltimaLicencia = armarFecha(fchInicLic);

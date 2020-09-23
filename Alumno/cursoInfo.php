@@ -63,7 +63,7 @@ if (isset($_GET["id_curso"])) {
 
             if(($consulta2->num_rows) == 0){
             echo "<div class='alert alert-warning' role='alert'>
-                    <h5>Todavia no hay docentes asigandos a este curso, pronto entarán disponibles</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no hay docentes asigandos a este curso, pronto entarán disponibles</h5>
                 </div>";
             }else{
                 
@@ -102,7 +102,7 @@ if (isset($_GET["id_curso"])) {
        
         if(($consulta3->num_rows) == 0){
             echo "<div class='alert alert-warning' role='alert'>
-                    <h5>Todavia no se han definido horaios para este curso</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no se han definido horaios para este curso</h5>
                 </div>";
         }else{
             
@@ -165,7 +165,7 @@ if (isset($_GET["id_curso"])) {
                             
                                 if(($consulta1->num_rows) == 0){
                                     echo "<div class='alert alert-warning' role='alert'>
-                                            <h5>Todavia no se han cargado temas en este curso</h5>
+                                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no se han cargado temas en este curso</h5>
                                         </div>";
                                 }else{
                                    echo "<thead>

@@ -98,7 +98,7 @@ if($selectParamMinimoAsistencia != null){
             }else{
                 //no alumnos inscriptos en ese curso
                 echo "<div class='alert alert-info' role='alert'>
-                    <h5>El curso $nombre_curso no tiene alumnos inscriptos.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>El curso $nombre_curso no tiene alumnos inscriptos.</h5>
                 </div>";
                 
             } 
@@ -107,7 +107,7 @@ if($selectParamMinimoAsistencia != null){
             }else{
                 //no hay dias de cursado
                 echo "<div class='alert alert-warning' role='alert'>
-                    <h5>El curso $id_curso no tiene días de cursado definidos.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>El curso $id_curso no tiene días de cursado definidos.</h5>
                 </div>";
             } 
            
@@ -117,14 +117,14 @@ if($selectParamMinimoAsistencia != null){
     }else{
         //no hay cursos vigentes
          echo "<div class='alert alert-warning' role='alert'>
-                <h5>No hay cursos con fechas de cursado vigentes.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay cursos con fechas de cursado vigentes.</h5>
         </div>";
     }
     
 }else{
     //no hay porcentaje de minimo de asistencia
     echo "<div class='alert alert-warning' role='alert'>
-                <h5>No hay un porcentaje mínimo de asistencias definido.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay un porcentaje mínimo de asistencias definido.</h5>
         </div>";
 }
 
@@ -234,7 +234,7 @@ function alumnoSinInasistencias($id_alumno, $id_curso){
     
     
     echo "<div class='alert alert-info' role='alert'>
-                <h5>Se le ha informado a $nombreAlumno $apellidoAlumno que ha llegado al máximo de insistencias en $nombreCurso.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Se le ha informado a $nombreAlumno $apellidoAlumno que ha llegado al máximo de insistencias en $nombreCurso.</h5>
         </div>";
 
     return $rtdo;
@@ -307,7 +307,7 @@ function avisoAlumnoLibre($id_alumno, $id_curso){
     
     
     echo "<div class='alert alert-warning' role='alert'>
-                <h5>Se le ha informado a $nombreAlumno $apellidoAlumno que ha quedado libre en $nombreCurso.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Se le ha informado a $nombreAlumno $apellidoAlumno que ha quedado libre en $nombreCurso.</h5>
         </div>";
 
     return $rtdo;
@@ -318,13 +318,13 @@ function avisoAlumnoLibre($id_alumno, $id_curso){
 <?php
     if($cantLibres == 0){
         echo "<div class='alert alert-success' role='alert'>
-                    <h5>Ningún alumno ha quedado libre el día de hoy.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Ningún alumno ha quedado libre el día de hoy.</h5>
             </div>";
     }
     
     if($cantJustos == 0){
         echo "<div class='alert alert-success' role='alert'>
-                    <h5>No hay alumnos que tengan la cantidad máxima de faltas permitidas.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay alumnos que tengan la cantidad máxima de faltas permitidas.</h5>
             </div>";
     }
 ?>

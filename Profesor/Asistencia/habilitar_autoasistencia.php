@@ -52,7 +52,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
             $codigo = $_GET['codigo'];
             if(!$codigo == ""){
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                    <h5>El código <b>$codigo</b> se habilitó correctamente.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>El código <b>$codigo</b> se habilitó correctamente.</h5>
                     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                 </button></div>";
@@ -63,7 +63,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
             switch ($_GET['error']) {
                 case '1':
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ocurrió un error al habilitar el código.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al habilitar el código.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button></div>";
@@ -71,7 +71,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
                 
                 case '2':
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ya existe un código vigente en este curso para el día de hoy.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un código vigente en este curso para el día de hoy.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button></div>";
@@ -87,7 +87,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
                             
         if($tiempoAnt == null){
             echo "<div class='alert alert-warning' role='alert'>
-                    <h5>No se ha definido un tiempo para los códigos de autoasistencia. Solicite a un administrador que se habilite para que pueda usar esta funcionalidad.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha definido un tiempo para los códigos de autoasistencia. Solicite a un administrador que se habilite para que pueda usar esta funcionalidad.</h5>
                 </div>";        
         }
     ?>

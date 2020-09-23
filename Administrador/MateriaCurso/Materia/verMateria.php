@@ -40,8 +40,8 @@ if (!isset($_SESSION['administrador']))
         ?>
         
         <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <button class="btn btn-success my-2 mx-2" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-pencil-square-o mr-1"></i>Editar Datos</button>
-        <button class="btn btn-primary my-2 mx-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-upload mr-1"></i>Cargar programa</button>
+        <button class="btn btn-success my-2" data-toggle="modal" data-target="#staticBackdrop2"><i class="fa fa-pencil-square-o mr-1"></i>Editar Datos</button>
+        <button class="btn btn-primary my-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-upload mr-1"></i>Cargar programa</button>
     </div>
 
     <?php
@@ -51,7 +51,7 @@ if (!isset($_SESSION['administrador']))
                 
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Programa cargado exitosamente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Programa cargado exitosamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Fallo al cargar el programa.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Fallo al cargar el programa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 3:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en el formato del archivo.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en el formato del archivo.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -75,7 +75,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 4:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Se registraron los cambios correctamente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se registraron los cambios correctamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -83,7 +83,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 5:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al registrar los cambios.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al registrar los cambios.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -111,7 +111,7 @@ if (!isset($_SESSION['administrador']))
         
             if(($consultaPrograma->num_rows) == 0){
                 echo "<div class='alert alert-warning' role='alert'>
-                        <h5>Todavía no se ha cargado un programa en esta materia para el año en curso.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se ha cargado un programa en esta materia para el año en curso.</h5>
                     </div>";
             }else{
                 

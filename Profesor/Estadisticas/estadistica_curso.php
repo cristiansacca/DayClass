@@ -34,7 +34,7 @@ if(isset($_GET["id_curso"])){
     </div>
 
     <div class="alert alert-danger" role="alert" id="faltanDatos" hidden>
-        <h5>Faltan datos por completar</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Faltan datos por completar</h5>
     </div>
 
     <div class="row my-2">

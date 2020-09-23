@@ -50,24 +50,24 @@ if (($mailAlumno->num_rows) == 0 && ($mailDocente->num_rows) == 0 && ($mailAdmin
 
     if ($actualizacion) {
       echo "<div class='alert alert-success' role='alert'>
-          <h5>Se registró correctamente</h5>
+          <h5><i class='fa fa-exclamation-circle mr-2'></i>Se registró correctamente</h5>
         </div>";
       echo "<a class='btn btn-primary my-2' href='/DayClass/index.php'>Volver al inicio</a>";
     } else {
       echo "<div class='alert alert-danger' role='alert'>
-          <h5>Ocurrió un error durante el registro</h5>
+          <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error durante el registro</h5>
         </div>";
       echo "<a class='btn btn-primary my-2' href='/DayClass/index.php'>Volver al inicio</a>";
     }
   } else {
     echo "<div class='alert alert-danger' role='alert'>
-          <h5>Ocurrió un error durante el registro</h5>
+          <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error durante el registro</h5>
         </div>";
     echo "<a class='btn btn-primary my-2' href='/DayClass/index.php'>Volver al inicio</a>";
   }
 } else {
   echo "<div class='alert alert-danger' role='alert'>
-        <h5>La dirección de correo ingresada ya se encuentra registrada en el sistema</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>La dirección de correo ingresada ya se encuentra registrada en el sistema</h5>
       </div>";
   echo "<a class='btn btn-primary my-2' href='/DayClass/index.php'>Volver al inicio</a>";
 }

@@ -49,11 +49,11 @@ $_SESSION['administrador']= $resultado1;
       
             if(($fchDesde < $currentDateTime &&  $fchHasta < $currentDateTime) || ($fchDesde == "" &&  $fchHasta == "")){
                 echo "<div class='alert alert-danger' role='alert'>
-                            <h5>Se deben ingresar las fechas de cursado para este año.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se deben ingresar las fechas de cursado para este año.</h5>
                         </div>";          
             }else{
                 echo "<div class='alert alert-success' role='alert'>
-                            <h5>Las fechas de cursado son correctas</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Las fechas de cursado son correctas</h5>
                         </div>";
                 $rtdo = true;
             }  
@@ -68,7 +68,7 @@ $_SESSION['administrador']= $resultado1;
             switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Modificación exitosa.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -76,7 +76,7 @@ $_SESSION['administrador']= $resultado1;
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Ocurrio un error en la actualización.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la actualización.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>

@@ -19,7 +19,7 @@ include "../header.html";
             switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Registro exitoso.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Registro exitoso.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -27,7 +27,7 @@ include "../header.html";
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Datos no localizados.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Datos no localizados.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -35,7 +35,7 @@ include "../header.html";
                     break;
                 case 3:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Usuario ya registrado.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuario ya registrado.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -43,7 +43,7 @@ include "../header.html";
                     break;
                 case 4:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El correo electrónico ya es utilizado por otro usuario.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El correo electrónico ya es utilizado por otro usuario.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -92,7 +92,7 @@ include "../header.html";
             }
         } else {
             echo "<div class='alert alert-warning' role='alert'>
-                <h5>Su institucion no ha definido un formato de legajo, no se podrá registrar</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Su institucion no ha definido un formato de legajo, no se podrá registrar</h5>
             </div>";
         }
 

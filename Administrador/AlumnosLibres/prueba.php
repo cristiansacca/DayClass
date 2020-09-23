@@ -24,14 +24,14 @@ if($selectParamMinimoAsistencia != null){
     }else{
         //no hay cursos vigentes
          echo "<div class='alert alert-warning' role='alert'>
-                <h5>No hay Cursos con fechas de cursado vigentes</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay Cursos con fechas de cursado vigentes</h5>
         </div>";
     }
     
 }else{
     //no hay porcentaje de minimo de asistencia
     echo "<div class='alert alert-warning' role='alert'>
-                <h5>No hay porcentaje de minimo de asistencias definido</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay porcentaje de minimo de asistencias definido</h5>
         </div>";
 }
 

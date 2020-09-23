@@ -29,7 +29,7 @@ if (!isset($_SESSION['alumno']))
         if($resultado == 1){
 
           echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-              <h5>Se cargó el justificativo correctamente</h5>
+              <h5><i class='fa fa-exclamation-circle mr-2'></i>Se cargó el justificativo correctamente</h5>
               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
               <span aria-hidden='true'>&times;</span>
               </button>
@@ -38,7 +38,7 @@ if (!isset($_SESSION['alumno']))
         } else {
 
           echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-              <h5>Ocurrió un error al cargar el justificativo</h5>
+              <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al cargar el justificativo</h5>
               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
               <span aria-hidden='true'>&times;</span>
               </button>

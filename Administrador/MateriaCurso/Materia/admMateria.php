@@ -36,7 +36,7 @@ if (!isset($_SESSION['administrador']))
                 
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Materia agregada correctamente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Materia agregada correctamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>La materia ya se encuentra registrada.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>La materia ya se encuentra registrada.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 3:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Baja exitosa.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Baja exitosa.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -60,7 +60,7 @@ if (!isset($_SESSION['administrador']))
                     break;
                 case 4:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error en la baja.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la baja.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -128,7 +128,7 @@ if (!isset($_SESSION['administrador']))
                     <td><a href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
                     <td>$nivelMateria</td>
                     <td>".$cargado."</td>
-                    <td class='text-center'><a class='btn btn-primary' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$idmateria'><i class='fa fa-eye'></i></a></td>
+                    <td class='text-center'><a class='btn btn-primary btn-sm' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$idmateria'><i class='fa fa-eye'></i></a></td>
                     <td class='text-center'><a class='$classHabilitado' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
                     </tr>";
                     

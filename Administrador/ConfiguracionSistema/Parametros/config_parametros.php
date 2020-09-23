@@ -29,67 +29,67 @@ include "../../../databaseConection.php";
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Modalidad creada correctamente.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modalidad creada correctamente.</h5>";
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al crear la modalidad.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al crear la modalidad.</h5>";
                 break;
             case 3:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Ya existe una modaliad con el mismo nombre.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe una modaliad con el mismo nombre.</h5>";
                 break;
             case 4:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>División creada correctamente.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>División creada correctamente.</h5>";
                 break;
             case 5:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al crear división.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al crear división.</h5>";
                 break;
             case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Ya existe una división con el mismo nombre.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe una división con el mismo nombre.</h5>";
                 break;
             case 7:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Parámetros de legajo cargados correctamente.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Parámetros de legajo cargados correctamente.</h5>";
                 break;
             case 8:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Tiempo máximo del código de auto-asistencia establecido exitosamente.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Tiempo máximo del código de auto-asistencia establecido exitosamente.</h5>";
                 break;
             case 9:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Error al cargar del tiempo máximo del código de auto-asistencia, intente nuevamente.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al cargar del tiempo máximo del código de auto-asistencia, intente nuevamente.</h5>";
                 break;
             case 10:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <h5>Cargo creado correctamente.</h5>";
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Cargo creado correctamente.</h5>";
                 break;
             case 11:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <h5>Error al crear el cargo.</h5>";
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al crear el cargo.</h5>";
                 break;
             case 12:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <h5>Ya existe un cargo con el mismo nombre.</h5>";
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un cargo con el mismo nombre.</h5>";
                 break;
             case 13:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <h5>Porcentaje de mínimo de asistencias definido correctamente.</h5>";
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Porcentaje de mínimo de asistencias definido correctamente.</h5>";
                 break;
             case 14:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <h5>Error al cargar el mínimo de asistencias.</h5>";
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al cargar el mínimo de asistencias.</h5>";
                 break;
             case 15:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <h5>Vigencia de sesión establecida correctamente.</h5>";
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Vigencia de sesión establecida correctamente.</h5>";
                 break;
             case 16:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                <h5>Error al establecer la vigencia de sesión.</h5>";
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al establecer la vigencia de sesión.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -231,7 +231,7 @@ include "../../../databaseConection.php";
 
                     if ($tiempoAnt == null) {
                         echo "<div class='alert alert-warning' role='alert'>
-                                <h5>No se ha definido un tiempo para los codigos de autoasistencia, habilite uno para que se pueda usar esta funcionalidad</h5>
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha definido un tiempo para los codigos de autoasistencia, habilite uno para que se pueda usar esta funcionalidad</h5>
                             </div>";
                     }
                     echo "<input type='number' id='minutosCodigoAnt' value='$tiempoAnt' hidden>";
@@ -278,7 +278,7 @@ include "../../../databaseConection.php";
                         if (!($consultaParamLeg->num_rows) == 0) {
 
                             echo "<div class='alert alert-success' role='alert'>
-                                        <h5>Ya se ha ingresado un formato de legajo.</h5>
+                                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se ha ingresado un formato de legajo.</h5>
                                     </div>";
                             $rtdo = true;
 
@@ -446,7 +446,7 @@ include "../../../databaseConection.php";
 
                     if ($porcentajeMinimoVigente == 0) {
                         echo "<div class='alert alert-warning' role='alert'>
-                                <h6>Todavia no se ha definido el porcentaje mínimo de asistencia requerido por la institución.</h6>
+                                <h5><i class='fa fa-exclamation-triangle mr-2'></i>Todavia no se ha definido el porcentaje mínimo de asistencia requerido por la institución.</h5>
                             </div>";
                     }
                     echo "<input type='number' id='porctajeMinAnt' value='$porcentajeMinimoVigente' hidden>";
@@ -501,7 +501,7 @@ include "../../../databaseConection.php";
 
                     if ($tiempoVigenciaAnterior == null) {
                         echo "<div class='alert alert-warning' role='alert'>
-                                <h5>No se ha definido un tiempo de vigencia de la sesión.</h5>
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha definido un tiempo de vigencia de la sesión.</h5>
                             </div>";
                     }
                     echo "<input type='number' id='minutosVigenciaAnterior' value='$tiempoVigenciaAnterior' hidden>";

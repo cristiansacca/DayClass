@@ -58,7 +58,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         switch ($_GET["resultado"]) {
                 case 1:
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5>Código de asistencia ingresado correctamente. Se ha registrado su presente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Código de asistencia ingresado correctamente. Se ha registrado su presente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -66,7 +66,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     break;
                 case 2:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El código ingresado no existe.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El código ingresado no existe.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -74,7 +74,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     break;
                 case 3:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>El código ingresado ya no se encuentra vigente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El código ingresado ya no se encuentra vigente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -82,7 +82,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     break;
                 case 4:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Se ingresó un código para un curso en el que no está inscripto.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se ingresó un código para un curso en el que no está inscripto.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -90,7 +90,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     break;
                  case 5:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Falla al cargar el código. Consulte con el administrador.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Falla al cargar el código. Consulte con el administrador.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -98,7 +98,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     break;
                 case 6:
                     echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5>Actualmente se encuentra libre en esta materia. No puedes registrar tu presente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Actualmente se encuentra libre en esta materia. No puedes registrar tu presente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>

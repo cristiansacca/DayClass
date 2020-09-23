@@ -97,7 +97,7 @@ if(isset($_GET["id_curso"])){
                         
                 }else{
                     echo "<div class='alert alert-warning' role='alert'>
-                            <h5>Todavia no hay alumnos Incriptos en este curso</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no hay alumnos Incriptos en este curso</h5>
                         </div>";
                 }  
             ?>            

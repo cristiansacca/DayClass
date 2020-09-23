@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form onsubmit="return validarLongCodIngresado()" action="ingresarCodigoAutoasist.php" method="post">
+        <form onsubmit="return validarLongCodIngresado()" action="/DayClass/Alumno/ingresarCodigoAutoasist.php" method="post">
             <div class=" text-center my-3 mx-4 form-row">
               <div class="form-group col-12 ">
                 <h3>Ingrese el código dado por el profesor</h3><br>

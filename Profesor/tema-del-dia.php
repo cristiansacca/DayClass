@@ -139,13 +139,13 @@ if(($fechaD > $currentDateTime)){
         if(isset($_GET['resultado'])){
             if($_GET['resultado'] == 1){
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                <h5>El tema se cargó correctamente</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>El tema se cargó correctamente</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div>";
             } elseif($_GET['resultado'] == 0) {
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Ocurrió un error al cargar el tema</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al cargar el tema</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div>";
@@ -156,13 +156,13 @@ if(($fechaD > $currentDateTime)){
     <?php
         if(!$hab){
                 echo "<div class='alert alert-warning' role='alert'>
-                <h5>Aún no se ha cargado el programa de esta materia, no podrá seleccionar temas de clase.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Aún no se ha cargado el programa de esta materia, no podrá seleccionar temas de clase.</h5>
                 </div>";
         }
     
         if (!$habP) {
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Su estado el dia de hoy es $estadoCargo, no puede cargar temas, solo verlos.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Su estado el dia de hoy es $estadoCargo, no puede cargar temas, solo verlos.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -171,7 +171,7 @@ if(($fechaD > $currentDateTime)){
         
         if(!$hayAlumnos){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>Todavía no hay alumnos inscriptos para este periodo.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos para este periodo.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -180,7 +180,7 @@ if(($fechaD > $currentDateTime)){
     ?>
 
     <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo)){ }else{echo "hidden";}  ?>>
-        <h5>Indique el tema del día</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Indique el tema del día</h5>
         <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden >
         <div class="my-2  form-inline">
             <select id="unidadTema" name="unidadTema" class="custom-select" class="custom-select" style="width:15%" required>
@@ -242,7 +242,7 @@ if(($fechaD > $currentDateTime)){
                             
                                 if(($consulta1->num_rows) == 0){
                                     echo "<div class='alert alert-warning' role='alert'>
-                                            <h5>Todavía no se han cargado temas en este curso.</h5>
+                                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han cargado temas en este curso.</h5>
                                         </div>";
                                 }else{
                                     echo "<h9>Temas dados anteriormente</h9>";

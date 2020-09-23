@@ -228,7 +228,7 @@ include "../../../header.html";
 
     if (count($yaInscriptos) > 0) {
         echo "<div class='alert alert-warning mt-4' role='alert'>
-        <h5>Ya registrados en el sistema:</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya registrados en el sistema:</h5>
     <ul>";
 
         for ($i = 0; $i < count($yaInscriptos); $i++) {
@@ -254,7 +254,7 @@ include "../../../header.html";
 
     if(count($formatoIncorrecto) > 0){
         echo "<div class='alert alert-warning mt-4' role='alert'>
-            <h5>Docentes que tienen formato de legajo o DNI incorrecto:</h5>
+            <h5><i class='fa fa-exclamation-circle mr-2'></i>Docentes que tienen formato de legajo o DNI incorrecto:</h5>
         <ul>";
 
         for ($i=0; $i < count($formatoIncorrecto) ; $i++) { 
@@ -267,7 +267,7 @@ include "../../../header.html";
 
     if (count($correcto) > 0) {
         echo "<div class='alert alert-success mt-4' role='alert'>
-        <h5>Docentes agregados en el sistema satisfactoriamente:</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Docentes agregados en el sistema satisfactoriamente:</h5>
     <ul>";
 
         for ($i = 0; $i < count($correcto); $i++) {

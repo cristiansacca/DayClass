@@ -115,7 +115,7 @@ if(($fechaD > $currentDateTime)){
         <?php
         if(!$hayFechasCursado){              
             echo "<div class='alert alert-danger' role='alert'>
-                    <h5>Todavía no se han definido las fechas de inicio y fin del cursado.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han definido las fechas de inicio y fin del cursado.</h5>
                 </div>";
         }
             if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
@@ -127,7 +127,7 @@ if(($fechaD > $currentDateTime)){
         <?php
         if (!$hab) {
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>Su estado el día de hoy es $estadoCargo, no puede tomar asistencia.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Su estado el día de hoy es $estadoCargo, no puede tomar asistencia.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -136,7 +136,7 @@ if(($fechaD > $currentDateTime)){
             
         if(!$tieneDiaHora){
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <h5>No hay horario definido para este curso. No puede tomar asistencia.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay horario definido para este curso. No puede tomar asistencia.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -146,7 +146,7 @@ if(($fechaD > $currentDateTime)){
                             
                if($diaBien && !$horaBien){
                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                        <h5>No es el horario de cursado. No puede tomar asistencia.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el horario de cursado. No puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -155,7 +155,7 @@ if(($fechaD > $currentDateTime)){
                
                if(!$diaBien && !$horaBien){
                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                        <h5>No es el día ni horario de cursado. No puede tomar asistencia.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el día ni horario de cursado. No puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -165,7 +165,7 @@ if(($fechaD > $currentDateTime)){
             }else{
                if(!$diaBien){
                     echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                        <h5>Este curso no se dicta este día, no puede tomar asistencia.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Este curso no se dicta este día, no puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -177,7 +177,7 @@ if(($fechaD > $currentDateTime)){
         
         if(!$hayAlumnos){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>Todavía no hay alumnos inscriptos para este período.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos para este período.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -186,7 +186,7 @@ if(($fechaD > $currentDateTime)){
         
         if(($fechaD > $currentDateTime)){
            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5>El cursado todavía no empieza.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>El cursado todavía no empieza.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -213,7 +213,7 @@ if(($fechaD > $currentDateTime)){
         switch ($_GET['resultado']) {
             case '1':
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <h5>Se guardaron los datos de asistencia correctamente.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Se guardaron los datos de asistencia correctamente.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -222,7 +222,7 @@ if(($fechaD > $currentDateTime)){
 
             case '2':
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ocurrió un error al guardar los datos de asistencia.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al guardar los datos de asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -230,7 +230,7 @@ if(($fechaD > $currentDateTime)){
                 break;
             case '3':
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5>Ya se tomó asistencia el día de hoy en este curso.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se tomó asistencia el día de hoy en este curso.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -356,7 +356,7 @@ if(($fechaD > $currentDateTime)){
 
                             if(($consulta3->num_rows) == 0){
                                 echo "<div class='alert alert-warning' role='alert'>
-                                        <h5>Todavía no se han definido horarios para este curso.</h5>
+                                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han definido horarios para este curso.</h5>
                                     </div>";
                             }else{
 
