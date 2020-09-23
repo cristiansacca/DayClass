@@ -21,7 +21,7 @@ if($materia == "Todas"){
             }
             
         }else{
-            //reporte de todos los alumnios de un curso en una materia
+            //reporte de todos los alumnos de un curso en una materia
             //planilla de asistencia 
             if($curso == "vacio"){
                 planillaMateria($materia, $fechaDesdeReporte, $fechaHastaReporte); 
@@ -65,15 +65,15 @@ $fechaHastaReporte =  date_format($fechaHastaReporte,"d/m/Y");
 //Datos alumno
 $selectAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno' AND alumno.fechaAltaAlumno <= '$currentDate' AND alumno.fechaBajaAlumno IS NULL");
 $alumno = $selectAlumno->fetch_assoc();
-$nombreAlumno = $alumno["nombreAlum"];
-$apellidoAlumno = $alumno["apellidoAlum"];
+$nombreAlumno = utf8_decode($alumno["nombreAlum"]);
+$apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
 $legajoAlumno = $alumno["legajoAlumno"];
 $dniAlumno = $alumno["dniAlum"];
 
 //Datos curso
 $selectCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL");
 $curso = $selectCurso->fetch_assoc();
-$nombreCurso = $curso["nombreCurso"]; 
+$nombreCurso = utf8_decode($curso["nombreCurso"]); 
 
 
 require_once( "../../fpdf/fpdf.php" );
@@ -228,7 +228,7 @@ $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistenci
 //Datos curso
 $selectCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL");
 $curso = $selectCurso->fetch_assoc();
-$nombreCurso = $curso["nombreCurso"]; 
+$nombreCurso = utf8_decode($curso["nombreCurso"]); 
 
 //cambiar formato fechas 
 $fechaDesdeReporteC =date_create($fechaDesdeReporte);
@@ -262,7 +262,7 @@ require_once( "../../fpdf/fpdf.php" );
 $textColour = array( 0, 0, 0 );
 $headerColour = array( 100, 100, 100 );
 
-$reportName = "Reporte de asistencias de un curso";
+$reportName = "Reporte de asistencias de un curso.";
 $reportNameYPos = 160;
 
 $logoFile = "logoDayclass.png";
@@ -372,8 +372,8 @@ while($cont < $cantFechas){
 
             $alumno = $selectAlumno->fetch_assoc();
 
-            $nombreAlumno = $alumno["nombreAlum"];
-            $apellidoAlumno = $alumno["apellidoAlum"];
+            $nombreAlumno = utf8_decode($alumno["nombreAlum"]);
+            $apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
             $legajoAlumno = $alumno["legajoAlumno"];
             $index = $j +1;
 
@@ -442,8 +442,8 @@ while($cont < $cantFechas){
 
             $alumno = $selectAlumno->fetch_assoc();
 
-            $nombreAlumno = $alumno["nombreAlum"];
-            $apellidoAlumno = $alumno["apellidoAlum"];
+            $nombreAlumno = utf8_decode($alumno["nombreAlum"]);
+            $apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
             $legajoAlumno = $alumno["legajoAlumno"];
             $index = $j +1;
 
@@ -551,7 +551,7 @@ $fechaHastaReporteC =  date_format($fechaHastaReporteC,"d/m/Y");
 //Datos alumno
 $selectMateria = $con->query("SELECT * FROM `materia` WHERE materia.id = '$id_materia' AND materia.fechaAltaMateria <= '$currentDate' AND materia.fechaBajaMateria IS NULL");
 $materia = $selectMateria->fetch_assoc();
-$nombreMateria = $materia["nombreMateria"];
+$nombreMateria = utf8_decode($materia["nombreMateria"]);
 $nivelMateria = $materia["nivelMateria"];
 
 
@@ -562,7 +562,7 @@ require_once( "../../fpdf/fpdf.php" );
 $textColour = array( 0, 0, 0 );
 $headerColour = array( 100, 100, 100 );
 
-$reportName = "Reporte de asistencias de materia";
+$reportName = "Reporte de asistencias de materia.";
 $reportNameYPos = 160;
 
 $logoFile = "logoDayclass.png";
@@ -639,7 +639,7 @@ $pdf->Ln(6);
 while($cursosMateria= $selectCursosMateria->fetch_assoc()){
     
     $id_curso = $cursosMateria["idCurso"]; 
-    $nombreCurso = $cursosMateria["nombreCurso"]; 
+    $nombreCurso = utf8_decode($cursosMateria["nombreCurso"]); 
     
     $selectCantPresentes = $con->query("SELECT COUNT(asistenciadia.id) AS cantPresentes FROM asistenciadia, asistencia, curso, tipoasistencia WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'PRESENTE'")->fetch_assoc();
     
@@ -703,7 +703,7 @@ require_once( "../../fpdf/fpdf.php" );
 $textColour = array( 0, 0, 0 );
 $headerColour = array( 100, 100, 100 );
 
-$reportName = "Reporte de asistencias de institucion";
+$reportName = utf8_decode("Reporte de asistencias de institución.");
 $reportNameYPos = 160;
 
 $logoFile = "logoDayclass.png";
@@ -769,13 +769,11 @@ $pdf->Ln(6);
 
 //codigo que va llenando la tabla 
 while($materia = $selectMateria->fetch_assoc()){
-    
-    
-    $nombreMateria = $materia["nombreMateria"];
+
+    $nombreMateria = utf8_decode($materia["nombreMateria"]);
     $nivelMateria = $materia["nivelMateria"];
     $id_materia = $materia["id"];
 
-    
     $selectCantPresentes = $con->query("SELECT COUNT(asistenciadia.id) AS cantPresentes FROM curso, materia, asistencia, asistenciadia, tipoasistencia WHERE materia.id = '$id_materia' AND materia.id = curso.materia_id AND curso.fechaDesdeCurActual <= '2020-09-20' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND asistencia.curso_id = curso.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'PRESENTE'")->fetch_assoc();
     
     $selectCantAusentes = $con->query("SELECT COUNT(asistenciadia.id) AS cantAusentes FROM curso, materia, asistencia, asistenciadia, tipoasistencia WHERE materia.id = '$id_materia' AND materia.id = curso.materia_id AND curso.fechaDesdeCurActual <= '2020-09-20' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND asistencia.curso_id = curso.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'AUSENTE'")->fetch_assoc();
@@ -785,7 +783,6 @@ while($materia = $selectMateria->fetch_assoc()){
     $cantPresntes = $selectCantPresentes["cantPresentes"];
     $cantAusentes = $selectCantAusentes["cantAusentes"];
     $cantJustificados = $selectCantJustificados["cantJustificados"];
-    
     
     $materiaNivel = $nombreMateria . " " .$nivelMateria;
         $pdf->SetFont('Arial', '', 12);
