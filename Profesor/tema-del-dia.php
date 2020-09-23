@@ -239,6 +239,7 @@ if(($fechaD > $currentDateTime)){
                                 $id_curso = $_GET["id_curso"];
 
                                 $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC LIMIT 2");
+                                //https://www.tutorialspoint.com/how-to-select-first-10-elements-from-a-mysql-database#:~:text=To%20select%20first%2010%20elements%20from%20a%20database%20using,BY%20clause%20with%20LIMIT%2010.&text=Insert%20some%20records%20in%20the%20table%20using%20insert%20command.&text=Display%20all%20records%20from%20the%20table%20using%20select%20statement.&text=Here%20is%20the%20alternate%20query%20to%20select%20first%2010%20elements.
                             
                                 if(($consulta1->num_rows) == 0){
                                     echo "<div class='alert alert-warning' role='alert'>
