@@ -80,7 +80,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="../images/justificativos.png" oncontextmenu="return false" alt="Justificativos">
+        <img class="card-img-top" src="../images/justificativo.png" oncontextmenu="return false" alt="Justificativos">
         <div class="card-body">
           <h6 class="card-text">Evaluar justificativos</h6>
         </div>

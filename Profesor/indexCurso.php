@@ -242,25 +242,33 @@ if(($fechaD > $currentDateTime)){
 
     <!-- Page Features -->
     <div class="row text-center">
-
+        
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <img class="card-img-top" src="../images/reportes.png" alt="" oncontextmenu="return false">
                 <div class="card-body">
-                    <h4 class="card-title">Reportes y estadísticas</h4>
-                    <p class="card-text">Genere reportes y estadisticas de asistencias.</p>
+                    <h5 class="card-title">Reportes y estadísticas</h5>
+                    <p class="card-text">Genere reportes y estadísticas de asistencia de los alumnos del curso.</p>
                 </div>
 
                 <div class="card-footer">
+                    <a <?php 
+                        if ($hab && $hayFechasCursado && $hayAlumnos) {
+                            echo 'class="btn btn-primary"';
+                            echo "href='/DayClass/Profesor/Reportes/reporte_curso.php?id_curso=$id_curso' ";
+                        } else {
+                            echo 'class="btn btn-primary disabled"';
+                        } 
+                        ?>>Reportes</a>
                     <a
                        <?php 
                         if ($hab && $hayFechasCursado && $hayAlumnos) {
-                            echo 'class="btn btn-primary"';
+                            echo 'class="btn btn-success"';
                             echo "href='/DayClass/Profesor/Estadisticas/estadistica_curso.php?id_curso=$id_curso' ";
                         }else {
                             echo 'class="btn btn-primary disabled"';
                         } 
-                        ?>>Crear</a>
+                        ?>>Estadísticas</a>
                 </div>
             </div>
         </div>
@@ -269,7 +277,7 @@ if(($fechaD > $currentDateTime)){
             <div class="card h-100">
                 <img class="card-img-top imagen" src="../images/Pizzarra-de-novedades.png" alt="pizarra-novedades" oncontextmenu="return false">
                 <div class="card-body">
-                    <h4 class="card-title">Pizarra de novedades</h4>
+                    <h5 class="card-title">Pizarra de novedades</h5>
                     <p class="card-text">Publica novedades para los alumnos del curso.</p>
                 </div>
                 <div class="card-footer">
@@ -287,10 +295,10 @@ if(($fechaD > $currentDateTime)){
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top imagen" src="../images/asistencias.png" alt="" oncontextmenu="return false">
+                <img class="card-img-top imagen" src="../images/asistencia.png" alt="" oncontextmenu="return false">
                 <div class="card-body">
-                    <h4 class="card-title">Asistencias</h4>
-                    <p class="card-text">Concurrencia al aula de los alumnos.</p>
+                    <h5 class="card-title">Asistencias</h5>
+                    <p class="card-text">Concurrencia de alumnos al curso.</p>
                 </div>
                 <div class="card-footer">
                     <a <?php
