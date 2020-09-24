@@ -89,7 +89,7 @@ if(isset($_GET["id_curso"])){
 <script src="estadisticas.js"></script>
 
 <script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';"; ?>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script>

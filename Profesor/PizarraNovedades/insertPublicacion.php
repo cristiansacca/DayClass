@@ -2,7 +2,7 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../databaseConection.php";
+include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['profesor'])) {
@@ -21,9 +21,9 @@ $insert = $con->query("INSERT INTO notificacionprofe (asunto, mensaje, fechaHora
  VALUES ('$asunto', '$mensaje', '$fechaHoraNotif', '".$_SESSION['profesor']['id']."', '$id_curso')");
 
 if($insert){//Si se insertó correctamente devuelve 1, sino devuelve 0. Para mostrar los mensajes correspondientes.
-    header("location: /DayClass/Profesor/pizarra.php?id_curso=$id_curso&&resultado=1");
+    header("location: /DayClass/Profesor/PizarraNovedades/pizarra.php?id_curso=$id_curso&&resultado=1");
 } else {
-    header("location: /DayClass/Profesor/pizarra.php?id_curso=$id_curso&&resultado=0");
+    header("location: /DayClass/Profesor/PizarraNovedades/pizarra.php?id_curso=$id_curso&&resultado=0");
 }
 	
 ?>

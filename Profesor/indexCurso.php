@@ -284,7 +284,7 @@ if(($fechaD > $currentDateTime)){
                     <a <?php 
                         if ($hab && $hayFechasCursado && $hayAlumnos) {
                             echo 'class="btn btn-primary"';
-                            echo "href='pizarra.php?id_curso=$id_curso'";
+                            echo "href='/DayClass/Profesor/PizarraNovedades/pizarra.php?id_curso=$id_curso'";
                         } else {
                             echo 'class="btn btn-primary disabled"';
                         } 
@@ -402,7 +402,7 @@ if(($fechaD > $currentDateTime)){
 </div>
 
 <script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script>

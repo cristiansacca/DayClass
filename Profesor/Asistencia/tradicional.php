@@ -94,7 +94,7 @@ if(($consultaAsistMismoDia->num_rows)!=0){
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../profesor.js"></script>
 <script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=".$id_curso."><i id=icono ></i>Tema del día</a>';"; ?>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script src="funciones_tradicional.js"></script>

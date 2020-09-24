@@ -1,5 +1,5 @@
 <?php
-include "../databaseConection.php";
+include "../../databaseConection.php";
 
 $id_programa = $_POST['id_programa'];
 $nro_unidad = $_POST['nro_unidad'];

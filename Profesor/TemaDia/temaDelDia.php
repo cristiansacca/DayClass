@@ -2,8 +2,8 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
-include "../databaseConection.php";
+include "../../header.html";
+include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['profesor'])) {
@@ -206,7 +206,8 @@ if(($fechaD > $currentDateTime)){
         </div>
         <div class="my-2">
             <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline"
-                placeholder="Escriba un comentario (Opcional)"></textarea>
+                placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
+            
         </div>
         
         <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden >
@@ -235,7 +236,7 @@ if(($fechaD > $currentDateTime)){
                         
                         
                             <?php
-                                include "../databaseConection.php";
+                                include "../../databaseConection.php";
                                 $id_curso = $_GET["id_curso"];
 
                                 $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC LIMIT 2");
@@ -286,7 +287,19 @@ if(($fechaD > $currentDateTime)){
 
 
                     <div class="modal-footer">
+                        <form action="verTemaDiaAnt.php" method="POST" class=" form-group">
+                        
+                        <input type="text" name="idCurso" id="idCurso" <?php echo "value='$id_curso'" ?> hidden >
+                            
+                            <button type="submit" class="btn btn-success">Ver mas...</button>
+                        
+                        
+                        </form>
+                        
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        
+                        
+                        
                 </div>
             </div>
 
@@ -297,15 +310,12 @@ if(($fechaD > $currentDateTime)){
 
 
 
-<script src="profesor.js"></script>
-<script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/tema-del-dia.php?id_curso=".$id_curso."><i id=icono ></i>Tema del día</a>';"; ?>
-    $("#icono").addClass("fa fa-clipboard mr-1");
-</script>
+<script src="../profesor.js"></script>
+
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
 </script>
 <script src="fnTemaDia.js"></script>
 <?php
-include "../footer.html";
+include "../../footer.html";
 ?>
