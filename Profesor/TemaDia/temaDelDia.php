@@ -177,6 +177,36 @@ if(($fechaD > $currentDateTime)){
                         </button>
             </div>"; 
         }
+    
+    
+    if(!$tieneDiaHora){
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay horario definido para este curso. No puede cargar temas.</h5>
+            </div>";
+        }else{
+           if(!$diaHoraBien){
+                            
+               if($diaBien && !$horaBien){
+                   echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el horario de cursado. No puede cargar temas nuevos.</h5>
+                    </div>";
+               }
+               
+               if(!$diaBien && !$horaBien){
+                   echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el día ni horario de cursado. No puede cargar temas nuevos.</h5>
+                    </div>"; 
+               }
+               
+            }else{
+               if(!$diaBien){
+                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Este curso no se dicta este día, no puede cargar temas.</h5>
+                    </div>";
+                }
+               
+           }  
+        }
     ?>
 
     <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo)){ }else{echo "hidden";}  ?>>
