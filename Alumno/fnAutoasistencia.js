@@ -11,16 +11,11 @@ document.getElementById("btnVerificarCodIngresado").onclick = function(){
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
-           // console.log(datosRecibidos);
             json = JSON.parse(datosRecibidos);
             
             if(json.length !== 0){
                 var resultado = json[0];
-                
-                console.log(resultado[0]);
-                
                 var resultado2 = resultado[0];
-                //alert(resultado);
                 
                 switch(resultado2){
                     case "noExiste":
