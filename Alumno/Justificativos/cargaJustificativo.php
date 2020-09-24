@@ -27,7 +27,7 @@
     fclose($fp);//Cerramos el archivo
 
     $fechaDesde = $_POST['fechaDesde'];
-    $fechaHasta = $_POST['fechaHasta'];
+    $fechaHasta = $_POST['fechaHasta'].' 23:59:59';
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $hoy = date('Y-m-d');
 

@@ -23,6 +23,14 @@ if (isset($_SESSION['administrador'])) {
 
 ?>
 
+<style>
+   .abajo-pagina{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+   }
+</style>
+
 <div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 25rem;">
    <form action="login.php" method="POST" class="form-group m-4">
       <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
