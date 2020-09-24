@@ -1,8 +1,6 @@
 <?php
 //Se inicia o restaura la sesión
 session_start();
-
-include "../header.html";
 include "../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
@@ -17,15 +15,17 @@ $currentDateTime = date('Y-m-d H:i:s');
 $currentDate = date('Y-m-d');
 
 
-$codigo = $_POST["inputCodigoIngresado"];
+$codigo = $_POST["codigo"];
 
+$rtdo = array();
 
 $consulta = $con->query("SELECT * FROM `codigoasitencia` WHERE `numCodigo` = '$codigo'");
 
 
 if(($consulta->num_rows) == 0){
     //el codigo no existe
-    header("Location:/DayClass/Alumno/index.php?resultado=2");
+    $rtdo[] = array("noExiste");
+    //header("Location:/DayClass/Alumno/index.php?resultado=2");
 }else{
     $resultado1 = $consulta->fetch_assoc();
     $fchFinCodigo = $resultado1["fechaHoraFinCodigo"];
@@ -38,7 +38,8 @@ if(($consulta->num_rows) == 0){
         
         if(mysqli_num_rows($consulta2) == 0){
             //se ingreso el codigo de otra materia en otro curso
-            header("Location:/DayClass/Alumno/index.php?resultado=4");
+            $rtdo[] = array("noInscripto");
+            //header("Location:/DayClass/Alumno/index.php?resultado=4");
         }else{
             
             $consultaEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM alumno, curso, alumnocursoactual, alumnocursoestado, cursoestadoalumno WHERE alumno.id='$id_alumno' AND curso.id = '$cursoCodigo' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDate' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDate' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id");
@@ -47,7 +48,8 @@ if(($consulta->num_rows) == 0){
             
             if($nombreEstadoAlumno == "LIBRE"){
                 //el alumno esta libre en la materia no puede resgistrar asistencia
-                header("Location:/DayClass/Alumno/index.php?resultado=6");
+                $rtdo[] = array("alumnoLibre");
+                //header("Location:/DayClass/Alumno/index.php?resultado=6");
             }else{
                $consulta3 = $con -> query("SELECT * FROM asistencia WHERE curso_id = '".$cursoCodigo."' AND  alumno_id = '".$id_alumno."'");
                 $resultado3 = $consulta3->fetch_assoc();
@@ -70,10 +72,12 @@ if(($consulta->num_rows) == 0){
             
                 if($update){
                     //registro de presente 
-                    header("Location:/DayClass/Alumno/index.php?resultado=1");
+                    $rtdo[] = array("exito");
+                    //header("Location:/DayClass/Alumno/index.php?resultado=1");
                 }else{
                     //echo problema al registrar le presente del alumno
-                    header("Location:/DayClass/Alumno/index.php?resultado=5");
+                    $rtdo[] = array("falloCarga");
+                    //header("Location:/DayClass/Alumno/index.php?resultado=5");
                 } 
             }
             
@@ -82,9 +86,11 @@ if(($consulta->num_rows) == 0){
         
     }else{
         //codigo correcto pero ingresado fuera de tiempo
-        header("Location:/DayClass/Alumno/index.php?resultado=3");
+        $rtdo[] = array("noVigente");
+        //header("Location:/DayClass/Alumno/index.php?resultado=3");
     }
 }
 
-
+$myJSON = json_encode($rtdo);
+echo $myJSON;  
 ?>

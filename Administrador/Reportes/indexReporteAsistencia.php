@@ -78,16 +78,9 @@ if (!isset($_SESSION['administrador'])) {
           <label>Fecha Hasta</label>
           <input type="date" class="form-control" id="inputFechaHastaReporte" name="inputFechaHastaReporte" <?php echo "max='$currentDate'" ?> required disabled>
          
-        </div>
-            
-        
-            
-            
+        </div>  
       </div>
-
-
-        <button type="submit" class="btn btn-primary">Generar</button>
-            
+        <button type="submit" class="btn btn-primary">Generar</button>   
     </form>
  
 

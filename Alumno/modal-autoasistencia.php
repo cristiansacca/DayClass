@@ -1,4 +1,7 @@
 <!-- Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -10,17 +13,63 @@
         </button>
       </div>
       <div class="modal-body">
-        <form onsubmit="return validarLongCodIngresado()" action="/DayClass/Alumno/ingresarCodigoAutoasist.php" method="post">
+          
+          
+          
+          
+          
+          
+          <div class='alert alert-success alert-dismissible fade show' id="exito" role='alert' hidden>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Código de asistencia ingresado correctamente. Se ha registrado su presente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+               <div class='alert alert-danger alert-dismissible fade show' id="noExiste" role='alert' hidden>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El código ingresado no existe.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                    <div class='alert alert-danger alert-dismissible fade show' id="noVigente" role='alert' hidden>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El código ingresado ya no se encuentra vigente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                    <div class='alert alert-danger alert-dismissible fade show' id="noInscripto" role='alert' hidden>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se ingresó un código para un curso en el que no está inscripto.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                    <div class='alert alert-danger alert-dismissible fade show' id="falloCarga" role='alert' hidden>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Falla al cargar el código. Consulte con el administrador.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+          </div>
+          
+          <div class='alert alert-danger alert-dismissible fade show' id="alumnoLibre" role='alert' hidden>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Actualmente se encuentra libre en esta materia. No puedes registrar tu presente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+          
             <div class=" text-center my-3 mx-4 form-row">
               <div class="form-group col-12 ">
                 <h3>Ingrese el código dado por el profesor</h3><br>
-                <h6 class="text-muted">Sin guiones ni espacios</h6>
+                  
+                  <div id="resultadoMostrar"></div>
+                
+                  <h6 class="text-muted">Sin guiones ni espacios</h6>
                 <input type="text"  class="form-control m-auto text-center" style="width: 230px; font-size: large; border-width: 4px;" id = "inputCodigoIngresado" onkeyup="this.value = this.value.toUpperCase();" maxlength="11" name = "inputCodigoIngresado">
                 <h9 id = "msgValidacionCodigo" ></h9> <br>
                 <button class="btn-lg btn-dayclass my-3" id ="btnVerificarCodIngresado" onclick = "validarLongCodIngresado()" type="submit"><a class="fa fa-check mr-1"></a>Dar presente</button>
               </div>
             </div>
-        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrar">Cerrar</button>
@@ -29,6 +78,7 @@
   </div>
 </div>
 
+<script src="/DayClass/Alumno/fnAutoasistencia.js"></script>
 <script>
   <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['alumno']['nombreAlum']." ".$_SESSION['alumno']['apellidoAlum']."'" ?>
 </script>
