@@ -9,44 +9,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class='alert alert-success alert-dismissible fade show' id="exito" role='alert' hidden>
-          <h5><i class='fa fa-exclamation-circle mr-2'></i>Código de asistencia ingresado correctamente. Se ha registrado su presente.</h5>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-          </button>
-        </div>
-        <div class='alert alert-danger alert-dismissible fade show' id="noExiste" role='alert' hidden>
-          <h5><i class='fa fa-exclamation-circle mr-2'></i>El código ingresado no existe.</h5>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-          </button>
-        </div>
-        <div class='alert alert-danger alert-dismissible fade show' id="noVigente" role='alert' hidden>
-          <h5><i class='fa fa-exclamation-circle mr-2'></i>El código ingresado ya no se encuentra vigente.</h5>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-          </button>
-        </div>
-        <div class='alert alert-danger alert-dismissible fade show' id="noInscripto" role='alert' hidden>
-          <h5><i class='fa fa-exclamation-circle mr-2'></i>Se ingresó un código para un curso en el que no está inscripto.</h5>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-          </button>
-        </div>
-        <div class='alert alert-danger alert-dismissible fade show' id="falloCarga" role='alert' hidden>
-          <h5><i class='fa fa-exclamation-circle mr-2'></i>Falla al cargar el código. Consulte con el administrador.</h5>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-          </button>
-        </div>
-
-        <div class='alert alert-danger alert-dismissible fade show' id="alumnoLibre" role='alert' hidden>
-          <h5><i class='fa fa-exclamation-circle mr-2'></i>Actualmente se encuentra libre en esta materia. No puedes registrar tu presente.</h5>
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-          </button>
-        </div>
-
         <div class=" text-center my-3 mx-4 form-row">
           <div class="form-group col-12 ">
             <h3>Ingrese el código dado por el profesor</h3><br>
@@ -62,7 +24,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrar">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrar" onclick="borrarDatos()">Cerrar</button>
       </div>
     </div>
   </div>

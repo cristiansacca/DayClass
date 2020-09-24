@@ -26,41 +26,6 @@ $(".custom-file-input").on("change", function () {
     $(this).next(".custom-file-label").addClass("selected").html(fileName);
 });
 
-function validarLongCodIngresado() {
-    eval("debugger;");
-    var codigoIngresado = document.getElementById('inputCodigoIngresado').value;
-    var rtdo = false;
-    var msg = "";
-    
-    var dev = false;
-    if (codigoIngresado.length == 0) {
-
-        msg = "El código está vacío.";
-
-    } else {
-        if (codigoIngresado.length < 11 || codigoIngresado.length > 11) {
-            msg = "El código no está completo.";
-        } else {
-
-            var letras = codigoIngresado.substring(0, 2);
-            var num = codigoIngresado.substring(2, 11);
-
-            if (letters(letras)) {
-                if (numbers(num)) {
-                    msg = "Código válido.";
-                    rtdo = true;
-                    dev = true;
-                } else {
-                    msg = "Código no válido.";
-                }
-            } else {
-                msg = "Código no válido.";
-            }
-        }
-    }
-    setValitationMesageAutoAsist("msgValidacionCodigo", rtdo, msg);
-    return dev;
-}
 
 function letters(letras) {
     var patron = /^[A-Za-z]*$/;

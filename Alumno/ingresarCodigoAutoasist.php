@@ -64,21 +64,28 @@ if(($consulta->num_rows) == 0){
                 $ausenteId = $resultado5["id"];
             
                 $ultimoRegistro = $con -> query("SELECT * FROM asistenciadia WHERE id = (SELECT MAX(id) FROM asistenciadia WHERE tipoAsistencia_id = '".$ausenteId."' AND asistencia_id = '".$asistenciaAlumno."' AND fechaHoraAsisDia LIKE '$currentDate%')");
-                $resultado6 = $ultimoRegistro->fetch_assoc();
-                $ultimoRegistroId = $resultado6["id"];
-            
-                $update = $con -> query("UPDATE `asistenciadia` SET `tipoAsistencia_id`= '".$presenteId."',`fechaHoraAsisDia`= '".$currentDateTime."' WHERE `id` = '".$ultimoRegistroId."'");
                 
-            
-                if($update){
-                    //registro de presente 
-                    $rtdo[] = array("exito");
-                    //header("Location:/DayClass/Alumno/index.php?resultado=1");
+                
+                if(mysqli_num_rows($ultimoRegistro) == 0){
+                    $rtdo[] = array("yaPresente");
                 }else{
-                    //echo problema al registrar le presente del alumno
-                    $rtdo[] = array("falloCarga");
-                    //header("Location:/DayClass/Alumno/index.php?resultado=5");
-                } 
+                    $resultado6 = $ultimoRegistro->fetch_assoc();
+                    $ultimoRegistroId = $resultado6["id"];
+
+                    $update = $con -> query("UPDATE `asistenciadia` SET `tipoAsistencia_id`= '".$presenteId."',`fechaHoraAsisDia`= '".$currentDateTime."' WHERE `id` = '".$ultimoRegistroId."'");
+
+
+                    if($update){
+                        //registro de presente 
+                        $rtdo[] = array("exito");
+                        //header("Location:/DayClass/Alumno/index.php?resultado=1");
+                    }else{
+                        //echo problema al registrar le presente del alumno
+                        $rtdo[] = array("falloCarga");
+                        //header("Location:/DayClass/Alumno/index.php?resultado=5");
+                    } 
+                    
+                 }
             }
             
         }
