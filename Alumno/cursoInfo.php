@@ -47,7 +47,7 @@ if (isset($_GET["id_curso"])) {
         
         
         <a class="btn btn-info" href="/DayClass/Alumno/materiasAlumno.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
-        <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas Dados</button>
+        <a class="btn btn-success" <?php echo "href='/DayClass/Alumno/verTemasDados.php?id_curso=$id_curso'"; ?>><i class="fa fa-bookmark mr-2"></i>Temas Dados</a>
     </div>
     <!-- Page Features -->
     <h2>Docentes</h2>

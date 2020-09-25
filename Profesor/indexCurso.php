@@ -266,7 +266,7 @@ if(($fechaD > $currentDateTime)){
                             echo 'class="btn btn-success"';
                             echo "href='/DayClass/Profesor/Estadisticas/estadistica_curso.php?id_curso=$id_curso' ";
                         }else {
-                            echo 'class="btn btn-primary disabled"';
+                            echo 'class="btn btn-success disabled"';
                         } 
                         ?>>Estadísticas</a>
                 </div>
