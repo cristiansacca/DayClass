@@ -33,7 +33,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
-    <button class="btn btn-success my-2" id="AniadirPublicacion " data-toggle="modal" data-target="#staticBackdrop">
+    <button class="btn btn-success my-2" id="AniadirPublicacion" data-toggle="modal" data-target="#staticBackdrop">
         <i class="fa fa-commenting mr-1"></i>Añadir publicación</button>
 
     <?php
@@ -53,27 +53,31 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
             }
         }
     ?>
-    <table class="table table-info table-hover table-bordered text-center">
+    <table class="table table-secondary table-hover table-bordered text-center">
         
         <?php
             setlocale(LC_ALL, 'Spanish');//Formato de fechas en español strftime("%A %d %B %Y %H:%M:%S", strtotime(fecha));
-            $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso'");
+            $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso' AND fechaHoraNotif >= '".$curso['fechaDesdeCursado']."' 
+            AND fechaHoraNotif <= '".$curso['fechaHastaCursado']."' ORDER BY (fechaHoraNotif) DESC");
             
             if (($consulta2->num_rows) > 0) {
                 echo "<thead>
                         <tr>
-                            <th>Tema</th>
-                            <th>Mensaje</th>
+                            <th style='width:50%'>Tema</th>
+                            <th>Ver</th>
                             <th>Fecha</th>
+                            <th>Docente</th>
                         </tr>
                     </thead>
                     <tbody id= 'Publicaciones'>";
                 while ($resultado2 = $consulta2->fetch_assoc()) {
+                    $profesor = $con->query("SELECT * FROM profesor WHERE id='".$resultado2['profesor_id']."'")->fetch_assoc();
                     $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
                     echo "<tr>
-                    <td>" . $resultado2['asunto'] . "</td>
-                    <td>" . $resultado2['mensaje'] . "</td>
-                    <td>" . $fechaFormateada . "</td>   
+                    <td><a>" . $resultado2['asunto'] . "</a></td>
+                    <td><a class='btn btn-primary' onclick='setearPublicacion(".$resultado2['id'].");' data-toggle='modal' data-target='#modalVerPublicacion'><i class='fa fa-eye text-light'></i></a></td>
+                    <td>" . $fechaFormateada . "</td>
+                    <td>".$profesor['apellidoProf'].", ".$profesor['nombreProf']."</td> 
                     </tr>";
                 }
             } else {
@@ -89,7 +93,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
     </table>
     
 </div>
-<!-- Modal -->
+<!-- Modal para hacer publicación-->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -119,8 +123,34 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
     </div>
 </div>
 
+<!-- Modal para ver publicación-->
+<div class="modal fade" id="modalVerPublicacion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title"> Publicación </h5>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>Asunto</label>
+                    <input type="text" id="verAsunto" class="form-control" readonly>
+                </div>
+                <div class="my-2">
+                    <label> Mensaje </label>
+                    <textarea class="form-control" id="verMensaje" cols="30" rows="10" style="resize:none;" readonly></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarModal();">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../profesor.js"></script>
+<script src="fnVerNovedades.js"></script>
 <script>
     document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
     $("#icono").addClass("fa fa-clipboard mr-1");

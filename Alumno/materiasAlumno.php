@@ -74,8 +74,8 @@ if (!isset($_SESSION['alumno']))
             echo " </ul>
                     </div>
                     <div class='card-footer'>
-                        <a href='cursoInfo.php?id_curso=".$curso['id']."' class='btn btn-primary m-2'>Ver curso</a>
-                        <a href='novedades.php?id_curso=".$curso['id']."' class='btn btn-success m-2'>Novedades</a>
+                        <a href='cursoInfo.php?id_curso=".$curso['id']."' class='btn btn-primary'>Ver curso</a>
+                        <a href='novedades.php?id_curso=".$curso['id']."' class='btn btn-success'>Novedades</a>
                     </div>
                 </div>
             </div>" ;

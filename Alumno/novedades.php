@@ -31,31 +31,39 @@ if(isset($_GET["id_curso"])){
         <a <?php echo "href='/DayClass/Alumno/materiasAlumno.php'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
-    <table class="table table-info table-hover table-bordered text-center">
+    
+        <?php
+            setlocale(LC_ALL, 'Spanish');//Formato de fechas en español strftime("%A %d %B %Y %H:%M:%S", strtotime(fecha));
+            $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso' AND fechaHoraNotif >= '".$curso['fechaDesdeCursado']."' 
+            AND fechaHoraNotif <= '".$curso['fechaHastaCursado']."' ORDER BY (fechaHoraNotif) DESC");
+            
+            if (($consulta2->num_rows) > 0) {
+        ?>
+    <table class="table table-secondary table-hover table-bordered text-center">
         <thead>
             <tr>
-                <th>Tema</th>
-                <th>Mensaje</th>
+                <th style="width: 50%;">Tema</th>
+                <th>Ver</th>
                 <th>Fecha</th>
                 <th>Docente</th>
             </tr>
         </thead>
         <tbody id= "Publicaciones">
-        <?php
-            setlocale(LC_ALL, 'Spanish');//Formato de fechas en español strftime("%A %d %B %Y %H:%M:%S", strtotime(fecha));
-            $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso'");
-            
-            if (($consulta2->num_rows) > 0) {
+            <?php
                 while ($resultado2 = $consulta2->fetch_assoc()) {
                     $profesor = $con->query("SELECT * FROM profesor WHERE id = '".$resultado2['profesor_id']."'")->fetch_assoc();
                     $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
                     echo "<tr>
-                    <td>" . $resultado2['asunto'] . "</td>
-                    <td>" . $resultado2['mensaje'] . "</td>
+                    <td><a>" . $resultado2['asunto'] . "</a></td>
+                    <td><a class='btn btn-primary' onclick='setearPublicacion(".$resultado2['id'].");' data-toggle='modal' data-target='#modalVerPublicacion'><i class='fa fa-eye text-light'></i></a></td>
                     <td>" . $fechaFormateada . "</td>  
                     <td>". $profesor['apellidoProf'].", ". $profesor['nombreProf'] ."</td> 
                     </tr>";
                 }
+                ?>
+        </tbody>
+    </table>
+                <?php
             } else {
                 
                 echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
@@ -65,12 +73,35 @@ if(isset($_GET["id_curso"])){
                 </button></div> ";
             }
         ?>
-        </tbody>
-    </table>
-    
+</div>
+
+<!-- Modal para ver publicación-->
+<div class="modal fade" id="modalVerPublicacion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title"> Publicación </h5>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>Asunto</label>
+                    <input type="text" id="verAsunto" class="form-control" readonly>
+                </div>
+                <div class="my-2">
+                    <label> Mensaje </label>
+                    <textarea class="form-control" id="verMensaje" cols="30" rows="10" style="resize:none;" readonly></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="limpiarModal();">Cerrar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="alumno.js"></script>
+<script src="/DayClass/Profesor/PizarraNovedades/fnVerNovedades.js"></script>
 
 <?php
 include "modal-autoasistencia.php";
