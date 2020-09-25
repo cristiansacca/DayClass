@@ -39,13 +39,10 @@ include "../../header.html";
         <p class="card-text">Administrador</p>
         <h1>Datos del justificativo</h1>
         <a href="/DayClass/Administrador/Justificativos/validar_justificativos.php" class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <button class="btn btn-success" id="btnValidar"><i class="fa fa-check-circle mr-1"></i>Validar</button>
-        <button class="btn btn-danger" id="btnRechazar"><i class="fa fa-times-circle mr-1"></i>Rechazar</button>
-        <input class="form-control mt-2" id="txtComentario" type="text" name="txtComentario" placeholder="Comentario (Opcional)">
         <input type="text" id="idJustificativo" <?php echo "value='$idImagen'"; ?> hidden>   
     </div>
 
-    <table class="table bg-light table-bordered table-sm">
+    <table class="table bg-light table-bordered">
         <tr>
             <td class="font-weight-bold">Alumno:</td>
             <td><?php echo "".$alumno['apellidoAlum'].", ".$alumno['nombreAlum']."" ?></td>
@@ -68,9 +65,15 @@ include "../../header.html";
         </tr>
     </table>
 
-    <h4>Imágen:</h4>
+    <button class="btn btn-success" id="btnValidar"><i class="fa fa-check-circle mr-1"></i>Validar</button>
+    <button class="btn btn-danger" id="btnRechazar"><i class="fa fa-times-circle mr-1"></i>Rechazar</button>
+    <input class="form-control mt-2" id="txtComentario" type="text" name="txtComentario" placeholder="Comentario (Opcional)">
 
-    <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
+    <div class="my-2">
+        <h4>Imagen:</h4>
+        
+        <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
+    </div>
 
 </div>
 

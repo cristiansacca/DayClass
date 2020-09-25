@@ -72,14 +72,15 @@ function mostrarAsistencias() {
                         backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
                         borderWidth: 2
                     }]
-                }/*,
-                plugins: {
-                    labels: {
+                },
+                options: {
+                    plugins:{
+                        labels: {
                         render: 'percentage',
-                        fontColor: ['white', 'green', 'red'],
-                        precision: 2
+                        fontColor: 'white',
+                        }
                     }
-                }*/
+                }
             });
 
             var ctx2 = document.getElementById('barChart').getContext('2d');
@@ -107,7 +108,7 @@ function mostrarAsistencias() {
                         display: true,
                         text: 'Asistencias'
                     }
-                },
+                }
             });
             document.getElementById("btnLimpiar").onclick = function(){
                 myChart.destroy();
@@ -123,6 +124,7 @@ function paginarTabla(){
     }
     else {
         table = $("#dataTable").DataTable({
+            "ordering": false,
             "language": {
                 processing:     "Procesando...",
                 lengthMenu: "Mostrar _MENU_ por página",

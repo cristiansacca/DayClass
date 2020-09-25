@@ -73,33 +73,59 @@ function generarPieChart(datosEntrada) {
         data: datosEntrada,
         success: function(datosRecibidos) {
             json = JSON.parse(datosRecibidos);
+            var tipoGrafico = document.getElementById("tipoGrafico").value;
             var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: document.getElementById("tipoGrafico").value,
-                data: {
-                    labels: ['Presentes', 'Justificados', 'Ausentes'],
-                    datasets: [{
-                        label: "Cantidad",
-                        data: [(json.asistencias), (json.justificados), (json.inasistencias)],
-                        backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(218, 165, 32, 1)', 'rgba(255, 99, 132, 1)'],
-                        borderWidth: 1.5
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
+            
+            if(tipoGrafico == 'pie' || tipoGrafico == 'doughnut'){
+                var myChart = new Chart(ctx, {
+                    type: tipoGrafico,
+                    data: {
+                        labels: ['Presentes', 'Ausentes', 'Justificados'],
+                        datasets: [{
+                            label: '',
+                            data: [(json.asistencias), (json.inasistencias), (json.justificados)],
+                            backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
+                            borderWidth: 2
                         }]
                     },
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: 'Gráfico de asistencias.'
+                    options: {
+                        plugins:{
+                            labels: {
+                            render: 'percentage',
+                            fontColor: 'white',
+                            fontSize: 14,
+                            }
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                var myChart = new Chart(ctx, {
+                    type: tipoGrafico,
+                    data: {
+                        labels: ['Presentes', 'Ausentes', 'Justificados'],
+                        datasets: [{
+                            label: "Cantidad",
+                            data: [(json.asistencias), (json.inasistencias), (json.justificados)],
+                            backgroundColor: ['rgba(0, 147, 0, 1)', 'rgba(255, 99, 132, 1)', 'rgba(218, 165, 32, 1)'],
+                            borderWidth: 1.5
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Asistencias'
+                        }
+                    }
+                });
+            }
 
             function porcentajeAsistencia(valor){
                 var totalAsistencias = json.asistencias+json.inasistencias+json.justificados;

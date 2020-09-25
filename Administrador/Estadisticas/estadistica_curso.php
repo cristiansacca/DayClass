@@ -11,9 +11,11 @@ if (!isset($_SESSION['administrador'])) {
 }
 
 include "../../databaseConection.php";
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDate = date('Y-m-d');
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 
 <div class="container">
 
@@ -34,7 +36,6 @@ $currentDate = date('Y-m-d');
                 <select class="custom-select" id="materia">
                     <option value="" selected>Seleccione</option>
                     <?php
-                    include "../../databaseConection.php";
                     $conMat = $con->query("SELECT * FROM materia WHERE fechaBajaMateria IS NULL");
                     while ($materias = $conMat->fetch_assoc()) {
                         echo "<option value='" . $materias['id'] . "'>" . $materias['nombreMateria'] . " " . $materias['nivelMateria'] . "</option>";
