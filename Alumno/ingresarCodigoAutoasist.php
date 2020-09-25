@@ -72,7 +72,7 @@ if(($consulta->num_rows) == 0){
                     $resultado6 = $ultimoRegistro->fetch_assoc();
                     $ultimoRegistroId = $resultado6["id"];
 
-                    $update = $con -> query("UPDATE `asistenciadia` SET `tipoAsistencia_id`= '".$presenteId."',`fechaHoraAsisDia`= '".$currentDateTime."' WHERE `id` = '".$ultimoRegistroId."'");
+                    $update = $con -> query("UPDATE `asistenciadia` SET `tipoAsistencia_id`= '$presenteId' WHERE `id` = '$ultimoRegistroId'");
 
 
                     if($update){
