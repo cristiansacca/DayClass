@@ -7,7 +7,10 @@ $contrasenia = $_POST["contrasenia"];
 
 //Realiza las consultas con el mail ingresado para obtener el usuario
 $consulta1 = $con->query("SELECT * FROM alumno WHERE emailAlum = '$email'");
-//$limiteSesion = $con->query("SELECT * FROM vigenciasesion")->fetch_assoc();
+$consultaSesion = $con->query("SELECT * FROM vigenciasesion");
+
+//Si el tiempo de sesion no está definido por defecto se ponen 40 minutos
+($consultaSesion->num_rows) != 0 ? $limiteSesion = $consultaSesion->fetch_assoc() : $limiteSesion = 40;
 
 if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verifica la contraseña
     
@@ -19,7 +22,10 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
         session_start();
         //En la variable de sesión se guardan los datos del usuario que ingresó
         $_SESSION["alumno"] = $resultado1;
-        //$_SESSION['limite'] = ($limiteSesion['duracionSesion']*60);
+        
+        //Se define la variable de sesión con el tiempo límite de inactividad en minutos
+        $_SESSION['limite'] = ($limiteSesion['duracionSesion']*60);
+        
         //Se redirigue a la página principal correspondiente al usuario
         header("Location: /DayClass/Alumno/index.php");
 

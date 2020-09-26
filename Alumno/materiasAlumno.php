@@ -11,6 +11,27 @@ if (!isset($_SESSION['alumno']))
    header("location:/DayClass/index.php"); 
 }
 
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+  
 ?>
 
 <link rel="stylesheet" href="../styleCards.css">
@@ -74,8 +95,8 @@ if (!isset($_SESSION['alumno']))
             echo " </ul>
                     </div>
                     <div class='card-footer'>
-                        <a href='cursoInfo.php?id_curso=".$curso['id']."' class='btn btn-primary'>Ver curso</a>
-                        <a href='novedades.php?id_curso=".$curso['id']."' class='btn btn-success'>Novedades</a>
+                        <a href='cursoInfo.php?id_curso=".$curso['id']."' class='btn btn-primary'><i class='fa fa-book mr-1'></i>Ver curso</a>
+                        <a href='novedades.php?id_curso=".$curso['id']."' class='btn btn-success'><i class='fa fa-newspaper-o mr-1'></i>Novedades</a>
                     </div>
                 </div>
             </div>" ;

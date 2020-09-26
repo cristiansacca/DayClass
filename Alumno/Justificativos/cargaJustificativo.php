@@ -2,7 +2,6 @@
     //Se inicia o restaura la sesión
     session_start();
     
-    include "../../header.html";
     include "../../databaseConection.php";
  
     //Si la variable sesión está vacía es porque no se ha iniciado sesión
@@ -11,7 +10,6 @@
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php"); 
     }
-    echo "<div class='container'>";
     
     $file = $_FILES['imgJust']; //Asignamos el contenido del parametro a una variable para su mejor manejo
 		
@@ -62,6 +60,4 @@
         header("Location:/DayClass/Alumno/Justificativos/justificativos.php?resultado=0");
 
     }
-    echo "</div>";
-    include "../../footer.html";
 ?>

@@ -11,12 +11,30 @@ if (!isset($_SESSION['alumno'])) {
     header("location:/DayClass/index.php");
 }
 
-//Si la variable id_curso no está definida se vuelve al index
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
-    $id_curso = $_GET["id_curso"];
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite']){
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+}
+$_SESSION['tiempo'] = time();
+  
+$id_curso = $_GET["id_curso"];
 
-    $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
-    $curso = $consulta1->fetch_assoc();
+$consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+$curso = $consulta1->fetch_assoc();
     
 
 ?>

@@ -12,7 +12,7 @@ if (!isset($_SESSION['alumno']))
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-/*if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
   //Calculamos tiempo de vida inactivo.
   $vida_session = time() - $_SESSION['tiempo'];
@@ -30,7 +30,7 @@ if (!isset($_SESSION['alumno']))
       exit();
   }
 }
-$_SESSION['tiempo'] = time();*/
+$_SESSION['tiempo'] = time();
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $hora = date('H:i:s');
