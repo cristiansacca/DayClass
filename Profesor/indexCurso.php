@@ -194,13 +194,13 @@ if(($fechaD > $currentDateTime)){
         }
         
         ?>
-        <a class="btn btn-secondary" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a class="btn btn-info" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <a <?php 
            
            if(!$hayAlumnos){
-             echo 'class="btn btn-info disabled" ';  
+             echo 'class="btn btn-success disabled" ';  
            }else{
-               echo 'class="btn btn-info" ';
+               echo 'class="btn btn-success" ';
                echo "href='inscriptos.php?id_curso=$id_curso'";
            }
            ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>

@@ -30,7 +30,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
     <div class="jumbotron my-4 py-4">
         <h1>Pizarra de novedades</h1>
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
-        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <button class="btn btn-success my-2" id="AniadirPublicacion" data-toggle="modal" data-target="#staticBackdrop">

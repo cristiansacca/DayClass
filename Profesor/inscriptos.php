@@ -26,7 +26,7 @@ if(isset($_GET["id_curso"])){
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <h1>Inscriptos en <?php echo " " . $curso["nombreCurso"] ?></h1>
-        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     <div>
         <table class="table table-active table-bordered table-hover table-sm">

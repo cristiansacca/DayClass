@@ -45,7 +45,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
     <div class="jumbotron my-4 py-4">
         <h1>Habilitar auto-asistencia</h1>
         <h5 class="font-weight-normal my-2"><?php echo $curso["nombreCurso"] ?></h5>
-        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     <?php
         if(isset($_GET['codigo'])){
