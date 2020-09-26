@@ -97,6 +97,9 @@ if (!isset($_SESSION['administrador']))
 
                     $id = $resultadoCurso["id"];
                     $urlEditarCurso = "modifFechasCursadoCurso.php?id=$id";
+                    
+                    $urlEditarCurso = "verCurso.php?id_curso=$id";
+                    
                     $urlBajaCurso = "bajaCurso.php?id=$id";
 
                     $nombreCurso = $resultadoCurso['nombreCurso'];

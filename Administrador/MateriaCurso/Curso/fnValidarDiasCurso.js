@@ -70,8 +70,6 @@ function enviar(){
     }
     
     
-    
-    
     if(erroneos == 0 && rtdo == false && chequeados > 0 && selectedoption != ""){
         rtdo = true;
         document.getElementById("arregloDiasHorario").value=JSON.stringify(arregloDiasHorarios);
@@ -82,3 +80,163 @@ function enviar(){
     
     //return rtdo;
 }
+
+//feunciones del cambio de horarios de un curso
+function habilitarTimePCF(dia){
+    var elem = document.getElementById(dia);
+    
+    elem.addEventListener( 'change', function() {
+    if(this.checked) {
+       
+        var elem = document.getElementById(dia + "1").disabled =false;
+        //var elem = document.getElementById(dia + "2").disabled =false;
+    }else{
+        var elem = document.getElementById(dia + "1").disabled =true;
+        var elem = document.getElementById(dia + "2").disabled =true;
+        
+    }
+});
+}
+
+
+function deleteRow(row){
+    var confirmar = confirm("¿Realmente desea eliminar este día?");
+    if (confirmar) {
+        var i = row.parentNode.parentNode.rowIndex;
+        document.getElementById("daysHoursTable").deleteRow(i);
+        return true;
+    } else {
+        return false;
+    }
+     
+}
+
+
+var selectDiasSemana = "<select class='custom-select' name='diasNuevos' id=''>";
+    selectDiasSemana += "<option value='Lunes'>Lunes</option>";
+    selectDiasSemana += "<option value='Martes'>Martes</option>";
+    selectDiasSemana += "<option value='Miercoles'>Miercoles</option>";
+    selectDiasSemana += "<option value='Jueves'>Jueves</option>";
+    selectDiasSemana += "<option value='Viernes'>Viernes</option>";
+    selectDiasSemana += "<option value='Sabado'>Sabado</option>";
+    selectDiasSemana += "<option value='Domingo'>Domingo</option>";
+    selectDiasSemana += "</select>";
+
+var contador = 0;
+
+function addCourseDay(){
+    var table = document.getElementById("daysHoursTable");
+  
+    var x = document.getElementById("daysHoursTable").rows.length;
+    var row = table.insertRow(x);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    
+    cell1.innerHTML = selectDiasSemana;
+    cell2.innerHTML = "<input type='time'  id='diaNuevo"+contador+1+"' onchange='habilitar2do(this.id)'>";
+    cell3.innerHTML = "<input type='time' id='diaNuevo"+contador+2+"'  disabled> ";
+    
+    
+    contador ++;
+}
+
+function getNewDays(){
+    eval("debugger;");
+    var diaNew = document.getElementsByName("diasNuevos");
+    
+    if(diaNew.length != 0){
+        for(let index = 0; index < diaNew.length; index++){
+            var nombreDia = diaNew[index].value;
+            var horaInicio = document.getElementById("diaNuevo"+index+1).value;
+            var horaFin = document.getElementById("diaNuevo"+index+2).value;
+            alert(nombreDia + ", " + horaInicio + ", " + horaFin);
+        }
+    }else{
+        alert("no hay dias nuevos");
+    }
+   
+}
+
+
+function validarRepetidos(){
+    eval("debugger;");
+    var diaNew = document.getElementsByName("diasNuevos");
+    var diaSem = document.getElementsByClassName("checkDia");
+    
+    for(let index = 0; index < diaNew.length; index++){
+        var nombreDiaN = diaNew[index].value;
+            for(let j = 0; j < diaSem.length; j++){
+                var nombreDiaV = diaSem[j].id;
+                    if(nombreDiaN == nombreDiaV){
+                       alert("esta dos veces el mismo día");
+                        return false;
+                        break;
+
+                    } 
+            }
+    }
+    
+    return true;
+}
+    
+function enviarFechasNuevas(){
+    var arregloDiasHorarios = [];
+    var diaSem = document.getElementsByClassName("checkDia");
+    var diaNew = document.getElementsByName("diasNuevos");
+    var rtdo = false;
+    var erroneos = 0;
+    var chequeados = 0;
+    
+    if(validarRepetidos()){
+        if(diaSem.length != 0){
+            for(let index = 0; index < diaSem.length; index++){
+                var nombreDia = diaSem[index].id;
+                var fechaInicio = document.getElementById(nombreDia+"1").value;
+                var fechaFin = document.getElementById(nombreDia+"2").value;
+                
+                   if(fechaInicio < fechaFin && fechaInicio != "" && fechaFin != ""){
+                       var diaHora = [nombreDia,fechaInicio,fechaFin];
+                       arregloDiasHorarios.push(diaHora);
+                       chequeados ++;
+
+                   }else{
+                       erroneos ++;
+                   } 
+                
+            }
+        }
+        
+        if(diaNew.length != 0){
+            for(let index = 0; index < diaNew.length; index++){
+                var nombreDia = diaNew[index].value;
+                var horaInicio = document.getElementById("diaNuevo"+index+1).value;
+                var horaFin = document.getElementById("diaNuevo"+index+2).value;
+               
+                if(horaInicio < horaFin && horaInicio != "" && horaFin != ""){
+                       var diaHora = [nombreDia,fechaInicio,fechaFin];
+                       arregloDiasHorarios.push(diaHora);
+                       chequeados ++;
+
+                   }else{
+                       erroneos ++;
+                   } 
+            }
+        }
+      
+        if(erroneos == 0 && rtdo == false && chequeados > 0 && (diaNew.length != 0 || diaSem.length != 0)){
+            document.getElementById("arregloDiasHorario").value=JSON.stringify(arregloDiasHorarios);
+            return true;
+        }else{
+            document.getElementById("mensajeError").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> <h5><i class='fa fa-exclamation-circle mr-2'></i>Revisar las horas de inicio y fin de los días.</h5> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+            return false;
+        }
+        
+    }else{
+        
+        document.getElementById("mensajeError").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> <h5><i class='fa fa-exclamation-circle mr-2'></i>Un día tiene dos horarios definidos.</h5> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+        return false;
+    }
+}
+
+
