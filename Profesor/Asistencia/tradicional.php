@@ -107,7 +107,7 @@ if (isset($_GET["id_curso"])) {
     <div class="jumbotron my-4 py-4">
         <h1 class="my-2">Asistencia</h1>
         <h5 class="my-2"><?php echo $curso["nombreCurso"] ?></h5>
-        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     <div class="text-center">
         <?php

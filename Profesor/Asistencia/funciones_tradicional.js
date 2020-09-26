@@ -42,10 +42,11 @@ function showSlides(n) {
 
 
 function generarTablaResumen() {
+    var idCurso = document.getElementById('idCurso').value;
     var cabecera = ["Legajo", "Apellido", "Nombre", "Estado"];
 
     var contenido = "";
-    contenido += "<table id='tabladatos' class='table table-bordered table-info table-hover text-center'>";
+    contenido += "<table id='tabladatos' class='table table-bordered table-secondary table-hover text-center'>";
     contenido += "<thead class='font-weight-bold'>";
     contenido += "<tr>";
 
@@ -76,7 +77,7 @@ function generarTablaResumen() {
         }
 
         contenido += "<td>";
-        contenido += "<button type='button' class='btn btn-success' onclick='cambiar(" + i + ")'>";
+        contenido += "<button type='button' class='btn btn-warning' onclick='cambiar(" + i + ")'>";
         contenido += "<i class='fa fa-retweet'></i>";
         contenido += "</button> ";
         contenido += "</td>";
@@ -88,10 +89,16 @@ function generarTablaResumen() {
     contenido += "<form action='darPresente.php' method='post' onsubmit='confirmar()'>";
     contenido += " <input type='text' hidden id='arregloDatos' name='arregloDatos'>";
     contenido += " <input type='text' hidden id='idCursoEnviar' name='idCursoEnviar'>";
+    
+    contenido += "<a href='/DayClass/Profesor/indexCurso.php?id_curso="+idCurso+"' class='btn btn-secondary ml-auto' id='btnCancelar' >";
+    contenido += "<i class='fa fa-times'></i> Cancelar";
+    contenido += "</a> ";
+    
     contenido += "<button type='submit' class='btn btn-primary ml-auto' id='btnConfirmar' >";
     contenido += "<i class='fa fa-check'></i> Confirmar";
     contenido += "</button> ";
-    contenido += "</form>"
+    
+    contenido += "</form>";
     document.getElementById("dvTable").innerHTML = contenido;
     colorearAsistencia();
 }
