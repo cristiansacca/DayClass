@@ -59,7 +59,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 </div>";
         } else {
 
-            echo "<label for=''>Seleccione una materia:</label>";
+            echo "<h5>Curso</h5>";
             echo "<select id='materias' class='custom-select'>";
             while ($alumnocursoactual = $consulta1->fetch_assoc()) {
 
@@ -93,10 +93,15 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         </div>
     </div>
 
+    <div id="faltasDisponibles">
+
+    </div>
+
+    <h5>Asistencia por día</h5>
     <div id="tablaAsistenciasCompleta">
-        <table class="table table-bordered text-center table-info table-sm" id="dataTable">
+        <table class="table table-bordered text-center table-secondary table-sm" id="dataTable">
             <thead>
-                <th>Fecha</th>
+                <th>Fecha y hora</th>
                 <th>Asistencia</th>
             </thead>
             <tbody id="tablaAsistencias">

@@ -7,12 +7,62 @@ document.getElementById("materias").onchange = function() {
 }
 
 function mostrarAsistencias() {
+    
     var id_curso = document.getElementById("materias").value;
     var id_alumno = document.getElementById("id_alumno").value;
+    
     var datos = {
         id_curso: id_curso,
         id_alumno: id_alumno
     }
+
+    $.ajax({
+        url: 'obtenerCantidadDiasCursado.php',
+        type: 'POST',
+        data: datos,
+        success: function(datosRecibidos){
+            json = JSON.parse(datosRecibidos);
+            var contenido = "";
+
+            if(json.minimoAsistencias == 0){
+                contenido += "<div class='alert alert-info' role='alert'>"+
+                    "<h5><i class='fa fa-info-circle mr-2'></i>El porcentaje mínimo de asistencias no se ha definido.</h5>"+
+                "</div>";
+            } else {
+                if(json.diasCursado == null){
+                    contenido += "<div class='alert alert-info' role='alert'>"+
+                        "<h5><i class='fa fa-info-circle mr-2'></i>El curso no tiene definido horarios.</h5>"+
+                    "</div>";
+                }else{
+                    var ausentes = json.ausentes;
+                    var totalDias = json.diasCursado;
+                    var porcentajeMinimo = json.minimoAsistencias;
+                    var presentesMinimos = Math.ceil(porcentajeMinimo*totalDias);
+                    var faltasDisponibles=totalDias-presentesMinimos-ausentes;
+
+                    if(faltasDisponibles >= 10) {
+                        contenido += "<div class='alert alert-success' role='alert'>"+
+                            "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
+                        "</div>";
+                    }else{
+                        if(faltasDisponibles < 10 && faltasDisponibles >= 5){
+                            contenido += "<div class='alert alert-warning' role='alert'>"+
+                                "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
+                            "</div>";
+                        }else{
+                            contenido += "<div class='alert alert-danger' role='alert'>"+
+                                "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
+                            "</div>";
+                        }
+                    }
+                }
+            }
+
+            document.getElementById("faltasDisponibles").innerHTML = contenido;
+
+        }
+    });
+
     $.ajax({
         url: 'listarAsistencias.php',
         type: 'POST',
@@ -55,7 +105,8 @@ function mostrarAsistencias() {
                 document.getElementById("alertAsistencias").hidden = true;
             }
         }
-    })
+    });
+
     $.ajax({
         url: 'obtenerAsistencias.php',
         type: 'POST',
@@ -116,7 +167,7 @@ function mostrarAsistencias() {
                 myChart2.destroy();
             }
         }
-    })
+    });
 }
 
 function paginarTabla(){
