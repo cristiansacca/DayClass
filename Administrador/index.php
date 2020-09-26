@@ -43,13 +43,13 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="../images/admCursos.png" alt="Cursos" oncontextmenu="return false">
+        <img class="card-img-top" src="../images/materiasycursos.png" alt="Cursos" oncontextmenu="return false">
         <div class="card-body">
 
-          <h6 class="card-text">Administrar materias y cursos</h6>
+          <h5 class="card-text">Administrar materias y cursos</h5>
         </div>
         <div class="card-footer">
-          <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-primary">Ir</a>
+          <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-primary">Ingresar</a>
         </div>
       </div>
     </div>
@@ -58,10 +58,10 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
       <div class="card h-100">
         <img class="card-img-top imagen" src="../images/estadisticas.png" oncontextmenu="return false" alt="Estadisticas">
         <div class="card-body">
-          <h6 class="card-text">Generar estadísticas</h6>
+          <h5 class="card-text">Generar estadísticas</h5>
         </div>
         <div class="card-footer">
-          <a href="/DayClass/Administrador/Estadisticas/estadistica_curso.php" class="btn btn-primary">Ir</a>
+          <a href="/DayClass/Administrador/Estadisticas/estadistica_curso.php" class="btn btn-primary">Ingresar</a>
         </div>
       </div>
     </div>    
@@ -70,10 +70,10 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
       <div class="card h-100">
         <img class="card-img-top imagen" src="../images/reportes1.png" oncontextmenu="return false" alt="Reportes">
         <div class="card-body">
-          <h6 class="card-text">Generar reportes </h6>
+          <h5 class="card-text">Generar reportes </h5>
         </div>
         <div class="card-footer">
-          <a href="/DayClass/Administrador/Reportes/indexReporteAsistencia.php" class="btn btn-primary">Ir</a>
+          <a href="/DayClass/Administrador/Reportes/indexReporteAsistencia.php" class="btn btn-primary">Ingresar</a>
         </div>
       </div>
     </div>
@@ -82,11 +82,11 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
       <div class="card h-100">
         <img class="card-img-top" src="../images/justificativo.png" oncontextmenu="return false" alt="Justificativos">
         <div class="card-body">
-          <h6 class="card-text">Evaluar justificativos</h6>
+          <h5 class="card-text">Evaluar justificativos</h5>
         </div>
 
         <div class="card-footer">
-          <a href="/DayClass/Administrador/Justificativos/validar_justificativos.php" class="btn btn-primary">Ir</a>
+          <a href="/DayClass/Administrador/Justificativos/validar_justificativos.php" class="btn btn-primary">Ingresar</a>
         </div>
       </div>
     </div>

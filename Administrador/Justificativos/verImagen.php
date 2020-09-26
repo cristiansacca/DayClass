@@ -38,7 +38,13 @@ include "../../header.html";
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         <h1>Datos del justificativo</h1>
-        <a href="/DayClass/Administrador/Justificativos/validar_justificativos.php" class="btn btn-secondary"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Administrador/Justificativos/validar_justificativos.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
+    <div class="jumbotron mb-4 py-4">
+        <h5>Evaluación</h5>
+        <input class="form-control mb-2" id="txtComentario" type="text" name="txtComentario" placeholder="Comentario (Opcional)">
+        <button class="btn btn-danger" id="btnRechazar"><i class="fa fa-times-circle mr-1"></i>Rechazar</button>
+        <button class="btn btn-success" id="btnValidar"><i class="fa fa-check-circle mr-1"></i>Validar</button>
         <input type="text" id="idJustificativo" <?php echo "value='$idImagen'"; ?> hidden>   
     </div>
 
@@ -65,13 +71,8 @@ include "../../header.html";
         </tr>
     </table>
 
-    <button class="btn btn-success" id="btnValidar"><i class="fa fa-check-circle mr-1"></i>Validar</button>
-    <button class="btn btn-danger" id="btnRechazar"><i class="fa fa-times-circle mr-1"></i>Rechazar</button>
-    <input class="form-control mt-2" id="txtComentario" type="text" name="txtComentario" placeholder="Comentario (Opcional)">
-
     <div class="my-2">
         <h4>Imagen:</h4>
-        
         <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
     </div>
 

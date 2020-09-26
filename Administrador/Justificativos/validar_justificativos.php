@@ -54,22 +54,20 @@ if (!isset($_SESSION['administrador'])) {
     } else {
     ?>
     
-    <table class="table table-bordered table-info">
+    <table class="table table-bordered table-secondary">
         <thead>
-            <th>Nombre</th>
-            <th>Fecha presentación</th>
             <th>Alumno</th>
-            <th>Mostrar</th>
+            <th>Fecha presentación</th>
+            <th></th>
         </thead>
         <tbody>
             <?php
             while($justificativo = $consulta1->fetch_assoc()){
                 $alumno = $con->query("SELECT * FROM alumno WHERE id = '".$justificativo['alumno_id']."'")->fetch_assoc();
                 echo "<tr>
-                    <td><a href='verImagen.php?id=".$justificativo['id']."'>".$justificativo['descripcionImagen']."</a></td>
-                    <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaPresentacion']))."</td>
                     <td>".$alumno['apellidoAlum'].", ".$alumno['nombreAlum']."</td>
-                    <td class='text-center'><a class='btn btn-success' href='verImagen.php?id=".$justificativo['id']."'><i class='fa fa-eye'></i></a></td>
+                    <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaPresentacion']))."</td>
+                    <td class='text-center'><a class='btn btn-primary' href='verImagen.php?id=".$justificativo['id']."'><i class='fa fa-eye mr-1'></i>Ver</a></td>
                 </tr>";
             }
             ?>

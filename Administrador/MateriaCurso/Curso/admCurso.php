@@ -59,21 +59,19 @@ if (!isset($_SESSION['administrador']))
 
 
     <div class="my-2">
-    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
+    <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
     </div>
-
 
     <div class="my-2">
 
-        <table id="dataTable" class="table table-info table-bordered table-hover">
-            <thead>
+        <table id="dataTable" class="table table-secondary table-bordered table-hover">
+            <!--<thead>
                 <th>Nombre</th>
                 <th>División</th>
                 <th>Modalidad</th>
                 <th></th>
                 <th></th>
-            </thead>
-
+            </thead>-->
             <tbody>
                 <?php
                 include "../../../databaseConection.php";
@@ -106,40 +104,36 @@ if (!isset($_SESSION['administrador']))
                     $fechaDesdeCursado = $resultadoCurso['fechaDesdeCursado'];
                     $fechaHastaCursado = $resultadoCurso['fechaHastaCursado'];
                     
-                    $classHabilitado = "btn btn-danger btn-sm mb-1";
+                    $classHabilitado = "btn btn-danger mb-1";
                     
                     if($fechaDesdeCursado != null && $fechaHastaCursado != null) {
                         if($fechaHastaCursado >= $currentDateTime){
                             $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado'  AND `curso_id` = '$id' ");
 
                             if(mysqli_num_rows($consultaAlumnos) == 0 ){
-                                $classHabilitado = "btn btn-danger btn-sm mb-1";
+                                $classHabilitado = "btn btn-danger mb-1";
                             }else{
-                                $classHabilitado = "btn btn-danger btn-sm mb-1 disabled";
+                                $classHabilitado = "btn btn-danger mb-1 disabled";
                             }
                         }else{
-                            $classHabilitado = "btn btn-danger btn-sm mb-1";
+                            $classHabilitado = "btn btn-danger mb-1";
                         }
                         
                     }
                     
                     echo "<tr>
                     <td>" . $nombreCurso . "</td>
-                    <td>" . $resultado2['nombreDivision'] . "</td>
                     <td>" . $resultado3['nombre'] . "</td>
                     
                     <td class='text-center'>
-                        <a class='btn btn-success btn-sm mb-1' data-emp-id=" . $id . " onclick='' href='$urlEditarCurso'><i class='fa fa-edit'></i></a>
-                        <a class='$classHabilitado' data-emp-id=" . $id . " onclick='return confirmDelete()' href='$urlBajaCurso'><i class='fa fa-trash'></i></a>
-                                                
+                        <a class='btn btn-info mb-1' data-emp-id=" . $id . " href='alumnosCurso.php?id=$id'><i class=' fa fa-user mr-1'></i>Alumnos</a>                              
+                        <a class='btn btn-warning mb-1' data-emp-id=" . $id . " href='modifDocentesCurso.php?id=$id'><i class=' fa fa-graduation-cap mr-1'></i>Docentes</a> 
                     </td>
-                    
                     <td class='text-center'>
-                        <a class='btn btn-warning btn-sm mb-1' data-emp-id=" . $id . " href='modifDocentesCurso.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Docentes</a> 
-                        <a class='btn btn-info btn-sm mb-1' data-emp-id=" . $id . " href='alumnosCurso.php?id=$id'><i class=' fa fa-user-plus mr-1'></i>Alumnos</a>                              
-                    </td>
-                    
-                    
+                        <a class='btn btn-primary mb-1' data-emp-id=" . $id . " onclick='' href='$urlEditarCurso' style='width:85px'><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a class='$classHabilitado' data-emp-id=" . $id . " onclick='return confirmDelete()' href='$urlBajaCurso' style='width:85px'><i class='fa fa-trash mr-1'></i>Baja</a>
+                                                
+                    </td>                  
                     
                     </tr>";
                 }

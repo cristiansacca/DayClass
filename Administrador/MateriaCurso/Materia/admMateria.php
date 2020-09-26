@@ -72,16 +72,16 @@ if (!isset($_SESSION['administrador']))
 
     ?>
 
-    <button class="btn btn-success my-2" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
+    <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
     <div class="my-2">
-        <table id="dataTable" class="table table-info table-bordered table-hover">
-            <thead>
+        <table id="dataTable" class="table table-secondary table-bordered table-hover">
+            <!--<thead>
                 <th>Nombre materia</th>
                 <th>Nivel</th>
                 <th>Programa</th>
                 <th>Ver</th>
                 <th>Eliminar</th>
-            </thead>
+            </thead>-->
             <tbody>
                 <?php
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -97,13 +97,13 @@ if (!isset($_SESSION['administrador']))
                     $nivelMateria = $resultado1['nivelMateria'];
                     
                     if(($consulta2->num_rows)!=0){
-                        $cargado = "Cargado";
+                        $cargado = "Programa cargado";
                     } else {
-                        $cargado = "Sin cargar";
+                        $cargado = "Programa sin cargar";
                     }
                     
                     
-                    $classHabilitado = "btn btn-danger btn-sm mb-1";
+                    $classHabilitado = "btn btn-danger mb-1";
                     
                     $consultaCursosMateria = $con->query("SELECT curso.id AS idCurso, curso.fechaDesdeCursado, curso.fechaHastaCursado FROM curso, materia WHERE materia.id = '$idmateria' AND materia.id = curso.materia_id AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado > '$currentDate'"); 
                     
@@ -116,7 +116,7 @@ if (!isset($_SESSION['administrador']))
                              $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado'  AND `curso_id` = '$idCurso' ");
                              
                              if(mysqli_num_rows($consultaAlumnos) != 0 ){
-                                $classHabilitado = "btn btn-danger btn-sm mb-1 disabled";
+                                $classHabilitado = "btn btn-danger mb-1 disabled";
                                 break;
                             }
                          }
@@ -125,11 +125,14 @@ if (!isset($_SESSION['administrador']))
                     
                     
                     echo "<tr>
-                    <td><a href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'>" . $nombreMateria . "</a></td>
-                    <td>$nivelMateria</td>
+                    <td><a>" . $nombreMateria . "</a></td>
+                    <td>Nivel $nivelMateria</td>
                     <td>".$cargado."</td>
-                    <td class='text-center'><a class='btn btn-primary btn-sm' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$idmateria'><i class='fa fa-eye'></i></a></td>
-                    <td class='text-center'><a class='$classHabilitado' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
+                    <td>
+                    <a class='btn btn-warning mb-1' href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'><i class='fa fa-book mr-1'></i>Ver cursos</a>
+                    <a class='btn btn-primary mb-1' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$idmateria'><i class='fa fa-university mr-1'></i>Ver materia</a>
+                    <a class='$classHabilitado' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a>
+                    </td>
                     </tr>";
                     
                 }

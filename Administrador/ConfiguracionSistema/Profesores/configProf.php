@@ -91,7 +91,7 @@ if (!isset($_SESSION['administrador']))
     </div>
 
     <div class="my-4">
-        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
+        <table id="dataTable" class="table table-secondary table-bordered table-hover table-sm">
             <thead>
                 <th>Legajo</th>
                 <th>Apellido</th>

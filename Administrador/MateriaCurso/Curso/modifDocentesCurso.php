@@ -38,8 +38,8 @@ if (!isset($_SESSION['administrador'])) {
 
         echo "<h1>$nombreCurso</h1>";
 
-        echo "<h6 class='font-weight-normal'>Inicio del curso: " . strftime('%d/%m/%Y', strtotime($fchDesde)) . "</h6>";
-        echo "<h6 class='font-weight-normal'>Finalización de curso: " . strftime('%d/%m/%Y', strtotime($fchHasta)) . "</h6>";
+        echo "<h6 class='font-weight-normal'>Inicio del cursado: " . strftime('%d/%m/%Y', strtotime($fchDesde)) . "</h6>";
+        echo "<h6 class='font-weight-normal'>Finalización de cursado: " . strftime('%d/%m/%Y', strtotime($fchHasta)) . "</h6>";
 
         ?>
         <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado['materia_id']."'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
@@ -114,12 +114,12 @@ if (!isset($_SESSION['administrador'])) {
 
     ?>
 
-    <div class="my-3">
+    <div class="my-2">
         <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Docente</a>
     </div>
 
     <div class="my-4">
-        <table id="dataTable" class="table table-info table-bordered table-hover table-sm">
+        <table id="dataTable" class="table table-secondary table-bordered table-hover">
             <thead>
                 <th>Legajo</th>
                 <th>Docente</th>
@@ -165,9 +165,9 @@ if (!isset($_SESSION['administrador'])) {
                     <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
                     
                     <td class='text-center'>
-                        <a href='' class='btn btn-success btn-sm mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
-                        <a href='#' class='btn btn-danger btn-sm mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
-                        <a href='' class='btn btn-warning btn-sm mb-1' data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(" . $id . ")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
+                        <a href='' class='btn btn-warning mb-1' data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(" . $id . ")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
+                        <a href='' class='btn btn-primary mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a href='' class='btn btn-danger mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
                         <input type='date' name='impIDprof' id='inicLic" . $id . "' value='$inicioLicencia' hidden> 
                         <input type='date' name='impIDprof' id='inicioUltimaLicencia" . $id . "' value='$inicioUtimaLicencia' hidden>
                         <input type='date' name='impIDprof' id='finUltimaLicencia" . $id . "' value='$finUtimaLicencia' hidden>
@@ -331,7 +331,7 @@ if (!isset($_SESSION['administrador'])) {
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btnCrearLicencia">Agregar</button>
                 </div>
             </form>
