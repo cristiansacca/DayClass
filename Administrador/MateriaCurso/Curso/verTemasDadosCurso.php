@@ -31,11 +31,9 @@ $curso = $consulta1->fetch_assoc();
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        <h1><?php echo " " . $curso["nombreCurso"] ?></h1>
-        
-        <h3 class='font-weight-normal'>Tema dados anteriormente</h3>
+        <h1>Temas dados anteriormente</h1>
+        <h3 class='font-weight-normal'><?php echo " " . $curso["nombreCurso"] ?></h3>  
         <a class="btn btn-info" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/verCurso.php?id_curso=$id_curso'"; ?>><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
-         
     </div>
 
     
