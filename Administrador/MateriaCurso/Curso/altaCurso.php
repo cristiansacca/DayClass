@@ -38,7 +38,7 @@ $currentDateTime = date('Y-m-d H:i:s');
         $horaDesde = $arrayLimpio[$i][1];
         $horaHasta = $arrayLimpio[$i][2];
         
-        $consultaCursoDia = $con -> query("SELECT * FROM `cursodia` WHERE `nombreDia` = '".$dia."'");
+        $consultaCursoDia = $con -> query("SELECT * FROM `cursodia` WHERE `nombreDiaSA` = '".$dia."'");
         $resultado3 = $consultaCursoDia->fetch_assoc();
         $id_dia = $resultado3["id"];
         

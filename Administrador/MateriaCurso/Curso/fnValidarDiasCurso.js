@@ -179,6 +179,24 @@ function validarRepetidos(){
     
     return true;
 }
+
+
+function nuevosRepetidos(){
+    eval("debugger;");
+    var diaNew = document.getElementsByName("diasNuevos");
+    for(let i = 0; i < diaNew.length; i++){
+        var nombreDia = diaNew[i].value;
+        for(let j = 0; j < diaNew.length; j++){
+           var nombreDia2 = diaNew[j].value;
+            if(i != j){
+                if(nombreDia == nombreDia2){
+                    return false;
+                }
+            }
+        }                
+    }
+    return true;
+}
     
 function enviarFechasNuevas(){
     var arregloDiasHorarios = [];
@@ -208,20 +226,24 @@ function enviarFechasNuevas(){
         }
         
         if(diaNew.length != 0){
-            
-            for(let index = 0; index < diaNew.length; index++){
-                var nombreDia2 = diaNew[index].value;
-                var horaInicio = document.getElementById("diaNuevo"+index+1).value;
-                var horaFin = document.getElementById("diaNuevo"+index+2).value;
-               
-                if(horaInicio < horaFin && horaInicio != "" && horaFin != ""){
-                       var diaHora = [nombreDia2,horaInicio,horaFin];
-                       arregloDiasHorarios.push(diaHora);
-                       chequeados ++;
+            if(nuevosRepetidos()){
+                for(let index = 0; index < diaNew.length; index++){
+                    var nombreDia2 = diaNew[index].value;
+                    var horaInicio = document.getElementById("diaNuevo"+index+1).value;
+                    var horaFin = document.getElementById("diaNuevo"+index+2).value;
 
-                   }else{
-                       erroneos ++;
-                   } 
+                    if(horaInicio < horaFin && horaInicio != "" && horaFin != ""){
+                           var diaHora = [nombreDia2,horaInicio,horaFin];
+                           arregloDiasHorarios.push(diaHora);
+                           chequeados ++;
+
+                       }else{
+                           erroneos ++;
+                       } 
+                }
+            }else{
+                document.getElementById("mensajeError").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> <h5><i class='fa fa-exclamation-circle mr-2'></i>Hay dos horarios definidos para el mismo día.</h5> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+                return false;
             }
         }
       
