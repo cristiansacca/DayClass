@@ -81,6 +81,15 @@ if (!isset($_SESSION['administrador']))
 
                 $id_materia = $_GET["id"];
                 $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia' AND `fechaHastaCurActul` IS NULL");
+                
+                
+                if(($consulta1->num_rows)== 0){
+                    echo "<div class='alert alert-warning' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay cursos creados para esta materia.</h5>
+                    </div>"; 
+                }else{
+                    
+                
 
 
                 while ($resultadoCurso = $consulta1->fetch_assoc()) {
@@ -139,6 +148,7 @@ if (!isset($_SESSION['administrador']))
                     </td>                  
                     
                     </tr>";
+                }
                 }
                 ?>
             </tbody>
