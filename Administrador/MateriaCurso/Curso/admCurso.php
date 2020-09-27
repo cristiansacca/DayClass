@@ -133,7 +133,7 @@ if (!isset($_SESSION['administrador']))
                         <a class='btn btn-warning mb-1' data-emp-id=" . $id . " href='modifDocentesCurso.php?id=$id'><i class=' fa fa-graduation-cap mr-1'></i>Docentes</a> 
                     </td>
                     <td class='text-center'>
-                        <a class='btn btn-primary mb-1' data-emp-id=" . $id . " onclick='' href='$urlEditarCurso' style='width:85px'><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a class='btn btn-primary mb-1' data-emp-id=" . $id . " onclick='' href='$urlEditarCurso'><i class='fa fa-book mr-1'></i>Ver curso</a>
                         <a class='$classHabilitado' data-emp-id=" . $id . " onclick='return confirmDelete()' href='$urlBajaCurso' style='width:85px'><i class='fa fa-trash mr-1'></i>Baja</a>
                                                 
                     </td>                  

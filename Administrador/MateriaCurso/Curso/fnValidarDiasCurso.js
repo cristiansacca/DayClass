@@ -209,12 +209,12 @@ function enviarFechasNuevas(){
         
         if(diaNew.length != 0){
             for(let index = 0; index < diaNew.length; index++){
-                var nombreDia = diaNew[index].value;
+                var nombreDia2 = diaNew[index].value;
                 var horaInicio = document.getElementById("diaNuevo"+index+1).value;
                 var horaFin = document.getElementById("diaNuevo"+index+2).value;
                
                 if(horaInicio < horaFin && horaInicio != "" && horaFin != ""){
-                       var diaHora = [nombreDia,fechaInicio,fechaFin];
+                       var diaHora = [nombreDia2,horaInicio,horaFin];
                        arregloDiasHorarios.push(diaHora);
                        chequeados ++;
 
@@ -226,7 +226,9 @@ function enviarFechasNuevas(){
       
         if(erroneos == 0 && rtdo == false && chequeados > 0 && (diaNew.length != 0 || diaSem.length != 0)){
             document.getElementById("arregloDiasHorario").value=JSON.stringify(arregloDiasHorarios);
+            
             return true;
+            
         }else{
             document.getElementById("mensajeError").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> <h5><i class='fa fa-exclamation-circle mr-2'></i>Revisar las horas de inicio y fin de los días.</h5> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
             return false;
@@ -237,6 +239,26 @@ function enviarFechasNuevas(){
         document.getElementById("mensajeError").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> <h5><i class='fa fa-exclamation-circle mr-2'></i>Un día tiene dos horarios definidos.</h5> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
         return false;
     }
+}
+
+//para cambiar las fechas de inicio y fin de cursado
+function habilitarSegundaFecha() {
+    eval("debugger;");
+    var fchDesde = document.getElementById('inputInicioCursado').value;
+    var fchHoy = document.getElementById('todayDate').value;
+    
+    if(fchDesde < fchHoy){
+       document.getElementById('inputFinCursado').value = fchHoy;
+        document.getElementById('inputFinCursado').min = fchHoy; 
+    }else{
+        document.getElementById('inputFinCursado').value = fchDesde;
+        document.getElementById('inputFinCursado').min = fchDesde; 
+    }
+    
+    
+    document.getElementById('inputFinCursado').disabled = false;
+    document.getElementById('inputFinCursado').readonly = false;
+
 }
 
 

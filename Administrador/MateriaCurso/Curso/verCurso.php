@@ -28,15 +28,17 @@ if (!isset($_SESSION['administrador']))
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
+        <p class="card-text">Administrador</p>
         <?php
             $id_curso = $_GET["id_curso"];
 
-            $consulta1 = $con->query("SELECT curso.nombreCurso, materia.nombreMateria, division.nombreDivision, modalidad.nombre AS nombreModalidad FROM `curso`, materia, division, modalidad WHERE curso.id = '$id_curso' AND curso.materia_id = materia.id AND curso.division_id = division.id AND division.modalidad_id = modalidad.id");
+            $consulta1 = $con->query("SELECT curso.materia_id, curso.nombreCurso, materia.nombreMateria, division.nombreDivision, modalidad.nombre AS nombreModalidad FROM `curso`, materia, division, modalidad WHERE curso.id = '$id_curso' AND curso.materia_id = materia.id AND curso.division_id = division.id AND division.modalidad_id = modalidad.id");
             $curso = $consulta1->fetch_assoc();
             $nombreCurso = $curso["nombreCurso"];
             $nombreMateria = $curso["nombreMateria"];
             $nombreDivision = $curso["nombreDivision"];
             $nombreModalidad = $curso["nombreModalidad"];
+            $id_materia = $curso["materia_id"];
             
             echo "<h1>$nombreCurso</h1>";
             echo "<h3 class='font-weight-normal'>$nombreModalidad</h3>";
@@ -44,14 +46,45 @@ if (!isset($_SESSION['administrador']))
         ?>
         
         
-        <a class="btn btn-info" href="/DayClass/Alumno/materiasAlumno.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
-        <a class="btn btn-primary"<?php echo "href='modifFechasCursadoCurso.php?id=$id_curso'"; ?>><i class="fa fa-arrow-circle-left mr-2"></i>Fechas cursado</a>
-        <a href="" class="btn btn-success" data-toggle="modal" data-target="#modifHorariosCurso"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
-        <a class="btn btn-success" <?php //echo "href='/DayClass/Alumno/verTemasDados.php?id_curso=$id_curso'"; ?>><i class="fa fa-bookmark mr-2"></i>Temas Dados</a>
+        <a class="btn btn-info" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=$id_materia'"; ?>><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
+        <a class="btn btn-warning" data-toggle="modal" data-target="#modifFechasCurso"><i class="fa fa-calendar mr-2"></i>Fechas cursado</a>
+        <a href="" class="btn btn-success" data-toggle="modal" data-target="#modifHorariosCurso"><i class="fa fa-clock-o mr-1"></i>Horarios cursado</a>
+        <a class="btn btn-light" <?php echo "href=''"; ?>><i class="fa fa-bookmark mr-2"></i>Temas Dados</a>
         
         
     </div>
     <!-- Page Features -->
+    
+    <?php
+
+    if (isset($_GET["resultado"])) {
+        switch ($_GET["resultado"]) {
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa de hoarios de cursado.</h5>";
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se pudieron dar de baja los horarios anteriores, intente nuevamente.</h5>";
+                break;
+                
+            case 3:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa de las fechas de cursado.</h5>";
+                break;
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la actualización de las fechas de cursado.</h5>";
+                 break;
+        }
+        echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>";
+    }
+
+    ?>
+
     
     <h2>Fechas de cursado</h2>
     <div class="py-4 my-3 jumbotron" style="background-color:PowderBlue;">
@@ -144,74 +177,6 @@ if (!isset($_SESSION['administrador']))
 
 </div>
 
-
-<!-- Modal ver temas dados -->
-<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content ">
-            <div class="modal-header ">
-                <h3 class="modal-title " id="staticBackdropLabel">Temas dados</h3>
-            </div>
-            <div class="modal-body">
-
-                <div>
-                    <h9>Temas dados durante el cursado</h9>
-
-                    <table class="table text-center table-striped">
-                        
-                        
-                        
-                            <?php
-                                include "../databaseConection.php";
-                                $id_curso = $_GET["id_curso"];
-
-                                $consulta1 = $con->query("SELECT temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia ASC");
-                            
-                            
-                                if(($consulta1->num_rows) == 0){
-                                    echo "<div class='alert alert-warning' role='alert'>
-                                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no se han cargado temas en este curso</h5>
-                                        </div>";
-                                }else{
-                                   echo "<thead>
-                                            <th>Fecha</th>
-                                            <th>Tema</th>
-                                            <th>Comentario del Docente</th>
-                                        </thead>
-                                       <tbody> ";
-                                
-
-                                    while ($resultado1 = $consulta1->fetch_assoc()) {
-                                        
-                                        $date=date_create($resultado1['fechaTemaDia']);
-                                        $fecha = date_format($date,"d/m/Y");
-
-                                        echo "<tr>
-                                        <td>" . $fecha . "</td>
-                                        <td>" . $resultado1['nombreTema'] . "</td>
-                                        <td>" . $resultado1['comentarioTema'] . "</td>
-                                        </tr>";
-                                    }
-                                    
-                                    echo " </tbody>";
-                                }
-                            ?>
-                        
-                       
-                    </table>
-
-                </div>
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <!-- Modal modificar horarios de cursado -->
 <div class="modal fade" id="modifHorariosCurso" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -219,7 +184,7 @@ if (!isset($_SESSION['administrador']))
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Modificar horarios curso</h5>
             </div>
-            <form id="crearCurso" name="crearCurso" action="#" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviar()">
+            <form id="modificarHorariosCurso" name="modificarHorariosCurso" action="modifHorariosCursadoCurso.php" method="POST" enctype="multipart/form-data" role="form" onsubmit="return enviarFechasNuevas()">
 
                 <div class="modal-body">
                     
@@ -229,7 +194,7 @@ if (!isset($_SESSION['administrador']))
                         
                         <table id="daysHoursTable" class="table">
                             <thead>
-                                <th>Dia</th>
+                                <th>Día</th>
                                 <th>Hora desde</th>
                                 <th>Hora hasta</th>
                                 <th></th>
@@ -260,15 +225,128 @@ if (!isset($_SESSION['administrador']))
                                 ?>
                             </tbody>
                         </table>
-                         <button type="button" class='btn btn-success mb-1' onclick="addCourseDay()"> <i class="fa fa-plus mr-1"></i>Agregar Dia</button>
+                         <button type="button" class='btn btn-success mb-1' onclick="addCourseDay()"> <i class="fa fa-plus mr-1"></i>Agregar día</button>
                         <input type="text" id="arregloDiasHorario" name="arregloDiasHorario" hidden>
                         <input type="text" name="cursoId" id="cursoId" <?php echo "value= '$id_curso'"; ?> hidden>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="getNewDays()"> Cancelar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
                     <button type="submit" class="btn btn-primary"> Crear </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal modificar fechas de inicio y fin de cursado -->
+<div class="modal fade" id="modifFechasCurso" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Modificar fechas de cursado</h5>
+            </div>
+            
+           
+            <form id="modificarHorariosCurso" name="modificarHorariosCurso" action="modifFechasCursadoCurso.php" method="POST" enctype="multipart/form-data" role="form">
+
+                <div class="modal-body">
+                    
+                    <div class="form-group">
+                       
+                        <?php
+                            date_default_timezone_set('America/Argentina/Buenos_Aires');
+                            $currentDateTime = date('Y-m-d H:i:s');
+                            $currentDate = date('Y-m-d');
+
+                            $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
+                            $resultado = $consultaCurso->fetch_assoc();
+                            $fchDesde = $resultado["fechaDesdeCursado"];
+                            $fchHasta = $resultado["fechaHastaCursado"];
+                            $nombreCurso = $resultado["nombreCurso"];
+                        
+                        
+                            $selectAlumnosInscriptos = $con->query("SELECT * FROM `curso`, alumnocursoactual WHERE curso.id = '$id_curso' AND curso.id = alumnocursoactual.curso_id AND curso.fechaDesdeCursado = alumnocursoactual.fechaDesdeAlumCurAc AND curso.fechaHastaCursado = alumnocursoactual.fechaHastaAlumCurAc");
+
+                            $rtdo = false;
+
+                            if((($selectAlumnosInscriptos->num_rows)==0)){
+                                if((($fchDesde < $currentDateTime &&  $fchHasta < $currentDateTime) || ($fchDesde == "" &&  $fchHasta == ""))){
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se deben ingresar las fechas de cursado para este año.</h5>
+                                        </div>";    
+                                }else{
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se pueden mofificar las fechas de cursado existentes.</h5>
+                                        </div>"; 
+                                }
+                                        
+                            }else{
+                                if((($fchDesde < $currentDateTime &&  $fchHasta < $currentDateTime) || ($fchDesde == "" &&  $fchHasta == ""))){
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se deben ingresar las fechas de cursado para este año.</h5>
+                                        </div>";    
+                                }else{
+                                    echo "<div class='alert alert-success' role='alert'>
+                                            <h6><i class='fa fa-exclamation-circle mr-2'></i>Las fechas de cursado no se pueden modificar, hay alumnos incriptos en el curso.</h6>
+                                        </div>";
+                                    $rtdo = true;
+                                }
+                                
+                            }  
+                        ?>
+                         
+                    </div>
+                    
+                    
+                    <div class="fill_fields">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputInicio">Inicio de cursado:</label>
+                            <input type="date" class="form-control" id="inputInicioCursado" name="inputInicioCursado" placeholder="Fecha Inicio Cursado" 
+                                   <?php  
+                                        if($rtdo){
+                                            echo " disabled ";
+                                            echo " value='".$fchDesde."' ";
+                                        }else{
+                                            echo " onchange='habilitarSegundaFecha()' required ";
+                                            echo " min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'";
+                                        }
+                                   ?>
+                                   >
+
+                            <h9 class="msg" id="msjValidacionFechaI"></h9>
+                          </div>
+
+                            <div class="form-group col-md-6">
+                            <label for="inputHasta">Fin de cursado:</label>
+                            <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled 
+                                <?php 
+                                 if($rtdo){
+                                            echo " value='".$fchHasta."' ";
+                                        }else{
+                                            echo " required ";
+                                            echo " min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'";
+                                        }  ?>>
+                            <h9 class="msg" id="msjValidacionFechaH"></h9>
+                          </div>
+                        </div>
+
+                        
+                        <input type="text" name="cursoId" id="cursoId" <?php echo"value= '".$id_curso."'"; ?> hidden>
+                        <input type="text" name="todayDate" id="todayDate" <?php echo"value= '".$currentDate."' "; ?> hidden>
+          
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
+                    <input type="submit" value="Guardar" class="btn btn-primary" <?php  
+                                        if($rtdo){
+                                            echo "style='display:none'";}
+                                   ?>>
                 </div>
             </form>
         </div>
