@@ -109,6 +109,22 @@ if (!isset($_SESSION['administrador'])) {
                             </button>
                         </div>";
                 break;
+            case 8:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Baja exitosa de docente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 9:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se puede dar de baja al docente, es el unico asociado al curso.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
         }
     }
 
@@ -157,6 +173,8 @@ if (!isset($_SESSION['administrador'])) {
                         $inicioUtimaLicencia = $resultadoUltimaLicencia["fechaDesdeCargoProfesorEstado"];
                         $finUtimaLicencia = $resultadoUltimaLicencia["fechaHastaCargoProfesorEstado"];
                     }
+                    
+                    $urlBaja = 'bajaDocenteCurso.php?docenteId='.$id.'&&cursoId='.$id_curso;
 
                     echo "<tr>
                     <td>" . $resultadoProf['legajoProf'] . "</td>
@@ -167,7 +185,7 @@ if (!isset($_SESSION['administrador'])) {
                     <td class='text-center'>
                         <a href='' class='btn btn-warning mb-1' data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(" . $id . ")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
                         <a href='' class='btn btn-primary mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
-                        <a href='' class='btn btn-danger mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
+                        <a href='$urlBaja' class='btn btn-danger mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
                         <input type='date' name='impIDprof' id='inicLic" . $id . "' value='$inicioLicencia' hidden> 
                         <input type='date' name='impIDprof' id='inicioUltimaLicencia" . $id . "' value='$inicioUtimaLicencia' hidden>
                         <input type='date' name='impIDprof' id='finUltimaLicencia" . $id . "' value='$finUtimaLicencia' hidden>

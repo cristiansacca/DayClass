@@ -208,6 +208,7 @@ function enviarFechasNuevas(){
         }
         
         if(diaNew.length != 0){
+            
             for(let index = 0; index < diaNew.length; index++){
                 var nombreDia2 = diaNew[index].value;
                 var horaInicio = document.getElementById("diaNuevo"+index+1).value;
