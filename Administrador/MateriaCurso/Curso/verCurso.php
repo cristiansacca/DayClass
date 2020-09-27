@@ -49,7 +49,7 @@ if (!isset($_SESSION['administrador']))
         <a class="btn btn-info" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=$id_materia'"; ?>><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
         <a class="btn btn-warning" data-toggle="modal" data-target="#modifFechasCurso"><i class="fa fa-calendar mr-2"></i>Fechas cursado</a>
         <a href="" class="btn btn-success" data-toggle="modal" data-target="#modifHorariosCurso"><i class="fa fa-clock-o mr-1"></i>Horarios cursado</a>
-        <a class="btn btn-light" <?php echo "href=''"; ?>><i class="fa fa-bookmark mr-2"></i>Temas Dados</a>
+        <a class="btn btn-light" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/verTemasDadosCurso.php?id_curso=$id_curso'"; ?>><i class="fa fa-bookmark mr-2"></i>Temas Dados</a>
         
         
     </div>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['administrador']))
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa de hoarios de cursado.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa de horarios de cursado.</h5>";
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
@@ -74,7 +74,7 @@ if (!isset($_SESSION['administrador']))
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la actualización de las fechas de cursado.</h5>";
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la actualización de las fechas de cursado, intente nuevamente.</h5>";
                  break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -166,11 +166,7 @@ if (!isset($_SESSION['administrador']))
             $contador ++;
        
             }
-        }
-        
-        
-    
-        
+        } 
     ?> 
         
     </div>
