@@ -56,12 +56,16 @@ $curso = $consulta1->fetch_assoc();
                                     <th>Fecha</th>
                                     <th>Tema</th>
                                     <th>Comentario</th>
+                                    <th>Docente</th> 
                                 </thead>
                                 <tbody> ";
                                 
                             while ($resultado1 = $consulta1->fetch_assoc()) {
                                 $profTema = $resultado1['profesor_id'];
-                                
+                                $datosProf = $con->query("SELECT * FROM `profesor` WHERE profesor.id = '$profTema'")->fetch_assoc();
+                                        
+                                $nombreProf = $datosProf["nombreProf"];
+                                $apellidoProf = $datosProf["apellidoProf"];
                                         
                                 $date=date_create($resultado1['fechaTemaDia']);
                                 $fecha = date_format($date,"d/m/Y");
@@ -70,11 +74,12 @@ $curso = $consulta1->fetch_assoc();
                                     <td>" . $fecha . "</td>
                                     <td>" . $resultado1['nombreTema'] . "</td>
                                     <td>" . $resultado1['comentarioTema'] . "</td>
+                                    <td>" . $nombreProf ." ". $apellidoProf . "</td>
                                 </tr>";
                             }
                                 echo " </tbody>";
                         }
-            ?>               
+            ?>     
         </table>
     </div>   
 </div>

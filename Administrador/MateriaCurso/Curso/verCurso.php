@@ -108,9 +108,7 @@ if (!isset($_SESSION['administrador']))
                         </div>";
                 
             }else{
-                echo "<div class='alert alert-success' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Las fechas de cursado son correctas</h5>
-                        </div>";
+                
                 echo "<div class='form-row'>";
                 echo "<div class='form-group col-md-6'>
             <label for='inputInicio'>Inicio de cursado:</label>
@@ -274,7 +272,7 @@ if (!isset($_SESSION['administrador']))
                                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Se deben ingresar las fechas de cursado para este año.</h5>
                                         </div>";    
                                 }else{
-                                    echo "<div class='alert alert-warning' role='alert'>
+                                    echo "<div class='alert alert-success' role='alert'>
                                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Se pueden mofificar las fechas de cursado existentes.</h5>
                                         </div>"; 
                                 }
@@ -285,7 +283,7 @@ if (!isset($_SESSION['administrador']))
                                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Se deben ingresar las fechas de cursado para este año.</h5>
                                         </div>";    
                                 }else{
-                                    echo "<div class='alert alert-success' role='alert'>
+                                    echo "<div class='alert alert-warning' role='alert'>
                                             <h6><i class='fa fa-exclamation-circle mr-2'></i>Las fechas de cursado no se pueden modificar, hay alumnos incriptos en el curso.</h6>
                                         </div>";
                                     $rtdo = true;
