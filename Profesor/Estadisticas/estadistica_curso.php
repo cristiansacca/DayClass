@@ -20,9 +20,11 @@ if(isset($_GET["id_curso"])){
 } else {
     header("location:/DayClass/Profesor/index.php");
 }
-
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDate = date('Y-m-d');
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 <script src="../profesor.js"></script>
 
 <div class="container">
@@ -45,7 +47,7 @@ if(isset($_GET["id_curso"])){
             </div>
             <div class="my-2">
                 <label for="fechaHasta" class="mr-2">Hasta:</label><label class="text-danger" id="msgPeriodoHasta"></label>
-                <input type="date" id="fechaHasta" class="form-control inputPeriodo" onchange="validarPeriodo();">
+                <input type="date" id="fechaHasta" class="form-control inputPeriodo" onchange="validarPeriodo();" <?php echo "max='$currentDate'" ?>>
             </div>
         </div>
         <div class="col-md-6">
