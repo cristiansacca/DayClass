@@ -45,7 +45,7 @@ $_SESSION['alumno']= $resultado1;
 
 <div class="container">
 
-  <div class="jumbotron my-4 py-4 bg-light">
+  <div class="jumbotron my-4 py-4">
       <h1>Editar perfil</h1>
       <a href="index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>

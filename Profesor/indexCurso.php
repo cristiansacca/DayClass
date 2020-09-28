@@ -119,8 +119,8 @@ if(($fechaD > $currentDateTime)){
                 </div>";
         }
             if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
-                echo "<h6>Inicio del cursado: $fechaDesdeCursadoF </h6>";
-                echo "<h6>Finalización del cursado: $fechaHastaCursadoF </h6>";
+                echo "<h6 class='font-weight-normal'>Inicio del cursado: $fechaDesdeCursadoF </h6>";
+                echo "<h6 class='font-weight-normal'>Finalización del cursado: $fechaHastaCursadoF </h6>";
             }
         ?>
 

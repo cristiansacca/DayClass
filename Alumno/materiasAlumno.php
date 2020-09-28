@@ -39,7 +39,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 
 <div class="container ">
-    <div class="py-4 my-3 jumbotron bg-light">
+    <div class="py-4 my-3 jumbotron">
         <h1>Materias en las que está inscripto</h1>
         <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
