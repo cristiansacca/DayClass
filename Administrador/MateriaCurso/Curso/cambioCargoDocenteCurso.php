@@ -43,34 +43,34 @@ if(!($consultaCargoActual->num_rows) == 0){
 
                     }
 
-                    header("location: /DayClass/Administrador/MateriaCurso/Curso/ModifDocentesCurso.php?id=$id_curso&&resultado=6");
+                    header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=6");
 
                 }else{
                     echo "error en asociar los estados viejos al cargo nuevo";
-                    header("location: /DayClass/Administrador/MateriaCurso/Curso/ModifDocentesCurso.php?id=$id_curso&&resultado=7");
+                    header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=7");
                 }
 
             }else{
                echo "error en encontrar el cargo recien creado"; 
-                header("location: /DayClass/Administrador/MateriaCurso/Curso/ModifDocentesCurso.php?id=$id_curso&&resultado=7");
+                header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=7");
             }
            
         }else{
             //header("location: /DayClass/&&resultado=0");
             echo "error en crear cargo actual";
-            header("location: /DayClass/Administrador/MateriaCurso/Curso/ModifDocentesCurso.php?id=$id_curso&&resultado=7");
+            header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=7");
         }
 
         
     }else{
         //error
         echo "error en cerrar el cargo actual";
-        header("location: /DayClass/Administrador/MateriaCurso/Curso/ModifDocentesCurso.php?id=$id_curso&&resultado=7");
+        header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=7");
     }
 }else{
     //error 
     echo "error en encontrar el cargo actual";
-    header("location: /DayClass/Administrador/MateriaCurso/Curso/ModifDocentesCurso.php?id=$id_curso&&resultado=7");
+    header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=7");
 }
 
 

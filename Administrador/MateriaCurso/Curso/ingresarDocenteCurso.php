@@ -21,7 +21,7 @@ $consultaDocenteID = $con->query("SELECT id FROM `profesor` WHERE dniProf = '$dn
 
 if(mysqli_num_rows($consultaDocenteID) == 0){
     //si la cosnulta es vacia, el docente no existe o esta dado de baja, error 2 = docente inexistente o dado de baja 
-    header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifDocentesCurso.php?id=$id_curso&&resultado=2");
+    header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=2");
     
     
 }else{
@@ -51,11 +51,11 @@ if(mysqli_num_rows($consultaDocenteID) == 0){
         $resultadoInsertEstadoCargo = $con->query("INSERT INTO `cargoprofesorestado`(`fechaDesdeCargoProfesorEstado`, `estadoCargoProfesor_id`, `cargoProfesor_id`) VALUES ('$currentDateTime','$estadoCargoProf','$cargoProfesorCreadoID')");
         
         //volver a la pagina que llamo, exito 1 = crwacion exitosa 
-        header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifDocentesCurso.php?id=$id_curso&&resultado=1");
+        header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=1");
         
     }else{
         //error 3 = docente ya registrado en esa materia
-        header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifDocentesCurso.php?id=$id_curso&&resultado=3");
+        header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=3");
     }
 }
 

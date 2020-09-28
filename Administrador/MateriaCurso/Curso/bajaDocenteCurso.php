@@ -21,17 +21,17 @@ $currentDateTime = date('Y-m-d H:i:s');
         $finalizarCargoDocente = $con->query("UPDATE `cargoprofesor` SET `fechaHastaCargo`='$currentDateTime' WHERE `profesor_id` = '$id_prof'");
         
         if($finalizarCargoDocente){
-            header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifDocentesCurso.php?id=$id_curso&&resultado=8");
+            header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=8");
 
         }else{
             //error 
-            header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifDocentesCurso.php?id=$id_curso&&resultado=4");
+            header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=4");
         }
         
 
     }else{
         //si solo hay un docente asociado al curso, no se lo da de baja  
-        header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifDocentesCurso.php?id=$id_curso&&resultado=9");
+        header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=9");
     }
 
 ?>

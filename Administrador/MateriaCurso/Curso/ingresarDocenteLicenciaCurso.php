@@ -26,6 +26,6 @@ $consultaEstadoDocente2 = $con->query("INSERT INTO `cargoprofesorestado`(`fechaD
 $consultaEstadoDocente3 = $con->query("INSERT INTO `cargoprofesorestado`(`fechaDesdeCargoProfesorEstado`, `estadoCargoProfesor_id`, `cargoProfesor_id`) VALUES ('$fchHastaLicencia','1','$idCargoProf')"); 
 
 
-header("Location:/DayClass/Administrador/MateriaCurso/Curso/modifDocentesCurso.php?id=$id_curso&&resultado=5");
+header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=5");
             	
 ?>

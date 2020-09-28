@@ -139,7 +139,7 @@ if (!isset($_SESSION['administrador']))
                     
                     <td class='text-center'>
                         <a class='btn btn-info mb-1' data-emp-id=" . $id . " href='alumnosCurso.php?id=$id'><i class=' fa fa-user mr-1'></i>Alumnos</a>                              
-                        <a class='btn btn-warning mb-1' data-emp-id=" . $id . " href='modifDocentesCurso.php?id=$id'><i class=' fa fa-graduation-cap mr-1'></i>Docentes</a> 
+                        <a class='btn btn-warning mb-1' data-emp-id=" . $id . " href='docentesCurso.php?id=$id'><i class=' fa fa-graduation-cap mr-1'></i>Docentes</a> 
                     </td>
                     <td class='text-center'>
                         <a class='btn btn-primary mb-1' data-emp-id=" . $id . " onclick='' href='$urlEditarCurso'><i class='fa fa-book mr-1'></i>Ver curso</a>
