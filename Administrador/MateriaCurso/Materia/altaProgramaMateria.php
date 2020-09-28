@@ -89,9 +89,8 @@ if (isset($_FILES["inpGetFile"])) {
                 }
                 
             }else{
-                echo "entra al else";
                //falla en el formato de la hoja de calculo 
-                //header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=3");
+                header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=3");
             }
             
             unlink($archivo);

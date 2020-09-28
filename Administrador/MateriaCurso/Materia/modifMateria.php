@@ -13,7 +13,7 @@ if($updateMateria){
      header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=4");
     
 }else{
-    header("Location:/DayClass/Administrador/MateriaCurso/Materia/admMateria.php?resultado=5");
+    header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=5");
 }
 
 ?>
