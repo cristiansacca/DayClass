@@ -57,7 +57,7 @@ if (!isset($_SESSION['administrador']))
     
     <?php
 
-    if (isset($_GET["resultado"])) {
+    if (isset($_GET["resultado"])){
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -226,7 +226,7 @@ if (!isset($_SESSION['administrador']))
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="window.location.href='/DayClass/Administrador/MateriaCurso/Curso/verCurso.php?id_curso=<?php echo "$id_curso"; ?>';"> Cancelar </button>
                     <button type="submit" class="btn btn-primary"> Crear </button>
                 </div>
             </form>

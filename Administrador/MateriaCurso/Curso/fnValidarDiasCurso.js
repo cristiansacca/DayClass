@@ -112,13 +112,13 @@ function deleteRow(row){
 }
 
 
-var selectDiasSemana = "<select class='custom-select' name='diasNuevos' id=''>";
+var selectDiasSemana = "<select class='custom-select' name='diasNuevos' style='width:100%' >";
     selectDiasSemana += "<option value='Lunes'>Lunes</option>";
     selectDiasSemana += "<option value='Martes'>Martes</option>";
-    selectDiasSemana += "<option value='Miercoles'>Miercoles</option>";
+    selectDiasSemana += "<option value='Miercoles'>Miércoles</option>";
     selectDiasSemana += "<option value='Jueves'>Jueves</option>";
     selectDiasSemana += "<option value='Viernes'>Viernes</option>";
-    selectDiasSemana += "<option value='Sabado'>Sabado</option>";
+    selectDiasSemana += "<option value='Sabado'>Sábado</option>";
     selectDiasSemana += "<option value='Domingo'>Domingo</option>";
     selectDiasSemana += "</select>";
 
@@ -263,6 +263,7 @@ function enviarFechasNuevas(){
         return false;
     }
 }
+
 
 //para cambiar las fechas de inicio y fin de cursado
 function habilitarSegundaFecha() {
