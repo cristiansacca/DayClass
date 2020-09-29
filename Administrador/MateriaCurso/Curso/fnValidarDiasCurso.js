@@ -115,30 +115,41 @@ function deleteRow(row){
 var selectDiasSemana = "<select class='custom-select' name='diasNuevos' style='width:100%' >";
     selectDiasSemana += "<option value='Lunes'>Lunes</option>";
     selectDiasSemana += "<option value='Martes'>Martes</option>";
-    selectDiasSemana += "<option value='Miercoles'>Miércoles</option>";
+    selectDiasSemana += "<option value='Miercoles'>Miercoles</option>";
     selectDiasSemana += "<option value='Jueves'>Jueves</option>";
     selectDiasSemana += "<option value='Viernes'>Viernes</option>";
-    selectDiasSemana += "<option value='Sabado'>Sábado</option>";
+    selectDiasSemana += "<option value='Sabado'>Sabado</option>";
     selectDiasSemana += "<option value='Domingo'>Domingo</option>";
     selectDiasSemana += "</select>";
 
 var contador = 0;
 
 function addCourseDay(){
-    var table = document.getElementById("daysHoursTable");
+    
+    
+    var diaNew = document.getElementsByName("diasNuevos");
+    var diaSem = document.getElementsByClassName("checkDia");
+    
+    if((diaNew.length + diaSem.length ) <7){
+        var table = document.getElementById("daysHoursTable");
   
-    var x = document.getElementById("daysHoursTable").rows.length;
-    var row = table.insertRow(x);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
+        var x = document.getElementById("daysHoursTable").rows.length;
+        var row = table.insertRow(x);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+
+        cell1.innerHTML = selectDiasSemana;
+        cell2.innerHTML = "<input type='time'  id='diaNuevo"+contador+1+"' onchange='habilitar2do(this.id)'>";
+        cell3.innerHTML = "<input type='time' id='diaNuevo"+contador+2+"'  disabled> ";
+
+
+        contador ++;
+    }else{
+        document.getElementById("mensajeError").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'> <h5><i class='fa fa-exclamation-circle mr-2'></i>No se pueden agregar mas días.</h5> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+    }
     
-    cell1.innerHTML = selectDiasSemana;
-    cell2.innerHTML = "<input type='time'  id='diaNuevo"+contador+1+"' onchange='habilitar2do(this.id)'>";
-    cell3.innerHTML = "<input type='time' id='diaNuevo"+contador+2+"'  disabled> ";
     
-    
-    contador ++;
 }
 
 function getNewDays(){

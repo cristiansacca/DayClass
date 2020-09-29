@@ -48,6 +48,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
         <?php
         include "../../../databaseConection.php";
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $currentDateTime = date('Y-m-d');
         $id_curso = $_GET['id'];
 
         $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
@@ -57,9 +59,18 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $nombreCurso = $resultado["nombreCurso"];
 
         echo "<h1>$nombreCurso</h1>";
+        
+        
 
-        echo "<h6 class='font-weight-normal'>Inicio del cursado: " . strftime('%d/%m/%Y', strtotime($fchDesde)) . "</h6>";
-        echo "<h6 class='font-weight-normal'>Finalización de cursado: " . strftime('%d/%m/%Y', strtotime($fchHasta)) . "</h6>";
+        if(($fchDesde != null && $fchHasta != null) && ($fchHasta >= $currentDateTime)){
+            echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b>" . strftime('%d/%m/%Y', strtotime($fchDesde)) . " </h6>";
+            echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> " . strftime('%d/%m/%Y', strtotime($fchHasta)) . " </h6>";
+        }else{
+            echo "<div class='alert alert-warning' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay fechas de cursado vigentes</h5>
+                            <h7>Puede agregar docentes, pero recuerde colocar las fechas nuevas.</h7>
+                        </div>";
+        }
 
         ?>
         <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado['materia_id']."'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
@@ -156,21 +167,25 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     <div class="my-4">
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
-            <thead>
-                <th>Legajo</th>
-                <th>Docente</th>
-                <th>Cargo</th>
-                <th>Estado</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <?php
+           <?php
                 $id_curso = $_GET["id"];
 
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $currentDateTime = date('Y-m-d');
-
+                $currentDateTime = date('Y-m-d'); 
+            
                 $consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+            
+            
+                if(($consulta1->num_rows) != 0){
+                    
+                echo "<thead>
+                    <th>Legajo</th>
+                    <th>Docente</th>
+                    <th>Cargo</th>
+                    <th>Estado</th>
+                    <th></th>
+                </thead>
+                <tbody>";
 
 
                 echo "<input type='date' name='impIDprof' id='hoy' value='$currentDateTime' hidden>";
@@ -212,12 +227,19 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                         
                 
                     </td> 
-                    </tr>";
+                    </tr>
+                    </tbody>";
+                }
+                }else{
+                    echo "<div class='alert alert-warning' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay docentes en este curso.</h5>
+                        </div>";
                 }
 
-                ?>
+                
 
-            </tbody>
+            
+                ?>
         </table>
     </div>
 </div>

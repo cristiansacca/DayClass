@@ -64,8 +64,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         echo "<h1>$nombreCurso</h1>";
 
         if ($fchDesde != null && $fchHasta != null && $fchHasta >= $currentDateTime) {
-            echo "<h6 class='font-weight-normal'>Inicio del curso: " . strftime('%d/%m/%Y', strtotime($fchDesde)) . "</h6>";
-            echo "<h6 class='font-weight-normal'>Finalización de curso: " . strftime('%d/%m/%Y', strtotime($fchHasta)) . "</h6>";
+            echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b>" . strftime('%d/%m/%Y', strtotime($fchDesde)) . " </h6>";
+            echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> " . strftime('%d/%m/%Y', strtotime($fchHasta)) . " </h6>";
         } else {
             echo "<div class='alert alert-warning' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay fechas de cursado vigentes, no se puede inscribir alumnos</h5>
