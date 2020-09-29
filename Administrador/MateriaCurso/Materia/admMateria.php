@@ -95,12 +95,17 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
     <div class="my-2 table-responsive">
-        <table id="dataTable" class="table table-secondary table-bordered table-hover">
-            <tbody>
-                <?php
-                date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $currentDate = date('Y-m-d');          
-                $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL  ORDER BY id ASC");
+        <?php
+        
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $currentDate = date('Y-m-d');          
+        $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL  ORDER BY id ASC");
+        
+        if(($consulta1->num_rows)!=0){
+        echo "<table id='dataTable' class='table table-secondary table-bordered table-hover'>";
+            echo "<tbody>";
+                
+                
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $idmateria = $resultado1['id'];
                     
@@ -145,10 +150,19 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             <a class='$classHabilitado' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a>
                         </td>
                     </tr>";   
-                }             
+                }
+        
+        
+        echo "</tbody>";
+        echo "</table>";
+            
+        }else{
+             echo "<div class='alert alert-warning' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Aún no hay materias creadas.</h5>
+                    </div>"; 
+        }
                 ?>
-            </tbody>
-        </table>
+            
     </div>
 </div>
 
