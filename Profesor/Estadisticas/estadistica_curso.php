@@ -64,11 +64,11 @@ $currentDate = date('Y-m-d');
         <div class="col-md-6">
             <div class="my-2">
                 <label for="fechaDesde" class="mr-2">Desde:</label><label class="text-danger" id="msgPeriodoDesde"></label>
-                <input type="date" id="fechaDesde" class="form-control inputPeriodo" onchange="validarPeriodo();" <?php echo "max='$currentDate'" ?>>
+                <input type="date" id="fechaDesde" class="form-control inputPeriodo" onchange="habilitarSegundaFecha()" <?php echo "max='$currentDate'" ?>>
             </div>
             <div class="my-2">
                 <label for="fechaHasta" class="mr-2">Hasta:</label><label class="text-danger" id="msgPeriodoHasta"></label>
-                <input type="date" id="fechaHasta" class="form-control inputPeriodo" onchange="validarPeriodo();" <?php echo "max='$currentDate'" ?>>
+                <input type="date" id="fechaHasta" class="form-control inputPeriodo" onchange="validarPeriodo();" <?php echo "max='$currentDate'" ?> disabled>
             </div>
         </div>
         <div class="col-md-6">

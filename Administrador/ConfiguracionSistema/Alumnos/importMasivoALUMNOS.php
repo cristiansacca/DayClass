@@ -59,15 +59,12 @@ include "../../../header.html";
                             $apellido = $sheet->getCell("B" . $row)->getValue();
                             $nombre = $sheet->getCell("C" . $row)->getValue();
 
-
                             $consultaAl = $con->query("SELECT * FROM alumno WHERE dniAlum = '$dni'");
                             $consultaPr = $con->query("SELECT * FROM profesor WHERE dniProf = '$dni'");
                             $consultaAd = $con->query("SELECT * FROM administrativo WHERE dniAdm = '$dni'");
                             
                             
-
                             if (mysqli_num_rows($consultaAl) == 0 && mysqli_num_rows($consultaPr) == 0 && mysqli_num_rows($consultaAd) == 0) {
-                                
                                 
                                 if(validarDNI($dni)){
                                     $sql = 'INSERT INTO `alumno`(`nombreAlum`,`apellidoAlum`, `dniAlum`, `fechaAltaAlumno`, `legajoAlumno`, `permiso_id`) VALUES ("' . $nombre . '","' . $apellido . '", "' . $dni . '","' . $currentDateTime . '","' . $dni . '",' . $id_permiso . ');';
@@ -89,7 +86,7 @@ include "../../../header.html";
                         header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=6");
                     }
 
-                }else {
+                }else{
                     $dni = $sheet->getCell("A" . $first_row)->getValue();
                     $legajo = $sheet->getCell("B" . $first_row)->getValue();
                     $apellido = $sheet->getCell("C" . $first_row)->getValue();
@@ -139,8 +136,6 @@ include "../../../header.html";
                         //echo "<script> alert('error en el formato de la primera fila') </script>";
                     header("Location:/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php?resultado=6");
                     }
-
-
                     
                 }
 
@@ -151,11 +146,9 @@ include "../../../header.html";
 
  function validarLegajo($legajo){
     include "../../../databaseConection.php";
-     
-     
+    
      $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
-     
-    $longitudLegajo = strlen($legajo);
+     $longitudLegajo = strlen($legajo);
 
         
     $formatoLegajo = $consultaParamLeg->fetch_assoc();
@@ -165,7 +158,7 @@ include "../../../header.html";
 
     if($dni) {
         
-    }else {
+    }else{
 
         $letras = $formatoLegajo["tieneLetras"];
         $numeros = $formatoLegajo["tieneNumeros"];
