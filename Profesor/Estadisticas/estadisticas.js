@@ -2,7 +2,7 @@ function validarPeriodo (){
     var desde = document.getElementById("fechaDesde").value;
     var hasta = document.getElementById("fechaHasta").value;
     if(desde!=""&&hasta!=""){
-        if(desde<hasta){
+        if(desde<=hasta){
             document.getElementById("msgPeriodoDesde").innerHTML = "";
             document.getElementById("msgPeriodoHasta").innerHTML = "";
             $("#btnGenerar").removeAttr("disabled"); 

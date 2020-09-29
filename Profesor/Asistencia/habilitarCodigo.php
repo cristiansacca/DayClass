@@ -2,7 +2,6 @@
 //Se inicia o restaura la sesión
 session_start();
 
-//include "../../header.html";
 include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
@@ -84,6 +83,4 @@ try {
     echo $e->getMessage();
 
 }
-
-//include "../../footer.html";
 ?>

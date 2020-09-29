@@ -96,11 +96,11 @@ function mostrarAsistencias() {
             document.getElementById("tablaAsistencias").innerHTML = contenido;
             paginarTabla();
             if(json.length==0){
-                //document.getElementById("graficosAsistencias").hidden = true;
+                document.getElementById("graficosAsistencias").hidden = true;
                 document.getElementById("tablaAsistenciasCompleta").hidden = true;
                 document.getElementById("alertAsistencias").hidden = false;
             } else {
-                //document.getElementById("graficosAsistencias").hidden = false;
+                document.getElementById("graficosAsistencias").hidden = false;
                 document.getElementById("tablaAsistenciasCompleta").hidden = false;
                 document.getElementById("alertAsistencias").hidden = true;
             }

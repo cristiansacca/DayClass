@@ -1,8 +1,6 @@
 <?php
 include "../../../databaseConection.php";
 
-
-
 $id_curso = $_POST["cursoId"];
 $fchDesdeCursado = $_POST["inputInicioCursado"];
 $fchHastaCursado = $_POST["inputFinCursado"];

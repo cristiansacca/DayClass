@@ -11,7 +11,8 @@
       <div class="modal-body">
         <div class=" text-center my-3 mx-4 form-row">
           <div class="form-group col-12 ">
-            <h3>Ingrese el código dado por el profesor</h3><br>
+            <h3>Ingrese el código dado por el profesor</h3>
+            <i class="fa fa-qrcode fa-5x"></i>
 
             <div id="resultadoMostrar"></div>
 

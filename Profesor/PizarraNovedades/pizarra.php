@@ -11,6 +11,27 @@ if (!isset($_SESSION['profesor'])) {
     header("location:/DayClass/index.php");
 }
 
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+  
 //Si la variable id_curso no está definida se vuelve al index
 if(isset($_GET["id_curso"])){
     $id_curso = $_GET["id_curso"];
@@ -29,7 +50,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
 
     <div class="jumbotron my-4 py-4">
         <h1>Pizarra de novedades</h1>
-        <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
+        <h4 class="font-weight-normal"><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
@@ -64,7 +85,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
                 echo "<thead>
                         <tr>
                             <th style='width:50%'>Tema</th>
-                            <th>Ver</th>
+                            <th></th>
                             <th>Fecha</th>
                             <th>Docente</th>
                         </tr>
@@ -75,7 +96,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '".$_SESS
                     $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
                     echo "<tr>
                     <td><a>" . $resultado2['asunto'] . "</a></td>
-                    <td><a class='btn btn-primary' onclick='setearPublicacion(".$resultado2['id'].");' data-toggle='modal' data-target='#modalVerPublicacion'><i class='fa fa-eye text-light'></i></a></td>
+                    <td><a class='btn btn-primary text-light' onclick='setearPublicacion(".$resultado2['id'].");' data-toggle='modal' data-target='#modalVerPublicacion'><i class='fa fa-eye mr-1'></i>Ver</a></td>
                     <td>" . $fechaFormateada . "</td>
                     <td>".$profesor['apellidoProf'].", ".$profesor['nombreProf']."</td> 
                     </tr>";

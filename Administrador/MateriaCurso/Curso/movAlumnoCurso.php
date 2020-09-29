@@ -1,6 +1,5 @@
 <?php
 include "../../../databaseConection.php";
-
     
 $id_curso = $_GET['cursoId'];
 $id_alumno = $_GET['alumnoId'];

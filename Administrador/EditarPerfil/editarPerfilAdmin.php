@@ -12,6 +12,27 @@ if (!isset($_SESSION['administrador']))
    header("location:/DayClass/index.php"); 
 }
 
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+  //Calculamos tiempo de vida inactivo.
+  $vida_session = time() - $_SESSION['tiempo'];
+
+  //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+  if($vida_session > $_SESSION['limite'])
+  {
+      //Removemos sesión.
+      session_unset();
+      //Destruimos sesión.
+      session_destroy();              
+      //Redirigimos pagina.
+      header("Location: /DayClass/index.php?resultado=3");
+
+      exit();
+  }
+}
+$_SESSION['tiempo'] = time();
+
 $id_admin = $_SESSION['administrador']["id"];
 
 $consulta1 = $con->query("SELECT `legajoAdm`,`apellidoAdm`,`nombreAdm`,`dniAdm`, `emailAdm`, `fechaNacAdm`, `id` FROM `administrativo` WHERE id = '$id_admin'");

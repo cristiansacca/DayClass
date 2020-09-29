@@ -11,6 +11,35 @@ if (!isset($_SESSION['administrador']))
    header("location:/DayClass/index.php"); 
 }
 
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+  
+include "../../../databaseConection.php";
+                
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDateTime = date('Y-m-d');
+
+$id_materia = $_GET["id"];
+$materia = $con->query("SELECT * FROM materia WHERE id = '$id_materia'")->fetch_assoc();
+
 ?>
 
 <script src="../..administrador.js"></script>
@@ -25,6 +54,7 @@ if (!isset($_SESSION['administrador']))
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         <h1>Cursos</h1>
+        <h5 class="font-weight-normal"><?php echo $materia['nombreMateria']." Nivel ".$materia['nivelMateria']; ?></h5>
         <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
@@ -74,12 +104,7 @@ if (!isset($_SESSION['administrador']))
             </thead>-->
             <tbody>
                 <?php
-                include "../../../databaseConection.php";
                 
-                date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $currentDateTime = date('Y-m-d');
-
-                $id_materia = $_GET["id"];
                 $consulta1 = $con->query("SELECT * FROM curso WHERE materia_id = '$id_materia' AND `fechaHastaCurActul` IS NULL");
                 
                 

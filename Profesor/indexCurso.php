@@ -11,6 +11,27 @@ if (!isset($_SESSION['profesor'])) {
     header("location:/DayClass/index.php");
 }
 
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+  
 if (isset($_GET["id_curso"])) {
     $id_curso = $_GET["id_curso"];
 
@@ -119,8 +140,8 @@ if(($fechaD > $currentDateTime)){
                 </div>";
         }
             if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
-                echo "<h6 class='font-weight-normal'>Inicio del cursado: $fechaDesdeCursadoF </h6>";
-                echo "<h6 class='font-weight-normal'>Finalización del cursado: $fechaHastaCursadoF </h6>";
+                echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b> $fechaDesdeCursadoF </h6>";
+                echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> $fechaHastaCursadoF </h6>";
             }
         ?>
 

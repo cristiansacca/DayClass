@@ -11,6 +11,27 @@ if (!isset($_SESSION['profesor'])) {
     header("location:/DayClass/index.php");
 }
 
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+  
 if(isset($_GET["id_curso"])){
     $id_curso = $_GET["id_curso"];
 
@@ -31,7 +52,7 @@ $currentDate = date('Y-m-d');
 
     <div class="jumbotron my-4 py-4">
         <h1> Estadística de asistencias</h1>
-        <h5 class="font-weight-normal my-2"><?php echo $curso["nombreCurso"] ?></h5>
+        <h4 class="font-weight-normal my-2"><?php echo $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'" ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
@@ -43,7 +64,7 @@ $currentDate = date('Y-m-d');
         <div class="col-md-6">
             <div class="my-2">
                 <label for="fechaDesde" class="mr-2">Desde:</label><label class="text-danger" id="msgPeriodoDesde"></label>
-                <input type="date" id="fechaDesde" class="form-control inputPeriodo" onchange="validarPeriodo();">
+                <input type="date" id="fechaDesde" class="form-control inputPeriodo" onchange="validarPeriodo();" <?php echo "max='$currentDate'" ?>>
             </div>
             <div class="my-2">
                 <label for="fechaHasta" class="mr-2">Hasta:</label><label class="text-danger" id="msgPeriodoHasta"></label>

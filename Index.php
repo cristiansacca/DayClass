@@ -31,7 +31,7 @@ if (isset($_SESSION['administrador'])) {
    }
 </style>
 
-<div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 25rem;">
+<div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 20rem;">
    <form action="login.php" method="POST" class="form-group m-4">
       <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
       <h1 class="font-weight-normal my-2">Inicio de sesión</h1>
@@ -84,7 +84,7 @@ if (isset($_SESSION['administrador'])) {
                break;
             case 3:
                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>La sesión ha caducado.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Se cerró la sesión por inactividad.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>

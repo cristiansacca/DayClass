@@ -2,8 +2,6 @@
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../../header.html";
-
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['administrador'])) {
     //Nos envía a la página de inicio
@@ -36,5 +34,4 @@ if($update){
     header("location: /DayClass/Administrador/ConfiguracionSistema/Parametros/institucion.php?resultado=0");
 }
 
-include "../../../footer.html";
 ?>
