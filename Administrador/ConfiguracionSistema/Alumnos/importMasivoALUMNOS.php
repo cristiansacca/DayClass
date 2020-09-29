@@ -1,7 +1,39 @@
 <?php
+//Se inicia o restaura la sesión
+session_start();
+
 include "../../../databaseConection.php";
 include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
 include "../../../header.html";
+
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['administrador'])) 
+{
+   //Nos envía a la página de inicio
+   header("location:/DayClass/index.php"); 
+}
+
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+  
 ?>
 <div class="container" hidden><!--Oculta todos los Notice que muestra por el error en la libreria-->
     <?php
@@ -229,8 +261,12 @@ function validarDNI($dni){
 </div>
 
 <div class="container">
+    <div class="jumbotron my-4 py-4">
+        <p class="card-text">Administrador</p>
+        <h1>Alta de alumnos</h1>
+        <a href="/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
     <?php
-
     if (count($yaInscriptos) > 0) {
         echo "<div class='alert alert-warning mt-4' role='alert'>
         <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya registrados en el sistema:</h5>
@@ -288,12 +324,14 @@ function validarDNI($dni){
     }
     ?>
 
-    <a class="btn btn-primary" <?php echo "href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'" ?>><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    <a class="btn btn-info" <?php echo "href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'" ?>><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 
 </div>
 
+<script src="../../administrador.js"></script>
+
 <script>
-    document.getElementById("contenidoNavbar").innerHTML = "";
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
 
 <?php
