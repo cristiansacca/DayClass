@@ -92,8 +92,7 @@ $materia = $con->query("SELECT * FROM materia WHERE id = '$id_materia'")->fetch_
     <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nuevo curso </a>
     </div>
 
-    <div class="my-2">
-
+    <div class="my-2 table-responsive">
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
             <!--<thead>
                 <th>Nombre</th>

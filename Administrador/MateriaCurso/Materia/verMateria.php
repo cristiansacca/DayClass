@@ -177,15 +177,15 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             <form method="POST" id="modifMateria" name="modifMateria" action="modifMateria.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="inputNombreMateria"> Nombre materia</label>
+                        <label for="inputNombreMateria">Nombre</label>
                         <input type="text" name="inputNombreMateria" id="inputNombreMateria" class="form-control" <?php echo "value = '$nombreMateria'";?> required>
                     </div>
                     <div class="my-2">
-                        <label for="inputNivel"> Nivel materia </label>
+                        <label for="inputNivel">Nivel</label>
                         <input type="number" name="inputNivel" id="inputNivel" class="form-control" <?php echo "value = '$nivelMateria'";?> required>
                     </div>
                     <div class="my-2">
-                        <label for="inputNivel"> Carga Horaria Materia </label>
+                        <label for="inputNivel">Cantidad de horas semanales</label>
                         <input type="number" name="inputCargaHoraria" id="inputCargaHoraria" class="form-control" <?php echo "value = '$cargaHorariaMateria'";?> required>
                     </div>
                     
@@ -251,7 +251,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>

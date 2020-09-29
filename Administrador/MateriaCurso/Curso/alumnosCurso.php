@@ -187,8 +187,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 } ?> data-toggle="modal"><i class="fa fa-download mr-1"></i>Importar lista de inscriptos</button>
     </div>
 
-    <div class="my-4">
-        <table id="dataTable" class="table table-active table-bordered table-hover table-sm">
+    <div class="my-4 table-responsive">
+        <table id="dataTable" class="table table-active table-bordered table-hover">
          
             <?php
 
@@ -231,16 +231,16 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                                 <td>" . $alumno['apellidoAlum'] . "</td>
                                 <td>" . $alumno['nombreAlum'] . "</td>
                                 <td>" . $alumno['dniAlum'] . "</td>
-                                <td class='text-center'><a class='btn btn-primary btn-sm' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo'></i></a></td>
+                                <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
                             </tr>";
                         }else{
                             $urlBaja = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=1';
-                           echo "<tr class='table-info'>
+                           echo "<tr>
                                 <td>" . $alumno['legajoAlumno'] . "</td>
                                 <td>" . $alumno['apellidoAlum'] . "</td>
                                 <td>" . $alumno['nombreAlum'] . "</td>
                                 <td>" . $alumno['dniAlum'] . "</td>
-                                <td class='text-center'><a class='btn btn-danger btn-sm' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash'></i></a></td>
+                                <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Baja</a></td>
                             </tr>"; 
                         }
                          

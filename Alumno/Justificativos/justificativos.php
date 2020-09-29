@@ -100,6 +100,7 @@ $_SESSION['tiempo'] = time();
                 </div>";
 
               }
+              date_default_timezone_set('America/Argentina/Buenos_Aires');
             ?>
 
           </div>
@@ -112,14 +113,14 @@ $_SESSION['tiempo'] = time();
             <div class="form-inline my-2">
               <label style="margin-right: 1rem;" for="fechaDesde">Desde:</label>
               <input type="date" id="fechaDesde" name="fechaDesde" onchange="validarFechasJustificativo();" class="form-control mr-2"
-                <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
-              <h9 id="msgDesde"></h9>
+                <?php echo "max='".date("Y-m-d")."'"?> required>
+              <h9 class="text-danger" id="msgDesde"></h9>
             </div>
             <div class="form-inline my-2">
               <label style="margin-right: 1.2rem;" for="fechaHasta">Hasta:</label>
               <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2"
-                <?php echo "min='".date("Y")."-01-01' "."max='".date("Y")."-12-31'"?> required>
-              <h9 id="msgHasta"></h9>
+                <?php echo "max='".date("Y-m-d")."'"?> required>
+              <h9 class="text-danger" id="msgHasta"></h9>
             </div>
           </div>
         </div>
@@ -131,21 +132,20 @@ $_SESSION['tiempo'] = time();
   </form>
   <div class="my-2">
     <h4>Estado de tus justificativos</h4>
-    <div id="pendientes">
+    <div class="table-responsive" id="pendientes">
       <?php
         $consulta2 = $con->query("SELECT * FROM justificativo WHERE alumno_id ='".$_SESSION['alumno']['id']."' ORDER BY fechaPresentacion");
         if(!$consulta2->num_rows == 0){
-          echo "<table class='table table-bordered table-info table-hover'>
+          echo "<table class='table table-bordered table-secondary table-hover'>
           <thead>
             <th>Imagen</th>
             <th>Fecha de presentación</th>
-            <th>Fecha de revisión</th>
             <th>Estado</th>
-            <th>Comentario</th>
+            <th></th>
           </thead>
           <tbody>";
           while($justificativo = $consulta2->fetch_assoc()){
-            $estado = 'No revisado';
+            $estado = 'NO REVISADO';
             $colorTexto = '';
             if(!$justificativo['fechaRevision'] == null){
               if($justificativo['aprobado'] == true){
@@ -157,18 +157,11 @@ $_SESSION['tiempo'] = time();
               }
             }
 
-            if($justificativo['fechaRevision'] == null){
-              $fechaRevision = 'No revisado';
-            } else {
-              $fechaRevision = strftime("%d/%m/%Y", strtotime($justificativo['fechaRevision']));
-            }
-
             echo "<tr>
-              <td><a href='verImgJustificativo.php?id=".$justificativo['id']."'>".$justificativo['descripcionImagen']."</a></td>
+              <td>".$justificativo['descripcionImagen']."</td>
               <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaPresentacion']))."</td>
-              <td>".$fechaRevision."</td>
               <td class=$colorTexto ><b>".$estado."</b></td>
-              <td>".$justificativo['comentarioJustificativo']."</td>
+              <td class='text-center'><a class='btn btn-primary' href='verImgJustificativo.php?id=".$justificativo['id']."'><i class='fa fa-eye mr-1'></i>Ver</a></td>
             </tr>";
           }
           echo "</tbody></table>";

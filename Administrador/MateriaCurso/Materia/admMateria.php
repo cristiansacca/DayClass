@@ -94,7 +94,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     ?>
 
     <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
-    <div class="my-2">
+    <div class="my-2 table-responsive">
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
             <tbody>
                 <?php
@@ -114,8 +114,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                         $cargado = "Programa cargado";
                     } else {
                         $cargado = "Programa sin cargar";
-                    }
-                    
+                    }      
                     
                     $classHabilitado = "btn btn-danger mb-1";
                     
@@ -136,21 +135,17 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                          }
                     }
                     
-                    
-                    
                     echo "<tr>
-                    <td><a>" . $nombreMateria . "</a></td>
-                    <td>Nivel $nivelMateria</td>
-                    <td>".$cargado."</td>
-                    <td>
-                    <a class='btn btn-warning mb-1' href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'><i class='fa fa-book mr-1'></i>Ver cursos</a>
-                    <a class='btn btn-primary mb-1' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$idmateria'><i class='fa fa-university mr-1'></i>Ver materia</a>
-                    <a class='$classHabilitado' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a>
-                    </td>
-                    </tr>";
-                    
-                }
-                
+                        <td>" . $nombreMateria . "</td>
+                        <td>Nivel $nivelMateria</td>
+                        <td>".$cargado."</td>
+                        <td class='text-center'>
+                            <a class='btn btn-warning mb-1' href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado1['id']."'><i class='fa fa-book mr-1'></i>Ver cursos</a>
+                            <a class='btn btn-primary mb-1' href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$idmateria'><i class='fa fa-university mr-1'></i>Ver materia</a>
+                            <a class='$classHabilitado' data-emp-id=".$idmateria." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a>
+                        </td>
+                    </tr>";   
+                }             
                 ?>
             </tbody>
         </table>

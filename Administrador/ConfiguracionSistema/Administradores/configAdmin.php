@@ -113,9 +113,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-2"></i>Crear nuevo</button>
     </div>
 
-    <div class="my-4">
+    <div class="my-4 table-responsive">
 
-        <table id="dataTable" class="table table-secondary table-bordered table-hover table-sm">
+        <table id="dataTable" class="table table-secondary table-bordered table-hover">
             <thead>
                 <th>Legajo</th>
                 <th>Apellido</th>
@@ -139,7 +139,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     <td>" . $resultado1['apellidoAdm'] . "</td>
                     <td>" . $resultado1['nombreAdm'] . "</td>
                     <td>" . $resultado1['dniAdm'] . "</td>
-                    <td class='text-center'><a class='btn btn-danger btn-sm' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash'></i></a></td>
+                    <td class='text-center'><a class='btn btn-danger' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a></td>
                     </tr>";
                 }
                 ?>

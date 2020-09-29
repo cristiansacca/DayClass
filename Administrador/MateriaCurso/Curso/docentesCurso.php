@@ -76,8 +76,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado['materia_id']."'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
-
-
     <?php
 
     if (isset($_GET["resultado"])) {
@@ -165,7 +163,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Docente</a>
     </div>
 
-    <div class="my-4">
+    <div class="my-4 table-responsive">
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
            <?php
                 $id_curso = $_GET["id"];

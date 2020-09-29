@@ -49,6 +49,22 @@ $result = $con->query("SELECT * FROM justificativo WHERE id = '$idImagen'");//Re
 $imagen =  $result->fetch_assoc();//recuperamos los registros de la consulta
 $mime = fObtenerMime($imagen['extensionImagen']);//Obtenemos el mime del archivo.
 $contenido = $imagen['imagenJustificativo'];//Obtenemos el contenido almacenado en el campo Binario.
+setlocale(LC_ALL, 'Spanish');
+
+if($imagen['fechaRevision'] == null){
+    $fechaRevision = 'NO REVISADO';
+    $estado = 'NO REVISADO';
+    $color = 'text-dark';
+  } else {
+    $fechaRevision = strftime("%d/%m/%Y", strtotime($imagen['fechaRevision']));
+    if($imagen['aprobado']==1){
+        $estado = 'APROBADO';
+        $color = 'font-weight-bold text-success';
+    }else{
+        $estado = 'RECHAZADO';
+        $color = 'font-weight-bold text-danger';
+    }
+  }
 
 include "../../header.html";
 ?>
@@ -58,7 +74,33 @@ include "../../header.html";
         <h1>Justificativo cargado</h1>
         <a class="btn btn-info" href="/DayClass/Alumno/Justificativos/justificativos.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
-    <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
+
+    <table class="table bg-light table-bordered">
+        <tr>
+            <td class="font-weight-bold">Fecha de presetación:</td>
+            <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaPresentacion'])) ?></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Periodo:</td>
+            <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaDesdeJustificativo']))." - ".strftime("%d/%m/%Y", strtotime($imagen['fechaHastaJustificativo'])) ?></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Fecha de revisión:</td>
+            <td><?php echo $fechaRevision ?></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Estado:</td>
+            <td class="<?php echo $color ?>"><?php echo $estado ?></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Comentario:</td>
+            <td><?php echo $imagen['comentarioJustificativo'] ?></td>
+        </tr>
+    </table>
+
+    <div class="text-center">
+        <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
+    </div>
 </div>
 
 <script src="../alumno.js"></script>
