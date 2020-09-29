@@ -219,7 +219,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                                 $currentDateTime = date('Y-m-d');
                                 
-                                $consulta = $con->query("SELECT horariocurso.horaInicioCurso, horariocurso.horaFinCurso, cursodia.nombreDia FROM `curso`, horariocurso, cursodia WHERE curso.id = $id_curso AND curso.id = horariocurso.curso_id AND horariocurso.cursoDia_id = cursodia.id ORDER BY cursodia.ordenDia ASC");
+                                $consulta = $con->query("SELECT horariocurso.horaInicioCurso, horariocurso.horaFinCurso, cursodia.nombreDiaSA, cursodia.nombreDia FROM `curso`, horariocurso, cursodia WHERE curso.id = $id_curso AND curso.id = horariocurso.curso_id AND horariocurso.cursoDia_id = cursodia.id ORDER BY cursodia.ordenDia ASC");
                                 
                                 $contador = 0;
 
@@ -229,9 +229,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                                     $horaHasta = $horarioCurso["horaFinCurso"];
 
                                     echo "<tr>
-                                    <td> <input class='checkDia' type='checkbox' id='" . $horarioCurso["nombreDia"] . "' onclick='habilitarTimePCF(this.id)'><label class='ml-2' name='dia[]'>" . $horarioCurso["nombreDia"] . "</label></td>
-                                    <td><input type='time'  id='" . $horarioCurso["nombreDia"] . "1' onchange='habilitar2do(this.id)' disabled value='$horaDesde'></td>
-                                    <td><input type='time' id='" . $horarioCurso["nombreDia"] . "2' onchange='validar(this.id)' disabled value='$horaHasta'> </td>
+                                    <td> <input class='checkDia' type='checkbox' id='" . $horarioCurso["nombreDiaSA"] . "' onclick='habilitarTimePCF(this.id)'><label class='ml-2' name='dia[]'>" . $horarioCurso["nombreDia"] . "</label></td>
+                                    <td><input type='time'  id='" . $horarioCurso["nombreDiaSA"] . "1' onchange='habilitar2do(this.id)' disabled value='$horaDesde'></td>
+                                    <td><input type='time' id='" . $horarioCurso["nombreDiaSA"] . "2' onchange='validar(this.id)' disabled value='$horaHasta'> </td>
                                     <td><button type='button' class='btn btn-danger mb-1' onclick='deleteRow(this)'><i class='fa fa-trash mr-1'></i>Eliminar</button></td>
                                     </tr>";
                                     
