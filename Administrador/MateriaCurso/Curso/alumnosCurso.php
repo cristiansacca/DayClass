@@ -68,7 +68,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> " . strftime('%d/%m/%Y', strtotime($fchHasta)) . " </h6>";
         } else {
             echo "<div class='alert alert-warning' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay fechas de cursado vigentes, no se puede inscribir alumnos</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay fechas de cursado vigentes.</h5>
+                            <h7>No podrá inscribir alumnos hasta que esten definidas las fechas nuevas.</h7>
                         </div>";
         }
 
