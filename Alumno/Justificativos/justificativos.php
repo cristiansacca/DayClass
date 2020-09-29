@@ -84,6 +84,9 @@ $_SESSION['tiempo'] = time();
           <label for="materias">Seleccione las materias que correspondan:</label><br>
           <h9 id="msgMaterias"></h9>
           <div class="form-group" id="materias">
+            <div>
+              <input type='checkbox' onchange='' name='' value='todas'><label class='m-2'>Todas</label>
+            </div>
             <?php
               include "../../databaseConection.php";
 

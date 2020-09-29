@@ -94,7 +94,7 @@ include "../../header.html";
         </tr>
         <tr>
             <td class="font-weight-bold">Comentario:</td>
-            <td><?php echo $imagen['comentarioJustificativo'] ?></td>
+            <td class="font-italic"><?php echo $imagen['comentarioJustificativo']==''? 'Sin comentario':$imagen['comentarioJustificativo'].""; ?></td>
         </tr>
     </table>
 

@@ -105,7 +105,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     $idmateria = $resultado1['id'];
                     
                     $consulta2 = $con->query("SELECT * FROM programamateria WHERE materia_id = '$idmateria' AND fechaDesdePrograma <= '$currentDate' AND fechaHastaPrograma IS NULL");                    
-                    $programa = $consulta2->fetch_assoc();
+                    //$programa = $consulta2->fetch_assoc();
                     $url = 'bajaMateria.php?id='.$idmateria;
                     $nombreMateria = $resultado1['nombreMateria'];
                     $nivelMateria = $resultado1['nivelMateria'];
