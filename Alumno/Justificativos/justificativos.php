@@ -115,14 +115,14 @@ $_SESSION['tiempo'] = time();
           <div class="my-2">
             <div class="form-inline my-2">
               <label style="margin-right: 1rem;" for="fechaDesde">Desde:</label>
-              <input type="date" id="fechaDesde" name="fechaDesde" onchange="validarFechasJustificativo();" class="form-control mr-2"
+              <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarSegundaFecha();" class="form-control mr-2"
                 <?php echo "max='".date("Y-m-d")."'"?> required>
               <h9 class="text-danger" id="msgDesde"></h9>
             </div>
             <div class="form-inline my-2">
               <label style="margin-right: 1.2rem;" for="fechaHasta">Hasta:</label>
-              <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2"
-                <?php echo "max='".date("Y-m-d")."'"?> required>
+              <input type="date" id="fechaHasta" name="fechaHasta" class="form-control mr-2"
+                <?php echo "max='".date("Y-m-d")."'"?> disabled required>
               <h9 class="text-danger" id="msgHasta"></h9>
             </div>
           </div>
@@ -178,6 +178,7 @@ $_SESSION['tiempo'] = time();
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../alumno.js"></script>
+<script src="justitificativos.js"></script>
 
 <?php
 include "../modal-autoasistencia.php";
