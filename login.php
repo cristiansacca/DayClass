@@ -23,12 +23,10 @@ if(($consultaSesion->num_rows) == 0){
 if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verifica la contraseña
     
     $resultado1 = $consulta1->fetch_assoc();
-    $cifrada = $resultado1["contraseniaAlum"];
-    
     $fechaBajaAlumno = $resultado1["fechaBajaAlumno"];
     
-    if($fechaBajaAlumno == "" || $fechaBajaAlumno == null){
-        
+    if($fechaBajaAlumno == "" || $fechaBajaAlumno == null){//validar que la cuenta no haya sido dada de baja 
+        $cifrada = $resultado1["contraseniaAlum"];
         if (password_verify($contrasenia, $cifrada)) {
             //Si la contraseña cifrada coincide con lo ingresado se inicia la sesión
             session_start();
@@ -57,43 +55,65 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
     if (($consulta2->num_rows) == 1) {
         
         $resultado2 = $consulta2->fetch_assoc();
-        $cifrada = $resultado2["contraseniaProf"];
+        
+        $fechaBajaProf = $resultado2["fechaBajaProf"];
+    
+        if($fechaBajaProf == "" || $fechaBajaProf == null){ //validar que la cuenta no haya sido dada de baja 
+        
+            $cifrada = $resultado2["contraseniaProf"];
 
-        if (password_verify($contrasenia, $cifrada)) {
-            
-            session_start();
-            $_SESSION["profesor"] = $resultado2;
-            //Se define la variable de sesión con el tiempo límite de inactividad en minutos
-            $_SESSION['limite'] = ($limiteSesion*60);
-            header("Location: /DayClass/Profesor/index.php");
+            if (password_verify($contrasenia, $cifrada)) {
 
-        } else {
-            header("Location: /DayClass/index.php?error=0");
+                session_start();
+                $_SESSION["profesor"] = $resultado2;
+                //Se define la variable de sesión con el tiempo límite de inactividad en minutos
+                $_SESSION['limite'] = ($limiteSesion*60);
+                header("Location: /DayClass/Profesor/index.php");
+
+            } else {
+                header("Location: /DayClass/index.php?error=0");
+            }
+        }else{
+            if($fechaBajaProf <= $currentDate){
+                header("Location: /DayClass/index.php?error=2");
+            }  
         }
-    } else {
+    }else{
 
         $consulta3 = $con->query("SELECT * FROM administrativo WHERE emailAdm = '$email'");
 
         if (($consulta3->num_rows) == 1) {
             
             $resultado3 = $consulta3->fetch_assoc();
-            $cifrada = $resultado3["contraseniaAdm"];
             
-            if (password_verify($contrasenia, $cifrada)) {
+            $fechaBajaAdmin = $resultado3["fechaBajaAdm"];
+            
+            if($fechaBajaAdmin == "" || $fechaBajaAdmin == null){//validar que la cuenta no haya sido dada de baja 
                 
-                session_start();
-                $_SESSION["administrador"] = $resultado3;
-                //Se define la variable de sesión con el tiempo límite de inactividad en minutos
-                $_SESSION['limite'] = ($limiteSesion*60);
-                header("Location: /DayClass/Administrador/index.php");
+                $cifrada = $resultado3["contraseniaAdm"];
 
-            } else {
-                header("Location: /DayClass/index.php?error=0");
+                if (password_verify($contrasenia, $cifrada)) {
+
+                    session_start();
+                    $_SESSION["administrador"] = $resultado3;
+                    //Se define la variable de sesión con el tiempo límite de inactividad en minutos
+                    $_SESSION['limite'] = ($limiteSesion*60);
+                    header("Location: /DayClass/Administrador/index.php");
+
+                } else {
+                    header("Location: /DayClass/index.php?error=0");
+                }
+            
+            }else{
+                if($fechaBajaAdmin <= $currentDate){
+                    header("Location: /DayClass/index.php?error=2");
+                } 
             }
         } else { //Si ninguna consulta obtnien resultado el email ingresado no existe en la base de datos
             header("Location: /DayClass/index.php?error=1");
         }
     }
-}
+    }
+
 
 ?>
