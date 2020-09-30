@@ -1,6 +1,10 @@
 <?php
 include "databaseConection.php";
 
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDate = date('Y-m-d');
+
 //Obtiene los datos del formulario de inicio de sesión
 $email = $_POST["email"];
 $contrasenia = $_POST["contrasenia"];
@@ -21,20 +25,30 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
     $resultado1 = $consulta1->fetch_assoc();
     $cifrada = $resultado1["contraseniaAlum"];
     
-    if (password_verify($contrasenia, $cifrada)) {
-        //Si la contraseña cifrada coincide con lo ingresado se inicia la sesión
-        session_start();
-        //En la variable de sesión se guardan los datos del usuario que ingresó
-        $_SESSION["alumno"] = $resultado1;
+    $fechaBajaAlumno = $resultado1["fechaBajaAlumno"];
+    
+    if($fechaBajaAlumno == "" || $fechaBajaAlumno == null){
         
-        //Se define la variable de sesión con el tiempo límite de inactividad en minutos
-        $_SESSION['limite'] = ($limiteSesion*60);
-        
-        //Se redirigue a la página principal correspondiente al usuario
-        header("Location: /DayClass/Alumno/index.php");
+        if (password_verify($contrasenia, $cifrada)) {
+            //Si la contraseña cifrada coincide con lo ingresado se inicia la sesión
+            session_start();
+            //En la variable de sesión se guardan los datos del usuario que ingresó
+            $_SESSION["alumno"] = $resultado1;
 
-    } else {
-        header("Location: /DayClass/index.php?error=0");
+            //Se define la variable de sesión con el tiempo límite de inactividad en minutos
+            $_SESSION['limite'] = ($limiteSesion*60);
+
+            //Se redirigue a la página principal correspondiente al usuario
+            header("Location: /DayClass/Alumno/index.php");
+
+        } else {
+            header("Location: /DayClass/index.php?error=0");
+        }
+        
+    }else{
+        if($fechaBajaAlumno <= $currentDate){
+            header("Location: /DayClass/index.php?error=2");
+        }
     }
 } else {
 

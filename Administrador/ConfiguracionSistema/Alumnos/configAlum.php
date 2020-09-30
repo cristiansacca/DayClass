@@ -134,7 +134,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     
-                    $url = 'bajaAlum.php?='.$resultado1["id"];
+                    $url = 'bajaAlum.php?id='.$resultado1["id"];
                     $id = $resultado1["id"];
                     //echo "$url";
                     

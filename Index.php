@@ -55,6 +55,9 @@ if (isset($_SESSION['administrador'])) {
             case 1:
                echo "<h6><i class='fa fa-exclamation-circle mr-2'></i>Correo electrónico no registrado.</h6>";
                break;
+            case 2:
+               echo "<h6><i class='fa fa-exclamation-circle mr-2'></i>Cuenta dada de baja.</h6>";
+               break;
          }
          echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
@@ -90,6 +93,7 @@ if (isset($_SESSION['administrador'])) {
                             </button>
                         </div>";
                break;
+            
          }
       }
 
