@@ -54,7 +54,7 @@ setlocale(LC_ALL, 'Spanish');
 if($imagen['fechaRevision'] == null){
     $fechaRevision = 'NO REVISADO';
     $estado = 'NO REVISADO';
-    $color = 'text-dark';
+    $color = 'font-weight-bold text-dark';
   } else {
     $fechaRevision = strftime("%d/%m/%Y", strtotime($imagen['fechaRevision']));
     if($imagen['aprobado']==1){
@@ -81,7 +81,7 @@ include "../../header.html";
             <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaPresentacion'])) ?></td>
         </tr>
         <tr>
-            <td class="font-weight-bold">Periodo:</td>
+            <td class="font-weight-bold">Periodo a justificar:</td>
             <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaDesdeJustificativo']))." - ".strftime("%d/%m/%Y", strtotime($imagen['fechaHastaJustificativo'])) ?></td>
         </tr>
         <tr>
@@ -98,8 +98,11 @@ include "../../header.html";
         </tr>
     </table>
 
-    <div class="text-center">
-        <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
+    <div class="my-2">
+        <h4>Imagen:</h4>
+        <div class="text-center">
+            <?php echo "<img class='img-thumbnail rounded p-2 my-2' src='data:image/$mime;base64,".base64_encode($contenido)."'/>"; ?>
+        </div>
     </div>
 </div>
 
