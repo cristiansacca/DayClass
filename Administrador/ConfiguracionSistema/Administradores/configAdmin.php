@@ -156,7 +156,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../paginadoDataTable.js"></script>
 
-<!-- Modal -->
+<!-- Modal nuevo administrador -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
