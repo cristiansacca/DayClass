@@ -85,7 +85,7 @@ $_SESSION['tiempo'] = time();
           <h9 id="msgMaterias"></h9>
           <div class="form-group" id="materias">
             <div>
-              <input type='checkbox' onchange='' name='' value='todas'><label class='m-2'>Todas</label>
+              <input type='checkbox' onchange='seleccionarTodos();' id='checkTodos'><label class='m-2'>Todas</label>
             </div>
             <?php
               include "../../databaseConection.php";
@@ -176,7 +176,6 @@ $_SESSION['tiempo'] = time();
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../alumno.js"></script>
 <script src="justitificativos.js"></script>
 
