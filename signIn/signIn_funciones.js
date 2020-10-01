@@ -164,15 +164,40 @@ function validarEmail(){
     rtdo = validateEmail(elem);
     
     if(rtdo == false){
-            msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ y .com .";    
+            msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ y .com .";  
+            changeColor('inputEmail',rtdo);
+                setValitationMesage('msjValidacionEmail', rtdo, msg);
+    }else{
+    
+        var datos = {
+            eMail: elem
+        }
+
+        $.ajax({
+            url:'buscarMail.php',
+            type: 'POST',
+            data: datos,
+            success: function(datosRecibidos) {
+
+                var json = JSON.parse(datosRecibidos);
+
+                if(json){
+
+                }else{
+                    alert("entra false");
+                    msg = "Esa dirección de correo electrónico ya se encuentra registrada.";   
+                    changeColor('inputEmail', json);
+                    setValitationMesage('msjValidacionEmail', json, msg);
+                }
+
+                
+
+
+            }
+        })
+    
     }
-    
-    changeColor('inputEmail',rtdo);
-    setValitationMesage('msjValidacionEmail', rtdo, msg);
-    return rtdo;
-    
-    
-    
+
 }
 
 

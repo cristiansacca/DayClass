@@ -63,7 +63,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         
 
         if(($fchDesde != null && $fchHasta != null) && ($fchHasta >= $currentDateTime)){
-            echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b>" . strftime('%d/%m/%Y', strtotime($fchDesde)) . " </h6>";
+            echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b> " . strftime('%d/%m/%Y', strtotime($fchDesde)) . " </h6>";
             echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> " . strftime('%d/%m/%Y', strtotime($fchHasta)) . " </h6>";
         }else{
             echo "<div class='alert alert-warning' role='alert'>
