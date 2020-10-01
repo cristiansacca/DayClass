@@ -122,7 +122,10 @@ if (isset($_FILES["inpGetFile"])) {
                     }
                 }
             } else {
-                echo "<script> alert('Error en el formato del archivo, por favor cambielo') </script>";
+                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en el formato del archivo, por favor cambielo.</h5>
+                     </div>";
+                //echo "<script> alert('') </script>";
             }
 
             unlink($archivo);
