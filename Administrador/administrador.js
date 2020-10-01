@@ -2,19 +2,43 @@ cambiarContenidoNavbar();
 
 function cambiarContenidoNavbar() {
     var contenido = "";
-    contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Administrador/index.php'><i class='fa fa-home mr-1'></i>Inicio</a></li>";
+    contenido +=
+    "<li class='nav-item'>"+
+        "<a class='nav-link' href='/DayClass/Administrador/index.php'><i class='fa fa-home mr-1'></i>Inicio</a>"+
+    "</li>";
     
-    contenido += "<li class='nav-item dropdown'>";
-    contenido += "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-gear mr-1'></i>Configuraciones</a>";
-    contenido += "<div class='dropdown-menu' aria-labelledby='navbarDropdown'><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php'>Profesores</a><div class='dropdown-divider'></div>";
-    contenido += "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'>Alumnos</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php'>Administradores</a><div class='dropdown-divider'></div><a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php'>Parámetros</a></div></li>";
+    contenido += 
+    "<li class='nav-item dropdown'>"+
+        "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-gear mr-1'></i>Configuraciones</a>"+
+        "<div class='dropdown-menu' aria-labelledby='navbarDropdown'>"+
+            "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Profesores/configProf.php'><i class='fa fa-user-graduate mr-2'></i>Profesores</a><div class='dropdown-divider'></div>"+
+            "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'><i class='fa fa-user-alt mr-2'></i>Alumnos</a><div class='dropdown-divider'></div>"+
+            "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php'><i class='fa fa-user-tie mr-2'></i>Administradores</a><div class='dropdown-divider'></div>"+
+            "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php'><i class='fa fa-sliders mr-2'></i>Parámetros</a><div class='dropdown-divider'></div>"+
+            "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php'><i class='fa fa-database mr-2'></i>Backup y recuperación</a>"+
+        "</div>"+
+    "</li>";
     
-    contenido += "<li class='nav-item'><a id='btnCampana' class='nav-link myPopover'><i id='iconoCampana' class='fa fa-bell fa-fw ml-n2'></i><div hidden id='nroNoti' class='count-container' data-region='count-container'>1</div></a></li>";
+    contenido += 
+    "<li class='nav-item'>"+
+        "<a id='btnCampana' class='nav-link myPopover'><i id='iconoCampana' class='fa fa-bell fa-fw ml-n2'></i>"+
+            "<div hidden id='nroNoti' class='count-container' data-region='count-container'>1</div>"+
+        "</a>"+
+    "</li>";
     
-    contenido += "<li><div class='dropdown'>";
-    contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i></button>";
-    contenido += "<div class='dropdown-menu'><a class='dropdown-item' href='/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>";
-    contenido += "<a class='dropdown-item' href='/DayClass/logout.php'><i class='fa fa-sign-out mr-1'></i>Salir</a></div></li>";
+    contenido +=
+    "<li>"+
+        "<div class='dropdown'>"+
+            "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"+
+                "<label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i>"+
+            "</button>"+
+            "<div class='dropdown-menu'>"+
+                "<a class='dropdown-item' href='/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>"+
+                "<a class='dropdown-item' href='/DayClass/logout.php'><i class='fa fa-sign-out mr-1'></i>Salir</a>"+
+            "</div>"+
+        "</div>"+
+    "</li>";
+    
     document.getElementById("contenidoNavbar").innerHTML = contenido;
 }
 

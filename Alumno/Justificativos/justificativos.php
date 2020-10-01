@@ -169,7 +169,7 @@ $_SESSION['tiempo'] = time();
           }
           echo "</tbody></table>";
         } else {
-          echo "<div class='alert alert-warning' role='alert'><h5>No tenés justificativos cargados.</h5></div>";
+          echo "<div class='alert alert-warning' role='alert'><h5><i class='fa fa-exclamation-circle mr-2'></i>No tenés justificativos cargados.</h5></div>";
         }
       ?>
     </div>
