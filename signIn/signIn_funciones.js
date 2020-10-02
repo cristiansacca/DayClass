@@ -164,9 +164,9 @@ function validarEmail(){
     rtdo = validateEmail(elem);
     
     if(rtdo == false){
-            msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ y .com .";  
-            changeColor('inputEmail',rtdo);
-                setValitationMesage('msjValidacionEmail', rtdo, msg);
+            msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ y .com .";
+            return false;
+            
     }else{
     
         var datos = {
@@ -176,29 +176,29 @@ function validarEmail(){
         $.ajax({
             url:'buscarMail.php',
             type: 'POST',
+            async: false,
             data: datos,
-            success: function(datosRecibidos) {
-
-                var json = JSON.parse(datosRecibidos);
-
+            success:function(datosRecibidos) {
+                json = JSON.parse(datosRecibidos);
+                rtdo =json;
                 if(json){
-
+  
                 }else{
-                    alert("entra false");
-                    msg = "Esa dirección de correo electrónico ya se encuentra registrada.";   
-                    changeColor('inputEmail', json);
-                    setValitationMesage('msjValidacionEmail', json, msg);
+                    msg = "Esa dirección de correo electrónico ya se encuentra registrada.";  
+                    
                 }
-
-                
-
-
             }
         })
     
     }
-
+    changeColor('inputEmail',rtdo);
+    setValitationMesage('msjValidacionEmail', rtdo, msg);
+    alert(rtdo);
+    return rtdo;
+    
 }
+
+
 
 
 

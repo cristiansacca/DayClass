@@ -12,7 +12,7 @@ $mailAdmin = $con->query("SELECT id FROM administrativo WHERE emailAdm = '$email
 $existe = false;
 
 if (($mailAlumno->num_rows) == 0 && ($mailDocente->num_rows) == 0 && ($mailAdmin->num_rows) == 0) {
-    $existe = false;
+    $existe = true;
 }
 
 $myJSON = json_encode($existe);
