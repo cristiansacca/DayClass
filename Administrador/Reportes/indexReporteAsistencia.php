@@ -92,7 +92,7 @@ $_SESSION['tiempo'] = time();
         <div class="form-row">
         <div class="form-group col-md-6">
           <label>Fecha Desde</label>
-          <input type="date" class="form-control" id="inputFechaDesdeReporte" name="inputFechaDesdeReporte" onchange="habilitarFechaHasta()" required>
+          <input type="date" class="form-control" id="inputFechaDesdeReporte" name="inputFechaDesdeReporte" onchange="habilitarFechaHasta()" <?php echo "max='$currentDate'" ?>required>
           
         </div>
 
