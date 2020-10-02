@@ -184,7 +184,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     echo "data-target='#staticBackdrop1'";
                 } else {
                     echo "class='btn btn-success disabled'";
-                } ?> data-toggle="modal"><i class="fa fa-download mr-1"></i>Importar lista de inscriptos</button>
+                } ?> data-toggle="modal"><i class="fa fa-upload mr-1"></i>Importar lista de inscriptos</button>
     </div>
 
     <div class="my-4 table-responsive">

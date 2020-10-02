@@ -231,7 +231,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 </div>
                 <div class="form-group col-md-6" <?php if($dni){ echo "hidden ";}else{echo "required ";} ?>>
                       <label for="inputLegajo">Legajo</label>
-                      <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajoA()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
+                      <input type="text" class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" onchange="validarLegajoA()" onkeydown="return event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
                       <h9 class="msg" id="msjValidacionLegajo"></h9>
                 </div>
           </div>

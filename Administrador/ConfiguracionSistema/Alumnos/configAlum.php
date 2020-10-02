@@ -112,7 +112,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     
     <div class="my-3">
         <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-1"></i>Crear nuevo</button>
-        <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-download mr-1"></i>Importar lista</button>
+        <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-upload mr-1"></i>Importar lista</button>
     </div>
 
     <div class="my-4 table-responsive">
