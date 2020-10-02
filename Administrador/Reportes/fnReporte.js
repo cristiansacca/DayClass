@@ -1,5 +1,14 @@
 document.getElementById("materia").onchange = function(){
     eval("debugger;");
+    
+    contenido="<option value='vacio' selected>Curso</option>";
+    document.getElementById("curso").innerHTML = contenido;
+    $("#curso").attr("disabled", "disabled" );
+    
+    contenido="<option value='vacio' selected>Alumno</option>";
+    document.getElementById("alumno").innerHTML = contenido;
+    $("#alumno").attr("disabled", "disabled" );
+    
     var id_materia = document.getElementById("materia").value;
     var datos = {
         id_materia: id_materia
