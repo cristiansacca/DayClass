@@ -38,7 +38,7 @@ include "../../../databaseConection.php";
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        <h1>Backup y recuperación de datos</h1>
+        <h1>Backup y recuperación de datos<i class="fa fa-database ml-2"></i></h1>
         <a href="../../index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 

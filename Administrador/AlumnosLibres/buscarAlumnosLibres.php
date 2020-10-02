@@ -37,7 +37,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        <h1>Revisión diaria de alumnos libres</h1>
+        <h1>Revisión de alumnos libres</h1>
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 </div>
 
