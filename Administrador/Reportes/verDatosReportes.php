@@ -388,22 +388,30 @@ while($cont < $cantFechas){
                     $selectAsistenciasDiaAlumno = $con->query("SELECT tipoasistencia.nombreTipoAsistencia FROM asistenciadia, tipoasistencia WHERE asistenciadia.asistencia_id = '$id_asistencia' AND asistenciadia.fechaHoraAsisDia LIKE '$fechaCorta%' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id");
 
                     $selectAsistenciasAlumnoCurso2= $selectAsistenciasDiaAlumno->fetch_assoc();
-                    $tipoAsistencia = $selectAsistenciasAlumnoCurso2['nombreTipoAsistencia'];
+                    if(($selectAsistenciasDiaAlumno->num_rows)!=0){
+                        $tipoAsistencia = $selectAsistenciasAlumnoCurso2['nombreTipoAsistencia'];
+                    } else {
+                        $tipoAsistencia = "";
+                    }
 
                         switch($tipoAsistencia){
                             case "PRESENTE":
+                                $pdf->SetTextColor(0,183,6);
                                 $pdf->Cell($anchoCol, 6, 'P', 1, 0, 'C', 0);
                                 break;
 
                             case "AUSENTE":
+                                $pdf->SetTextColor(250,78,58);
                                 $pdf->Cell($anchoCol, 6, 'A', 1, 0, 'C', 0);
                                 break;
 
                             case "JUSTIFICADO":
+                                $pdf->SetTextColor(228,207,0);
                                 $pdf->Cell($anchoCol, 6, 'J', 1, 0, 'C', 0);
                                 break;
 
                             default:
+                                $pdf->SetTextColor(0,0,0);
                                 $pdf->Cell($anchoCol, 6, 'N', 1, 0, 'C', 0);
                                 break;
 
@@ -463,18 +471,22 @@ while($cont < $cantFechas){
 
                         switch($tipoAsistencia){
                             case "PRESENTE":
+                                $pdf->SetTextColor(0,183,6);
                                 $pdf->Cell($anchoCol, 6, 'P', 1, 0, 'C', 0);
                                 break;
 
                             case "AUSENTE":
+                                $pdf->SetTextColor(250,78,58);
                                 $pdf->Cell($anchoCol, 6, 'A', 1, 0, 'C', 0);
                                 break;
 
                             case "JUSTIFICADO":
+                                $pdf->SetTextColor(228,207,0);
                                 $pdf->Cell($anchoCol, 6, 'J', 1, 0, 'C', 0);
                                 break;
 
                             default:
+                                $pdf->SetTextColor(0,0,0);
                                 $pdf->Cell($anchoCol, 6, 'N', 1, 0, 'C', 0);
                                 break;
 

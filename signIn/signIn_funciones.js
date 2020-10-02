@@ -1,5 +1,4 @@
 function validarDNI(){
-    eval("debugger;");
     var elem = document.getElementById('inputDNI').value;
    
     var cantDigitos = elem.length;
@@ -30,7 +29,6 @@ function validarDNI(){
 
 
 function validarLegajo(){
-    eval("debugger;");
     var elem = document.getElementById('inputLegajo').value;
     var cantDigitos = elem.length;
     var rtdo = false;
@@ -108,7 +106,6 @@ function validarLegajo(){
 }
 
 function validarNombre(){
-    eval("debugger;");
     var elem = document.getElementById('inputName').value;
     var cantLetras = elem.length;
     var rtdo = false;
@@ -155,8 +152,6 @@ function validarApellido(){
 }
 
 function validarEmail(){
-    
-    eval("debugger;");
     var elem = document.getElementById('inputEmail').value;
     var rtdo = false;
     var msg = "";
@@ -193,7 +188,6 @@ function validarEmail(){
     }
     changeColor('inputEmail',rtdo);
     setValitationMesage('msjValidacionEmail', rtdo, msg);
-    alert(rtdo);
     return rtdo;
     
 }
@@ -368,9 +362,6 @@ function validarDNIyLegajo(){
     }
         return false;
     }
-    
-    
-    
 }
 
 
