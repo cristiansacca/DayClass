@@ -378,7 +378,8 @@ while($cont < $cantFechas){
             $index = $j +1;
 
             $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
-
+            
+            $pdf->SetTextColor(0,0,0);
             $pdf->Cell(40, 6, $nombreLista , 1, 0, 'L', 0);
 
             for($i = $cont; $i < $cantFechas; $i++){
@@ -456,8 +457,8 @@ while($cont < $cantFechas){
             $index = $j +1;
 
             $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
-
-
+             
+            $pdf->SetTextColor(0,0,0);
             $pdf->Cell(40, 6, $nombreLista , 1, 0, 'L', 0);
 
             for($i = $cont; $i < $contAux; $i++){
