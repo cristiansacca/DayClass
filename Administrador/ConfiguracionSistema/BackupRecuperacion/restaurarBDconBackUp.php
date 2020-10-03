@@ -1,5 +1,27 @@
 <?php
+    
+    //reventar la base de datos original
+    $enlace = new mysqli("localhost","root","");
+    if (!$enlace) {
+        die('No pudo conectarse: ' . mysql_error());
+    }
 
+    $sql = 'DROP DATABASE leandrobd';
+    if ($enlace->query($sql)) {
+        echo "La base de datos mi_bd fue eliminada con éxito\n";
+    } else {
+        echo 'Error al eliminar la base de datos \n';
+    }
+
+    //levantar la nueva base de datos 
+    $sql = 'CREATE DATABASE leandrobd';
+    if ($enlace->query($sql)) {
+        echo 'La base de datos mi_bd fue creada con éxito\n';
+    } else {
+        echo 'Error al crear la base de datos\n';
+    }
+
+    
     //connection
     $conn = new mysqli("localhost","root","","leandrobd"); 
  
@@ -51,8 +73,16 @@
             
         }
     }
- 
- echo $output['message'];
+
+$msjError = $output['message'];
+$pos = strpos($msjError,"already exists");
+
+if($pos !== false){
+     echo "La cadena 'exists' fue encontrada en la cadena '$msjError'";
+         echo " y existe en la posición $pos";
+} else {
+     echo "La cadena 'exists' no fue encontrada en la cadena '$msjError'";
+}
 
  
 ?>
