@@ -1,0 +1,1386 @@
+
+
+CREATE TABLE `administrativo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `apellidoAdm` varchar(255) DEFAULT NULL,
+  `contraseniaAdm` varchar(255) DEFAULT NULL,
+  `dniAdm` int(11) NOT NULL,
+  `emailAdm` varchar(255) DEFAULT NULL,
+  `fechaAltaAdm` date DEFAULT NULL,
+  `fechaBajaAdm` date DEFAULT NULL,
+  `fechaNacAdm` date DEFAULT NULL,
+  `legajoAdm` varchar(255) NOT NULL,
+  `nombreAdm` varchar(255) DEFAULT NULL,
+  `permiso_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKrmoejtr2yebukeu2kuvo3xwg7` (`permiso_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO administrativo VALUES("1","admin","$2y$10$TNPmQGaxFNd2BjDLhR5YkuJzu1u530Pj9BAdPgsbSJF7kkdIy0Uka","11111111","admin@dayclass.com","2020-07-30","","","12345","admin","3");
+INSERT INTO administrativo VALUES("3","Belgrano","$2y$10$jAbn77SvQghX0tLqK61iJ.WYRyxobac9Q.OeOuLFn6eL6CXaqAL7m","2358796","abelgrano@mail.com","2020-08-30","","1970-07-17","AD78517","Ana","3");
+INSERT INTO administrativo VALUES("4","Juarez","$2y$10$.Khvk2Yg9Qc.hn8mGOreYeu7rcDT7ptJAdcDIXUIZ2z3ekYmVny8O","2564895","pjuarez@mail.com","2020-08-30","","1970-06-18","AD78519","Pedro","3");
+INSERT INTO administrativo VALUES("5","Rodriguez","$2y$10$uy.2xCN6qnEqdL/x5OYPOu9.BNenA1szWS.4Y.OABnZE9b3TxQw/e","21546987","drodriguez@mail.com","2020-08-31","","1953-10-06","AD96541","Diego","3");
+INSERT INTO administrativo VALUES("6","Noya","$2y$10$R4OsbbLH8XYcLw8GaQhxhuP9ibvbmwN/r1bRK52L4gNNLKbiqgJ/W","15698735","rnoya@mail.com","2020-08-31","","1965-06-17","15698735","Rodrigo","3");
+INSERT INTO administrativo VALUES("7","sgroi","$2y$10$l9PjPmh6O4vQn9m7X0K/pOjFLzmZ4jtx5qw8ST91rXEt46f79q3du","5236974","lucasSgroi@mail.com","2020-09-04","","1985-06-03","96548","Lucas","3");
+INSERT INTO administrativo VALUES("8","Hacha","$2y$10$wCF0iz5kgq5ioneRiAbv3OKRtYRZ9Nyw6KtONFVbT6505UNLqmdW.","4523178","mhacha@mail.com","2020-09-06","","1970-06-18","AD78787","Marina","3");
+INSERT INTO administrativo VALUES("9","Estebanez","$2y$10$qSg17bK4yFiMyz1DIZDtJusgGhL5fJEmo/89jpOJf8bUSVPyqWgeG","45213985","pestebanez@mail.com","2020-09-06","","1990-02-22","AD12457","Pedro","3");
+INSERT INTO administrativo VALUES("10","Seguro","$2y$10$zt5cyY4CSJvQqtEZngTSN.wQ5V3GOwx6f9gkf33EUAPA1pWzZdN/e","7854236","pseguro@mail.com","2020-09-06","","1969-08-22","AD89542","Pascual","3");
+INSERT INTO administrativo VALUES("12","Fernandez","$2y$10$ewoAwCMmfu6qebGfmYo6hOa/viZnsjvYJeKoaY9hVAfqTAQXWjkXe","4521369","efernandez@mail.com","2020-09-06","","1990-06-06","AD30000","Emilia","3");
+INSERT INTO administrativo VALUES("14","Fernandez","$2y$10$CKwwvmfDkou63vl.hCRiVuy4Jwsatyd66/W/sNBvRuyGjjmliSIzW","1000000","lfernandez@mail.com","2020-09-06","","1988-10-22","AD10000","Lucas","3");
+INSERT INTO administrativo VALUES("15","Arias","$2y$10$1GUauTxLWtHwN/YyL2cBtO1hgFigOoVxO9tMLyOJqn7TgypviWuNi","10101010","warias@mail.com","2020-09-09","","2011-02-09","AD10101","Wilfredo","3");
+INSERT INTO administrativo VALUES("16","liz","$2y$10$znV8YvjDLMVA7BjV1M74t.5082lIWeGONTWZRYVkpzxTCJj3v87qe","7513689","diegoL@mail.com","2020-09-15","","1990-02-13","AD90000","Diego","3");
+INSERT INTO administrativo VALUES("17","lopez","$2y$10$9yeUVnwC0BHQUAoE.rTg1.qiuUs60IbgejMajGnpE/Gi/CFhkNsZ.","2000033","juall@mail.com","2020-09-22","","1990-02-02","AD85236","juan","3");
+
+
+
+
+
+CREATE TABLE `alumno` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `apellidoAlum` varchar(255) DEFAULT NULL,
+  `contraseniaAlum` varchar(255) DEFAULT NULL,
+  `dniAlum` int(11) NOT NULL,
+  `emailAlum` varchar(255) DEFAULT NULL,
+  `fechaAltaAlumno` date DEFAULT NULL,
+  `fechaBajaAlumno` date DEFAULT NULL,
+  `fechaNacAlumno` date DEFAULT NULL,
+  `legajoAlumno` varchar(255) NOT NULL,
+  `nombreAlum` varchar(255) DEFAULT NULL,
+  `permiso_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKctdmkskdhf5bla743m05m1u3x` (`permiso_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1856 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO alumno VALUES("1614","Alfaro","","46586634","","2020-09-08","","","AL41097","Cristina","1");
+INSERT INTO alumno VALUES("1615","Allison","","9190607","","2020-09-08","","","AL41098","Cameron","1");
+INSERT INTO alumno VALUES("1616","Alvarado","","44685116","","2020-09-08","","","AL41099","Maite","1");
+INSERT INTO alumno VALUES("1617","Andrada","","18147102","","2020-09-08","","","AL41100","Pamela ","1");
+INSERT INTO alumno VALUES("1618","Antares","","43677391","","2020-09-08","","","AL41101","Hugo","1");
+INSERT INTO alumno VALUES("1619","Atkinson","","12004396","","2020-09-08","","","AL41102","Libby","1");
+INSERT INTO alumno VALUES("1620","Barker","","7366016","","2020-09-08","","","AL41103","Nissim","1");
+INSERT INTO alumno VALUES("1621","Barr","","42906639","","2020-09-08","","","AL41104","Omar","1");
+INSERT INTO alumno VALUES("1622","Barrera","","30388106","","2020-09-08","","","AL41105","Ainsley","1");
+INSERT INTO alumno VALUES("1623","Barrera","","41989681","","2020-09-08","","","AL41106","Ezra","1");
+INSERT INTO alumno VALUES("1624","Barry","","24682669","","2020-09-08","","","AL41107","Finn","1");
+INSERT INTO alumno VALUES("1625","Beard","","22330635","","2020-09-08","","","AL41108","Ivan","1");
+INSERT INTO alumno VALUES("1626","Beasley","","15427371","","2020-09-08","","","AL41109","Aimee","1");
+INSERT INTO alumno VALUES("1627","Benton","","22621912","","2020-09-08","","","AL41110","Abel","1");
+INSERT INTO alumno VALUES("1628","Berry","","16979721","","2020-09-08","","","AL41111","Levi","1");
+INSERT INTO alumno VALUES("1629","Blackburn","","26084777","","2020-09-08","","","AL41112","Oprah","1");
+INSERT INTO alumno VALUES("1630","Blanco","","13452240","","2020-09-08","","","AL41113","Eusebio ","1");
+INSERT INTO alumno VALUES("1631","Blevins","","48996568","","2020-09-08","","","AL41114","Oscar","1");
+INSERT INTO alumno VALUES("1632","Bowman","","48709695","","2020-09-08","","","AL41115","Lillian","1");
+INSERT INTO alumno VALUES("1633","Boyd","","46104830","","2020-09-08","","","AL41116","Nayda","1");
+INSERT INTO alumno VALUES("1634","Bradford","","17466469","","2020-09-08","","","AL41117","Kenneth","1");
+INSERT INTO alumno VALUES("1635","Bradley","","31046654","","2020-09-08","","","AL41118","Joel","1");
+INSERT INTO alumno VALUES("1636","Burks","","49686278","","2020-09-08","","","AL41119","Noah","1");
+INSERT INTO alumno VALUES("1637","Bush","","11935283","","2020-09-08","","","AL41120","Rudyard","1");
+INSERT INTO alumno VALUES("1638","Calderon","","43750049","","2020-09-08","","","AL41121","Heather","1");
+INSERT INTO alumno VALUES("1639","Caldwell","","36385416","","2020-09-08","","","AL41122","Victor","1");
+INSERT INTO alumno VALUES("1640","Calero","","9028700","","2020-09-08","","","AL41123","Rafael","1");
+INSERT INTO alumno VALUES("1641","Camacho","","48784498","","2020-09-08","","","AL41124","Kieran","1");
+INSERT INTO alumno VALUES("1642","Cano","","27374218","","2020-09-08","","","AL41125","Rosa Maria","1");
+INSERT INTO alumno VALUES("1643","Cantu","","31636157","","2020-09-08","","","AL41126","Gabriel","1");
+INSERT INTO alumno VALUES("1644","Carr","","49953301","","2020-09-08","","","AL41127","Fay","1");
+INSERT INTO alumno VALUES("1645","Carson","","29117970","","2020-09-08","","","AL41128","Brian","1");
+INSERT INTO alumno VALUES("1646","Carver","","45266483","","2020-09-08","","","AL41129","Clinton","1");
+INSERT INTO alumno VALUES("1647","Case","","21409081","","2020-09-08","","","AL41130","Barrett","1");
+INSERT INTO alumno VALUES("1648","Case","","30308657","","2020-09-08","","","AL41131","Lev","1");
+INSERT INTO alumno VALUES("1649","Casey","","34665895","","2020-09-08","","","AL41132","Walter","1");
+INSERT INTO alumno VALUES("1650","Castillo","","6390630","","2020-09-08","","","AL41133","Juana","1");
+INSERT INTO alumno VALUES("1651","Chandler","","32311568","","2020-09-08","","","AL41134","Ivy","1");
+INSERT INTO alumno VALUES("1652","Chaney","","32100255","","2020-09-08","","","AL41135","Carlos","1");
+INSERT INTO alumno VALUES("1653","Cherry","","30701387","","2020-09-08","","","AL41136","Dalton","1");
+INSERT INTO alumno VALUES("1654","Cherry","","48282154","","2020-09-08","","","AL41137","Jeanette","1");
+INSERT INTO alumno VALUES("1655","Christensen","","15294557","","2020-09-08","","","AL41138","Sasha","1");
+INSERT INTO alumno VALUES("1656","Clarke","","29722234","","2020-09-08","","","AL41139","Cheyenne","1");
+INSERT INTO alumno VALUES("1657","Clay","","24483666","","2020-09-08","","","AL41140","Josiah","1");
+INSERT INTO alumno VALUES("1658","Coffey","","18849012","","2020-09-08","","","AL41141","Blaine","1");
+INSERT INTO alumno VALUES("1659","Coffey","","21289686","","2020-09-08","","","AL41142","Veronica","1");
+INSERT INTO alumno VALUES("1660","Collier","","45686853","","2020-09-08","","","AL41143","Azalia","1");
+INSERT INTO alumno VALUES("1661","Conley","","43475325","","2020-09-08","","","AL41144","Kyra","1");
+INSERT INTO alumno VALUES("1662","Conley","","30239463","","2020-09-08","","","AL41145","Rajah","1");
+INSERT INTO alumno VALUES("1663","Conner","","45399925","","2020-09-08","","","AL41146","Brett","1");
+INSERT INTO alumno VALUES("1664","Cuenca","","24844311","","2020-09-08","","","AL41147","Alejandro","1");
+INSERT INTO alumno VALUES("1665","Cummings","","42555216","","2020-09-08","","","AL41148","Roary","1");
+INSERT INTO alumno VALUES("1666","Cunningham","","46743067","","2020-09-08","","","AL41149","Kennedy","1");
+INSERT INTO alumno VALUES("1667","Delaney","","45145072","","2020-09-08","","","AL41150","Jessica","1");
+INSERT INTO alumno VALUES("1668","Delaney","","12487810","","2020-09-08","","","AL41151","Palmer","1");
+INSERT INTO alumno VALUES("1669","Dillard","","34660087","","2020-09-08","","","AL41152","August","1");
+INSERT INTO alumno VALUES("1670","Dorsey","","27721420","","2020-09-08","","","AL41153","Dane","1");
+INSERT INTO alumno VALUES("1671","Downs","","33031532","","2020-09-08","","","AL41154","Aline","1");
+INSERT INTO alumno VALUES("1672","Drake","","33192449","","2020-09-08","","","AL41155","Damon","1");
+INSERT INTO alumno VALUES("1673","Duncan","","43348668","","2020-09-08","","","AL41156","Iris","1");
+INSERT INTO alumno VALUES("1674","Dunlap","","38157891","","2020-09-08","","","AL41157","Wang","1");
+INSERT INTO alumno VALUES("1675","Ellis","","16532140","","2020-09-08","","","AL41158","Kibo","1");
+INSERT INTO alumno VALUES("1676","English","","42837826","","2020-09-08","","","AL41159","Brennan","1");
+INSERT INTO alumno VALUES("1677","Evans","","38474198","","2020-09-08","","","AL41160","Bruno","1");
+INSERT INTO alumno VALUES("1678","Farley","","12346991","","2020-09-08","","","AL41161","Hiroko","1");
+INSERT INTO alumno VALUES("1679","Farley","","35406343","","2020-09-08","","","AL41162","Quentin","1");
+INSERT INTO alumno VALUES("1680","Figueroa","","19459406","","2020-09-08","","","AL41163","Xerxes","1");
+INSERT INTO alumno VALUES("1681","Fletcher","","49708703","","2020-09-08","","","AL41164","Candice","1");
+INSERT INTO alumno VALUES("1682","Foster","","37469970","","2020-09-08","","","AL41165","Shaine","1");
+INSERT INTO alumno VALUES("1683","Franco","","39549507","","2020-09-08","","","AL41166","Nicholas","1");
+INSERT INTO alumno VALUES("1684","Franco","","36959025","","2020-09-08","","","AL41167","Phyllis","1");
+INSERT INTO alumno VALUES("1685","Franklin","","16309654","","2020-09-08","","","AL41168","Shellie","1");
+INSERT INTO alumno VALUES("1686","Fulton","","18529843","","2020-09-08","","","AL41169","Clio","1");
+INSERT INTO alumno VALUES("1687","Garrido","","25772496","","2020-09-08","","","AL41170","Miguel Angel","1");
+INSERT INTO alumno VALUES("1688","Garrison","","26818620","","2020-09-08","","","AL41171","Kelsey","1");
+INSERT INTO alumno VALUES("1689","Garruson","","23159573","","2020-09-08","","","AL41172","Laura","1");
+INSERT INTO alumno VALUES("1690","Glap","","35283269","","2020-09-08","","","AL41173","Cedric","1");
+INSERT INTO alumno VALUES("1691","Glover","","6875664","","2020-09-08","","","AL41174","Kitra","1");
+INSERT INTO alumno VALUES("1692","Goodwin","","26587375","","2020-09-08","","","AL41175","Lilah","1");
+INSERT INTO alumno VALUES("1693","Grant","","48772372","","2020-09-08","","","AL41176","Miranda","1");
+INSERT INTO alumno VALUES("1694","Hahn","","30776213","","2020-09-08","","","AL41177","Zane","1");
+INSERT INTO alumno VALUES("1695","Hampton","","48099435","","2020-09-08","","","AL41178","Lucas","1");
+INSERT INTO alumno VALUES("1696","Haney","","18780604","","2020-09-08","","","AL41179","Jarrod","1");
+INSERT INTO alumno VALUES("1697","Hansen","","49867796","","2020-09-08","","","AL41180","Timon","1");
+INSERT INTO alumno VALUES("1698","Harris","","7029267","","2020-09-08","","","AL41181","Cameron","1");
+INSERT INTO alumno VALUES("1699","Hartman","","14669989","","2020-09-08","","","AL41182","Zahir","1");
+INSERT INTO alumno VALUES("1700","Henderson","","15307164","","2020-09-08","","","AL41183","Finn","1");
+INSERT INTO alumno VALUES("1701","Herman","","9478391","","2020-09-08","","","AL41184","Eve","1");
+INSERT INTO alumno VALUES("1702","hernandez","","26065721","","2020-09-08","","","AL41185","daniel","1");
+INSERT INTO alumno VALUES("1703","Herring","","36503934","","2020-09-08","","","AL41186","Oliver","1");
+INSERT INTO alumno VALUES("1704","Hewitt","","46508041","","2020-09-08","","","AL41187","Isadora","1");
+INSERT INTO alumno VALUES("1705","Hickman","","48459517","","2020-09-08","","","AL41188","Ariana","1");
+INSERT INTO alumno VALUES("1706","Hilord","","11680657","","2020-09-08","","","AL41189","Akeem","1");
+INSERT INTO alumno VALUES("1707","Horton","","10527975","","2020-09-08","","","AL41190","Curran","1");
+INSERT INTO alumno VALUES("1708","Howe","","13320912","","2020-09-08","","","AL41191","Rowan","1");
+INSERT INTO alumno VALUES("1709","Howell","","21001931","","2020-09-08","","","AL41192","Stacy","1");
+INSERT INTO alumno VALUES("1710","Huff","","29820020","","2020-09-08","","","AL41193","Jerry","1");
+INSERT INTO alumno VALUES("1711","Hurley","","31082253","","2020-09-08","","","AL41194","Tamara","1");
+INSERT INTO alumno VALUES("1712","Irwin","","49176547","","2020-09-08","","","AL41195","Shea","1");
+INSERT INTO alumno VALUES("1713","Jacobs","","22905831","","2020-09-08","","","AL41196","Lane","1");
+INSERT INTO alumno VALUES("1714","Jarvis","","23521654","","2020-09-08","","","AL41197","Cathleen","1");
+INSERT INTO alumno VALUES("1715","Johnson","","7528332","","2020-09-08","","","AL41198","Leslie","1");
+INSERT INTO alumno VALUES("1716","Jones","","16835660","","2020-09-08","","","AL41199","Grant","1");
+INSERT INTO alumno VALUES("1717","Joseph","","13084195","","2020-09-08","","","AL41200","Burke","1");
+INSERT INTO alumno VALUES("1718","Joyner","","26067341","","2020-09-08","","","AL41201","Kaitlin","1");
+INSERT INTO alumno VALUES("1719","Juarez","","27612120","","2020-09-08","","","AL41202","Alisa","1");
+INSERT INTO alumno VALUES("1720","Kelley","","46067823","","2020-09-08","","","AL41203","Sydney","1");
+INSERT INTO alumno VALUES("1721","Kidd","","8544513","","2020-09-08","","","AL41204","Cruz","1");
+INSERT INTO alumno VALUES("1722","King","","36097579","","2020-09-08","","","AL41205","Shea","1");
+INSERT INTO alumno VALUES("1723","Klein","","14523329","","2020-09-08","","","AL41206","Vivian","1");
+INSERT INTO alumno VALUES("1724","Klein","","32614691","","2020-09-08","","","AL41207","Zelda","1");
+INSERT INTO alumno VALUES("1725","Lamb","","28074424","","2020-09-08","","","AL41208","Demetria","1");
+INSERT INTO alumno VALUES("1726","Lamb","","40646382","","2020-09-08","","","AL41209","Kuame","1");
+INSERT INTO alumno VALUES("1727","Leach","","45293197","","2020-09-08","","","AL41210","Renee","1");
+INSERT INTO alumno VALUES("1728","Lee","","27781028","","2020-09-08","","","AL41211","Aline","1");
+INSERT INTO alumno VALUES("1729","Lucas","","28726855","","2020-09-08","","","AL41212","Keiko","1");
+INSERT INTO alumno VALUES("1730","Macdonald","","31524309","","2020-09-08","","","AL41213","Hilda","1");
+INSERT INTO alumno VALUES("1731","Malone","","21060218","","2020-09-08","","","AL41214","Pearl","1");
+INSERT INTO alumno VALUES("1732","marin","","31975106","","2020-09-08","","","AL41215","raquel","1");
+INSERT INTO alumno VALUES("1733","Marks","","40319991","","2020-09-08","","","AL41216","Samuel","1");
+INSERT INTO alumno VALUES("1734","martinez","","22330766","","2020-09-08","","","AL41217","marta ","1");
+INSERT INTO alumno VALUES("1735","Mcdonald","","21106410","","2020-09-08","","","AL41218","Ria","1");
+INSERT INTO alumno VALUES("1736","Mcfadden","","13815202","","2020-09-08","","","AL41219","Quamar","1");
+INSERT INTO alumno VALUES("1737","Mcintosh","","47093288","","2020-09-08","","","AL41220","Channing","1");
+INSERT INTO alumno VALUES("1738","Mckenzie","","25376667","","2020-09-08","","","AL41221","Harriet","1");
+INSERT INTO alumno VALUES("1739","Mclean","","42651808","","2020-09-08","","","AL41222","Avram","1");
+INSERT INTO alumno VALUES("1740","Meadows","","41420760","","2020-09-08","","","AL41223","Blaze","1");
+INSERT INTO alumno VALUES("1741","Melendez","","21680638","","2020-09-08","","","AL41224","Fay","1");
+INSERT INTO alumno VALUES("1742","Melton","","6038948","","2020-09-08","","","AL41225","Jelani","1");
+INSERT INTO alumno VALUES("1743","Mercado","","34567537","","2020-09-08","","","AL41226","Jameson","1");
+INSERT INTO alumno VALUES("1744","Mercer","","48837147","","2020-09-08","","","AL41227","Howard","1");
+INSERT INTO alumno VALUES("1745","Mercer","","8388803","","2020-09-08","","","AL41228","Quail","1");
+INSERT INTO alumno VALUES("1746","Merritt","","13556299","","2020-09-08","","","AL41229","Hamish","1");
+INSERT INTO alumno VALUES("1747","Meyer","","11891058","","2020-09-08","","","AL41230","Reese","1");
+INSERT INTO alumno VALUES("1748","Miles","","9612128","","2020-09-08","","","AL41231","Rana","1");
+INSERT INTO alumno VALUES("1749","Mooney","","21527247","","2020-09-08","","","AL41232","Katelyn","1");
+INSERT INTO alumno VALUES("1750","Mooney","","34541073","","2020-09-08","","","AL41233","Magee","1");
+INSERT INTO alumno VALUES("1751","Morales","","34969826","","2020-09-08","","","AL41234","Nathan","1");
+INSERT INTO alumno VALUES("1752","Moralez","","49207332","","2020-09-08","","","AL41235","manuela","1");
+INSERT INTO alumno VALUES("1753","Moreno","","32484160","","2020-09-08","","","AL41236","maria pilar","1");
+INSERT INTO alumno VALUES("1754","Morgan","","23808848","","2020-09-08","","","AL41237","Coby","1");
+INSERT INTO alumno VALUES("1755","Mueller","","48882260","","2020-09-08","","","AL41238","Gail","1");
+INSERT INTO alumno VALUES("1756","Mullen","","16244592","","2020-09-08","","","AL41239","Nina","1");
+INSERT INTO alumno VALUES("1757","MuÃ±oz","","44888501","","2020-09-08","","","AL41240","Juan Jose","1");
+INSERT INTO alumno VALUES("1758","Murphy","","24556744","","2020-09-08","","","AL41241","Ayanna","1");
+INSERT INTO alumno VALUES("1759","Murphy","","10507943","","2020-09-08","","","AL41242","Demetrius","1");
+INSERT INTO alumno VALUES("1760","Nelson","","45757180","","2020-09-08","","","AL41243","Germane","1");
+INSERT INTO alumno VALUES("1761","Newton","","31400914","","2020-09-08","","","AL41244","Timothy","1");
+INSERT INTO alumno VALUES("1762","Nielsen","","18843297","","2020-09-08","","","AL41245","Pascale","1");
+INSERT INTO alumno VALUES("1763","Oliver","","7905790","","2020-09-08","","","AL41246","Ursa","1");
+INSERT INTO alumno VALUES("1764","Oneal","","33431495","","2020-09-08","","","AL41247","Nathaniel","1");
+INSERT INTO alumno VALUES("1765","Oneil","","15651752","","2020-09-08","","","AL41248","Madeson","1");
+INSERT INTO alumno VALUES("1766","Ortega","","46287308","","2020-09-08","","","AL41249","Marta","1");
+INSERT INTO alumno VALUES("1767","Ortiz","","34755891","","2020-09-08","","","AL41250","Encarnacion","1");
+INSERT INTO alumno VALUES("1768","Ortiz","","45968273","","2020-09-08","","","AL41251","Hammett","1");
+INSERT INTO alumno VALUES("1769","Ortiz ","","22047023","","2020-09-08","","","AL41252","Pablo ","1");
+INSERT INTO alumno VALUES("1770","Parker","","23141185","","2020-09-08","","","AL41253","Kato","1");
+INSERT INTO alumno VALUES("1771","Parsons","","40338231","","2020-09-08","","","AL41254","Lynn","1");
+INSERT INTO alumno VALUES("1772","Patterson","","20699148","","2020-09-08","","","AL41255","Octavia","1");
+INSERT INTO alumno VALUES("1773","Patterson","","40274537","","2020-09-08","","","AL41256","Rosalyn","1");
+INSERT INTO alumno VALUES("1774","Paul","","14150114","","2020-09-08","","","AL41257","Leila","1");
+INSERT INTO alumno VALUES("1775","Payne","","40817811","","2020-09-08","","","AL41258","Portia","1");
+INSERT INTO alumno VALUES("1776","Perez","","14597246","","2020-09-08","","","AL41259","Gray","1");
+INSERT INTO alumno VALUES("1777","Perez","","33124056","","2020-09-08","","","AL41260","Paula","1");
+INSERT INTO alumno VALUES("1778","Petersen","","34224227","","2020-09-08","","","AL41261","Blossom","1");
+INSERT INTO alumno VALUES("1779","Petty","","21111049","","2020-09-08","","","AL41262","Cameran","1");
+INSERT INTO alumno VALUES("1780","Picazo","","12821197","","2020-09-08","","","AL41263","Elena","1");
+INSERT INTO alumno VALUES("1781","Puckett","","47537619","","2020-09-08","","","AL41264","Zahir","1");
+INSERT INTO alumno VALUES("1782","Ramirez","","12693189","","2020-09-08","","","AL41265","Mariela","1");
+INSERT INTO alumno VALUES("1783","Ramsey","","28423363","","2020-09-08","","","AL41266","Kenyon","1");
+INSERT INTO alumno VALUES("1784","Ray","","27150078","","2020-09-08","","","AL41267","Marny","1");
+INSERT INTO alumno VALUES("1785","Raymond","","8874625","","2020-09-08","","","AL41268","Gary","1");
+INSERT INTO alumno VALUES("1786","Raymond","","13772878","","2020-09-08","","","AL41269","Theodore","1");
+INSERT INTO alumno VALUES("1787","Reeves","","30943501","","2020-09-08","","","AL41270","Dominic","1");
+INSERT INTO alumno VALUES("1788","Reilly","","25018737","","2020-09-08","","","AL41271","Hanna","1");
+INSERT INTO alumno VALUES("1789","Richards","","9971350","","2020-09-08","","","AL41272","Jesse","1");
+INSERT INTO alumno VALUES("1790","Robbins","","23049612","","2020-09-08","","","AL41273","Amir","1");
+INSERT INTO alumno VALUES("1791","Roberson","","38627621","","2020-09-08","","","AL41274","Mollie","1");
+INSERT INTO alumno VALUES("1792","Robertson","","12148427","","2020-09-08","","","AL41275","Eliana","1");
+INSERT INTO alumno VALUES("1793","Robles","","22562138","","2020-09-08","","","AL41276","Naomi","1");
+INSERT INTO alumno VALUES("1794","Romero","","46294563","","2020-09-08","","","AL41277","Ana Maria","1");
+INSERT INTO alumno VALUES("1795","Roth","","7845681","","2020-09-08","","","AL41278","Eaton","1");
+INSERT INTO alumno VALUES("1796","Rubio","","8647566","","2020-09-08","","","AL41279","Lucia","1");
+INSERT INTO alumno VALUES("1797","Rutledge","","11604323","","2020-09-08","","","AL41280","Gregory","1");
+INSERT INTO alumno VALUES("1798","Ryan","","21717906","","2020-09-08","","","AL41281","Mariko","1");
+INSERT INTO alumno VALUES("1799","Saez","","8726399","","2020-09-08","","","AL41282","Luis","1");
+INSERT INTO alumno VALUES("1800","Sampson","","26275883","","2020-09-08","","","AL41283","Ryan","1");
+INSERT INTO alumno VALUES("1801","Sanchez","","37824311","","2020-09-08","","","AL41284","Pedro","1");
+INSERT INTO alumno VALUES("1802","Sanchez","","45843775","","2020-09-08","","","AL41285","Pedro ","1");
+INSERT INTO alumno VALUES("1803","Sears","","44060633","","2020-09-08","","","AL41286","Colette","1");
+INSERT INTO alumno VALUES("1804","Sears","","47835848","","2020-09-08","","","AL41288","Uriel","1");
+INSERT INTO alumno VALUES("1805","Sgroi","$2y$10$sfKIZ5rzF7wWPqWSsB6nFOn6o3uaIH5nhaXvaiFr3ICiHJSAADng.","40102196","lean@mail.com","2020-09-08","","","AL41414","Leandro","1");
+INSERT INTO alumno VALUES("1806","Skinner","","41288968","","2020-09-08","","","AL41289","Ruth","1");
+INSERT INTO alumno VALUES("1807","Sloan","","7949419","","2020-09-08","","","AL41290","Clare","1");
+INSERT INTO alumno VALUES("1808","Solomon","","29770639","","2020-09-08","","","AL41291","Ulla","1");
+INSERT INTO alumno VALUES("1809","Stephens","","25644254","","2020-09-08","","","AL41292","Channing","1");
+INSERT INTO alumno VALUES("1810","Stone","","25933535","","2020-09-08","","","AL41293","Dawn","1");
+INSERT INTO alumno VALUES("1811","Stone","","8553228","","2020-09-08","","","AL41294","Denton","1");
+INSERT INTO alumno VALUES("1812","Stout","","42720207","","2020-09-08","","","AL41295","Cassidy","1");
+INSERT INTO alumno VALUES("1813","Sutton","","43904374","","2020-09-08","","","AL41296","Scarlet","1");
+INSERT INTO alumno VALUES("1814","Tanner","","6986876","","2020-09-08","","","AL41297","Adam","1");
+INSERT INTO alumno VALUES("1815","Taylor","","45575547","","2020-09-08","","","AL41298","Stephen","1");
+INSERT INTO alumno VALUES("1816","Thornton","","36467874","","2020-09-08","","","AL41299","Cameron","1");
+INSERT INTO alumno VALUES("1817","Torres","","8258764","","2020-09-08","","","AL41300","Francisco Javier","1");
+INSERT INTO alumno VALUES("1818","Townsend","","41565942","","2020-09-08","","","AL41301","Jacqueline","1");
+INSERT INTO alumno VALUES("1819","Turner","","32277550","","2020-09-08","","","AL41302","Macy","1");
+INSERT INTO alumno VALUES("1820","Valenzuela","","30039298","","2020-09-08","","","AL41303","Aurora","1");
+INSERT INTO alumno VALUES("1821","Vargas","","38898965","","2020-09-08","","","AL41304","Lars","1");
+INSERT INTO alumno VALUES("1822","Vasquez","","9568854","","2020-09-08","","","AL41305","Iris","1");
+INSERT INTO alumno VALUES("1823","Vega","","49671795","","2020-09-08","","","AL41306","Joy","1");
+INSERT INTO alumno VALUES("1824","Velazquez","","16303341","","2020-09-08","","","AL41307","Carter","1");
+INSERT INTO alumno VALUES("1825","Velez","","19266093","","2020-09-08","","","AL41308","Hashim","1");
+INSERT INTO alumno VALUES("1826","Velez","","23014472","","2020-09-08","","","AL41309","Wynter","1");
+INSERT INTO alumno VALUES("1827","Ward","","41100921","","2020-09-08","","","AL41310","Clare","1");
+INSERT INTO alumno VALUES("1828","Ward","","44786239","","2020-09-08","","","AL41311","Zachery","1");
+INSERT INTO alumno VALUES("1829","Watson","","16968661","","2020-09-08","","","AL41312","Candice","1");
+INSERT INTO alumno VALUES("1830","Watts","","37404149","","2020-09-08","","","AL41313","Cairo","1");
+INSERT INTO alumno VALUES("1831","Weeks","","20445652","","2020-09-08","","","AL41314","Ignatius","1");
+INSERT INTO alumno VALUES("1832","Wells","","30607549","","2020-09-08","","","AL41315","Hamilton","1");
+INSERT INTO alumno VALUES("1833","Wheeler","","17613236","","2020-09-08","","","AL41316","Benjamin","1");
+INSERT INTO alumno VALUES("1834","Whitney","","31491848","","2020-09-08","","","AL41317","Willow","1");
+INSERT INTO alumno VALUES("1835","Wilkinson","","6691125","","2020-09-08","","","AL41318","Christen","1");
+INSERT INTO alumno VALUES("1836","Witt","","48725746","","2020-09-08","","","AL41319","Illana","1");
+INSERT INTO alumno VALUES("1837","Wolf","","17524543","","2020-09-08","","","AL41320","Whitney","1");
+INSERT INTO alumno VALUES("1838","Woodard","EwcyB5UOJEIAo23KgrruaQ==","19255872","algo@mail.com","2020-09-08","2020-09-30","","AL41321","Amethyst","1");
+INSERT INTO alumno VALUES("1839","Wooten","","33285501","","2020-09-08","","","AL41322","Preston","1");
+INSERT INTO alumno VALUES("1840","Wynn","$2y$10$Kw9QS1UpfLl/2looKv7n/OxaAJp0jaEBEneYCGLmw2v0s.Vsyv1Hm","49914939","pwynn@mail.com","2020-09-08","2020-09-30","2012-06-30","AL41324","Pamela","1");
+INSERT INTO alumno VALUES("1841","Yang","","25159132","","2020-09-08","","","AL41325","Ferris","1");
+INSERT INTO alumno VALUES("1842","Richards","","45612398","","2020-09-08","","","AL95123","Estefania","1");
+INSERT INTO alumno VALUES("1613","Aguirre","$2y$10$3Yb9yW0c.gzoQtuIkuxgVOGUltzajvG0KFdbU3hSaKfeI/9o29a8O","48637507","iaguirre@mail.com","2020-09-08","","1998-06-11","AL41096","Imelda","1");
+INSERT INTO alumno VALUES("1852","ortiz","","20001243","","2020-09-11","","","AL41414","leandro","1");
+INSERT INTO alumno VALUES("1853","Sears","","47835848","","2020-09-22","","","AL41287","Uriel","1");
+INSERT INTO alumno VALUES("1851","Sanchez","$2y$10$7TAPZqLqyC3qidPfmBZs0u6489E/LPVVahRs3SkmtuaCGXF7pqL..","7512360","asanchez@mail.com","2020-09-09","","1989-11-20","AL89600","Arnaldo","1");
+INSERT INTO alumno VALUES("1854","Sgroi","","40102196","","2020-09-22","","","AL41288","Leandro ","1");
+INSERT INTO alumno VALUES("1855","Wuito","","25704075","","2020-09-30","","","AL41329","Esteban ","1");
+
+
+
+
+
+CREATE TABLE `alumnocursoactual` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaDesdeAlumCurAc` date DEFAULT NULL,
+  `fechaHastaAlumCurAc` date DEFAULT NULL,
+  `alumno_id` int(11) DEFAULT NULL,
+  `curso_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK36obnguwdre5apx5dchq91odn` (`alumno_id`),
+  KEY `FKt7ydcu477pnwgp95bumcwako7` (`curso_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=360 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO alumnocursoactual VALUES("357","2020-09-17","2020-10-31","1735","20");
+INSERT INTO alumnocursoactual VALUES("356","2020-09-17","2020-10-31","1734","20");
+INSERT INTO alumnocursoactual VALUES("355","2020-09-17","2020-10-31","1733","20");
+INSERT INTO alumnocursoactual VALUES("354","2020-09-17","2020-10-31","1732","20");
+INSERT INTO alumnocursoactual VALUES("353","2020-09-17","2020-10-31","1731","20");
+INSERT INTO alumnocursoactual VALUES("352","2020-09-17","2020-10-31","1730","20");
+INSERT INTO alumnocursoactual VALUES("351","2020-09-17","2020-10-31","1729","20");
+INSERT INTO alumnocursoactual VALUES("350","2020-09-17","2020-10-31","1715","20");
+INSERT INTO alumnocursoactual VALUES("349","2020-09-17","2020-10-31","1714","20");
+INSERT INTO alumnocursoactual VALUES("348","2020-09-17","2020-10-31","1713","20");
+INSERT INTO alumnocursoactual VALUES("341","2020-08-10","2020-11-30","1851","18");
+INSERT INTO alumnocursoactual VALUES("342","2020-09-17","2020-10-31","1805","20");
+INSERT INTO alumnocursoactual VALUES("343","2020-09-17","2020-10-31","1851","20");
+INSERT INTO alumnocursoactual VALUES("344","2020-09-17","2020-10-31","1613","20");
+INSERT INTO alumnocursoactual VALUES("345","2020-09-17","2020-10-31","1614","20");
+INSERT INTO alumnocursoactual VALUES("346","2020-09-17","2020-10-31","1615","20");
+INSERT INTO alumnocursoactual VALUES("347","2020-09-17","2020-10-31","1712","20");
+INSERT INTO alumnocursoactual VALUES("358","2020-09-17","2020-10-31","1736","20");
+INSERT INTO alumnocursoactual VALUES("359","2020-09-17","2020-10-31","1737","20");
+INSERT INTO alumnocursoactual VALUES("330","2020-08-10","2020-11-30","1715","18");
+INSERT INTO alumnocursoactual VALUES("329","2020-08-10","2020-11-30","1714","18");
+INSERT INTO alumnocursoactual VALUES("328","2020-08-10","2020-11-30","1713","18");
+INSERT INTO alumnocursoactual VALUES("327","2020-08-10","2020-11-30","1712","18");
+INSERT INTO alumnocursoactual VALUES("326","2020-08-10","2020-11-30","1615","18");
+INSERT INTO alumnocursoactual VALUES("325","2020-08-10","2020-11-30","1614","18");
+INSERT INTO alumnocursoactual VALUES("324","2020-08-10","2020-11-30","1613","18");
+INSERT INTO alumnocursoactual VALUES("331","2020-08-10","2020-11-30","1729","18");
+INSERT INTO alumnocursoactual VALUES("332","2020-08-10","2020-11-30","1730","18");
+INSERT INTO alumnocursoactual VALUES("333","2020-08-10","2020-11-30","1731","18");
+INSERT INTO alumnocursoactual VALUES("340","2020-08-10","2020-11-30","1805","18");
+INSERT INTO alumnocursoactual VALUES("339","2020-08-10","2020-11-30","1737","18");
+INSERT INTO alumnocursoactual VALUES("338","2020-08-10","2020-11-30","1736","18");
+INSERT INTO alumnocursoactual VALUES("337","2020-08-10","2020-11-30","1735","18");
+INSERT INTO alumnocursoactual VALUES("336","2020-08-10","2020-11-30","1734","18");
+INSERT INTO alumnocursoactual VALUES("335","2020-08-10","2020-11-30","1733","18");
+INSERT INTO alumnocursoactual VALUES("334","2020-08-10","2020-11-30","1732","18");
+INSERT INTO alumnocursoactual VALUES("323","2020-09-01","2020-11-30","1851","25");
+INSERT INTO alumnocursoactual VALUES("322","2020-09-01","2020-11-30","1805","25");
+
+
+
+
+
+CREATE TABLE `alumnocursoestado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaFinEstado` date DEFAULT NULL,
+  `fechaInicioEstado` date DEFAULT NULL,
+  `alumnoCursoActual_id` int(11) DEFAULT NULL,
+  `cursoEstadoAlumno_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKh3ew326q03dqseb9wyxsdcric` (`alumnoCursoActual_id`),
+  KEY `FK1nlk4159vb50rrgimdmx9tuib` (`cursoEstadoAlumno_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=255 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO alumnocursoestado VALUES("254","2020-10-31","2020-09-17","359","1");
+INSERT INTO alumnocursoestado VALUES("253","2020-10-31","2020-09-17","358","1");
+INSERT INTO alumnocursoestado VALUES("252","2020-10-31","2020-09-17","357","1");
+INSERT INTO alumnocursoestado VALUES("251","2020-10-31","2020-09-17","356","1");
+INSERT INTO alumnocursoestado VALUES("250","2020-10-31","2020-09-17","355","1");
+INSERT INTO alumnocursoestado VALUES("249","2020-10-31","2020-09-17","354","1");
+INSERT INTO alumnocursoestado VALUES("248","2020-10-31","2020-09-17","353","1");
+INSERT INTO alumnocursoestado VALUES("247","2020-10-31","2020-09-17","352","1");
+INSERT INTO alumnocursoestado VALUES("246","2020-10-31","2020-09-17","351","1");
+INSERT INTO alumnocursoestado VALUES("245","2020-10-31","2020-09-17","350","1");
+INSERT INTO alumnocursoestado VALUES("244","2020-10-31","2020-09-17","349","1");
+INSERT INTO alumnocursoestado VALUES("243","2020-10-31","2020-09-17","348","1");
+INSERT INTO alumnocursoestado VALUES("242","2020-10-31","2020-09-17","347","1");
+INSERT INTO alumnocursoestado VALUES("241","2020-10-31","2020-09-17","346","1");
+INSERT INTO alumnocursoestado VALUES("240","2020-10-31","2020-09-17","345","1");
+INSERT INTO alumnocursoestado VALUES("239","2020-10-31","2020-09-17","344","1");
+INSERT INTO alumnocursoestado VALUES("238","2020-10-31","2020-09-17","343","1");
+INSERT INTO alumnocursoestado VALUES("237","2020-10-31","2020-09-17","342","1");
+INSERT INTO alumnocursoestado VALUES("236","2020-11-30","2020-08-10","341","1");
+INSERT INTO alumnocursoestado VALUES("235","2020-11-30","2020-08-10","340","1");
+INSERT INTO alumnocursoestado VALUES("234","2020-11-30","2020-08-10","339","1");
+INSERT INTO alumnocursoestado VALUES("233","2020-11-30","2020-08-10","338","1");
+INSERT INTO alumnocursoestado VALUES("232","2020-11-30","2020-08-10","337","1");
+INSERT INTO alumnocursoestado VALUES("231","2020-11-30","2020-08-10","336","1");
+INSERT INTO alumnocursoestado VALUES("230","2020-11-30","2020-08-10","335","1");
+INSERT INTO alumnocursoestado VALUES("229","2020-11-30","2020-08-10","334","1");
+INSERT INTO alumnocursoestado VALUES("228","2020-11-30","2020-08-10","333","1");
+INSERT INTO alumnocursoestado VALUES("227","2020-11-30","2020-08-10","332","1");
+INSERT INTO alumnocursoestado VALUES("226","2020-11-30","2020-08-10","331","1");
+INSERT INTO alumnocursoestado VALUES("225","2020-11-30","2020-08-10","330","1");
+INSERT INTO alumnocursoestado VALUES("224","2020-11-30","2020-08-10","329","1");
+INSERT INTO alumnocursoestado VALUES("223","2020-11-30","2020-08-10","328","1");
+INSERT INTO alumnocursoestado VALUES("222","2020-11-30","2020-08-10","327","1");
+INSERT INTO alumnocursoestado VALUES("220","2020-11-30","2020-08-10","325","1");
+INSERT INTO alumnocursoestado VALUES("221","2020-11-30","2020-08-10","326","1");
+INSERT INTO alumnocursoestado VALUES("219","2020-11-30","2020-08-10","324","1");
+INSERT INTO alumnocursoestado VALUES("218","2020-11-30","2020-09-01","323","1");
+INSERT INTO alumnocursoestado VALUES("217","2020-11-30","2020-09-01","322","1");
+
+
+
+
+
+CREATE TABLE `asistencia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nroFichaAsistencia` int(11) DEFAULT NULL,
+  `alumno_id` int(11) DEFAULT NULL,
+  `curso_id` int(11) DEFAULT NULL,
+  `fechaHastaFichaAsis` date DEFAULT NULL,
+  `fechaDesdeFichaAsis` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKnq42e1ofgrph75me0ryq4xd3r` (`alumno_id`),
+  KEY `FK5inf5bn7xwmwnrnebu1rk5cjj` (`curso_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=345 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO asistencia VALUES("339","","1732","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("338","","1731","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("337","","1730","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("336","","1729","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("335","","1715","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("334","","1714","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("333","","1713","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("332","","1712","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("326","","1851","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("327","","1805","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("328","","1851","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("329","","1613","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("330","","1614","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("331","","1615","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("340","","1733","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("341","","1734","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("342","","1735","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("344","","1737","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("343","","1736","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("315","","1715","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("314","","1714","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("313","","1713","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("312","","1712","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("311","","1615","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("310","","1614","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("309","","1613","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("316","","1729","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("317","","1730","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("318","","1731","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("325","","1805","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("324","","1737","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("323","","1736","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("322","","1735","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("321","","1734","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("320","","1733","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("319","","1732","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("308","","1851","25","2020-11-30","2020-09-01");
+INSERT INTO asistencia VALUES("307","","1805","25","2020-11-30","2020-09-01");
+
+
+
+
+
+CREATE TABLE `asistenciadia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaHoraAsisDia` datetime DEFAULT NULL,
+  `asistencia_id` int(11) DEFAULT NULL,
+  `tipoAsistencia_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKq321ay6csahth7tshhr0rbn6w` (`asistencia_id`),
+  KEY `FKtqtd79xsh4ircl22go5jyx1qh` (`tipoAsistencia_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=843 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO asistenciadia VALUES("842","2020-10-03 18:19:32","307","1");
+INSERT INTO asistenciadia VALUES("822","2020-10-03 18:18:07","325","2");
+INSERT INTO asistenciadia VALUES("821","2020-10-03 18:18:07","326","2");
+INSERT INTO asistenciadia VALUES("820","2020-10-03 18:18:07","324","1");
+INSERT INTO asistenciadia VALUES("819","2020-10-03 18:18:07","323","1");
+INSERT INTO asistenciadia VALUES("818","2020-10-03 18:18:07","322","2");
+INSERT INTO asistenciadia VALUES("817","2020-10-03 18:18:07","321","2");
+INSERT INTO asistenciadia VALUES("816","2020-10-03 18:18:07","320","1");
+INSERT INTO asistenciadia VALUES("815","2020-10-03 18:18:07","319","1");
+INSERT INTO asistenciadia VALUES("814","2020-10-03 18:18:07","318","1");
+INSERT INTO asistenciadia VALUES("813","2020-10-03 18:18:07","317","2");
+INSERT INTO asistenciadia VALUES("812","2020-10-03 18:18:07","316","2");
+INSERT INTO asistenciadia VALUES("811","2020-10-03 18:18:07","315","2");
+INSERT INTO asistenciadia VALUES("810","2020-10-03 18:18:07","314","1");
+INSERT INTO asistenciadia VALUES("809","2020-10-03 18:18:07","313","2");
+INSERT INTO asistenciadia VALUES("808","2020-10-03 18:18:07","312","1");
+INSERT INTO asistenciadia VALUES("807","2020-10-03 18:18:07","311","2");
+INSERT INTO asistenciadia VALUES("823","2020-10-03 18:18:59","329","1");
+INSERT INTO asistenciadia VALUES("824","2020-10-03 18:18:59","330","2");
+INSERT INTO asistenciadia VALUES("825","2020-10-03 18:18:59","331","1");
+INSERT INTO asistenciadia VALUES("841","2020-10-03 18:19:32","308","1");
+INSERT INTO asistenciadia VALUES("840","2020-10-03 18:18:59","327","2");
+INSERT INTO asistenciadia VALUES("839","2020-10-03 18:18:59","328","2");
+INSERT INTO asistenciadia VALUES("838","2020-10-03 18:18:59","344","1");
+INSERT INTO asistenciadia VALUES("837","2020-10-03 18:18:59","343","2");
+INSERT INTO asistenciadia VALUES("836","2020-10-03 18:18:59","342","1");
+INSERT INTO asistenciadia VALUES("835","2020-10-03 18:18:59","341","2");
+INSERT INTO asistenciadia VALUES("834","2020-10-03 18:18:59","340","1");
+INSERT INTO asistenciadia VALUES("833","2020-10-03 18:18:59","339","2");
+INSERT INTO asistenciadia VALUES("832","2020-10-03 18:18:59","338","1");
+INSERT INTO asistenciadia VALUES("831","2020-10-03 18:18:59","337","2");
+INSERT INTO asistenciadia VALUES("830","2020-10-03 18:18:59","336","1");
+INSERT INTO asistenciadia VALUES("829","2020-10-03 18:18:59","335","2");
+INSERT INTO asistenciadia VALUES("828","2020-10-03 18:18:59","334","1");
+INSERT INTO asistenciadia VALUES("827","2020-10-03 18:18:59","333","2");
+INSERT INTO asistenciadia VALUES("826","2020-10-03 18:18:59","332","2");
+INSERT INTO asistenciadia VALUES("806","2020-10-03 18:18:07","310","1");
+INSERT INTO asistenciadia VALUES("785","2020-10-02 07:43:43","308","2");
+INSERT INTO asistenciadia VALUES("784","2020-10-01 16:58:01","325","1");
+INSERT INTO asistenciadia VALUES("783","2020-10-01 16:58:01","326","1");
+INSERT INTO asistenciadia VALUES("782","2020-10-01 16:58:01","324","1");
+INSERT INTO asistenciadia VALUES("781","2020-10-01 16:58:01","323","2");
+INSERT INTO asistenciadia VALUES("780","2020-10-01 16:58:01","322","2");
+INSERT INTO asistenciadia VALUES("779","2020-10-01 16:58:01","321","2");
+INSERT INTO asistenciadia VALUES("778","2020-10-01 16:58:01","320","1");
+INSERT INTO asistenciadia VALUES("777","2020-10-01 16:58:01","319","1");
+INSERT INTO asistenciadia VALUES("776","2020-10-01 16:58:01","318","1");
+INSERT INTO asistenciadia VALUES("769","2020-10-01 16:58:01","311","1");
+INSERT INTO asistenciadia VALUES("770","2020-10-01 16:58:01","312","2");
+INSERT INTO asistenciadia VALUES("771","2020-10-01 16:58:01","313","1");
+INSERT INTO asistenciadia VALUES("772","2020-10-01 16:58:01","314","2");
+INSERT INTO asistenciadia VALUES("773","2020-10-01 16:58:01","315","2");
+INSERT INTO asistenciadia VALUES("774","2020-10-01 16:58:01","316","1");
+INSERT INTO asistenciadia VALUES("775","2020-10-01 16:58:01","317","2");
+INSERT INTO asistenciadia VALUES("786","2020-10-02 07:43:43","307","1");
+INSERT INTO asistenciadia VALUES("787","2020-10-02 08:00:35","329","2");
+INSERT INTO asistenciadia VALUES("788","2020-10-02 08:00:35","330","1");
+INSERT INTO asistenciadia VALUES("804","2020-10-02 08:00:35","327","2");
+INSERT INTO asistenciadia VALUES("803","2020-10-02 08:00:35","328","2");
+INSERT INTO asistenciadia VALUES("802","2020-10-02 08:00:35","344","1");
+INSERT INTO asistenciadia VALUES("801","2020-10-02 08:00:35","343","1");
+INSERT INTO asistenciadia VALUES("800","2020-10-02 08:00:35","342","1");
+INSERT INTO asistenciadia VALUES("799","2020-10-02 08:00:35","341","1");
+INSERT INTO asistenciadia VALUES("798","2020-10-02 08:00:35","340","2");
+INSERT INTO asistenciadia VALUES("797","2020-10-02 08:00:35","339","1");
+INSERT INTO asistenciadia VALUES("796","2020-10-02 08:00:35","338","1");
+INSERT INTO asistenciadia VALUES("795","2020-10-02 08:00:35","337","1");
+INSERT INTO asistenciadia VALUES("794","2020-10-02 08:00:35","336","1");
+INSERT INTO asistenciadia VALUES("793","2020-10-02 08:00:35","335","2");
+INSERT INTO asistenciadia VALUES("792","2020-10-02 08:00:35","334","1");
+INSERT INTO asistenciadia VALUES("791","2020-10-02 08:00:35","333","1");
+INSERT INTO asistenciadia VALUES("790","2020-10-02 08:00:35","332","1");
+INSERT INTO asistenciadia VALUES("789","2020-10-02 08:00:35","331","2");
+INSERT INTO asistenciadia VALUES("805","2020-10-03 18:18:07","309","2");
+INSERT INTO asistenciadia VALUES("759","2020-09-30 08:30:41","339","2");
+INSERT INTO asistenciadia VALUES("758","2020-09-30 08:30:41","338","1");
+INSERT INTO asistenciadia VALUES("757","2020-09-30 08:30:41","337","1");
+INSERT INTO asistenciadia VALUES("756","2020-09-30 08:30:41","336","1");
+INSERT INTO asistenciadia VALUES("755","2020-09-30 08:30:41","335","2");
+INSERT INTO asistenciadia VALUES("754","2020-09-30 08:30:41","334","1");
+INSERT INTO asistenciadia VALUES("753","2020-09-30 08:30:41","333","1");
+INSERT INTO asistenciadia VALUES("760","2020-09-30 08:30:41","340","2");
+INSERT INTO asistenciadia VALUES("761","2020-09-30 08:30:41","341","2");
+INSERT INTO asistenciadia VALUES("768","2020-10-01 16:58:01","310","2");
+INSERT INTO asistenciadia VALUES("767","2020-10-01 16:58:01","309","1");
+INSERT INTO asistenciadia VALUES("766","2020-09-30 08:30:41","327","1");
+INSERT INTO asistenciadia VALUES("765","2020-09-30 08:30:41","328","2");
+INSERT INTO asistenciadia VALUES("764","2020-09-30 08:30:41","344","2");
+INSERT INTO asistenciadia VALUES("763","2020-09-30 08:30:41","343","2");
+INSERT INTO asistenciadia VALUES("762","2020-09-30 08:30:41","342","1");
+INSERT INTO asistenciadia VALUES("678","2020-09-28 08:11:08","312","1");
+INSERT INTO asistenciadia VALUES("658","2020-09-28 08:06:39","330","1");
+INSERT INTO asistenciadia VALUES("657","2020-09-28 08:06:39","329","2");
+INSERT INTO asistenciadia VALUES("656","2020-09-27 12:54:15","325","1");
+INSERT INTO asistenciadia VALUES("655","2020-09-27 12:54:15","326","2");
+INSERT INTO asistenciadia VALUES("654","2020-09-27 12:54:15","324","1");
+INSERT INTO asistenciadia VALUES("653","2020-09-27 12:54:15","323","2");
+INSERT INTO asistenciadia VALUES("652","2020-09-27 12:54:15","322","1");
+INSERT INTO asistenciadia VALUES("651","2020-09-27 12:54:15","321","2");
+INSERT INTO asistenciadia VALUES("650","2020-09-27 12:54:15","320","1");
+INSERT INTO asistenciadia VALUES("649","2020-09-27 12:54:15","319","2");
+INSERT INTO asistenciadia VALUES("648","2020-09-27 12:54:15","318","1");
+INSERT INTO asistenciadia VALUES("647","2020-09-27 12:54:15","317","2");
+INSERT INTO asistenciadia VALUES("646","2020-09-27 12:54:15","316","1");
+INSERT INTO asistenciadia VALUES("645","2020-09-27 12:54:15","315","2");
+INSERT INTO asistenciadia VALUES("644","2020-09-27 12:54:15","314","1");
+INSERT INTO asistenciadia VALUES("643","2020-09-27 12:54:15","313","2");
+INSERT INTO asistenciadia VALUES("659","2020-09-28 08:06:39","331","2");
+INSERT INTO asistenciadia VALUES("660","2020-09-28 08:06:39","332","1");
+INSERT INTO asistenciadia VALUES("661","2020-09-28 08:06:39","333","2");
+INSERT INTO asistenciadia VALUES("677","2020-09-28 08:11:08","311","2");
+INSERT INTO asistenciadia VALUES("676","2020-09-28 08:11:08","310","1");
+INSERT INTO asistenciadia VALUES("675","2020-09-28 08:11:08","309","2");
+INSERT INTO asistenciadia VALUES("674","2020-09-28 08:06:39","327","1");
+INSERT INTO asistenciadia VALUES("673","2020-09-28 08:06:39","328","2");
+INSERT INTO asistenciadia VALUES("672","2020-09-28 08:06:39","344","1");
+INSERT INTO asistenciadia VALUES("671","2020-09-28 08:06:39","343","2");
+INSERT INTO asistenciadia VALUES("670","2020-09-28 08:06:39","342","1");
+INSERT INTO asistenciadia VALUES("669","2020-09-28 08:06:39","341","2");
+INSERT INTO asistenciadia VALUES("668","2020-09-28 08:06:39","340","1");
+INSERT INTO asistenciadia VALUES("667","2020-09-28 08:06:39","339","2");
+INSERT INTO asistenciadia VALUES("666","2020-09-28 08:06:39","338","1");
+INSERT INTO asistenciadia VALUES("665","2020-09-28 08:06:39","337","2");
+INSERT INTO asistenciadia VALUES("664","2020-09-28 08:06:39","336","1");
+INSERT INTO asistenciadia VALUES("663","2020-09-28 08:06:39","335","2");
+INSERT INTO asistenciadia VALUES("662","2020-09-28 08:06:39","334","1");
+INSERT INTO asistenciadia VALUES("642","2020-09-27 12:54:15","312","1");
+INSERT INTO asistenciadia VALUES("641","2020-09-27 12:54:15","311","2");
+INSERT INTO asistenciadia VALUES("631","2020-09-26 12:45:32","319","1");
+INSERT INTO asistenciadia VALUES("615","2020-09-25 08:00:58","323","2");
+INSERT INTO asistenciadia VALUES("614","2020-09-25 08:00:58","324","2");
+INSERT INTO asistenciadia VALUES("613","2020-09-25 08:00:58","325","1");
+INSERT INTO asistenciadia VALUES("612","2020-09-25 08:00:58","318","2");
+INSERT INTO asistenciadia VALUES("611","2020-09-25 08:00:58","317","2");
+INSERT INTO asistenciadia VALUES("610","2020-09-25 08:00:58","316","2");
+INSERT INTO asistenciadia VALUES("609","2020-09-25 08:00:58","309","2");
+INSERT INTO asistenciadia VALUES("608","2020-09-25 08:00:58","310","2");
+INSERT INTO asistenciadia VALUES("607","2020-09-25 08:00:58","311","2");
+INSERT INTO asistenciadia VALUES("606","2020-09-25 08:00:58","312","2");
+INSERT INTO asistenciadia VALUES("605","2020-09-25 08:00:58","313","2");
+INSERT INTO asistenciadia VALUES("604","2020-09-25 08:00:58","314","2");
+INSERT INTO asistenciadia VALUES("616","2020-09-25 08:00:58","322","2");
+INSERT INTO asistenciadia VALUES("617","2020-09-25 08:00:58","321","2");
+INSERT INTO asistenciadia VALUES("630","2020-09-26 12:45:32","318","2");
+INSERT INTO asistenciadia VALUES("629","2020-09-26 12:45:32","317","1");
+INSERT INTO asistenciadia VALUES("628","2020-09-26 12:45:32","316","2");
+INSERT INTO asistenciadia VALUES("627","2020-09-26 12:45:32","315","1");
+INSERT INTO asistenciadia VALUES("640","2020-09-27 12:54:15","310","1");
+INSERT INTO asistenciadia VALUES("639","2020-09-27 12:54:15","309","2");
+INSERT INTO asistenciadia VALUES("638","2020-09-26 12:45:32","325","3");
+INSERT INTO asistenciadia VALUES("637","2020-09-26 12:45:32","326","1");
+INSERT INTO asistenciadia VALUES("636","2020-09-26 12:45:32","324","2");
+INSERT INTO asistenciadia VALUES("635","2020-09-26 12:45:32","323","1");
+INSERT INTO asistenciadia VALUES("634","2020-09-26 12:45:32","322","2");
+INSERT INTO asistenciadia VALUES("633","2020-09-26 12:45:32","321","1");
+INSERT INTO asistenciadia VALUES("632","2020-09-26 12:45:32","320","2");
+INSERT INTO asistenciadia VALUES("626","2020-09-26 12:45:32","314","2");
+INSERT INTO asistenciadia VALUES("625","2020-09-26 12:45:32","313","1");
+INSERT INTO asistenciadia VALUES("624","2020-09-26 12:45:32","312","2");
+INSERT INTO asistenciadia VALUES("623","2020-09-26 12:45:32","311","1");
+INSERT INTO asistenciadia VALUES("622","2020-09-26 12:45:32","310","1");
+INSERT INTO asistenciadia VALUES("620","2020-09-25 08:00:58","326","1");
+INSERT INTO asistenciadia VALUES("619","2020-09-25 08:00:58","319","2");
+INSERT INTO asistenciadia VALUES("618","2020-09-25 08:00:58","320","2");
+INSERT INTO asistenciadia VALUES("716","2020-09-29 08:08:24","334","1");
+INSERT INTO asistenciadia VALUES("732","2020-09-30 08:11:48","310","1");
+INSERT INTO asistenciadia VALUES("731","2020-09-30 08:11:48","309","2");
+INSERT INTO asistenciadia VALUES("730","2020-09-29 08:59:37","307","1");
+INSERT INTO asistenciadia VALUES("729","2020-09-29 08:59:37","308","2");
+INSERT INTO asistenciadia VALUES("728","2020-09-29 08:08:24","327","2");
+INSERT INTO asistenciadia VALUES("727","2020-09-29 08:08:24","328","2");
+INSERT INTO asistenciadia VALUES("726","2020-09-29 08:08:24","344","1");
+INSERT INTO asistenciadia VALUES("725","2020-09-29 08:08:24","343","2");
+INSERT INTO asistenciadia VALUES("724","2020-09-29 08:08:24","342","1");
+INSERT INTO asistenciadia VALUES("723","2020-09-29 08:08:24","341","2");
+INSERT INTO asistenciadia VALUES("722","2020-09-29 08:08:24","340","1");
+INSERT INTO asistenciadia VALUES("721","2020-09-29 08:08:24","339","2");
+INSERT INTO asistenciadia VALUES("720","2020-09-29 08:08:24","338","1");
+INSERT INTO asistenciadia VALUES("719","2020-09-29 08:08:24","337","2");
+INSERT INTO asistenciadia VALUES("718","2020-09-29 08:08:24","336","1");
+INSERT INTO asistenciadia VALUES("717","2020-09-29 08:08:24","335","1");
+INSERT INTO asistenciadia VALUES("733","2020-09-30 08:11:48","311","2");
+INSERT INTO asistenciadia VALUES("734","2020-09-30 08:11:48","312","1");
+INSERT INTO asistenciadia VALUES("735","2020-09-30 08:11:48","313","2");
+INSERT INTO asistenciadia VALUES("746","2020-09-30 08:11:48","324","1");
+INSERT INTO asistenciadia VALUES("747","2020-09-30 08:11:48","326","2");
+INSERT INTO asistenciadia VALUES("748","2020-09-30 08:11:48","325","2");
+INSERT INTO asistenciadia VALUES("749","2020-09-30 08:30:41","329","2");
+INSERT INTO asistenciadia VALUES("750","2020-09-30 08:30:41","330","2");
+INSERT INTO asistenciadia VALUES("751","2020-09-30 08:30:41","331","2");
+INSERT INTO asistenciadia VALUES("752","2020-09-30 08:30:41","332","1");
+INSERT INTO asistenciadia VALUES("745","2020-09-30 08:11:48","323","2");
+INSERT INTO asistenciadia VALUES("744","2020-09-30 08:11:48","322","1");
+INSERT INTO asistenciadia VALUES("743","2020-09-30 08:11:48","321","2");
+INSERT INTO asistenciadia VALUES("742","2020-09-30 08:11:48","320","1");
+INSERT INTO asistenciadia VALUES("741","2020-09-30 08:11:48","319","2");
+INSERT INTO asistenciadia VALUES("740","2020-09-30 08:11:48","318","1");
+INSERT INTO asistenciadia VALUES("739","2020-09-30 08:11:48","317","2");
+INSERT INTO asistenciadia VALUES("738","2020-09-30 08:11:48","316","1");
+INSERT INTO asistenciadia VALUES("737","2020-09-30 08:11:48","315","2");
+INSERT INTO asistenciadia VALUES("736","2020-09-30 08:11:48","314","1");
+INSERT INTO asistenciadia VALUES("715","2020-09-29 08:08:24","333","1");
+INSERT INTO asistenciadia VALUES("695","2020-09-29 08:02:19","311","1");
+INSERT INTO asistenciadia VALUES("694","2020-09-29 08:02:19","310","2");
+INSERT INTO asistenciadia VALUES("693","2020-09-29 08:02:19","309","1");
+INSERT INTO asistenciadia VALUES("692","2020-09-28 08:11:08","325","2");
+INSERT INTO asistenciadia VALUES("691","2020-09-28 08:11:08","326","1");
+INSERT INTO asistenciadia VALUES("690","2020-09-28 08:11:08","324","2");
+INSERT INTO asistenciadia VALUES("689","2020-09-28 08:11:08","323","2");
+INSERT INTO asistenciadia VALUES("688","2020-09-28 08:11:08","322","1");
+INSERT INTO asistenciadia VALUES("687","2020-09-28 08:11:08","321","2");
+INSERT INTO asistenciadia VALUES("686","2020-09-28 08:11:08","320","1");
+INSERT INTO asistenciadia VALUES("685","2020-09-28 08:11:08","319","2");
+INSERT INTO asistenciadia VALUES("684","2020-09-28 08:11:08","318","1");
+INSERT INTO asistenciadia VALUES("683","2020-09-28 08:11:08","317","2");
+INSERT INTO asistenciadia VALUES("682","2020-09-28 08:11:08","316","1");
+INSERT INTO asistenciadia VALUES("681","2020-09-28 08:11:08","315","2");
+INSERT INTO asistenciadia VALUES("680","2020-09-28 08:11:08","314","1");
+INSERT INTO asistenciadia VALUES("696","2020-09-29 08:02:19","312","2");
+INSERT INTO asistenciadia VALUES("697","2020-09-29 08:02:19","313","1");
+INSERT INTO asistenciadia VALUES("698","2020-09-29 08:02:19","314","2");
+INSERT INTO asistenciadia VALUES("714","2020-09-29 08:08:24","332","2");
+INSERT INTO asistenciadia VALUES("713","2020-09-29 08:08:24","331","2");
+INSERT INTO asistenciadia VALUES("712","2020-09-29 08:08:24","330","2");
+INSERT INTO asistenciadia VALUES("711","2020-09-29 08:08:24","329","2");
+INSERT INTO asistenciadia VALUES("710","2020-09-29 08:02:19","325","1");
+INSERT INTO asistenciadia VALUES("709","2020-09-29 08:02:19","326","2");
+INSERT INTO asistenciadia VALUES("708","2020-09-29 08:02:19","324","2");
+INSERT INTO asistenciadia VALUES("707","2020-09-29 08:02:19","323","1");
+INSERT INTO asistenciadia VALUES("706","2020-09-29 08:02:19","322","1");
+INSERT INTO asistenciadia VALUES("705","2020-09-29 08:02:19","321","2");
+INSERT INTO asistenciadia VALUES("704","2020-09-29 08:02:19","320","2");
+INSERT INTO asistenciadia VALUES("703","2020-09-29 08:02:19","319","1");
+INSERT INTO asistenciadia VALUES("702","2020-09-29 08:02:19","318","2");
+INSERT INTO asistenciadia VALUES("701","2020-09-29 08:02:19","317","1");
+INSERT INTO asistenciadia VALUES("700","2020-09-29 08:02:19","316","2");
+INSERT INTO asistenciadia VALUES("699","2020-09-29 08:02:19","315","1");
+INSERT INTO asistenciadia VALUES("679","2020-09-28 08:11:08","313","2");
+INSERT INTO asistenciadia VALUES("603","2020-09-25 08:00:58","315","2");
+INSERT INTO asistenciadia VALUES("621","2020-09-26 12:45:32","309","2");
+
+
+
+
+
+CREATE TABLE `cargo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAltaCargo` date DEFAULT NULL,
+  `fechaFinCargo` date DEFAULT NULL,
+  `nombreCargo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO cargo VALUES("1","2020-07-31","","Titular");
+INSERT INTO cargo VALUES("2","2020-07-31","","JTP");
+INSERT INTO cargo VALUES("3","2020-08-23","","Auxiliar");
+INSERT INTO cargo VALUES("4","2020-08-23","","Adjunto");
+INSERT INTO cargo VALUES("8","2020-09-24","","Ayudante de 1era");
+INSERT INTO cargo VALUES("7","2020-09-15","","Suplente");
+
+
+
+
+
+CREATE TABLE `cargoprofesor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaDesdeCargo` date DEFAULT NULL,
+  `fechaHastaCargo` date DEFAULT NULL,
+  `cargo_id` int(11) DEFAULT NULL,
+  `curso_id` int(11) DEFAULT NULL,
+  `profesor_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKrbxf8x1h5hpn28fyjyrhr7r3p` (`cargo_id`),
+  KEY `FKt5cax41qk424i7e1ghn28ow9n` (`curso_id`),
+  KEY `FKjcr7feyg610sv4gde6ts2lvbj` (`profesor_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO cargoprofesor VALUES("23","2020-09-21","","1","23","238");
+INSERT INTO cargoprofesor VALUES("22","2020-09-21","2020-09-27","2","20","238");
+INSERT INTO cargoprofesor VALUES("21","2020-09-21","2020-09-21","1","20","238");
+INSERT INTO cargoprofesor VALUES("20","2020-09-21","2020-09-27","1","20","231");
+INSERT INTO cargoprofesor VALUES("19","2020-09-20","","1","18","226");
+INSERT INTO cargoprofesor VALUES("29","2020-09-29","","1","27","238");
+INSERT INTO cargoprofesor VALUES("28","2020-09-27","","1","20","238");
+INSERT INTO cargoprofesor VALUES("26","2020-09-22","","4","25","250");
+INSERT INTO cargoprofesor VALUES("27","2020-09-22","","7","25","238");
+INSERT INTO cargoprofesor VALUES("30","2020-10-01","","7","18","227");
+
+
+
+
+
+CREATE TABLE `cargoprofesorestado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaDesdeCargoProfesorEstado` date DEFAULT NULL,
+  `fechaHastaCargoProfesorEstado` date DEFAULT NULL,
+  `estadoCargoProfesor_id` int(11) DEFAULT NULL,
+  `cargoProfesor_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+INSERT INTO cargoprofesorestado VALUES("21","2020-09-20","","1","19");
+INSERT INTO cargoprofesorestado VALUES("22","2020-09-21","","1","20");
+INSERT INTO cargoprofesorestado VALUES("23","2020-09-21","","1","28");
+INSERT INTO cargoprofesorestado VALUES("24","2020-09-21","","1","23");
+INSERT INTO cargoprofesorestado VALUES("25","2020-09-22","","1","24");
+INSERT INTO cargoprofesorestado VALUES("26","2020-09-22","","1","25");
+INSERT INTO cargoprofesorestado VALUES("27","2020-09-22","","1","26");
+INSERT INTO cargoprofesorestado VALUES("28","2020-09-22","","1","27");
+INSERT INTO cargoprofesorestado VALUES("31","2020-09-29","","1","29");
+INSERT INTO cargoprofesorestado VALUES("32","2020-10-01","","1","30");
+
+
+
+
+
+CREATE TABLE `codigoasitencia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaHoraFinCodigo` datetime DEFAULT NULL,
+  `fechaHoraInicioCodigo` datetime DEFAULT NULL,
+  `numCodigo` varchar(11) NOT NULL,
+  `curso_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKjxci9ixskm4u2q3jeu3vvejf6` (`curso_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO codigoasitencia VALUES("15","2020-09-10 19:39:20","2020-09-10 19:19:20","SF596409839","18");
+INSERT INTO codigoasitencia VALUES("16","2020-09-20 12:40:27","2020-09-20 12:15:27","GM642202511","18");
+INSERT INTO codigoasitencia VALUES("18","2020-09-22 19:45:17","2020-09-22 19:30:17","RE250971708","25");
+INSERT INTO codigoasitencia VALUES("19","2020-09-25 08:25:58","2020-09-25 08:00:58","SB413126762","18");
+
+
+
+
+
+CREATE TABLE `contraseniarestablecida` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contraseniaProvisoria` varchar(255) DEFAULT NULL,
+  `vigenciaContraDesde` datetime DEFAULT NULL,
+  `vigenciaContraHasta` datetime DEFAULT NULL,
+  `administrativo_id` int(11) DEFAULT NULL,
+  `alumno_id` int(11) DEFAULT NULL,
+  `profesor_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKmldqjsr08gjdktcgqf6u84f2k` (`administrativo_id`),
+  KEY `FKf6hu0tkygeqlcjtn4ju2pvpsi` (`alumno_id`),
+  KEY `FKq9empioxj25p70f0hlqmumuuy` (`profesor_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+
+CREATE TABLE `curso` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaDesdeCurActual` date DEFAULT NULL,
+  `fechaHastaCurActul` date DEFAULT NULL,
+  `nombreCurso` varchar(255) DEFAULT NULL,
+  `division_id` int(11) DEFAULT NULL,
+  `materia_id` int(11) DEFAULT NULL,
+  `fechaDesdeCursado` date DEFAULT NULL,
+  `fechaHastaCursado` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKb0pu5rd27n5ld9n4oamd62dwj` (`division_id`),
+  KEY `FK48osbikkitlflgwqf0vh8qt7j` (`materia_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO curso VALUES("18","2020-08-23","","Lengua - 4K10","2","4","2020-08-10","2020-11-30");
+INSERT INTO curso VALUES("20","2020-09-01","","MatemÃ¡tica - 4K10","2","6","2020-09-17","2020-10-31");
+INSERT INTO curso VALUES("21","2020-09-05","2020-09-15","Lengua - 4K13","4","4","2020-08-10","2020-11-30");
+INSERT INTO curso VALUES("22","2020-09-20","","Lengua - 4K9","1","4","2020-08-20","2020-11-30");
+INSERT INTO curso VALUES("23","2020-09-21","","MatemÃ¡tica - 4K9","1","6","2020-09-01","2020-10-31");
+INSERT INTO curso VALUES("25","2020-09-22","","BiologÃ­a - 5E10","5","9","2020-09-01","2020-11-30");
+INSERT INTO curso VALUES("27","2020-09-27","","MatemÃ¡tica - 5E9","6","7","","");
+
+
+
+
+
+CREATE TABLE `cursodia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreDia` varchar(255) DEFAULT NULL,
+  `nombreDiaSA` varchar(255) DEFAULT NULL,
+  `dayName` varchar(255) NOT NULL,
+  `ordenDia` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO cursodia VALUES("15","Lunes","Lunes","Monday","1");
+INSERT INTO cursodia VALUES("16","Martes","Martes","Tuesday","2");
+INSERT INTO cursodia VALUES("17","MiÃ©rcoles","Miercoles","Wednesday","3");
+INSERT INTO cursodia VALUES("18","Jueves","Jueves","Thursday","4");
+INSERT INTO cursodia VALUES("19","Viernes","Viernes","Friday","5");
+INSERT INTO cursodia VALUES("20","SÃ¡bado","Sabado","Saturday","6");
+INSERT INTO cursodia VALUES("21","Domingo","Domingo","Sunday","7");
+
+
+
+
+
+CREATE TABLE `cursoestadoalumno` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreEstado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO cursoestadoalumno VALUES("1","INSCRIPTO");
+INSERT INTO cursoestadoalumno VALUES("2","LIBRE");
+
+
+
+
+
+CREATE TABLE `division` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAltaDivision` date DEFAULT NULL,
+  `fechaBajaDivision` date DEFAULT NULL,
+  `nombreDivision` varchar(255) DEFAULT NULL,
+  `modalidad_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKfr54cpkq6e5mmhivhi546oboy` (`modalidad_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO division VALUES("1","2020-07-31","","4K9","1");
+INSERT INTO division VALUES("2","2020-08-13","","4K10","1");
+INSERT INTO division VALUES("4","2020-08-15","","4K13","1");
+INSERT INTO division VALUES("5","2020-09-22","","5E10","2");
+INSERT INTO division VALUES("6","2020-09-22","","5E9","2");
+
+
+
+
+
+CREATE TABLE `estadocargoprofesor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreEstadoCargoProfe` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO estadocargoprofesor VALUES("1","Activo");
+INSERT INTO estadocargoprofesor VALUES("2","Licencia");
+INSERT INTO estadocargoprofesor VALUES("3","Baja");
+
+
+
+
+
+CREATE TABLE `horariocurso` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `horaFinCurso` time NOT NULL,
+  `horaInicioCurso` time NOT NULL,
+  `curso_id` int(11) DEFAULT NULL,
+  `cursoDia_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKc1fqqmvfrs27v0ujycjokrq0j` (`curso_id`),
+  KEY `FKh09fpmkq3ex3t1ets58oa0q0p` (`cursoDia_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO horariocurso VALUES("53","19:00:00","17:00:00","23","15");
+INSERT INTO horariocurso VALUES("21","23:00:00","07:00:00","21","21");
+INSERT INTO horariocurso VALUES("20","21:45:00","20:45:00","21","15");
+INSERT INTO horariocurso VALUES("99","23:00:00","10:00:00","20","20");
+INSERT INTO horariocurso VALUES("98","23:00:00","07:00:00","20","17");
+INSERT INTO horariocurso VALUES("97","23:00:00","07:00:00","20","16");
+INSERT INTO horariocurso VALUES("169","23:00:00","07:00:00","18","21");
+INSERT INTO horariocurso VALUES("168","21:00:00","10:00:00","18","20");
+INSERT INTO horariocurso VALUES("167","20:03:00","07:03:00","18","18");
+INSERT INTO horariocurso VALUES("166","23:00:00","07:00:00","18","17");
+INSERT INTO horariocurso VALUES("24","20:00:00","18:00:00","22","16");
+INSERT INTO horariocurso VALUES("25","23:00:00","07:00:00","22","20");
+INSERT INTO horariocurso VALUES("26","23:00:00","07:00:00","22","21");
+INSERT INTO horariocurso VALUES("96","22:00:00","08:00:00","20","15");
+INSERT INTO horariocurso VALUES("47","23:00:00","07:00:00","27","16");
+INSERT INTO horariocurso VALUES("46","17:32:00","13:32:00","27","15");
+INSERT INTO horariocurso VALUES("30","19:00:00","17:00:00","24","16");
+INSERT INTO horariocurso VALUES("31","19:00:00","17:00:00","24","18");
+INSERT INTO horariocurso VALUES("32","11:00:00","09:00:00","24","20");
+INSERT INTO horariocurso VALUES("163","22:00:00","08:00:00","25","21");
+INSERT INTO horariocurso VALUES("54","23:00:00","07:00:00","23","16");
+INSERT INTO horariocurso VALUES("165","23:00:00","07:00:00","18","16");
+INSERT INTO horariocurso VALUES("100","21:00:00","08:00:00","20","19");
+INSERT INTO horariocurso VALUES("164","23:00:00","07:00:00","18","15");
+INSERT INTO horariocurso VALUES("162","23:00:00","07:00:00","25","20");
+INSERT INTO horariocurso VALUES("161","20:00:00","07:00:00","25","19");
+INSERT INTO horariocurso VALUES("160","22:30:00","07:30:00","25","16");
+INSERT INTO horariocurso VALUES("159","20:00:00","07:00:00","25","15");
+
+
+
+
+
+CREATE TABLE `institucion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAltaInstitucion` date DEFAULT NULL,
+  `fechaBajaInstitucion` date DEFAULT NULL,
+  `nombreInstitucion` varchar(255) DEFAULT NULL,
+  `telefonoInstitucion` varchar(255) NOT NULL,
+  `direccionInstitucion` varchar(255) NOT NULL,
+  `correoInstitucion` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+
+CREATE TABLE `justificativo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `aprobado` bit(1) NOT NULL,
+  `comentarioJustificativo` varchar(255) DEFAULT NULL,
+  `fechaPresentacion` date DEFAULT NULL,
+  `fechaRevision` datetime DEFAULT NULL,
+  `imagenJustificativo` longblob,
+  `alumno_id` int(11) DEFAULT NULL,
+  `fechaDesdeJustificativo` date DEFAULT NULL,
+  `fechaHastaJustificativo` date DEFAULT NULL,
+  `extensionImagen` varchar(255) DEFAULT NULL,
+  `descripcionImagen` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKtm1gv5wen4ld811v7ampmrbbr` (`alumno_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO justificativo VALUES("13","1","se acepta por pandemia ","2020-09-28","2020-09-28 08:35:44","ÿØÿà\0JFIF\0\0\0\0\0\0ÿÛ\0C\0	!\"$\"$ÿÛ\0CÿÂ\0°-\"\0ÿÄ\0\0\0\0\0\0\0\0\0\0\0\0\0\0ÿÄ\0\0\0\0\0\0\0\0\0\0\0\0\0ÿÚ\0\0\0\0÷g—Ğ›2N@ˆ,LÄITTÚqJâŒI\0†	0CŒd	´‹ä±S‰±1€;&A²˜˜Dš”ŒŠ}9²b@ÂN&L†E€‘1­	AÀ4Œ‹&ˆHQt\nDI(MN0)!¸ºCqH˜£87e Æ&\0Äcˆ¤7P0JqŒÅ	JÓA$Æ)\0Ê\0€˜D”a6\0†‹KØ¤A†&D„Ä0C@‹`˜Pš€‡ç™ôÌ¹ŸHyäz€×zX¿$o<%¸Sëu`­Ê¯:há(êV™ÑçØ«%K171€0CŠ\0Ö ¡0°ƒJÁ‰´F2&œ`“Œ¨LÀ\0ÀHMKÕ§Ò(N\'0ÓĞ4ÄÀ@©´Â,‹ˆ|çÙø©æYà!‰©`§¾ñ^î÷ñ>“…m÷±é8îË¡‡[ÑÔÓ?®„2ò^‚ÇJ½‡x$œ¬\0M#CE”iÑ$CN(E¥“E\nH#8¬Cq\0‹$ ’€˜“Œ&Àˆ§ÃObŒsA`ÄÆ\nš`˜HÄ(ÑM@‘‚—?7Ñ«9IÊgÀğœsä\"[¾ş½>f>İcczŸŸNw£NYået¯oyç’zoGóou¯EO3r³s3ĞIé¼7©ñw¥…]Î^ãBß­*ğ§ÄN#Vyåís}…×x:’ÏRQYô¢\' ô=ô·· ]E%lTšÆHF˜±$Ä0b&RŒ€\n†BN)Ü}!ä°\0\0jV j€ `\0“S,L\0µcmxéÏøÉ-)¿]d–ı±RŠàùM\\¼ø£µvO{•®ÜÉiÎ}õj×Óä9³>gìü‡Ğ5ÛÍ`Y¯k_+ÖÛ³(Ë^¡2ß+ç­VÇŒ×Èõí\\ğ¾ŸÌ*éSŸºéƒC^œî	Ï1é|÷ºuìH×t&-@(ÓI!V\0&†€hHÓR4\nFQ­=r€–B…ƒN@LFh` `X\'i¤_:ö^*yâÙ8¯Qæ=ÕívQõ.]qYò3â]º{ëÓç¦ó3=›¼¾ëÉzÏ{×>mÍŞ4µéó@³æ—Ğ~{u×İ¿t÷”±;/™RŒó?¡x¿e{yĞœ‰G×/”^Èºñ–½…Æ¨hö\"ÅBqµ7rˆHŒ¡$& š&œˆPÔˆ`5Ş ú#Ë¯9SA\",%˜‰5tD€5@R„˜KÛW\"½zO9ïsôïhÉ6×ö8ŒxõëãGÕÕ·{ù;î*N^KKnÄtñî•×—­ë1¡â=Î]ëãW³¼sö!ã`/Oe×²LR±«ÂõğÏ×Êró÷?Bõ`›bM\0\0A\0…Dâå%€ÕĞËcĞ(¯TÖ‘ç8J	2$™I€Æ$ZjÒI!9\nÄĞ$\0„-¦`\0E1\0£&VÌŒ¤M€ \0HˆA’!Äbh˜&mq$ã%\0´L@jÒ4\"CˆÓ‰Ñ\nŞdâ¢’!°\0šd¨$’E0\0šˆhh`ÄM4é¸ˆÓ@J€$Q“µI)$ ‰`Ó\0š`àĞI0Mˆ`šCN!­m8Š$˜HÜ@LØ£ bwQ$’$£8«Iq”P„Û\"Š&…\0ÓZD’˜Q¦ Ô„À4ˆ*Br\'	+`„\0\n	£c42H\0L„’`h†Ô„Â&\0\0\0‹©$æD+H‰e(±‚çÑM\"JÃšMÂr´’D‰ \"Àb\'hÒhS„”\0CFÂHÉHœ@&•Ê2!¡\0\0Á\04ÄIĞÄÄH‹$ i‚iÚ”£#@0v¤È‰[$šEN*€€€n,’@&^]‘¥«y‡Ts¨(Ê¥Z0t¶º©\\ÊDL¦“´0-€J,b¦uíƒ½³ÅšBµ‘°(iÔ«q)FP1\0€HJQ2HÉ1‚ M¦2,]$É”Ñl„+@AÅ€0@	0óúX6nßğ®´^N¬®¥¿$z¶P³…Îæ‹Å2Ú1µâwR¯Y·æº…Í­Œ_­­™Öl?9¥ÊôçÆ¦µï3é³F.F{jy›Û^œö9gs»øe³Óy¿O¹[ÎğôÚiTµå8Ú^æ¥Ûs2çc¦n^ñû¸g\\¹uqv°w°%s\0\0 ŒĞ4Æ¢Áb\0¢$„À\0h$@-\0™CĞ1!º´æp4ìk:8—ÏÇ?kã}A™wÔÃÁßó½»İ‚ôó³±¬ÒÓ\\­çÇÏI[KB¥[ËÜ|íjZ¹æµ·¹ƒÛKœµ3Û‹8S—^VãlaÏ´§ÏÖájoBšãp=^6ÏI•·‘w9Û½f]ÊÜ—•-Ûu(ìêXÆÚÃÅ[‘x7ƒq€ˆh\0€\0ˆÀ\0\0L`]4ÔÈ†$Â,É;¥$-’3úÙgÎõì­—¾¢­¢Drµ‹<ü÷Øuƒæi©qJ2\nöFMP#(©-K6IJIP™Ç¨X› ,€A8€ÚaˆÊJÑ§ 0\0@È„€Ğ\010M`€\0˜Ğ\0\0Lµ+ \"I5!F‚H¦4bR54ËD\n†æa&‚‘œQ*€µ1\0\0‰¥N†„n2€J#‘€¨`&ªBr)\044dI ¡!¢$ˆ¢`\0i€‘ `\0Òn2qvÉ_SÓW¶Ş’973m°‹‰°2&ˆ±«´@1©”‘d-(˜@Ó\"Ó„H¤Æ‰§ \nÖÓ.rHA$\0¤]E¡$‡#b\0`\0DÓ‚jÒ1¡0‘  h\0hˆ14\ni5h4¢e•©êšyş ³ÌzlÉÕöZbÅ šU(°‚•¬“&%]€È@‹$“ h A91¦‘‰q`X´$€´£\"‰	À\nĞ@¡™$@@Üd04 bM`î˜ |æH	—7JÚTu:V*›@$0 \0R‚b P¦„0CH1¶¼÷ é™ å@Jå1MX€W(I¹\"ãCM(Ğ½+L”zhDÀ¶<İ}Iœ%V\'Âyt8ß–ô+ABv|&½\\d„Dœd10! ÑÆWCRL=œ=Î†ø*kk¬2zØÌÊĞó÷:½<,¨÷&wN:ºdiGa<É	œñ+z^Ì;Ù±K¯=wh\nÖØòÛpéœoQåoînGÎír¶eFö+3¼st‘•lX–µte„ªÚó\"İîê„_Õ+Ï—o+éöé•–£‹É¥yWëÃ ’vJ\\HéÉò®½iô.J¬åïFCšç§Y×unu:áb\\úa)EÃ1\nB@!(»d&amärí,pé®GŸhò¾w½KÚBAÀ±vêm‘×Ï{¾Ò8[ü¸Ş²ÎÑÍ(_¯UoâïjR³ÓÉVÕ=\\Í,µŞ½o7ê¹\\?;ë÷<æïœÛZ9|¶:f¥=Û£›¿‡Æîğïç3,ÆÖ®Õğõ3£~Q—\nüÿ\0¡ó^›Ÿš¯¹Cßyÿ\0FSÆôsÃÉì\\í·˜ÓÂõZYóWnv9íÍup::‡;Š²èôS“…¨å®¸.ğ¨v‡Hï×—^i„²Š’1	«B2BiÚ0_9¯Ÿ¯ß=|4)DóÜı+ëœ‹–^n9®U=êCÍ­¹êFÄeÆ±ƒ-¨ôÎ~«í¦vŞ¥N\\.wxêT»B­hs\\»$á‘º´Æ†ñ©‹µ#ÎZÙ6‹qäè\'UlÊ¶™WÕuwëyÃEG#d¬ûÓ\"-‘õ+’ì«Šîqì‹äú‡Ùœdqp¯.Å°èJN¸ÈĞ•0ƒF	Sd\04• IÄĞ\n) (` 2Ñ¢˜(hC‹L@­!€I$MógB25t—ºfÆö”5s´F%Ì.PÚÄ«tòå8´†¢‰‘”	œt\"JÔagS€w|&½\\HŠ©(ó:GŒ,°êLµ.²`D„*’v¨¾U\'YêX5eÊqĞ‚‰œÊèA¬È2HÀ³|©Ê4ä˜é8×«D%)Ê\\l“âìèr‰İqGcƒ;GœkªäÒ¯#¹Åcu¹o¥çz/3éˆtŒ£UytãÕÓ¯‘b|\'—c€w(\\#¥¹Vœu„bJ\\æujY¼ùöãg(¾zuë_¡añyt9+gÁñÑÁGPéÇ¢ZµRß+&Ö\0”]Ôkö«Òr|MË+ŒKS¥(¹„ZuäwuåpŠXş‹PòŞ§Ì×¬Xõš›^yâÙÕË½Îò½ÂÎ­f±ÌFÍ\0Fq Âš@š\"ØFQ”NGwZpê¨ÙßĞW³ÊÄy‘§¢§:ÇÒI0–—:œbì‰6¤‚úség	åÏjõÊ,ÚrsdÑlåZ6ãUgÚAgŸ^idÄ×:¶¸nT,•¡oVˆÙÂsL–Qê»fªw³‰êçhd¼‡°ò½§›ú,ìF%_GÓ,+:œr;Bxª½˜UBÔj¼»È®¬2¡d+»YYEw`+Y\\°Es»*ô²é±å~§@3’·‘Û‡^“9.Ê+ó·ªìÆ]ˆã+¾áÊsa\"YrãjSvBrq¡/70æä,WA9>‚FJPšPÆä›QçÚ:œßVœ!d*«e´İ¡+FÔ]T…ÆÄL=K*º‘9˜Ú!¡Q•&”J I bt‡j†…E†MbDÎhèsgsŠ®Ç	eÊDÈ¸” WC˜Lƒ\\Î´jÒ­#¹È:¾ØäŸ,..»(N%Ã·•ÛÒt£Æ]DùË5Ê)b^zšqÄn,q`”™™«Ê÷*]3·.o‹X%HpëWROµ•ÄŒïš®»,YÔä_	ÇHÉœ\n°We‰W”vä¡Y;ø[šLK‘‘cƒçKœ8ífU&Y\\´ët«R¯,»ÂÑ^%‚³«Sá×\'Ã¥zŒ`öé.hìp#©Ä,.1;•¥V%Âqg§gÕá¿Ôxïgãê÷e¶ŸRhö«è–76ÑË¬4ÜE°5Èu_ò^¿*¥¡‰s2ó‘_c[¾DiÕ¿PïVİb´zsé\'>s%Ò=1\\:rN1Üë>;$¥sã3§7Œ%ÏrO“;¾N:F)ú?;èÈUÂÇ\n«ÂÏ>“”¤µNqgEQ•J3#ŸC¢ôïÏ¯4+ZãU§9éÏgÑéÄì0ì3œÒ=óec—No=è|ö×g?èlKZEfSŞ\nf²ç“§!uKÅHóû¸›½Š¥º¶ğ}FòTÑ–—ğ‰Ë»™z†»,ªó·*¾Ñ±tŒó_>¨¬¬-+Ë Üq—Fs‡hœaÜª®Ág\'Ø–¼,ÊªlÕBäÇÎÃ—hWÜÔ­ÎÜ4«.Ìæû2²²ë‡N“rìòâú„f8>ª¹JL‚ê_Vqp®w+ƒìŸBÓ‚¥°Ey“\",b` €’ìî§GÆµyo2hÆ¨]e–b(Ì®QìN`”ÂÃ™Ğ®ndD“ ºÌèÎÔ8¾%%B%•%4F3‹hèÓ\'Q“Q!¡¦\0Ğ“ˆÀ$\0\0štˆÎÆUĞ’1è¼±ôFøYáb5\0 N#H‚c0véÇ¬¼¢¹Ù!A+ÔÎl›ƒIDÈƒDIcqD$«VÓM\0Ø¦\0èRPša	!\'OoI Å•ALˆMI	ó²B©$â‚q@Q©¬£Ğ›9MWëSÌ40v|ïEË¾;[¬­ÒşôJ<py\\ïiâw:Év…¬ÜAZ1¡¸1\0ç^Ím ¹óÜµ*³–Ë¯<§ÃW´©ÊË’­<ºÑb\\\'„yy×UaÎ5*W.YSKÍúLÖ›æUmCLÙèäí®éöÂ¡=ªØÀto™ÛLoKã}wY)ù£6Ş®>¤‹\n·¤èY>†¿;Ó¾:ôSóuÏ\\sŸ!ƒè#§œ±·çz=«g‰¡½8òî·ÇÍút­¿N]<éô¬}Û‘±½G]4Îv¿Ÿõç©úÃSËÚŞ¾s£Â#9¢4$\0\0€!Ã´t§Âí}¹M=:N0{\\*£”zNıë÷ÂPœ%”¹±s”,œá8œzCI_¥s/?é¼Ç¨±8¾5‘UC¥=dùiòÅ1-¸zŠù•=n¾YdìVCôÑ	ë¯ãÖ¶%Ë¼ïŸÑĞ­¦?¢ã”rŞ…ˆÊ5½¼­X‘)ÓÑuô+õ”x%(8˜yËXş›¼µ(>¦ `˜rR”˜	¡&È7  š¨qïZ±ïÏPëË¤KŸU-XZZœºÊqÎ=‘ÈêÊË²¨¹¸æt.ÌågŸHÃô 9ÔÆVë%S4!Ê.%Tâ\'H€”Y%(€8²@	JIòê!¡	€Ğ€.˜{Qõ8;Û’Æ1 $\0`§9AŒ@\0EIq’\"¤]­8©gİÁôƒRçPÁŒùWEÏ¬‘ágmvÌT6E~}:u˜ÈB«Vs*ĞìõË)a­›Ï­šn¥vNœjÜ¼ııËÕü×®Q/3—¨|çÓ‡8cVìõ&/xµ‘;{tÑ­o’)ĞHÔè©r9oùÿ\07Öz»9|ïWŸs›¡çºtnã[Ì6;fiá 2RË—]¯IK™8±¦„\0Ó8\0âWqd†\nß;è<¿§ë™8rålˆ‚pVõÃ‚ï›õz]ËÌo¼»F÷^ï<ì+ÎÑÃé714<_Yïáäu3xlezóÖ;Qé/×³,°527:I×Œp·¨ñ9İªW8fó‡lşSÑÇ²Š8ù»Î/ˆçÓ;O?{®¿£2Ê|qym*5èp¤£Äå–oucsuúCæ7.ùÿ\0I·‡™ô±°³¡‰x»´z·úréåI29ùŸIÖPõĞjôpŸŒ¢HH©Bk	éùn’Zù«ÓÒÚ‰‰ğ§”õ_¼»èióÍ¥Ëœ»M¼OGKµ“§‡Rß©k™â¬A“ÖwwŞUhìV¯7êxYv‹Ë>¶ÑX]•y/OÙ¦Í(¯Ú°ã>ßRHÉcìPè¾˜ÌÔ£¦o ÃÜÙ2\\Î•×\\{¢_3lÛjDKÉzïÙí_.œ\0˜BÍ»¦Ô‘ƒ\0^/Ú\0Ö‘\0\"N,hCi”ZDªÙ+foA†nMµ¹ZĞğyZ¥ejˆrŒ³XˆI#qq&…lHÜ@MÖçWš2d^õ!¤¤ ™–ö°J2Iªç[Í¬‰ó9FB`1 \"uò>³ÅözÎØêÖøáeyÊ«o3v€9 tu-€(b˜ Ä\01&†Ó3gÍÛ5\0›­ÂËò¯Úë–R!Ïšª2·º¦ÑÅ4\n&†šDÕj¶òujH3[‹B/CGÍú>²Ëò~‹Úe™¡·\n´ìô›•åä2ö¹zYØ´=–ØêZ³2×©_j%SH¥±µ*úO+ÛOK(¿5“v—zy]^“XáÛ•i?=è<Çg¢É…ë8ŞÌÑ\\­ß?¤RŞÅÚÉJ+“†Ï™ôÏKiOÏT‚Ò‰‚`‰0LM™b-x»\\µ(^Ç]f¼+²Ø™g	*Ç¡ÄÄõı\'ÒÏ»Ò+÷°y]ìÑîÏ¥Íèr3õë¶VÅH¡³™v´¤>€»Ü²»IP¹_¶t¶yuói¸¼<îŞ/ ï<†å]L­Ìş2ØEê§é0·2Çá×\\óÛÎŒ¹Ún˜ö4VT3÷ò¬Øq—*aîdô[Åµ·©åõ´²WYğ±ÊoÒauk÷ã×œG.ƒ)]’#‘Œ]|½°•b­áF„0b\0b¶¢Ö·4°õqöµ£JšVåé9V_¡ÊÕÍóVëïô•26obæİîù¹ó²£‡¥I<Œ]Ÿ7cWrÃGˆº:QèÓ&ı‡Hk*–¥\nÌÒ‘TîpÈ±1SLn.†4Æ˜) \"ÕÑºô­hRI\n2®my#3gjBtäŠˆå  `”‘–Ó´iŠÕ¦}î…,„Î}RI8Ê$ã*@ `\"&âÕƒ¤¤ \0m*›¥nF <şşf÷>¸XmJÍ`DdÁ‹.×Ÿí=P×4Æ&­]5La‘!8°”¢RâW˜ôş7Öw×œ±‹·[·/käi‹®(mK\'WHÉ6ª3ŒƒR’a”ùÊÖI9ghÓB„ÁÈ8ãé´ëÈ´eTÜßOİ¯‘£U®–ÔÈ5GK|²*u¨ƒã©ùı\\~ÙôR«S•Ö\'-ÏEç9>“ÒåF¶.ùÇ\'Ò­UÕu9Ë|Çz›C×yİÏA,<ØõÏ‡~U4ã†wfËó·£C¡ykE\\Í3ÑèqİƒÚyíB­\'vÌéú#+Ş8tïl£«×D_¡Í:¯R¤âùVœQºb&[‹À1Ü]Ô¥<ûş®yèCŸ\\½Ì-vöW|uõñºA{7_R5ºµëÙ]&³òÛØVĞ£;(zOAqşOËz¯#ÒXÙu£Îú¼¸nhbŞĞ”éBîùz-¿EQ8K½‰|†ÚÜó·õ•}/±t´n.ªÍÜ­ŞîfnÛ«c’OœÊUõ^˜:7Ufi9e]â±¶S†Ñ’bY\0ˆ`¦•­Å“E@\0‘jĞ\02š$Œ@5§(¸~gÓsé%Ş2ÀÉÖ+2çpçÆÈB¥é\'fi>}ªÛL¢|§SJÚÈ§å}_“é=XãËANâG)8²hjœXâ0@\0ÀTôºcl¢šÄàus:Î>—Éz½&“âD„Æ‹\0h$ƒ(¤X9Fh˜H£$`0Šjé¤’\0Lf Ó$ĞNP’1H…XZÔê‡š–sÓJQ–`’iÒMÂ”]\0CÊÕzqäı_”õ}‰yû9l6r–í¾Z‹Y}8ÓÍÑ\nùZ3t–†^ïôgÙt©‹Íéãç½k0¬Ö®F…K<w«ÂÒôfİ–üûºòõ0’›@Ú&0Ğ6‹¢Qi!9&„DNÙ	…@ˆ‹10š.‰\"˜²+g¦6…Í¬½:&n­M=J5:¬ÚYz~og6íjvKhì)â×¦<îÜwÁŠ1K®}ŞÓ7A½<ç®ÌÔÉ¸K•xúş{£Ğ®9’pØÄµÑ\"†ÉBşEO[â÷à¶¢øæCos73S±£Jæ”xC¡»×Ë–lv;<³´âa!ÄÆœI‘šdeuÔ‹I8J&\"5kYFI˜õ>W®};O•qgZÆŞêœ£.dÑM;¢Q`v¦ŞÔí	Ëso¤«o…VzúVdipY¹—úİ²½ìIÅHz9VëqT‘ÎÉa×ßŸy4Î7\nÖ™´Z0fE»+jv;™&<Í#J½;L¯`Y¢i$©IÉ¥’\ná4ĞIFBm‰¦Œ(®Š§J›U28Öl˜Û!(JloneğŸ~“V4_+ÏŠÙÛËz¯/½¥³;;Dfja‚\'4ÄÇÇ³ªwÓF29t!‘cœ&th@‹ˆ`À RŒâ19Õ.U4ûË pªK¶È¼›@>w£Ô?)ê¢DeŠ\'J®(M\nÌ®Z›k:ä½ŠU4Ø•:Ùj˜ĞÔ½Îß\nĞÍ¡Ö§³•^µrëÆÈŒå¡Òå’t¹õŞu]Z<µ`¥¥©’½u<­ıÔ¸‘Şg™áènéæu´8âfkñë›†Ñ5\'Å’”iê]y³­C¼w1„á6¦.I9rê’œf9€ÄD¤üïYéİ7›;4/Å>”íéæv+èvÍ%ß†o;ø÷¶Ä\'æ Ì¼öÎONzïB‡-Pï›êzÎo6ÏjXºÎ—œ££™³Ö*¾‡¬Y~v·éhW’:¸–õï-²X¥fhî‘äıv]ó°ÎZU,tL{Z0Ôù®?½óÆ.ÎRÓë6¼?¸á°D­4ƒI¡+L0-“LL	çh=E<îZk<[Rh8˜³„©W\\½¼î’ßjR,.x6kßí.G±§©fu[Z’àoWªjâÏ9ñîØËêeaäV«°ÛÍ²Ş§X`iÜ•¸–:F>·Ÿô\06«½º°ïÛ”y]	V7@ìÎ¥¼fâGsj›•´²Æé¯)q³}i¬Ó³%Î´«ŸU ¬R8¤œZ¸±$ùMc“³Í>SoK7¯={á=Æ6ÚxĞ0@Ä¤§X-:áµ!ÉH­ÊıËÕ(Gr—¤ó:›¬gmóÕlí¥\'‘Ù¡ë;g+Í~6uÕìÜÊ›Æ¯œ½«œ/FÌQ£‚’a^Ànd…8H`»È¤\0L4H‹>ÇØYŒà”\\²&Q¦ÎÅ7{Vÿ\02úqŠö·“Á=9âv÷™£›4\n£5!:^K×«>Iôßëu)@çÓ¢B15m2,+¦²MXJ,œ¡Ò	EÙ )¤J&H`îàõ–vñ¬¦‰ÎwV^n=˜„ùÖÔ²š“\0˜0\0\0`†„Ó\0ŒĞ¥¤ĞŒXõ¡}J7¯’æwæˆğ‹4¡Ó?*:Y4½Ï‹Š<vëéf÷ší/ 9ôÍLD˜zÖ¯:0ÍhI\"-fá!¡}ÆV°,pœ6Š‘¥GS#¼õ³òş›^S^}sŸ­‘µ©W®³Å£ß¥mjÖïç²qyIÂDÁ0\0ÀN#\0Ğ4ĞĞ\0ˆ‘\'	*$ê($\"üõr¿fXço>%©‰´¸óÖ\nU¶V…Å.TôbËR¹‰{§{:gçúÁôy+Ôúf·,c(’‹\",ã!yùFTÁÓ%(ÊŠ–6ÎOI{#Bİ™º´j·Ÿks?_ <§©ã_\'nÑ^ËÍ¯e8HÜXÀ0	€\0	ŒL†\0“D„L ZÓ¢V±ZZšt8ãÓW²ğ°‰d”…$Æ‚&Ñ\n‚`ÖØÅÜØ¡£K.ËkÛ¦(ÊÀ\"0\0Ì7“‹:Kœéƒ}çCJ$ÊuÒP”`àm™	#JP’¶‰\0M0C@n,`†\0“0`@4å‰zz–jX¬ ¯ÉÑ!©£ \0m;+h¯U4jãpôF^·’ÔöXv\'.ä±¶f†J@ Ğ0Ğ`É;@vL”¢É8±ƒÔ€™)ÂKÕÅÌÉ4\'l\0ÉË¡¦ƒ‘ `‘RDZb’ÓĞ ‹B‘•J£×¥‹*ö9­¾¼#-’¶rm¿7Ş¶xĞóv{^reç_\"îó-Ï;èc+G;Xã]Zúø;²çyu:£+J_!ë<ö…i4fÉ\"$€JHˆÑ§B¸ºêá0iÃ Ä¢sçÒºJF%± q\"dFdá+¦âÑ¦¤Rˆ³qhĞqHM00@\0J˜fèåjÛç&…¦MV4çÏ¿J§™¯ŞÃ#ZÔCÑ5Æí«$Ç¬J½{¸Rh¶¸T­:ve^avÜªt°TÑ1HM*B™†ÓÑ€2HL\0@ÓBMD¥eË¥H	(«0df\\¢®¤%35®P•­@MĞ40ÅÍM› ’R—§JRÛ+Ø•I2IA:º!uÕ{Ÿ:u{–V½œªİàuÈÕÎÒ=ëwH_­Ê]î´nË)çY³å¶ğëÙ¸Ë˜‰\"Æœ@A‡(½$\0˜éÎ`42.˜€Lé(²oœÒI)$\0šMI4Ë‹-)\0DÄZ‰qQ:82M0M{~{s³¨ŸFD’e^+éÖÓÂÎ•¬Jã\nkß•¸ÙQÙìTá¡ÄOŸ{(Ş¶ˆË¹fU—=°ê¡j+›WGYxş§Ë×±”eÏH\0M\0 t\"á4Ì)FZHE0’„†€‰‚28‡W§LjV!¤¤@n2AÅ ‘ D|w òÚš>“Áİ·ÚOÊú|º88hf¾^§wq>4Ma‹½¬ëµÂ/ú.FHÍ±¸‹\'ÍWS4¶g×6E‹-sÈã[µeÒ2³=>ç¯„aÏY•õzêdTÒ¶#:\0€@FA!‚Œ)Â[MÅŒRL`ÄÀÂl¤5\\dI22…t˜¡±ˆÅæ6Uã|¯/oç÷)C+ÒİñœeúüÖŞYú9×ú¬ƒã¤Æ&äjĞ³¥¥•}mµ±	sÍæVïaf‘æ^£f¤c(£KFÍgÜïÜòÖ}¬ÏùgT¥n\'<í>Uô«•-`úê,Ö‡›ˆ!Ca4i9FTÀ\'(2@‰ FÑ+h§(L˜2£!$ÄƒÓI‚M	41t\"­cÃjoÔñşÎ”ı)mùËòJ>§ËÜÛÓ?7é9jBr€È¶\'™İ¦h¬vÍ4œûK—Öø•9Ş#”¥*\'­ÅƒA!	\'\0é*Á‹7OÌÙÓĞğî&€Bb\0MB`‰êÉÂVMÅ“qÄ†ã$”£#£RBq]£b$“\0\0’Ê‘ZÁ¤Xó;xµ=kÑW¬ªõYüªF¶í.’Ÿ£óÖ¹ê–ÕL$ö’óšóWPD1wkXYÀŞ©&³Z5!$âêB˜CĞ)DxUZ¼=¤†³X\"DeN$€D7`8=Y8:é.RN²å\"J!1ˆ‡WÍ)§ÆGWÉ§W\0é#‡#§8ˆI8IBtÄ5!áıÃ>CïnÑÜ©é¼/¿Íò¼ìêW±¯æºO_[/?£_ßÔO=W‘^‡{Ãö—ß˜Zù¹t=V&¦Éæ=&oF)[@ÆAR®:İáÊ,’\n¬OÎCfÎÖÅ+qpĞPÑ>™ÕzToAÆÙæØj2IKœên2‹‚B	8²N!Ö\\äN\\Ù)BhN.œ áÆMaÎÏ98Š4”ùJ»(±¸N$‚Fsï²¼7?[…¬ÕÜÄ³·oêõñzàB’}mæüß/ëWSV®Ğ&¤¤fçåú8jT»ƒ›^ÅeéæÍÅÀ&S«­—©ÂíÒmµO2ËØı÷¬ám¬é@ÒŒ€Q»ş]hMdÑÎj·’Ÿ)\\\'@11¸H“‹:¾!Ù×E¹Ñeâ“.:2«ÎŒ¢ô+	be×•®QqĞH”¹tI(‡T…¯>g®}4ñ,Bòş…ô2ĞüŸ7¢Ğè³t$tĞ„D„¥yú¾¨³ËÚÓÍ²å¬z\'¬ççe/£­“ŞË™×´¥óºšdR¤Ğâ10 N#h$€P“GhÕÆã$é>])£p”úGûœ¹P•®vÊ¶\'IéåÃ¯;Ó/K0Ö”Jé.y¦¹±d©Ü©c2^1íQBq`Ô…$\'3fŸË|íÕ«1ìaÃ´˜‰)yamygØËç~¨ÛU¬gD É¤Á\0Ü\\‹“¸ºB\0‹@ÄHbH$“8Öy±¼D<ã«!”YÒ|eg^2äSáÒ×i—±J:õ9O…+t¥¸ÕwÒ÷Í‡y´ó´15-cnTï/tÌãW}œuÖ·|ü´áÂ2Z)l«5›à\n¡mU™Ş<¸—)¶¸RéÒl:/¯Ê„Ë¥0ëóÿ\0wVçÄgúš3GN5K½*%ĞãS„z;™åº•¼©lÓµ-ÙS%ºª…² [*¥VE…X,®ØäÇ%¥ÁiİqqÖ|zÅZ2kÑa£VIr;„¶U‘k”8UšŠçYË;[\'SnÇ.¼4fég—ºòê`Ï^=e™Añ²ÉÖÍ­LıZ•s¶ò:çĞô­c–İ;•âÄá9”VSå8v@’–-2|ämË7W#®w—-9E—9—.¦\'	ÓÖU|G¶v¤Ü+íàìåÙ,ó£İ7ÚÊ$E„¢Á b M C#%@Ñ8ƒ@TÎÖ¯WÈ¸ó9ê•¬æYÑñ˜ígÄ¹kZ®g_r·ÁE§L‹™ıxÆŒé…ÇMÕ×FEÜî¡}ÒeÇNe²¬Î°ŸbN!4Ğ¤H€2!ˆä¤¡fjPÜµß;Dhx£‹„NÓ¯Ù&5jRPE„TÂ@Ó\0´¡A4€B°@˜‰²P`p†;µi[gš’s]Êå9H`ÎS“ã%	9s™!ˆÈrŠ:J%(H“N¤Ô†\0å˜¤u”BJ,pèÎR‘ÃšâãÕ&}üş=&Êƒå©	Š	ŒëÚœªÁ	5\0!€ \"h¦•Œ\0‰!\0¢ŒM@P A¦Å€Š”$¯§)Ÿ9èå™IÄ$âêrç(sç\"d7Í¤ÈHœ¹Hë.3:Ë‹;t­Ò»¨2g9œÕÁ’qå9F@H!È¡•dÌíaÔ¥ÍæôQ	ˆ¦D‰ED—^/•,TD‚È‡D¢LˆL€H„kº¯Ì¸óùÛ¨²bk˜œäß<Ü#ÓZ	ë’G®~Q¤òbúÃÈÈÿÄ\03\0\0\0\0 0!@#1P\"$234A%5`CpÿÚ\0\0û\nÿ\0áÿ\0ë¸ÿ\0Ê/¿_b¾å~õ&à¢?Å).i_n~(Úø˜óñ1×ÄÅ_è*ø «âb¨†It˜ÌqĞªËŠ,˜âpd€®iFáˆŒ+a<#­›ï1„‚H$}>ØGlİ¹Ş8lá‹lã#®Œ [¢t1ì¨×şÁ¬00à‘?øÜ3t0ÇÂ‚-­û-ƒMÀ¼¹Ë2T>Í>Â¾Şìı‘<qYÉ ísnøé&,çÜH9F·AáTØÎë&$ÈÜÔØíbDxa:¾82ùQ$¾|t+EîÛ¯jûy‘RM|-´¶¶×ÂÛGcF]adm‹_õøRÔ8\\“0¼ı\\ŒuR+©=u2+©=2l†Ô{—­]L£È5sš¡¸Å•œ#ä]Îjç5[÷tº®0égWu2+©=@ßÒİæ¿œÕÎjIÏPzêM—!(Jk‘Í÷ëîŠíƒråÚÙ‡€ë%ü`Ñ­W»¤“‚£ì·ç£»t½,ÌËî/ÙF7sÚˆ‰­ÈœqtkUÏj#[,œ²4lr¹\"µ5³½v{õ÷Wrm‹ª&j38Á­à˜–†n•WG5±t\0œR&\'»{ô¶3dKÁ2]-Cİ+²òL“KS7Éšş8º\"nV7kjNŞ}-üı}Õİû­¸|’{.$ß+@H )nhyˆª¡€bTXãn¥ÛA7y¨wòKHöÇì’şCéhØ÷—ş#=u¹¤O! Øâ<#Aß¯¹ríi_ÈMlÌùi©ŸÆ,åtØúZşÚåk­²Ü÷Õİû¤iiãN]ÕÂnÆk9üq)i*6£r\'$¾àÇ)jfÇO¼İ	²*êµ	œqu»¿l}\"·’BUå­Féù¿Ñ¼ºZ™¶%èš\"«]ÕÉ®ªMurjØS˜÷‚~-ãß,¯ãåWHĞ„ è#×A,‰´‰aı{÷W’n.±X¥‘Ùw&é:YY’Õé–ÄÌÉïã‰¢&\\6ìdârINë;0	Äå“¥ ~—wà:E$Õ÷\\\'ª÷¯rÖ=™ ˆ¤ø`ká¢¯†Š£C`ØKpŞÿ\0†Š¾*‹€eIˆÃ¿á¯‡A,6C~\nøp(P‚7×Ãã×Ãã×Ã£WÃ£WÃã×Ãã×ÃãĞØÑáñëáñëáÑèCh†x£:ü>=|>=(‚ï±§bÒ}Ÿûñ\'¿OeŸ»\'ş™?óë÷\\w/zùÓï)ìSÿ\0¿dO¹/Ş×B=¬k×·ìkÜŸfOi:Z†ƒ	Ò(lkîJV	~êÎLœ,xí|“8‡qË¥¼£9#’?a*Pb¤‚ŠA{Lpƒ¿©É÷^ \"Ä™_l™İ%ï$p´,ì3¶ÓŸˆ¨ä˜ŞªítnøıÏ65Á7RÔÒ8QÏ#¦‡\nHåƒ¶dÑÆ©f¹nÜ£ü‚«¢`Ò¶ì\'î©REf›pEJ™!±€± éW)]4{OPÉ³e²3jCËpûtehãEÑ=Â{Yäâ…`Œ?‡0Cù1æFb\\\"Ê&‚ÿ\0av©Çá!ñŒÓ¢‰~ Š€Ç¾3Õ×\n–»Ë)íOVßø®fù×\n0ÚQ…:7ÈU`¤ÕÇÕoÇ\n6Ç²SÜ(ÂbÆ¨ñ‘‹pnø!š[„³$ÔÀï‡¼÷34G×ñQ„sšÖ)yV#¡Jîªåã@[Üù—K”<0$xÕlşG³_yşHM¶óºç-²#4Ll»ôÆ5Ÿä5y’¡:E‹Iù‹œØ«!ABjUíè¡¶.Ù“%Š0íÃ*Ôg+ÈÇ\\ \"u\'\0ÍIÔDpJÃ\'ìÏ©OIw™“¯MÈ®cß\n9¡Ôû8-,^\"”Ac¦È˜¶âvÖÁŠğWqŠÔhªrõœ¹Ñæn$’qG€Î;\\DêêÛü±§Urş ›ì¨î“í÷Ÿuÿ\0\'nmñˆøÚµGów†H–fÜ4³94sØÊ<íî‡FùP£Èt{|`½~–NEHø¡päè¨•%ˆª‘pP`£o•qãàGl¹K~§,‹=¬[šˆÔš2HæG óÎéa7\\©¹  ·Î¨qYK„u8†”xÄˆˆ†‹+¨Œ\04ksö¢5¿gOH¶X&=Ïl;<K8	Ä2Ö0JCşè;dtQ±Œob÷L3Öµºª#šÖ£SÁÄ-ßøˆfcQ;ÿ\0,dûj{÷i÷dû‚yíköÔÑ5,Ib’×ŞYIr#)—(o¦HëÑ|)ÿ\0•NÌ&ŸO·Äu-¢=t†©6TRénÃB[­îWÀ÷z‚#<+çOO¹]ß\0|A÷ˆ½Z\"\'Øk5ÌÖ{óYöÙü}“d¤vCŒ¨ïrÿ\0Å~ö*¨ˆ³£PeÇ2øÖ•k4”šf³H´«Y¬Ö}¨ÕVï¬ÙMÈQº¤\\@\'$éxƒ,rØRŒMaZÿ\0	Ö7®qUëQ¥ò¾æÂ2|«îŞÂYÙ#i`†Æ0ŠH¥¦öïNå§RëšÍf³H´‹Y¬Ök4«Y¬Ò-f³ìÅÿ\0gI²‡pc=Ïrá®=5€ˆ.¾lÂ¶Øáöp°\"³”QÌ44‘’ãhda[Ù‡\\¤µ­kiÈÒÜ(c 3&§+BÁJÖâ.X–’I\'UY7\'Pi@‘©Ñ°sıü›>…¹ÆjÅ”9-Õ“g¦’$ˆ5jj²	Ì 5Ç\nØş¢^pŠ´ÉÑ‰#U§w®ˆµšÎ«®k4”Á4ıt©³\n‰wÑcLØMGÈˆÔÒéÄnë`AA¦Öª“Õ4¸Š´m\'\"­(Ui¨Ö$]†NÂ[b²ÔÉ‘RD‡gP£0ƒ}‘›Á1‹r˜Øél€Şg¥O¸±àò,I“so¢Ì÷ópI–ábiÃ{ÖÌ¨¿³=¢vºã5(\\¢éæÈH$91^²_<¤—&!ÆìZ]W±tO\nSi)<©Ùú.r¦.`Ãá]¶ei²YÆ=‹¢èV£Åor:6’EÍÌ]ñtŒC¾áö¯ÇhÆèÊ(Ã¸FJyé1îkRèQr7èp/“OÀ …Ç%ÇğFdRI«ÃÓ·Ò­ş³Ü¨ˆ2sİc&ÙuÎ5w^µ_õòO3#Æ•=Ödn‹IDˆ¸ü0È–Ò\nHYJEÎª•ŠÅb±X¬R¥b‘+qX¬V+””ÆSŸ0Ñ£8û&ÛŞã¶á tÉo-1„ÚŒœúe¼{!˜Lê­ô9\'D{æË¨âh¬è…Cè¢Üb5çÇœf„ŒE\"U\"5*\\VÈyá4®\0Ó	“€F¦5¬n…\n1¢iG 2ÚÉ2VZpJ¶ï{©á<Y0‚N]}:-Yòe;Zö&;Ö¹m„ª(qÇÛŠÅb±X¬V+ŠÅb±X¬V+ŠÅ\"RRyS³€ÑÎÇ+“ÁÇ\0.V³«OÉC\0®k^ß†AÜÆµíOi$ˆ ÚãÌ4Hàì±XìÅc³rŸm¸5T6Ÿùİ™¬ûLÖ|9¬Ök?fÏ‡5šÍf³Y¬Ök5º·Vêİ[ªÜu(¤&Amş‹JµšÍ\"ø3ÛšÏfk5šÏviV³JêİHêE¤ğçİ.™¬Ök5šÍf³Y¬Ök5šÍf³Y¬Ök5šş8‚ñLj1š/ÑÚ%%\'j­f³Y¬ÖuJM––³Y¤]s¢­*ÖiV³H´Õ¦øk5šÍf³®k5šÍgUô¦H$™1wì‘,A?bª%I;#®EJZZÍf³Y¬Ök5šÍf³¦k5šÎ‹JµšÍG_™ñŞ»ôv‰¢išÍf•iV³HµšÎ©I¢ÒÒêšf³Y¥Z^Ä¦Ó{ÖJ´‹Y¬Ò-f³Y¬Ök5ĞrF\0*»±	 eŸpçRMšàIÜ›aªÈ!×\"lJ_¢û%¥ÔnÛV6ş[±ßGh”š­f³Ø©I¢Ó©|8¬V+‰IMíMŸK¦k5šİ[«4‹¦i4UÅDj–^’~mŞ1]ÓNbiÆ„¹Ã\"ô–œ,V “ñS©{±âMqX¬TÔ\"ÇŒ6„4¸D‚wI/ÑÚ%&«ÙŠÇrRh´íR±X¬V+ŠÅb±X¤JJNõ§R÷¥&©¡×¶§È¥\\%½95êùñcˆæHrvÈ¿Àaèê]qXÓŠÅb±X¬V+ŠÅcLV+Æş$ÒòEl(ãA—èä¬R%\"V4T¬V+ŠÇrRh´©X¬RiŠÅc\\iŠÇ‰iR±X¬V+mm­µ¶±X¤JD¥©±nÂÄU¤LÓ-DS4Chèmk50˜a¨ÆiŠÛX­µ¶±X¥JÅb±X¬V+ŠÅm¬V+¶±¬ÑrÈÑk¶±X¬V+ŠÅb±X¬V+ŠÅc³ŠÅcÎø¬V+¶¶ÖÚÛX¬R%%-mEVÄoìZO¶çÄÅ#Á„gjcÄø¬wæ³¦êÍgLögËš”tüÖk5šÍf³Yòæ³Y¬ÖtÍf³Y¬Ök5É+ñ	†EHÒ@éîk\"0­Dc™±Ø2Iy&¹¨}³Y¬Ök:æ³YÓ=ù¬Ök=‹WÄØ4úv­*Ök5šÍf³Hºf³Y¬Ök5V•iW\\Ök5šÍf³Y¬Ök4š\\IÇĞ(®L bõ!ƒ5Ü·§â©ªŞ}E$M £»p¼7+íò\\Zş“éÜï¢Ök5šÎ‰®k5šÎ™¬êµšÍf³Y¬ÖiV¯ÿ\0óÙú;Vœ´«Y¬Ök:%f³Y¬Ök5šE¤Ñiİ¹ìÍf³YÑ)4ºüÃ\'¦‘ÈQL¹Ça¢Ç!%ÓÓŠé1Q÷3½[%¨ˆ”GJXÇp~|º”|F†Èd‡ñ±¨¨8fy†ÿ\0¢Òèš¦‹¦k4‰¢ÒéšÍf³Y¬ÕçæµiÔê^ä¬Ök5Ä¦è´í1¢ø’’“C/ûÍ8%¤æÂÜ¡ÆùÑÖ@`Å?S-Šµı*¢Tù Hğ÷tı³ÅŞ>8µ-0y ~ørY!Š¸Kl§–åR’}®wÑR•;“GRêš.‰¢Òø\0½EçµiÔµŠÇ…+ŠÅ\"Rh´©X¬V+ŠÅb±X¬V+ŠÆ·F8Ra™„eT\0Qı×EÜäôJ’¿¸·¦5ÈŸ•8›õñİ(+ºJÒ¥*V+%&‹X¬h¬V;éj†&+å‘	KôZÅb±J•ŠÅb±X¬V)±X¬V);1®+ŠÅb±X¬V+©(ï`¿2îšLˆÄôK£·…ü÷\0óEeÄ	ĞÇ6;—·åC¦+ŠÆ‰®+ŠÆ˜¬V+ŠÅb±X¬V+‰«Ós`†.‹¦4Åb±X¬V+ŠÅ\"V=Ô“4Ğƒó@üS5GË%GÆí+ÉßŠÅc·ŠÇn+ŠÅb±X¬V)µ{±Jš%cLiy{]Ô6£Yá^Û_ëO´§Ù³¡J! È2&“şeæ·üß(~MËî©õ¤ğ¯˜ì‘v•a>GOŒ›sZëgÔk¾ûH]³M9ˆ¦5ÈÑìñL8êTnä¬Ök53Y¬Ök5šÍf³¦k5šÍf³Y­ÉG!8Å%PÈwÅ¼	æW#ZÇN—J+›hŠ×Ô’(€-Ê:‰!N¦+>²YêÖuuÎã¼×¹\"T‡ñ† ùİÿ\0R|•	XÖu›ãGuÃÖ¹!xôZÍf³Y¬ÖiV³Y¬Ök5šÍ\"éšÍf³Y¬Ök4µq5ºÜe<>Ãœ@¢NR4àúC¹X²P«@%ù)îÚ´{”aoi*@ãŒ3¥á1HÆqÊÓ\n˜ärRh´VM+İâ*ƒ;”š»‰,L©dÈÖ¢©Cw.§Ÿ‚=±ã¹ù™%ğà5, Jî½\\B÷ ¦0ˆöòˆ-šÑKRB9CİDã9c\\å¯¦·k|Nú:–³Y¬ê´«Y¤ZEìM•|LÎŠ\"v=­u\'¢]AË!9£Üb¶5R2ÑÌ0¢z£d±dÔ™\\ei×e‘Ûî%rQäæ)&b×´b0NBÈq…h)ÄÖ‘±§Kd£Ş@Ã¶I5Œbîjv\\ÚÃ‚)9£höïb–H)nqêdªÆ Åé¹ã°ó£¤xæ9’İr„’ÅĞK-1­c[?¹­jR¢-5¨‰ã_£©ÉKÚ´í›Iªhº\'rP¿@œ­¿v¾XĞª÷¸6öl…v]¶ØŞ€Z¸Èä7Õ¼÷”ú[Õ]È›ÖKRÒ·\\bÈBxŸŠÕ‘4…èçõÑ6¬”ëş­W4×b18°\0»³}ºî‹¬™\\Òy_) =¨¨ÛÛ22yÖ•)STÑiÔ©£i;WDîJéúÿ\0v/ª[JÔaÍMúh`óã1E>jôÀàøiQƒR+O\\xqDDD§À ÂöÒ})\0¸£aX–¸Ô\0Œ#ÓHñ4š¸cz÷ÏŞë¸Ñ3ß--.‰ª¥*V)“³½Ø¬V)Ÿ@³7Ò„DV5­O±”ˆ1ÛO;ÊŸ_d´©ªkŠÅ\"V4Åb±J˜¬V+\'£-ÿ\0‰ı«äÍ.‰¢Òxëâ¸/1lÌù?aÂVÚVÛkŠÅb±X¬V+ŠÛCpÉX¬V+â¦½Z!14íw£mdy#S\\G.Ö[Z­ÙıÓ•‚\'*xáWé$Ì}Ôõ\0ë\">Tkz·=XY{â§J_Jß¶,f ÁÜ³Q\n20­íU¨Oå´ø®>‘‚`É¿[{†ï^—¶Qxë8m÷àlÚêóå Ã{Y1^Vå(òB(GqÚøÓ\'IàkNIk8C\\ŠˆÕÊvŸtÉwXñãÅdB¹°Êåq›Õ\\M\'rÃcƒK€h±&‰Hˆ•!	ñIÏü§5ÀtFÈöI”Éœ£UeÈtE\nC’x®LŠŒ”™«¡¸aÂ_i÷Îÿ\0ê*$“la¸Ïèñ@ç%¡²øÜ~&üZöª*v;Òu\\.\"†ôvZL¨àÇÜ¥qX&ô§±/úÛ§¬W‡ÉBk]ÍŒ¶A+q Ä†ÁÖÔÜö£ÚÑ0Ñ¤Åa¢Á{™‘&èÑ²Ş·Aµ¢{H=Häc-’To’ÃÌQ»)!ÈË¨ùKvÎ²L`H¥èÕ{\nKƒ“šèş*µ«¾!x˜cèólH®BG¢È\'Ò­Š‹&ëòŠÕÊj«@U\0Ê³¦Ò{5úZÿ\0ÇA”ov¹Â-Ö7Q29†\0ŒĞ¸rÜ„£e‘?×ÈÊN¨­%İˆU4é&hanŒd4ÀX²–ÈŸ.}\\Æ®`vèRÿ\0~Ş¿–8ÿ\0Ù^}m×5m÷?BÕÆà‘•G5û¶@Š8çi®Æ9×KãjÈ¸­ÇøPƒHs›nq„i£F`cZµš™_ÃX¶ıRğ1¬m¦0&¼Q<‹<D65ÕĞ«káÃ>	‹Oİ¦É”Æ#©?K$ mvøŠÖâ“Eóœ­9e-S:k*mYrƒ¦tÉÅ…1G­ÎR)íğš7T¸MİaÛ&_ñ,EŠWñ°M–wAD|ŞËk·ºP¹œø@$‰CRÇac}Ò^˜—=Á´´Šf/ÆÌ6”=Ç©Ä3¢’08hLÈ­$(¥p†17XIZÜlüe¬%&’#0¯b;\0mU–°!±ŠJ½‘«1>ÊMÓ;1Q†éörÕ¼¿Js6sÅpaÃ	±ÙhOÊ¦¯\\2ŞŒ”r”AhÕå¥ø‹h¤C“saÅFÈL&B˜ÆÅÈÂ¤ÖWÚÈ\0NĞÆ\0;Î\0¸rõ™‰füQµO´Şf.YÚGme©«ÇÛ„ö’Ãáî}l+ú$ŒŒÅh!ØºJ·ÅèÖø¡_´}Pl`ØÃòÊV«aö©ùã†¯XÚ]¬…œ`û.QSÙH\'!ÆÙ ãFö}×GbVìİ=äÄq4!ò%\\÷š£X³$ÇvST`O.gG¼‘î6_cÜÖ4&i]¢×õåEò&“Š‚>W²¼»mº;vƒ°ä„=»&JFG¸Œ†¥0Ğµq1B9I+O„L*â\n\n|bUcsÃ,‡9ÈòäokÈÆw%\\Œ«Ùq8Ü³±á·c•Q©æ\\õ‘0©¥êlOjç±•ÕÇ¦=¯M9†¤Õ®jÕÏñ‰µ¾H\0k®¿µWÑ%µ8¯8JQ€f¼\"6)Ñôº\0§Êu[«wÔ’ CmŒùF =Ï#Å{œ«Ó²f\nÔª$¶\'-+Zµ\"VñÃDl{›FÁİçGl¶S%L½gŒB\n3R*tpF”]—dùÊI¨‘Z\n¸5]&[‘bÎ0\\uµê«èÍ­¼ÓÕ=¤â‘(1’˜¶¤…^ÎÙjş(X\0ë!V›uÔÄ)¤,Ô)Í{šÆÄ¹õSs£ŞÑ±.q\\ù¯s!ŠsFBtµ@¤³²êõl±¨)	şÎNKqoW[²¯VÙŸ‘Àş[ú¯H-ˆÉò8\\ŠÖÜIÿ\0wÒ”¯”¶v¦a¿£óm€V–z½‘Låd‰G’\\8¢ŠÛ§¬­\\Õ˜ePE.pC,¶Èv·¿ÓĞ¹ŒW%FÑß¦àåHâj1‹ìJ6«\0ŒUİ«Ô\\‡Q&\nEHı)ô™%‘‡\\ªã8Ä¦~(öá£g\0lÊ§|‰¾Q÷¹Šã†4»a*u/™·áñ?2An\\Ûj–½“Ï4ö2¡?«Ÿ£ ea}+:\\?è¥Zğê(–z5Åu¿kä[ñEl‡É<R¾ääÜÖ[øÄ&0l0†fİn4ty{&‰Ë/SDw ííW§¥a30åĞÒöŸ“íxèÔCO÷)Waa’ºö´pQÒåIkq‘Me5Tw	.@LY±®+î%€ÕÚQ0£Ø&ğ’nñLgMcQ6‘¯¥DzïÚAŒˆÆµ(Æf¥²\\0i¡c´§¨€ ¥¹2…\n•Şêâ7]İ6ª¨ÔØFjåÃ-ÍùéIçšó¢”¢˜MI%ëS1\nV#A†4v²‹r©Á2Ik~ZB‰¹	İŒÓí±¿\nĞD0³Êª‰ä_ow.ÈÇÅUDTDF·Ü>,gÓ`ÅÈØÖ%zkÆ>Ofcº’ÓŞÑ±<¼	íV¦¯-ß²LGYì|ú#~èåF´%æMWéaÿ\0ŸW„W©†÷Ë#Âæd÷Ã2I¬|×µ5Jşôs‘\n©.o{F4a®^9sF8ÃS-°kÂ_ÛGôåÿ\0eLæ*}˜æÙªêndì!4Ä^Ëª©‰éÙaô÷ôğŞ˜0™G±}°>\'«ŞÖ7â(ó=Ík9ä€Ã¥E’RK’fGC´ÀéR.´y$SKR¢ID‰%Ê³ÌŠÔQ37+šrUÁ6Û¹Æ±äÈ!Ê.HñÌÉ£ZUëÚ>dv—Tí|ÖPœåY¹‚Š8M#†>K‘)„fsc§dÙ)à!*ÖÆ–àG°mUDAÈİsôšó”ùàew%%¹KVç°m¯Ä¹QŞ¬	\\I#8Ò$I1de¹IéãÅ~ğdaTIã”^¾?=LÁnğŠ£ƒ\")åCAD£€GoÃØˆğÏQf°ñ\'M#Ö¥ãø‰ô1X!…“D^ˆ²İÜÁT” .#æzE2„Q\0ô~)ı1àF) q	µ6I1wÑ¢°„HLÊz{K”`p6Z¤Èp—!£4¶„JXJ”®‘%¬*HÔ£K|=±w0Ü·‘¨ÒQJŒ«‹s\\Ø×6¬GÛ˜b4CbîmMU=À²2œáDşióä	\n3CPí$ˆĞJ†*HÀÛleeõ/•\n+\"‰ípoRwd^Éé!JI›éÖÇPb5Øc^(é-s*–V*xØ._‹G~øŸàj•&:•ÉB*Û¹Ó¤Õ	©š(ØQ6¡ a|ÊO}íÉ~mÀ<T‰¶æòÅštm¥lT<®zµ.ĞI^`Š\'´Ó#›>\'<È’b®…!‘¥LŒ¦¡Árœå¼„%KU•7é [ò ‰¡Œ‚q‹1x\'a¤\'U-j~t&²£²C\0&…”¨L#SR\0$rz&“ã,–„lYñ³fŠ¨é}‡÷İ!»îîÉ©à±äBy\"SÖ4€Ö1­tPÆlXÈúxÆJlhíugS+`•€Ñê&İİU/îlR\';Ò¥‰L=_üı n“ì\'Š=ŸrÅí“ËÁ\ncœö/7ùİUp‘ò­×:\'±U÷\nJ¶.û¯sÜÖµ\'ÎlÕ¦9ÎÙ2R;ïoÌp³ŒJ¨Şéğ™%–…›Ënâ­Æ>C,%_¹M~ØãM£ÒQKQÂvèd«\neõ>æ‚[DƒÉ©ÕÌDF7nhÅZ9ÑHêaÇIc“¡ZÒƒr\\dcÇ‹«,Y4„,²2t¡	¢«Œ„ÔÕWA)¥ÅFqIÓ2ÚW<^óûösWR’GU9’0Ä+TÆ{UÒŠfÜr7rRh×»“‘´É!q<*ºO–4üœõ/N£-5­ÖÙêÚUDH IjPŒ„÷À9Ç|eÒÀÙ#D2¡[\"w!‚CD	É‹ÇkÇERæ†5)î~8?ìQÊÀ\nÒÒª¢·¬…ãEìOwo¾v\\Œ±áÛƒáËM Ğ˜ÔNPÔ¯J•ø‹FB2O-[òÇ­ƒ<R&É °­©†#5Ã¢½ò©=QxcGÎ7L$	ZQê¿H-ÌÙïã‡\0|Pæe¡µ¢$,¢#UR¡šÃ	Ép–Ç¶Ï®QÛ\\flxNß_-ï$Nÿ\03*á•l/<IÜ 39%‹ìOs-D„Ë\\\"äH+›)–ıïó.‰å´¦é]—å^•‰†øUkéVÿ\0Ø¢7s»¤Òl|Ÿ¥$¤C%½òGFö˜ÃD¯uÔë˜p1ÑUÂBÉlƒZ)0T\0¸1ûVÆ”¥ø”ŠZ|#Åjı5Â9m„ªÀ>$w¨B!&³@B¬@68NœQÂÈâÑ=Êxß)U]1ãm‰1‘QjQŠHòÑN„}ÏLø\nâu2ö4,ADôºÑÅ)¦X“$#¢\n’PÅ\0İ.:š†4hºS‰z7•B1ˆoLÇÜAŒˆÆµğ9ÈÔcšöûåìk˜åî-Ä- n!q5¸½Z ¢íß’µú@¸‚-¿$oúNÂ%©z‰Ó‘ã0êÈ;.E¾OP>ã	…h#4o×kww§¶¸¢¬;Zm¸Né„xÇ‡CTÎR+#1µM&¡\\(ÀqÊ\0ä\nÖ÷:.“†®hæÃVdÆ Y#‘p™ÊàJWF–ã¬æÁp!¤€à1î”§‚‘jËïOkŸfW Åp˜Bˆİ­×â‘9QSS¢A*k’­îì<€[…MfMz‡9ÅY cÄA•²¤pRL\",c4ãŠg¾IÜSˆò1ÄİN$ƒ¾Ê3OØõ	ÒYsB1]¢i8éEh­£QÆS‰ª{ŒA9.`ZâEÕWÅóhQ°ˆ!0Ló­zèÀÒ\0EEJ	Pº	îtƒoQÊN8ñc5Œ?\\CÂ’U=ÑÏ);!ÙÑí­ıØ„˜c7u²1D— Ä´Ë$–9pÑ?G%º;ß {‘â^(¿ã¢oYÉxŠÇt–,)¸ †Qœsö@ŞÈVÖ\"Ÿ%©-íÊFz-Kwûã4ft™1›éÙ0	&8\"™_%^•qW©\n5JUõ¶Ã,b!Yì¤äß] ³Ò\n½[Úšè!üŒ¤Ñïc0©Üwmaâ\0\0†.³ÇvÄ¨Ë™ªÿ\0[Ğ·Dö¤1˜Ç§7#‹uºîkºŞš„é\'ZÆÜ‰²$p¶JLÎV\0q£ÇºÉlÃÅº8ßvU0¡À‡§†!=mìŒéšä\0J×D—-vDµ~8h’á/5ÄÔhoŠ@K‚Ê‹Ìè°Úéq‹JånŸÚhµx]O‘‰ÈäVWøáˆ¤öOk…%ªJÂvªúÈzŒ#“-GCR[¸=cJ’Ì·ÌêÖIÙ3FSGŒ>òŠNE·»*YÈ©¤Â5ŒŠ3K›±²W´B´±xôsä³7<‘R4à¬`qU¡©¶`¹¢ÚIË[×¤Y™%£ÀTæ<£00†O=M	òö\\eT8QâÔˆÇŒN‘WTk![âµâdpµmŞï\"²\\ÙM‘,ÌQµ£f­c¾G7rI6Ë{\\qæ°Nïx#2­ÊYR€™º\"¢èò	HÄŠI‚Ü6Hßòq’d”úzNœDBOUÂ;aR¸ú{Z¹`é$EæläJiÔ¨popñÜÉCˆŒ—ØÆµ‰Q“¥¹êQ°¬ş´V¢÷Ş…mş°^ß¥&„k^Ë½DèNr±õíÉâO•#CHÌÚ<`ã[è)´w	 ˆ.çWµ63˜“H¥ŠôµÛÄö#&r¢$ $qIyŸLŠ¾ïˆÃkU†¸¹	Üà…ÎğÈ­Îß-çøÓ\0ïZy‚ÊY`®®º²nê½tf8r@Jú÷ı5TÍ]A±c?dB4¡ögŠ#R²h)×6¤¹7b2$Róhı¸†¨[‡ÌŠ;±£/—Ğ£iÔF·´Ò‚*,’ÑQÒX1€«]%t)]¨ğJG<¦/$‰ Ìµ5ÂUğ)×ÛsÒû»±ê3xšÿ\0~Å}ÑÑT’h2«b…´ÙLTa‘_/z› j«S3ĞbŠ9oR¹õÈÂñµ$Û¯k!…ğ^##…oj4]©ãOë½ÎıÃFêL½ŠùåG>lØôÇ#Ùö|Ô‰.rŒD{€ÇM\"şOO‘9ÙÃÕ=*äí°Ò„±YÃnË›=r²d:*G˜Ù-{ÉN\nµrÌL{Õ5•) X§C³:=ÈÆEY2f¯|‹‡í¶R|:D\0J)‘«ÔŠÛÙäceHsÜ¼„˜÷Œ Œ#]Õ%ê	®å“Rc©FØ.Äq Y(q,sín±f›(¤U’àJ9Z1’;…QŠáPŞ×·DÕ>º\'™;^äcmìWÓÜfÊ„>–åSS˜„s\"æäùxİhfù”MóÎè«Î$V·ß-\'s•Ò•^Xár9e+Õap_,­1ü.c²šEÌ6Ó.’÷¦ À)‘ÕÔÃ$w1QÍó§è¿(_,6¦+•íO‰Tâ %Èá”	±¶%Í¤ÙÇğù´JF@:8Ô‚\0ÔcÑ>ÂUC,a9Š‹Gr¨İ9$(B0·ÆA°ˆhÜ•qÃk{$ÉIq÷J5acıÑ~d‰ƒ!#æ	ïM÷\'Ñàà¹ÅãˆÒK•RBÉÆıS³Q¸ª«)ïÖ#ÉÍ+¸^yÔ‡$F>wI*v–@ÂÂ*¹´«p ¹¦íã»íDsFÆ£ˆäsÅî|„@ÃGgØ“òÒİ<;mÆQ¨Éqù¸ÜÅEOfŸv’¨çÄ5¤`Êˆâ…Ï´”¾9­E8QŠV#É-¬p$4®†w9HU-N\"ÇTøqo{š¾ı>Ò÷#Ôs-¯+—lv±ÄiÆ1;QìVõâEO#‰L‡¸Å,§˜(eL„B½Œ·†„»!È±$#:b%O3Pf9h²D†\0ß±tO|«öù^­Œ›A#•¬`hy,‚‘HTQÈE|ƒæ9IÈDÚ\"	 znÚ¿ˆ2—6¸d{ªİ¼re–B¸QöÁ”ËGs«¸ªØéÑ<R6UeÎ5´ŠXŞõ)=š{iÃ“Œ­pÑæUDúVüæµ^¸+W¼Ä\'«q=c<¨È‚=TbG)ÈG$qôä‰H²ÎÓ‚K„“ÔÏùk	Û%{ÔûR*’Š×:³¿S&ænÌ§1V;ÑÜ&aö°Å}¯hÚŠÆµŒÃsŞÉR©Z‡4…a¹m3ÌLšÖ¾0èû$ò\'ÚÑ\"\"9Zì¿ëXMSÀ÷±”ò0c!§©&*“7KœÇ¶CQ¨î7şÂ?©¤#†á9®e8s\\ôŒgS@ÖÇ¡<‰ÜTògÙÜHA7¼ËòAêa½‹ *×=®U/c^×\'8ë™Î¦9êÖ9ÏŒ+ƒ l$¢m`€vHjg¬’Á±\'¢ñ’ ÜEŞÏã¤šÊ%…ê ¥8ÌlÂ%¹äsˆŠ¢oéö)æÏ¾¼®\0‹ß)3YåkvÓQš}h»š×~¯Ô 1è nÈÑ®¨WFÔ!†Ò’*ş\\ê­/î°ªé\0`Õ»X`!Q­Eş´<•Br>)­ˆåF*-\'Óí)ª{×¨GêÎé?°\"–w“e92OÂ«ú—4Ã½Ü±GŠ`ÎÅ\'‘ÀÑ5±„İ·4çµED0n\"zã0E‡<©ïÈy3$ÜYuQSÂ5={®ßHş îre#½9×:†Æº¨¥+YßUQÄj:œ™I)¯}KÌEI±>\\6°míü‹0M»ñIöIäOmr”Ø‘ãCšÀÈ#Üäˆ0àA?=·$Ëãÿ\0½0:\"9ÉÀÕ¤›DìÊR¹¨ªôÚ\'9ÔU6Nõà¸9İ8•39S‰×Rö\\\\÷4ïc:K–Õ#öFŒqÉ½ãp®CgG¿˜öI¢x“ÛI\0Ù¨^’‡mq¾‘œğC*C> èÎ	†fÒUÃõÇş?|–|ñ?z…¼«—j?‘ÎUÍöÚˆ”ïŞ1U†	9V½[Ô‘b£’#´§.‹ÆØ!iP\n¯sM„ H”Æ£[9pBLf‘æM+z‹sU±}òv\'´{ô%³cæÅéÊĞGaL`ÍœhûƒbÔSŠ@§şäUÌ~å©Ÿ„qˆùjEs}áb”oÙŠDyv¡)ÙQ­AÊ]µ±„pdˆU#\\1‘Êa))DŠ¯b›[Úº=­z šÆÇŒ£\'ï?éö¤óH\"0%6hd[áßYÇcÜIP\"¤x£qãS-“áÿ\0½S-Wd!Á~hÎp¬N@ÈvÑ ÌÆ1…V°nË\0æ«ÚF5­DDO=ÅïéíÌWß\'º¿I{Î²³\n3¥†ƒ4nI°HMÌÄ³5¨ˆN®ôG9ÑTˆÓ;å3i\".Å)&òZ=±¤qì8ÓÖD`Ñ˜4oæM	:M”.9°I*„Q–H\"	òµ*êƒ<I’Ç5ÕË\\Ş3\'·šek £Hïbš§;±Xöw™=<8]ĞŞ±@Ñ•¥¶Å„î·RKçœî¶Û’Py71<-ût—¶Òˆ¬ÔìW4fhŞŠŠ$\\øÎV„h7<ìj5=¦|‰YÓ>ÚûI	<‹»ÔP5jıM%¨,Š<æ“«½$’r¬6MÒ\"M8—!¤–M%ç‚$WÏ«]Çt8ÒC#Y‘“0¤ğ¹=}¡Ö3z”ñEÆ>ÔÕÊ‰MTT÷¨¾DïZ‘&AC*J³àæ£\\×®7DicûIÂZXòŸ®RC3&ÃºÃt¶²éğ’4ûl&K+ö@½Z$HFF?I‘3Qä<Ocšöøe—‚8HÒ¸çZåå,Xè$ğÈ]µU[ï3¢v¯jiŸ	a€ú ÇIh^“Ši’á8®CšŒr‰_İ\nÛ>L«®ÖªË„¦ÃFöÉ—.YÛa¡‹¡Áº›¼nÑ|N€j©e¡¹b2d û-ŒV\"¼Àx¥\"lŒ{díNô¥JT¥Näğ­Kˆ) |ÅFkœ¤bÇå‰$Â7Â$E“hîú8CrÍ·Il¢õ¥µ0š‘zj<“ÌšÊEEN×(ãH–zc‘íÒD‘¤’gŒqœJ˜$ñ¹2EOxÑSµ<MÀ0È	«:N«v%ñŞ9áÿ\0qİb¼İŸßqÂ!­ØW6C)³Ôõsz°PÌ\'Ò=«\\bR«Æ©ÔÇeuu™Xà>AŒ]ì››\\Œ®Q×0«œUÔ\nº†W3vò­r¹[¤WækiëŒµUÀrv%/~jlfƒŠôoç™G9Q±¤øöóÑ\'1#ñ<iaÿ\03ãÊë`òHGËA-)\"¸$S\"IDH%¦@0lg½M\\¸kÎf[\\K\\)\\®œT6µ†!pq¶2°ÚôÔ”ñ?¢è”êNõJô¥ÍJcŠ(ÿ\0¼£b×©4¤j\"hGmh®9\"9ìÅ\"¬’7;Àš—öÃû*¨”ÒËD{FÆª+kÿ\0´ØÍ<‹¾hŞÖwı5”İG.9¥.‘?ª¦‹á(ĞŒŠ÷%f†¿šî;šÑ™ñB–á.1ğÓ5Wìr×aæ_¿hò8\08[èÃ’d€`Æ¥&Ÿıû&c‘À€cº»ôÏšØéhaRç1¤5G‹;aşf^‘?ÙŠ^õÖK=Ä_Îç¸­ÜÉhà=ŠÂÇã¡ØIïe|Tè÷\\œçIº»Œ7—ímØ{Vâ%ÄN§O]£’upü•éKŠÊVR²•”­ÉYmnmnm\"¦’—Î_ã?ìœ;¨çA 8R+yUŸMõöªc^ib#5„sbDˆã>)á×j#[¤gµÎ*ê\\í®jBº·’·¾}|úùõóëÆÓR´ÕƒÖH†	°n¯ç×Ï¯ŸIÔVX‘[OEŠ¤BÛÕéOÈ05ô‘7=ğß•!ÕÓ9¨HB\n\nñü5UÌ^™Ê‰¸Ÿ\\O®\'W×p¥p2¸]8ë€UÀ*éÃ\\®\0×\0«€5ÀàpŠ¸\\!®×©¬ctšæ #á‡ñŸööˆØåuÅÛ`²K¸ô(´#Ñª/Û¬ô³­OõÕûëû€˜ÁêÈ…GLTstŒ6p\"7±<+©™È1yû3ØH3C ˆ¯û†s¦Lwb#‰+ú…ÌTŠG8N¿Âû©H÷lzµûëæ×Í¯›X%m}Ÿ&àŠ±c‘„d”‚(/ãQŒÑh·Dc^Ñbn«úè«q¡„ ˜¡BÒ/ñûÂ½‡j2s})>¶á§Ä‡F§$pnm…İ¾Sğ¡ZùõÊ†a €ö>Ø„lƒ{¢¤oJ¤í9Ttâ‘ä{Z§sDâ/Qî!äÿ\0Ÿ™ZÅì_ÒßÑÜ¿§·rR”iQâÇ}Å¹`½Ù¤F¥\"%c»„¬}5™•)šîrzcÚà¹8dGBò?¹+{+”uÌ:æs¶¹’“s„…]¼¯­ä­å­Ç¬¿1H\'q`Õ°µÄêá®Ò\0Tƒv<K¬ìôì]†îÍ\"Ò/Ú3H´š9ˆ¯ šEâfÄÑŠÆ¹v¢Ó‘ˆ!×ëkkjV=ºvâ•;1Jš™7	‰Ë	«”¬ö¦}^ãúó\"Ò/f}š{<V5Å*k	ÛKm~c÷cV®;“ÿ\0\0ÉärRé*2ñ‚ĞÂ´‹Mr}¥İç¹<	ÙéNÚªäÂëšÍg³:gTu\"ç³)ªR®™M2•¹´¤s†–Lt®®-,øi_ƒKs€”·[}|bŞ”·»u-òÜ•ñë}|zúT—øK_‹_K|K{_%î=ÿÄ\0&\0\0\0\0\0\0\0\0\0 P0@!1\"A`QpÿÚ\0?ı™¨SíwîRºé]t®ºP¨n±óv÷hvézhåvéZŸuT¾Kª¥¥Y>Õu™TI+TÂê2ƒjÕåIU˜¥I^WQTVOƒÍÔ?L(mC%Qàªõ?ˆU4ôÒj£%i‰/Q’´Ä•ª| T†Ò|İcôÚ\"KT`5u*„T+Tøañ¡´ë®èF¯Œ¶Ÿ©GÉTÓÔ»E/ê›^DÊíT¨§¤6 \'ÒíT©¦®‚J§HÊÔ ’†‘UÒH…Ú+´Whª¨1vª]?µR¢ŸóYÉNøÁßjZ•(œxPŞÛîÈ`ĞÑ€…œ¬!ø¡É¨y;E‡7ÒŞ\\!²JG2(¶Oè§&Zr%\0£ùÅ’%O`O.8Ã&1!‡<zSÃ0¼4(Ä0É°–‹j,a²ñÜôbƒ›!†à¼şbT°¶^\\ğKx°1*\\^q¶xR‹C¨á°ãJ›ËÊ–—;†^|©ò…¡ª¶4(P¡dqÎå[ãÎzØ%å9E”<¼Ûô…Ò£–.$ŞíÅÑƒ›áEƒ‚MŸvËXúBøQaaµéK•(–êÉhÙ„G„6‹S¼PPÑ€!à£rPqå‡*8FÈ@Fd\'*TìŒÆË~òcİÃ8c\nrÓ’‹glÆ8•<ñdï¡äòÁÛ92…‘ÙS±7ÿÄ\00\0\0\0\0\0\0\0!1 \"02A@PQB#`aCRqbp‘ÿÚ\0?ÿ\0zY¨ÔY¨¿Ö¾ä}öYkõk\'•d‡“ìy>Åù¯¾ûbÍˆ}‹ó_rO³‚ËÉd‘E~uÙYÖTQEQYP—ÿ\0s¨êàÖ£´sJÍèi®}	gUšMñù©[úF†8ÑÅ\'¨KCd¸¡ÍN>C…nB7HÄŠ‹ÛŒ’±iÃ4Ül‹1¿…Fs:³w±ZcDğ©¨ıuñ1W“ü…“ÊÍRà‡”‰87©—qr%4Ğ¥ı\"Õ‹ı!MZd—úw”y$¢İ¶)¦´ÇcKäÄ•´ÉîÇ‰¥ìR{¡ânèœ—ËúCOÙ7©ßäŞq“\\YµmşØ„oìéKèp³êI}i¦µ{kô©[¢n–•íÉzt¶4×=ÉQEvW¯n%l~>(QØãßaaÁ®M;ÒZÎ£M¥{^TaøËs*†«’Š(Ñ,¡vÉâ6;Ñ¹Dá¥Ğ¢ß¬«*+:õJ.L””vˆŒIi{ù0ïVÆ\'„|HÍğIS!É?‘æaÛ•JJ5ÆP\'±‰ç±´*(Õbÿ\0&B7vJtö!ªİåâĞ°«vcÊåDqIMHÄÔ–˜ğVK+,¼ì±Ó‰-´®3X·É«øuÑÖÆµô]å­=¤)Æ;#¨£Áf¹!¶ù/+Ú&ä³©š¶ÌJO5&‹¼¬²Ë,²Ë/ôTP¼db;“Ê½vQEvÑE¢³Œ\\…t³ç$QEQEgE¼æ³¢Š(®úÎ‡Ø²¢%Q=•JÉAI“‚iQ/Ä¹ªò›¹Y_y/CÉvÙe±Ye–6.IüŒvbãu#«Oc]ÊÆ\"Ë,²Ë,²Ë/&üÊË,²Ë,²òL²ËõYeš‹É1ÊımWußEQEgê4Ú´\"Ÿ£]±Vèkm»QEgEVRŞ²Š+*(¢²YÑEPÆêı0®\n+äg¨—c}‘Ú6aJ™(®Q9&È+S#ë¬¨ÄÙ(æ…èbÉeyXØÉğ™	i$…ˆÒ¡»#¥n<ñ6Iäƒò”|P£¥1|K,¼ì²ó²Ë,”µ;\"ÒW’,²Ë,²ËÎË,²Ë/+)óèÆùdçµ,œ›çÓ™Yb*ŒQ]òòß¶½_©Æ½/ù%Š[0¢ßş‡ç¹‰:!F,nTR²{Æû‘E$i+*(¢Š.‰ª–J¾Å¥ìVôKm²jÅ^Tt™(Ãˆ\"Ò–ÿ\0ğtİÖQ–‘={2¨E_$ã¦4ÇÕ#ÅFiñ±Ô»5Ú¦G¶:Ìê«\'$öîBy¬Ÿ|Œnsªb~v8_#qš¯áˆ×Ñq^GQsö<N¢ò.‡(Ë’âÿ\0à”÷ØXU²U{eÔl†ï+\'²Oğe—•öXÌG¾m¿Â„u:1Ÿ–ßƒd¶H¾ÕÇd_Ø÷É+àéKIÓ‘¥é(ÒêÎ›ºF&HÁÈ¬ÔØáBTN¯b*İm¨QÔÌ%JÉÇí4tëfÈÃ›$•íT/×‹ÍœbÖÌñ‹%;…‹§öN:^PF–ìxzU˜®‡¾‰¸Å1ìâ„®¬òÄ•øSj˜šÿ\0Ñ-2‹’Ê?\"RJ{[d§Y%cÕ™¾D%-š†È×©n5ä_-YÂëc«ÛÓGKİª&“•³â²ÁKäM¹»exîÅ5¢Œ=5É9&öÊ¢Írª#/¦bIKƒS5øéÙ,G!âI’•šQ{<¡òF7Ì±6³X’C“—&ÊÇš_yÂz}IĞæß9uQmp6äW¦¶¼ë³OöVÖûğIao³>‰a¸«%ñÍúô¾Öª=©_Mg¹A\"XR‡9W8ª‹ä†¦Ùë\'àšzI(­:U²µµDğÛ{d•²Xt¶ÏäRÃÜHšw¹‹ÎQÓV=ıPi=ÍåÄ‰BT_‰Ó“VhÑ»\'V/=ˆaF·ä–°Ò¤È½;ŠÕ¬Ô[†Ä]éroË)|R1_ğÙÁ&TtìÉµ±)%DœdíòJi»5ÕQ	\\­å†Ñ©CƒÆY`üÇÎV7yOŠö8:³4Ê³©M“vJK“\\#ÀäîËbÄDiò\'§štXäŞVÙ)[/Ûiv<´Ôo$IÛö)5ÀäßàÇâÙÛ¡öaBßf–Æ«¿;¨£¥·$!{²I]!á5ëj¹ìQo‚…VÎğtéÓ%§ù’W²:q¦Q„¼-?û¤ˆÇ–(6¬Pf—ttäŒ°÷İç´¾èxn¶*1ÿ\0‘R¢\nÓˆÄÅ§UÁ´N¥îù>*ÍT¥)\'ÈßŸV¹=äMG˜‘ƒ:oN¢[-¸šàû¡ÆüV´¦b4J4Œé&¸ú%rª-Ç‘éÕgSËQï¿Ù«ø<TĞñdG¹#!ˆ®ŸÙª-5š›:’±M¡É¾ÒY4k‘l¶rş–6ß9G’OS0wímèŠ·D–—Y¨7F\"¤—åı^ZvïŒš(Çù9(ŞQ—á¥½Ğ·­Œïø(^í’…3MrÈ|–“¥-Æ¡ÀÕ?ÆŒlqşdŸŠGŠGOz%\n4ì4–Ä ªÙ(Vë6©Ò?êÒmÖPŞÑ;$§¨ÊÑ¡IîaxøŸüIíC­ìÔ£ñ\"lÒ“»íØß¶f×‚íŒl{G,O£J{ØñŞ\'ƒvJH’‹vu#UCšª}EÉc›yë‘®_Ü£&šØÿ\0¿€¢ß‹\\ä©+d«¥±§ÆÆôìbü”MUÓ±»ük(ÅËŒãİ’d“|gÓ•XâĞ°Û415FŠÜĞä­•’o„KhnQõ¹Ôú-ÇIÔÿ\0ôêÓµÈçorRÔûo‚—ôuõë„SäÓåC[’TÉÉÊ*U1ªj(“·–•(!½^(ÄÓÑ‡²³§qÔÈF.hÄ´Û!&İ	jT-£lœ’‡ÜDâ·3ä›¸ŞIÓ%\'.DÇ¸×¥:4/¡ÂYQ\n£O\n	¶ä$›¿£V’5hà–ñÕ–ú|D©š7¶jM±Oj+cÊÌUå—R’¡ÎÉIsBÅipu%vÈJæŒI½GR\\†ıW±/TkìQ|Äœ[‰=¼Q¾ÌI(ğk¾Fö¤,F‡8ËvJWÙmöß|™X÷yÓ(ØØ¤iíN‰û°¹²VèŒ\\¸¿ey®G••ïäĞÄã¥Ñ‡â¸³ÃÅ{²OÃY¼¯·ƒŸv67Qej+Åi%:¢R×¿Ù)Şß‹Eú/lŸ¶ë;¯Î¢Š8ıUPŠÉñ“Éş‘vÙyY}ËuúWìy\"»è\'ğ^›/²Ëì_–Š+9|bôQEd¸ÊÏ¯Ì¼¨h—Åv#ì{ö,ìÔ^wùUšÜª/)|}úªşŒë$?Ô§”²ÿ\0µeY]z¸ıŸâY[di”WcÊ?C¥±Ó4´²§ßfÅ\"²²ÿ\00Õ·bM5Ï¥ï¸¤è¶[Én8şRâ¢=É;Érbl­d·\"Ò‹£NÛ=‰ËSô§EvEĞ™±±âx›~/!§Nãç7ˆœsOcªªÏÏRk‚ïğáò$·ı’tÉ/Ùêu^ú+*(ÒÍ,¦QGÿÄ\0F\0\0!1\"AQ 2aq#3BR‘0@Pb`r’¡$4C±ÁSs‚c¢Ñğ€áñÿÚ\0\0?ÿ\0ğ2Ñª·:÷?Ş½×÷¯vkİµ{¶¯vÕàj÷o^íëİµ{·¬aHÎŠ¼ñ©ª†òT[ésVŠTCXNÑÿ\0š°Ë4hzDE29ØÖô8)Ö±ÆÁ×¨¦dVuñ\0t¦À•65»]¢2İ/X¦pƒÎæU{koàÂıë÷ˆ!sE¥ØZ]ì¤ï0äš•´HçRO ]ãOn^U—ÿ\0O,\\–2‘•À¦F!Û:–HãU+¶Ö’?‰Ô/Ö¶˜9r‘ZÚÜçfÂO^µ´mgãgzØà}›s‰Áß­l‘$[ë!Nµ‰¶a³±øƒ-ó}â\'SN©â*@¨¢vƒrºÛZûJ4$.Q†åRC!ŒJâ×])Vƒt«k-ïPf0¤˜ÛÎš!q[ZÙÔ7j}±˜9ªùÔ°ãÇ,oë_aW\0àÃŠ¡;NĞ®‘f¨«Î¾Õè„&2Ş€™ƒ¿2ğbİÈ½ãW½?J÷ßÚ™½¹÷0_Z×½J÷£é^ô}+|YSàªƒ•{Ö¯|ÕïZ½ó×½j÷—õ &[~¡ØŠ¦ÌÆ½ëıkŞ¿Ö£]ëë}kåE·õ«ï_ë^õòó¥.Ä³gÜ½%`/^õ«ß=!v$¶yÒFŒAµÍ«Ş·Ö½ë}kŞ¿Ö½ë×½j÷¦­0¸ê+›Î™º\n$óî4Ÿ1î;t¸T\\š÷-\\hGr<]*ß(·l’tÊŸ«d;BfÔ\0åÜn­—hQÌÚ‚TíÚˆ¬ãaÜuä4üë66îªtÁÌ{qüƒ±”êtíÀµĞ(¦cÌßµz¶t±‡·$î¬WÈößä§o+v…ò £AØø<7ËµÛ‘?ù{Š9û­ĞeÚwvÏ­j¿JÄízÊ³YF|Ía¶]ªƒ™«rïÔöãù»®ıOn>lj8úçÚ®Âás¯võ…hEÔÒ åùÉn”ÏÔ÷N¹wú\nÏ·Â{n¦Æ·R›ßCÙ€h£´ÉòSv·hQ© ½»ŞV¶ëJƒµ7EË¿À¿½uc©üè›.ê/—p\'Ì{Q<û#kg~Ø­×±ß©íÍ³¤‹÷=·Š÷Í^ù«Şšâ•æ’.¹ö§éÎ™Ï!WëÚ˜×ŠÙç^õ¯	ú×»½e—à2ü­cè;ˆ¾}Ü íi>QÙö§•9ærí\n9ĞN@S¦ƒ¾_æ4ÇÈv´½r±üÇµÏñÚ_ò\"ì[:ñµxš¼mX”’mÏºÌ]®kÆÕãj*˜˜-^\'­Z±©7 ›\nÕ¾µñ}h8ã³FúÖõ­ëZ7Ö²õ­ëZ7Ö„k ñ}kâú×Åõ ‰  Ò_,†uñ}kFúÖ$ÿ\0ş@îÌ\0êh2AéüH#‰7’\0­îÜÄH4E€ÓñHøÍ‡ğN…ßı«âs©ï™dk(¥ŞìÒE›4^ÆG*Ä‡>c§àA™­}+chÜ7´¾]á½‘S—ïî÷«‹¥ÿ\02¶6ËôÑÜHÜ»¡¦| ›İÄ>g¥XkÌ÷Ktí#-#t½àéQìçİÄ¸ØT‰ô¥¾¶¥›g}Øsû^·;Rî&óĞöâ_ \n2Ê1Ë.u½Ğ‡¼Ååo\n.¦“‚)ğDŸóXæ>»|Âã³e›’ÉcûÔ;€ëVaféXä>€jiÔ»pEkµ»Ÿ%MFvŒås‰ÿ\0Bôìà\\R¿\n/OÒ™,£-Ô»¹²¨çØvxIM3í|G¥’0‡“oV“ÇÀß˜K\'E4­,jÅÍó£fE¸í[¹dÂÖ½nâ“‹¥»L¿èlù3Ùqâ9(¬NxÛ6«4 Ÿ*Ä°JÃ–TX¤›Lu´(¾dp_Í½+lGµK°½ı‘àşZÛdó·\'İÆ13ØQ´4RdÄPá5ş¾Ñÿ\0MµaÂüÑµ³¨ç(«~µ¢ƒ(¶ŒÇ“w^E`2 }öÛ6·åBYxæ·Š§^¨j‘®ØÔÖ3m>Câ©|V¸õ¨œÓ5q‘Ì©y…ü>t&”ãšÖ-E˜ØÉ§ÿ\0Ô$ğÀ½OZ\\~28»$ÚÒ‡…?æ¥Û„HØúSmxc*yW¼¯ÂƒÎ–!¯ÅëÙ¶ea¼Ëóß7kT@Ì«d¶Ö·˜Œ’>læ¦g\\Iµ«eİ€¦ÙÛ³w½—…i\"çñzöğCşô¾Ğ…ZÉéØ ^)œğùVÕ;ŠÄÍŸ%ëGiœZI>‚¶É­q‹OJ‹h‰ñb\\-[U¹µq®}y×iàëñ-]¸fü»ì^ö3Ç(Ò£‚iw™†Vµkl¯ô5¼(øÅ$ƒFî>óÃlëíròuéX¤uQç[½†.®2©VExŞÄ…‰Ò™OÉˆ~ôÏò­ëí’ò‹ÅØ“O§Ê¡Ü\"”‹<$Û:ÜÍ†[hyÔ’^ÖZÃÏ	-Hm²Åÿ\0ÌÖÚßû–­ö±Á’ÿ\05yÓK)ÍIÇs[ÆÈÅ¿0Ù6n™š|.)$ÿ\0Û½m±gÎ¦ÚÆqÆ0-0YU°ø¬t§Û[İÇÃÿ\0}³©>Óxn;.Ä\nİl+¾~¼…ælsOJÇ\"ñüÀØÖ0¸›«×Jî»åzÆ#Pİm[D‡G9wIŒâ¢©ì ëÌĞ$EE>+`×Î•S®~”¬}ÉR­H\"Gq¢9­ÚmHhpÖóiwÚõiVQa_nKeiPsŒJ´-}ØşõĞ&ô¢§CB%–6Œiq˜¯i!>C*©$»_>ÎxœIN“ ˆ€½ZVçZ°.âEXæñb–(ÆC±¬å#swAÎ€Àd?0û]óMr££„ô§4Ã…oQ;ŠñXëB(–Ê*eÜu4°Ç¢öã`Uşe6«}³h·­]ñËüÍVE\n<¾ï‚â‚¨°Ë0¸éXT\0>çí/éü‚T½Xdÿ\0Ø½oİ}¢-©Ø7ÃÒ¼N¾YWø†dó×½ÃüÂ¸fCûÖ£ø“Š4?µg†½œ“Çèõì?õ\'ôqzTÿ\0Ô#XØJš~ÿ\0ÄÓ+|·¨Xëƒñ8_/¯âzşe¸_™Z’?”[ñ;,ñšËøİİ1H|+[ù)Oÿ\0Å/é‹ğW\'*>ĞkjÃ‚ı?2“‹-ŞÎ®|+Ö¾Ñ´ñJÜ¾^Ì\nWèµ‹ÿ\0ãdÃëD¦%e6emEb‘‚:Ëîq1°¢6XO=_w³Ğšh$FUä~â)£“,¯Êõ6ø“¿àLûyÖûk$GÊ/şè*Æ zW„+¥c®¸1ZÛòéíÛœÜøW­}«iÎC ?^ŠFÖNdQls&Œ[´ÿ\0ªÕì¶†Ù¹ëGy$Å2÷¦Ùdšx§M,Ş!VS?ó\nöÅĞWÄ¾«X‘]Ö¶Ïş£XT\0:v+/újnkw›?0‡M{˜›­a¾èÔÁ|C‰khÔx²ò¬4bc×cÚ6XÚ>{³˜¡>ñp­Ëâ¶½¥˜Ø\nRLôáìuéW¬)ŠSúêñòÔ]Æf÷Pp¨êİ²bq‰ö¨ñjEë®/[ÀÀ­¯zŸiÿ\0Å{w÷cå—åsÿ\0 ìÀƒ§E¯´m<r\\—°£hEn\"_’ŠŞm~‘*Ê,h§‹54“F=£ğç[éı¤ÇRyUŠ‹zPÚa÷g)WşhÛ+@¨Âó5­«W?Ú¬ SHÂÌìOíQH¹,¼-YR7…i¶¹ä=òìhÏ=)¶m¥}´y?_Ze-Š?†õµ§Imjà@+v‹¼•¾Şí\\vğ§!SíÒZ5sÃè)Ÿg¼Qõ­éQoMßt»7úqOëÙg3!°µNÊ¸­%¬=+üIÜÃÊ5ÔúÕ£@£Ê£)¤ËÄ;…»Ã~Âí ü^Î÷r?°ì°ÃŒxIµg	#Åƒâ­¦˜F1b[ô­ùR¨=Ø?ï_dƒÂ¾?:-¬‡Vü­¯–8ës²ä¿í[ÙN9O>¦ÚÔ²±|\\^]Ö,ÃL…l’È8w¸›Ê²Ó±•´\"…ÀÊı¯Ì-[¦÷‘p°íllÖ$ÙyZ€éQ…>Ô=À§Úæ¼›AÓIåkdª+gÇhÖF¶ìt«±°¨æÙßüH9aæ(SÇc†[µ\\fçJmßsí%¤…±6ı©~Ğ0BºG×Ö¢S’oGfÚyâ®t Ã%Xî¾u´ç©±”\0mP¯Ê—îIŒ…”âòš¼;t9\\\\Ö-²VÜrM1VÒê\0Ûw1I±\\QSÃµ¡\\G)9ör£~õ¨¬å;˜,ø°Æ=O^ïÚ¶97SóèÕƒkØeæŒ\\W²Ù¤õqaGboì*Ï\"§¥•šVó£­Ğò£Şm›áqâZºµ/éÈÖí`;:|LÔ\"Msí›Ã7Ä¼°íÙäæ½èsÑ35ö­­\n$ŞÓX÷Å?R½‡¢¼Ï³ >•ãdhô\"®Ò=ºW²ŒËØ\\PŞ-íATXÒ¡”ò¬+{y›Óí:	ƒ‰ocVÚCË{–¨ö·L8Üª]¡ÆÈ†X8[Äœé¶™…Æ;–\"õu‚0—²ı]Ç‡¬õîY€#Î¯¸\0ùWSùSI³át“6CÖ¸©ûÛ˜ÖıEj{ŞÑ½E]!E>BŠ°§•bÜKåXTâ™ÎyiÖ¶Ñº„ß…u¬(?s¯ñ ağgıªOâB$ÊDk5H?I¨—ø“m­›°\"‹§ğtR¢][­æöl½*8Xñ>ìo{^Õq§âjÚäè¡€E3›œè\"v/P—²€6œ‹ş¥¯fÜ\\ÔëH€?b¾TÓ¿†öAL¡Ñ‹åÓñ%º)§˜ë+ßø	¥?¢;ét»>,%eÂ}*²/´¿Šs:š	<?µ!|GJoÄ”‹Ää\'Ö’%ÑE».t¦–ÖBÜŸŸ1ò«õí;DŒ\0{Ñd±3ëjÊHôA†ôv™qã\\2(ÿ\0zT”nr¨íGñ˜Å#¤‰tQoÏŸÒƒÛydöká­\n,;,ŠÓ·Œ«åøÍ˜rWÄ?±ÒÙ\'øXUå|gø»µ”V8Û=ë~dÛ<œ2ŒÇê_–ˆûóo:}È\0ªåBöY-šöc`(<mqM)åQ	¯lï÷†—ˆrÄø¿%‹j8Ügåùd­~TøŸ3Vê(ámÜÑ5•…}“k]ÜãOÕXF®Ö©¶{ä\"¢‹ş£Ú‚¶£Ã@Ÿºİ§¼|…nÓÅÌùÓÅ-·±œÿ\0%#«\nŸ•ìû7Î×aÛ<Gvg¿KÕëcŞ|7-Jÿ\0¢Õ³EÍxª¿ˆÖ]–2(Brb+‰±ûLt…{àl2áÄ½•_Âã\'^‡½ÔÑ.H66ünË³‰î,Šü¢Ë¶i—\0VÒõ}¢S\'—*fÅ”t«+au7SO´íVŞZÂÕŠ.Q»3\"†f\0RcXsï;ùR©ÌöBàsµ}«dÊa¨äâ®8Xx—¥^¤bN	ôìŠøxcÌßñ²IğÂ0Ë!Ûİäàt¬q¸a÷!nWJÆ\"L]mß‡gùÛ>ßŞ….İYáu‚?¼+[!	ìÚå{%è¿hbñ¿v„Ù%ÂƒÄö­)Ä±¨>_#ûö®Cvn6sQœ°\"ÿ\0z`<C1XŞEÆiÎôdqÈq&‹6¤ş<­íqI³\\½+i[AJãB/÷ûTvîEƒÌÖñÛ‡™íŞ¶Ï~¶íËø.ş3AF€[ïöÿ\0¹ü%ydTõ5xİ\\yØ×å#³•şúD:L.¾¿Á÷Ùï\"Û<Fæ·˜÷ñ”d¶Š<èË·H%›˜×4»$F=Ÿ Oo¡=Îl£*İìãít]+*Äcø”rhEşîÆá‡…‡*´ØIê¼ÿ\0ìpãıZPŠp„hp…Óğå€^·‘ºCÃ•É«®Óú­«wµÃ»<˜iØÒr4¥/lVÏ²\\¬ªØG$l*+)ÈÈu¬”.1Æ—¨!Fµ…èŒ­\"åØïò­évÂlä]êçâKŠ…&â©c`5½¨DªJ*oä¨AùäÍoqQÈ|Dgëİ¼j\"š[ü«[±‰$ùXöî Ln<Dè´<×—~qÉ#·`Oa^6¶¬£!AÔİ[1XÜú©¤„Âª„\\j<êST³Ã#Y:¿Nœ,òîå)€t±C¶ïL‚ŒBng_NæzVí!ømª×5ÿ\0Æ°ƒ®jEcvC„Ô1r]„ÉGo$kÉ¨ÎÓÁÍ·ÍØyÔ›E¼G‡Ò¥*TrÂ/$Fàu¯¡¹Œ4ÈÜ7¡²n¸F[Ëò¨\'ÙãŞnÆ·µêi¦÷í˜á¤u½Ä\\^Teu*ÛCCf‚û»ûGå@_“Xó­£f?\\wx‘[ÔU†BŒ‹”±ñ#TrüËzi>QzŞ)8Û²ò5¯Ø`ÎãŸ`‚(ÚiOÂ9:Xš3jÚêê3k\n†IMí.i—c\"ÓzyÒï/)^ºQvÉW•!oóqÚZfQÄù±<û0†1šÈ1\0:Ô;î¢UÊ4Õ½j#1Ã‹;u¯´nA}SA†„_»¾„ì<A…$ºbí*y×´ˆÌ¼š=jÎ’ ¥K²ì‹eÅpÍğŠ±kócÔÓ‰‰Äùß§JİË²´ı9ĞÚ¶ÀÇÃ[Ì,s¸Rr,,ºTÚ6…(9( « Ò›jÅâ[[¿p _¥gp€?(•:§{v«$„k„S—‡\0ÃÌÔKújsúj1úGdCı5{3ò†8[%Ÿ>Í±‹yoÚ†Å¼“[|+QmANä¦ííËÎ–æqHü½*e\"Ğ3	n>C°Ø.‚#¡_­K$ÈÛ©@ö–Ò±¢?­FÒ‘àfË:ò¨—g±¼\"Š6„Zƒfî4/ª^ ^¢#äÆ…åÜÀšõzû>Ç	Ht2X×Eï8ù¢®±!úŸÎOı®é`aĞç~uº?˜Ğ§ˆèÂÔ\"}‰æ+t9´ÿ\0á æªx}Ÿv7}+mó,_-BÛ’Ht¿Ä+<¥ïFh6‡ÛÅ„^ôH%äo¶§²Á@ôì2DÏŸ×ò?e¹V%†0zá¢’(e<k0.ò°D¶Æ°®Ğû¾KÜ»F¤õµeßXãÕ’ÇÒ‚ °œÍ&y\'zî€š²€ä…ÛASí­€_M7Îù~ß•œh¼oO/ıFËòHÕ¯w6zp8l9¸İF}£ä)c^C¼Mb|^#âéÙu7¢İèb\'f{¶ì¹6bPpõ<şëv%Bİv™dĞzÆ‹	È>fƒ°³^Ç×´³^Âqóh+eòj6VR¦Ì¬4ì¹­§h\'9[\núR(ä;ì¦\'À¦Ø«5Ç~Iy^Ã?Âì±ùßîq;ap¤>Ù,¸¸³×î1¶!ÈŞ2àg·%¬x%±è´ª6YÜù\n]îÏ4 ›]†T‘5Ô¾wåR²J·Ã–tŒÏ{%Îu¢1¯ÃsY^Ò@!ÎŠ¥î3±ö…Í¼t\'ÙzTQí˜DGL:1ì¹¦š(1lèlÎyÕÇ>÷Ù•ÊÅrÌô¤0ÄMàÀFµyv©1ù) —9#çÖ‘İ@16£ÍÇ\'^KKå©óíeÅ¨hF}œ£T9vd)m#§åMm[!QìdpD¹Ö48£æ:PeĞĞßI†ú\nS£ÉÛÖŒ›4ˆr&÷ ö±æ:VÑıN!FpúÓ»­5¼MÂ)Ë?Âÿ\0Ûî[i~+ éVy–ı5£SŒ^¶4Ñıªhå]EêFÑ†?ˆUç\\#ÈÖ#U«ƒp{ªJêšö*,N¶åWé°ël¨N²È²óâÊˆ‘,FG¡©v‚@Z:O\"kÌâ•€ãLÖ£qâvJ“\nÂB±.¸\0«ÄƒzÙ2hI(Ç5¸˜Ö;Vµè©çKèn\0Ão¹V÷‰ÂÔ6PmûÃ}|«p0¢¶B½Ï4‘®XÀÊ„Šx[Nás £¼?<ë\\¦k~u˜±éQ3zÚä±ê\"¢×[÷}ª\\õç^ÂMú|¯Ö·N¦)~V¨º§A&xC^¤wñH˜¨ìûI¤ÊÃ•$Qo$˜óÊ¦’C¼œ‹ß§¥FÃL4Ïu6&Ù×•m&?u‹† ÚÇÂØ[Ò®;£i†KOrMôjDtÂ!Í‡Ÿá¶¹nÒ©\"±Ø÷3¥1Isk)şÊÖnWÿ\0ªüDë^í>”6˜GÜRŸ˜“A·Ò%¹-nØcª¦Ùy!ºúwFpÆÖ>u½s¢óµ¥±\\òZiX´;\"æõïÎÕ>Èo„ñ¯fö?yÄ´ŞRÙÖÚµz*=“àŞã©)s×lŒrA&}˜#]ìƒ6( ÃCRàñj+ºşüªMÍŠÄÃ­Ô“zv•ê>­eµ­M	ÿ\0IÊ÷%ô©Û‚ÀS²°VnÅ­áÃ>Õ:îÆ1¯A[G:}‘üpµ¿nãÅŞÜ4#™™&ø·œêã1FFÊDÍO:†tl6`r½*LªŞµ…RSjŞ•ß?AEÂ\0ÇSØV-¦Hã?Ùäx_¨Îşµş#l‘—åQjXöm¸òåX\'e†/•h(ĞwÒ„€ó¡;&lÛğx›ĞUşÎ¸}iÜÇûÔ÷×*¼‡3¢Mnó‰Âµ†1Ÿ3×¸vf6@3ıU¿d¾Ó³}¦	¼¾*6Ú 9ğ0Ñª_å5ºµëË¹NJºÔÒ ¼ ÷Iµ†6¤ŒÜÒÌãTñf-Q$¶ÅáP+gİ0bİ³nk…éAâxÛ£¼R·r@5aËvs¦´ajŠ	Ùw15ñs4cqu5»M½Ä~™ıi¡UÉÇ:šû>Ñ’ağ:âEÂ[;t¬OXc@£Ë¹µ¨Ó=Ëu6­¢O×nÍnğƒâZâpß·rÒÆ¯Ó\'şU½w’CúnÍ	)Äßq»Ï¼»9Ê8–óü$†E»/ºOäÆ¦8VC|g•4ÌLÓÛ7jÇñ9Ï¸M¹SO9@rCÊ¸Ü\nÆQËÎ‹¤(ò_Vä)6¶EÄ¾^TU´4Â+ñtckØÖí6ßgæ3?s×ºøÊ‘~w\0•Zê5[óüÏğIb;mFtÒ|ò÷ût¿)P(zw‹tÓ6²÷´„À÷ò#•Z}¶ySåÒ‚\"…QË·Å´nÁÕ1V’xWÍV±gn­Û‰ÒÍó)µbTÄİXßò›PHÔ*TR1t_yô}¶–ÊòeIü£±­­©ø¹öµµl© ü›#ø7“å¨äpaİï™¶T}óµò¨”ü£¾ ƒŞI•şQKh>ú]™AöÎ\nP¶Ñ	·\"´¿mÙÀC–49Uë-i¦DcÔÒ<‹…ˆÌVÏ+â=ÜLl)‚ß‡òß·á|Ü5ôQİ//€kC°òµb’ùè£S[‡I!èkØ\"2.3¢ß°IƒŸëdT<25Ï ìÀÓ¥êà×´{Vì1ú–ÕÜrH¤\nßÚô#;QfĞkQÜ·°ÿ\0÷ªúú;ˆÖõDPØ‚ïMGËJ‹ã<†-kíƒ„¬êiÀ0÷7¦<P^ÄEE³Â×ÄÄQ<Ïá¸WÔÕ·ÉWS~İØk°ÖİÃfÚÖÏV¹«}×´‘V•Ia‹BW.õÉ¬[< ¥õvµC BÓ[#{Ö)\\*ùÖ8ögdäÍ•é%(S½nèƒyr\\©=*G|ÆÏ’ÖÍoøa¦”è¢“lüX½{&…ìp7>”#QÀ±–½­lF×­È‰0óËZ›gf¾íø})¶‡Í‰úVbõ´Æ¨o¥Ò¾Õ¤‘øO_*HFM1ÿ\0º.¨dtöq*Ô)µ$a&ÈaøOp,WÄÜí¥İ¶Ó;‹:iÿ\0¶¡\"xN×=b¥eL<#†±C«VË‘¶*t]HÊ–9¤Á\"äTë[Ö\\)ğƒS·3\'sÃlë\nşb¯oÂ¬JÛµ#6«²ïRk†4‚½Ÿ³?0¡ˆçM»ñ…QëçÜûD^ã›à\nëÊÏ„\0]š±Ãµ1aÉ¹Ñ0È¾!E˜ØkrÙ-âí.ìF¤Õ—6©Ş=@ÊƒÄì<zÖ¡%d]®(¼DØkqİ’Üò¥Ñkf@ÑGxËîéëBIÎúNWÑ};›arM\'¥m#ÄMkí¸y-Ãm’0m¼\nQ°Û+TŠÅŞÔÈmÍbùP­h)’ÁÖNµ<«àg²¢¤Ùg8TœQ±ĞÖ\'‘@õ­£€¨eºƒÌU˜a—#çQ2\"¦¿(¨ä\'…ıh„ÌXë[ÿ\0Üî:–+fÖ¬\\(¢Œ®\nÄİ¡ççQÃgiTX \\é“G\"x‘µî+u¤¤w1RİmØì§…ÍíÓ¸‘.²PA †Ã\"‚+ü&Ù$_¤æ+-£g“Õm^×bYXÚ°Ø¤ƒTmhzöb9±ÉW©­ÆÕ!eÄ¸i¾ÌÅcŒñ8æiCó\\ëhFÎÂÕ&;\"Ú™ÂÔ»(6‹Å\'NvdÃ•±rQÿ\0İn¶e2LÜNÇE­æ×5Şÿ\0ùPÚ6Ëˆ¿Ó‡¯­IÃ…péjŠüÒ±A#ÂŞZUÒTÚB3¢-×Ä½Ö®•¸ÛæTë¡©v”÷@`SÖ¥gŒÙ3iWGWG¹³#U«i³â±­ÉÍ~JÙqõ>´_eÚdÙï¨Š/¿yvC=6Ó´G»áÀ«zI–Û¼±~ÔTó­Êm.±|´”iX%@ëçX–¿uªpºsòéY÷6Y€ÉZÍÜi ¡/â¨I´Êó°ù´í]ª¼‰¨ù…bíÅm”ù}É«ò„Å¥8dN}hIèkxÇ„ÑÛd(…2ÄÖl8IéPìq®X¯Ù´J]¡ülOJÄv˜Àõ¥¡û:fXüTò²g9ŞŒl8MaE°­æé1õµE´îÙÑE¹VâäÊ€ä¢¸]OïW9Tïi†×ïZHÕıEE\n!XeEqæ+ÄPş–5Â½±LI?ïÙ´Èm‚CuìŒµ†í±eø¹EÚÙTx×aÂN”}ÂO!XÎ®q~!=Ï0µ”«èr«´ˆ­n Ì|ML‹–‘5Æ)c…6İÉ5n‰ØdŠ<bEÃéAX–u‹ìñßÒ¬2û¾‡ôšã–wV—ûìÈüŒ¨ñ>B£Nƒ¸AĞÕ†Ÿ‰â‰kİz²¨švï0}6Ôÿ\06ò…‚¨çWs]ŞÙş¹\'w­aF!ˆmqŠ¯Ò±!¸üÔ³Xpr={†‡ó·bÆ4ÔĞÜ1Û•lÎ‡ı_§µĞWÍ&:_cG|îsûÒN‚·‡â¨»›(Ö\'f†„‹TÛ#¹p™¡:Ú‹¾€^›oÚ/f§­ûûÉs4Ş•„‰ÔyÕÿ\0ÃòĞ]©dèy~OŠC•e²må•K|İÛ»…fêE{kcÜÙ¶o‚Fâó¬´îÊŸ,§²5:nÛî ™<weíAÆ‡>ôûâš =;…œØt#Ù ’lómc`+ü4@/Ï%^i¿”Q­†ßJ2¾V¦Ú¦cŠSp´‚V1€1à‡fçfLL5c ¡³ãÇ,Çè*Àöxp7•_òË›~£A½*i.< T;8ÿ\0Q³ô§åaK#¶VúÔâ~	p”-“ŒÔùÖy:ø—¥>úØmI_?ÂîŒ£Ü°ÙÆù—[i@¸\0ó«oş´Z,^”íSµóñV6–FQğŞ÷¬Qìñ ıg:í±ˆÉÑ†”$EÄéšÖ sø‡Né{bmu5¿Ûı¬§‘Ñjm¦$İÄ¼\0u‰Ø(êk9U’T\'Ö¶Iz=ªÆÿ\0°®<`uÃJ›ï™¾.KëX¶ÙŞfè”VÑğ˜Ôğ\\Ş¶ÈÔjø³£/ÚdW\\Å´­–F8Í‘°¨¥hã³ó-©¤‰ŸôJŸh|£kßŒëeı©’4{â:P‹9Û+ölğ‘ğ5*Ÿ’Š(#HsÍ%¥A¢‹w-*¯g>ĞXáÚwà|÷F{aÃâ+}´ƒ»ÿ\0M9zÕ•@¡ò™/JËJ.ç!O´,\nûÜì[5¢ûkÒ‹ ¥iÊËá¾‚¾Ô´ªé„áÖ±8–K[¿³K½¾ySO=Œ­ı…f.+!SoÙ§]üoÄÕˆø\nyV˜\"ÕŒİ.t Íp|¹öo.Èÿ\02›Uåy%¶˜Ïál7ÈSeÄs½* Ç.úTXün.Bòí•¤kñåØp6+e_eVÂ£9)cTÂ¾B°\n÷\0·¦Øå8Ò×Rk€´á=)_^”¬Ú\nmé>r5ëíĞåŸrjVê/EÜØ\n×³6]q~ô6}šãş£ô«±²(¨VuÁâ	åçA—PöaHĞ®U4,o&ÎnZY¤gë\\y“¢u©$a…¤|XG*İœ´_*À¹Ku¥‚d±>uötÉOŒùt¤İiP}´Æ›>,ÂÍnvŞ7Íğ¥$«´´Ä\\hÉ3¤\"Øš·i¶J±| Í4H¢nÇ›~ô Ùïg7_!_geÿ\0´lË&aó4“Î›¼`á©§ù³-FK^ùß»‰g’3úküëŸÚ‰Ú6™¤-ì(ìÈ0!Ê„n« 0¬íM‚êÚÖvÓ€hojm4î:è?oºÓOÆ¯—üÒgÌ\n–F÷³éñÜŒÛÎ”üC&¬³‘²AÔÓìûS„{ââ:Öãc;Æ:°ÑhÀ@!Ìuó¯´Zñ‘g·*ºH­û×«~ƒ3[Ã:æi¶¼%RØc¿:•vËoévd—{ÓJÑÊb‘t4%Ú§30Ğ[*e£3^„›vÑ¾¶Š4ì]‘}ÚqKÿ\0×nß-óf\"ôŠ‹l¨¼ëeSÂµÔÀ˜ğàkr¯ğ(ÆÚ¹Ê°&Ã ™´qR6nzšfÙdæ¦·¬ËóàV¸±¸#•aKú}–`ó«(Ó¹H•˜sµXiÚ˜dİº,KáÔL;D±©øEx‹§³2æ*‡Lš”º„Ü_·y’BÇä5Gùä7¯i?ó\nÂŠª:X™xºƒX@Ê®`_Ú½”(¾v¬gòö{D<ÅX#ÓºÒ„^·ï%8›¶t´¶ ?²l·Õñ7æ;Ì<Z_ğ9\\_¸6r?×ÅÚû8¾4?f#¬LI»_¼ÛŸngÊCá=i(—ókÖğ›âü[MòQŸnØü¯nş&!@ëXcÇ!ı+Wm’u^¤PeĞ÷“œñò¡¾3‘©òŠÌõîQ×5aSË,ÙÙ®lku</–¿•`Y½¬	õ~fŞyRƒ·u³ iO]^m©¤n€X~y6ìh¶uŞÈ¾#ğ§­og@·<6æ;˜O¹‡ûš²(•Åb‘ÕYe¿fòCaM„2²ø•†c°£‹ƒQll|`zô§•È8E}£mfg—0ğŠûÍNq7üv2ÄÛ¸Ø·6«Ù‰ójà¾~t[â9(­šKğÏuZ…WÅ„Ğ²<ÅªÖ³r4ROg	üm¿ÂAô=»•(‚×i”ñ|µÄêßµ`C=´G`y¯*ºç~u‡;÷[!Ù»V»z}ÏÙÓ»•~,³Ö±|ÌM‡Ş?=(ìqû„÷ótdrcÏz{.yWÚv‘Šçy\nÂÈ>•.Ï+_w˜>Uö™‡ıµ<ªY>Ø»9“Ú6‚šFÑEê= ûÃÇûW€iw—ÄÙá¶f	c¼°½7[K~ş½–<RrA©¯´m~28Sä¡³Œ¦YllÎÚ¯ïW£,ŒŠ›iqmó\\SnÏ²¯ñBÒ_ñsA{­\"x¹R9Ôºhç¸@xW­o6aºint¯Ôv$¿)¨Gê¿eÀK–´qæMIËÒ¤i›ÙK˜õ«ÃÇ&“Ÿí^Òl~‹j#ˆæjRO:iQ_‡Î²§“ ¡.Ó<íFÖ¬p3MÕæ=(:h{»T¿¨-Jß¦£C­¨ºê¨ìo|É¬ÍeÚÌÿ\0åæø¾V«¬¨zt†v\n¹Ò¤®±:ò5hıù*VÓ´8´ò!QŸ.u,p¡V-ïŠ+bXÅó,îu&„İ¦rzô­™Ï‡45‰†ŒE&Ñ&Q£Û[RHbhãæÔö4›Š˜µVU¥ÚÒ5ÿ\0ÛZ,£]µìŞî×Íj1¾ŸíXWi…ÇV\\èI¶K¿a øGã¶©U»¨£V{Pİf/Z×–#ØV ìóNÉö»]<úö¦&fğI[™2•2\"®æŞ]i%œaºÚô­¡—ÎÕ¾NÇÙ6TŞ7ÄÜ–„[YİÈ¹f5­ŞÏyæ>Q@Hnç6îÎ³\nÇ±¡_å£7vùNÜ[6Ó$\0êºŠÅ,¯3~­;–`ó¯òëûW²‰Wö¬ãhÑWÓ¸„tĞš¹õc©4c\\X£#òr»<-5¹ŞÂˆÚ6vŠàØŞâƒ|ì[³\"(E³¨.yU‹íwò+•lğÈC`ã6vyHéB0÷‘òríÃúIìivV‹Põm³j?’!­D„Eá—tâê5¬AnİXŞ‘ã“ˆr5»×¯[fÚpGò²ŞÕş\'iyå^X#@«ĞW+zŠöqªzõ¤@ÃÎ°¢…^ƒîIc`(2©çù\nÀ‘­»û¸ÃÌİ·r+Âıw46iNš\n)Í€¨½)¤¸¾”–Ê¶œZåj¹­£jÏ §•¹içChŸ.D\nß‰Ö6ÕbÃşôq.\'û0ô¬e‹·SË¹ŠÃ_ÇH4gàsøğR×-lèÅ´*õV^}‚Nøß ¨ÌY_„ù÷„qjÆÄô ‘ß­‘Aó¬/›!ÃÚ’(»F×¬f@¶Ôhm,¤C»Ÿ<sÁ{¡™¤Cj.‹ÌÓta_iZ6{r­ÎÎ!ñ¹Ê¶ŒD\"+Zy*aöIÿ\05Xaˆwæj™}ç>•´Èš·å,í{-8I,ÄeGÎİÌšß=¸jãNãÊú(½o¦Ú$…[Â‰ÈRI¿3ÁŠÌQİ´²ªÕÁ¸=À do\n-xmˆ´P’HÖÂ±FÁ…*ˆË³h(ï6{¡«¹Û1R6óVÂÜÇ†GçåWm¡cQFĞÒ«ø”äzÑÃ&•V›eÚ8ŸÄæ¥r.@Èu4îI–<Xo¢¡#•û¦K_v‰Úã%å\\Z±½a,ó«3ı)\0ø´¬f8Øúw2íŞ´`·Ÿmœ^‚F,?#´²ªÔÕÁ¸ìk)\0gÏ²d:-­D%¯[FÌú[R´.ñÜiÊ·q:Äª<Xozm›izº£T{fÛßè)¡İØZ@÷òôî,õ-t@\'ùdÍ›æ=»TÖGÒ¤Şaº5±.DŒò£´J¸ÙÆdĞŞ±²‚ÇÒ–t|(Ùj©‰ô¦ÚlNä+}qh×H›´‘Ë½.ÑNÖr/xœKçBE\0uŞBŞ*v&í™½cøŸ2{gåµò«S!°‘|B¶eSÅÇ•bqÁËÖƒB8°áÒ¶i#¾,Vvëİh‰·CAö©Cáğ¨Ò¸A#¨cÇèN”3Ô_³Æ?sWƒ¨Äç•^Ipy-EÛÕ«­ë^Ó_¸iAAÀ×¯rîÁG\\şZ¶B›#<ò|M™¨â&øV¥q¨\\ª!ÏÏfÓnV¦ò¦x“ı©ù½^8÷qõnu¹%FtÅNCZŒç»ÅÇjÓ—r tŞŠhö‰OÁÔPT›‹.ÖárÙS+Š„q¨UÍoäá÷XúyÓlÙ¼’-‚.´#ûFá#á²*ä3»5éŠû°Á™­ÔBó;£§ayWñyÕÑƒ*Ük$¤\0´‘±»oZË‡fœñ¨øMHF\\4šŠÇÚaåc˜«G²ˆÌæ£Û#g‘ûO1A`|y\\ÒÈ’´2hÈ]¥êíÛd[o@°±éßV\0ï§JË!W\\íO5Å®?fËùUÔƒßµ3(Î„‹r/é5kn†zŠŒşšÅ+[ æi­¢	¦’M÷¯´í>9béIÊ-QÁÂÏñV/¶OzQ9ŞB~>b¯Ú2»ß„V9N)öìyTÊ)¤m^šfñLØëó3Ó§Ì-RA2‘€áÎ°lÓ©õ)Ü¼©©eæÏjxúŒ©:¯	î+t‰’A£®µmüSÖ¶¦ULÅn6€c+å­{˜/ÌùT/Şàkk²§;fÕxÖïÍÎ´vˆ­ÛÇhÔUM?‹] ÁdZ`ZúzÕ„kûÖ(™à?ûf·¼rIó9½}®5ÃÎ³ËŒùs¤I–ü6kĞEQ§páUè>öÆ¸•pÙ©Šøjè@Bh&.\\_„Å4Gô×‘IüÙW·ÙZİPŞ¬¯cÑ²ìË²Vä8EgW_tÚ•½F³¦bÜèO¡+Î­òÔ›fÓÄ/dSVF°ìçêÔªG»ªæ¢Úc!ÂåqØæ_\0Ôwı»VxlXa5i š6ş[Šö1·«\n‘/vq­(A¨³­U“cSÏY*ÔÓã69„è{¶P\0ì–/ôçãO^æéÜÌß>µ§âJ0¸5xVñ‘ûŠ®”Fo‹­_ğdÄ.Õ‘³óS¯g´ŒÖ°bŞDù):©¥Ud÷Â‚’>c_ZÄŠZÚ¯Z)-Òã0Â¾Í’|&C¥«p™›iDÊ0³5íÒŸgsÏßŸfn/zìì¸íbC_ã6»ÿ\0§µ¤Rvbn>*Ê[ù^ÑZ˜gc«Õ†üM1êGİXäAº•¿|şDŒ~Ÿ¹â‘Gï^\"O’šÿ\0/?ôÕ¾Ç?Ò®`˜ãVv*|ÅpJ­÷˜ÕúR°6Îƒª—á.Fê+„ËĞëW“gz\nİÅ³Èˆñ>U‡ì˜Ÿ­økí[[›áDí»aÖ·¸mf?ç¶Ò-ë©-Õû·XÔOÈŠ8ºš°Ğw¬ÍsÑs5pIÌ¶µu’iˆÏ ®\"-u4o9[ü¢¸§”şö«ı¢{ÿ\05›šô¬vŒVù…{M–\'óZ²à~x³|2õSXCan—İ* \0åK}@·ã\"Ù÷˜çé[(Mæñ9ÑFµíœÆ?é¦lk†1³¯_ˆÕØcneªĞFïè-[¶¥\"+”-•,ò7ïj¥;ô$ûA¾Êş%6¦ƒì3«¯³nEkÚD»Gê0¯ğìÒ/ÈúŠÃš°ø[î>ÑûT?ZõÌş3=#*Ùÿ\0‘0ğ·>Ã I Ô_JE³v‹]ÀÑk×²®ï™C¥Sp(ÎŠÂp¬§í@ìÌÊ>)j1XöÍ–kCX²¸9T,Nãizö6~,«ÙíD_á¦²Ø†±=iåmYª(GÆÔ¸¹œ«…ìëÓ\"(4ª\nÿ\0Ô1@J1D|2Š¸7ó•¿«fyEZ\'	VSfSË´»RO¢S¥ùŠ†	\0¿¨«ô½ª9G…€ó­ãÈjcÊC{Ô€#Fò|Ll(oÖ\"25oæ[[Â—Ê®Ÿ^•ŒûBÜÚ•C^\'ëÈö	2áÖÆÕ‡/Å~tˆâÚæ5€3Zİâ+Îâ°®ÒluË:h‘‹5µ<è+Œ¹XÓÏğ…	2ñxFU¼ŒánL”¦ü³çLğq)ÆyÑ1ñÃñğPek©çŞ×/Ãm®Oy&B¦‡g’fÈôó£³†,<FüÏd[?ÂsoJNJÂÕ²¿;çéPEªDÅt„’½sàŒÙŠêÆ¾Ï³M!ùñAm§äÅ› *7‘H_‚>¾µ¼•±1åÈQYc!zŒë\"h$9¥Evr­ˆŸuvU?µ‡ZJ¸£SÊƒõÎ–[ğ²V9†•ö˜ÇÌu]=×úƒå4\n›ƒøµˆ|f¸¹\n“k‡‡ÈTmo„çÙš“–tP–ÏË1I‰ËÈÌoQîÁ\'DçÁ ÀçÏ±âˆ;_yÒ°ŒÉÔõì(ùĞRø¼ÿ\0$¹‰N_¨Ñ–Sw?Ú²`hHŞÉ©¤Œ˜¾A_ârÃÓaBıåA‘i\0Ìç­Ağñré^ÕÀ‰s}|ë•oM´Ç„©Ñy•mÓø	ååø¿åÈVê=NGÒ‚.€ZƒDm\"›­ë‚(ÿ\0YkÓI‰¤ø±šòanklëír)HÓ(”ëëØcdk²>.”nƒX|…o?ÒìU\"%şôZ.LÅ%ÕE+X­ÆŸ€ï’ê+u„TuîV¦ÙïuC••€ü7øMä÷‰¯âšFmtë”[õ·åe*ÂrwÎB9PâöÒ·‘dyÑnšŠw9båø&Ú-ìœqyöwwä-S	Ô«1¹cL±¸7ĞF•˜ûD8dÊƒğVàN&£!ñ>f­–\\Ç*;ÛÈŸ5×ï.Ì­o7‹‡­éù¾”n­€§¢óëL%#“¯’ä;Š ÎM…,³êuZ£ÀàoiK?Á£Óìò5ÙsŸÁ%€Rññ¸4»:>mé[½™±:PI,o¥ªÊ¶çŞÄ¬ò¡(~mziâÂ/j‰Šğ¹ÏÊ¤1hº)]i\"Bë‹#IñâhŸ¤İ¢¯:…/‰Ñ­çE$RÆôpø4­›_Zº{¶9ŠË|Q›åÎ­º›çqJÇ‰—Biâm¨\'Ğg\'ğH›åO!ôVÅÉë[Ûª,.(p³_¥[›r§×ZŒ®¹½+©wÆÜC©Òä{MoÖ“r¡Q²k\n’5<#Šô|ÖS áÂnİ)[	³ËZlqÖAÓ:t¿¦|ê	ë`ÔñFkçQ³qcŒò¥eˆãÈùÑ…S¸´ïJ˜”#®-9Ğ$ŞÙ;XİS*¬9Ö,yßö¯f…g­FÖÑ©¿RR’pğØÔ<·ÈÃ5µLhsúTLÄNFNèyTËO²ßÛ^Ê(Y<Qô«*çğyŠw›„ºá°åCy´]G +rnWÎ†4m/Şxéo”ÒÆ›T–eÔšÅ3HÁª9ÀÍZÇÒ¦ƒP3şÈÚòµ‡æ:ÕŠ‘nßCzc’ŞôA#AÖ¸¦TÈ–!Ûè)m’…µ¨YÎÍW¥7ëÖ‚¨°r¢ı~àÄˆVçâµë\nXÛÅz±B]\"Q™<êÈ¶ÿ\0š‘[KR˜ßÇ&ÿ\0Àäô¨‰9…&ŠôìÓîîî«êk´ØÅ¾ajX¡Ef¶#z‰E”±Âêu	ñT©$„\';éK.#i#Îõ¼Á½èO{ZÕ¿DÇ—ÿ\0štìºÊˆ¿(£½ÚßÈ.Tb»6ºÖÈA f§óøŠ5½¨ÓîÒ­lÕH·â%ºÓ‹põîğ›×=m¥0AÂzÑfµ­z<V{kH[[gH%PÀ©Ö¥ˆœ[£ˆzV$&›¦K M©Jü2\n‘³6ÏB·{bË­IˆŒ‰à4nJä2w™Â¼7¬Xp‚I\0ö»Vş[T¨»Fju©QåŞ`6½E‚ÊD­§:Ÿ\'ıËıÄƒôÓXWJ¶\0¤++U€°îY\0½!ÆW	ÌtÊWyëL$\"ÿ\0¦Š“}u5€ÛNT/Êâ¡sóZ¦Ö:–UŸ¸jšUV`maOåÖãË	[PR×Ã&!jŞ2›ó±ÈÑ`¢ç¹º…1¿öÛËØ››ji{µvº‹T+‹ıV×óôfòïÉo–²çıû1ìÏfö½{[_Ë°mC!¨çB²ëL¶µ»u¤*¹ƒD.ï+‹Õ–B–5Õ‰:]4Ïî.XXåÛ,‘¢áuš7ZVò3u­—á,Í§æÎ›áXG=`Û¡h›­²5‰0ê;ñşô‡ôùUù“Ò¬¯¥XwC™ac@ÄzÖŸt9šXùš0[•éÀ(i@‰ÍÂBÒ²âq€®t¡Å‹°‚ƒH-ck›Ñ9f÷¨€µ’/÷üÔÈso„u46šP$“7FÒ‡ÚÛØÂ,z¯·l³œ\' €İI¨¡Û£(ïáa¡ï\'òµGü£î/ÖËÎ¬­‡Î¯#3ç|ÍCfßO¸±9Ğ#0zQÅO^twxrëÎ„ŠØs®‡	|Íø™9T,$5fFWP°çR\0¸“9kX@²ŒéKßÅÊ®†Æäb¥ô¢Íôë^äÆ¶çE#+m8yRÃs›´>3\n?5Á*ãgv°¯²íÛ9ÍËœÁ¥Ù¡Ù ã6<êÀwä)¶äÚ\nK)¸_†Ô±m cÔîóÊ±Fá‡—hşCQÿ\0(û‡ıD½¼ÅMiÓÅˆPilØ4í½B\n[õ£FÂ”u€ø5¬X˜Vò<ÚŞ´=o¡§Gcˆ6wåJÉkaµaÓˆT„±c~\\ªI{K‘Ÿ*ğ›`Î¥€µıŸ\"›]H4üÃĞQÊ¡Åà¾uötğüUCpq/üĞRE¢\\f“®s6üß¨açFM’g…½*4Wmá¼²yt¯µl›Nî-X.`Ô›V×S?ùaé[NÓ÷í‚ÿ\0šXeŞK ^2¢„¶%¡ÿ\0mª?åû.~Ìßö§NDâ†0MºSXW¬!‹yö5µµ?^Âezxœü9P#¥FùğµJ~UåÊ–Î	je¶j)$+‡Œ±)ÅÆ[Td“t¬&Z÷ìÂôw@)ëFY%29¿J\'GMÈ+!ùÃÈÚ(½6(í‡&JeÙÛs¼#åjÙc@ài¥I´!öpÜVæÆ·dãcâ\'ı?cÂóYÛå¥ƒl³ÂÂ£ôû‹(7ı,›Ò·š* Ş¸ëJöµèğ³_+\n‰…³)çMŒÙ‰ÊÜ«–½­—*ŞL#AXX\\U”XVƒïğGãs„SK‹†?f¿œ®ËÉ8Ş–QÔö‡æn”›.Î¡ŒiŠBİzVÔÀüÕé Ù­?Ş£Y™#‰38Nf¶‰Ù†7”â½4 û8”¨ó¨¶h˜‰¡ĞT[<à:ÊlŒ5û…”†á“ÒÏòiéEäk\nÃ˜âæíÎ‚(°‡v·é‡×­úşrVDüùÒ¼Bâ0p\'ŸZdY6}¨µñš]s¼»¶˜m1â;„LV&£y™a..oVWE:…9‰cP§ÛnSQÛ¥AµÌêp_·fî(ŒÖÔƒBXÎ_íİ*t5€“¼Œ\\yŠY-~—üBìé|rs…oÙ#º§üŸÎšÎü+[ı¡šN2RHÑ‚\\^ØfÁˆæ·2>òŞÚv¶½+í{RïM|#¥}bi\\µÕA¾Cg–‰‹#ÌQ‰88HUÊñY8ŸÎŸ–>­±Í¼èlêqÌ×Ò¾Óµ5Àÿ\0jVFñÛŸsø†”\\_!òš¸ü1v¦½«Û’Õ†Ÿ<øqF«d¶}™Øæ4ùV„0dÒp(…Dã¯Têk1¨¬1íl°TVÒ»IÃ%øXüµÓ¹‡µ5ÉlN\'¸È-.ÎZÒ0¸»½˜f¦–M«Ù¤daQñ;fÒ÷Ëlù^¶_ı4YqÌz\n“jŠmÕ£òïµºÛaÅÖê@Öí3 7> 9Öå$øOOÂ–c ä’ÇİÇÓÎ†;øİeù“›`‘Å‹®¶§yÎ4HğÅusì < ónÁ²E³–|V¹Ê·2nÚP4:ÖÎ¨¨c•mµ6	IçÒ¦ÛæÇ’y-M´ìÁZ6Áÿ\04’˜òo…ª%VÜƒÎ›{¶®L?øÔ<º,ÂÍjk’vXÊÄkØ\\G‚ò\ni¥ğeG¶¶ìŞE¯5ëXlZ 3êµ‰MÇİ4¶½¹RÈºıÜşİh<¡‰oô¬MÅ\'S÷^UŸæ‘¹Lã8…²Î³©õî#wé!ÚÕ%;FdEB£|\"+ÜÚ½´Jöc­N`lhË…cÃÖ’(Ñç†Dë@‚4„ğE‚ø@¸Ò ÚC»åRl»DMŒ1\"³Ê] éÑjëğ.­ãøåâíÄœ2u¬†éùF‚¿ôûŒL¬G•-$W½ï{×³‘p_„_h“:iİİ¡)ğŠÅ‹{5óèµs›OİŒUÃù±…†{åÊŒë,“Ï ¤ÚU\n­ÂœK«QÅ<ˆ‹!‡ÚI±İõÃNÑ]Kp“n!A6©ËÀ‚Éu*¼Øˆ·>ĞZ5b4¸¦Û6)½¡øZ¶}iVL#•kXw0°½cO•¹Ví¯~¥{Pcÿ\0j¸Ìw®8Wƒ™¥‘ât)Ä#A”ÜÓsˆü«™¬WÜ-òÊìE\0Dƒ;ó5d[\0ã*Ä_áìä¶ar’µ´C’DëFUÀ$İam}kgH±‘“ëÛx¸Iæ)f1joq—vıü2-ëÏ!¡Ò³Š?é×Œ\'ÕÌGUÎ³{1\\2)«bZŞäZˆ,§¨¬)Ÿ’Š\"Â:¹µqí,ß¢!LÑÅ»¾…ÎuOi\'3ù>£ë^5ú×¼_­{Å¯­Iı« ÿ\0ÓLÖ<:ÜW¹’½Ã}kÜò¯wõV±ŠÎUø×¿?ÓJXç÷ÛÜ‰¼`ró«ìûSØé|ëHdşÔ7›3¯ÏZ6!wæ+|p:›eMÛC+_${Ád[kN±“tÖÿ\0œc[ÕÑİ+‚­X¨?ø×ùxÅe\nëDÈ[\n#íAé\\e¤õ®öü€štïÒ½ó}+ß=xäşªø¿ª¼?Ş¥\n,0\nN{W»Zğ/Ò¼#éZİ§>cîï¬k÷Oáò=–Scˆ›Ö¼ô¯vµî×éY(¤ô¬¼õ¿ä÷4bÏ+•ËïÒ“ùEfmV)>½…ßAA‡>ÉÏé˜#Ö·‡is!<\n:Òâñ[>İ«ù‡fçÓ³	|Oò®t\"1¼ltÅÏµ~ü£hhÃ\'?¸ì”zwÉ})Ú%Æq3`ÎË@sÒ­ÉƒÅŸ•/#–?_¼J¼’ŠÇµ¹•ÿ\0°¨¢‰B¸8ªí©Ğu¼Ÿ¦IÈvÏü´ŸËXš)Ïéç[é–ÍğÍ£ùÅaN9O…+h3¶)ñ¤˜ñÒ¸Ty±¦Úˆ!…;SğHüiıü¨8çMü£¾E³–qåOx…hàÏÎ†#’ó¯™uÿ\0ü«á*F^uìSÿ\0*öÉÏQD²9W;QÀ¬Ö®š…Î<ÍbÄMş÷QZŠÔV¢µ¨¯¯­Ej+^Ï|\"ÏZOñ€ñi×ïÒ¢—š\n¸âcáiç›9[65ö©u>!ÜÚ?—ş)=cÌƒü½¿z×¹8V\n1ŒëÎ¬u­­ÏÄøhÍ³HßÈN¢°f‹ãó «§jİ€¯x+Sô¬•Ïş5î¤úW¹zÊõ¯t?ª¼?zÒ:ÿ\0N¼Qı+ÆŸJ÷‹ı5ïúkŞ\'ô×?¦°âL2g§:ñ\'ƒ¥x£úW‰>•âé^(ş•ãOé¯xŸÓ^õ¦¬Ì§ÿ\0¾òÖè(îxm§{KL0ÕƒŒ\'BkÙ¤l«Ê°¹F›	<>TšV.s VC•XÊ~•ïMºZ¬&kzW¾z÷òW¾“ë^ö_­xäşªÕÿ\0ª¾/ê®Õ^ï^ï^\n÷b½Ø¯v+İ­{µ¯vµî×é^í~•î×é^í~•àZáP;88&ÙéJ}›_ ¯o¼JÄÚ_h“Ä|#¥JoğÔb8X¨\\Ï•,‹£İ¢ı?â—Ğv>?u7>†§ø•[#ÜšÀaŞÖtÇæri­éI´D9Yè0Ğö¯¯ü^|G‹Åb§îLŒcÁsÃn•!EÆ˜UpÜ9Wè@¨ãP0Z¤F¶|µFÍîyÊ,Àè)_a{:[ÃJæl±xpÑfÔ¡´>¸1TBf%‡„ş.Ñşô¥Ğ_<MŞá¯†µãJñ×¼4×v9V\\¬h¦I|$Z°4Ìåò €d4íÚıåKéÙ……ÅaBäß÷hÒ©ÔQ´5¸.˜NE¼©c]v§à¡““œûöìy.Ø®ã\\«dŒßÜ¶™VË­ÄÈÃÎÕÎ3ÄßØVË)kƒ•­¥êAn”•Fñ³â´‰åç@6Râ#ûÓDZÏ‰²¯³ö»»a­”\'Á›e¦_‹ÂÚUÂØŒõï%–å©wÄÔ¼‘šÀSİxÔÚ’> šu:?§f$cò¬D—n§»µûÊ—Ó¿\'ıŞö¢¼b“ğHz5\\ëÏî8@ ­;ºviÙÈ \nlqT+Ç<ê›ëJ«ğ‘sX±h‰Î ,\0Zšµ¯×ŒWŠµ¯‹é^úTü\'‹JtõîZ½Ñú×ºşõî×ë^ú×ÁLE±^½àúW¾?J÷ÍY»ŸŞ¹ŸŞ¼¼ôüygJ~÷üÕXü5s|«²¬!r½ë1~T.4¬\'JÒ¼\"¼\"´“:õ–Ô\n¿Üçü9.ÎuqéL/|20ş%+´r‰hF¿ÿ\0ßâ=­x…{Åú×½Oê¯õWù˜ÿ\0ª¿ÍEıUşj?­šJÿ\02µş`}+ßñ¯zßÓ^7şšÖOé¯õ?¦´“éY$ŸJ÷rW»’½Ü•î¤¯×ÿÄ\0)\0\0\0\0\0!1AQ aq‘¡0±ÁÑğáñ@ÿÚ\0\0?!!˜ü¸œJÆğÑÕ%i¾¼iıy+¦Ş­GBT©ZÖ•«8Õ•üXÇÆô\"Vu­>Óã*å9Œ¸3Ÿ‹*wï3#Nc™Ìvğ?€•8†¬ta/ÉŒtÛSã=ùgÇ0ñ¸kÆ¬eiÏƒ†„¹rôa¡«¶ŒÛÈÒ¡1Ò¢ø^\'&†¼è²ü8„fÚÔ¨ù›éÇ›†gÉÕ„¿Á‹/„T\'3™Z;B:>	ãz>O—3î0|8òg::\\wœJ†4?‹ÌEş¼+Jó{— •8ÂT¨Lõ8Ğ4\'>F†ğ47‰V,èêø¡áÇ“áz±ğt5¨Gù¹Ö¡ƒe1aK.áÆı³¿óÿ\0ÌÌ\\ÿ\0Sñ~§µ|’İ?¢`¼³şÂ;S<ÇCTˆ¸ºeÅHĞÚ”±µU7„ÒK02EƒhŠÅnËŒo.5m“¾\\§ÊW±IÃ3ká6Ö­Va~ón´º™†ŞU£§0Ñ§½SÀŞ>FV<xÖÿ\0Òó/ÃŸ*ÕÚx2ô¸¶fX›«™æ79›é™›œÍ¡8…´RÜCc¹Î0ÕWÓª`ÒäØËÅ<ò<FYÛ\0p©°Ÿ»¼Æù\"1{\nùşÒÊs¯&Ä[y[²»£æ<„ÄÇ3%4/çoä:2õ¯j¢jiZcù†Œ½SQ¡äyš:›ËBæGxéÎœÆ.t}üÉ*xsvº©[Yq‹7iïóuM”¶ºG`ÄªÈbôÚ¢}—˜õ6—“d¯ã‘«W.³Ö÷²TÖÅL{ˆÚÊV+QÍ^`¿¼0ÆqÖ¼hÊÄv•ˆs¯Ôã::q«#pÖ¡.o›=BĞèíÂõ%ëÏ…ø!–¸åOÅ¡¯ˆ¬½Ôz‹+j‹4‚äaxIÑtcæÑŠ¨–h\0™\\Ğ*¼1œ\\p{”˜Ï¾f(ú×/-ÿ\0LÁ°xvÚâÇ4DÈ^»ğ@°êJ¦À¶»Èî7§ÔV!}ø0“@[.âÓ{ŸÜÙà÷.Í˜ôâ¥”üKï–Ì^ÊŒA±¶cŸïÌäî=ı…€¹áô¨ğÂÅÄfÑÎ„#2Ò¥Jœøº_ˆjÊ‹ ³³17’·SygoAõ¯şùÔ¥…A	\0D÷e\'«ˆg}¢»eş²èìZ½`ÜÇ„Ç¨ÛÒ¤ØhQ§n:ÁœV›«› 4•.×GÆœÄ®—‚>!½ÊœD­´KĞÒ¼GCøßÅ‹@ÑÏüFü7‰0m”:¢ ÏÓd­9•;›‚9›M‹>ô¦W{œ\\¸­wôAÿ\0Ìä}å¤â}´ıÎ•-ùt«™áı„J“rİi^OÈâ)Np>Ù´7Šs*mD¼nK™båW1Æğ©qÖó^¦†‡üU«´&şw¦?€c+WoltâaÎT7Œ¨—1Î”js1·}.8ª½‘kNR‚±¡÷‘%»».÷Â\"ï!€¨ÎóWÄæáW2A·P•©Ó¸fÄ7™F-}JƒÊñêÜyÛËÄã~¨¢æó3Ì #{Sm#W(#=kp%øÜ?ê^‰>•¡¡àhÇ3o\'Nt%šÆRí™r´q©à%İæ)]Ît§‰½Ãês:Kµï [›/ıLJ¿Úa¡)°ÇË2.T}Í´)J ±A,9Õ)&ŸÈb40ğ&ÓP?PÒÈÔ©QšJü	}ÛT>\'ó:š—7Ñ‚ÆqãmêÊÕğ|+Ö•_„í¼Ÿ¸N4Î¹«è÷.uówâ\n( o¡/güÔº³€&}ß~¥fØİÿ\0ÌÀŸúÄ=Ç®¡¬‚Cwú&\n‹ak)­`Syn¹ıDŞ¥F½¶_¨]ŠOulâ`‰n«û\'âM¥“œ `)ëVjèÀÔÕ¿g‡ğ|	†ƒ§ÙPÌu5­ç2®èèÆPN.~YÌÚs;nø¼†ß±Öß1Aòè	`zq=*ÌëŸqÿ\0#æ\n¢[\"]ì —Y[:,}DØö¾ù”®çàŸÜfmş—3.fçàœÖåñ\0¢¼ƒüHÎc§0œÇÃ]òÎ£Ô1+SRJÔƒñâßB:>U§:^ßÀcÂ3nOşa6¬òÌÖãyıd6íˆ’‹jè|ôÀMÇÅ¾Ã3´Ôº4ÑM\\’…,¶%ˆòKÕİÑ‚ÜÅMèü‰¤ƒ¥+¼±ZÎ[öÿ\0<ccJÃ¦ëmÃ·KV°Æ¼ê;ø:²³\0ĞÖóÏïCï6j7Ó‰pœBs¦Ó×‡£«¶„âqüLUN<xÓ‡ŸÃëN|ªV¬ÃÉÚi~dcÆTãS^aês1Œ%çFëÎ›Îa¿óhéZ:ó¡áÏğIÌu4­	Æ—¡­j°ò<ïÁ†·/ÅÓMYïKÌeéRåêèÅ†‡‰¼s7•êèÃWÊÿ\0…Ñ„<KÑĞÛÀñ#®ú]m.+Núñ8•lC[òá+N<ÍàÊÑ†·7„Û]¼BV„u½ràCøëÃå*¥?S˜Ã@Æà¦&8‡pgááÆ¼JjÎ\';B½7ó “}/Vâ“˜ÃÃŸÈÑÒ±ºs¡¡¡«©­x¸„tæ|GMâxŞœh>U1ãÄ<Îeøº>¼9ÑŒú+Nu¬èi	º\\%iÆ†ğ‡‡:>|ø£CU¥M¥èÍ´¨màCxÊÄâ_øš3>44\'>Bq«§>&Ò¥cÈ„Ä<+ËˆiRãS.\\¶+´½6†jE˜Jf|”M€¬«™Ò´½9—9Ö¥y_òš0ò.‚Şşn·æx¿Âæ\\]ùÜ¸èió-O~¶ùŠ{ªN•í§1Ò±©«æo£ãAÇoæÂøq7†¬â>w™Îğÿ\0ğoøªmíÍ‹\';nÖzÑŸ0‰?µÔõ!M–İ¡‘v}9…ÏOE—åSŸ+Ñ&Û@-`B÷—¯½.*\n®­/~`•qàèiˆèÇCVV†¼hùÆèkwï£.¢$j§8Wu)44a ì‹`‰c¹Ô çÆ&ù9›®µöEÀ¤.{¾!Ò£’ûö#Ä °=—7@ÜÚ©Ï¯¦\'qù£9˜Gcì,²Â3Æ‡6îÆıo*2£^Ò/ôN\0I[^ÓGüê2Î6ªÃ. <_Ò y…Îó-¼|Ko‰JÊ2ÏRÔ^`d§~\".OªKcí„\nL•š—= P‹µu;ÕÀâÿ\02ƒ(Üt%8QÚç\'*w\\ë³Jğ<«[Öüà:¾$¹ÄÎÕKæ9-pÜJL7LfV+Ò\'e¢]™g¨N©—gâgs“äCïˆ²˜ËßFù³˜¢‡î(9`¸¸@7sQÒ\0õz©›EÖw[Ló(†Ô½í¦ĞÒt{Šé™Ëd7¦o	íªVÿ\0Ç	[ß+~âõ³?ëxOzñwOrZáÿ\0î2.>\'ÆŠ_e#2m´Ç(ö(¬× îŒÂÇ­Ÿ˜\0N.[ølµ\'sÇÄ¡\'±Á9ƒ.ÌŒ¿st$öUâùLæƒt`‡*|™Úr•öÔÎà-v·€ÁT\\8}ëÆ®¦¶æÇù[hx>/‚J›B:T”b}Q‹ˆ™>AÀ¶²\\X¹5Ü œ­_Îì(ì-v·•;@Q¡ìğö„~wÌ9°ı£×ºVñ¸—µ•u-;h¤{»€HšÀñ  ´>æ×ÿ\0—¹óáãa[ÿ\0%œBzAéî¶­ğ“¯7¾zàúe	 ‡Bq¿¤«o“ÔàÚŠŞ\'†9¨£oüA4*\01*®c	]Ÿ„ŞbË>7Š»<:ıÄÜ¨FÒ¯7¿‹J©»©üƒ˜Ø§\nJÿ\0Ä„Æÿ\0Qp«µ¯á[±»WtW¸B©ôËĞtçÎâc^|yÓ˜ø0‡òï6ğúŠ¾‘N½o\\E-ÅÑ.jî[Îê†#ëkö!àŞ^`ÑTFU¼ù€SÕ¨¹›½?;>²İô 4€£—ƒíÈÛ&hÌ—ù\'¥ÈÊ>8é¾%°ˆœaÕä÷,“•‘ë@œ½À*ÛÓ¤mŒß´¸ºÈ6]™Ğ(üÇB3®Hq*…ë©(B³?BØ\n„€ÿ\0d¡AÙÂ}Mš+Ï¯ˆ›Õmñh@ìQ›ª–õuê™‰Uİñ¦ÓİkÙÄ/\'fÖöÆI[aª¿€ƒ` ¥_ï¨˜û^ôöã@Ê3/Á-ñekz„Î¼x°—¡9‡`xy)c“\'Ô]{©Äµ(2™Ì»Xñ¾Óû˜G¹ÈWqHQU÷í‡Ìùå‰ı.C[Ìô*jï§¦¤6ŒßáÉp˜Š‰«‚&ë˜/`›Í¥Ë]õa?p7JÅPGxhÛÆ¼¼y•£äF}+át5#«®^…ğ@ ƒJÎœA+SB;Ëñ6—âº›ÅĞÚü6Ñ•åp˜©ÆœÊÄ­;Ä4eñ*WñTkNtâ\'ƒ>5iÆ—/BÂ2ü6ñãB95|8ş|/JĞ©^JÏ•ù¢>wáÁ~;eÇm.::ºq­øq7œCJÑ†#9œxš™£¡Ô¥B\\{œx:1a¥ËÓYÏòÜ5ùÎtv½>ãàjæhërô­	Æ„½MµwÓ>,1.?ÄEãÆ—S¡«¨ç[„Æ¬?ÑÑ!¡­×Ë_0bõ<ŸY—xƒ3ıR‡âÏa>\"D0ŸªÅNt1¢èÁCKĞÑÖôãK—üUB;ézâ;i™Ï‹ b“·::yÖ§ğ>&f”]Î\'ï”Ìºâ\\¸†~—“1œ-ÿ\0Ò]ç‡B&¦ŒÄt\"ÅŒ²„ãË‰s8ğâ1Õ—äh—´­ÿ\0QàùT&.?ÁDƒì›â…ê¸œhGÅÑœÆV¯‹ËÓÔ¬ßjuaàx³*s¥^¬%ç[¯ËGÏƒ.\\½oøoÌÓÇˆÂ\\|\nÚØ©Fğù‡Äñ\'>wktıä¿‘¢_\0Òæş© eÅÔ<WPeøšßƒ£¡«+í«ÓB¶Òå˜²[qé.T|‰PÛÊ£¶¬¼Å=~b«Üÿ\0ähhøÀİX>d	m.ì3HGÅX¢—t\n\\¹qbŒ@ÿ\0ø“m*ª†¾Ú\\¹s­¸n§ÆIl4õ‹{©’{5³êô¥ÈySœWu7×çÅYÏu˜ùÿ\0lcîÌ¿Ô\04´°™½Åhñ§¨²¼ß[-„6Ğ†—á´ßE9]CmY&ªØ0î#R38y¯‘­NÚÕ~GCA‡RšÇ@Á¡ Ğ‡ğº*VƒéşÈB3ãºŸˆ¿Nöæ:\"Êz•`¥î˜å‘ŞãÔIi{åtçsã`Ÿa*Êà6¼Mñ.ğB÷6—.³M}Ú|L$ùø›W¶©k+Pw¦nËı?©ŸîâlP³¼{£š~¥R»Gâ±hMFMÅ/¤€YfNæ“«ªD	4ŞÄRÀßü¨ñÜ¨™^ç0Ğ·ıÔpÈ?ç~Ûƒ•fóˆ\"6©säÇªVçà€Z Á.½IÁ¾a«Æ†—.;hBâÅ\\ ‡ †·9ÓqM“ˆ4p<$3/ğ–†O&\0Ü5ú°by£ ›\0ÅBTâNN™gâ˜ç0g?\'éYéz˜P…V%Œ4`Š~y``?j” ¥$Ví‰òÄ\\APrÀŠ¹Ù…¶Èı¿â…TË§†Q¿²è1àì=KY¤üPÉ\\% õîf²ÅGc508©Üy“‚.Joq^ç€Á@`–HÜ}T+«Ê?*P4àM¨>¬æÂ<Åo/·s}ÑNß2ıX9î˜B¸—U²dÉbwg×Ôô=„ÓÔÚ±íó3ëg.¾!À~(tzñR Œ%b	ZhÆTO\"?„ğ0Ğ¦,\nÆèÍÖ˜S$á>ÿ\0„YU\0”!ºb]Knca»¡6É»0ÌıÔ°+\"i½8ÊÕ¨%ÏØŞæş˜LÊÆÀbrÙÁ=Á8‡“6¶ƒWNˆWRælîà·äÄaÙš£€_`ÄÜ”Ô££ƒ[ãıÃ¬0Où”7p6=¬‚`f‘‹ßÎvó[¨£€ˆc”ıÅH+Ô¯\nşÒÔë1¦t6·n%|İêj¨>,æQ¬·¶¯ñ¼(lÎKH”|\0•s‹’6‘G©\n‰c\nö‘YÅİÙ£à2k;ôM*‰ªË$ëšº;yš™–Y=­¾\'İ«¾Š¹UPÇÿ\0×¦ûœ­	}B	Ev Ú³r¨–÷ÄE§¤¢3ã<zNHï¹gÄzöİçëBLÖ‚Çà=ûŒâ;&¯Ó,ç˜œğã‹ÔÂ%.°AWsªl‰õ6WÉŠm²QóY›ÅÃM†¶ˆ×;s\0™°VŒÜ\nmĞ€ÛĞß$£2äıƒÔGñBvqµ¸›@joß&`ú›/áÕ¡ˆ\0wç³Äàø•>_¼œˆƒ‹æ&NÖğ×Ô\nZ¹e9ƒä`FÚ§šÎ‰ç—\\Îğ6ˆå+j®Ã,	n\\a/O¹q¦<;÷vÔ+ÕØ\0ğû=ïa›àÁ6/¸ı Á‚¼Mï9‡Î»F78êzğa½CKƒÆ\n†ë¨ˆìÎÖó>ŞÒ×Üm¯µ©R¥J•*Q©R¥’’‰R¥44¸¥BµvÔÓ3âÿ\0„ø±´¡©Ç–ğñ»ñ18êçAÄ\'“‰PÖà²~–—ÈSşúŞ%ê?eø,½Kò¸±‡L‡‰æ²ÿ\0—hë^ØĞ²åæ\\¹råøLóAğƒD0ÓP¶?sÛ?ÕV:ìÔšA—/[‹¢åÅ‹ ‹—:²\\¹rã¡|`‰Ö« eËƒñ¸>#©®È¿Â\0Ãà€>ú3ÀKşû%2¸^†¿ß¼ÅPeË— éšL,¸¼BĞh^‹Ôßâˆèé2i0@Ë Ğ¸9ˆ¨7ŠË‡Ú”ŞéjŞ»8ùœéYÒ’Ğ¹ÃuµÀmh±Ñâ/áu5Ù_hºØæŒ¸OíÑÎ‚)~Mwj½[<‘ |@£áæŠ9“Ä’YdÔ:(#©IÀ~eQè´œÎUªK&ÃÓ@©mŞ½O†nå—!ú]ÁL\\FiÕºÓ{JË—«ü7q¨éušÌe™õ6„|S¾¡µ9‡ˆÑ³RŠsÉƒ©I®Íj(:4˜4—¡ÁÄ½}M’p‹Ğ,¸ËØ)Çºá>¶uî\"âL\\\\¿¤hCcû•ò­BˆåeMš]jTb J•*T©R †Ñ#² c­–g$ƒF„ [¥ƒ²9†˜‰˜ *:švxL4>`]tA£héß¨‘Œeø$1Úz¢>Å¡Ù	{ây#êPV›Ë|bëƒå¦\0JKpDò°İ¯MÄ• Šñ …x0¢ñ£™À„}ïŠ°øš ĞH’ @ƒPÖ%x\n•¢µ+CZş²Ë€C¿n+x$\0·iE³rTYpŒ…œhĞæzƒ –ÚVtÚ0¼à‹+¶H–#¹^à;”îX02²±²°šÀêÒRW¸Ğ¹ô¡¡ôŸ>§ÃQ‡Ö|gÇÀ>šÿ\0zj£,’EiR¼jW©Z‰ÔßF&£ŒphB[’ÜbÛÕñU_£E÷7›\'mô¸êèmÚ\\ŞhùôjJ–B\\ÂÛÆÒô4>eÅ—¢Å—îS¸¥ï/2åË.\\¹zV_¹ràhE·ŒAXš»@‰˜¬Û&ú.*qƒJewT­”J:”u­¢K:€êS¨¦õ>,Ñw^¢\\¸Ë—.Y/KõÂ»jqÙæc¨4Kƒ\\¹rôbÇ@ƒA„\0e‘õ,_q9DfÒ+‰÷!³úŒ$fµa}’qëÛÜRï¯qnÑYqğ<8„ßuQKşh4ƒ¨Eè¹ràË‹â,PÕ0ü‰{ÑÚq9—ê-Ïàu!×Œ\"Ö.£,†£6¤â?2†Q|]x„»ºNuÜ™ª>®gÕ‘\"pÀİÊºc„¦²kƒÀÓx3uÿ\0{#c~ÓÕ	Ï¸t—¥Òêéd¸áF	!‹ÔºeêXüHƒ\\UÔGæX7\\a¢ÔI5!Ñ4İqÃm*0Òô,¸:\"(¦ó¥£ş`\0ƒS:~Ã8ùøS+öl‡š‰eV$7r©ˆ!>å,VnEa~­„Üª§><[´±¾Îg–œN0¾äï¥Î›Ì§.™Ã©¿¸és“R¥Åä,4¸ËŠ\\QKĞA¨bÍ8oF‰§¦ÏB\\¸j0ÁÂ6Ò%f\nÑƒÄXKsG¨+If£³µ¼ğ–¶\0 õ)úÃpZO0\"×di²–nr	«Äêcí+Ä0\"a}Ïö8\\IùŠ°€#=›îá:ÀË¡eÎ2—Ô¥;OKêUL! Gm´½˜:ÑeæmkíÕKœBlĞc¥Zñ.0‡PCƒ°ëÉ €aI0ŒûB«}1•*çT‚guêT#íC[—.	[ˆJ80E€¨;*jq˜;W1ëb…å+ƒù®R}s=HªhFf¢éĞF¨!P#F	Q=L£ß½ºo‰ß6;ÀlÖXm #¢ëÃ$šbM2‰EDó_ãáªŒîõ¢¥jéY„çÉĞg¸ûhæa=La+ÔÌoP½á¿ÉÌ”È¬Oê‰]›×Ô„¥leFtRha’P†3ìå†ÚRÊÁg€«ö†\"h¨Ã Aàf€Š•*Vµ+Z•*T©R¥J•+ÆÆS´7‚\n^†¯½EœÅ­ìâã~¦Í¡*7ŸâÓˆ`”Tõ\n\nªD %J•à*T©QóHèdÑ gOhŞ•*V¢´Ò´T  iZWÿ\0yjì)•›!¥JğuRá¡	Ú#f—-ƒ_‡5+Jñ¯ZÒ¥J‰*V†Óf–:q£èÃxh:q¥Ãxèyq.‹/Ãæ\"÷Œ\0	ÛÏx‚ímwŠßY›`ƒ½*:Ü½„©¶¼~FôãKÕÄ?‚üw”Êñ<«Ãhºs\\çJõ*2¦h\'Òã¶„ÊxT­9Ö¬ŠÚ”d0®¹®¥0µö#’ ö=*nÄöAS/«Š®çô%•\0g:»‡,»m¾YZáíö\\OìF^4æ0ğê^áËjYûÏšVWRå%etVVVR\\¤`€JÆi>I`QltMÕ\\ş¼Ï^aÖ§ƒ7ŞlG¦Ã‰¾†‹®ûN’³\n¬LéÆƒpÖ§0!ğA½ø.çÕ®!·İÅ¸UÊĞÊ#€…*2VÌ‚ÅÈ™¤ı¿úÆê+×9!äàõÜµìIw³x~§\'Ø	mLs˜Ûâ”~i†ô½1 °±‡¶4ÿ\0r¶ÊËÜcÌÛ[™‰$ƒ¦I Á ¸Ãà2ÂŠÜ^–öJßÀ¯Mk0‡R1J¹Œçæ^JWÿ\0—yÑÕƒæ÷8à°şRï[„w!q;\n©ÔPSÎ«•\nvOøIŠQï¹Ò:ø¶o¸ïSº‹Ş9ìê8ÎŞåûkZ³V4S¯»=¾XaÑÌµ]ÊÛÛG:dV<—â.½Ì¹×Dj6[<3ï$õFMCWEí8ŞŸyA¥±·Ä¢iÛUßsvĞJÖã ¬ó.VUy!“ˆW† Ô>I‘µõît»â“fÄâñû¡4ÕTº»‹‘å¢©ÑaŠ>4¯DÔi=2âñ¬F\\RâĞ1bÅ‹ ¹bÃ6ú¶ó0øŠÜ€%ĞpæâNÖ%ódŠú±NÖaT*;cÈB`	Ëf´ßìÜ>åÄ=Œ”rîeÿ\0â·hVå2¶GÎd£úPÆ\0 •Jº&ÏĞA·”ÇÌæ­ÉSš~#£–6;“º¹xA*üñåIÜ¥à–¸§¢†³O’è‘ÁQÂX[­Ë˜JƒH:äYÄ.ˆ|²P¡8Fg‡0÷ôG¨®Né¤Âú¦.ü3÷«J¾^æw&AoD[]pôIä(ª	mv=½Î\' hÕ^äUÀá1ôxºÜ¸éœBÌZŠ\\qt1ÕıÓl‡æÙ‹û0ûæÊÄ.8¥À¤ÛüZ	¶ˆ[%%‰§Us1„7á-;³ù…„‰ˆ¸ì£`z]ñònEµP¨ş\"Ù6²\0±NSÛ“õ.¿Æ1÷ê`9‚™f_9®J‡PÊVQ*—KõôéÄ3;…¿‹Ñ-éZ+ÔÙ‰z›ïŸ˜€j§ñAÙºÿ\0Î3\n%êİÎ!­¥B>l½*q´ĞMh‚Ãø•˜&¯mĞĞ¢n•-PÃå2œ[¨ƒÄÅ*Ó[N Éƒ‰‚=Ëë^%`Wıî>ñ«®AUXMÅ‡äˆÿ\0­TõÜd6„DÄ¯+¡Z36¨_d&‘÷Eè4Š2Ü†\0ø›˜ğ%º:’¨¬}º\\Cd’l:r†>à÷-Óß^”\0GR¾rğ+Œ<oSA†ƒ¢hø0C¢;xÆ\"@Ğ%@•*Ttñ\0üãühè‡†¹w‚J¸	Z\\t3ËÌ7Òã¥GÔğJ•â¨hŠPÛ?B u¥bUCB®®;ø^uµñJğâ&›Kœxq£‚CRGU\"¼AP%x…GcÁ>–| Œ¿´tÄâKÒ›3´çRÎ‡A„wÒ¹ğ:š^j+z¢`æÏˆBsàéqü.‰*qZ¤`åÜpê”9”ˆ””•î:îR!‰Æ^å%4e“>ğMº*Šü.# #ÌhåÒÉ¼Y!ï ±íœÄ¥–	fùÚTR`Z¶&¸àù7Óg¼ËÍÚ,÷.?Õ¶®£‘yÁîcFmMåJƒ€¬;rÀæÔ‹x¹F`vçtº¿€¸8—.¥Ë™N€·*ŠAŸà7rÛ¤Æ„½5Ô|n/˜9ÅËÒàË›éL^ÎcŒp¹püKH\n$uãÀŒ	äp•Ì:iNÉÂ•7+—äÛy“Mû¬J_r)ß¸šæ”íRØöËe›ŠŞ˜Bå±•õ\"V¤×q¨îı?‰[yÇö–ÒÏ^íœQTmA•`C\nrâ“BÍ	s32Ö©`X)ÅŞRû–	yˆiğ¯§†7×fÄ`Wâ¹÷,ÈŞîÅ¼vÒ˜+HÚœJ±eÔfF…Ê÷\nÆÙfI¸’›ÍU›Û€÷Ë˜4\\ü=EÆÌÊğ^ÃøÈ$]9KÛø­¬’ï¹,^—í Ğ/–”Ç¹`è¾Øüùo”	Ä*ò6ÒüFçìeÌx\\ŠH®=âêæá·êuì\"7{ú*\\®wu¾ã‘{­…t*¸,Ùlê:Ú¸:B¶™È`à„[BïÔWS=½ÔEy¥7Ô!ÅùI”?$VÓ\0Şîl;„üÊÙo ¥^÷2ãóìØ5WÊBUÕo*g“äQõ?jâ©´£Òrb6æÒĞ–}Åj€â[ƒ)š;Uæ]èµğR÷AkÁT+õ3+WµB×…;ÜP³±Ä¡B¾¡9hõ0\\®_*‡Œ`}Ì¡ŸÑõ~ïˆ„>Ÿİi¶ÛM¢„gŞĞ¥ÈûE°/“ë¢2µÙôâ+Ba’Z‚mpŞfòbù©nå>ĞaÉ.Qo ÆÜ–´K_\'­N¹‡ƒày¬wİ¢ÔÙÔ»«Á ïˆ’šùÙÌØSçq€!€6÷,Ç%fOÈ0¿âØ³¬şfà’Ë\n‹uhLiÒ‡UÀ©×6İ¢³£—ÔÅkuqæ-Ç§rRˆ^eìüBÁêóªÂÿ\0RÁYşÒcÇ¾*áù)ıÍ‡ ò^nS>qíˆÆ%)Z? ‡*¹>Õé’%£g¶sŠ­ybSm€ˆ²ß„õ9…éÂİ¯îf\"ø^¦Õ¡AX—Qá­¾éÌ]ûV÷ğ <YÆ ,åÑVõ\n<‡Pê:+ø’‘ X,¸i*†Ï­™Øø	°êC/ÜB½?¸Ú l–+)oÂf•Ğ¿51àyòY¹mQpÑ–jŞÕø•fŸbŒ¨Åîø˜sâV®ñ×ˆéxƒ	ùh7X^¨~óEUÔ(­•®_´ø«¹eßø˜›[»ø•È7oë‘\\gıÁÄu×wV|ˆEZ1Rÿ\0ÕKx?˜Jªps(›…şÌ^œºïiÃrƒ)UsQnÃ–a®#G+mˆfÚµà”t†!z[j\\6yã¼¢MÏd=S\0±7®Mp3yj ÖjK€Ø©ûÙâbÂÅU$\\Ñwµe\0Xú‘ğÄ‹J—Èé÷)¹j®	\'Ø5Âà¤OÈ#¡¡Vxã=Rè©ñ92wSt ÃİŸ‡¹ˆ+Õ:˜¥˜]Ï¹éO#elÖ\0A‚l—ä/ÚÊìÁÇ*©l¿çÔ3§1™c¸¾Ä/&Òúñ#]	™¹	Ä1gr÷Äh7€”o7øDà·ıb»W>º‡³i\\RıéOY]ÊŸKoyy`ÔN×\n÷êgIÁ1èÁŸg´\nI-¯ê#àxsmtl“(ŞSuŞª”L˜•Âó¥Â\nuY|F“¢‘»+LèçÀt¸>ëCV¦Ñ•M‚ófäæ/L¦å“?S+N&í9Œ6‡ƒ*ƒâ\\ÎC©	RÊÙ˜ç­ÿ\0MMhºŞæÑ„]/:ğ—Z\\oS7¸]À_8hüÔÚD3<Æ»¨àÍ†¹:\\.XbPzCg³óü„,teÃhKÍF0ÛCCxÇhâÔßB ˆ±ÂM¼\0%1ã¾ßØĞt\':š:›L#/OÉs¢;Â¬¥”ÅFéöÕİäÄÛ7/Qğ©R¡­Ïpñ²µ¯Bñ\0OZU¡_¦EË+µ´YŒÆ¾¥ æ‡:,[£²fE…–øœjFşl\"Í¾]ù^Xhy^•­“àãÜÀ8¿“·aòK*lK–Ö@á-€1\nŞëìŸA\nŠD;¬¬©Xi.iyÕÚy`ÒâË!.Ğ—z:Ğ¶—î ­²ñ¡£çp—âüÌåKÜôLıA†Ñ\nÒ\\¤	àÛÜp-Ä¿»êÇhX™“&\\)€^&ÙS_˜oQÉE§;?1\0ì’ø›°ã~ÂZ^Õ1€0ÃÊ˜ÆˆQÚƒ!œ£‹ĞÕ0Yh ƒ‹2x¬À¹»Z—²*’)áÛ¿—¸}Á,¡ßâãå—œ êÈĞÑSÑè÷.¢[a	¼HúKÄ¹vÏë •¹OCr¼ş0Òä›&U¨f>ThĞzoˆ8Ğòeu7Lés°jP_p›ë´€ÕlóqöBÂ-‚œ‘©w<¾&|í.¿¢şöGG¬“U©”vâ_÷ÜÁ,S,×3zPüÅ,rò¸>%T·÷Ïh_RíQx•§‹Yö¹\\ËVíİ‰±É…œ\"–+Ü¢ë3½Ó™\\Ø\nŞë™²)ßü“l³z7ƒ“ò†ï¢c¨æîu¸ofãhÊZ!òñgg-İãì£vğ\'áOÓ3)x!%³²ßx%eÙ8Ÿß¥CàJ\')sCï|²‹Ìn2æD(ATÛ’8p½B÷=F‚¢ñ+¾[GÊ¡´t(¶İ°Oº+€˜Ø×Ø-Ùş%9\ne‡Ee÷>u×uÛ ËÌ~•ÿ\0Ô¡ğÚÕìÎÖyêv3Á˜ÿ\0å‚\\ö%Ã,#s]Ô³ó.\0´`†¸/ıæyóæe&‹Êá#\"\'	*È“#¥éasL}Â ?RóJoSêI¼¡£íø’¨–-Ş·š–Ú‹ˆÛÀmı¹º\'Ó‚$iÃ+Â;&MKVà#î+{ƒ¸ÎqK/`‹lN	]{XYÅÆ§Ç1ŠŠ6»˜s‰€â>`Á>Ï™…í6†J›Ü\'¼ªéRìå%|‘ŠFûÿ\0Ùc¼*k\n?oAesã™\0ïÃ;²=WôhÔ.í¹H….fn•*n|Ei¬k®`™@ÃCÌèNgiXøe¸Ó7çwÄíƒQLÉ±§˜ì=Î³Á¼2H6ôÂDÜİ±Fİÿ\0u6Š‚ú\\$:¦o™|3Ù‰–8!CVPáuÿ\0jÿ\0ÚÂp‚Çô¨m{=„w†+êw/Ü±rï„²+Àjúœªa¯3)Ò2é†ğñyKÔL7òüG#>&Çñ=ß¥2P€vÓ2v?eĞ|	w\n0ìÌµnO¨`:mºV/ÓÄeX`®ˆhêrk,M^Nvk(èºì8êàŸ-zí†åÈ¿ó62ğöJÅQ•RÍNôÓiÄ\"Õiî!&³aø Måİfq‹~¿˜å	U¡¼~UW“dÿ\0PÛZ¥ÆcñK5O”t|x»ëÄ¹rçBzKliÃ¦pÛ_P¡`úøÉ¹Å´mœ²•,¤æ¹cêw·õG—i‹‰!Nµõn;»×¯S´”Õêææ÷3õ»—Ú1AVªg¢Wæv¨}n#WACkò­+æ›5(#–.ŸÀ™VûÕuº„Pmi¶=Ì(¨æ±éˆ`Räùš:\'‡óãsâÃÙ)\nŸ@Ö¤Bè½CE°°“P‹+E—héÏƒ¨èø§…éS. ÿ\0Ù/ÅöXŸ\" Ë!U¥(©ÿ\0Í‚PâG3¡ÁuÂµƒwæ×Dñröâf@9	 \0ÀUC^fÄş¢\n;Œ­Ù¦Xü$Êõİkã¼XBsxÀínó˜GÂá×t47Ò´æqäïà9Œ1S}²J¦åêXRB\0 <xŒaµX³ˆjéZ%î\\RÜöb4~T£gÑ \n VÚg¡Uu%ø—™~`ğ<?Q-Õv>£7£€Ä±ñ<)cÅ­ho£;Ì¹´%Îa¾trI[ó¾†xc	èŞ7_¨3¦¬ˆÛ&Uß|#8Ñ46ÕÓ‰š›GSøªÖ†4¸i^.Ú—©À«Ä;g„6Ôß¸©Aò~tY)¾ô%Ày’âw›qË8ñ¬w‡}3/RJ‡ØYódPKãq,F¦§Ôy¦Í9‰Õ³0ğ_Öİ)Ùm)e<«ŸxcW’Ç¥Ÿû×˜îfİØ»E?™µ;qê=j;?†´u¨m/KÒôèG}KĞîhèLr¬\0ZüÕîn.:Aãì;>ÌAPĞ—®‡\0\0¨e@÷\nR¹Úl|–Ì£\\ªçh(¼èèjí3\npÓÊ\"¶4ˆ±@íeãFY—Ä;Ğ€W|™Ç*‚T³Ú²…ñ>O©@“ª	»‰jª×ˆîƒ‡+ÔNJ{+ĞOÓfH÷şÓŞ%İ[sFû[³¹nÛæŞ©Âƒg¬[fK¿¢œ6Õ\\£l4r«ˆ SÛÜB:Ç ·«™@mÉ·‡Ô»VÉxğu|oQĞğ£-êºaWƒóÄqÆ\"¡÷s,Ñ\0úÕ‹F@ktîPäRmB±±ë7`Ÿ·êdÁÕÜ¼`råu§Ş­ÛŸÑ#”7cè!IÆJ¤ïÉDZ·k=j3)b»QKÓ,lËgSËî‹	D•êTXø„‡„˜PÊ%u°5ÅJ‹\'ÿ\0Øq7¶Ä Öşú”CJ{;úˆí¨G3™=+_¢]ªj1[[z^ƒ~åİNSb\"©¸`è9c ¥è¢|Ùäøbö ~`ÈwWl7#r7(òdv”dô‚_V•N•	±“çÔ)ŸôJÔ5_šûcá5-¢WŒw¡%åóşØºËhä÷qHÁãn¢%q•à‚T¶K/âN{Y=ÌŒQ›XÁÖî/’[Âï¤E‰†Û:`\\BÔR³Ÿr­º½õ(Á¡££ßÁÖô¹rñ.s`øıÁßš´ÍÜã’ÎÄ7eUPl¶ƒ\"PB=\"âª+W8“\\9N£GÆZ/ Õú›bİ—ï«™®£e‹fé£»ÜùŒWz¥cvÓd6å,iˆâ?ÜÁ5TQyÛëeÍ¦SYb¬\nöôŒAöOşÂÎ;Î¯>Ì­ £ğãâ|è%!‰\\§û=ëŒ³š=q‘¨È¨{~&õVÖêPZÍœ!n:ÿ\0É/Iívø}GüfÕ>T}¨+\nù¢(Æ>’Ñ.ÇAÄ@öà–D_µW÷º<k¶ô’Tıä#méİ%(Û{`–¶3eÜ½´&)¶¨y¤vc8‡gĞ‰â ÿ\0(K¦½‘¶Àõ*J¨@X¢­~( Î™‰ªCÂç¹rõt\':\\¸ø3àûÕèµ÷\0L6œÃh]$,s¼¯úBàÚºLEX{&1ëP[¦l>Úù—Îğ¿qNÊö†ŒoˆÆõgÑ¸¡üBÓ0GrøÈ*ÅAÇLîÕ/ÖqftYÑøÀÆqŸ¤UÙ¨°+ÑwóA…#‚)é´†«\\½²Ì~GÜ{ªĞ}VTˆwñAqhànSB%PµÉf@¤¿®§.ôæåêeÃ6¥ª\\jõÀ²…èWı„, €l„´4xJHmŞ=æ\"¿µ„ú†3Ú6ºdÌöÖ†òâÎ|È:Œ½K½O£¦Úó£«¡6ĞĞˆkj}q\'Ğ1oyÀıFï’úê\nc6¥ŸeÛ©ĞeD‹s{”ÇyÈ¿ÄÈ¦_™LûT¿™Ì\"¸1t>ÏdÛ§Izm	¬ö/9‚ƒ_–Tœ¦*ciÎ†ú%ËÎŒc9ĞßR0Uz?æ%GC×ğ5_-ü	~g‹±ú<•àoªá›†ŠÖ{@ ‚mù…/ÙW£êaÔ°ã>õ_\n—¯„ãEÿ\09¶ZØ5œhÇ^ÖásêzüÊ)>8ŸåÆ,44#ã¼çWÉò¯u<…€.nÈ¬øÓ™zn(hgEÒ¼H£sº5…à?€J›E[²Ub{SQVUÄ—ÅE–V¤4>ğİ÷)L	6ÁòÔc³YÙù†ØŸ—,0Lzg^l†ÄL•°tÂİ2ôàO†óŸà4\"Æ^‹/R—*åxÒàø{ó\0iÄ2	°şk2¸nôCm$¨KÄŞõçÃeï6Ì¾>ïBÀ5f¾Däç\"½š»K¼ÛûçÖ©_×§IåUs:Ë®£Šfİ¯D¬3ìšìt“	¦Hm›º¹ĞÄÌF¯”ş½ÄÃA¦T×)p¤À®›MíÛa¢ŸÈmE±á[áŒÀ¯ÿ\0ŸºK—6‡â\\5<Xxm6–ng¯sü~İ‰g‡Ş‡\\¡m¹‘”Ğs˜\"}gøÈ*¡¯í.Â¦éÌÉ87£h±¥õ²ô³µ¨	°-Mç3Ÿ8æÛix[Y[„6ìN`7„+3ïA†…Á§Y’Ö+c±7ÏÄmò%âZIò³UnïæP\"Zã×ı=L4ÜCuÉSôıÿ\0Ú n}\\±İØÙgKñ-ÇÅÓ­]|æ%¿Ì³bÜ™ßxîtÅ/¨bVòï.ez•U›o0èû8ĞŒ¿GmÎœLî>µ(weıCKŒÉ6\'Î6Ğk+Ëc\nÊ6Q^zÛèÃ,§1ÓÌÚd9«¦Ï°ˆ¬½F	‚$\0èZz>#±™>h™@»zÅ¯­Û~ĞõŞè¿“!ı±“^ +ÚÙÜ\0>#W‚û€)8Pƒ\\œÀîkıïBÁOˆ‹à&SªA÷ˆá(]ùsöáø™şacd@rÌ®gzä™“{ ò!‹ŠZæÆÄ­J&®yù·*Ø€-‚z1»:Çÿ\0ª˜>ÔMÍQxAdı‰UÁtéœ?™áğ‰–r!´F\"»+Ë=ôfüÇE¾çÔTª%{m‘7]“\nÊÿ\0î\"¯¨}m¥ñ¥Æ\\ºÓ‰´ÆœA-F¦•6Ìé¿ÍÃUœ\'\"	<‡Ü½xŒ6ŠU\\Íô±UùĞÙ%¥wsëDƒsü\\h*à n†€n.ÜLÓº.şÉI=9)½©ş\\~h5±)8Î+™`lÃıİÇß½ÖR\\ZI>ÙtCê¼6(™Uxå°ĞbšG¸Ÿf\0@‡·ôÑq—,‚ÆY“~D/Uf_˜¡ÈmÆò–_H‚UB‚¨ªœEXŞ6Kßæ%¤Ë	°|¶³ŠŠÓ><ù›Ë›ºš:#Ç€ÑÁq9Ş-‡ËËºƒ[\\¼şÂ~¥µªŞ˜KİƒÜ²Í÷»¾æëx-úcnÉƒ–l¼5–Š?zZë&]&hı™Hk¬6¹³9‚±5~Rßø˜ÿ\0qü„Wp5)Y<¹eÕ¡¿Ô\'ÔBü°À÷\n=º²Ş²øú\\ÆàãM‚ƒWGVAZ¼ZÁÎ·jm¥éÏçø+:¶‡\nëQÄãV;ßp33E!ûğX™QÁËê„1Çí0ê¿¹OÅ÷>Ä>fm°„H¨Öqá3ÇÈÃĞJ±ı@…ÄG\\\ng“=™råÂd	2ºˆkú8İ8W+µCCR¼\nŒâµ	S|„Ümäój§åÏ‰›ñ¹~!1äû—0›WØ\\¶[Ò¾tÎC?è½Ã1VUùÛ¡L.`¤xC²Vü 	…ÃÄ¾Mî Ë›ªrs; †ƒñW! ßEßFõ.~Ùa®àø&6}£LsÃ=\"˜^ïşÁa÷yùCuøÍT`Ã4Ït*Dğ¤|+Bá6†ƒhè¸MàTçÍ™•ŸcÉ[EÊÂ:R¥‹‹/¼ÓbÜ²–@kµó\0 ­“Ÿx=@ÙÑl~¾9×™pÖĞºXÎ`Xúèÿ\0,÷öef@Š›L‘Jàz—y8–š<LeäıJ&6*aÚÛ’Û™VÒ”ÆöâÕÆ©£/?0Ûô€N6Ë~V3\0š!dOá#w²ú™¸V†Dâ¹”æ)[°±¶[ƒÆ!dU©Ô#ôÂZ+e”¸ÒVá—î%nĞ¡˜Ø©WÄ¬Âh‡A ğ@ıô¾ë_‹“É(bË êCB\\¾ Ë/ÿ\0|AMCÖ‡ãP®Ö\nÈX›3ñ-™¤òÑÄÊz›É7²ñ(øĞé¹É¬w³¦Z¶ó^ ]ìç*c¥Š&+??3n²çøêe•\0å%1`ªİ¥ËP})ø¸!`ùèZW÷´Fa!)òø¶ŞÔMèxİPx‡wj]\"İ®ê²‘Vë£Á‹a¦ÈCOÊ<\0?’oéBø¸C!¹|é7—Bµµy%I¡á:¥FˆıÌ@Şä;MÕ‰±†@®ã-¹»›v•6ƒ;á:³lR‡ò’1ÉùH‚ìO	²Ë>Im¾ºğãQÇ…ßÈŠl8ù™Ô\\,,dP%²)ŒªÎM9ÔfPÌ¾Ší¨K\0n·CW½Xª0‘×Hânº— İ;õ-1¬WYoÊ+Š ‹ºÎ!Za‡æ`ñT+Ü©xïü¢¾¥OÔ£¸m¾=ŠoW¨,§ÍEg§Ü]Ìü8ÔÃêWú•H*:@q6›ğ3 öÁnîmB0+œ¯P ò>%ægí	gı¾Æ!*?(~díØõ¿b=¯4¨	÷•d5uÌ6ûÊ´ˆãñF;YUÑ7Hü“&Aq}rõÛ½´úŠ±Éåº=A~:>a€]µÒOvã?ù6—,€ğÌlôÒ¥\'¤Z÷8U€î{Ô/—üKuÙ°ñ8B¸Ú;ú@ñ;—©¡£	ÄEìÊ²»ƒÊvCMüs™ebVÈ3‚îy”,Ì\nQs÷*>ZıD˜VÉÛ©nÚƒÚÛ\\¿›M>æöÁitDYï&ÌK†Oq€´¨O•‡ºËû_èBànëúÌKşª8ôÄÂ—JW×aXéñ˜…Õ¬½8­¥‰ÆÂçã‚Hlú*÷~Ñÿ\0–5v©…—\"»’ÙCı‘/´‹òJ™ª¡¼ËŠº)¿)ÈÃ%O¢3!U°%·ØLàMÍ¿¸®Ÿåà÷ÈĞÄ\n1ĞÌ¶h=È@€ïK¸Õ»|#õ+\'Ù‰Q\"Îˆk#·”cKø@JœLÇGw4yUB›A¸ÀİHüÏc‰qàõ1œPº¸KCŸ_DãÈĞŞ\\¹²ğ#µ;KİíÄ{éizí?¨˜ÊV„ŞšÆ”Åßòw+dl9~\\K‘,ıb.=#:Èªûæ\0İ‰@\0VÇ-‡R²qSå`ºñ,ü”˜HUbUKe´a¾E¶õx×îv‰ê/Ş_æ¸ú¼ÍÄ2ï‰ØâV1íˆ­!ë¨Sú—È&ìæ4m2®ƒEVÏ€ìhçE„^Rª†Æ7¼6³m.€¿qAm¢èGKÓëB£”é}¢Ş:<ÅÄ¸­Ğ˜Š‹Ğúˆo»lk¸T6ñçZÒ‰³SÄÂj®Q*:=h”¤û•×Ä M*²ùœı…g,†]ò…ï,\"`ô&TÊF¨Á™JöÚ]­á(h·x ;[.=óD8ù¡r¤~XË»òå*¾Ê_Ä}›?Ÿ¢\0\0€ãLhëJ÷l‰±Da©‡[–Ù¬;¹{ä÷àm¡·…ÃJƒ45°Ö„4a¦R”ëtØ\"\'ªÇÀ[Òb×™L\"±Îo0Ÿu±,†RôÁ|1Âñ½)©u›ÇG3`Ã]/AóçCoBg\0lôÌ ¯Lm’ÂY	åq<¸f©‘ë\\•BÔm-+CÛ]\'”SÑäĞ¦¬«)ªöOc3ˆğÑ‡ø–9ğ4e®H è(!¯*z4¯ş19Ã\0~2nãÉBÖ4ê™•ùÂættô…÷‰³x&2÷-ß\ná_qºÄv!ÂWjÌ÷\" ÷/TğY¹)mmî`Ùœ×3æJ—\\Şó=Î4gÈ™\"›¨´j†„!ü«•¯Æùš×Uî5)ıY°ªVù^5©U­AÅvØğè»3ò\"V)Ep@\'aQ\n¹œK»•äbU¾N}ÅnÛ¬bQ\nêìí~§·)<ƒv\naàhÍ™£İ&¾5İ:ˆ\0‡‡…ñáµ»òÌıMD=Á»í-Ëú€ÂÆÊ\0¦äWÌ«»«ó•Îv=øË_ş<¨ga˜A[wùLâ#Ëÿ\0r†¦då—e•¥Õ6µL¦5ˆPSrú†<8À\060BL%‘\\—ó\07÷iÜ[ı¸âZ„È£Áÿ\00åÌ»våî»û°0H	²s©†‰eKô£ûò\'>$<Û¥éóf»ærà€T\n¹Ş¸Ğñ\nÕŠHõE¡·æ!*‡M»ñÕş’ÌzÊVV\"§uíQÀckAü^¤¹syZš0òaüWà’µæ,rËÍÂf_PO¬À{&A™^åK§µ¯ñÔ.\nªyù%ÊöIßˆ„yòÜ:™	GL?!)¡ŞİË›4ÅV$ş©~A.ò™\")¹+µæZ`Àö°¿$EgÜ¥¤òNñ4ÇÁŒÒ·;+ø€Ø–¥³¦W::m_1ª;cöwã‹`LŞ(NHíì—aWãFä(=µH>*ŸŠ–,üÃ„\\\'È˜WıÆbP¢¥é¾„1äéÄu4?‹ƒ.~(ZÆÀ_zî;ÿ\0ˆËXŠ?½Ô^SYˆÉ¸ïxÂ‹!„Xij\'lQÁ·ëÔÄTc%ûêr$•êp_ı½[-ÀxüÁLPkèîê“-Èbe	¡ˆŞ›B1Ô„¿*îU¿E´İ}2KpñèŠÅËÕ˜Îáæ°ä+\'Ä·qÌÀsB‹¬TBEõOyıÌ®›]º…ºÑ®\"4g\"¿ù^‹£Á‡…M™³ñÿ\0°‚«ÕÁêeÈôÌ>œL>“åù–€­ÁÇÿ\0ˆ@g¨JĞ†Úq§ß×djy4îFÄÀ­†ª«>qÊ?q(šáv{ù‹½2pœAÇƒ+Ğ‡‰â¢íşÈŠ‘D½¹N!’®ˆ>¥¯4GÁ15bœ¢IÕ‘Qø€K\\«´ihÏĞ÷bñÈJ!+O¯gü&—ásæ\\\\¶ÿ\0,vºaÙ®Øåû”Åã×NJw™°·Ù-Š†\\x_…êxêroõü\n®ˆŒ³¦ Ş†75? —ô`Æ¯Ùá/F:ñâhjB^†—Ÿãq¯5Ê6ÎÈÜ/WC[Ğu?ƒ\'Àa­N&Ùâ0W›x \0¶=!°xÕ¿r©İ)ŸPAQ‰J—rü.üâ0Ø§c3åV%€Uõê5Ó²‚ëĞw˜¬^Boâ’£äi~#Àò!pƒ/N%èyUéÆ•£´6„¦¯ğÛ}KÁ;	ş‰h)Ø™€L\'ª›Is\\üÊ­jk0íÔÛSÜ%(=ª#Ÿ\\S,%uä•*ë+œ5•î‹¡Ü	Äm•£uá]JqH ù”ñÈ÷|ÀÅÃúŠ¥+úeËÈöĞĞÑğ¼K—šqyñ^a¡œx0Î†‰ài¶‹¥Â4ãWÈ—ic1VÜ1ÄØEƒ˜ä·íˆm¿¤d\"ª®İkÜØÑP~ê¸1V€İD0ğÎl#Ò	ÈE³W0ÉÜJ	ım6a\n0bPiÆ¿Ô Åûœl;s|,nğpÌ¹SùG‹ˆ¢à›°Úa$”0Ïl¼™5œó‰¥ß¢á´fÉzq££Ô¯\'Ô|Ä\'ªqŞŞnŞ<ipòcx‡‹H–nëv6Ê¿¬†œ\0•È~èË)°ñŞ^be°n”íe?¦\\iÆ×*çÚïâ2À™,%wsŠ.fXJË„väÛ}¾fH¦ÏêQE!¨yJ-0©ÆÑfÛ­[+-J\"ëK©J°º¸zÖXì­àJlKËG;,µœÜ¨Í‰Ù¾ašZ¹Òê¨¥eNe·«*¦0—£hxñ¡«f¯‘/Rs.\\Qœùi~F¬G(vÇX•>*®ÅŞ\"ˆù¡J#iJ¦eUøIzT?1Ü‰‡PX~qKÃwiêx.A`¦ÇTÉ~ÄvpŞcÔâr‹ˆ @âİæo¹5÷c ®lSŞØ¡ów¸$€ªÀu¦Ó»íê¿™¸³\nõñ((›ólÜH°r•nEkà¯ã<6Òó-†‚sàèÀ†úšmçrôuã[ÔÖàËÑ›±jìâ+n] \'1‹{3%hµOàÍÖÚ¸åÚÔ6ct ÿ\0L¶¹bığ¢BÌq|ÄS&Aø›!E¯>¬Ë–ê1h–m‹ÆêÛwÔ†ÕtÂ¥½?®MÈ´[Æehá#h+lËÏÚX×a¼U¶2ã0ıèoãqğ?Ât%ÍeçÅĞÖµ¸²åÏQ—ÔtuãPÕïÃYÒ9\'Ò2Ì(`sÂÀÓ	NĞ†\05Äj±àà¾9™‡7•ñ´jğJ!ÜJ‹Ò&Ê…–áYŒøî’‚†wS|ÇzY¨‘™OI¸¼Äw™­DØ%x •(%—ng<ˆíhi~,¯ä8ğa¡FV¦·Sv¼Íåk´¹î:W–qŸkxs¥ÆÁŞ¢İÙJ`\0³ÔukD_¨dÃImİ+VIpÇpÅX®û,ˆèÍ,îT÷\07&KY0Ùá›ÕÏÚš€ÙdL4#µn&Ô¥%‹ñsp›æÜÎO\"¯r¯EÎÎĞÕqĞÇjø„;á£ÔÂV®b(e«[lî74Y©8İ>àC)ûc¸z(¦eã·Ìß-ãR8—n,6†‡ò7œhhh<wÓ‰Y†•á¥ë÷z¤\nÔĞü%€÷®|ÄRíÅLoœaÍ9oRƒ‚4h&äJYpÅtE$ÂIhÊU;,k¥b;…;_˜†Àı§a…”„²†¶²-¶MÒ@X¬8•%p/sè:îº!¡}S76B(æÈiá6ÔuP2(NÒ\0œÔ\n×¬¥_Û-øFöÎ¨Z„Äh‡Vt¹z0Ú<O2$4!¡.\\çÄÓduo§Öç1eÎ´4t¯üEí‡õâè’ç-á:a#cøƒ(´læ\n†´™€7ê.ÌKà÷¯WW/p‚b‰’ñn\"”L`ÜV1ÌÉ.².˜A‚˜Œ9»ÇÜŞ®Ë» \0´6ĞĞ„{ºfY¡/ö˜¹f—!üÊVĞ½wKW“9ğxàu2ôm¥Î|X2eæşå`öh}Ù/I„°— Áï¨½—ôk^Ú\"	Í,Ãµ ÷¾\n÷Ë÷9Ğ˜\\ø¹\06Nu4\\ÇyƒPØ;ˆÅ¥O‚	„LİÃ¨ZüÁC m÷9)kº÷	…duÌV“êÆ@ƒåŞ‚örJoŒÎíª#s]­/]øş5ëQÓd¯àÆ„æâÓsq(PÆEÿ\0Bïñ¾Â1(ô®ïé€ï2õ¬J²ø¯2\0lÈ9ŸOñ˜¡ªQ°Kus±ïJÄ5~(\"›úƒJ,„JĞÆÏ&‹\\qˆÛ»á/Jí·J:aõ,ÁvßæqLôíİËvŸûˆ…Ñ­˜O˜Âl&÷Ä-İ}Ü3‡Ú8¨†›şv‰]ë32Á&Ï:ÀeUW!„g yº>4<†V¼hgñ\\3ãÄ³GÛvõTj¢õœEÄ¤lÇıî\'µ@ÈF¸”g¤Hİ((p¹òE›CRÿ\0èuâj6ùÿ\00Lf±‹Úà±ŒQal#{õ¡À§¨Â!½]²ƒÃÑæ=…›M¬.ñmìR4§`îÇSn‚PcNÿ\0pÆÿ\0’™õ<ê¼B^Õ³ş¹G`Ùw^ñnÙwE0Òr1ıÜtÓ,ò4;.b…e€¾_Ú±72Ä½ŒŒâ3ğ&¼ñ* ?¹àÿ\0â‡·ğÖœÍ.<.o]˜Jğ7ÔÍÌº8—Ú•Òcme²0Qe)zaW‹èéÜZ½öJõ%y²ûe©L{>`ıd±zy\\Sb¿(ê¦uU9_¹[E³ó\nò7l%öTus\n;‡gâ9ÃœÏîgu²‹â™O7\nÈdD÷0ìİ©ÓyòBE¿ôË‡ÖîEQsVøÍ÷¥,®fhÕvÆVû˜6	ó§ZY¡‡ÉÍÅÊ¯ Š§P¾©Ë\0\0pkÏğšñ!Ç™jéX‡›2ÎíıE²»q·Ì­y[ÏĞâ º(åòŒ‘.µÃÔòø–\'l(]¾çá}qÿ\0“”Ü\\8„©PS2Â3i×»xé]måvËîâÓt_:ŒÈ¦èn[:ƒ{Ê!2_Ú8^-»8%Â·ñÜ’˜¹¼5]F\"^%NõÁ£ãÄrã7*¡-µ©ıÊäJî·t7şR#«âMÚ2±3/G@œÎaX0ÛÍŒ\0F]ì0D@EFhÉ®³\nãÔØÜÂ½2Â‡áµÊGÌÖ0@•Ä¸eïµLî6ò–mÀõÉ¡åR ûœÀzÚ]ùé¸öËM¯Ş|!ºÚÜ¾µ5çM¼/GmK…Dd»g• V~O…xşó_2h‘ƒSÍóÌãJ¥šGùMôÿ\0iO…^…x=J$¦¸•-úqÌ6ø&ğ\"u½Â*™÷Ø\"¾ö†òè©\"®êe1‚ñŞêg\\Â;®™Ì7›hLØS9â_5mM¡/Zş\nóq	pD¡şJfJİ|WWø…øN52£6êV—.ğçøEıü²ô“kêmk“ÜC­ve{ˆë‡¹=BYÌ¢èÜİLY7Kµ?fû[,}%Ší†½Ä$mÍÑ3‘«À/˜)¶‘¬åD7\njš:VZû‰Ô¡†fÚâ\0AMI˜33	^l#*mÒlr³îÎ‚:x0½õf|	ràÁ— bÁ—.\\¸:g¼\"ám1¢D%\\O,ª—Ô6„#ªŸ‹ó_¸q¥}§oúƒİ¡Zy+ê\nÙrß÷(*Mñ&ì˜¦îRWö ÿ\0ä¢©‰„¥U,ƒd:İÈã<ê]KZ¼^_æs=Ë<UÔ( ;Y‰–ëÎúˆäı`Ë›æ–Ïşã‰~WÙë,Ú|x¤­Ğtc\n@#ôÄC´İaƒ£	™`C¥xåÂƒæj0`Ëƒ.]ê\\Ì¨’«[—,ÕZs	²¡’Uz¦d¡z3÷EcÌxú„m•£ÚE¹aÒ•¯À£tÃ×n¤´ùÒşHeq÷G	Š\'ºHòÚJ¹¸şú Tõ¥ƒïG³ÈÂgâ¶«ÿ\09Rí)ÍµfÎ†ë£±´ñŒOeCNtßÈ˜Ÿ>Ód–Í8‡ƒ2rúK6ßYö@×2_çÀ—£¡E‡7ÅxsâCM¡àx\\!9—™ÄŠ}hÊ¶F:m£hEâ\\¿2(« -˜^.—˜<A=§ê3¼OCeş%5\nH*—²2¸@ÙÌB€7W¨ VU¶8b€¿¢œŸ™cq“}Âxÿ\020S½Ûÿ\0ezÍo&ú\\à‡F·}ü}EÇw.~5çCFFëuè¬§Î›Ş£°ŒûÁ¬4tïì/¶ ÷>Ê‚½ğ	Ş¼ëxÊ¿¤ú„|9Ôƒyšn„!/AZŞ»¥‡ˆq®Èùzêe‰}&„Õ»‚4å•0Ü©ns²Xø—Lø3í™Õ\"„q¢â/XÆjì~!¦çh\n’İ¹Êèc|ßû(ƒ­k1XÃ\0¸FX³°?Ñ”AÖ×Ù(›$7Œ£L[õÿ\0o-‘GÑ* ¬a£lúaºÊ\\šˆ­¿1ğtÛÄÜıN4¯^|ˆˆxMsª§?…è|/:Â~r\'¸%Ûæ®ŸÄ\'rãmT½ì™]¿kĞ– ;øz‚´oøa¹ÕîŸp46—(Ø.·¬èø¿˜*œg‡½Y÷	%]ë~SŞ°`ÏanU-vŞ5Gz‹U\\¬·På\\ˆÊ£51n]ö_é\"úÃ”{›0uh%ï°É·Ñ+ëøÜÊÖü1àhCÈÓpGfå[œS¼ï;şI[*œ|GQğ¡¦ÖI~Éôãü	c`û‘M•†°mËš›œÑèKà;·¼Í©^MAƒAÄ¸àõ)Ë¬­ı%ZŠölî/¥LÇ°”i7}ÂØLİÅ¶ú™\0	§{ú‚–¯H¥©±_ˆx²åù7›m¦R;iÎRï\'gœæıK…]³h5cXRõ,ªƒ§å8ƒQÌa˜ù?>O‰¡àä\n.ÀÒî/‰ïú„¶¯úeÛ´eİı§b~Ò‚FùuUæñ rWo?(ŸnmŸÑ Æ„½	’|ÿ\0q•ês˜i¿€ˆXâ˜„Ù²ıStÂr¦\n¿z©2JFkÉñ N\nJ\'ÁéÛ(TÌĞx@÷Ú·~,Ş;éÄ%ërü]ü¯N55É>€-Y‡Š¢u}êhÃCEé‡Ïş§ü¡¶Cµ¨5ÓƒCµE™²€³Cğ/Ó0øò†èBîÂï±\n	º>úÿ\0ğñ8†ÙÆòÍh§ÔCá7Ts9ƒÏ÷ª^6C}9ğ]2[|Ÿ†1·™¼êÊ>Ç6AuÀa>º˜&‹-€ÈR1saŞ)Wp®åËğ½Oä¹z,¿+Öá€ÃbùD“å´Ù¨hÂ^ƒOÚÆ\\ö«ynñr]z\'~r8`Ç_fŒ²yò³ñ¢şôÏÕQ# òAb~ù€ƒ¹Ó—.[ı½Je·,¿q\n““•Ûê¹m÷Âb®JıË~}ÂuóıÌ2ªĞ1*^»%èÎÊ‡1·É¿ˆÇ½¡ğ[ƒ~ş¯£šn±ƒá>ã¸Zl8Méqñ.ÉHø*®;”€&!·{öú„Ü¾>\'TQÀŞ~c­Xßîr·âUkÊçNfoi™ófÖE÷/±ù—ÿ\0¢/ı÷Oşäÿ\0ëGÿ\0zõ\'ÿ\0f;¾!şèíƒğéP˜dÁ\'iğÇ‰à2åÅù2É^÷¼(|9zÕÄt;\\]¤œŞs.Şúiÿ\0+­,M`hcğ¿ˆF\\IæÊgˆ 5îWêG £6!Z3—ş¡Ñ@ Ğg?ï¹Fñößœ‘—[?â_ı£2|­1ò\'ş>§îW?È„Œ®Ì@ôÒ´§‘)j¹w+æÃÿ\0µÿ\0Ø”nÇÎã©è¦ÉY[·š›*¯ó2äí\"¢ÌÂ¢>¦P÷vAœ•IêĞWâ¢ÀÅvf&™\\/Ô^lq\nF§â‡`â(%ŠÙ´A†AüÇú‚ÿ\0£I{è}Üÿ\0iò~TÃ³ûC¿ùÏû)fçòÏúeOü‰›‚ğ#§”±Zkcÿ\0ul:4À¸Sû\"Ç\nş¦ù¬Á÷<¾ñ¬÷êP?lº¢¼r¦(–C@»l\n#ëú´Ï‹ë«šüğeèéÊÂçˆsQÜß÷ñ›{XqlÄt œÇÇ\0’á¼\".¶­{€ÛğÃà•3¢ñ£9Œa.[*>†2Õ}’¡¾ƒpaš=Ê^£–÷sgtÎ‘‚aWÊ^y»º²o`˜Vêe}3ÙòÈH ø%%zÂ/ˆŠ¥ƒGF˜¨éj	±)c˜Ï}X0]~!9†–kÌ|9ğ%é~<G­J›©Ni†„eO/KÑaCîÅJÿ\0Ç^Óê_¼^‘ÕoAÉ¢«n¦B-ãÅ;TßÒS(èz×oÄŒ~õ¢!·çQ©àÿ\0dÔêf~˜…ŒÃxµLô%³tÿ\0s˜f1‹Á%hj¹ræ>ZŞ%ëÌ™şmx•‚º•ƒpÓ5¨ma¢füRK×5ô÷ıÌÂTAîÈaÊ\nK	ÿ\0Üf‰çæ0vql/y!Fî4VÜúiLÚ\\%æÒ¼3£äE×Ÿ\n¶½êX‚ÂŞ-/Z?¾­q{T>Eq ©a³pp«ñ	@ºİÓNBW¨Ïš¸3³Ğt¸ş¨ıOõâiúoì—˜:}K ¥÷·òÆ? Íã&+GRÔ>åNÇŞµ¡¡²`@»ÁR‰E[ciKº~%\nÚ&”]ÒßRlÙø€¢mwŒxş!q>•h¬ÔäÏÔyğ/8¯‰¾Ğı‹/Ól½#Îw¶s™§üÊŸÌKÌJ#èLÔ\'êà_<x<à‡Ø@NÈK¤ô$gtúèËŞphA—»_vÿ\0Tv/Ü\nÂÕ¹ò(_òAlPPipq*Z¥hèj‘ Î¹¨ú”—ş$4¹râ—+SØLRüoVN—üÌßÄÓá*\"½,äBm”é…Zï/–0M\'á ŞÈ§\"Ü,işˆâO@Ğ‡™CCBq¯oÓ‰Z‚Îc¢a=ø’ì¨Ôô’¾0B3:6”m–ds/Á†•üázºˆèëÆˆâQ£yƒ/@Ëƒ.\\pt¼Ë—.—.¦ƒ©Èƒ.]Âxåàm*×û$µ„¬MSÁÁqüŒ¨ÃÄ—/^g1ÑªÑ—¯ò6—ˆ0a/Ì—X8—¼Kƒ.A—.9z\\½¹Æ¹—h9—;K‚ïhÜ®¥” ª»§v­9ƒJE=jé~õÄ³ÁğIÄ?Šåèjh_ğÖåø„0—Ä t¸9›Å¥ËœÁĞ›´4»flÖ8ÆòëA‹‰~¥’Å”˜ƒ›ˆs‰Æ7›±Äâ—9g¡7!ÜöE;?2­Çæ%¿å‚Ü~²­ÿ\0\noÇô•oøRø\nîş’17ùß…?ÚX×„~z%§Œa8ÎOÒr~’Yÿ\0ÿ\0„ÿ\0Ù©ÿ\0ƒ\'ÿÚ\0\0\0\0\0\0jnú©9å8É©¦;\'®?£š-º[@³ª(¥ùe„ºO®™\n°`Ä: ¢«®ªƒ¨ºŠ)¾¯–Ø/¾wÚš§¦“(Špk¢zGAé¢ÆÚ!ŠÉîºZá¯z$Äˆ2£€:h¶.ŠÕ`ªP+– $–pC¬\0W¾ ¶ºï.bçÉ}ş¹h\0rr­!—ÚÙ¹Øäk‡ø¯Š¹F<à#’9O;:Æ»kñ{5 †ÖÌázšÈ>‚‹á¸x5’û¨–£Äd×†¦ËVkÃagäĞzOfªşıo‹4Lõ{šëÅWxö·:kÛí¾)]ÃN>‡Ê?¥5ø¤‘’:=¶’]IŠãĞ¼İÿ\0¤¬2óŞ³œÚr¤öHËÁ(ğº$ôä#ú•³GpÃ=±j»âƒ¼úÄCHwò›>×ş2×öÙ1Õ&”¿3¿íº;»ã½xÖ»Û—|tÃÓJ43˜yo­Ò|}ëzÓÈÜuf//òÃßµÓ¯÷ç‡®pËí7¼çšÔ=·lïíùÓü|äi—Á+íÃ=çûNÓÿ\0òÃ:áü6ßÜ¢Ûx(™ex/´Çû÷$OJ\n@ãÌµïæ÷~¸ÿ\0Îw÷ôéİô:ù˜É¤–ùóñ]S\\7À®xëqà[Ïÿ\0Ùÿ\0úëïvßü9÷Œü»0lŠª&œ•A÷3à!]O‰úI‹Édf¥^¡ûµï³÷2÷[àûüp–êe“,~ OŠëÕ¥èI¦öÏX?ƒ“#ZÛóç7Û8ßø÷óœ+®	o†`2*­òûíÆŠo4Wmöû‹=Ë~òÃ´ãöÇ=¼ÃX¨¦Yª¬L0uìp·›¡ŠÉ‰Œ$ø$4Ûœs×î|Ç=1ËŞ¶Û?µÏ‹­ÇèŒş5ğIèª«N&Å÷G¿¹ß¨÷~1ÏÎüë/4ædÓ›ŠÈ|ğ*£àfšĞ¥¢2((äç¾¨ÂZÇËÁY‡<ß=~ÃOk¦íİÚm‚•¸`…^jWî# gÛğõæòİÓˆP•vûŞvß)²¤U¿p;©›èh­Š\\ÚÉï!96oåŸßè\\ÑOÜóëOÿ\0åá÷p¼½ˆë\\âEoš‹šc½n‹”Şù¬yù­XÑ$XW­¶Òl}xçŒ¼rÊâÑpÙYjé³txw÷|I^6eÌlË›gc‹v/9kìhQpÄÔQµé €É¾‘aVÏ¸ÌÌ\\­M¸†ˆ£>Ø´pC?ŠÂš‹®ôûS*99ÓƒŒ\\L›õ·üz–rß±Êi—vâ YÑûl<È{RÛí€Š(?±}µE1ĞÌ:gİxËWßşŠ“ãïkÛÃêó|ëäu…–Ç•oH#ßz4ç0[7jìoßçµo®T´YCåvİ­·ı§ËüøÃ¿´ç$‘û·Øa¿Wxè@Â?÷²Ô!añXCÇ–óìİhøÑ`™%á¡·m¼wÉUÚ86ä½ĞK7ƒ}œaš9ã±ŸñETs¾DvõQu^aş÷íÅŠE\\€ ¼{é~?·­™Ïö&¾Ü²ç{‚N*öÜúY¾ÚË¤i|Ã¿6ÿ\0%ÆÇûç3ÑœÙô×Q5VâµûßY÷n³Gí6÷§ö÷ÆÓÿ\0üïÿ\0X_Õƒe6QiÇ÷vC½5ÿ\0Y=FÖ>yvô•â\"f)s’Û=ıöBäÂh‰ÍÍ_äù’ßíŒE\nÍÃ Y:F•V,Ñš&ÒE<ë¾vpûe 7~-<¬³Š\'{îÚú*šôôœIüû´Çı:ã^r?¶çŠõšßu=¹O¿İä6—mğ÷Œ=mŸùóËÇ»ó<ºËŞşë¶\"ûa€~üG’“­ÍRtzßÛ\0‡1¥j‚tƒµ7OÌğÿ\0]}Öÿ\0gL”„êE‚¦¸mä&óÿ\0¯±].d¬®xƒN~Ç¿óÔµ½ğİrï³{ÄëxLÔûVÄm#¹Ï«íäéË¹QãN½ç\\püÁ¦D{œtó§¯šg.°ën…ÿ\0Gëğùª¶tÒ}¼÷ï¯¿Ë±ÉÀ°tÜ-“é‹«A¥RL@ÀF‚SèõÚÒ|Â0ßy·I\"Ëİ<Ê¥5X×%š0;ÿ\0¼yêÕú5Z,–m5Åüÿ\0÷İ{ÛÌz‹_†W0Q‹ã)u’}³õÎù[Å;ã:ˆ×X=(.öó<5ß¤´×¡-|Ïğ²É$/ÿ\0T«úÕ_òù5pç¸aßPzñÀøû‹a¢ÂÏõğñá0CRß?Ç+aÈ–y–Û+vX…‘Q94«óÒ‰7ûšÊbªr0ÃÊùz‘ËbÕ)%ä)ÆŸîûitÚI«ëı€›\" ÈRiÿ\0éÍÁ\'Ì®Ò)3!§xíwË^üñÉäk¼şI6×­%’¯Û-Ánİß&à\'°ûijİqŸÂÕó4â•ğù†Açöï:c¿İ#+,[_ç·+y†g9c×æoVÍ¿}÷óo<.t¼]Æ“î™z¬§¯¸æû³7Gšl¼1\n	vy“èıÓ4Ğ°9#m¿gÔŠƒw!tÛ]í¹ÛÏõë™ağøà%©dr°ª\"ê¤ü°åĞ”—Ãåà9fˆu¶]\\?-éfü?wvp İğ¥9ÈM]…åßO‹Lp“»,¯¢$ŠÄùÏ©™³|J¶Î‹ŒÕµ¶/9C“À1–\nË†kl{£º:¹2»~çIÉ×½Ëœrÿ\0L±ã¬[ =‘šºQ&–EáÎ‹Ï”£«L3SŒÇr-·×Oÿ\0ß½8çï$£I´×9@78©è”+wªK.„èÎô\0;50êË}6Ãß»Ç0ß,ÜÄT_<:Š-©È¬¦É\"Y¤é¸æÀÿ\0ûó-6Ûî=÷ıŞ9.ŠÁ#oÀÃî\n.ƒëc*@¨ô¬/P\'í>ï?ùÿ\0N°În¾¿Alº-±¥´šc‚jj”Éë”±«ÓØ/]:ÃlşÛş»©Y¶°Ûˆ›ÉÓy-X##«4X¯‹#“éıö°Ûíyóú	ª¥ †Ä4¥óİÉ šxc¶Ğ$òE>ŒŒÆ¸©ê½3N{ÿ\0¿W<†	²—edtiZã²øg“j\"¦\nã>»-‹N¹ó›$ë4=ê{m©o¾@ı”*(¶¨ÜĞÅ¤;(«egòj°{<ÿ\0ÀÇñüåz£ÉÛ+Œj¥½ášŒKì¬Ã£0(@ãƒìì6«¨ëŒñl!:Š¨ë¯…ï2<İ4¡_ÅŠ*cŒù†AQ¤êéã(*ÏùTüèĞ@>~:»‡WTÙ\"5H0ÇgªYªn“ƒèwÍ}µšàK a¦óbêÓú£°Fö¾¸ÀT;¡„ğÀœö/2Øînw¨ïÛÌb§ÖSæĞ´|-ÊØ\'´j¤0Ë¸XC*œyŒ–O$Æ™ôÏäÉ/Æş!V±,]†É“û/Ö‘SLšâ–šÅ€ØrĞÀÎ,P‰¦;Â¸¿C‚e.QÑmŠÃ½†äJKgš¨{Œ-&¨»¨#d¢éœÁ©•(ä¶Èf«øp-<!Ë¾ˆk2ëà¢©o¨Ë:˜¨ñ~œ—¨JÁá\'¯¶IÃñ“Š\n{ñÄ¦H&ˆûàg4$óA³Om&©N&¹¬7ŠÀ*CwrŠ/´Íæ–}¾¼\0£‰Â1!\"XQlkjòÊ:{i(°yÎ¹kÆé¬‹Oîæ½rw\0Bq‚¾[¯åİF9‚)n<@z\" 0²	¢h–l†°áÀ’_$bÂF0*’/°šêEÓD Â•°gŒ8îšŠrßY½asÄã4ècÿÄ\0!\0\0\0\0\0\0\0\0! 01A@QaqPÿÚ\0?ühbÃèb¹bî³Œü×ôÎÕ©şÇûì±à>á/n²JR±tÂğ»=cBÅYo	”¹¥î¼ü.nV‡·¬>_ä4¡Lq1µõ‰_F09¨Ş‘ğ‘TT¤’45\"Bsô”¾‹û•ı˜ç÷>p˜¼¾ƒÏ¢$HFÌd–Ä´ĞñE5±íÓssxWÎ&…7± Ú¦Ì‘	É¢‰x‚(ñsJA¼m‚6/æ(1½¶-+Ç˜JğEOéOAaKtú1c¨ÍÁ!	DA¡¸lL¸\\‘2óOx:bXj™^„Q²™‹icX\\\"0r4É:(±¾7“ØŠR¢¼$ˆ<$=1$h×ßJÄã9ÁŒXœè †\"÷£Â”¼(¸1„\'RÃÃØ†¸$2v^„¸4\"cBÑôAf‚{&!NP£DG÷…â™DÆX†£ã)x·±2ˆÑS_FğŞÆì‚†èôOBXÑhĞ§æ§£u‰ê‰;ñ91ğoá›ZØ¡Ñ‡ƒQA9‚°q±º$ˆ†y¬±-µa—¡­‰B\'è—	ÎH˜ƒ^êQò¼^(ƒà—:RRa\\çÒàÛBFTUÅ,<Á\\ŞÈÏ39´4>´†AÂ!2Ñ–&o)†\'¡b—8_ÁG„¿§¼h‹ÂÁ1>[¸¼Ÿ8¬<^¶Ñ «ln²µàì(‹KŠŞÊ?«Ch¢enŒJFà¶®ixŞÄî,ŞØÑ²ŞKcI!lh^ÃEJí-D=	v+ ßƒqÃşÿ\00ÏàCcF%·_á˜N	L$­ÌŞ4ø4Å†‡BfÙµƒ¢Z&ó¢y×\\!	‰†,Ab\\[âØˆ^PµÖ‡„RòY¼Û4ôl¥ÑFøÒòY¥èCÅ)KÍ¼Ò•bWg‘1EÖ.wˆAb“ë„ÄâÍ‚Ê¶Iìué?á:aNO(4OüOş<Q>/è³Ü/pæ)zn~ğ¸¹¥ìú\"£\\_°€_n8QéÃÍeÌŞ{ocî|Ñ5ıƒh•¸7^Y8Á’H|gçxà”üh-ô$ÓÊx}«Ñ‹CêmB1¸0º.[)KšRŒN¬ï‚ÙfÆôCkÑ6Æ©J°øT\\ÂkÖÖf.!³ÃÃ)ó	:#^6d†Ä†¹DMş	„2q„Ç‚q¢e½ÍÄy½êôL§¢CÅKƒj*¹¢toƒbtOƒÖzáöu$lb”ğUèPáZ»Ãô‡‚ièJCU›\"³H×ÓV¡­Q{0üf±f¶2B\'×KpVâà‰(n‘·DbQkcJEh“tJ	†¸?á¬¾rjõÂ‘,4˜”\n\\ûÑUœ7Ÿ½°‡œVŞ^*Bi“Á5hšpg¡ÃÃpÛş!Xz,,‡ÁkbÇÜÂsFü^‰¶)iLzc~¶Æª5x‡Ñú(¼ˆ]•Ò ÕsHˆi|É„y$â²‡ĞÖìdÑ\"‚I!¾‰|!7¢4´mºòÖJc|Ö(Äl²»â\"ÃçKÍûÁá¾s…†Ü/ç\'‹‡ŠŠ‡\n/1á^?È¤/ğ‹GL¿*˜ò\'”SşmãÒLL¡¡aòòm(„ßÜÒzdĞ™öˆöÄî†øy±i4Ét…üÁè%vQøÁJpN-k(k…Ëä”HhPpˆia$¼âøL.MÁ<·1NTÖ_+×\n1qjæªÌ7›<ÅÄœĞÃÁIR2Ş†ó¨AœÙOQÑÂQh´˜ºe~á‰Õ³lĞÙS&Ñ°†Ä¢ÄÄàÈ1cCeÂß6?O‡‚µá·¢MhLı¢¶±¼¾CÌÅà¢P‚>âœ/ÜÃ^1 İàÒ~Ÿà‚KŞ»^.[‚w‹h£g¥Å\"á‰ìmd¾†ˆ%àÜ¹‚Ù Íñt|=…¬•6Åæ2E~ÛÙê¥¡ Ù!¥ğ³Ñúx‹OøH£‚16¼6THh„\'©D1,#º?Ñ£EiA7³ÒTÇÑø=	áèJ3ä&Ä„šÙ`.ˆ²˜ƒeÄÂñ9Nú_èÉºÏ[p”a(.Ø2U­e‰Š²ÿ\0Dø!š¹‹ĞÈA¡é	%„¢Øûğ†ÆÇ±-bÜR\"	å®\'O…&5CnÚ\'¦6¼CEø)Ák„B´.‹É6x_è¾Ï\0‘±;R!&’\'&¡¾a±qQ²‹Ò”„\'ZG²*.MÇ„ûX³†‰™ÛğYxl¢Ä¸inö!p¸ou¼²xh„àÄ<xb}ˆbãFAt5‡Â”Cá·„$QævÂ¢D/$ö&7šCæ_\n±iÊô¼Î†‚m£Ü¡Aá	pxoJCïá|/-	4\"‰ñb²á,Basœo–BğKÁl‡ÓĞÌ&!L4Be³EÑ	–…Á”¥)q1FÑOƒõ‹Ñi	ì¢Zû\'Uì„ ™qF¨”B=ØßÃÀÛ‚J4Óê÷©õB„˜C<Ù(ı‚ÄÁo,XnbêdüLXv„ô9F%ÊÎ˜ÿ\0‚4VVÍ‘“Œì×Âá.…­VDL@JÅ‰ùÙ´%ŸSv‘`”‹Í¡·ÄaSb\nÍ‹§}xû±×	\nNæañF¼X‰Íæt¾2%çäxâœ ğ¿üÎ’éœç]˜}­‹Ò—’,Éh‹8\\***(™ÿÄ\0)\0\0\0\0\0\0!1A Q0aq@‘¡±ÁÑğáñÿÚ\0?øˆüñ_“àpøT¨Ÿ)ã_£<šáæå|O+D¯¯.ÔúJ•Í?+àxTHŸ!ğü†nY´²˜:‚JL‘Ä¿áId_r¼×à#âñ¾ğ;€@J=O²W¨ªRà[‰”Ã‡Ñ*`FS3ÈãRü˜’ |×=¥ÊŞBUI“ÅElÉæ¥Fòq^7†\\_\nó®] pµ>°\\¨b,J©¢TJÍ8Ã1Ì³Õçrø¾/Â¸¨xTy¾[p\ná/€TKn1S(Úı+€b¸Q+Îş‹._5Ëò×•~Š¼™R¥Jãr£ú;ùëôx¯Œáã¯Ò_ÈÃ“3_kõ)+âePƒ³Ü[o„TDËÛûGhqO#ƒr‰Vb¶ bøÒ\"WèO2»‰X‰”sˆÎÆ!Õşòøõ¯Î£B¿ë•ƒ®ãŠ6}7ù!Şî{Á“„Aÿ\0•Õıÿ\0×¨:†n~Y{×íe¦‚+UˆY­¸¿»ëíÜ£sÙê+­æ\0GÓúù‹	ÚÎ¤Z˜ıh£2v\'n=@µ¬‡¯ó+\"2JYvõşş±?LÜ¸\'¼q@¬ÍùèŠŠï\0ljÜ¥Ë‰A¸L,PHÑ´Wã¸ĞZŸÔZÌ!}Æ#k1öÄ­¾*ÖEVŞIPæ×qëü^Oàà~˜^iØ~Ğ;‰¿;øÈğGÆ¼ßšà§l4ïìÂ S®\\?ªåò|•)àâ¥J•ñ¥Gqê5oï3êW…Æ\\®w¥¾lZ.Ò«‡‘–p`†TÂ|7\0ê=DAíîKz?ßÖ{j=K¤»³6Ç4M–^E1).¥Á-—ÂÃˆÕ:\0°¿´gB Fâ†¢E§ÔDãÔ\nÓ\\ [àÜ¸yƒ ¶üÒê@¨eÛó”@\'ÿ\0‘hæåÁ60\"³pëèÜÉ5´ÅöûŠ‰¶\\ŸŞâc;€;{e‚òÿ\0ˆÁôÄkÒæ¯š3,ú)Ô(;eaè˜Æˆh‹/nã¡}UÛnKŒR\\¸	F#à¹„¾ß™^¸AFãFÄ¯ÒT¶H‘JØ¾ .†àwB¥1ÛRæn*Á—ëÓ¦XÄZ`ÏM‘=ÂÕsê9àj\"¶øˆ\nK¸²¼êS*0ğy\\¿R®T©R¥J•*S-/ÔXJú°Ì!\"J•*Tğ®	ÅB/JáàäpT©¤ÔM‡!jši™xÀÅ@„4.V¯Ònx$NÁ’¸¢#Æn87äD,Ôhîˆ§?iÚ\\3qL¼—._ƒ	^@ÓÒà²áSbòîË¢,¹g;ŒWàø†\"#á/lJ›¬A ‚¼b¢Y››\\Uğà<7ŒÄ~¬á/:Æü­¥ğ<‹—.\\¿¯ˆ8)3J™•*W—ßˆrU2¸©™\\m---Âª0Õ8=Ë¤‚µpÌg]xÓˆJ®çÿ\0<N&\\jW€¨3Bá,J•|KUıÈ¨ô­Ç¦/êtN®_¸š±)®EŞøŒø¼GÙı3­$±öŠ!ÂTHD…pûgüğ±ÅÁ\\\\^[Š\\Ê!d…E ŠÚŠ*âó©J¢ÈÜV¯?É!A¦!Ñßæ-Ï´4ŸÄ âX0‡ŠàğxŠg‰&®c}Å<=ç,8O0F. |ŸP‹ÆÉs<²åËáråË—/–ó.\\¹rü/Ê¸µ]Cs÷6}Po^L\'iL®*ZT§š•)…~ß“ë£q+Äµ¢\0Ù±6@‰]»îW›û ”:Î?icè,[_o‚|!„¨ÁÈ$XMZÿ\0|dô—°«—üµ¨DjØ›F›­ÊÇÒBúº±´‹â[ï÷šÊÄDµËæ6TØ…øb\"fz‚×Rî\\ÿ\0Ø”…Pê%_±Š	E¦ uôŠ^±Z‚€Ç’às ã’@‰3H0¯G\0.bL¬îZU†µtˆEXF¦Ï¨³cî†&	üÂõ7\nÙn”°+Rƒ<©:p˜ºşıû–/‹•AÊûùˆªrK¨a¾_rÁö9V]Íîo)/Ü×ÂæläD³Cç¹p‚#ßeÌ­¦mê*n[.\0ØÔ²W„@.\0„ÍÄ1P-vÔQHEFKˆ+i¯%†“—Ğó(İB&-‚Ş’…Ff‚JÄ¼RÇi´Ä¢Ø•(ê€Î¡ïâ§¨húId!–§Z¬¼k²]ë©€ö˜N¸Ó ›İæ*Ü7d6u¼şğ¾áüÌïüâX s÷c)ºÌ\'5O@Ì\'Ÿq–Œ7uoñÅŠ‹d¥Òå¶[„oQ!)RŠĞ^8ÔöŠ§_ùøIs¨W\0K5/ÁD¨KE„şÑJ*{…³İÅhúÏRp>Ä >›¸àt*\0!¦ZªÂJîªRS¨?æ+Ü%Fı&å2E‘ê)Ş¦’-ñ cB}‰ƒ^¥Íî(æš{—\n«8•Å¶m¸­©œe=qorïÊÿ\0C•ø4ß#NÓ7R\"¨aÖY\0~efUàÜ¿†¥KË%aÜ/‚ÙL–Ç)¼9ÖSÛ˜Pš¸lJ–6ßP™P@{i˜5•¥K>Ä0LÄôÒzÿ\0¿+‚\0ZÙ\\£Ü¸›ÌúP‹SD7\nö‘Ù_Šõ	”¦I.½F€†\',M¡QˆÍºŒfÍFşÑ ªúÿ\0³!¦ö“»+»Ç$÷‰†Ïw2§&;M±Ê·ıÊíf*2·Ôh»™uì:zƒ³¦¿1:¨À;¦^µl´J¥•˜€¶eµQNØ®Øn Â>z”ÛJà€­¸¶UX?ÜjåÁvT¹wXè­ÀV2Cuêß(¬–¹„^]Ô[˜¦¥y°ãqÌAôŠÕáÍ¹áS2&åPJX`¢1W|[ğ‚à‰M3¨\0_BûMš×‚Ü˜ÏôòÀ×>r ^#\0ŠY zî«pâ6ÿ\01Ü]<ÊÅÌÇGÚa_z˜8oùB¼;…y;êYÔS35\nØ‚ƒû3:eYz©èˆ–‰ 3-UGMè‚¼¼7Âçl™…cS—¯R™fÿ\0ˆ,Jz¸(]½*ÿ\0Rº±ıÿ\0ò5Q)j7Ô´£}Ì˜x3ñX\"h¸£¦Ù–î%Vå€^Etî	˜tDwîW®ØAŞ%èeÜ`õı`[oüš}à²2o1©Y“ö‹ÿ\0ÍÆO_¤bSV—ê)¯x+üK¨]jZºÌ&£7â#òÚ~±¶&†XİÆë¸k<Œß®\\¥QÕ‡/µşÑC™/È%8î^(µ<ê€D¯3—Êüëš£îYpÌâ¸ĞöTU:§õ¸¹–‚U–C*ˆŠØg°m+b}}ÌHÍö—=Ïû0WıäCƒ1_É+€¿<L•†e@’´å\nòBÈJ;–,÷¶â/Q*Ydx‚ßå,m(bAOí1A‹¼}˜Ø¼×õ2ØË0Ûê!P°˜½ıÁ×õşatJXß›ÉÅJˆôTúK²¾i=²å?dªh”»bĞô”ÇÕEMÄ)</}ÂP«ßÖc¨L¸fls¦-ÁFÈ©vÔG´sp.e–ÛÃœyÔDß„‘Ã‚\"µ”$UÆ³ºd\n#40mßºüÇtÊàT#;`\\µÜkÔ+®/¹GÁÜÁ0ißõ,Z¸5i)DÃ¦Ç¹eÔÂ‹ˆ˜e0LxƒZbaİõ-V¡Z…9ÚuÊú±FøxbKÛq^ ˜W#üKŠb\0°î&‹ò€]şfb_.VQ=Á\\k€´ˆÓ*\"+—³ÌCF¡\"‚u»-Í„`¿Ú\"\nÿ\0ÙrÕJ¸0\\–z!Es6M˜&Å÷‡#d¥vèê¥¬YŞ5.“_Yùõ[Ô\n2ÒİjX”Ëds’)RP×ÃéØüÁÄ¬Á¢‘$&a”Z‚\'Gô KŠüá*Í@Uí¹WpCÂAƒ(tõ_J€‚¾ì”$Ó-ˆŠØ¼2ûÊE?Ô3ûê9Ó‰V÷DP³‰|Rê*ı%P«ŸypXGHZÄÚüIR¸ûDÊ›eÂ0şäŸo¼dw\0ÓFbÆiê`ÿ\0s\nqywÇ‡‚Y)ó¤]GeqLºÛD‹;¤Dß‡Bd	âKâ¸«•ÛÅ2‚]@+ws\0\":şb#OéÀ¨§q	¢Ê¦FˆXÌ{¹[+àx\nWCI£pZÕ©PÂA÷ÉIúà^bã5²Z7-e—(q)¤hYñà˜Y¦ØÖ#¢!K)Øº”‹PlUî6EVßĞ„s‚à·˜G‹—… £PvF_ñP Å»† ´còğLq_>ˆ5—àÂĞSh	b%cá#Ãä~ˆ\"ænT831QL\\õK+‚…K¬ÌËøHÃ‡€¹R¿L%Â\nK¬Å¹—Ô¶T¨)¨¸‚ÈğK‹ğ×’<š•á\\…wVGëÅ¾æÉâ²üïÁøoÈdğ5¾HEÓ.]p´Ï\0+_Šñ~:|)¶>‘G„yìB%q|T¨Z`ÁŞaD£”îmíå—ˆÂ2¥y©FQÜh&Q+Ç*eT.Étphp¡‰Ú%âø¹!x>uÂ¸0rğË bW†Ë›—›¸¸GÆà^bÛâùÔªñeø’ø`,lÜÃ0ÎÒáˆ­L8%¸TÀ$|B]/Áğ+›ò©R¼™C.Û`’ĞÌinÈ@Ä-*SñÛQÇ5(…¾/”ñ¹	+‡ß—hš\\hY2è¨Ïdo’(ß#êi©PRÁ.÷æüå|TIR¼*T·Xc†æeÌ¤²ĞÄ»ÌÄy´ÔrÔ³L¸ÑÜGQo“ˆ<>5*n8®z²Ìw\\ ¸èÊŞ¥´¹}iV.\\ ŠD©D	¨ñGÃ¹©qâù¸Ú`Y\\–Ãû–/¨EX@fæ¡X7ÿ\03,~qøšİÂ—ê_#î}³ÆÚŠc]xß+ËÅqG\'Ã¸°ËP—Yˆ\nÏ¥÷1‹½Ê^5ÊpòğìTLÊçÜ¹ÜYp‚JšáâåÂ_	p¨“rŠÚ>r—æœ<:¥óÜ«áä7/›—Ëàxeê2>7ñ<ß‚ø‡FÅE±Íx\\x¯\0Yk–”Ëú‹õ>+ÅOÿÄ\0\'\0\0\0\0\0\0!1AQaq‘¡±ÁÑğáñ ÿÚ\0\0?±—L6—,Ô7. Q8eÕf£ÂªZz—Ìu×iÄoZÖÆ&œ’Ü@Ëp\0®şĞ*8W)Ä7n¢Wˆb0«AœJÄAÌ7:€¬JÀ.c	ÄKcd\"SR¸–‡1	˜Û¦Á]1ªb	s/R¨jP¦]j˜Ü¶ÉZC2¾\"¶&fqAJ†±3rø‚é”#@øUÖ¡b¥Órğ…[ğn9.YD*â)‹ÇØ§0¦P½\\ÎiæPjg\0³)ªƒ:jU*öE{¨cœ|]sñ¨ÙˆjâÛõqC(Šº‡H<Ç0„ª3˜ˆì;Ür‡ˆî*	Ì\\0¤]cÂ¶ˆ:*UJ¸’‡pk2à¶ ]:™a·˜˜±¦\01Vjã–ò@(j Ş§!z`ÌAd ÑCs˜Û±†-.qì›üE¬Ü»ÍG,Pj¦Yˆ5ÃÜNÃKÊ9æl@‹€«Z†Û†|oL,u+,uÃÄpæWZ6fÆƒÌp_,§˜Ia¹EÜ\"—$G–a\'ñ—dó)å†£FFYd6\\T‰ƒË·C†¼CLÆ\\³ŒÎ~\0ŠÖd{Ü3*%;ŠUBTKh”9™n!ÖáVãÎw(º‚æá]Å¦4‹‹š[¦010¹n¥õ™ÊyXZYÜSp‹Şf•Ú_R±i(îRà\\L‘,¸ø†qr±¹¶ G.!…iÃ\nTJfó³5D\\ñ68–³g2õ7xš—{–â4¶ ù%Ác-Ì*‹—Ü[<ÄŒ\n¸ÊX”ÁÌÑD-Ä²È¢É/¨[Bln¬&B \nÔ,˜-Ç,F¥ãÌåJ3p³3ˆå×À®7ˆ³qpJ™±Ô»Ü5_¹ˆLæÎeñQ—ÿ\0p˜‰˜kš¹qfçà˜O…·İğÅFR¡‚RAvQÕNj+p\"L¢ª‹â =Ë8C–g‚É-š w)® 	sF\'_WÀD0æâXÜ¥Å_q ‚¶â5*&%Rü&ÔÔ·™›†9—ˆÆâ¨«½Ç³©å+Êx‡=D©I™Í.fwé)xb·ÉÔÒğıÅ[¯ÜÓ2fZœs=Ülµ‡ˆfUÂXe•ˆY“LC2ÅMÊ¬Íœ°ÅˆÙšÄû&„†·)3Z0Ï,iFâ[dºœDYsè”K0ƒ›ıÃ:L\n_?æˆ31sGò‡˜y”Bu\n©G¤[ªÔ^%1k*l‚3+”ñ¨¶…Ô¸æÙ´JÑ+A+5Ñ)aæ\nÆˆñ(HğàM•/¸®7,	B¨¼ñÒa?óÔ—&zAÔÎ‰b593şÑÄ:~c{û,ş`bë9Ñı€uÉbrüÂæÒ¸×æ°Äı7ß	ÑÉ¸Õ\\O%âÜÀ¬åhí¦S½‚Z©7w‰r!D4²şû¡e[P-ê%¬¾*50\0¢o3_aG?%ÕgœwOÔ,»XµQæå}	¬iuJaºº¸Ü@ÛÑŞP ÑÄ™KÌ5DT±4AdµÔ ÙÁ˜q’9˜\'=×pq\"„ßc0ÄljmLK`nõ&ài5\'Ê V cºÌLÄoˆS¦âJGq¦\'¨¥à‚ñmËN ,bJ¥xpoŸ…\\MT #ê¡´½C*¨Òó\"Xo£ıÿ\0b_²ÿ\0rÂ(WQÌLÑğËnÆİşfsLUµæ”Ãv°ä[F¯y”NsØ¥-˜Ls¨”2à©zˆ«ƒW+öYŠ\\îtX5Ç8*P>BT.!\0Ép*´;Ï¸@Æ´ê÷K\0·–qzËõ‹Óµf¿fPÛ5—^ééS\'Æ\\e;iÌÊ†h4œY£˜Áî\n­B£«—Os3Ä@Jw*×:™¸]»!ŒGtÇxf³-åsµ(Û\0‡s™3†yÌ¬—‚-·8Ü(%Ë¢şcŸ€š#›âv2Dú—qø‚îjÌ›–#ŒÅ™ş&Òí—˜B.aˆ\'Á¼Ane5‹H@ÁQ†Ç­¿âÔn`V)#¡oiH5¤bfâs¨W4£¸«p8cÑ ˆ¨¿ÌÅBkU8Ñ¸H…¥—t=³(*å½Ã›ˆ\"·™›ÀÃßp>Qf’QŒä!Cßí›î_ ]6ÍX|°XÓ­ùsEÅ3ªól7˜ÊFIBsTb„³eŒg‰yP7qŠL =•7dù©aÆ;_áæª›Üµ+é—F3æW#Ü-ÚÌó‡,¤Ë¨\n‹æ	G®]¸ËÈqz½MYv†àrKõ=\'äƒ\'ÀË5-ºÔs…™xˆ1)S\":•Üp¤¾¥Í cfkPiÌÍÜuÄ[@â%—Æ¬q“S-¡j&¸€Á®!e*8÷ä™‹ğE ‹â¹@Ms\n)j×˜Úx³áÃpmÖá§öp:…¨Â²ã‡˜Ë’P YãGEg9yd·j™~\\ŒÇoâ=´ 1÷0‹›~±ˆ’·Ñ÷ˆÍÒñdìş¸—¬´åP:>QHE¥,=8„`)nÎÄj0¶wí•×eî€oP:¤”[dÓÔ7ƒ/ê#0Ä€¢¥¨¸U¿åCdı÷*<6ÒhüTPÔ¾eˆ‰:âR˜0£ñP¹,ìÂÃl™¶é²ÿ\0Š–‡8ı%¤ãS‚óBªY5jÅœËmÿ\0ö<Â¸}VÀ`d9=ˆ]ÔÑ$IŠ.4ÜîÇqY›@½A([%U¬ÔL70Ô!âm82‹‰ˆëR¨Ä5™[Gª‚1RÕSI‰pRØ¹HYÆ¡Ş4e?X©ˆC“—™Yƒš–w4f:WÃ‚QSeM±İN<À®7nQŠ<âU`18&o¢:Äò° «\"l&a¬ù•üşåcıÆîûñ¥ç:åƒû/»o9ó˜är€íz—‡-jcKØEëÄ¼®³Ô`À„@â±9Úù!ú–NşúåşÅ¾ !ˆ »ÇœŸÔ3}ÊÎÿ\0QuÖ Çg3/+ÿ\0ØiˆâŠBu—ôş¦\n#¢¶aímP|\0Qú%Â¶íİ0KÆ-Vµ(ãÌª ®	6U6ó²á•d\'1ÓÖã&³ÉÔÙ¿[ˆù”Iwˆ´@Åó0¸–vÇÁ˜ãQËÚ‰‰b6›+à[8‹ŸœÌÆĞÀÜÅ/8âªn-¾g`ÄsTÄL²ï2óR¬Ì®µ5™V\\LLye#XÌ±Ïr¡P¦s[~r`+KÌ0ªì{rÿ\0eª\\»²Y]ÔÂ»¹l‚¼Ì[À	~¶ÊÌ±<¶Ùê(Óøaf–XyåùpÀäÍRìùZU$1•TĞNŸéúM,§ü¨İÑÄ¢^R|°MÄÄhÑ©h·WMğÌç[±)5¥¼Šş¯êT1ş&Bl{ftª9–P®ÖìÇ`êz?ïÌ£c‚œÙÔ@¡bh?ûrƒß˜Ùœ%ß\0úp^ânø‡¸·õ³WdU!œÃnåcÌ¼@©…yÔ×2Ë¸±qğÃ1&HÙ»„¨ .ÙŒÔ\\0£rÛñLn374B±åkÅ|êê{q`s9™J•ŒÇTüQˆÆ=Û–5\0q¨´@Û¸é[7Æ5ÿ\0xœ¼3¤Òâ`o‰FVg×¿Üc~ bùU-±%Qp#Åp	ãË”¹N±ê*ÿ\0‡‡QQğû0ˆ—õÔ¢Íu8?¨VŠè+üEhtÔ»DtWaqá‚$k7Ìô”«ZÌZÕ^+1.O™t~¢ØW¨WNFøö:_Ò`?¨-xAÏliôàİõÎE•ÊÕ‰µ¯~fW™sÍB±åz	C|ˆe†ÃP	D¤iÔ5æU7ÂâUË6AæÌÂ6øæq™|C$¯13ÇÜhÄ,\\iŠ±KÅÄÚÙæFÙ¨àÜ¡˜ªud–ÍÊŠ÷‡¯…\\K.¡@•›—Ú­Ë¦·\nâq/¶^ƒNfÒBô]×•Tü*œ°QÀ¿a—ö×Ô¡“˜n^J6û5%u_ng„¼Á™D²ã)A+éü@7)Úij-0 Í›~a…¹•9‘ö[ú?pî á„¢îŒğ”ò<pWJ´*(•û˜uÚâSñ@<Ëj€£1Ø·1¿Œë\0krçX€š©W+ˆcĞŠğeüÊXş_µü@Ì9¶à‡¦XW€R™T®áÖÖ<——,M>>õğæš¹fï™x™¹¦Tfw(¯¹A\0Ş¡–ÈoâÙ\\ğÃÜC©ÌÇRÇ2•‰¹®.m½B%,@Y­GÊ9n&jñ*UJ‘,˜”¹Pº¦]j%cxÄ*l€L¹‰eq0;‰ĞÓîáP+àïQÇ3lÀS”İmıN‚À½yŠ@,`îo=œ™¤%ÅB _‘ÿ\0Ê¹¹¥ã”àÒZĞË^¸•yû›ÎÙNa¼İZS›Ñ7a\"³ĞşF–4Ê.XÇkÖ¿H&ô´¼Q^Æy&´2vAâ!9²v!X‚Pàãê(:@mÀşş\"P½†èÇì°2Û2z 	»¿“ö“Q‰O5ƒóõr<çÿ\0bSÅÍ‹¨qİz2ÍTT ·ñ‡&ËÊş¼?ÎL8G uÄ|dÄneØ%#¸ÙuZæÓSœÃuD§÷S†~+9”@pD×a’Íq**Šg^&&]]Ë7¸—’É¨&nZ¹Ñ˜dÌ•âX*;—YwÄvüjXu5|9 S0¼JqÄ“ê?SJtÃ°ñPZ¶pÕ2ÂÒ‚%0ÁQi»¨„YOØÿ\0ˆ—dÑwS+—ïøâSyß3ZY»ÛS\0ä_Öå«èÃ?ÛÃøÌèÔ»š:„‚9yZiE¿`®5/øæ\n_ ŠÌAÏ’ 6ºˆªÏšñ)ºúÿ\0¬\\lVÙG0ª9š_ĞÏíRœÒüÄJJ¼šR¢}Ya@€W\\G	6Ä¶Š ´NˆßÔz•ú‰‹ø!Ô\n·Àj.ÑT¸Y*\\oDÏ‰Qph¹ â™pV`s0\nó’*şæ—æ;Á;Mb^RÊ—f%»¼é‰¬Á¢ÜJ`rš×ÆØó‰{²mK¥:•û›JaËé­¬GÙdø!Y½A»xux®}ÌØåèPõ07âUMî\\·ñ¬Xn÷Cp°*rpÜ-TKYOÒ\0ªÿ\0qµ:W\0ÀÒ\nşŠâUPu«ÅJ—Ã¾˜6”Ïê+åËüKhÒŞe¨›e´ş\"añ¿ê)Z88ş¡A¯kénSÏú%5AÛÏõ-®Î7=bgY	tîû›Û§F7?ü\"§`U1ú‡5\'m­Æ VQG7û„zp¯>ñ…şp=M²Ş2?b‘ÈÄ·ªóÛX-¤.-%WÁ©´¬Æ*™XÌÚ„rM|t|5.[³QÇÍÊÌÌkˆ–J|%»Šw±idˆÅ@fV8ŠÁ…0	ˆ˜A3/1D7œFå¬Öª]”âX.eR$TÜ3&Y–ğõ¢îÌ8ŒS¸õ2KqQÁ˜j*À¢±HSdˆl\'‰¸ÔæS¸rø\n©wŸKË2¨ú†¦LÁf™¶+~ [W.£{£¸YƒJ³î\0Ä½ELÂ¬ÄZÑŒÅJæïáA¾fâjZnd–ª©xœÌ™–JøÂa*â!’oˆo50%æm}Î„(Ã(â`3eOÔq–cGæ)µ‘‚3\"É{¢·aâSC3{ÄèL¼K+2í‰šÉ¤\nø\n\\üE*ƒ2óÁ®%l0µÔ4æd¾c”¨yxê#WpU|Zñ¾&Éy&r¸Yq7¸V9•*gÄæ™–&Š¸±üE¸gÜmÁ˜*9Ä9x¯˜·àn~Q®à¢åµ+—DæŠë0q¹W*\\â3‰Ay·ğ$¬î8;”1QYl²;%í0ºÔ\\JlÜf31óQÌL,¸†­‹xDMæÃ¢8øâ*CMA›™4ê\"·)”î„Y•ÔHDê2¥^¢¬M§à¼ÆHˆÏQ.í‚Un(q+o4¨‘g0Á(4Ë|Ö¢ó‡ïáVæEsLÈâ-jf®#x—_‰©k ÇÅe”ÔuÓ…Ëo$Ò³¶¥Ü¯2©c˜ïjZÃ:ƒé¨Â˜ÕQf\\¿03æãW’vLÖ¢wPÜNLE/RÂÂ‚ÌÂ¨›Má/Än.Â¶ù™¦GU.:¢-Ÿ€–‹æå¼ÀÚvÙ*æ©`Gq8–rî-%s-qy—´²s9ñ25ÄZ8a:ÌBç’wN°í¨3®cCY–ËÆ˜àD`!På8¶låÚ‚S©÷8&”¬J%L3G*æ4íÔXˆ	•ŒC\\Æ[Ü03ˆØÔSqÉ.¡kr°æJ$¦%5>¢/\n…È¥¥95ˆW ï,\"D2ÅÈ95LÖàÅƒp)lTZ¸qÒDSf$ÍÜ¢[¨Ñ¤fËŠEÇ¦²ÌHÆawQÕ²¸¨-ª^ñ˜*Ğ.z–gˆe‰²˜–Ã©GÔLË„ÖâÜ¨fp3Ñ)Ä8K ‘\\Ï&/&!—1q¸%Õ7I–z‹¨*Ô¼Ô¦a(ZŠ¢çu¡/0İÇ1Æ!DQoóP­9%¾Å•LGÄğ˜\n§êVjVb¦UË½M³µ+\'Á	3¨Q¸áV¡æ[‰L;TqJnhLTÄY¬J…¯D\n<LUÕLV!xMu~d†HeªÄÁ£ÜKGŠ12f©‘\nÄ¸ªÖà•™‹Ä[ƒXšy–»—¤Á¨üpâ+©A›ÜÚV7*‹e·pWbçI\\÷+’:Ô1¤nñœÁTÅŒL…Â4÷\0:›•v‰É ±Æ·2™—•Ü™m14:™Gl¤‡V!/RÔÊ\0&•ZÛ\nXµœ@9ø07™ÌÅÇÛù€E©AMâgí(f\\¬aŠQŞ%*-“.´æg½±D½&DT+‰—ÀÖ—5OLğD*;–âSí­Ü@‘ÜK¸Ã‡Ã“u4fgÌƒ¨m†m÷2&ÅÔ§$sEÔY¹w¦K¨å¨]Â‚+·ÀÆ¦œêË¨•N\"š¡•9š™œÚœ\\ü!+ˆ-¯‡8s¹gQÃU*¾72¬½E&c-&|(_,¡|Ô¸å†R£âfş1k\"D^bŒT³+™œ£ÅjTÔÉs±’1.ÜYÜVòÀGFŞ`Ì¦›™h¸™Ù‡ÛY>£†!œFçš¨«¾eÙ’\nÓ‰èÂ>å^\"w0æfæ³pbç55Qî%ímGTD½D­E+m9…ã7ªã›”Çpó3˜K¦bbo_	2sLÅR–Ac3˜¸¯©ˆå¹áƒEK´\"{‹Xc¤ÄsˆmâxYmî-fW+*]0`æ,¾æÌÃªøÍÆæMî(;×\0ÔZ¼NrÙ©EN\';Â_pË·QYd\\D^bØÔ¡r¨Ş$ğ¿ö¹V/å¸è%#˜mb‹@b¼3)÷\nef3ÄÓæ#WÛ¹w¹—ÔfjÉYÜx<ÿ\0½ş¦—qó¢:%°×Ô¨Ìöc_	yv‰h/ZDÌÊ-ÂÄuqÜ1¨lS5¸l‚úC³q\\s+‰tGw+7w0\"ê.*f;ÿ\0ğ—ÍJ®Hk#©q!F¦êåæ¢‰r«S°*:”™Š»	–¬«\nY‹ciÑ#î¹–\"W,½¬‹¤\"ŠÕÚ¼GvLÌÛ«•:+7ÍQüƒ…ûÊ®yŠÍ’€µõ®`¼2Î!7rÊ¿Ä»&šîXw¦a‹†%s/4ÃÌ£î:Æ¡QJ´q˜ù€¶Î4ns1‡à™¦õü’¢¨Ø`(ß¨ÜW«å™ÍÍá—WD¯aĞ»èí™ê6å©ˆa˜³A`¸ƒàn%»Pks‡q3)¸¥=À×˜-f,Å|†åJ~ y…,û”L/ÀÓ.+ƒFn,æ,ºâ[I¦e e.P*ÕF8±¦š¨tÊï´s^bqw1«\'Ü¥¶„ãWXÀêhK¦ëÔ°c>!DÑu~WpíÌŞG!¸ZfşáWõw6[|brÊ|¤ÿ\0Iß¨_‚œˆLÔÖ#(Ó¸1O.€%y QPWmÎP+µì;?5y–æD0‚Svw-¥g¸a/š •uÍFD q>««ÌCQ­\"Úóı%r•¸¾g„g¨Ë9F±æ´òÃ…â:—)Çy™°Ê£mIn\"Îç1™¾QyBıˆ2ÔY.‰Ç×RŸg†1R®É8§˜İvT›šÛÂ\n€¦ÅéäÈ¶NĞ{–‹wvØ„çÜ\0WD[\':Í¥àÜb’l‘S J¼Ğ6Ö}~f\\w,şÚ®cñQz±ÉvfkîµöÔÌä›cGÔ\\b%Ë\\58=Ìq•/qH\nÔ0Ë#”±Ÿq›T~ŸÔªf32¹Ì5º‹)İÍê1B¥·ln41)¾%|Õ±9~ØaS,pñˆ9â•JëO¸6ÔM÷Æã	Îrlf#y!„ö¶è®ár‚yoœÿ\0%¿¹l5ÄÚ¹úŒó=g€¸«d	oŒsSñâˆ\\[ëıˆ—ÎØvbp¥]Ë]=9’Ÿln{vM}Ã€\\¬]…ø¸\n¢.´¢.ªJ(ÃÈVeƒ<Cv³NÆ$yl`¤£Bª=Ãš]1w°•§yêZŠ´‹\n5‹EXŠ¥7Ì{zÒ1,_¹HR®\\ÊZùax?læÔ?ycÊwoy%k@mBÿ\0Äc‚V”Àæ/Æ4©ÚñjJÚõ©gCÒx+Šb™ûO†öC\'^‹P_î¥Y\0ŒSaà€íd(WË©ÙŒy¶ªdIw.¾®1n¯P“W!¦ßişI“É¾ôà×q?å7-3Í[q”F‰¼|sİ¹]ãŞqê2ª÷BØ—‚¤4ªî/0—g©æ+ƒG%ÔqÄ”+‰‰cLË\\T¢WS¢p	Y”Ü¦RÇ›Ü·¹¯Îos„j¦JÍË\"¹K› Ü7ÔÑ’Yq¨–•è„\"f=%§ŞPËü•ÔKÑvcoâz»vSGÒ@Y@ß	{¥qâaÉ±¢×‰§U&”lÿ\0\0ıÀÆùÜ}8ˆUÜº0á|×‰dêÆ¼*ÏÔ³»”eİ¹˜p«¢d\näõ6ä·}KÍ“„˜™Ø»Òõ	xM¦†H™çÎAá8F¡5­Üâ¡ÛŠïC1^ïğ\'É/¥¸\0“Tt†E¿Ä²QC*ÕCu.…–ÖúŒzƒ#Hãæn(shö3\n]#Gû\0jjÒÓósXn0Û÷¯Ó8M:ÌFåF cñOXÂGlŞÄ+>?ù2¨édsä^Ø>”·šŒB˜)ùc†©gh³÷*LGqJ§öœ¡à4ıgsJ—ÑÍX:8—UâİO©Ï	¢œÚK¢­ÕL%äì\0ØBøVŠ¬Á:.âë?’Yv¬«ÕÖ\"¸·­Dhè¼ba9[…²Ÿ[}T[(e¢İ!Ue!Na-ÕFÂê*®§bÔ¾\"~‘sâa˜Ô¥ÅMA/gşA(ç*-F¸ŠÜÇ,#¨\0|1iˆÚÂÆ*ñpĞ<ˆÃÂ‘å?Á9¸GFÿ\0Êz­Şßä:«ã>cã?¨ÃC—V~áV%AwN5C€,ş> ÌÉ«+s2wUW†œÔjïö›Ä`\0wl8—P¯¡8ø?¤—ıúE›ƒÏò0ı^¡p³‘k÷Q1KK§¸×LÒ)ê>g*˜|f6[•ùOR‚ÂÎBR’‚ø=KN8ÀædÉ”)æO/˜\n“dÜ`¿l×\0´[‚^ä­œJŸYŠù”W™¾cm‹|Ûšç0½JK>ŞcU•1/ášôMĞE¸Ö‰ØWãÄ$,WµÓÚ; e®€~Ñà\n7+ñ_²kş.ğ”ÄçôQ.aâ G9óI`qêf^eF±Õ¸=&\"Ãn+N‹0&¼p\0è0õÚ@ú‰gv *ÑÃÔÆI‹í/,Æ®)İ÷¾r¶À€\"‡ˆ]n ÒãîadÏR¥Ö·™o3(8‚·¸¶™ûü˜Îf÷|fË„!Ràæ£ğÄÄ¼‰ÙAÄEw4ÛrqTÀ)ƒ»ñ‘\"ÀUYÚ£„”áe?ˆ7ºÑ–²ı°\0È+]ºŠ„×X6›Orá_x´<7mÿ\0F\n)¼Í[}ïİaşÌ©CÔëq[ÓT«„¸Ü£õ¹‹imPòÙ?Áƒ0#›¹p-2]l”…#ÂQM_˜#¸”Q\noĞlHV†\0z†^f”Ã§â:\n—Œ@²ã¶PÄµgssû@R¤Õ`©jTÂŸº%5õ»X›”TOQeî:e@0˜p¦[ˆ(AW’S5-Wğ°…6Ë¼q/ã;Œwæ¥CŒ®‚sîrÇáˆN¥\\ªÄÀ©‘pÕs(Šxø¼L?Õ;±ÍAZh¡Öâ°\"5Cr¡9±)ÔZ3¸š`•)]D91±7^ æïRş\nK‰Ôn²Å…Ù©lPëS$ì›\\pkq§!™Fùšf-<ÂÙÔ@.¥µ¸¢<0)Û#QøÑ€œÅp\\J­Î—\0\\Äe|VÑ‚æ*s8fU`”cÛ$\01ˆÜD§™rî%‘ÁPÔ¤*#PüâÆg:‹-Ô-Í?	fÙ¨îb•n1,MY¥M‘À².q0ÔnW?5ˆñâ*Ô¥åŸ»šû”ê[™‡dLXüaf\"G|Â`™ê_ó3Ibã¦G-«ã01™xƒG˜f-1Æ‘x Ó«›TÊQ©¡R«sQB@½wŒGQ¸ŠÕñ’Ù(OâNsV7xøD¼JG©ÉÜx¸[êmYnY.¥ÛÈ8Ìi®a¸gQY¥WÅ|3ˆáæ,bÎeÑrùšƒiJ¨\"é»‡IeÜTrÅ˜°Gp^§5Rê(«â(4j9Ç~â¢1˜›LÚRFDLJ}Â¢¹à”HD½9cî=Oq,Ô f7qK†¡’~ÑT¹W˜R‹\"w07uÜ\nÀ›ƒšâ/q\n=¦”²—W0ø\npKF‰bSèOË%â0Á¢¢Î%…DŞJ\"•)Ä2‹Ô¶¹†æ¾àÌ¬.j§fcwçàÛK¹yƒ»›je¼Ç¡l½Ô= ?˜iSYï¨ËHï&HšŒ¦¦eq\\M §>#sS™¶aK97pX1Ò8Á7(ñ=ËÅ@d0”,U‘-»KC,blŠ	´¬S&ñÀ.&3¸nÊ8‚›ù+9buy‹¿3YIÄ S,`¨€õ·æˆ%E´ùÈ#­‘Ò‰\\Ê$¤ÄImDÜJf5,y•oîQ9©ŠÎæ\"MAÆq#¸ MËOÛ’nøxõñ‘lqhã}fû‘JÒU«3[3cü|Ì+GûyÆ½Á–Õ‘r;Ñp‹sÒÆË+••V7˜ÜFĞ«œ¹MÀ[€,«!±:Á&²³Slü^h†ñR\\<ãx[¸yLTw	X¸¶ÀÎ±Óh rÙq˜ƒsœA1\nsğ.af*e.Ì«1¨+¢^*`kÎ¦Û\"f©A.µ()—n¥T¡¦EjTŒ\\rG‰ïáÏÀ0J7û†cºâqáz¹aİË‚UÅÌ%S)uÌ°tÂ­C†Şcb¾pÌË‡6*=åÏà°v#’ä¸8hnÀğïCó¤©\0DM\"n!w,¸„6Eî)SyG1&F›ŒLŸqâRÂ[vÅF±\n·˜’4Şf šTE›ãáZ‹A„`ÿ\08<üL·bÑ–´TTKÄ7æÅÑš”Şfµ.Üü8j6®ñÔC¹Z·¢pg&åTYqsòø‰pÆ£3K‡Ãğ±†åËƒÔ£ÄJÌ¡.qSHâ%F5U­ÌâÅÁÈî>fbÂœ0EÄ¾¦ŠŸ5¹†Å€ºÈ3FåE_ê ÓcµÎÎa&øê-â©rù$¶ñ2âPô‚ÏÄ\0>2²àµLuÊ™µ^d²ÈÆúŒß2û5Nî.°Ä^¥få\näƒEqØ\nå‚.)q ÎH[¡æ>cÅÅ0\'uØÃFÑ[Û-×¨æQ\\{Bj,\\Üsøƒá~/äŒ¹—2üËƒ=ãœJª˜Ç1F%ó[ƒX7|ÌŒÄY•|Ô1,X—æ	SfËl¾ QØg÷;¨•GA§rœ.âœK®%Ü]nR‹#ø•½GQ4Öáš7¢8–s%ëS4‡Wû„T³–3ÇÀÊ#Y,%½Æ=@óÜÃ0‰“ˆJ*:¢VeUó	Ã˜€w\n*Ù SÂ1ÊZüdAÌ-üİE”Çä¹grÈM`×2üÏi²%OqŸ‹qğªn]`Î¢ªÏ¢ê^!\"ÅÃÆG4İô@9xl/$µäk‹&J÷×(a‹Ë |“˜ßPg1‚xà‚sâ*ğÄÇ¸)F’‘b·0µ1…^˜?°\n9]/}A;õ2Î œÃ,ÀûæfÔÍÌÔP!Ü-Î^HªöÁ\"QÔàC¨˜õG`~Àf^ØĞ©ôïPk´».Ê«êÜŞ ‰7Í%7(w2fX0ó•O,·™lO¬cà^àÂ¸¸0ƒæ5Üj¥ã÷ğr•	tÅ/RìüÌ‘Z#Gn< êád!Eº¢]œ×£Ì³-WÒ!CY}Ì˜jÏ.—D;¥Fÿ\02}¸D<Æ#À”Ñ2ÅºG‡æ	‘ÍÊ»Ä*á3¼Jˆ­M®‚+`ÚP^i½G”,°+‰²\n„TˆßÇ2¬¹DSøÁ\0Õ±+W%\"¼«“ãe9\nÅ“s-iî` â.æ-ÔT¦ªÈ¡\\Æ‰jA‡	U®eBø@¡@q†Ô‡Œô¯æa‘Í|ñ²#ˆYy€’Çˆ‚2•¾úû‹|Mà·‰rˆÊË]Ë^f¡Ü÷yçH}À­À¼ü1O<ÉğfÜ;Üº]†™†bİÆãd¼Ô«‹Š…Ë\\\'²ÜáÔE/E=Àî¼~¢©æÑà0›àpÄ6ˆÙq]Àæ¾åşÂ¦ºo\"î*[‚„á|ûa%Äv= ¡\0—™áÁ¤î#+D™ø7‹’O»¸7ThËêã>é¿b7-ÉeÊ:a¬›`É\n6èˆc:³>Î jECêc€f DÆø[ššÈ™uu2WÅWI8—¦\nÕÜtÈñ\0™,[Ş#‘p5goå	£~È·Ãˆqó‰ååîoÒÛ9îbåßÃªyÜ4)HÙÃ˜/{­E@Äµ©?^å€P.±–\"Ã®`tCCº¶¢ZĞòñİÕ°=p–½ß¨8†vÌ¡­°³›s1Í7\'ƒRá–$â_od)Ü”|÷	Ú/Pèîf–-hÛ©EÁSÓoè#rK9WP‚×\0;^b¹0ª-4j·êe3Ü¼ÎÄYfL¹„dóhÙOÇ‹p]Âææ?‹&æå	˜÷¹k¸Õÿ\0ñ,AÄ¹N`ç‰\\ü8†g‘\'”¥±(ÜkÜ¡‹™påÊ!hººŠ«m†Ã€;%6ï<÷õ`ºÂS1|²œŠÛ)ì¸F_püuƒÁDÜé/©ºd7ÜCi|†êğ$dë‹ŠŠTtP-ÃÀpI¥F%ĞÕ5Wó(@‚.rfäˆ¦«.kr‹Qhşù‡tj™Bú%U!‚ÃíÄÆ3£kßƒÌX­pUıBKé79=pÔf(à3H•±Õƒ^mÉ¨kÙ®rÿ\0u)éhÃ_ù‰y[2¾€ĞU­/şJ¹ÓnN.µğ,\0>ßÄdfÏ*/?©Bw³³(ëX÷Ä¼ùX*Œ®ˆ…ë	°:¾aÎ	BùGGˆ8™¤qË¨x”µ£¹’C‰¼Hƒ9™Ù*Û§ıBÄ0¶ñMuuÁî>U‹lqÓÁG©Op¼”ş&Rrø!¢îÌUVòÁ‡¸½¨™Ùƒ1ƒ±\'Hrxù‡×lú:¿¨`ÄV32ds>œC™nQã”-BÔ×ÄÜ~-\'7˜Û›Ÿ\0DˆÔ:©|Ä¬Ë‚Æ5ÜîêqŠpÙpĞÍË†@üG«‡B9|¿¢Ş5sgóçñ‰¬qXˆ.å@‚¯mcùR\0â8+`øš]ìä¨Ër‘x%·núú’åEê>#Åÿ\0İJÖASªöF’ˆ4ËÆ7o,à¨‚T©VÅ\"škæ£‰°Ó)ı…KÖ£ACuî*¥ÁPò²î0åaoşÀÎ8u£[šüyáğs‰K-ò\\¬§5feniÔ¿ E‘Î.££¿Ë‹:P³û…†üZ:iq|¯En…œ¿^£¢e²&9hbN-¸FOéPˆ]$Õn\nıj®#a…}V5Nåh\\B¥¯Ñ+@H¼§¬³©¬7OW4–à`»f¾à…w6lÌ¯‘£¢iwà*XZ?Ñ+êòª8C!îVsmÂ-Ü/në©‚Væ{<? ¤|ìXğÇâ^°]â¨S?ß1w¤üq+Væ¿õJ!\"–j†Éš9ÅG‰ñ_â~#Ãálºüú&Häåu\njæE›•Rñú‹PÎn‹İ3±³™ŒÂ.‘ˆ^¢·Ü«ş\"Ù-§²[ºûæ~30SıTj½¥^IĞø‰`+Ü¼¿S3bš°÷ÌÒ{¿Çûowş™¸eR±]WÌ:ÓpşD¢İ>_00jˆ©Ğæ¨4^ÕÊşn131ÄÉ’ÿ\0?öaŠ\0+\\ğBƒÀıK›µ½x\0ïÌMp…imË¸ÔæÒG}10½e3† ‡Ë¹ığ¤ÂÃÂ8–ğ ÜJ¬…÷\0&ò/ïı@¥“c°EÛ§p™EğøÔ­>)„Å–dÆ¡ä˜‹‰7ëÏ’[Ø±z¶:,B%7Øtp‹®Åb+‚TS}îÏp.‘³ù/y=²Lyô¼5GÓ29ê<GŒnÿ\0¡‚ze¯WP¯~á»”Y~!j•=ëş\"öã•£‡¡-öúàğEÙR¸˜—?¶1øb©J¶‡xc`Ë?:*ªq*å±—ã=He=`±ø†1ğ?şAoÆ—áàçPbá¡\\ÇÄ*óñrƒ&˜(k?W\nynnoğ¡PC\"ıŒJq¾¢RÙ–IÙ~£e‚å·Èêa‰B-æ\\n¼y–ml)j¸T=Nq_-ü\\m•+¡Dˆ:G“ı@¦D~¢4n†?*`‚š¡©â%7«Äk­âësKEâZ¿‰JP¡óàaTQ1ğfÍøê.jQW¾¦qœ&òŒÁ½q/,[¼CË·ÔØ²Ñ“˜´ÑµÖå»¨p¯¸œ@”e\"\"nRRSàD¤©		ÌC˜Õ*ü@MJKH–b•.óÄÎ+?Q^\"¬1®bZ¬Ä7šjî£îãn¥\n¸²•çá«×À`m‡PZ5¶¥VÄà†«qø¢İÔÅæŸÀi*Pbv@Ù+…Ç… Å¢¥q[a½GUPJ$CÌCL3=Æ«\\\\T¼dÌjú€²W®, òÅ>ÑQ†Pê#Ş5çáìK¾ÉğËù~¤¹qq(\'¼ö\'±2wá+âş>YäB>D³™g1a‰ÌU9‡GrW5ğ²ş.¾F_¿~Ofeç¨ª1YA¾e…di›„.Òf®T)ğ°ÕlMTTr¹¬ÁóR§$GS<0Ôó\"WR‡¿§ [-ÓXıÀ:+n¬Óé?ŒÇ—P<Úoğ°óÌË™êakYÖçšy&8AK¨ùÌ²Ÿş¥Y#„¨•Ohe¹å™à;ÿ\0ğü“É<òcÈÏ0f­K1Rñ/Äş¾âr–›1œ‘K‹/áråÁˆ	²÷,ªæQeµ*±ÌÑü\n»ÔW“›Œ¼­Ü|¥§´öÑ¯1¿?$òË÷÷/Ü^áçñqÜòEÜ3æk†:)Íµ3\nï9hŸùÕ!à•ÜvÔ ”ŠbácÌ3r½ÄÖåÏ<3Ü³˜[™ä/ğZ£©¤r™kÜkoŞ9n{Ï$òFî+Ü\\S.	dIM@*fÌÛ§Ã¡”Lû˜·372î\\îy£;3=á”ş7“¶<&RtL\"é!a€z<W.§à_…Ëğ{­M¹ÄVƒFş\n*-ÛÑ\08hY²¡k0=Õ\'pl»™,Ï0}Å÷)¶ş8#\n‹ùxCÄ^à¯p]Ê$áÿ\0sí(šp 9¬ñ9c”;œoÂ±hñ0Â¤gÚ8ny£^á}¢bd`n_à¬@WÊá#bn(Ç(üMQ™—p1 q¢Ï×Å„fø?1_Æ&V±yEîs÷<;Yå–ós?‡ÀÊx39A(0ö¹_7\n—HO($Î!ô7\0Vk³~£Rá£ãŸ¨ˆy%¢k.+qCE<›™¸P½Ã\"$—‡Ÿpİ²µéˆ3E_‘Â+/²Û‚Åfb7…‘zø#ğÖ**C·‰:\0Œ*É¼ÕôÛ-eŠÅnvâ[AûƒM~fIóñP¦“Xš‹-{—ÔÅŸ€·,ËŠ?€×ÌÍÆh-ºŠÜÌ¶ˆññğEÌš•„¨f$\n c™ù#²5Ç&›‹{™w=§şåü¿å»ˆÄ\"—İ˜‡)6j¥ùKç¨2†`^tx•+\0¶ªÛªşAã\\-8a•bZjï?˜³¤eİ¢ßã±M#¬ñä¸®b V¡ÎZæf`¦f¾ÜH6^.._à®¢TZKx×\"°p£èˆYŠ«£,Ê™æ7{$8-ßÓGp6o¸qZ÷+`ïâXxµ¢TiC½JYh°deºùM>¸×å§‚?zez“ÂORx Ñ‰TjâÄJ×¶;‹VÑn¨•¨f2Ìmî\'âñ ©^îbh«›—Dd¯¯P÷€ªòhôøœhzie‹Yµîÿ\0Ô ´’…¼„Hhj€hvš´Ú‹RÏ‰ßÕëÜìb¤w=[ó-‹ID>2–K>¾/Œ^¡‡ÇÒ>ñıGµiìó0¾™F”_à0øQÉ•ö·,jñrÈ·ş&	0ëàx;†	O”\\ğÏÄ1+’]zf%(Ã—Ä³ÖRzÇÃâWˆ&ËÌfX. Ypn9‚Æ]smMcÖ£¼Gê/PW¨×¦)Ä´g‰G¸‚·B¼ÎNîYíÜ0!™ŞïD†ú„¨tB}ùƒUÀ9\"±{2›«Ö§–ù‰¢£†‘4rÁEE­|¬.­`(¸†Vvß‰[VüFrüF¿{sø‚åc´²±Ø,¥¶	Ëø…Wm@r´zl±FÙ¦à/8ˆs¬ÁsoÄ¹~ f¥.7…RÄî ¶åæ`ÀÖ±å,éCA†Ñğeªê.q®Òı¥®íÉQ]FÜ1oi~˜#‡ñ[D¡‚˜.+Ëñôş\"Ş™G[Ó0á”ğM¥\"e=\"‚áŠ¸PBÖ3m—Ôc³C‡á-Ä×SÃğ>‘=¾EH,âfÒE$’kŞÜf1Á@)ô@k±Ù*×î&ŸÈÎZáo1Äö¬L²ÿ\01w\0KæcIj¾£gP§ˆ„]j±5F5ìñ/EDv.. f%8•¹Gƒ˜Sp£Uìë¸ˆãÜğÊ†Ø\0ÜÈ—’`wî	S6\"¥\\SN/DFTğ©KËf\'·î99ÍÔ³v,AİJ…›ZÄ//…%¯\\Îd1Á2¤¨ó4âè½Ê>¥–K#Ê1ìcC*‹>&fåÅ´Eô Í&d¡ÄğDË©âG¡h!q€–!¼¤¥m~çˆ{€¨àH\nÁ´\n¨RR)x›]Â4ŠÛˆHFN¼ÊqeBXSX¹EY“|vwäˆw›†¥¡dnÀÇrè¨¦Ëf³]@5Aîu¹k¸Pn\0ø\0”‰ñ+3%ÅD®åYoÀyAœÌ<¢>5î¸yÍ*¾e‘ÂÎÚ&=Gn‡ô}Ä•Vınf‹ ò6ˆ¯ŒE .Á¡ï®\"Áe¢ÓÀ•2U2à!Ğláî;1.¡r»&<K¼D;ıG·ñ.Pôeá–Ü+êPxLA¼NYn£ª`ÛQ*P^åzĞ{€©ä”9†y1òIYI_ˆnb¿€/r‘`KI˜F1£&ÏàcÎ”/Æ¢KØ#EÌ¼ºg†üm”»½ÀVãncå÷3oã)+¸=Àî#¹GŸY0J9™÷?ˆËp7¹äYåîy#Ñğói¦£‰†—nSxQæ¯ñ­#Òıö\\«\0u‘!ÕÂ²£•3ê|­_>xˆR®Ë·üA´È9¿q2ÙşÀb8÷,¤£¡ÿ\0ÊÄæåä—es‰º`Ä(*¢}!ëU»¤_àK@•Êä·y‰±Ã5[j’ö)u‹Ô`±CPf6ÄZ˜Ú‚(q4™äøòîy&9g2ÑjR’5w<“ŞSŞ9C)È¾r¾g´<şA‹µ»%FgÏĞÖ½@Ñ,âõ-Ô]ó¨‰eâTJ—3&ÙäÜ÷”Ë3üTÇ-³É5ÜòÇÍŠæåÑa.;`•DQÌ·q{ÅÀÜÅ¸¾Ø3Ñ(¦P.åŒÉR`(JPt–4_\\Ë´	Oq¿S)v[h¼ÒşåA×Œ_ öÁ¸ÍT¥ùS÷-5Üô#—ğLÑ1<8õ’``¤»–à™[õ†æ;	– \0Mm(¹W@²îÅv…¶[Hñ«*£tißÉ9V4M•Õé—DW2AV )Uë9Z•ÆËÍ5	¢¡IóñÉ=ş¸j%SğRß‚†şT5ÓÉ0n>Ss-\\Ü• ¼†_¢QSujwN\n=ø›g)ke®¨™í·b¦\\?ƒÉ/[rø‡D±ş$¥|+ä¦\'0Ch=ík$ï6şØ‚f®e«ıJ¥aè5÷(ñ:üey5¡ŸP%AVdâ&lM\0Û¶	Z®j_zœ\'Pñ5è/óL=6ƒ›¨EÊÚSÏ=Ì8(&àş¡¡D>Kl¤È#tÖæKÇTÿ\0ÈØ«“àïÌfJ×õÓ®˜çÙ\'@nM4£à•u( \0k/ñçıÌ<‰w57’b™>ˆÄÁ|‡˜efŸqK‹åXó%âTKÔó‹†P›jË©°\nğiâ;¿€éıÁ3ÎO‹Xæ•˜¹À¿„‹|)§âù\"ìÓ1|ãÿ\0%Ÿ“â®¦#2ÈelµüªábÔß\"pÁa©bñ¸`M³€hÄv¡N*6şÇH5¦wÜ}ía¨â+‰åÄq•-ĞÀÀà*`wQWÜÎ€¯S{¡zu[Éƒá³?\'ë\0R¾náEn¶‹³–_ü”İkî%HSÅÛş¢ÂîåŸ;„4šL¾ÏÀÖTÁ3ø„?±eku+AÔHy9Y‘nŒD´.°j	÷¨Ñ›µ(VáòğTP\njÚËPHÄËciD¦9KÙL·ÿ\0À^ÿ\0¢`ñ^Â	¶2ú}êÂ“˜„IZFğóõ´æÜ¾k¤0Ê˜ÄXd¨3ğrÂ£_ŒLz–BjÖµgşA‰\\¡nMœ¹~%î\0Ç¶0Tt¿Ô.ƒD•¬€“YKÍº¯¹€%Ç(YÎ!ÚÈÔ´|Ô¬Uüß`ÁlGÿ\0‹XÉ¬Kãáğø%n§†zC-|‡ƒâá¦8é‡‹#\0³«eÜ¡A=¹Ì:³_Öâ»bóõ¿¹×½×˜~ÒÌøkæó<˜İæwòF)H‘#i´¬Êÿ\0öG¯Äø¢b©wõğSìÀº¢ÑH%æ[¦t–u.iˆŒº‹æ±i\"d4×`¯ôÃ&ùFŒX]ø•‡’0ÍáXc2ÃÀâ\0mWxÔGMaFûko–+ÄRí’µ ¯™_şL©ğéÎ0Á”3”†p’²±1ø}e!¨˜)‰ÆeLñ:¤³Ršâ6b¹àÛ˜\'1U¨-Î!&7Ì0•±!vfaÜªßÃ\\BÅÄ¨–F‰ÅÀ-s	õU+ÌCá)§U¹™jgˆcfn,˜btwqŞï4ÂÌ=\0-ËÔµå©BRi¸,sêdÜÜ-E^b\\‘35p-Ã–µÌÀ‹©dEáe“%T…Š=EÆ g0¤6ßÆ#ˆ<|+ £R‰DT¯…xÿ\0ô	”Àç¨­JmwˆhÜBãx†”Üö¨Ä)n «\\v”Á—¡¶!ÿ\0È~^SieY41rÄj&}ÀıD¦ê8D®\nb±e™ø—./$Ñh$¶‹jhqîlƒú¯sÄİ\'ò@¶ëG™rP¿$y‹ç\"vfˆaß˜û¨c‰ŒVÂZÏ¢Ü¢_1iË† 	#‡`ó¹x®ab»†ãˆ³63)8æ¸w2…e°‹¢f¥1L%µ˜ÿ\0‘¢z†Q¸§xŠº»`#L£ñ”JÜşBwç¤¬ë3Ûp©áa‹¬F\"^tóÄ8VeÜbûˆ\\Rc‹Ä³=@‚87(sr—¼EF5k1²\0ˆBn6ÌXÌ:İJ›üEÄrÒ¯>æõdî’&o|Gƒ– jâQwÍFÁt%=Áœ™Ì‡²®å\n®Ìâ±+€.{kØCèû¼ó6ıµáÑ©°ªoShC8/ñ¸À,bfê‘Q¦˜÷h·‹b8¤\"üšÏR«?M¹åŠ\"ôÅ³áM7­Ì´—+P_20(—P`#[y<Cø’eJv¦]ÌTæ\"ì \"eG1§™Á˜>ãeævÜWW9•óî†àƒ2,ˆ®ÏÂjHZôåƒ˜Æ¤Qá°øıÃ±Y©tVb,7SJ73isÅ`¯PÀ“l71yˆ52Ì¬æR8gˆ‘f° ±´÷’ªÓ‰ÿ\0acE²ÌV¥5©®¥ÛÔ!hnú˜ZÊ‰YY*Ô91ÔC9–+	}Ë8÷æ\\¡-)~Æ*?Tõ7µ­èÉ=×ùšBOË^=DT>Õµ”Ph§l¹ñ´æë2¶¼ËŒ\n~ı§-²áÏP¿ØÅ [}½ÔA’Şõ¥¸LĞ§â â‚ ²‹$Ë\\Æ¤É|L¸äú¸éíUø‰©İ`5ªÎ÷Øµı5÷Ê	ŒOQeœUŸØnSl©XÄÈê%™*—ÄPæz³$÷Jaç0naßÊÁ¿ˆÏ–kğùe„1˜¾Lcÿ\0àš6ÜÎé/ê#^!hï1n™S’\0y˜ê×‘Tõ3„ôyX”d,_‡Il	Iˆ!È[R¿Ç#Ğ_Äİ¹\0=‹®ŸL5™›Ä¶%ãÄsˆÙªNiRâ8‚³O«aiµqÿ\0stë»El§‰[ñ¥³Q\n–ë!.¨EJ#B&±¼Ä¤S™l2jã#Pm©v:s©ŸP®`ÚôÆm‡¡æ7(Z0M–u°á”OFÓq!Ax‹×6Òù½JH.*«Åš¹•’³„äwêXÁ\nKÍTÃ\0´aT©Œ¶jîp8…Ğ»ûQ!}ğà!å“vÑó©ÒàÏA{`~¦ãØég8šûµ9Ã´®$5#D»»u¿jğÆæ^s¡xöÿ\0&&.ÕÙwn¼ï­BÒîJÕWª;‚<liıÔMü¦¹–¦zöÑMŸ¹²™›¿0‚\\jÚFù¸ıND4h„@\n›³–TRğ(ş@½n™Tø”XœÄ¸\".blş*ævŒf4[‰Qà£H¡ÿ\0Ùc¹g1\\L<¦8cò‰{˜¾B™kYQ¼«ÜzÜv»èLIr³Rê‘ìŠ¨;ƒPJ0£šuÖÅ§‘/åx‚©ıÅ~bü\n~à·ÕÍê¦B°ÕQhôC+9ÜK hJ(zBÙe<ÕÅ;¡A˜`ûÜ.«ŒğËP5ÉïõS…Ã_î]¤­I°/š¨‰X§½w¯øƒx46íGo»˜–h5o·€– äO°0\"²ä¸“­H`|ÌAEÙÍËI£|7KÙi×­J>ÿ\0S1@wúÂ7\0¶¶T\nT´5¥«ÃY‡Ùağ‚e»º•hÀ kÜ ÖsÄo+™¯„ë\\W™IjkJg÷rÃY–Ş¢BzÀù®ëĞ/1tøÛ¹Â?¸•Ë¹À™¸Àöà·òè‚ÕwÌ•/Ò4¤÷æaFX<¾c?Òí,®ÍĞzÈ„¢2?2µ4]¿dZÜ[^uª†”ç˜©m”1Xë‰PƒşÉMµ2ßäˆì¬”»{›ÃÑÁP6ğ`ğÇSY©Ku—2ƒLA™qWîYq3åœ°5ú—wÁPMfd–šEøŞæØeÀy³,Ó¦óp7Fc…ñ²©Ôrİ[™Ptô¬Lb/p±*@µ£‹Ÿó-p^Ğ¿Ü\n\0¯XŠ|¹pIöBËiÑMUŞ³	Ël¢À<×‰x¨1å9;°=x—şqı¦5îp\\µECŒgîöS)Ê«¾£–†¸¢7yıGóHõ-7Üj²c¶î`~îVeú’ñ·vÛjÖQ}Eeş¦nf`²ÈucW¸\\4ôŠXœfôŠïûåF–÷÷s&]5Ğî#+×÷\n«Á\nãüJ^Ha¬Èê<²A’æÁø Ê7swÅcwGòÜË\\1İ^ˆŒUãÌ¢ÉÓyJTv¸U·ê=f‰ò½à¼D#ulCj!²-á¿¨ùÜrÏ¢-0®\"E«3ç8™¾ËÑ¹l\\JÆeDÌôÔÊ=KJª½Ì¸b^¥,ğ|6¸Ãs„uT¼Ê‚—ŠĞÅG€İ¬ÚVouÿ\0¤Äu‡12Õ¨í£Âp¤¨ZÄYİ^q.ÉcÓ¾àªÁè#¦Œ–ËOÔ/ËI§„á¦·	•«ôÔi\nÕ;ó•Ì/p$ÛŸÔQ%î²—}Î6Hô†¿GY©-%®3ãÖ[uàñ\0ÁE\'	êeÉİQJD+ÜTJï—\0v°ú	BëÜ¢D2–>É¡\nzC‚™˜Óãê,¹w_p»ÆÑÊìr¾æQ‚şİšGéœâÅèÚ¥¶ÇÜ°®%›]\n~U€‚z•™lö”ª˜1šuÜåø‡ğQKÚùbİÁ.à.£½Lˆë1Ës{•Dó‹pø%]D1N%®:û‰˜‡˜7	à¨3ˆ6„´‰^H>-¸™`w8|EÅ‘×PW¨²™‚¾ù&yøÜ>Yõ;‰QÙËö¨­d3P¸†FS\\\"¹ADNåeb(ªˆ¬<q/ÇQSlÃ<÷{•êpîjÎæ† ³eŒ1ææ:ƒé·1÷*¢¾	MİÄ½ÄÃ(sÜÍÃ¨\n²mq)…÷ˆÔäœP7±«è=Ê£Pf,áøƒlît9Ö:ÕÊŸ²XÒå®\"£¸µ›¨e7	HÅRˆQhµ1:Qš%”ÜªFÅ0.	Œ›ˆÜÂ0ÍØ	\\Ãà\n|~g©C©“Qr½CÂ8jx\'¬Ã©®§¤2Ô<\'5	*È°Y`:«ö¬ÈâPÔ0¦AÔp—2ÍıT,h»#rÜe•÷ı\"äˆº¡ºc\\m•,øUæYj\"¡MK\ne˜ÔnäMùŠ]@À70iâm&ıFx¸Œs36˜‹Gó\n1z‹ÔVî#ãàĞJn »ï•*VL û©q z’ÃM¾ãMJâhó(ñ\"éñ(æ\"ª t¨\0EÄ(ÍTVbğõ0›1Fæb#DÁ9¢XM V<Ä}±cL¶TX®XÕÏêaƒÁí‡!ŸÌ0RÎÃåƒ»efÛ€jS¸w\'•Å»ˆĞ¹Š(ÊÇÀù€íCYc† É¤ÉRí¬ DmJõD%»íûmŒ:ƒ¦óÊ¸Üq¨9^šSÄlÃü@¨qúˆmpYÄÆ	¨7‚õñe*ÿ\0*§˜’¨¢‰£KğN#…:ˆwŠĞÖ=ù8Ö=à­ø—MÂ¥‚âˆ—E‹PX2ú™ë °z«¶7Š)ãSJîSñrQ r³Ò…‚ÏrY¥mSÃ¹jÉ7sŒ˜!¥ÖX#âå“ÑM‹\"¬*.½ìé&1õpUã|na¥ôBÍş¡W(óY0íÄªã•ÂÍ?óŒt+s³`%A\0Ùìâ$Éx„J.œ¥ CÁ4ua-º~üEc¸Ù˜Æ&¨N†s\05‰n®š˜¥·ˆÚéüËÈ2Ùnap@µs)dİòNæ!nb‚‰Sx/+ 6ø%Ö÷Â¶ˆ1tpÄ¼£Î¥®[ºãSlfzñQ(N`;™²å–˜\0]#…@×ÀVbØç¹‘5X¼¹àæ†mÖÂ˜ûG©Ş*Wù(\"¡D6„¦¯¶$ŠŠ›X¬±tè¨ßCc†¼À»ÛÂÜÜJ°Gİ:•AGÍ8‹¿â4vPmÙ6€9HŸõ…¬±•I\\\\z”C­.ÉXû™Ò@İpd°qåS€‚±P½—€8†M†®ÉØ%ƒõRÖÆƒ[‹\"[làïÓs‡ô¹VR’9¸¶Jêƒa,ºAéå”ÚzÜ=WéŒ k)Àh\"5¹e¯¶!ÂP—h¶‘]ü0J};\";.<4¶»Y“Fó ´¼ÍRıƒGÄ·Kt6àV‚[¸WÑ³~5ôlKâ<¶€ß4ãÜ@kˆ•dkÒOèrSxRÍS©X¿\'‡g¨Ìr ¬ûËúŸuÍÃ%åÄmZŠğGRò‚…°kØE[iÆ\\ˆ\n=áeı²1äu0J7Æş6\\G†[]ÕGq^nTƒcğ¼Ë©nÈ/ÿ\0>\\k˜àwnYÄj}Íˆƒ¦c‹]ğÇ‡p±Z’Õ Èb®Å5\nc xä$&-8æÆ®)kæ_å’%Tï”ÈyºîÁêXã¸šˆi»™¶S6ŞXŸqÚT]•İ½¾13Xä.™Sä,§ó)_!Í!ã®aÙÉâbÒ:ä±ÿ\0pF@\n#±Ü\0Ó—ªÿ\0!‘3!v›ûJÑ\nÿ\0·ÑM\"à¬ML(L€/İ\\íxwBiÏÕJûÀ-€¾`5\"³µº¾‰L­t•±–†LŠoD\"Há×_pf“|}Ü^g=›;g˜Ğ²o-~ã¡.h¢>*Wîyˆ÷çw´×ù›©»‹àk YZQ;X°3ÌªAFKõa5\\±Ïiå00goâ?DÖ3ÔbdW¼’ÆåÙê0‹:º•Ï;ö“G¦‡ï1©{8ÖæZ}Š9Rzˆ²œ?ÙÎ…e(³f°^z?Èô4¢­¤`»Í†X¥—Gcó—9â+– áy<ÆÓlNƒ·Ä/Qm³;xsÎb†Ş¿±¯°ëˆÌ (Ql¬n\"„Î8ñ55É›Õ&5P&_G9—Ô±3FR³-”Æî6¸ÄÖ]Ã$h³U˜­€ò¦¿Äí*ZV€İğ¨8¬¤^õˆ+¹P0Ç9€°Ì3î)Wô™î@79®.™ÀØœ™”ÔÈ	_V˜$D7Zğèd}ÿ\0Âbé€~`RX=¥%Ï?ù79·‹±ôÔ´ÊçQKá£5„â§%“=Jœgm`ûÄK+g,ñfjašGV²ÌdÎjú3X4¯õ\0Šˆ]Í”kB-v\n‡îbüi¶e1iU\"Z¶ê²¾Èâ0¥®\nÿ\0ä¨^2àhˆ¨J¹UyYS*oÈµ†ğxŠsé´¿ó(ÎÖ.ògÍÅ‚™¥ªW¨pŠ?Æ5…´Mû4xŠŒR§¥¨Øl@­ƒ\'9¶ÿ\00B‘Z¸e‹Nåœ#áÆÀÌ.ªˆ˜Ï˜¾@­ÜI,wÏÿ\0#¦@½Õkõ¤ÒÊ*^3G˜ÓX—ú£:q	GÕYå³„—€Ğj•ìŒ ƒl8½¤æ®ôÎ\"ótÌqŞ€%,xÒéx•Æ÷l²¹S¯‡ü#Ğ–|şcf&€.fYäf)Õğ~¹ wgÆİœ¯˜dB¹ÂğË•§Ì ¢4s.Ø.]g:Ë1â&í@>ó,x`ĞWsšš?ˆ«1¸Ša‡2•}Âª@ á-y‡ºwpJ^àLİø˜è&K˜·‹S^ˆğ¬Ê¼kuÌcÆš)ÑSay’ÿ\0Ì¡ú\nö”]oüE\"êk¸œ³—àÏ¸e9~1@®;e”tÓë•ÜÖ¬Æ¶Ø9]ia$ÚŸşKPj¡ç,Jş¥³kõ)Yq½8zl%‡)«›Loµ{‰­5aøeÖeãpÔèª¶UÌÎ»†şfŸé©c)¨cUâjÚö9WWÌÉtÀòa­A&q\0×	+XW.nÏÄ°zË ÀyGPĞÃ5r,rJàuƒEº¼À½Tƒ%˜O#Ÿ¨Siı*+2–ò·¢é\\9ÜÅ‚êAuê\\tmÚ²·š‡Ví†´y˜Ïh*ßiwğ[KÍM)‰Eÿ\0Yig%nõQØp70 \0ÿ\0%å¨­€70Ø,ûqü‰$_àµÃXW¸#|œp7kÛµAêÒ¯‚ôp˜D4á=Ê\nrf\00`D`amwÓ<E\"Èz_Pk\0 $$ØùxŸL\0\04q/øUÏf`—¨¹ÂÔ+^†0…”€»Ğ§Óˆôzœ–©øàñ¼E@µş¢^a˜¬Ä/0Ü½âf&¡„IŒÒeah(°Ò`rõ\\Á®	M‚ài®à‘øXäÔ¶ßpáÃÄ8VIÚ¦+hçpÁzVlŒ@6ƒKX¢Dğî!;T§è7X5ş`Cd´dÇTb~…›ŒÁâÒ-#ÄòÕã¡¯ÆZƒ³1Ú*½A¬şaV½è«ñ=º€ÏPE§—c}ù¢lmAo¯¡™–cöU­@:a\nç*CJü\"GïÌrë%¡‹g˜ÓÒô\\ºV²Ä¸¬ÄG÷ş§î•–ËÎ\\J‰œ»•Éº„‘²³„µ¸rTbuLÙ/Ô@â¨é`!•\\«æ¡da”œB°¬x	Š–ÍÀÅGL²‰‘¹A\\ÌÈ›ñj+\0û\\\\Üî ËQÂjCôK–:¹ à•PŠ¥-°¾x`¤³´%»b-C‹êSÆª[8.gwğ+Ü¿Q‹¹›‚ì=Àƒf\"ÕwÍ¾£°(JÁ•ª1ÂÉ!>z-ıÜ%ã1²!#Ì)éÙ^PÍJa<YKªc5â²Pè4×D ³ğËü—îœÌ‹½ ñÂ8·ëi´¸jÌ\\ã¨³Ï2ãÄ¾õê\"fp2Û[æ5‰‹@™Tq0naşc»NXß0ãc‡à »Ãeõq1w,e¨¨Øë˜Š£fÇ‰ÎaCWüQi9=:—4N9mÿ\0˜ËË}şñ*ıœÆ¹Šàîo3pZÎb—’<„E—ĞØí‘ï‡vî«cRìÊb›ê]ñˆ7m¹şKb‰=«0,5]FŸs5s_p\\1Ü`§³–Q;Í*Y©yñ(fR%.˜‘i…U|!3YÜtÀƒrñsu@]³hÄ¢ø—IÅÌó$•ÍÅ@Gà-D²?\"ñ¸Bf6³:‰åĞp¡‹ñ	ËµkÕKÍK 2‹}Méám5y…\"ÌØ\"S” uã™“[p¥ÄX…S«¯×îca`¡yB¹ñ.n;‹©ƒ1÷£ØUs¿KL±L¬¯•æ7_¢y#^%ø•›²qQ ˜LUÅ)™ÊF˜«çÄ!vdŞÚ.\'W¡Ø)ãN»¥5™v\nBi*!˜~\'€?˜aÕ#(~åÀm`®%UgŠ¨âS²*íÄ-Ã|ı•à2(l±%Pc–ˆòùŠÌ+ğÄ[K‹™}A ‘9¸ÌVK”-Ôª–ñÊkFà…ÜÃµÔ}±¤U%k1¦¦7K¸Œ‚­bª&í•€¯ì|Axc‚dnËqj,U˜+‹1Â¶Æág0«¨áëÌÅwd”åZ‚F?K	’œÌsŸÄ¼ÜM¥¡–ÕÕ=Ëpe€ç¢=oåÁøƒ§EĞjùñ9ÿ\0P>m\0/LÖ.ŒjûÌ®åº°GH©¸º=@ŠÒ²&„`üÁiö‹² ´.ˆ¯Ñ˜í¶ŒŸB•’…®\"7Ÿ¢B÷`Låpä…­–há¼m”^Gv×ª–¶iæE‰£WîSaEãöÀJ	‘$[>i²]‚’¹RÂ±ıËIÜ¤¨ï\\ö-œ7Ä²øÜrÒŸÂ-ÌËÆb9Q0p[Î\0›J‡.XĞj`mQ–\\W~ó/Ï¨Î9|Fkà¢`LeS5_1[ÌLŞıÀ”D‰t&5*\\g„QKÌ­Ç	ğÿ\0Lãı¦1ç‡¾¢¬.c«†—ÙSİ0ENõÌÙ&fá¯§©IîñÆ	¨áw¹§Ü^LyœÒÊ*Æb¡DúJ–ªÚ\nj®ş&a¾À-*Şá•ÕGrct¨»¨\0µ–‘N6¨v2 k”êïñ£ÕÛ†×Á- şç,(,á.†.#ªb±@¨(çê*E9h¹Z0±kHå!FgC‹ºªí\\â~Ì5©éz…Yªææ+3{28˜¤Tx‡êåË¤^Ôç[ÉefL\0•›JıÊ\".Èëõø”2&é:Ä¦ˆ‹šDV?1ÄT–“/»–Å€‹B89!æv^¿Ñ(‹¦y¼EnÍKÈgP3PÂ²À%=Ü*©:¼_W2ÉT›ĞGˆkw{^¨p¦¼œKÜ·˜[.kˆÅ£&Z°av¨:1m¾aî.OGˆv6Ñ»ÛÔ¿ám¥X—µ›Ó–J~./©‚,–qZ\"°˜JFÃÌÉb@XÕ¯é2¶{mÌ¨^ ó/^â]Ô> ˜q¾ q©­Obe”\\³f¥ƒÄxrrÔEwWP£Ğ\'ê<\n”\00B÷	ö	\nU_Ñ!EªùiËqUÏæ\0¯öd\0Uê ‚N\"ËÑ^NåÔ†PqpjXÙê!`Yä¼Gn¼_CÃvZªùêvÃJ˜l¸¡¦¨ééó2êùÌÆ~À1ÀøçĞ/¬Ærm-¼¡zúƒû«8Ô¯–äOL»:eª•t÷äZŸÔ£h^8gó¤Ù*Íÿ\0ä¹—\0¬“N—Ãş#^ËŞ¾cÏ–Ø&\"ìo^pê7ùf¦{m98 °ßşCÙÙ‡æ°7Ã\'[-ßæ8— WH³.‚úó(&ag—@·ntî_UÔ\0Ve„m»&Ïó†´ô¶ç+ù†ÉYà½cÜ¼CÄµì.ˆ¸zp×Lhƒf,Ú´V¢x½…†w3˜\\À\nªÕgÒÄ-JVŞ¨\\KLµÌÉ?¼;Ä¾ˆ¤‡vëùRÅºAÁÊñ(Ø‹Cz½KŞ’°QÉ_wÌği¬iõ\0•Ì& é·“ŸÔD•p9»–×÷›õ.lXıÔ	§ê¥ÆL ÓM7§¨*Ši9gê4G1!Zz]Q)wˆ©«ÄSl¥ÅÔë™á„#ˆ¬•ÜÚê4ÂU¡˜Ü«û‹‰VN&Ó*?ç†ÜèTø¼ÌCÎËG€wNç­×p61G^çSñ+í›lÔn½Kéı!	v1»¨(„ Úòõ7Üê	‘¯}ÃÉ­quB•ß¦ãl?AÈPĞ´Íã`åÅ©—ö<¢ñNnkpİ´Ö.İb¨„q„J‰¦‰	‘…\\=Ûiib·¤¨ÿ\0Æ°Ÿ\'›±‰Î¨h/»ë0:f&…É¨`›kˆ¶Œ dBáu-L «,ÈşX‚‘å¯ìºU„{© ”A,µşIW–ø!u±e«<‘å]šm¿ò£\\9€¡C“™Wt¿‰pĞ¾]k`1(ã£m;uâ±Á©z§7»‰’Ô4”¿ˆÕ3dÊß&u÷)cbÀ»‰—ó¨{ <R=Cæ4C¦QöŸÈ‚rU—\n\0QM”Qø–AF4RİÕïàgÊt`ï3uƒ¬Vº•°R¬ñN!³ `âI³4}®÷\n¹CRˆdÒë3š «s\0W¡Ãş\"¸(•Õ\"­ º«™€sŸq‡^eÅ±ÜgA•kwê,êøÙ(Æ)¢bfPÃ4Ån8Ü³mñ,/3HPIhvb]¹Š—It@<—*®¿±	Ló­=†¦ëÜö±pÂÜı–;ıx^YßQK	›®ïLF[ÊYjvåšX®*l(±ÕÚeÂyâ WË`¯ŒnüKÆ/¬tcFê›kı‘·;n_÷p™şPev¼±7[{€-ùN‡ı©µvYû‡0ûh\\-¸ÛŒ6—ó9é‰—ß`pb¥æ¢Rù•ˆ–Ó¨X°ê\n¢}\0Ä ’®¾¢E†ğ§Ñ(.Ö¾ÕnQÇò_‰MrQğÃı%WÑ\\fœ7,@s¹	‹™b¨ oÎç¼ıC¯Á˜ùÔßU\\FŞoÌºÿ\0äY}F§HY\\ââs¹x|îbkq^!\\\\1,@¼Ow/Ì\n/&Òëî\n. b^1˜1^àÕiÖga¬lo›¸x\\\0C-EÄÒù‚µp2ˆ^&êmr´3,²•²ÌÅAËİÃ¨Û&kÌ^à•s\"Øø”ÆeMÇVö·õ©xA…S_î>š9}Êícò€ÿ\0QgÔzha¯?ÉFW9>â÷—zKu}xŒ0&§èC‹eŒ”³â[_Xªeã½jû­@Ï0Q=Ãrí¨5„„«6°à…LÉ ×òÒ«,/•Ÿ§­Ìôú6]«•˜õÕCy|b½º›fAÂÅeËF7–àó)O(`#V\n®âvEt.7RúòÅæmˆš£™ƒU°î¾¢r\"²ã@âsNai\\Gäi†ã¸ÄüKâ*Ê]\'¨¸¨G/ûÿ\0°^Øé«¿¨lXî-@Ã\\Ô³°Àá«°Nà , ‚aÚGd5n×2ºbÖ÷5~f|Aš‚ÊÔ¨­âçàè›‹LN`¦o54Ã©Õøª„Şn.è‚ß¨Q«uûƒÏ]g™†Æ‘ÙÄ(¨U]ÆÏˆ<7«W¨<‹S¸…4Ç0(ÄÅf+—˜ÛÌVÕAš2Æ˜ûBª¥…“K‚È\'¹Ìî\"9Š|-_©°[ò”\\áE=rîZ€ oûÜ§€éFåbjdË¨×ˆ­JnçÃ\'¡Eó æ1âc:€d`;FfßÔÚ\n\'¦fãÒü>#æ\0–ZH¶ŒAiÉÜÁ-X•…ö!l¿„Åê­…Ã\'­K&¸ê*:î)`K|\0Ë\nëêr÷F¾ãŒ£Àm—+”§g]•+Wq´Án¼D[æQ·ñrø1gr´1„İÔUŞ¦{šÁYU™efYÅÁ†H<ÔÔÎİÇ%ºî`î[Ô¥³.¢¡ˆ²§©İãlM\'˜oÄâŒÁæYPUa¥¯ÚŠƒĞw3¸x;6<Ì­3«‹ˆÔ¶£ğÆ˜4\"IçP\'ô‰ùsê[ }>åË>*İÊ¡®á2—•øj7Ä¬ÂwÄØy‰d˜*ÔsÂ®†Øa¨»î¼n¹¾­C7w¾gÜC˜û•«²&¯1h»ÜjRÏ~fÀaª©ØcŠ„1a©bjuàÌÆEeÊ$ñ¼£ÿ\0`SÖŞğ&ˆPÕ…öNi€ee¾À0§*±^kÔ…ú@âQn.ñ)BfÓC\'W»‰ø­8+ÌÏt]x‚M™/ÄÍ¹ø¢:îc°‹˜–Ü&ÑÕDÄÏ7…ÆƒPZ‚¹x…rüÌÕ—9&Ğ‰^ç¹P´¯Üc‡3LÕÓ^¦&’\\VS)™İV\0‰Õá\\Bö=ë~Ñweó<7L~ÿ\0öTì%œÚG:½wîƒm…z¼ÃH +\"ãÌ¤åQùÿ\0ØÀB,†î!õùñ9A¯-‹T…\0?QqÜ.µ48™@ƒI1mµ™Î#ºbºK¸„JY,8Hğ^Ç7Ÿîù€¦FôÃP1­E²\0pèo†üL€eß™fîÖ~WÆ-96&Ûoê?@ù½- {fÂ4ñÍåSo72İ$çb|Û9¢ë÷şãÉ+T…æõ¼Øç+÷£Q|ö‚ôhûÏ‰’}ix¬(QÀy¢\0\"lĞ,SƒÄ+Ïq¡\\ªÎÜù|[ Ôµ rKÂ€r±4…€•Å·u¹Ö¤Ü1¸Š¹`=›§vJ…O•õ1ÿ\0Àä~ª[ÂT£ßÂ†î]³hKÜ±É˜ğK®%q!¹¨œ˜ƒ¨ƒ\"‰¡L«ï¸¸—qyj]½°Â_3o¨èVh{iŸsµüBâ»)ö|GAäQ>†Y6Èr²¡Ù:5™E“xÃ9»—¾täw\\z˜Yêëízu9Mƒ…×Ü#€	cí‘ÁMŞ\nû™¼ÁUˆ¸ÄnK¯¶ÓÔGº–kG“L„¶¾®#«CL]X%õ…ªîõR”Æjá-\"†õ÷æª>ˆ¯hÒÿ\0:ÜGcTPß²üe“BïópHiH¨×b‹cš,MÁi¾°Bİ$PW1í‹úŒí3š»]Ë‹€à?«ë\\²ŸïW\\¿r‚\0V™GP?è	3ƒÍÀ]Âgcu’]NÙÓÉßÔ½šLíš}™T¹½İqÄıº¡Ñ‹Ïê”ğËrşVê5£%j¶V/¨şÓhkdb½aRïx•hDºÃG i›®Tqç:cŸ\"ÿ\0Rr½C|Yøæ)½ì_â7¨/­V+êÔ¥´¾–W-éÅ+ˆ‰¡¦·›tbPÓÛè@hŠÅ8<Ë6­(ÓÙpmŸ;ËŠó:áè¿Í°Q0W	ÒÄºbúpòæhYµhè}j[^!ò&3\nv6*š\\‹Š‚ID¨şD&\n B˜_N¸?qå@×áˆ@À(€`–sX]f\0í—‡Ä¶ñ0:‹‰£à$(K`9”)ÌbÌÕN®Îéà¶¢³Ï9ƒ,]…ñøæ=í¹G@õD÷Pˆ´öD¶ğ¥ÑS!´ÅÛÇp¸¢«²iÕ™Å‹09ØåOó$[Êa©ØTı«˜ş2&µLù©ş2Öa¶4_0û„—Êè!¼å¸y_SrJuK¸™æMHp„ˆ\0-Õ—S\'ˆŞN¼æ	aHR	‹mFçUÖÑ¶!‹Â¼´½÷3T[Y<¦^ÆÓ_üd\n@®vyiø%¤5³ÄeN€]k~j:åAûşÂ©k®µ8éeĞjœo$i\0ƒ/g\'ÔÇnŞ#@9@`öÑWaø‡iMÑù†#OeŠÍ:®\'\\7ªÖNë`J=†UP´ˆøÔ\0…ûŒmÿ\0¡(ıDÓºÌŠHı¶mÍŞeñ!OÍ/Ê5O«0#Y§™QƒÕÀ†¹ÛPsU†È^œq\0PÕ-RÙõQ¦&1_p\0®æ«ñJÒ;QáÄ•qĞwU<—CsÙÛtÃ}Ó0]§Ô:£kæáX¹¹NÂ,\\ÈKû9NÃ0yôîQ	‰½C™?T<Æ+bÑğÊµ o*Ê®Ã÷ñNbõ6œ˜îçœÎo3GÅİ!U…ÜLÜ·½N<÷¸Ø¥/0ÏÜc[­á¨–î8ESÏşÂd½9ûAø†àh#é+ÛÎrÿ\0¡l.F0n‹¸1ù Z˜Ã/¢%+¯›Õ|°EäÍ36ÇC¥SD¢Wö^%MûõĞ±üÁeN%½gwÒ¤·™c£¨±Úºæº|Êá]8|G›:o\"s™Çˆa&ŸùÄ·ÔK í¡Kİã³èƒ@ (\0u.¦G?1ÿ\0¿P€T\0Á6Ëõi2Óÿ\0_R«…vc)µ”c*.şË|•‹{@{€Êª7G+Ü5H°v×Yp\'¿fƒÁ©j¦h^ÏÜå¹€ƒ2ÛKƒÄPÁ£Gåz˜ğ)Ê›UŒ3;OKø™\\GB­ıÊÅTDæs€	ûg0¡­P¢Z4ELs%¯ô—0rÓJÊö¹”#s‹í©å\'±Áuà™È…º3ÌDÄNO)ÑÔ:…ÜVqê.ârşf#ã;•d‰ŠñÔ’›Z¿lµ_ÊóS%–ŒËQ!\ná—/?SdÄªÁ£àü¼‘–Å³94>åµ*‡ıÉ€g%œIæ\0`(‰JïõæhÜ\'jÄV[&økéÀPı¦¦_Vƒy£üÀÆ:¾”sm€şE—\\3`ûŠWvù[*.›Z[Êªæh‰íÿ\01És`Ñï35×¥eßÜµÁ•Bîˆ„ƒóFÍJ±}»½PUÌ=ÅMV>ïã5H?ÀŠŞœ=ä`\0¢/ÜRa±,oƒâb%÷:A¢Ê®`NœË]AY¸©´ÛÂ%±®a•œ\0/0 YÁÔÃSjˆîR±ÛZšÔ¼_RÒAƒ\\jÈËNaÛğ—·¸—™®áwñTâ9¨S(\\qÊÌ…2¼ÊˆFŠâj313-~&7™f´Àân.b¸µ¸CáN.EÎæ0\'%ÀËƒl<’Â8`f¥Œµ/+U-„æ³QQfÑ¾&LÃìR°­¶X\0ÊÄ|Ë”ÔC÷ÔÜnáÏ)sÏà›ÂÈ^\"†I©Ï˜X—ÔG.3cê®á’ãæ4§é2\'áë9b¢4ìôÄ‘Ø·¡Ït¿si_sibá’7ÅP5/5xº¹^ºGté:RÚ°üÜ/ÃÔ¿¨İÅ¤ˆÌ­ª»•y˜¢¾à´ ¢ˆú™-Î\"ÌY#¬A­E#p\"±¦[…ÕÔXœGPÖe5¨îa¸øæÖblÔh@ŠÀV7åê¨”¬1ˆnRåD8dšq-1P+é%qˆUiì8„£Øßû¸Y¥/¨X²%,ªË	M_SÁ˜[ÀK¶¢ÓPi¨D*s“£ïqT7‘`\\áüGW*·_îUº‰xRkíâ°±í‰P(Ğû5PÄ¹Ä{İıGØ/W©šwåƒ:šV	N3É×)`=Çˆ‹±ÁOs	Årşî$gu]½^â0ñW|fl:‹FfĞ¬Ş¦LŞ)Ï¸H;^¤®/ï!Ù(ı†&Á	o’Ä\\YØËé¹¼ŸKˆ•mù:€ó‚b°Åb„)o¨=WÃ+Gb$¾çLRÉÎA­jQÌ-üÌBdÖ\"¶¡¶QW(b*b]Ÿ€ÊÇ›ŠŠ€¬Ìu˜Ó‰ô@”ó7g‰RÒâ¶ÙEƒPğX)—(nVí°nUPRÀQ.ıw,-Á¸Ô!şwÔ5Ì%Zy8m•ælWS¥\"­†¦¶9CPİÄé¸‘,›Ü@†3)2$…İ/“Q7µ\0ò>;‹ïè.ŠÖoÜ°%‰rÖ*ñ®ãUYCUåÁş\"QF¡u/|l­~` ?S‰\\w‹Ü)ªä¸bñ€Z´¬hÈ9¥/L¾n¹—Œùm8—sË.JÆ*<:2pV¯2øñeWPæ©Ìs„T\nËİŒşaT¶m¨©‡G\"ty—ÃXW†Ù^›…£ò­“.Uın*R½“c¨…ºè¥ßPtı\0äßûÔè™òv<Äo™m*×Ùü…€¼›ñ‘.â.¥B®µ/PªÄn\\cW|EŠl<ÄWˆ\\²ÉÄEjâoX7¸×Ú	¤nÛ™çàq‘„İÅÃ«ƒy._Á_†>¦µ.âĞ dUª)\nƒİ0şbÎˆ‹‰$`Ù‡rÜãÔ‡k»˜bÜ…Ü×V.ş`¶8\0f ±uîÿ\0Ä²À€¬K.EÊTAµ{ÄRtSrYÉ0%ãbK¶ÚˆÇmQ7TŒm/¯2a’g%(–Á‹EÔ~hÃ•…y¦}–ÄĞ®.»š¡uUeÑf]›‹Ì2œ­õ_Á˜‡PÔrbWix+“0l€f”˜üT9.˜Œ*/€Ì\"¹ppoÌ ~€7EFª	Jèr÷Kç’>’G?ıCŞªà‚ò“]H§°Âká×¯»”©(×Wÿ\0&Ì!”Ğz!Ã0xÌÇG)GÀşãùO6¨#¨[¿0ÖŸU(¹Öüc¸± —ç\"Q,¯LÎ‡Û™H)‹\0‹¹B¤ÖU˜‚#Úp¬©8\nİ)÷Dj\"š`•n\"¶]™cÅÊó-{Š˜E[—hÌœA]KV7.È60ó*i ËJ¼ó©¥‰¡^Ó#ºƒ;n.sf9ÌÚ¦j\"ÌÈÏJ±è?qYpÕÀÍ3‚Á%–ñÌ«ÜL§RïáWÌb²·J†¢Ñ?µ[“œ\\%œr”f«¤eu!}†äb¢ÈsNœŞ¦b$âJÑ.	r´±KóÌ~&Õ%_í7¶6T­/íà©__¹»¼¯W §Ï$O¡ß¨NY‰¤Ô¼y7o %)AkóÅÚòß2…Ô4¯ä}²ÔØ,{”ÌÁ\"uUãˆ”TóZ•šêU„]r¹$F’ğø0…uW3-lõË;@„cü^2?¿©×;YÀBdmï+ùŒw\0A¬»COÜnÜKAÃì#Îi¡î.²Š¿2úAGFŒÌ¬RÓ†Ü7Km·òĞ\"•¾16°»âæí2ß0ZeT|YÚ.‰’v¬*Ïä¡æ:üYv]şÌ‹ÕÀJğ0)±ÃŞ¢¦çPİ”¦2_öeéj¸—»³[±Z–¶í03ğbÁ¯ëG_Qx¡{éŒ€=ÿ\0™`¡oEÒvEtXğ]b³;ï¯zñÍ÷1 UÁĞx#ù\'6¾á	1²ˆär®‘4‰u´®eÇ!/j%tÃ^§*B÷¸/Ä¾*›‚‘—ãàrhËõºl9*ÿ\0¸˜™—ŠâXB¡áæUåçñê?øFêêq-»)Ì¸B ò[ª0ÿ\0¸ˆ9£*Ç	h7ääx AæÖ\'súzqPkˆ&]—¸À‚t/DYã¬*.şe~™k´WÜÄãIv.Üp^ X˜(0·…ùR´OAPºÌK\0»8<±kg†¶óËâŠ£a+ğ\0…ÓU˜)g‡‚.Ä2ıçšu’ûñ.z®uöÀ½±s_õ@ Â1åÍ¤ÁÔ2‚Ş&ÔUªQÌÌõ¨àMğ‡Ëô\\)DT›ï,ÇjAKÈ•<¬_½ËH%Vs½@B€JÏHâP\nºñÄ²¼sŠÚå‹ECjÁ¤xIEeÚ¯+ÜsgUrÔ¦^s¼FÕŒœÊV´=bVŒqGrB®\"İ¨¹s..+/šoPW‚W o¿…w5©Ä½f!iÃ+”°fÌ¨cˆ>!NeØ¯ñÑƒí¼õ1úëk”i÷7½»¡üaJ‹öˆƒUdSÔ¾m?§/Rè\n·ãºñ¸@e\nú?${.b·ÏNæÌ\nÚ¸ƒrP…`Y4âqS²ëÄß¿íS‘_qÏºâô<TUlÁç•û‚N3Áq+„¯ÙüÅÅ1k¨V405\\q_KšŒ ±¬volÇ*¹¾aSÁlUá+sÒ9ô¦ ha5ƒ¼Gğ4¬Ùî#8Í¶.¼1Ã¡²ÙôËë§·÷ß¶Ñ€éùŒÇvº\'?q1lÙ††í{ª3îbr§zA‚y—õêRò¡ÍAâe®:p=€Û,{$°GW¸`.4\"¸\n1*Û´ûN:©M·ñkÔjf]1l…j&%üKÌÙˆÌ:‰mÌÂÂâ\\B¹&o¨µ+¶mñœĞ)y¨n¢a ¸\\)›ñ.‹oó©UØºá2ÛPç¤\\×PË‰]Â”ÙğbWmrù`ØÃÜİ¿µHƒ”Wû„{*Šj¼µ™jŠlNVmüÄê@9£‚º‹˜p„ ‰ÖÉìe\nŞÒ¸¶ÿ\0Œ3ÂZÛz¼¢}³¯/(fÓñ1Õ­üÃÈæ&ŒÃéˆv/â¹‚­*/ÂFÙÿ\0LIACêUÜÊ7†<ŞgÑ}@òß¹«ê%Üj®¥»™N$¿G2Ç”¬EW ÑF#·8e¾RÃ˜Á˜fê$Yª™¹î.b¶¥Ñf‚iå9öeœPoTáı°k˜¢REÍT\\¡ÔÃ©u”,õeæ\0¥:õ.ó\nyšó8ˆ7¨å•›•ˆ8•z”ËË6„Bá¼n‡)Ÿ¸zó·ÂSËˆAµ°÷‡^5geº±ÑäıCÎ*Å<–nZšÀÊ]1ğn:<E†‰½ÃíƒœÌœ«½Ê%æÌÂM[®Œ™Ÿ1½¬ğÅÅ£CRËgñS\n¥ö¯ˆƒzİÇÿ\0ÔÄ}ÒÇ‚[PÙ˜«·æ\";±“ª}Cñ·@Ûµ1-ÑwĞ4İ0JÀãœ‡\nhóµ)ì*&IÁ@X\'™DBkÖ¢nUFR…¦±‰ú#êEj 7*j‹P]ä†0ö@GJQ:\09Føa‡»†51r³%[%ÄÏq&e®é9çÑ,ã[¤SKˆ4íKbÍÊàæ4¬\0ªPVßG,ÎÍeSüa%Eƒ„ñDÄÔg½£_š—§îÛv0°Á½@<şe/8¼CSÎjë,;ÚÔÎ´Œ¤e7Ä\" ¸\nŒ–ª<+Áª ¹º{Ì6~B—&½?ÌÇBÁå`Q€×šVá¥Õ²ì\0\"è¡È¹»óİÜ½QÜ*Ú\\<lTçÜrÀàœ8²ıÁÕ÷/š¦¯<D\"ã¾ü“Œ!B˜—ÜH4¨´/ªû™±O´€!ÓÔkö‹Œ1KˆL6ò>1É†Q€å¬ËC;hüN8#C^÷õÒbÛUg0h\ntò8§˜oÕ£Í’\0€0JĞE…M‹•ß˜µ•TAo8Š‚œîèÁ\núóPL\0PUK\n4Ju©€ûGgÔ\0P-Um[ÊÇÑ8¦%ÀÖká|GLÓ1UµÌıİjµtY‹eøƒœÄ/pc™TÇ‰Œ «„,è…{AÅ7+GÂæîß—>ş)/0•}ıøè	H‘NÇ•—3¤p7^÷²-PÙ÷0U‡Êt×»ÄNï…©_Ó–j<wÔ»?ÓŸŒ{2®3¼\\›Lê{Ë˜@\0|ù9J¶ïàâ¨— àßñT€\0­ıE{w<ÈnVFÿ\02×—`l	SUEÉÉ*JÁµ	R°	A:§ù”1-eü.‡ğCÍ½±X­g™n$§&So«KV°…¼ÚR_»ˆ\n€}\nq¨<fÌè»o¸Il–Zy%÷àá´>à=\\&hrù–ÕÏB¥ÛæPÖÁ‘yf%\nñ¼Áñ{…çÜF’6|\'Ü~˜àbs1÷D8¿é¥¡cİE;ä\n·cUœt¿µ¸ñ2<«o0Á¸]è€¦shœ. ZFX§—¶ˆ\'ŠQÔû8õË\"^‡Ï3 ÏpÒSŒ¿@Õø™ût£+¨†àæ/S‰»”n+{f„âRà¨æY™¶yeÂ/S‰Lb6½!åÄMÓ£)â÷÷J¯aabr,¶QôMqÛ€ªWd®WS!}LßkS¢\nî)}Ëm€¼Ë<BJx¢à¶{°±ä‚õˆ©ƒôGhà£px‹Í{ˆƒdAânbÛXp.ˆÛ¤½§ÓğÈo~ê\\!v&µWœË¤7´øˆ¹O[¶æLj(ÚÀ}]Àü¥˜À·ÿ\0%$\nòøˆ÷æZáÍ„ª<¤¦)yw.—KCâW]:¯ÅoÅZkğ€ç.£Q—GóãQÒiµ<Fì”£Ğ% % òø—©»\nçä[¸VÒAåíó `v³\"(´Ò65~8”ØeòàQƒqy2Ãdo7W|B&ê\\9«©ã\0É8^~bğ,‡‘à¨F†Õ6—ÿ\0°tnœf®C®ûªd¯2è{p	ºÃ¡…çÇâ°5=V RÃÜHËQ_odÀC½<2€¿ÁÔ\\ğ`•p‡ñ(ê´ıç:…«W^C¤R,•Äx¦h<_Üw’Û¦,ƒg˜öwp€\\L6Ä×â!Î–à-Of¢¼L˜Z\nºİ¸ë´ßçQ%Éí¢Yîù>.*`ef$(M¡+È|GálµİÔö¸f–—‹–€/â=&m²b&¤µšX—\0¯€×¡ü#ŒÑJ]¾‚O±wäÏQHVëLñ}EÎ8Á_â9L€å›-õß‡Xõl>¢Á¾æsò<µŸìuÛÒ»å^.wÀ#‹Óæ[|Uì–ÕÇş1ˆôšø;)üe§×pC<wş‡ÿ\0 £pXo¬gùù”À\'Œq	‹@Ö³û×ÜbfÅ¥zÏÜ$;TvğbıÊj]ªò”Jo\n¢İa¿ÌV›!µÚ¢Ö.®\nĞÒdÏI¯ÍÅ;VxÏË=İå¦|ÔªŸæ²7A:½ÇxÎF>N&>Ş?Øè	²-7£Fp»]Êtå«ò0Ê\"7J’ñEL)!ºœƒt_wN)Î_âg»¤8šæ˜h\0[¹ZÎ1«/ÄÌÖ5Ú¶°k_ği-¥fÈÚkƒêJjU¿{ıCxgÓê:@=wˆßâpZ•Ùl+\nˆì´¾j[¿¼ÃQ¡º+.+”ªa%Œ6DTxBğïê¦ì\0Åe9÷1@m`\nñ/ĞÙ~AhïtMá¬…Ês¬Féyk1s8˜”ó¨iŠè‰hKÁ\'ó,|‡ÁFJ»ŞåPİ\\çü„‹á‰åÚRÙFÁ|;EˆjÖØåI*t¼#+ó*h²‘.ÈÀÂ4XÜÃV\0]»*ó+U¥‹O²f¢±Uk*ãpÚÒ¨ÓÇ5æ\0\0\0F¡Šf§ø›?§ıŒÖ½SµÔË5\"VøbAV&ã¤¬>½êå1ªïâ§¹÷2àVèä·˜?YI\\–bgOjù†Qá÷MÓ\nà²	‡á9 äa‰l±|o\0B \0W€x–Ö€ ³n@ËyîéPÍYxÌ¢\0•\"Ü¬²¤Øjuù¯äE.pM‘Šğº,l€#  :â&¬Ş UÊ‡hı `+\'™†TÌS<ü&¸ºçüG%W:îÕ¸*)HaB]Î%ãõÙùŠ±ˆX£p)î	`s2UıL›»–u¸ÁÌR¼¢°ª‚¬¶Àÿ\0ÎÏ>É\\‡¨İus€ÊZúúˆß±˜ğjæ\\¥XÀ.à\\©u|¾å £?.—¨­ÇÁB«R‡«fCš9`½”Ëïğ\0H@ú!HÃ‚ø2ñäÜ´¸Î¿¸Â•¯~ƒ7Ç6{FÒóœzm¹ ÑÂòK3à§bê?HE¨¡Î~ã>œĞ~ã]aki¢ëœBšâTn¥:”cÄ@^8ó˜¶ªó\'’óö\0[vk›…šª].RW^y€îps—/^P4Ğ«¼?ãùFİE\0Ô¸á.³épƒ^ ·Ü:²±_Ê\0PPxšŞ¥˜¸Š®ç2_3ÏÀh«:Op![wòêi‹îhœü%—5©‘ñ„´Ø¸kYOó*;Ö)ş æ¢¼GÄw¸šâY¬6Â©ÔE‹GlBj[Cø–öu zãû{`:õwõ˜K„+\\W§?PÆ<\0\0³%Öó3dB•ù‚B#¤É\0|Eâ±PŒú°ˆå¸`Ô›i’»+›ÆHxX¨µs‡,X¢ï•yœÌqZ‹d7dà%T`qá¸Q¸½fX˜„\"Àfc#ë€‰Â^ÖLºv´Ç‰jşXSr|Oä†m(/«Ùó.^O0_‚\"€ÛØ}Àğ}™¨7g¾ X:¯àô&£>&{à7E?¸\\\\\\‚[®gYêmsËà–EÄX¯…‰B\nÄ0£3XÁIæ*à&ó1ğÏpŒË¦ @2â#†-”Jó;Ä¥Ó.´Ö!1ô S¢\\[À¯1x+Wnã¢ÈûN¢Xíw¦@`èï¸9¦Ê<ÜZV\0\0­íıG5¨d©¶ç¨T‚Íø0Á\'ü<ÌIb%aaêìr:udÀò;„‰ÊîŒ\\±cÚš¶LE ¬n¨«T\nÄÅ˜¶D-uÃQ™a>Á‡ˆŠí>/üDŸFR´\'¢÷3Ã SD^•s˜êqŞ%Ìå%ˆ¹P\nÍÁ¹xĞùê]VeŒ6£ÂØË3-*î0»ÕşatxM¯æpAìˆx‡ƒMù–ÏRÃ™D¦§´ÓáÌlŠçâ¬†¼ÆT–q0!mÇ\"nY:LÃ2¸•˜Dn!TşaˆÀ±†Î¥£pK<ÃÎf;•ˆJæfêõUTk|c¹ÍC‰è4Kª”Á‹›Ø}æ)Ÿ®kÉÌÉlº …¡°êüKI…‹`núâ8¸aVùº+m„J‹oŒnîQHï.ºtÕÔWâP)œëít>ía8¡\"£ø¾bjÄ&ér¸n»†Ó†³¾C’.#O©ÄæÂ;ÈÜFêxB€² ®r¿íJ\01¤8ê‰ôEŠŒ¬f/1[róbË­JšÅ¼Ê9ƒÄ9¹]Ê 8a¬ÅÅ³sL3Zæ-K¢\"Kë\\’0T\\Jÿ\0?Øœ.Ã‰©¦ñ‡øx­9ñ	S¤hvº”9Ã#yí(Ë=rJƒ@÷\0¬L\n†brâ*by‡˜Ç\'Ü¸Ï2ï ?\nÌ¯Š§)%Üc¹xœAx•ˆ^f§38óñeîw3¬eh)YÀäñéÍŠ,È„´­ÜçÎ 2KÍš—{Õìû„<5ê³^n-\n3V›Ö=KX•tÊË_:ŒÙAèb’-]_Ã+½2 ş ğ¸«\0åÔ@ªVÁ9eõ„¦1ùÌBëPÊŸ¤]ÈL»`wŸ©i\\k¦9 ˜¢h<áşE‚kÜÜ‡pbˆÖ«+JÖAĞí­Ä¹U˜øcfÙ²^ê/áÀ…VeÛSL±Ô.6 ÜËÌ±5Ì·\04îv½;Íîœ`@ÅA]¼õ©cG}{…O`2¶‹àP”Yø•R\0:Oø‚®íğx/<Û»y*Æ:€—ı•§\0ˆãUî,Ğ‚ß%@Ì¨ªã.”L·+¨âv…KŸq=Äó<OÄç0Ë‰µL!’åFq/9—ÎAœú‰Ô²±Ä9‰«Ã-Fuñ\\ÀÀ7ëÚÔMH°h€,t\\&`ïÃ1äıÅg@eòW‹¸3‰¾œ#½&r¦)q‚97WWs$p¬1íŸĞj+\0áÉAU|Aca˜fÒråwÒˆ‘ÅÉhZ£ ªÓ­!èÖ¸°†t(S\'7¥‡‹áHĞ3Á°à—sqbÙ4(NÚóãŸ²®N±rÛ® -²Íè—.]£XrÉ¶ƒ‰tí%‰Üº%ş\"[Ëó˜\nDäÛwó0 Ê±1˜JêV—E_À§˜³Gæw*Œ3LAÅ2‰¦ÌV\"ôL®ÌËvx-‚iE£g«ƒ¸G(fæ¹˜1¢çú…Ú•=¢OÑîàÆÅx\\\0ƒ75ò¡ó¶4Û»K[ä b•ÿ\0ˆV•·¯qŞ‘Nèà÷öÎµ×ş;„ÿ\0\0x£Ü-û‚¥Ñs3’á¸—ˆ9™LT|¢BW0oÕÜÊ*¯ásQÔiÃÔZe³fe[Se¹—XÌ¸˜ˆ&J¬ChšşÇ˜è¤Wt°|–aĞ;óbİ!Ù4ÜQÔ#¸ÄwWö£Õ\\Âœ&•¼1¡+a†\'•`UC$Å©Ì® ÑDª )÷,‚Ò,/™ÀjS%2f.MjòˆË‰\"+(6ÜµÁh¸\0ÏÔMüE°K;ó¥YFÛãù p‰ÙâTK+‘u8ó6P3—6ËQu¼Ëú‹šUÊ9ødÊ‹¢áªÄÓÜs‰¨_p×päÂK®fBj°¨®š±Õ³Ê_¥úeAgñ ş¨ì®*€V1XÃp–;co‚-;1¡ìÈ0‹Û¯QŒ´«[¸ÛäpÃ€ì?ü¼Åí1Éå…<ê‹~’ }¨/õ¨<Ô<O¹Æ%Ë¼JÎåG­Mæà@¦æopİL,iÄâîPj¸¨“Š¶à¼üŞ¾.¢%Xİ	ÁŞŒqÿ\0Ò,lÁ‡y®aæB0<äÇ™xL<Åãº˜6Œ£ÖÀâ2™~õx·…o˜yÇ/·˜q¹*ˆ1l{Z2AaÒœMá/Š—¼»ß˜ğPI¿¸uj\0®2vBÂ˜VÛà©uC¼raàÀ2š¦³î_ƒ Y°ƒÑtÃs`ĞdöL¢v”G*àV`RëÀŞñ3ÜÌ‰l{%Í<ÇŒÌ^\'?3œy€¤¦À™fZ\n¯×Ô|ò*_ğoIşá?¼e—7{ä;e{ÍA¸.)x•fl2l)oˆ¡Ê%+´×‚<ß¹TŠß\0òJ7y5~`†²p70q3ÈKÇIg,Ü=Ô™@ZÜ£¨êÈw¨«ş3Ä¶â½Ã©ÅÆ·8gS˜Ê.*\"Á0ê/CÄW¸(\\4ä›&Èe{Oì¤pPS-í¿2•IÎÁèˆŠã%%ºÏı˜X!àWáæÈ‰\"«§LcÆ â[{ŠÕÇa,ãË1³Ô®EÎgÔvöÔ‚C\0˜[cc	Y¶İ<“Û\nŠ›Ä\"ÀÊ6Kyñ.QjõÕæ×õ*Áhx •BJãWš˜ÚÀUÁ½EÜz‹Š—8N!ÜÛ˜À]Çƒ™”Ô¸ğ”\'Âñ¥LâÂ°ôÿ\0pªlßÙlÍå‰WîSlÇp¸Ê£äËkˆ¼inåî³ˆ¦áctA9emñ/¨(ø#/‰Ä0óñu#.gˆ	(½>%â¢@˜º¿‚î1b/®¡A6y•X9§—ƒíˆ]Bí{õŠ‚ …Ü”£rÜšé¹AŒ¸—èNÁv,Ë`4V?qÈªµ¼EÌ{…n-ñffSl.¦,Ş¥fãPgÇq(/¤U€Ú>\"a-~QºÉF]øqìç>Ä®åöJ¶y”r‚ÖÇ™€”UÜ©X¨5ˆ\nUE½Çàà…ß‰]D¬Êe\"Ê+wàÖ¥_¢¢=Lbfç‰ÅÃWÌÛ1Id±\0î<Âª*Œ­¸œ1=Ï´,‹ˆUoá«‚µË§Rœ¡ˆ—în›æM³³rÔ†æ%<|`=Ä+*7š•‹šJÄ¸PŠ–ÏÂÄ\nŒàÿ\0»ŒİÍœ8şCÄãğØnñ4Í‘…UTDÒ#EE°\\ÈÈÚÇPmÎ%4—½Eo³‹NøŒMÜ<[Ìrz¾Y](˜°‹¿ÅD‹íj· )lUl8£a¾É§ÓJèP8=@oP¥Á*©.$Ü€:X½õ@)¤¯.z„ŠPAªËJü°İhlZÉŒ\\\"g±ÀÉê|L *\"§~£‚+Ä²4‚Ñ±0e¨{†Óâ¬z”p†¥*ØjgˆÎ(—Xeéğƒ\n†ó5Ë0jóğ@‹IÔ½T_T©‚åu)QqR´†¥1ˆj¢uVÉxİbX\nÜË<ÅU¹æî rg©ÌÓy‡QEÅB+\0º3ÿ\0ó¬=«¨)ÊƒÇEÑ³ƒh]¢°©3cœ\\2Õik*ØLªé‡9ñ\n[3V~!íÕ¿ã3ño/­İÆ]ğê½)6°çÁˆªd½+En\"ÉÍ¤JLšŒOcmµvÕ°)€BÀpç\\j…¬ÅY_¨ä6hÅ¾òf Hl8-y7qã«¬²4İ¥\"‚Û‹\n–µÏÔ?ÂÁ¢/JµÉÒépqŠ¶VÅûÜDŒlL‰æÈ¡¬=u2üõŒ{ˆ|CRãM#.U·ÿ\0”n-jS¨\nJ©Lu¯ˆ(TJÔ¶åƒÌÊª0ÄÚåš¦\nWpsZ«âéÄ-ø5jÌUÅÊÇÁ /¹Jf’ëœD‰’a¨<ËEÕÃ.4‰ÍÂs¨±/¾\"Í:\nCƒÑ¿0r/\\ûŸ¸?½¥xê\0bÕí	a¿ĞÁ~ ‚õ€3ÌFâ¡4.Ã´H(Áx-×¸šËF-fš%y”¨áà=F ‚Ğ¯Ô\nÑ8°^ÊQ¯1©¶¥_ÜbŒ˜L+şóof·¬ ñP¥d	±Ùq–Oêvá„°\nÀ<FœØ,Ö Õ½¼(ã¬n)ºÂl£GÉ®e­GYšÃwöC”Bp[Šâ‹X1¶xª;•\0cp£fÔmÌ¶·n (¢V¢Hˆ9	—L~/\'rŒ)Æ œE‡8æZE\\š‰mÇ†&yb\\±€¯›­±º%»~ø‰[…Şã¹orì^şêa¸<ÌNë,¦,—ÔDStF3prõæSRñRâÄÒ	UÉ‰…µ,&AH½Û¡œËu<uğâRb2Êê]’©ÌÓãÌèCÛÄ]pf!V¡X^İ¹bL¼´<À$§[µ‰ªL`À•ub“^=Ç»*î@£aıA»¡L Áf	Í*¦Íâ™÷Î€Ø·üa¾.bS_¸w+’$ÓeRÂà[]ÑV¬íS†\'B2LœG$½ÄH¯®9Â<±]\nb¯t¦=Ûû•¤;¢Òh8ANŠ–¦:¨U³˜B¨‚¹…ĞÜhf\'fd4«İ“QÚÆ±Ô[¬+­·¢]q^1rvæñ(ëâ®U|lbªî$²a”LËâb(ÑRœCÕ‘[¹á.·ò	joã¹b\'¨]Â¢j+™’„yñâŸ×pUˆeó0ûª9…™ ÑPÂe‹ú‰|TEfc2àêX~%*¾  ÔMË—DxK3\0Ç	3hÒæ9ÜÔ°ÂAúÚ6ZÇ:W\nU¡ŒÖ ç©^	|´kD…ñ=±q/¹bQöT*¶´¼‹>ä ¡á\0)Ú×î?+E½ş1ıÍƒ·Iq-İÖ:!!-=*A¤)÷¹K=ÎÈ¶foÁaGš—4»s4J€‰İtBµ)GG7+\"-.¯ËÀ	.\"À¾:æS²¬¬àV†¹ƒPªüÏ( –×B³d±q¹S)¶q)XŒqrûC™gÜa5p$S‰CŸ‚qˆjg‰Jó+‚dw™vÂÂîæã_!F-Éd41²rÊ¸j~ÒÒ.%Dàš@K…-˜lšãPPGÚÆáÃí-PÔUˆ¸„é.fó® \\LbZŠ.ó;\"©Ãh~¡U8VŒ¾ LªpZóÎ¨P®öñ]KŠqq%ug<KG:â\"ªV@ŞËE|=õ\"À aÌÌ|nPÂ—®åA€(d<•HBXO6\"«ğ`Ú¬rñ˜b×°ç˜dæ¼˜~2ÍXª#Õ}Æ¯ 	zOöÊ.“–vı\\¡óÚåT’*Ì¤çÙ†UªÇ©JZ=Ÿ‚Ç\nÒ®–&•~ÙÌ[ÜãvË“5oƒÎúí¬zÎæ—ò¶˜Aœü5ÌFÄ@ê)¼ü[¨ê!‡ŸŠ¸±	w¿‡–a\\6İE\\ÅŠ”õ¨Rëp¦.>á™¼Zx‹lP·0ì¨6\\ÚÁªuUp\n	†¤Ëˆ“¹±1Ôö”ó˜×8‚.‡î(¬\'Y¶7Ä³½@3L^a›H%Ş·šâ³>ªè.up4Mz›½y¨ç^xÖ`p@»6UÊµ5[ÀKŸS6·\0×öå««ûàòËCÄ.•ø‰h­¡hßœGá1Qt-‰Šç²İ2ıî†\n‡<Ó2¬¡+\0·bÉÄuk¦?Ô†°¹QYˆNJ Ä%v,#ÖÍÆ‘_rÄU„,‡»”¤^‰ØÌšÅØ=Êœ\0uWi…¸àª5g·_¸¦Ëˆ›Èı¿p.îï„Rˆ¸>Û™\"¾wl…,	z¡|äV~øˆü¾uŸE‘ÙÅKNgÔË˜+ÅÂÁâë>á¥À7k…ããJšcâl‹•xø!rèÌĞµ|Å‚†L†ØS¯…±e\\)–ÜJ\\0Ö*oINT¥q(*›€pQªy–à™Û‰âàØˆK¼ÎåÔ³s±8bã>¥ç«\'Ñaay_qmø¾D-–ÕGq-`Ñ{•JîÖİ~³†bwÎÈ€³FÂ³æe:+Nâ‹˜šó Ì \\-M¾ ØÑhÜÂß2ğ3¢g¹úõexM\\Ú€›½¢ «b…S²SÀã*Ä @–ÿ\0êH‡S—Œ”w«‡:<\\b«Ë6\0mbœ‚Uù‰f2ÙG6`mü3 .Îq¸™©¬Ø×ªÅÁw¦j‹™÷úˆ(°2ĞAä‚R0 ÕÖ}âfû—\\B@fØû›¿S9­–<ßòTø*®R×qeÆ 7Öâ\0\nëRù%·S(ğ1£¦¥ëÜÇÜ5Êh–a8‡02fjWpÉ¸Ñ3s>å“$¨¹™,‚ÇMÌ‰‡¨+ãcˆ·¨9¦^¼J>S+,ğ–ÔVGJLóÔ<¥µ*¢µ)_¨æÆ5l2îÚîXše…Y˜ë²¯™wÏnS{+¬&x‰ˆÕË ËQ[†¢P^±f³i @\n**¤£#íQûVÇîëüÀµşf,«¨ÚV;Xwd)/\næ`hÎ¦d1›¸ÀT*èkâà”—áApe”ÖÚË(Õø™DR{ãõ0,ºÓ’½Ü	(.éÎbÆø€2º´ÂK“<ß1ÈŠşÉª°¿Q ÏÖ\'bQrË¥¸i^õ+±R4PÃO$T×7sÓP{WxnÌ¡®ÿ\0QRRŠˆÂÏbRê½œÊ£ñıŠw\\OW4‹u8»‰[™B:›G&°Ô¹ÌÜ1ˆiŠÊ—Ró*˜æLõ(*÷5rÜËºõ8EªæwDVPÊ¾`]\\0KrK¢àİÔ»3ê\\qWêê`X&@8WÕÇªAÂ;ƒ-j3÷şæd½nPh‰B÷Rämsl¹ÕğÂàñı#ˆÚTÃ<ÊîÂ«ıÈÄ²$,Z˜¬Duã-;ƒ»—Ï\'lJïáÕª}À$o–‘X×cQñ†lŸşƒĞ:gîa¼õí÷9©xsuÅKfŠOú¥úüABAÑ7n›©[†CŠ2Âcog4tw\"•CycœK/ÄRÀì x,n´»ÌzC’\n)wå©BU%ãYÌËÅ`e(trÊ“ˆ‹h¶V¸N¡×–økr^¤½LE*N*Yrê¸kcûHåmVr¿p©Aƒ$ç,+¹w™g·â:e’á¸ñFbÅûœB;¸Îş7-›A¤ ¸)\n©w,ªƒˆ\"æ-*5Ü·¸˜ŒÎä\\2¹•1fé‰µ]ÆœTr5ıVS<ä`1V·Ìªghh6—JËÄVË:)7YÔ¡,ÎÃĞÓÈú6:êRÄ²õ‰c7A$éê	Í×òËeâÌ›…ZBRË¾`©úÀ4š¬»•—tP¢¸8#¡´ãµÁƒDJVÀh<.æJ·P™•˜?î(;?1š»UÓù†Ï”¹£™vd)»Ôu#ztVÊq÷‹–Ek÷jŠòm—z]K¦îĞªË­î>aõvø7§HŒUT¢¸\n¸ ¾®¾â ¼±êR\0XˆÚö+Ò®ò!åÍÊ&³š›Ë:½^:TÉ²•¬¿åF–ÖÅrµ™Ò2« í`,`Ğq^.S¼Ó2Ù‹Îã.UMàLcŸ¹Äfïb¿$N£™PÜŞå—P‹˜Ã™Yâ:—ñw(¥£’\nœ×siUğK–¬1ÄWH–Ub	˜xDâS6Aùl`¼Ï$XÒGIˆkp¼½MæÂà…«ƒ¾yˆw–áÙ0ôN+bËÅ†¾£“h¥*Ttâ\"NÊî…\0:!\\-tÇqÀµUä€LùêwXk¨ˆ-~Ê˜4¹ašäVÆÅÒpÌÜËh‚ëË„úÿ\0È\\‚fı%9ˆ1Nˆ8¦\\£ÀR°æ£Ú4Qq4ßªcqr†|NXF«ajÆŠÉ|ÌâÍä‹R€].­¯òBÔÅtgŒn%Å9`UW[ÄN,a°Õ˜ÇÜz²¦U(_Ä­›XDsÌA‘j¥Õ”?7FÒÊúæU¡[q%Š6	Gp@„¨JıÂ8W@Enü»}E{0pÑ^Ø×¬£Í™ƒvÀ\\6ò`¹ôÀÃçuÍ V<°Â%HÓÏ‡ïó)ãB+RD;`®Ø×ĞÌ&6JÍ_gİÃÕ€\'µâ6¾Lx|Äµ¥Å]Ûî³¿×B&`+FïE]ÂyƒíğÂ<fš†÷Ü1ÄâT¸\'rÊ”UÊTw©wIr1mÜ¼Ô[²/Ú[œw*¢abÊ*¸–ÑÊf8-\n¹ÇÔ¥JüKÌ\\ĞNÌÂ|ÙâVS¨}0T}Mìµ\\e¾c€=ì¹ªë>Î¡tº«@ôUùóõî¢¥xa÷û€ÆÊo¡‹ÁÏ<”É˜Ò<úƒE*j”Ø8b46ãâ]ª^Š*bÆfÌÇ§ DÜ·Vª]4ª„³óı”ùU4ŒQ((SK3x¹–Û×-ÿ\0äc­:ó-Ã –,.m²é¢ªóÛ(ô\0µl¦”Ù•.û\\Ã<©âªîºÕ½±{Òµ(†|]JÉ«+Irêå6èkAÈjV{ğ³„»pŸqàÑ †WÂ‰jË_RÔ\'iHøælŒÿ\0aRşivş #BÛÁ\\ËÍåç™¼Üsg‚¦•4ÄÕŸP–’B…å£Ì%£Ôæ¨À!I¯Ô6\0h+Q×™ù€±Y‰PSFf7RÕ¶kPn>Na¸„¥ã{ƒPq=À*PÇÈ÷¶¨ÆáÜÜ`Öå¹UDnå\'©çà”Åñ.is„tæéqÀcWR˜»#kã˜[×Hh#^Ëˆ7\\mj-”„kc2„İIÃó)Q@\0N]ÃÖ8Ã *Ö¼4<}¦ÈóMF×œiTÏ†İXG)X…*Ş=Œõ2]O,¡~şçD¸ŞÛ½Elx…¸w,#² ùWÉba¾q^1îº\"ª½ÂİAW§xõdÂ²¤é¨Éû‡&şµ2á)²P…øí‰{UÀbë‚@|cÇfgŸ>æP\n	y7™Aª$4iµi7ıfa—‘8hêT3„şK²¸eœãî/·\\ÂÖá`¼EÛÌMÀq¸XõQ‰LK\nq,‡uT°©¥µ|JâÙ•}ÅÌ\\|Lî7qÉñw¨á­Å!Íbj)ŞÂUé–¦’Õƒ˜³ˆ\"o3ºÜß:‹„/ó`Ä‰ôL csæ¡/H¬×2È9Š#qU\"¸÷ª—ÛŠ,¯3ZÌ\ncØ¡ÃŠûHÜÇêÕyáªf \'îÍÓQXZa¨)‰a\"éiœ´ßFÔ­Éq¼å¬ßl½¢v‚uËÏ…³fÚ<å\\ğÊÌ0¬…W¨	1«.‹bíÌª ên\\Ã-JË!Ò€ô%Bã>cFb‚ÇÖkCQ…7G¶.#SGg¸x——ïq®?2€£Q°‡R­óÔÅª•MÁ%Öø‹p¿(n\'™šñ4ƒ›#áwëà¼o¦\nûŒÍXÈá²ıL›AVí˜`Ö>J£™QÇ3Z¶QnQYœTqnq˜A\\Z‡p„¾&°fÄ.îù55†°Ì«2T¸-Ó÷7*ò0qË˜™Ô¨Ló5™Bƒ‹”Ğ“@1\0ŠÖ ¼ü$(Óp#Š”¡*‚&Ù+Åu­–Ï\'º«ª4û0˜\'Å„†¿œÒÁ»G¥KJ©P¢±xïÜ@1±Ãy¨Œ~-´;nüË·Ù\"²îÿ\0°óµMj¡}&~à9\n°W˜´ĞT¶ª¬óƒ}‡pM/ÅÅ¡¾£É[…9Ğz”ÂfDéyÆ#ÒøòîÊïÜN‘‚º–²¯˜•*¡Ü3Ìª;[”F”*¨˜ÅJ€â¡VæÚ¸XJÖjø‹2åJMË¸<5ˆndz|nåZ\'À;¸³™qj6ï‰í˜ÜR×Q`÷àÄµoáZ‹ó-Hí¼@Ä^\"…êæ\\,ßÀ”œ.	DÍÔÁ˜É3)*Ïå0uê[™¤ËšŠRé²]¥º‰n7NHø‚ÙÔk‚ê:£rc¨ğÃáoI?Aı—$Âvİnñ@[´ùP/Ş«äY½lf‡²w»e±eä>šõRÖ¨Ušd»p`3)k­Ú{¨u›±BJ|fW¶æ´>Ût\\+ .Âœøy•Âÿ\0$t]W‰r´8ã¼ps\0óƒ”ìr¼J‘˜ëŸŸÄ¼RÅÔhÜª*j¡µ›: #Lrğ.ùBø#c}Kø‰{ú”n›{˜,¾ãlYn]0D¬îw‘Y‹lL™ƒù—ÔuqSºåÄÁ¸Ûİ\0ç„ ƒUYâ^®/¢€¾âüàâ!”—Ìæ‰æq4…7Ó*\nKKL_	½1Áq»’Á^*`©gqÄÍ}E‹Pˆ=06á‚<Àí\0xœ•s¡LÙQCÇ0Ï0ËOÅÔîâÉs(À^â§íU0.^3\n¬’™äÅ*åªz©Dm[ÀC^í0ŞoA^#ÌZm¬Å¤±<Š	§ó\'Â\\ÌPhäßğÖ†ê3–ÄÈ.é:£‹•áÂ XWy­ñÿ\0\\¨ûäáŠÓªb¨ğµj‹^Ô¡öÊkZƒp>L5	Î-Ï‰n†2‹9XÀ¢–®èÛÆ%Å:¬Õ~àÓç¨6¿’ìVIqCû	S—g/ø„XQbdüÅÎ™ú‡–+‰aœü5Â²Õ^üÃW¸:€<ÅnîUJóz”¬@Kê*¦*µı–ºš\n¸Ãé.fáô.Û´®6ğâRîQñ«êe¹|2ĞÂ­JP;V‘ÊTª™íŠ·ğENè ÕË57G>bboÛ)í—ˆ—†åç’=TQ¸z—30Ë©ƒ2Î¢Ùêe1TWæ\\¡Ì+3c2íÄ­€å‚å”…‘7˜î¥i®‰NJy-yk€³ˆPróQª}vù+PTÔo`ò\0}×s-ªhe;[À´Ì±T”YßªÄ+çV»×}Çö~(ª§½ñŒK#.|.êàKà¥²¶Œª\n¿¦ u.eNöY‡ËÌÍşšqûı‚j‚„áPƒÚUĞØÕÓ¨È@²©ÅÒóšÔAmXY)BõuO>ãª=©iCæ–0¦*XDÙÿ\0ÙHa¨•™ÌÁËá˜Bxx…\nŠşÌZÔ]&´AY}Ê¦yE$ lÍjŠÌFä”—ş› Ü3å.’âß0âÌxŒ,&Û¢)#9™Ö{†zÖ.’º½ãk:ffÈ²şå/;–ìæ IŠÙdtòÁ ¸d¸¸hÖe%}AƒŒKŠ;„G0Q.Ï‡—A]Ë{”˜,ys\"[…, ª\\%™ÇRí«b\"Ë`ÔXQ¢X•fa‹ÔWVK÷‰nah†¥÷	Z²\\Õ®²rCÀ²Vƒ,u³°\0İ:=ZFÿ\0ªÌ¼†B°¬W˜2®RØv¡¶PÙ¬8ÿ\00°8;Æ(îY!¨º‹Å6ôbd¤-šv­Î,JÅî&T‚úu‘·VÊ%îÇâ=![°,ÂneH¾ëÇ˜6tW æÒùé{¶Õ¾ãÒ%ì÷ˆ)¡jağœÂ¹	¾>é´B`±ì£	\n¤²Q¹w¯3XïÔÒ?!KÖ¼D êúKJÖ¡|h:‡#çÄ¹\0{A†¡s2”³ù*+ˆ^¯NZYGNÍÕËÇ*·Ç‰XêøƒVER.àæ.ÙG\\^&5Ùª.âíEl£Ü@Rœ)’˜è†H±[ÁÃqQ‰s0#Éâ\nn)¨8î\"\\¿ËCj~ÓIj¢o˜ç‰‚n/0Ô2Ñ(!V¢ìÜ´i‹Ó¸`·pl%ö”¹vŒ¼Ëêjq˜V 2u¨†ğÿ\0>.T@ÙÎ Ş?P+X…À®ÖkÅ€íÈ³Y5·¸ûE¤)şå]±-`ïX»æPN¤³€y­¾£	Biè4ßÜ«»™ÁØ¹‰AHÆC,ÂcMq™N7ÅWa­íBğAŠ?wŸŒ¹}B²U\\Ô²µÊéÂ\'Å˜ÇƒÏæ™@<@*…ªÄ÷ğ¼²Èõm\náÌ×¤\\oq`¥ı»\nM5ãˆ\'Â7\"cıNSŸPûìG8™¨g\\ à™­qmşc®=ò¸è©üâü1\n¬îy‹Ne—ˆˆq^Œb“Záj¢E©Dó6–¼T¶)†11Í.jnPCÄ7¹|Áƒs£÷(—ÁƒqW˜ˆÖ™fÂxÊ›sRïEjæl„bÆ}Cq\\<#ÌyƒAS‚¢õ«›ƒcs‰\n1íâDhèVòçÔ çà4ÅÅ8Õ>M:æÍ+p-Ö‡WAF5osSj¡Ñ‰wB¦ˆ«æ²_5¶¼š°aû•qPpÜÃ´G$çcLuëÇÈÜê¬Ga\n´¤ô™jN*Á¦ÏP™.¦ÚåRÁH(àğÛ-N†\0·4F	´¢ãı‘,\"ÍSó‚l€Ì%tœ‡~a÷‚Q».\"îWÆ¸¤†Mªƒ²b„ÚSx^~âªJZÀ¸ác[s¬Ù¨\0Áj©~rK]Œ,%ÇuÇˆ7ğçàkwP„1›…<Ì¯2óL¸ù¤Ì]ÅÍÇæ\'ÄúšÌ¼Ñ™xŠnŞ£zêg§ñ<=Ë½‡a±şåänÄCé.?‡x‰NİQoğ\0^LQa@æ--Cy(æî.^RqçÏêP3JÙsî­™×şÇU“µbÏ)…Gáúí‹Ø¿ÇA›¥ÁçÄtÄ´9j ¨!ÉˆCuÄlk–¥LãÄ£Ë7©…™­êZH+–\'’+ØÜå2@Z²vµoUP«;ê9À¶hLÅJÒ‡°Âñ8“Û…XSyš#E%äs•qâEÈ*Jm|ÛdMË|E£€ £Â ¢³^&Nª^ñ9Ã©»•¨½&ÈËÜ¸°i3ëQ¶B¡©ZŒŸƒ‹»+fåj:Pæ\n™7§N`\\=„5ywŒBªc¼\n©ƒ;4ô{„V 1£#=Å‹.b‚˜¶ÔG¸î‹b™ä¾&ÉYóCâ¡~#ˆ7ÄÔÖY…Yn™µD sÜÙ–VM;¢ááR]Kbì÷ëÿ\0róü#ºNİ{…­ååÈ\\âiòAD°í;ó/’)mú€¿\0µ7n}Â¶BÚıÌ™ø_êÁ˜}Ê…ŠŠ–dTjè :>É‰M¸ø„º%Bª4ƒy†ê·˜åşŞÈŠ¸£5¸è.Zî·2|ÇOã&Ø¨ãRÃp:„€VØÄ,¡~ì¾‡ˆ•ùÌ®ÄºĞÔ£Õ—0ª¥Y2qâ1ov£2¡¨Æ0!CvUZr¤ŸtL7L%E¥P‹ï¿œP½ÇKËæ&|Ôn4UóÑ¥y¹uq ª,²ç2×krÈ7Uæm…á)ÜÜz…’ß€/™QÉ¸µ-W.Êe9•Ü-/LË,ÅLs3Gh½.\0ÊÃÄÑ Ï5¬}FËA£lRúšTX©q0¶ÈÅcşm1>¿‚x½ˆ~åj²İSE‚Ş#8§d¬%çÌZ—t*E?èˆlÖ‰Y©hİš›|Y	Æ9(ĞKºæ1¸ŸÔNŒØÆ¤0mÑ¹‹¼\nvN¥†oñ\'buê°!7Æ§ù#DÅqÂ@¼SP]#¬¢ÊJÅJ†4âb»€Å_±á<‘ñ‡ÿ\0Øá—PëRÍ)j¿QhÆIm•Ä „Ëê*u°AÕA”v«}ç 2ùt°Eî	F\n9Gl¦Cx7ªîW J¸7’Ä¸o¸‹ÏÍã1¸ÈÕ*æ;‹É¼@¶¥fÜG)ãàÍdŠ2ÊbâwÄğ**¥µGrÆjbê·æf\nV#w5\0â,ƒâ2­¸(Öl†2Rámµ–3âk•ó*\0\\^eÅdÒƒğ%f¥ÇWÙ\n³3¦Œ¼Âä…‹tÌ=4^‹˜\0­ú °ªè¡yNCw«\04 Z9#º2ÿ\0ñMOuiL/ÏÆøUç\'â1\0ˆÎ,g·p³‚ ‰qB‘´P…÷‹ÀI>Ì\\4a’/0×Œ(Qb®:fd}K\n[U¯¨Ù¸¿¡²w¸ÊŞc·ñĞ¯¾Ò…\";EvM=Á]”Ç2¯Ì|oÔä˜¼~c”T˜óø—˜â¹”¼Şú—~\"–ï>µæ;T.V‘ôÜd¶«;ËÑ¼f*¤hâÖüKÿ\0ä³937Fql­Yê ÚTsW§ZÌwMEÊŒa3ÙÔ¸ct|˜ 0Ğe¾êgP·s…Ç´(h×˜‹¡gêSWUš7æµ+Äú=°s,¡ˆ×jñŒ±0-ÓÊÌ:ªÍ›M“ZfoÈ ÆM0nWî–zqR’ßÑºDÅê¢ó¢ÀÎq±MÌ6T{	õ)1ƒ¹G™Z |°:?dyÜ\\V<fôˆ‹G¬Ü4ºÂåaV1m`á¬¥3}b[üokÖpŸšÔ¶ğ0uq:Jë:¹vt¬*	µ®eXŞÙUËAX±˜ªb!O2†®a,ÿ\0İˆpHq@³ê¥Y¸§MuàE62§×ø––ÅÖ!ßÿ\0eAšæ—q5P«?ãÌ_GòKÒÎ¡DÍ«¼9¬Äx¡AÉÙõIå¨PÜNgkâ\'Ê<2<LÒ*¬`lxÜFªm/æ(âÇé\0‚Êq¸4c3@mƒªA)½úÌ3ìqMùãÂET>Ì~¼1«Ğ†b™udï·Ä¹44ÿ\01;†ÔÕÿ\0¯Ü»8£üG5*À¯^jgH~Ò…ÜÊbPÕşŞcSUtßëdNC×Ì²ÿ\0çÏ¸ 1bÅıóz½÷qºâ¶)4‹Çá=ô–,s¸w8º9óëñ2õşo>¦ ˜\\Ns¿P\"ˆNÏì¬è¯şˆb\n¼‰ş¾ãEÉvÖØ<ûüÀ–’ßïys¤¢+V|\\\0ˆ.a^aiìŸ	GR½T¢Ïfè}²eiVÍ1v\n,­gÃ\0êÙ\\¢¼[©E*¥h¹c€,i±ÌEDÂÂë¯9óÊéöñ€¢µ6ıF)UeÛ\0F¼xñá=Q×ÃYÿ\0„½¶ª­/ùØ‹\\¾ş<ş£¾Ã¥Ã&[rn´éÿ\0×\ncX¬ëªïÄ±û×ÿ\00·MsşÈ«?òoÏ–-r»ÿ\0i`˜3çÏ–uÚ{ÿ\0pæ€¨/1ÿ\0[Çú ê¼„ÿ\0¦?Ñ/	*t+Ò7\0†Éfx¥¢óÙiæ%ëĞ]+€îGE’‘!™‘H\'0Ï?Wö/Pî’ Íş¥æPÓ(àsjgcÚ€}–:¥üfU.¥p_\nêyP-%ä\07‚eD¯Î=9[nınYIü\"ôÎs1=ß¹¨#M‰°<è‰X`¬¸Ö}G\0©ÊØâØUõ‰\nfÛUS#ş&“.Õø¹kg¿	shÔ•rñ‚UMû””)ÀE\n 1¢8¶Eíù¹Bœû›`^rN‹@-¡0 ¨:è~&r&c‰ó²Z0ß˜™„Ø©\\Ê´ ïQ9s	,€IÍ ß#\0m\\˜üÇÕĞPYFw.Œ©m³Wš«Ô	ı@,ß«*.){Å­Üfå°QVVé¤¨\'Áæëû-Ÿ×y#-©‹ïˆü`õiQ{×ˆ ¡Jk~)º•K\nº”ä¡`@µäb[qq˜5&oÄ »EÔ7s˜åø\\ìæ-DUü¨\0Õ°Ï‰‡8¨×q`†àI„§ÏdmÏY†m[€50¿öeàÒ­é-tƒe0ººÎ¡6Ì+¨İåpbƒlá¯şÊ°ÍA’Uæ[qÓ+Ùk9ê²ÛwZ•°ŸPNˆ…ØÅ–¸uBŸ÷˜(U¥«àFªFÆ-Z;{Š¹†Yµw¸õˆÓIdò’šhhüÜq0¿	`\\VMT~ĞZö°Ş#ÿ\0Ê‹Ø­AU/wÄäæ7d¶è[€±\\±³Y©›ñÂÃ„bî’ÉR¿î‚«ÇW‘„-Ì¤ƒ@s0+¶}ÖQlVvü[kqIšµ‘:¾wºO@¾ÚoÌ«ì+jÛ¾êRk¨Ì^}¦º¤-£_öT¥E‹Àş¥´˜n9Á<£è0OT¯eûËn®9‡Í(*¬•s-p-ªş&”çÍÇ´y²acQBÀh•\\‘s­Ëá˜63j°n;»ŠszŠš¹AÜ4½ÀÆ#V%Å¶æ*,“Z€´í—n¬Ô£ãKmÉYƒ©QŸ~±4‘`]¬ÓúL\nUx_¼á7 Ã÷£—[\0–Q¼³qêâ@Ï­İJ„YARËókPû Æ9-°Ñ,vf¥›™5-¸—TÂ?	pË˜7	qZİYÔP-Ü,ä—›ıæW ~¿ò\0Ï8‰™o$”¯ù*;¥3îq‰uÖ&™€ª¶cõ0(„â9ndÄ*TtÀÙ±(ƒlÊÅE±k÷ê:ç Ü¡”wPÎì¨Ûğ{½G°¼ÔAU\\{‚L‚2İup»ºo¿s€÷0@ƒÃ ßeÆ‘¸ŞîÏ·Ÿ¸á-m¶]²‰mo¹Dx…gAV÷\nêiÚS÷PªÆåá¸jå•‚°³&a˜TTj êå)Èû«$rºÔVê¥JÌªŒ\'p¦µ>¥\"2Ê–À¼´2è´sbÏ·n§®ZçŞf­fQæ ^+¥=ÌNË¶ÓŸÛˆğmÒ¡´ƒˆ3CÜ6†á_óı„ÄSÚ0d¯_ÿ\0qÉò…8Wı„%ThvÓóÔczN3îH”7dÁ¼¦]?”nS€![â,^VQ˜?Šÿ\0ä´«§4	Š\'”Û”Åç˜«M^Oö~°Bp\0Pï¡Æ6ÍÁ,AÖ¥#u/ÄuvÃ¨ÔQ÷…1SÔµU-å,\0z\0oî<7,¸e¢kÄ]\\úÈE‘vy—öóû%‘KŠDê½Aîm¿‡´õ%fó,‡dY¨-JV79¶.¡Q>£Ô.âó.âÕ¸À²ñ0.å«³™c¿…‚Û–\\@Õ?1H¼AÑŸq•7tŠUÊ-$Taó,ĞµîÛ÷\\\0æ–=h¥9lõä#š{˜4œk¯îbüG0/¤	‚¿¡}@Äzîv¢å½Ën•qU¯ì7ÌÄŞ\'Aƒ›™ÆF¡®ıÅG–]H÷+ÍLPªYÊ¯8’—ÜA%¹˜]”1v¢˜!¦ ‚ˆµá»HÁ­~æ{„RRwÏ063£YœÀåî%*\ns·^8”*Ëäâ(XOÒ9GS˜b>\"=Ïi¨9Ì¾£¬EÚCG˜QÌKnåL…œ8ˆ2º¢˜™<¦¹øxš$rÕJ\0å\0¹àâ[phÆáwnâö_Ô\nFÚ¹©›jZõó.õ0â¢b5ªpgfõÛ€¤\"“ôøDÛ\0ıMñQYîYU*àÜ3g‰c+Æ —ns.¶BXÍÜhàED;Ò„Yˆ—÷8Ÿ©AŒ³5\\Šo(¿e>îwNƒ0\\[¹ƒÅ|Ü¸€j\"\nÈØÃ7ñ8ÔuÎŞf<\\,]Í3õ6Ìv„xâ({ró†u)â¡z™Jbjê*9Ì¾\"Ä¼¼ê£,Ââ»¹dyÿ\0ğî)´£<KñyšÜÊ5Ì0b_˜0¶-š›N·¥&•d¿/ˆÓsˆKÇ™C÷3]Æ·%JÕ©Ä›%{–—ˆ1\0Ë/u¸\n¸ò¸qPséâALJƒ\0±Ä5¡‚X–9^‚|¯³h±JÑåYNæJ†Cpy–tÌ• 7	²£8Jê-^e½ÙæÀú”âYâ-Íf]’µÙ,0/2ÃXŒ\nÔ¬’ˆ¹xçêêÉàÊË.µ+GdôœBÓQ\nÓ,îhÌXBƒQKˆÅÌ>]N*Ä¾àÁƒ68ƒM|\nbø*‹”/Üxƒ¥%«1x—ÄR®åÈ¦§íƒˆeñ	’\"ir„4fÄ 	ˆ¯à`¬÷¨ITYºVÄÃÇ»–öz„Šg˜B^å¿™j®3€äÃaKØ€4i˜æYÎ¥L~cü”¦=¾Ğh|LVq(å”RšŒW¨Ã¸e#+ú€9ƒ ÙÄ\'±û©ö\'şÌÅTZçö1‚ïr¾ïÿ\0¼Ô“utƒMº‰ÿ\0·j#üD¢øáÿ\0ÄÄÿ\0¥¥ dp8ı‘<}/÷VùÌ¸ØÖGû…tØÁşf\'\0yÿ\0tu}æi-ê¿Ú)€ı?Ú8lßøæÿÙ","1805","2020-09-25","2020-09-26","jpg","justificativo.jpg");
+
+
+
+
+
+CREATE TABLE `justificativoasistenciadia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `asistenciaDia_id` int(11) DEFAULT NULL,
+  `justificativo_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKsdpoolygcb0uadr6goyeodvow` (`asistenciaDia_id`),
+  KEY `FKcosqyw65g6la8dfcvaonnx3j9` (`justificativo_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO justificativoasistenciadia VALUES("22","638","13");
+
+
+
+
+
+CREATE TABLE `materia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAltaMateria` date DEFAULT NULL,
+  `fechaBajaMateria` date DEFAULT NULL,
+  `nivelMateria` int(11) NOT NULL,
+  `nombreMateria` varchar(255) DEFAULT NULL,
+  `cargaHorariaMateria` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO materia VALUES("4","2020-08-23","","1","Lengua","16");
+INSERT INTO materia VALUES("5","2020-08-23","","2","Lengua","");
+INSERT INTO materia VALUES("6","2020-09-01","","1","MatemÃ¡tica","8");
+INSERT INTO materia VALUES("7","2020-09-05","","2","MatemÃ¡tica","36");
+INSERT INTO materia VALUES("8","2020-09-21","","3","MatemÃ¡tica","6");
+INSERT INTO materia VALUES("9","2020-09-21","","1","BiologÃ­a","8");
+INSERT INTO materia VALUES("10","2020-09-22","","3","Ciencias Sociales","6");
+
+
+
+
+
+CREATE TABLE `modalidad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAltaModalidad` date DEFAULT NULL,
+  `fechaBajaModalidad` date DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO modalidad VALUES("1","2020-07-31","","Sistemas");
+INSERT INTO modalidad VALUES("2","2020-08-27","","Enonomia");
+INSERT INTO modalidad VALUES("3","2020-09-01","","Humanidades");
+
+
+
+
+
+CREATE TABLE `notificacionprofe` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `asunto` varchar(255) DEFAULT NULL,
+  `fechaHoraNotif` datetime DEFAULT NULL,
+  `mensaje` varchar(255) DEFAULT NULL,
+  `curso_id` int(11) DEFAULT NULL,
+  `profesor_id` int(11) DEFAULT NULL,
+  `fechaDesdeNotificacionProfe` date NOT NULL,
+  `fechaHastaNotificacionProfe` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKr8sm4xvbauo615nevjvo6ak7t` (`curso_id`),
+  KEY `FK8q19xnfemjpbhl93ueu21fr4g` (`profesor_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO notificacionprofe VALUES("4","Mensaje prueba","2020-09-22 18:18:24","mensaje de prueba demo","25","238","0000-00-00","0000-00-00");
+INSERT INTO notificacionprofe VALUES("5","Bienvenidos a Lengua ","2020-09-23 20:48:46","El dÃ­a lunes tendremos la primer clase saludos ","18","226","0000-00-00","0000-00-00");
+INSERT INTO notificacionprofe VALUES("6","Mensaje prueba","2020-09-24 21:22:56","Buen comienzo de cursado ","20","238","0000-00-00","0000-00-00");
+INSERT INTO notificacionprofe VALUES("7","Evaluacion dia 01/10","2020-09-28 08:08:52","Recuerden que el dia 01/01/2020, tendremos la primera evaluaciÃ³n parcial que incluye los temas vistos hasta la semana pasada.\n\nSaludos \nSamantha ","20","238","0000-00-00","0000-00-00");
+
+
+
+
+
+CREATE TABLE `parametrolegajo` (
+  `id` int(11) NOT NULL,
+  `esDNI` int(1) NOT NULL,
+  `tieneLetras` int(1) NOT NULL,
+  `cantLetras` int(11) NOT NULL,
+  `tieneNumeros` tinyint(1) NOT NULL,
+  `cantNumeros` int(11) NOT NULL,
+  `cantTotalCaracteres` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+INSERT INTO parametrolegajo VALUES("1","0","1","2","1","5","7");
+
+
+
+
+
+CREATE TABLE `paramminimoasistencia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAltaMinimoAsistencia` date DEFAULT NULL,
+  `fechaBajaMinimoAsistencia` date DEFAULT NULL,
+  `porcentajeAsistencia` float DEFAULT NULL,
+  `cursoEstadoAlumno_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKdsdauip557b770enom24gw1h8` (`cursoEstadoAlumno_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO paramminimoasistencia VALUES("2","2020-09-13","","0.85","");
+
+
+
+
+
+CREATE TABLE `permiso` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaDesdePer` date DEFAULT NULL,
+  `fechaHastaPer` date DEFAULT NULL,
+  `nombrePermiso` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO permiso VALUES("1","2020-07-30","","ALUMNO");
+INSERT INTO permiso VALUES("2","2020-07-30","","DOCENTE");
+INSERT INTO permiso VALUES("3","2020-07-30","","ADMINISTRADOR");
+
+
+
+
+
+CREATE TABLE `profesor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `apellidoProf` varchar(255) DEFAULT NULL,
+  `contraseniaProf` varchar(255) DEFAULT NULL,
+  `dniProf` int(11) NOT NULL,
+  `emailProf` varchar(255) DEFAULT NULL,
+  `fechaAltaProf` date DEFAULT NULL,
+  `fechaBajaProf` date DEFAULT NULL,
+  `fechaNacProf` date DEFAULT NULL,
+  `legajoProf` varchar(255) NOT NULL,
+  `nombreProf` varchar(255) DEFAULT NULL,
+  `permiso_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK62q9qdgk50ph2cra8pt464rpp` (`permiso_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=288 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO profesor VALUES("232","Barnes","","14467596","","2020-09-20","","","PR90006","Daria","2");
+INSERT INTO profesor VALUES("233","Barry","","11537358","","2020-09-20","","","PR90007","Vance","2");
+INSERT INTO profesor VALUES("231","Barlow","","20684890","","2020-09-20","","","PR90005","Nash","2");
+INSERT INTO profesor VALUES("228","Andrews","","11700237","","2020-09-20","","","PR90002","Arden","2");
+INSERT INTO profesor VALUES("229","Anthony","","16529441","","2020-09-20","","","PR90003","Faith","2");
+INSERT INTO profesor VALUES("270","Higgins","","20557761","","2020-09-20","","","PR90044","Shad","2");
+INSERT INTO profesor VALUES("269","Herman","","17350654","","2020-09-20","","","PR90043","Pearl","2");
+INSERT INTO profesor VALUES("268","Hatfield","","10462925","","2020-09-20","","","PR90042","Kasimir","2");
+INSERT INTO profesor VALUES("267","Hartman","","21185275","","2020-09-20","","","PR90041","Darrel","2");
+INSERT INTO profesor VALUES("266","Hardy","","21262344","","2020-09-20","","","PR90040","Lars","2");
+INSERT INTO profesor VALUES("265","Griffin","","23432540","","2020-09-20","","","PR90039","Jaquelyn","2");
+INSERT INTO profesor VALUES("264","Good","","23523841","","2020-09-20","","","PR90038","Hayley","2");
+INSERT INTO profesor VALUES("263","Gentry","","19947972","","2020-09-20","","","PR90037","Anastasia","2");
+INSERT INTO profesor VALUES("262","Franco","","23803239","","2020-09-20","","","PR90036","Prescott","2");
+INSERT INTO profesor VALUES("261","Foreman","","19085599","","2020-09-20","","","PR90035","Oliver","2");
+INSERT INTO profesor VALUES("260","Fisher","","20574466","","2020-09-20","","","PR90034","Emmanuel","2");
+INSERT INTO profesor VALUES("259","Fields","","20752043","","2020-09-20","","","PR90033","Ivana","2");
+INSERT INTO profesor VALUES("258","Farley","","20318629","","2020-09-20","","","PR90032","Madonna","2");
+INSERT INTO profesor VALUES("257","Drake","","14628685","","2020-09-20","","","PR90031","Hilda","2");
+INSERT INTO profesor VALUES("256","Doyle","","13667844","","2020-09-20","","","PR90030","Rashad","2");
+INSERT INTO profesor VALUES("255","Daniels","","24602983","","2020-09-20","","","PR90029","Nicole","2");
+INSERT INTO profesor VALUES("254","Crane","","24842771","","2020-09-20","","","PR90028","Drake","2");
+INSERT INTO profesor VALUES("253","Cotton","","20277607","","2020-09-20","","","PR90027","Savannah","2");
+INSERT INTO profesor VALUES("252","Cortez","","12921202","","2020-09-20","","","PR90026","Nadine","2");
+INSERT INTO profesor VALUES("251","Collins","","16572676","","2020-09-20","","","PR90025","Price","2");
+INSERT INTO profesor VALUES("250","Clarke","","10725176","","2020-09-20","","","PR90024","Hedley","2");
+INSERT INTO profesor VALUES("249","Chambers","","11080178","","2020-09-20","","","PR90023","Owen","2");
+INSERT INTO profesor VALUES("248","Cervantes","","13206018","","2020-09-20","","","PR90022","Fuller","2");
+INSERT INTO profesor VALUES("247","Carlson","","19247224","","2020-09-20","","","PR90021","Garrett","2");
+INSERT INTO profesor VALUES("246","Cameron","","24904907","","2020-09-20","","","PR90020","Elvis","2");
+INSERT INTO profesor VALUES("245","Bullock","","17032877","","2020-09-20","","","PR90019","Gail","2");
+INSERT INTO profesor VALUES("244","Buchanan","","19763883","","2020-09-20","","","PR90018","Abigail","2");
+INSERT INTO profesor VALUES("243","Bruce","","14187665","","2020-09-20","","","PR90017","Louis","2");
+INSERT INTO profesor VALUES("242","Brown","","15583560","","2020-09-20","","","PR90016","Boris","2");
+INSERT INTO profesor VALUES("241","Brooks","","15630879","","2020-09-20","","","PR90015","Ian","2");
+INSERT INTO profesor VALUES("240","Bray","","23758230","","2020-09-20","","","PR90014","Drake","2");
+INSERT INTO profesor VALUES("239","Brady","","24306617","","2020-09-20","","","PR90013","Lenore","2");
+INSERT INTO profesor VALUES("238","Bradshaw","$2y$10$Wmo5Ss7YxiLrTHksBg9rHuY.GfnjicERCIFYdx92eB3Uuf622HeYi","15151583","sbrad@mail.com","2020-09-20","","1987-02-21","PR90012","Samantha","2");
+INSERT INTO profesor VALUES("237","Bradford","","24157590","","2020-09-20","","","PR90011","Kathleen","2");
+INSERT INTO profesor VALUES("236","Bond","","12618030","","2020-09-20","","","PR90010","Giselle","2");
+INSERT INTO profesor VALUES("235","Beard","","19617326","","2020-09-20","","","PR90009","Brock","2");
+INSERT INTO profesor VALUES("234","Bauer","","20609060","","2020-09-20","","","PR90008","Len","2");
+INSERT INTO profesor VALUES("230","Ballard","","21669268","","2020-09-20","","","PR90004","Petra","2");
+INSERT INTO profesor VALUES("226","Aguirre","$2y$10$jUZsqLYkV4YVGB0vVPo9/uDZ0jpKMSOjxIvEjFHDqR1kJ1tWo8v66","14248800","cobyaguirre@mail.com","2020-09-20","","1960-11-18","PR90000","Coby","2");
+INSERT INTO profesor VALUES("227","Alvarado","","23234845","","2020-09-20","","","PR90001","Rana","2");
+INSERT INTO profesor VALUES("271","Higgins","","11546781","","2020-09-20","","","PR90045","Kalia","2");
+INSERT INTO profesor VALUES("272","Hogan","","18531701","","2020-09-20","","","PR90046","Sydnee","2");
+INSERT INTO profesor VALUES("273","Holcomb","","15395201","","2020-09-20","","","PR90047","Anastasia","2");
+INSERT INTO profesor VALUES("274","Hood","","16763857","","2020-09-20","","","PR90048","Uriah","2");
+INSERT INTO profesor VALUES("275","Hopkins","","10892106","","2020-09-20","","","PR90049","Fritz","2");
+INSERT INTO profesor VALUES("276","Hubbard","","22865049","","2020-09-20","","","PR90050","Wendy","2");
+INSERT INTO profesor VALUES("277","Huffman","","20484134","","2020-09-20","","","PR90051","Bradley","2");
+INSERT INTO profesor VALUES("278","Hutchinson","","15838695","","2020-09-20","","","PR90052","Jolie","2");
+INSERT INTO profesor VALUES("279","Hyde","","12406334","","2020-09-20","","","PR90053","Warren","2");
+INSERT INTO profesor VALUES("280","Jefferson","","16737751","","2020-09-20","","","PR90054","Deborah","2");
+INSERT INTO profesor VALUES("281","Johnson","","12809807","","2020-09-20","","","PR90055","Gavin","2");
+INSERT INTO profesor VALUES("282","Kaufman","","11865383","","2020-09-20","","","PR90056","Dieter","2");
+INSERT INTO profesor VALUES("283","Kent","","18306692","","2020-09-20","","","PR90057","Blaze","2");
+INSERT INTO profesor VALUES("284","Kinney","","12295784","","2020-09-20","","","PR90058","Colleen","2");
+INSERT INTO profesor VALUES("285","Klein","","11858591","","2020-09-20","","","PR90059","Emi","2");
+INSERT INTO profesor VALUES("286","Knapp","","19115260","","2020-09-20","","","PR90060","Lillith","2");
+INSERT INTO profesor VALUES("287","Knapp","","19110060","","2020-09-30","2020-09-30","","PR90069","Lillith","2");
+
+
+
+
+
+CREATE TABLE `programamateria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `anioPrograma` int(11) NOT NULL,
+  `descripcionPrograma` varchar(255) DEFAULT NULL,
+  `fechaHastaPrograma` date DEFAULT NULL,
+  `materia_id` int(11) DEFAULT NULL,
+  `fechaDesdePrograma` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKfqb3t1us027qjp8jctlqi46ui` (`materia_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO programamateria VALUES("17","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("16","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("15","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("14","2020","Programa Matematica 1","","6","2020-09-23");
+INSERT INTO programamateria VALUES("13","2020","Programa Lengua 1","","4","2020-09-20");
+INSERT INTO programamateria VALUES("18","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("19","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("20","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("21","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("22","2020","Programa BiologÃ­a 1","2020-09-24","9","2020-09-24");
+INSERT INTO programamateria VALUES("23","2020","Programa BiologÃ­a 1","","9","2020-09-24");
+
+
+
+
+
+CREATE TABLE `temadia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comentarioTema` varchar(255) DEFAULT NULL,
+  `fechaTemaDia` datetime DEFAULT NULL,
+  `curso_id` int(11) DEFAULT NULL,
+  `temasMateria_id` int(11) DEFAULT NULL,
+  `profesor_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKjpsvm6kadspqw0h80983xg4er` (`curso_id`),
+  KEY `FKlrpqrs0v24025xc081vf16dh1` (`temasMateria_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO temadia VALUES("8","ExplicaciÃ³n y ejemplos, pÃ¡ginas 80 a 90 del libro.","2020-09-21 00:00:00","18","132","226");
+INSERT INTO temadia VALUES("9","Paginas 99 a 120 del libro de texto de la materia.\nFalta explicar pÃ¡gina 119 a 120.","2020-09-21 00:00:00","18","133","226");
+INSERT INTO temadia VALUES("10","solo primeros conceptos","2020-09-23 00:00:00","20","153","238");
+INSERT INTO temadia VALUES("11","Primera clase explicaciÃ³n muy general, no profundice mucho","2020-09-24 19:58:52","25","194","238");
+INSERT INTO temadia VALUES("12","","2020-09-27 12:54:25","18","136","226");
+INSERT INTO temadia VALUES("13","se da el tema completo ","2020-09-28 08:07:00","20","153","238");
+INSERT INTO temadia VALUES("14","trabajo practico Nro 1, para hacer ","2020-09-28 08:07:21","20","158","238");
+INSERT INTO temadia VALUES("15","","2020-10-01 16:59:32","18","137","226");
+INSERT INTO temadia VALUES("16","","2020-10-02 08:09:33","25","194","238");
+
+
+
+
+
+CREATE TABLE `temasmateria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreTema` varchar(255) DEFAULT NULL,
+  `programaMateria_id` int(11) DEFAULT NULL,
+  `unidadTema` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK23mxrw3xvlmkaiyy284c4r0w7` (`programaMateria_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=210 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO temasmateria VALUES("155","RacionalizaciÃ³n de denominadores.","14","1");
+INSERT INTO temasmateria VALUES("153","NÃºmeros irracionales.","14","1");
+INSERT INTO temasmateria VALUES("154","Radicales. Concepto y representaciÃ³n.","14","1");
+INSERT INTO temasmateria VALUES("152","RecreaciÃ³n de los mitos en el gÃ©nero narrativo: la novela.","13","6");
+INSERT INTO temasmateria VALUES("151","Mitos argentinos. ValoreaciÃ³n de los mismos. InterpretaciÃ³n . Autores.","13","6");
+INSERT INTO temasmateria VALUES("150","Mitos. DefiniciÃ³n. CaracterÃ­sticas.","13","6");
+INSERT INTO temasmateria VALUES("149","Contexto histÃ³rico-social.","13","5");
+INSERT INTO temasmateria VALUES("134","TipologÃ­as textuales. Trama descriptiva, narrativa, explicativa, argumentativa y conversacional.","13","1");
+INSERT INTO temasmateria VALUES("135","La literatura, tragedia, orÃ­gen. Historias trÃ¡gicas. CaracterÃ­sticas.","13","1");
+INSERT INTO temasmateria VALUES("136","El cuento. CaracterÃ­sticas. Esquema bÃ¡sico. Secuencia narrativa.","13","2");
+INSERT INTO temasmateria VALUES("137","ReseÃ±a literaria. Recursos.","13","2");
+INSERT INTO temasmateria VALUES("138","Subjetivemas. Tesis y argumentos.","13","2");
+INSERT INTO temasmateria VALUES("139","Literatura precolombina, los mayas. Leyendas y mitos de sus orÃ­genes.","13","3");
+INSERT INTO temasmateria VALUES("140","Los mayas como civilizaciÃ³n. Elementos mitolÃ³gicos.","13","3");
+INSERT INTO temasmateria VALUES("141","La creaciÃ³n de los hombres.","13","3");
+INSERT INTO temasmateria VALUES("142","Lenguaje utilizados.","13","3");
+INSERT INTO temasmateria VALUES("143","Lecturas comparadas de otras civilizaciones.","13","3");
+INSERT INTO temasmateria VALUES("144","GÃ©nero lÃ­rico. Estructura. Verso y estrofa. Ritma y mÃ©trica.","13","4");
+INSERT INTO temasmateria VALUES("145","Epica espaÃ±ola. Temas. El hÃ©roe. Cantares de gesta. CreaciÃ³n de la prosa romance.","13","4");
+INSERT INTO temasmateria VALUES("146","Tragedia espaÃ±ola.","13","5");
+INSERT INTO temasmateria VALUES("147","CarÃ¡cteristicas.","13","5");
+INSERT INTO temasmateria VALUES("148","Autores destacados. La mirada trÃ¡gica en el texto dramÃ¡tico.","13","5");
+INSERT INTO temasmateria VALUES("133","Linealidad y complejidad de los textos. Elipsis. SustituciÃ³n pronominal y sinomia. Uso de conectores.","13","1");
+INSERT INTO temasmateria VALUES("132","Coherencia y cohesiÃ³n.","13","1");
+INSERT INTO temasmateria VALUES("156","Propiedades de la potenciaciÃ³n y radicaciÃ³n en R.","14","1");
+INSERT INTO temasmateria VALUES("157","Operaciones combinadas.","14","1");
+INSERT INTO temasmateria VALUES("158","Regularidades numÃ©ricas y sucesiones.","14","2");
+INSERT INTO temasmateria VALUES("159","Concepto, notaciÃ³n y lenguaje.","14","2");
+INSERT INTO temasmateria VALUES("160","Sucesiones en el mundo real.","14","2");
+INSERT INTO temasmateria VALUES("161","Semejanza de figuras planas.","14","3");
+INSERT INTO temasmateria VALUES("162","Teorema de Thales.","14","3");
+INSERT INTO temasmateria VALUES("163","Razones trigonomÃ©tricas de un triÃ¡ngulo rectÃ¡ngulo.","14","3");
+INSERT INTO temasmateria VALUES("164","Uso de la calculadora.Â ","14","3");
+INSERT INTO temasmateria VALUES("165","Teorema del seno y del coseno.","14","3");
+INSERT INTO temasmateria VALUES("166","ResoluciÃ³n de triÃ¡ngulos rectÃ¡ngulos y oblicuÃ¡ngulos.","14","3");
+INSERT INTO temasmateria VALUES("167","Relaciones entre razones trigonomÃ©tricas.","14","3");
+INSERT INTO temasmateria VALUES("168","ResoluciÃ³n de problemas.","14","3");
+INSERT INTO temasmateria VALUES("169","Concepto de funciones.","14","4");
+INSERT INTO temasmateria VALUES("170","Lectura de grÃ¡ficos y dominio.","14","4");
+INSERT INTO temasmateria VALUES("171","Funciones cuadrÃ¡ticas.","14","4");
+INSERT INTO temasmateria VALUES("172","CÃ¡lculo de ceros o raÃ­ces.","14","4");
+INSERT INTO temasmateria VALUES("173","GrÃ¡fica de la parÃ¡bola.","14","4");
+INSERT INTO temasmateria VALUES("174","Intervalos de crecimiento y decrecimiento.","14","4");
+INSERT INTO temasmateria VALUES("175","Conjunto de positividad y negatividad.","14","4");
+INSERT INTO temasmateria VALUES("176","EcuaciÃ³n polinÃ³mica, canÃ³nica y factorizada.","14","4");
+INSERT INTO temasmateria VALUES("177","Ecuaciones e inecuaciones.","14","4");
+INSERT INTO temasmateria VALUES("178","Sistemas de ecuaciones.","14","4");
+INSERT INTO temasmateria VALUES("179","Polinomios.","14","5");
+INSERT INTO temasmateria VALUES("180","Operaciones con polinomios.","14","5");
+INSERT INTO temasmateria VALUES("181","Regla de Ruffini.","14","5");
+INSERT INTO temasmateria VALUES("182","Teorema del resto.","14","5");
+INSERT INTO temasmateria VALUES("183","FactorizaciÃ³n de polinomios.","14","5");
+INSERT INTO temasmateria VALUES("184","Teorema de Gauss.","14","5");
+INSERT INTO temasmateria VALUES("185","Casos combinados.","14","5");
+INSERT INTO temasmateria VALUES("186","SimplificaciÃ³n.","14","5");
+INSERT INTO temasmateria VALUES("187","Combinatoria.","14","6");
+INSERT INTO temasmateria VALUES("188","Binomio de Newton.","14","6");
+INSERT INTO temasmateria VALUES("189","Probabilidad.","14","6");
+INSERT INTO temasmateria VALUES("190","Espacio muestral.","14","6");
+INSERT INTO temasmateria VALUES("191","Sucesos incompatibles e independientes.","14","6");
+INSERT INTO temasmateria VALUES("192","Probabilidad condicional","14","6");
+INSERT INTO temasmateria VALUES("193","Uso de calculadoras.","14","6");
+INSERT INTO temasmateria VALUES("194","CaracterizaciÃ³n de los seres vivos segÃºn criterios de organizaciÃ³n, metabolismo y perpetuaciÃ³n","23","1");
+INSERT INTO temasmateria VALUES("195","Unidad y diversidad de funciones y estructuras.","23","1");
+INSERT INTO temasmateria VALUES("196"," La composiciÃ³n de los organismos.","23","2");
+INSERT INTO temasmateria VALUES("197"," La obtenciÃ³n de materiales que aportan materia y energÃ­a a los seres vivos.","23","2");
+INSERT INTO temasmateria VALUES("198","El ecosistema como modelo de estudio.","23","3");
+INSERT INTO temasmateria VALUES("199","Estructura del ecosistema.","23","3");
+INSERT INTO temasmateria VALUES("200","Interacciones en el ecosistema.","23","3");
+INSERT INTO temasmateria VALUES("201","Ciclos de la materia y flujos de energÃ­a.","23","3");
+INSERT INTO temasmateria VALUES("202","Cambios en los ecosistemas.","23","3");
+INSERT INTO temasmateria VALUES("203","El origen de la vida segÃºn la concepciÃ³n actual.","23","4");
+INSERT INTO temasmateria VALUES("204","ApariciÃ³n de las primeras cÃ©lulas: metabolismo y reproducciÃ³n.","23","4");
+INSERT INTO temasmateria VALUES("205","Los seres vivos despuÃ©s del origen: todo ser vivo proviene de otro ser vivo.","23","4");
+INSERT INTO temasmateria VALUES("206","CÃ©lulas vegetales y cÃ©lulas animales","23","5");
+INSERT INTO temasmateria VALUES("207","La nutriciÃ³n en el nivel celular: localizaciÃ³n de los procesos de endocitosis, fotosÃ­ntesis y respiraciÃ³n celular.","23","5");
+INSERT INTO temasmateria VALUES("208","Unidad y diversidad de funciones y estructuras.","23","6");
+INSERT INTO temasmateria VALUES("209","La diversidad biolÃ³gica como consecuencia de la evoluciÃ³n.","23","6");
+
+
+
+
+
+CREATE TABLE `tiempolimitecodigo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `minutosLimite` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO tiempolimitecodigo VALUES("5","25");
+
+
+
+
+
+CREATE TABLE `tipoasistencia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAltaTipoAsistencia` date DEFAULT NULL,
+  `fechaBajaTipoAsistencia` date DEFAULT NULL,
+  `nombreTipoAsistencia` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO tipoasistencia VALUES("1","2020-08-03","","PRESENTE");
+INSERT INTO tipoasistencia VALUES("2","2020-08-03","","AUSENTE");
+INSERT INTO tipoasistencia VALUES("3","2020-09-01","","JUSTIFICADO");
+
+
+
+
+
+CREATE TABLE `vigenciasesion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `duracionSesion` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+
+
+

@@ -41,8 +41,14 @@ function backup_tables($host,$user,$pass,$name,$tables = '*'){
             {
                $row[$j] = addslashes($row[$j]);
                $row[$j] = preg_replace("/\n/","\\n",$row[$j]);
-               if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
-               if ($j<($num_fields-1)) { $return.= ','; }
+               if ($row[$j] != "") { 
+                   $return.= '"'.$row[$j].'"' ; 
+               }else{ 
+                   $return.= 'NULL'; 
+               }
+               if ($j<($num_fields-1)){
+                   $return.= ',';
+               }
             }
             $return.= ");\n";
          }
