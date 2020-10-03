@@ -46,6 +46,10 @@ include "../../../databaseConection.php";
 
     if (isset($_GET["resultado"])) {
         switch ($_GET["resultado"]) {
+            case 0:
+                echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha generado ningún backup.</h5>";
+                break;
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Backup de datos creado correctamente.</h5>";
@@ -64,6 +68,27 @@ include "../../../databaseConection.php";
     ?>
 
     <a href="descargaBackup.php" class="btn btn-primary"><i class="fa fa-database mr-1"></i>Realizar backup</a>
+    <a href="descargaBackup.php?download=true" class="btn btn-secondary"><i class="fa fa-download mr-1"></i>Descargar backup</a>
+
+    <div class="mt-4">
+        <table class="table table-bordered bg-light">
+            <tr>
+                <td><b>Último backup generado:</b></td>
+                <td><?php 
+                    $files = glob('backupDB/*'); //obtenemos todos los nombres de los ficheros
+
+                    if(count($files) !== 0){
+                        foreach($files as $file){
+                            if(is_file($file))
+                            echo $file;
+                         }
+                    } else {
+                        echo "No se ha generado ningún backup";
+                    }
+                ?></td>
+            </tr>
+        </table>
+    </div>
 
 </div>
 

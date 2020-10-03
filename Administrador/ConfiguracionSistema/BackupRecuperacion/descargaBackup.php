@@ -1,11 +1,7 @@
 <?php
-/* backup the db OR just a table */
-//En la variable $talbes puedes agregar las tablas especificas separadas por comas:
-//profesor,estudiante,clase
-//O déjalo con el asterisco '*' para que se respalde toda la base de datos
 date_default_timezone_set('America/Argentina/Buenos_Aires');
-function backup_tables($host,$user,$pass,$name,$tables = '*')
-{
+
+function backup_tables($host,$user,$pass,$name,$tables = '*'){
    $return='';
    $link = new mysqli($host,$user,$pass,$name);
   // mysql_select_db($name,$link);
@@ -53,24 +49,46 @@ function backup_tables($host,$user,$pass,$name,$tables = '*')
       }
       $return.="\n\n\n";
    }
-   $fecha=date("Y-m-d-His");
+   $fecha = date("Y-m-d-His");
    //save file
-   $handle = fopen('db-dayclass-'.$fecha.'.sql','w+');
+   $handle = fopen('backupDB/db-dayclass-'.$fecha.'.sql','w+');
     fwrite($handle,$return);
     fclose($handle);
 }
+ 
+try{
 
-echo backup_tables("localhost","root","","dayclass");
-$fecha=date("Y-m-d-His");
-header("Content-disposition: attachment; filename = db-dayclass-".$fecha.".sql");
-header("Content-type: MIME");
-$descarga = readfile("db-dayclass-".$fecha.".sql");
-unlink("db-dayclass-".$fecha.".sql");
+   if(!isset($_GET['download'])){
+      $files = glob('backupDB/*'); //obtenemos todos los nombres de los ficheros
+      
+      foreach($files as $file){
+         if(is_file($file))
+         unlink($file); //elimino el fichero
+      }
 
-if(!$descarga==false){
-   header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=1");
-}else{
-   header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=2");
+      echo backup_tables("localhost","root","","dayclass");
+      $fecha = date("Y-m-d-His");
+      header("Content-disposition: attachment; filename = db-dayclass-".$fecha.".sql");
+      header("Content-type: MIME");
+      header("Location: \DayClass\Administrador\ConfiguracionSistema\BackupRecuperacion\backup.php?resultado=1");
+      
+   } else {
+      $files = glob('backupDB/*');
+      if(count($files) !== 0){
+         foreach($files as $file){
+            if(is_file($file))
+            header("Content-disposition: attachment; filename = $file");
+            header("Content-type: MIME");
+            readfile($file); 
+         }
+      } else {
+         header("Location: \DayClass\Administrador\ConfiguracionSistema\BackupRecuperacion\backup.php?resultado=0");
+      }
+   }
+   
+}catch(Exception $e){
+   header("Location: \DayClass\Administrador\ConfiguracionSistema\BackupRecuperacion\backup.php?resultado=2");
 }
+
 
 ?>
