@@ -2,18 +2,16 @@
 
 $lines = null;
 
-echo is_uploaded_file($_FILES['inputSQL']['tmp_name']);
-
+//comprobar si hay q returar de un archivo externo o de el que esta guadado en el serverr
 if(is_uploaded_file($_FILES['inputSQL']['tmp_name'])){
-    //echo "aca esta el file: ".$_FILES["inputSQL"];
-    //echo "entra a file isset";
+    //archivo externo
     $filename = $_FILES['inputSQL']['name'];
     move_uploaded_file($_FILES['inputSQL']['tmp_name'],'upload/' . $filename);
     $lines = 'upload/' . $filename;
     $lines = file($lines);
     
 }else{
-   //get our sql file
+   //archivo guarado en el server 
     $file = glob('backupDB/*');
     if(count($file) !== 0){
         foreach($file as $file){
@@ -21,21 +19,21 @@ if(is_uploaded_file($_FILES['inputSQL']['tmp_name'])){
                 $lines = file($file);
         }
     }else{
-        //error continuaste sin haber copia 
+        //error de cuando se continua sin haber cargado archivo y no habia copia guardada
         echo 'No hay copia guadada en el sistema, no se ha restaurado.';
+        header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=5");
     }
 }
 
 if($lines !== null){
-    //echo $lines;
-    //conectarse como administrador 
+    //conectarse como administrador al administrador de BD 
     $enlace = new mysqli("localhost","root","");
     if ($enlace) {
-        //reventar la base de datos original
+        //tirar la base de datos original
         $dropDB = 'DROP DATABASE leandrobd';
         if ($enlace->query($dropDB)){
             echo "La base de datos mi_bd fue eliminada con éxito\n";
-            //levantar la nueva base de datos 
+            //levantar la nueva base de datos que se llama igual que la que se tiró
             $createDB = 'CREATE DATABASE leandrobd';
             if ($enlace->query($createDB)) {
                 echo 'La base de datos mi_bd fue creada con éxito\n';
@@ -44,7 +42,6 @@ if($lines !== null){
                 $conn = new mysqli("localhost","root","","leandrobd");
                 
                 if($conn){
-
                     //variable use to store queries from our sql file
                     $sql = '';
 
@@ -85,6 +82,7 @@ if($lines !== null){
                         }
                     }
                     
+                    //eliminar todos los archivos que se crearon en la carpeta upload
                     $files = glob('upload/*');
                     foreach($files as $file){ // iterate files
                     if(is_file($file))
@@ -92,26 +90,40 @@ if($lines !== null){
                         echo "eliminado el archivo";
                     }
                     
-                    
-                   echo $output['message'];
+                    if(!$output['error']){
+                        //se restauró correctamente la BD
+                        header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=3");
+                    }else{
+                        //error en la restauracion de la BD
+                       //echo $output['message'];
+                        header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=4");
+                       
+                    }
+                   
                     
                 }else{
-                   //error al conectarse a la BD recien creada 
-                   echo 'Error al conectarse a la nueva base de datos\n'; 
+                    //error al conectarse a la BD recien creada 
+                    //echo 'Error al conectarse a la nueva base de datos';
+                    header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=6");
                 }
 
             }else{
-                echo 'Error al crear la base de datos\n';
+               // echo 'Error al crear la base de datos';
+                header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=6");
             }
             
         }else{
-            echo 'Error al eliminar la base de datos \n';
+            //echo 'Error al eliminar la base de datos \n';
+            header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=6");
         }
 
-        //fuente: http://facturacionweb.site/blog/como-restaurar-una-base-de-datos-mysql-usando-php/
+        
     }else{
         //error de conexion a la BD 
-        echo 'Error al conectarse al sistema \n';
+        //echo 'Error al conectarse al sistema';
+        header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=6");
     }
 }
+
+//fuente: http://facturacionweb.site/blog/como-restaurar-una-base-de-datos-mysql-usando-php/
 ?>

@@ -16,20 +16,20 @@ CREATE TABLE `administrativo` (
   KEY `FKrmoejtr2yebukeu2kuvo3xwg7` (`permiso_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO administrativo VALUES("1","admin","$2y$10$TNPmQGaxFNd2BjDLhR5YkuJzu1u530Pj9BAdPgsbSJF7kkdIy0Uka","11111111","admin@dayclass.com","2020-07-30","","","12345","admin","3");
-INSERT INTO administrativo VALUES("3","Belgrano","$2y$10$jAbn77SvQghX0tLqK61iJ.WYRyxobac9Q.OeOuLFn6eL6CXaqAL7m","2358796","abelgrano@mail.com","2020-08-30","","1970-07-17","AD78517","Ana","3");
-INSERT INTO administrativo VALUES("4","Juarez","$2y$10$.Khvk2Yg9Qc.hn8mGOreYeu7rcDT7ptJAdcDIXUIZ2z3ekYmVny8O","2564895","pjuarez@mail.com","2020-08-30","","1970-06-18","AD78519","Pedro","3");
-INSERT INTO administrativo VALUES("5","Rodriguez","$2y$10$uy.2xCN6qnEqdL/x5OYPOu9.BNenA1szWS.4Y.OABnZE9b3TxQw/e","21546987","drodriguez@mail.com","2020-08-31","","1953-10-06","AD96541","Diego","3");
-INSERT INTO administrativo VALUES("6","Noya","$2y$10$R4OsbbLH8XYcLw8GaQhxhuP9ibvbmwN/r1bRK52L4gNNLKbiqgJ/W","15698735","rnoya@mail.com","2020-08-31","","1965-06-17","15698735","Rodrigo","3");
-INSERT INTO administrativo VALUES("7","sgroi","$2y$10$l9PjPmh6O4vQn9m7X0K/pOjFLzmZ4jtx5qw8ST91rXEt46f79q3du","5236974","lucasSgroi@mail.com","2020-09-04","","1985-06-03","96548","Lucas","3");
-INSERT INTO administrativo VALUES("8","Hacha","$2y$10$wCF0iz5kgq5ioneRiAbv3OKRtYRZ9Nyw6KtONFVbT6505UNLqmdW.","4523178","mhacha@mail.com","2020-09-06","","1970-06-18","AD78787","Marina","3");
-INSERT INTO administrativo VALUES("9","Estebanez","$2y$10$qSg17bK4yFiMyz1DIZDtJusgGhL5fJEmo/89jpOJf8bUSVPyqWgeG","45213985","pestebanez@mail.com","2020-09-06","","1990-02-22","AD12457","Pedro","3");
-INSERT INTO administrativo VALUES("10","Seguro","$2y$10$zt5cyY4CSJvQqtEZngTSN.wQ5V3GOwx6f9gkf33EUAPA1pWzZdN/e","7854236","pseguro@mail.com","2020-09-06","","1969-08-22","AD89542","Pascual","3");
-INSERT INTO administrativo VALUES("12","Fernandez","$2y$10$ewoAwCMmfu6qebGfmYo6hOa/viZnsjvYJeKoaY9hVAfqTAQXWjkXe","4521369","efernandez@mail.com","2020-09-06","","1990-06-06","AD30000","Emilia","3");
-INSERT INTO administrativo VALUES("14","Fernandez","$2y$10$CKwwvmfDkou63vl.hCRiVuy4Jwsatyd66/W/sNBvRuyGjjmliSIzW","1000000","lfernandez@mail.com","2020-09-06","","1988-10-22","AD10000","Lucas","3");
-INSERT INTO administrativo VALUES("15","Arias","$2y$10$1GUauTxLWtHwN/YyL2cBtO1hgFigOoVxO9tMLyOJqn7TgypviWuNi","10101010","warias@mail.com","2020-09-09","","2011-02-09","AD10101","Wilfredo","3");
-INSERT INTO administrativo VALUES("16","liz","$2y$10$znV8YvjDLMVA7BjV1M74t.5082lIWeGONTWZRYVkpzxTCJj3v87qe","7513689","diegoL@mail.com","2020-09-15","","1990-02-13","AD90000","Diego","3");
-INSERT INTO administrativo VALUES("17","lopez","$2y$10$9yeUVnwC0BHQUAoE.rTg1.qiuUs60IbgejMajGnpE/Gi/CFhkNsZ.","2000033","juall@mail.com","2020-09-22","","1990-02-02","AD85236","juan","3");
+INSERT INTO administrativo VALUES("1","admin","$2y$10$TNPmQGaxFNd2BjDLhR5YkuJzu1u530Pj9BAdPgsbSJF7kkdIy0Uka","11111111","admin@dayclass.com","2020-07-30",NULL,NULL,"12345","admin","3");
+INSERT INTO administrativo VALUES("3","Belgrano","$2y$10$jAbn77SvQghX0tLqK61iJ.WYRyxobac9Q.OeOuLFn6eL6CXaqAL7m","2358796","abelgrano@mail.com","2020-08-30",NULL,"1970-07-17","AD78517","Ana","3");
+INSERT INTO administrativo VALUES("4","Juarez","$2y$10$.Khvk2Yg9Qc.hn8mGOreYeu7rcDT7ptJAdcDIXUIZ2z3ekYmVny8O","2564895","pjuarez@mail.com","2020-08-30",NULL,"1970-06-18","AD78519","Pedro","3");
+INSERT INTO administrativo VALUES("5","Rodriguez","$2y$10$uy.2xCN6qnEqdL/x5OYPOu9.BNenA1szWS.4Y.OABnZE9b3TxQw/e","21546987","drodriguez@mail.com","2020-08-31",NULL,"1953-10-06","AD96541","Diego","3");
+INSERT INTO administrativo VALUES("6","Noya","$2y$10$R4OsbbLH8XYcLw8GaQhxhuP9ibvbmwN/r1bRK52L4gNNLKbiqgJ/W","15698735","rnoya@mail.com","2020-08-31",NULL,"1965-06-17","15698735","Rodrigo","3");
+INSERT INTO administrativo VALUES("7","sgroi","$2y$10$l9PjPmh6O4vQn9m7X0K/pOjFLzmZ4jtx5qw8ST91rXEt46f79q3du","5236974","lucasSgroi@mail.com","2020-09-04",NULL,"1985-06-03","96548","Lucas","3");
+INSERT INTO administrativo VALUES("8","Hacha","$2y$10$wCF0iz5kgq5ioneRiAbv3OKRtYRZ9Nyw6KtONFVbT6505UNLqmdW.","4523178","mhacha@mail.com","2020-09-06",NULL,"1970-06-18","AD78787","Marina","3");
+INSERT INTO administrativo VALUES("9","Estebanez","$2y$10$qSg17bK4yFiMyz1DIZDtJusgGhL5fJEmo/89jpOJf8bUSVPyqWgeG","45213985","pestebanez@mail.com","2020-09-06",NULL,"1990-02-22","AD12457","Pedro","3");
+INSERT INTO administrativo VALUES("10","Seguro","$2y$10$zt5cyY4CSJvQqtEZngTSN.wQ5V3GOwx6f9gkf33EUAPA1pWzZdN/e","7854236","pseguro@mail.com","2020-09-06",NULL,"1969-08-22","AD89542","Pascual","3");
+INSERT INTO administrativo VALUES("12","Fernandez","$2y$10$ewoAwCMmfu6qebGfmYo6hOa/viZnsjvYJeKoaY9hVAfqTAQXWjkXe","4521369","efernandez@mail.com","2020-09-06",NULL,"1990-06-06","AD30000","Emilia","3");
+INSERT INTO administrativo VALUES("14","Fernandez","$2y$10$CKwwvmfDkou63vl.hCRiVuy4Jwsatyd66/W/sNBvRuyGjjmliSIzW","1000000","lfernandez@mail.com","2020-09-06",NULL,"1988-10-22","AD10000","Lucas","3");
+INSERT INTO administrativo VALUES("15","Arias","$2y$10$1GUauTxLWtHwN/YyL2cBtO1hgFigOoVxO9tMLyOJqn7TgypviWuNi","10101010","warias@mail.com","2020-09-09",NULL,"2011-02-09","AD10101","Wilfredo","3");
+INSERT INTO administrativo VALUES("16","liz","$2y$10$znV8YvjDLMVA7BjV1M74t.5082lIWeGONTWZRYVkpzxTCJj3v87qe","7513689","diegoL@mail.com","2020-09-15",NULL,"1990-02-13","AD90000","Diego","3");
+INSERT INTO administrativo VALUES("17","lopez","$2y$10$9yeUVnwC0BHQUAoE.rTg1.qiuUs60IbgejMajGnpE/Gi/CFhkNsZ.","2000033","juall@mail.com","2020-09-22",NULL,"1990-02-02","AD85236","juan","3");
 
 
 
@@ -51,241 +51,241 @@ CREATE TABLE `alumno` (
   KEY `FKctdmkskdhf5bla743m05m1u3x` (`permiso_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1856 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO alumno VALUES("1614","Alfaro","","46586634","","2020-09-08","","","AL41097","Cristina","1");
-INSERT INTO alumno VALUES("1615","Allison","","9190607","","2020-09-08","","","AL41098","Cameron","1");
-INSERT INTO alumno VALUES("1616","Alvarado","","44685116","","2020-09-08","","","AL41099","Maite","1");
-INSERT INTO alumno VALUES("1617","Andrada","","18147102","","2020-09-08","","","AL41100","Pamela ","1");
-INSERT INTO alumno VALUES("1618","Antares","","43677391","","2020-09-08","","","AL41101","Hugo","1");
-INSERT INTO alumno VALUES("1619","Atkinson","","12004396","","2020-09-08","","","AL41102","Libby","1");
-INSERT INTO alumno VALUES("1620","Barker","","7366016","","2020-09-08","","","AL41103","Nissim","1");
-INSERT INTO alumno VALUES("1621","Barr","","42906639","","2020-09-08","","","AL41104","Omar","1");
-INSERT INTO alumno VALUES("1622","Barrera","","30388106","","2020-09-08","","","AL41105","Ainsley","1");
-INSERT INTO alumno VALUES("1623","Barrera","","41989681","","2020-09-08","","","AL41106","Ezra","1");
-INSERT INTO alumno VALUES("1624","Barry","","24682669","","2020-09-08","","","AL41107","Finn","1");
-INSERT INTO alumno VALUES("1625","Beard","","22330635","","2020-09-08","","","AL41108","Ivan","1");
-INSERT INTO alumno VALUES("1626","Beasley","","15427371","","2020-09-08","","","AL41109","Aimee","1");
-INSERT INTO alumno VALUES("1627","Benton","","22621912","","2020-09-08","","","AL41110","Abel","1");
-INSERT INTO alumno VALUES("1628","Berry","","16979721","","2020-09-08","","","AL41111","Levi","1");
-INSERT INTO alumno VALUES("1629","Blackburn","","26084777","","2020-09-08","","","AL41112","Oprah","1");
-INSERT INTO alumno VALUES("1630","Blanco","","13452240","","2020-09-08","","","AL41113","Eusebio ","1");
-INSERT INTO alumno VALUES("1631","Blevins","","48996568","","2020-09-08","","","AL41114","Oscar","1");
-INSERT INTO alumno VALUES("1632","Bowman","","48709695","","2020-09-08","","","AL41115","Lillian","1");
-INSERT INTO alumno VALUES("1633","Boyd","","46104830","","2020-09-08","","","AL41116","Nayda","1");
-INSERT INTO alumno VALUES("1634","Bradford","","17466469","","2020-09-08","","","AL41117","Kenneth","1");
-INSERT INTO alumno VALUES("1635","Bradley","","31046654","","2020-09-08","","","AL41118","Joel","1");
-INSERT INTO alumno VALUES("1636","Burks","","49686278","","2020-09-08","","","AL41119","Noah","1");
-INSERT INTO alumno VALUES("1637","Bush","","11935283","","2020-09-08","","","AL41120","Rudyard","1");
-INSERT INTO alumno VALUES("1638","Calderon","","43750049","","2020-09-08","","","AL41121","Heather","1");
-INSERT INTO alumno VALUES("1639","Caldwell","","36385416","","2020-09-08","","","AL41122","Victor","1");
-INSERT INTO alumno VALUES("1640","Calero","","9028700","","2020-09-08","","","AL41123","Rafael","1");
-INSERT INTO alumno VALUES("1641","Camacho","","48784498","","2020-09-08","","","AL41124","Kieran","1");
-INSERT INTO alumno VALUES("1642","Cano","","27374218","","2020-09-08","","","AL41125","Rosa Maria","1");
-INSERT INTO alumno VALUES("1643","Cantu","","31636157","","2020-09-08","","","AL41126","Gabriel","1");
-INSERT INTO alumno VALUES("1644","Carr","","49953301","","2020-09-08","","","AL41127","Fay","1");
-INSERT INTO alumno VALUES("1645","Carson","","29117970","","2020-09-08","","","AL41128","Brian","1");
-INSERT INTO alumno VALUES("1646","Carver","","45266483","","2020-09-08","","","AL41129","Clinton","1");
-INSERT INTO alumno VALUES("1647","Case","","21409081","","2020-09-08","","","AL41130","Barrett","1");
-INSERT INTO alumno VALUES("1648","Case","","30308657","","2020-09-08","","","AL41131","Lev","1");
-INSERT INTO alumno VALUES("1649","Casey","","34665895","","2020-09-08","","","AL41132","Walter","1");
-INSERT INTO alumno VALUES("1650","Castillo","","6390630","","2020-09-08","","","AL41133","Juana","1");
-INSERT INTO alumno VALUES("1651","Chandler","","32311568","","2020-09-08","","","AL41134","Ivy","1");
-INSERT INTO alumno VALUES("1652","Chaney","","32100255","","2020-09-08","","","AL41135","Carlos","1");
-INSERT INTO alumno VALUES("1653","Cherry","","30701387","","2020-09-08","","","AL41136","Dalton","1");
-INSERT INTO alumno VALUES("1654","Cherry","","48282154","","2020-09-08","","","AL41137","Jeanette","1");
-INSERT INTO alumno VALUES("1655","Christensen","","15294557","","2020-09-08","","","AL41138","Sasha","1");
-INSERT INTO alumno VALUES("1656","Clarke","","29722234","","2020-09-08","","","AL41139","Cheyenne","1");
-INSERT INTO alumno VALUES("1657","Clay","","24483666","","2020-09-08","","","AL41140","Josiah","1");
-INSERT INTO alumno VALUES("1658","Coffey","","18849012","","2020-09-08","","","AL41141","Blaine","1");
-INSERT INTO alumno VALUES("1659","Coffey","","21289686","","2020-09-08","","","AL41142","Veronica","1");
-INSERT INTO alumno VALUES("1660","Collier","","45686853","","2020-09-08","","","AL41143","Azalia","1");
-INSERT INTO alumno VALUES("1661","Conley","","43475325","","2020-09-08","","","AL41144","Kyra","1");
-INSERT INTO alumno VALUES("1662","Conley","","30239463","","2020-09-08","","","AL41145","Rajah","1");
-INSERT INTO alumno VALUES("1663","Conner","","45399925","","2020-09-08","","","AL41146","Brett","1");
-INSERT INTO alumno VALUES("1664","Cuenca","","24844311","","2020-09-08","","","AL41147","Alejandro","1");
-INSERT INTO alumno VALUES("1665","Cummings","","42555216","","2020-09-08","","","AL41148","Roary","1");
-INSERT INTO alumno VALUES("1666","Cunningham","","46743067","","2020-09-08","","","AL41149","Kennedy","1");
-INSERT INTO alumno VALUES("1667","Delaney","","45145072","","2020-09-08","","","AL41150","Jessica","1");
-INSERT INTO alumno VALUES("1668","Delaney","","12487810","","2020-09-08","","","AL41151","Palmer","1");
-INSERT INTO alumno VALUES("1669","Dillard","","34660087","","2020-09-08","","","AL41152","August","1");
-INSERT INTO alumno VALUES("1670","Dorsey","","27721420","","2020-09-08","","","AL41153","Dane","1");
-INSERT INTO alumno VALUES("1671","Downs","","33031532","","2020-09-08","","","AL41154","Aline","1");
-INSERT INTO alumno VALUES("1672","Drake","","33192449","","2020-09-08","","","AL41155","Damon","1");
-INSERT INTO alumno VALUES("1673","Duncan","","43348668","","2020-09-08","","","AL41156","Iris","1");
-INSERT INTO alumno VALUES("1674","Dunlap","","38157891","","2020-09-08","","","AL41157","Wang","1");
-INSERT INTO alumno VALUES("1675","Ellis","","16532140","","2020-09-08","","","AL41158","Kibo","1");
-INSERT INTO alumno VALUES("1676","English","","42837826","","2020-09-08","","","AL41159","Brennan","1");
-INSERT INTO alumno VALUES("1677","Evans","","38474198","","2020-09-08","","","AL41160","Bruno","1");
-INSERT INTO alumno VALUES("1678","Farley","","12346991","","2020-09-08","","","AL41161","Hiroko","1");
-INSERT INTO alumno VALUES("1679","Farley","","35406343","","2020-09-08","","","AL41162","Quentin","1");
-INSERT INTO alumno VALUES("1680","Figueroa","","19459406","","2020-09-08","","","AL41163","Xerxes","1");
-INSERT INTO alumno VALUES("1681","Fletcher","","49708703","","2020-09-08","","","AL41164","Candice","1");
-INSERT INTO alumno VALUES("1682","Foster","","37469970","","2020-09-08","","","AL41165","Shaine","1");
-INSERT INTO alumno VALUES("1683","Franco","","39549507","","2020-09-08","","","AL41166","Nicholas","1");
-INSERT INTO alumno VALUES("1684","Franco","","36959025","","2020-09-08","","","AL41167","Phyllis","1");
-INSERT INTO alumno VALUES("1685","Franklin","","16309654","","2020-09-08","","","AL41168","Shellie","1");
-INSERT INTO alumno VALUES("1686","Fulton","","18529843","","2020-09-08","","","AL41169","Clio","1");
-INSERT INTO alumno VALUES("1687","Garrido","","25772496","","2020-09-08","","","AL41170","Miguel Angel","1");
-INSERT INTO alumno VALUES("1688","Garrison","","26818620","","2020-09-08","","","AL41171","Kelsey","1");
-INSERT INTO alumno VALUES("1689","Garruson","","23159573","","2020-09-08","","","AL41172","Laura","1");
-INSERT INTO alumno VALUES("1690","Glap","","35283269","","2020-09-08","","","AL41173","Cedric","1");
-INSERT INTO alumno VALUES("1691","Glover","","6875664","","2020-09-08","","","AL41174","Kitra","1");
-INSERT INTO alumno VALUES("1692","Goodwin","","26587375","","2020-09-08","","","AL41175","Lilah","1");
-INSERT INTO alumno VALUES("1693","Grant","","48772372","","2020-09-08","","","AL41176","Miranda","1");
-INSERT INTO alumno VALUES("1694","Hahn","","30776213","","2020-09-08","","","AL41177","Zane","1");
-INSERT INTO alumno VALUES("1695","Hampton","","48099435","","2020-09-08","","","AL41178","Lucas","1");
-INSERT INTO alumno VALUES("1696","Haney","","18780604","","2020-09-08","","","AL41179","Jarrod","1");
-INSERT INTO alumno VALUES("1697","Hansen","","49867796","","2020-09-08","","","AL41180","Timon","1");
-INSERT INTO alumno VALUES("1698","Harris","","7029267","","2020-09-08","","","AL41181","Cameron","1");
-INSERT INTO alumno VALUES("1699","Hartman","","14669989","","2020-09-08","","","AL41182","Zahir","1");
-INSERT INTO alumno VALUES("1700","Henderson","","15307164","","2020-09-08","","","AL41183","Finn","1");
-INSERT INTO alumno VALUES("1701","Herman","","9478391","","2020-09-08","","","AL41184","Eve","1");
-INSERT INTO alumno VALUES("1702","hernandez","","26065721","","2020-09-08","","","AL41185","daniel","1");
-INSERT INTO alumno VALUES("1703","Herring","","36503934","","2020-09-08","","","AL41186","Oliver","1");
-INSERT INTO alumno VALUES("1704","Hewitt","","46508041","","2020-09-08","","","AL41187","Isadora","1");
-INSERT INTO alumno VALUES("1705","Hickman","","48459517","","2020-09-08","","","AL41188","Ariana","1");
-INSERT INTO alumno VALUES("1706","Hilord","","11680657","","2020-09-08","","","AL41189","Akeem","1");
-INSERT INTO alumno VALUES("1707","Horton","","10527975","","2020-09-08","","","AL41190","Curran","1");
-INSERT INTO alumno VALUES("1708","Howe","","13320912","","2020-09-08","","","AL41191","Rowan","1");
-INSERT INTO alumno VALUES("1709","Howell","","21001931","","2020-09-08","","","AL41192","Stacy","1");
-INSERT INTO alumno VALUES("1710","Huff","","29820020","","2020-09-08","","","AL41193","Jerry","1");
-INSERT INTO alumno VALUES("1711","Hurley","","31082253","","2020-09-08","","","AL41194","Tamara","1");
-INSERT INTO alumno VALUES("1712","Irwin","","49176547","","2020-09-08","","","AL41195","Shea","1");
-INSERT INTO alumno VALUES("1713","Jacobs","","22905831","","2020-09-08","","","AL41196","Lane","1");
-INSERT INTO alumno VALUES("1714","Jarvis","","23521654","","2020-09-08","","","AL41197","Cathleen","1");
-INSERT INTO alumno VALUES("1715","Johnson","","7528332","","2020-09-08","","","AL41198","Leslie","1");
-INSERT INTO alumno VALUES("1716","Jones","","16835660","","2020-09-08","","","AL41199","Grant","1");
-INSERT INTO alumno VALUES("1717","Joseph","","13084195","","2020-09-08","","","AL41200","Burke","1");
-INSERT INTO alumno VALUES("1718","Joyner","","26067341","","2020-09-08","","","AL41201","Kaitlin","1");
-INSERT INTO alumno VALUES("1719","Juarez","","27612120","","2020-09-08","","","AL41202","Alisa","1");
-INSERT INTO alumno VALUES("1720","Kelley","","46067823","","2020-09-08","","","AL41203","Sydney","1");
-INSERT INTO alumno VALUES("1721","Kidd","","8544513","","2020-09-08","","","AL41204","Cruz","1");
-INSERT INTO alumno VALUES("1722","King","","36097579","","2020-09-08","","","AL41205","Shea","1");
-INSERT INTO alumno VALUES("1723","Klein","","14523329","","2020-09-08","","","AL41206","Vivian","1");
-INSERT INTO alumno VALUES("1724","Klein","","32614691","","2020-09-08","","","AL41207","Zelda","1");
-INSERT INTO alumno VALUES("1725","Lamb","","28074424","","2020-09-08","","","AL41208","Demetria","1");
-INSERT INTO alumno VALUES("1726","Lamb","","40646382","","2020-09-08","","","AL41209","Kuame","1");
-INSERT INTO alumno VALUES("1727","Leach","","45293197","","2020-09-08","","","AL41210","Renee","1");
-INSERT INTO alumno VALUES("1728","Lee","","27781028","","2020-09-08","","","AL41211","Aline","1");
-INSERT INTO alumno VALUES("1729","Lucas","","28726855","","2020-09-08","","","AL41212","Keiko","1");
-INSERT INTO alumno VALUES("1730","Macdonald","","31524309","","2020-09-08","","","AL41213","Hilda","1");
-INSERT INTO alumno VALUES("1731","Malone","","21060218","","2020-09-08","","","AL41214","Pearl","1");
-INSERT INTO alumno VALUES("1732","marin","","31975106","","2020-09-08","","","AL41215","raquel","1");
-INSERT INTO alumno VALUES("1733","Marks","","40319991","","2020-09-08","","","AL41216","Samuel","1");
-INSERT INTO alumno VALUES("1734","martinez","","22330766","","2020-09-08","","","AL41217","marta ","1");
-INSERT INTO alumno VALUES("1735","Mcdonald","","21106410","","2020-09-08","","","AL41218","Ria","1");
-INSERT INTO alumno VALUES("1736","Mcfadden","","13815202","","2020-09-08","","","AL41219","Quamar","1");
-INSERT INTO alumno VALUES("1737","Mcintosh","","47093288","","2020-09-08","","","AL41220","Channing","1");
-INSERT INTO alumno VALUES("1738","Mckenzie","","25376667","","2020-09-08","","","AL41221","Harriet","1");
-INSERT INTO alumno VALUES("1739","Mclean","","42651808","","2020-09-08","","","AL41222","Avram","1");
-INSERT INTO alumno VALUES("1740","Meadows","","41420760","","2020-09-08","","","AL41223","Blaze","1");
-INSERT INTO alumno VALUES("1741","Melendez","","21680638","","2020-09-08","","","AL41224","Fay","1");
-INSERT INTO alumno VALUES("1742","Melton","","6038948","","2020-09-08","","","AL41225","Jelani","1");
-INSERT INTO alumno VALUES("1743","Mercado","","34567537","","2020-09-08","","","AL41226","Jameson","1");
-INSERT INTO alumno VALUES("1744","Mercer","","48837147","","2020-09-08","","","AL41227","Howard","1");
-INSERT INTO alumno VALUES("1745","Mercer","","8388803","","2020-09-08","","","AL41228","Quail","1");
-INSERT INTO alumno VALUES("1746","Merritt","","13556299","","2020-09-08","","","AL41229","Hamish","1");
-INSERT INTO alumno VALUES("1747","Meyer","","11891058","","2020-09-08","","","AL41230","Reese","1");
-INSERT INTO alumno VALUES("1748","Miles","","9612128","","2020-09-08","","","AL41231","Rana","1");
-INSERT INTO alumno VALUES("1749","Mooney","","21527247","","2020-09-08","","","AL41232","Katelyn","1");
-INSERT INTO alumno VALUES("1750","Mooney","","34541073","","2020-09-08","","","AL41233","Magee","1");
-INSERT INTO alumno VALUES("1751","Morales","","34969826","","2020-09-08","","","AL41234","Nathan","1");
-INSERT INTO alumno VALUES("1752","Moralez","","49207332","","2020-09-08","","","AL41235","manuela","1");
-INSERT INTO alumno VALUES("1753","Moreno","","32484160","","2020-09-08","","","AL41236","maria pilar","1");
-INSERT INTO alumno VALUES("1754","Morgan","","23808848","","2020-09-08","","","AL41237","Coby","1");
-INSERT INTO alumno VALUES("1755","Mueller","","48882260","","2020-09-08","","","AL41238","Gail","1");
-INSERT INTO alumno VALUES("1756","Mullen","","16244592","","2020-09-08","","","AL41239","Nina","1");
-INSERT INTO alumno VALUES("1757","Muñoz","","44888501","","2020-09-08","","","AL41240","Juan Jose","1");
-INSERT INTO alumno VALUES("1758","Murphy","","24556744","","2020-09-08","","","AL41241","Ayanna","1");
-INSERT INTO alumno VALUES("1759","Murphy","","10507943","","2020-09-08","","","AL41242","Demetrius","1");
-INSERT INTO alumno VALUES("1760","Nelson","","45757180","","2020-09-08","","","AL41243","Germane","1");
-INSERT INTO alumno VALUES("1761","Newton","","31400914","","2020-09-08","","","AL41244","Timothy","1");
-INSERT INTO alumno VALUES("1762","Nielsen","","18843297","","2020-09-08","","","AL41245","Pascale","1");
-INSERT INTO alumno VALUES("1763","Oliver","","7905790","","2020-09-08","","","AL41246","Ursa","1");
-INSERT INTO alumno VALUES("1764","Oneal","","33431495","","2020-09-08","","","AL41247","Nathaniel","1");
-INSERT INTO alumno VALUES("1765","Oneil","","15651752","","2020-09-08","","","AL41248","Madeson","1");
-INSERT INTO alumno VALUES("1766","Ortega","","46287308","","2020-09-08","","","AL41249","Marta","1");
-INSERT INTO alumno VALUES("1767","Ortiz","","34755891","","2020-09-08","","","AL41250","Encarnacion","1");
-INSERT INTO alumno VALUES("1768","Ortiz","","45968273","","2020-09-08","","","AL41251","Hammett","1");
-INSERT INTO alumno VALUES("1769","Ortiz ","","22047023","","2020-09-08","","","AL41252","Pablo ","1");
-INSERT INTO alumno VALUES("1770","Parker","","23141185","","2020-09-08","","","AL41253","Kato","1");
-INSERT INTO alumno VALUES("1771","Parsons","","40338231","","2020-09-08","","","AL41254","Lynn","1");
-INSERT INTO alumno VALUES("1772","Patterson","","20699148","","2020-09-08","","","AL41255","Octavia","1");
-INSERT INTO alumno VALUES("1773","Patterson","","40274537","","2020-09-08","","","AL41256","Rosalyn","1");
-INSERT INTO alumno VALUES("1774","Paul","","14150114","","2020-09-08","","","AL41257","Leila","1");
-INSERT INTO alumno VALUES("1775","Payne","","40817811","","2020-09-08","","","AL41258","Portia","1");
-INSERT INTO alumno VALUES("1776","Perez","","14597246","","2020-09-08","","","AL41259","Gray","1");
-INSERT INTO alumno VALUES("1777","Perez","","33124056","","2020-09-08","","","AL41260","Paula","1");
-INSERT INTO alumno VALUES("1778","Petersen","","34224227","","2020-09-08","","","AL41261","Blossom","1");
-INSERT INTO alumno VALUES("1779","Petty","","21111049","","2020-09-08","","","AL41262","Cameran","1");
-INSERT INTO alumno VALUES("1780","Picazo","","12821197","","2020-09-08","","","AL41263","Elena","1");
-INSERT INTO alumno VALUES("1781","Puckett","","47537619","","2020-09-08","","","AL41264","Zahir","1");
-INSERT INTO alumno VALUES("1782","Ramirez","","12693189","","2020-09-08","","","AL41265","Mariela","1");
-INSERT INTO alumno VALUES("1783","Ramsey","","28423363","","2020-09-08","","","AL41266","Kenyon","1");
-INSERT INTO alumno VALUES("1784","Ray","","27150078","","2020-09-08","","","AL41267","Marny","1");
-INSERT INTO alumno VALUES("1785","Raymond","","8874625","","2020-09-08","","","AL41268","Gary","1");
-INSERT INTO alumno VALUES("1786","Raymond","","13772878","","2020-09-08","","","AL41269","Theodore","1");
-INSERT INTO alumno VALUES("1787","Reeves","","30943501","","2020-09-08","","","AL41270","Dominic","1");
-INSERT INTO alumno VALUES("1788","Reilly","","25018737","","2020-09-08","","","AL41271","Hanna","1");
-INSERT INTO alumno VALUES("1789","Richards","","9971350","","2020-09-08","","","AL41272","Jesse","1");
-INSERT INTO alumno VALUES("1790","Robbins","","23049612","","2020-09-08","","","AL41273","Amir","1");
-INSERT INTO alumno VALUES("1791","Roberson","","38627621","","2020-09-08","","","AL41274","Mollie","1");
-INSERT INTO alumno VALUES("1792","Robertson","","12148427","","2020-09-08","","","AL41275","Eliana","1");
-INSERT INTO alumno VALUES("1793","Robles","","22562138","","2020-09-08","","","AL41276","Naomi","1");
-INSERT INTO alumno VALUES("1794","Romero","","46294563","","2020-09-08","","","AL41277","Ana Maria","1");
-INSERT INTO alumno VALUES("1795","Roth","","7845681","","2020-09-08","","","AL41278","Eaton","1");
-INSERT INTO alumno VALUES("1796","Rubio","","8647566","","2020-09-08","","","AL41279","Lucia","1");
-INSERT INTO alumno VALUES("1797","Rutledge","","11604323","","2020-09-08","","","AL41280","Gregory","1");
-INSERT INTO alumno VALUES("1798","Ryan","","21717906","","2020-09-08","","","AL41281","Mariko","1");
-INSERT INTO alumno VALUES("1799","Saez","","8726399","","2020-09-08","","","AL41282","Luis","1");
-INSERT INTO alumno VALUES("1800","Sampson","","26275883","","2020-09-08","","","AL41283","Ryan","1");
-INSERT INTO alumno VALUES("1801","Sanchez","","37824311","","2020-09-08","","","AL41284","Pedro","1");
-INSERT INTO alumno VALUES("1802","Sanchez","","45843775","","2020-09-08","","","AL41285","Pedro ","1");
-INSERT INTO alumno VALUES("1803","Sears","","44060633","","2020-09-08","","","AL41286","Colette","1");
-INSERT INTO alumno VALUES("1804","Sears","","47835848","","2020-09-08","","","AL41288","Uriel","1");
-INSERT INTO alumno VALUES("1805","Sgroi","$2y$10$sfKIZ5rzF7wWPqWSsB6nFOn6o3uaIH5nhaXvaiFr3ICiHJSAADng.","40102196","lean@mail.com","2020-09-08","","","AL41414","Leandro","1");
-INSERT INTO alumno VALUES("1806","Skinner","","41288968","","2020-09-08","","","AL41289","Ruth","1");
-INSERT INTO alumno VALUES("1807","Sloan","","7949419","","2020-09-08","","","AL41290","Clare","1");
-INSERT INTO alumno VALUES("1808","Solomon","","29770639","","2020-09-08","","","AL41291","Ulla","1");
-INSERT INTO alumno VALUES("1809","Stephens","","25644254","","2020-09-08","","","AL41292","Channing","1");
-INSERT INTO alumno VALUES("1810","Stone","","25933535","","2020-09-08","","","AL41293","Dawn","1");
-INSERT INTO alumno VALUES("1811","Stone","","8553228","","2020-09-08","","","AL41294","Denton","1");
-INSERT INTO alumno VALUES("1812","Stout","","42720207","","2020-09-08","","","AL41295","Cassidy","1");
-INSERT INTO alumno VALUES("1813","Sutton","","43904374","","2020-09-08","","","AL41296","Scarlet","1");
-INSERT INTO alumno VALUES("1814","Tanner","","6986876","","2020-09-08","","","AL41297","Adam","1");
-INSERT INTO alumno VALUES("1815","Taylor","","45575547","","2020-09-08","","","AL41298","Stephen","1");
-INSERT INTO alumno VALUES("1816","Thornton","","36467874","","2020-09-08","","","AL41299","Cameron","1");
-INSERT INTO alumno VALUES("1817","Torres","","8258764","","2020-09-08","","","AL41300","Francisco Javier","1");
-INSERT INTO alumno VALUES("1818","Townsend","","41565942","","2020-09-08","","","AL41301","Jacqueline","1");
-INSERT INTO alumno VALUES("1819","Turner","","32277550","","2020-09-08","","","AL41302","Macy","1");
-INSERT INTO alumno VALUES("1820","Valenzuela","","30039298","","2020-09-08","","","AL41303","Aurora","1");
-INSERT INTO alumno VALUES("1821","Vargas","","38898965","","2020-09-08","","","AL41304","Lars","1");
-INSERT INTO alumno VALUES("1822","Vasquez","","9568854","","2020-09-08","","","AL41305","Iris","1");
-INSERT INTO alumno VALUES("1823","Vega","","49671795","","2020-09-08","","","AL41306","Joy","1");
-INSERT INTO alumno VALUES("1824","Velazquez","","16303341","","2020-09-08","","","AL41307","Carter","1");
-INSERT INTO alumno VALUES("1825","Velez","","19266093","","2020-09-08","","","AL41308","Hashim","1");
-INSERT INTO alumno VALUES("1826","Velez","","23014472","","2020-09-08","","","AL41309","Wynter","1");
-INSERT INTO alumno VALUES("1827","Ward","","41100921","","2020-09-08","","","AL41310","Clare","1");
-INSERT INTO alumno VALUES("1828","Ward","","44786239","","2020-09-08","","","AL41311","Zachery","1");
-INSERT INTO alumno VALUES("1829","Watson","","16968661","","2020-09-08","","","AL41312","Candice","1");
-INSERT INTO alumno VALUES("1830","Watts","","37404149","","2020-09-08","","","AL41313","Cairo","1");
-INSERT INTO alumno VALUES("1831","Weeks","","20445652","","2020-09-08","","","AL41314","Ignatius","1");
-INSERT INTO alumno VALUES("1832","Wells","","30607549","","2020-09-08","","","AL41315","Hamilton","1");
-INSERT INTO alumno VALUES("1833","Wheeler","","17613236","","2020-09-08","","","AL41316","Benjamin","1");
-INSERT INTO alumno VALUES("1834","Whitney","","31491848","","2020-09-08","","","AL41317","Willow","1");
-INSERT INTO alumno VALUES("1835","Wilkinson","","6691125","","2020-09-08","","","AL41318","Christen","1");
-INSERT INTO alumno VALUES("1836","Witt","","48725746","","2020-09-08","","","AL41319","Illana","1");
-INSERT INTO alumno VALUES("1837","Wolf","","17524543","","2020-09-08","","","AL41320","Whitney","1");
-INSERT INTO alumno VALUES("1838","Woodard","EwcyB5UOJEIAo23KgrruaQ==","19255872","algo@mail.com","2020-09-08","2020-09-30","","AL41321","Amethyst","1");
-INSERT INTO alumno VALUES("1839","Wooten","","33285501","","2020-09-08","","","AL41322","Preston","1");
+INSERT INTO alumno VALUES("1614","Alfaro",NULL,"46586634",NULL,"2020-09-08",NULL,NULL,"AL41097","Cristina","1");
+INSERT INTO alumno VALUES("1615","Allison",NULL,"9190607",NULL,"2020-09-08",NULL,NULL,"AL41098","Cameron","1");
+INSERT INTO alumno VALUES("1616","Alvarado",NULL,"44685116",NULL,"2020-09-08",NULL,NULL,"AL41099","Maite","1");
+INSERT INTO alumno VALUES("1617","Andrada",NULL,"18147102",NULL,"2020-09-08",NULL,NULL,"AL41100","Pamela ","1");
+INSERT INTO alumno VALUES("1618","Antares",NULL,"43677391",NULL,"2020-09-08",NULL,NULL,"AL41101","Hugo","1");
+INSERT INTO alumno VALUES("1619","Atkinson",NULL,"12004396",NULL,"2020-09-08",NULL,NULL,"AL41102","Libby","1");
+INSERT INTO alumno VALUES("1620","Barker",NULL,"7366016",NULL,"2020-09-08",NULL,NULL,"AL41103","Nissim","1");
+INSERT INTO alumno VALUES("1621","Barr",NULL,"42906639",NULL,"2020-09-08",NULL,NULL,"AL41104","Omar","1");
+INSERT INTO alumno VALUES("1622","Barrera",NULL,"30388106",NULL,"2020-09-08",NULL,NULL,"AL41105","Ainsley","1");
+INSERT INTO alumno VALUES("1623","Barrera",NULL,"41989681",NULL,"2020-09-08",NULL,NULL,"AL41106","Ezra","1");
+INSERT INTO alumno VALUES("1624","Barry",NULL,"24682669",NULL,"2020-09-08",NULL,NULL,"AL41107","Finn","1");
+INSERT INTO alumno VALUES("1625","Beard",NULL,"22330635",NULL,"2020-09-08",NULL,NULL,"AL41108","Ivan","1");
+INSERT INTO alumno VALUES("1626","Beasley",NULL,"15427371",NULL,"2020-09-08",NULL,NULL,"AL41109","Aimee","1");
+INSERT INTO alumno VALUES("1627","Benton",NULL,"22621912",NULL,"2020-09-08",NULL,NULL,"AL41110","Abel","1");
+INSERT INTO alumno VALUES("1628","Berry",NULL,"16979721",NULL,"2020-09-08",NULL,NULL,"AL41111","Levi","1");
+INSERT INTO alumno VALUES("1629","Blackburn",NULL,"26084777",NULL,"2020-09-08",NULL,NULL,"AL41112","Oprah","1");
+INSERT INTO alumno VALUES("1630","Blanco",NULL,"13452240",NULL,"2020-09-08",NULL,NULL,"AL41113","Eusebio ","1");
+INSERT INTO alumno VALUES("1631","Blevins",NULL,"48996568",NULL,"2020-09-08",NULL,NULL,"AL41114","Oscar","1");
+INSERT INTO alumno VALUES("1632","Bowman",NULL,"48709695",NULL,"2020-09-08",NULL,NULL,"AL41115","Lillian","1");
+INSERT INTO alumno VALUES("1633","Boyd",NULL,"46104830",NULL,"2020-09-08",NULL,NULL,"AL41116","Nayda","1");
+INSERT INTO alumno VALUES("1634","Bradford",NULL,"17466469",NULL,"2020-09-08",NULL,NULL,"AL41117","Kenneth","1");
+INSERT INTO alumno VALUES("1635","Bradley",NULL,"31046654",NULL,"2020-09-08",NULL,NULL,"AL41118","Joel","1");
+INSERT INTO alumno VALUES("1636","Burks",NULL,"49686278",NULL,"2020-09-08",NULL,NULL,"AL41119","Noah","1");
+INSERT INTO alumno VALUES("1637","Bush",NULL,"11935283",NULL,"2020-09-08",NULL,NULL,"AL41120","Rudyard","1");
+INSERT INTO alumno VALUES("1638","Calderon",NULL,"43750049",NULL,"2020-09-08",NULL,NULL,"AL41121","Heather","1");
+INSERT INTO alumno VALUES("1639","Caldwell",NULL,"36385416",NULL,"2020-09-08",NULL,NULL,"AL41122","Victor","1");
+INSERT INTO alumno VALUES("1640","Calero",NULL,"9028700",NULL,"2020-09-08",NULL,NULL,"AL41123","Rafael","1");
+INSERT INTO alumno VALUES("1641","Camacho",NULL,"48784498",NULL,"2020-09-08",NULL,NULL,"AL41124","Kieran","1");
+INSERT INTO alumno VALUES("1642","Cano",NULL,"27374218",NULL,"2020-09-08",NULL,NULL,"AL41125","Rosa Maria","1");
+INSERT INTO alumno VALUES("1643","Cantu",NULL,"31636157",NULL,"2020-09-08",NULL,NULL,"AL41126","Gabriel","1");
+INSERT INTO alumno VALUES("1644","Carr",NULL,"49953301",NULL,"2020-09-08",NULL,NULL,"AL41127","Fay","1");
+INSERT INTO alumno VALUES("1645","Carson",NULL,"29117970",NULL,"2020-09-08",NULL,NULL,"AL41128","Brian","1");
+INSERT INTO alumno VALUES("1646","Carver",NULL,"45266483",NULL,"2020-09-08",NULL,NULL,"AL41129","Clinton","1");
+INSERT INTO alumno VALUES("1647","Case",NULL,"21409081",NULL,"2020-09-08",NULL,NULL,"AL41130","Barrett","1");
+INSERT INTO alumno VALUES("1648","Case",NULL,"30308657",NULL,"2020-09-08",NULL,NULL,"AL41131","Lev","1");
+INSERT INTO alumno VALUES("1649","Casey",NULL,"34665895",NULL,"2020-09-08",NULL,NULL,"AL41132","Walter","1");
+INSERT INTO alumno VALUES("1650","Castillo",NULL,"6390630",NULL,"2020-09-08",NULL,NULL,"AL41133","Juana","1");
+INSERT INTO alumno VALUES("1651","Chandler",NULL,"32311568",NULL,"2020-09-08",NULL,NULL,"AL41134","Ivy","1");
+INSERT INTO alumno VALUES("1652","Chaney",NULL,"32100255",NULL,"2020-09-08",NULL,NULL,"AL41135","Carlos","1");
+INSERT INTO alumno VALUES("1653","Cherry",NULL,"30701387",NULL,"2020-09-08",NULL,NULL,"AL41136","Dalton","1");
+INSERT INTO alumno VALUES("1654","Cherry",NULL,"48282154",NULL,"2020-09-08",NULL,NULL,"AL41137","Jeanette","1");
+INSERT INTO alumno VALUES("1655","Christensen",NULL,"15294557",NULL,"2020-09-08",NULL,NULL,"AL41138","Sasha","1");
+INSERT INTO alumno VALUES("1656","Clarke",NULL,"29722234",NULL,"2020-09-08",NULL,NULL,"AL41139","Cheyenne","1");
+INSERT INTO alumno VALUES("1657","Clay",NULL,"24483666",NULL,"2020-09-08",NULL,NULL,"AL41140","Josiah","1");
+INSERT INTO alumno VALUES("1658","Coffey",NULL,"18849012",NULL,"2020-09-08",NULL,NULL,"AL41141","Blaine","1");
+INSERT INTO alumno VALUES("1659","Coffey",NULL,"21289686",NULL,"2020-09-08",NULL,NULL,"AL41142","Veronica","1");
+INSERT INTO alumno VALUES("1660","Collier",NULL,"45686853",NULL,"2020-09-08",NULL,NULL,"AL41143","Azalia","1");
+INSERT INTO alumno VALUES("1661","Conley",NULL,"43475325",NULL,"2020-09-08",NULL,NULL,"AL41144","Kyra","1");
+INSERT INTO alumno VALUES("1662","Conley",NULL,"30239463",NULL,"2020-09-08",NULL,NULL,"AL41145","Rajah","1");
+INSERT INTO alumno VALUES("1663","Conner",NULL,"45399925",NULL,"2020-09-08",NULL,NULL,"AL41146","Brett","1");
+INSERT INTO alumno VALUES("1664","Cuenca",NULL,"24844311",NULL,"2020-09-08",NULL,NULL,"AL41147","Alejandro","1");
+INSERT INTO alumno VALUES("1665","Cummings",NULL,"42555216",NULL,"2020-09-08",NULL,NULL,"AL41148","Roary","1");
+INSERT INTO alumno VALUES("1666","Cunningham",NULL,"46743067",NULL,"2020-09-08",NULL,NULL,"AL41149","Kennedy","1");
+INSERT INTO alumno VALUES("1667","Delaney",NULL,"45145072",NULL,"2020-09-08",NULL,NULL,"AL41150","Jessica","1");
+INSERT INTO alumno VALUES("1668","Delaney",NULL,"12487810",NULL,"2020-09-08",NULL,NULL,"AL41151","Palmer","1");
+INSERT INTO alumno VALUES("1669","Dillard",NULL,"34660087",NULL,"2020-09-08",NULL,NULL,"AL41152","August","1");
+INSERT INTO alumno VALUES("1670","Dorsey",NULL,"27721420",NULL,"2020-09-08",NULL,NULL,"AL41153","Dane","1");
+INSERT INTO alumno VALUES("1671","Downs",NULL,"33031532",NULL,"2020-09-08",NULL,NULL,"AL41154","Aline","1");
+INSERT INTO alumno VALUES("1672","Drake",NULL,"33192449",NULL,"2020-09-08",NULL,NULL,"AL41155","Damon","1");
+INSERT INTO alumno VALUES("1673","Duncan",NULL,"43348668",NULL,"2020-09-08",NULL,NULL,"AL41156","Iris","1");
+INSERT INTO alumno VALUES("1674","Dunlap",NULL,"38157891",NULL,"2020-09-08",NULL,NULL,"AL41157","Wang","1");
+INSERT INTO alumno VALUES("1675","Ellis",NULL,"16532140",NULL,"2020-09-08",NULL,NULL,"AL41158","Kibo","1");
+INSERT INTO alumno VALUES("1676","English",NULL,"42837826",NULL,"2020-09-08",NULL,NULL,"AL41159","Brennan","1");
+INSERT INTO alumno VALUES("1677","Evans",NULL,"38474198",NULL,"2020-09-08",NULL,NULL,"AL41160","Bruno","1");
+INSERT INTO alumno VALUES("1678","Farley",NULL,"12346991",NULL,"2020-09-08",NULL,NULL,"AL41161","Hiroko","1");
+INSERT INTO alumno VALUES("1679","Farley",NULL,"35406343",NULL,"2020-09-08",NULL,NULL,"AL41162","Quentin","1");
+INSERT INTO alumno VALUES("1680","Figueroa",NULL,"19459406",NULL,"2020-09-08",NULL,NULL,"AL41163","Xerxes","1");
+INSERT INTO alumno VALUES("1681","Fletcher",NULL,"49708703",NULL,"2020-09-08",NULL,NULL,"AL41164","Candice","1");
+INSERT INTO alumno VALUES("1682","Foster",NULL,"37469970",NULL,"2020-09-08",NULL,NULL,"AL41165","Shaine","1");
+INSERT INTO alumno VALUES("1683","Franco",NULL,"39549507",NULL,"2020-09-08",NULL,NULL,"AL41166","Nicholas","1");
+INSERT INTO alumno VALUES("1684","Franco",NULL,"36959025",NULL,"2020-09-08",NULL,NULL,"AL41167","Phyllis","1");
+INSERT INTO alumno VALUES("1685","Franklin",NULL,"16309654",NULL,"2020-09-08",NULL,NULL,"AL41168","Shellie","1");
+INSERT INTO alumno VALUES("1686","Fulton",NULL,"18529843",NULL,"2020-09-08",NULL,NULL,"AL41169","Clio","1");
+INSERT INTO alumno VALUES("1687","Garrido",NULL,"25772496",NULL,"2020-09-08",NULL,NULL,"AL41170","Miguel Angel","1");
+INSERT INTO alumno VALUES("1688","Garrison",NULL,"26818620",NULL,"2020-09-08",NULL,NULL,"AL41171","Kelsey","1");
+INSERT INTO alumno VALUES("1689","Garruson",NULL,"23159573",NULL,"2020-09-08",NULL,NULL,"AL41172","Laura","1");
+INSERT INTO alumno VALUES("1690","Glap",NULL,"35283269",NULL,"2020-09-08",NULL,NULL,"AL41173","Cedric","1");
+INSERT INTO alumno VALUES("1691","Glover",NULL,"6875664",NULL,"2020-09-08",NULL,NULL,"AL41174","Kitra","1");
+INSERT INTO alumno VALUES("1692","Goodwin",NULL,"26587375",NULL,"2020-09-08",NULL,NULL,"AL41175","Lilah","1");
+INSERT INTO alumno VALUES("1693","Grant",NULL,"48772372",NULL,"2020-09-08",NULL,NULL,"AL41176","Miranda","1");
+INSERT INTO alumno VALUES("1694","Hahn",NULL,"30776213",NULL,"2020-09-08",NULL,NULL,"AL41177","Zane","1");
+INSERT INTO alumno VALUES("1695","Hampton",NULL,"48099435",NULL,"2020-09-08",NULL,NULL,"AL41178","Lucas","1");
+INSERT INTO alumno VALUES("1696","Haney",NULL,"18780604",NULL,"2020-09-08",NULL,NULL,"AL41179","Jarrod","1");
+INSERT INTO alumno VALUES("1697","Hansen",NULL,"49867796",NULL,"2020-09-08",NULL,NULL,"AL41180","Timon","1");
+INSERT INTO alumno VALUES("1698","Harris",NULL,"7029267",NULL,"2020-09-08",NULL,NULL,"AL41181","Cameron","1");
+INSERT INTO alumno VALUES("1699","Hartman",NULL,"14669989",NULL,"2020-09-08",NULL,NULL,"AL41182","Zahir","1");
+INSERT INTO alumno VALUES("1700","Henderson",NULL,"15307164",NULL,"2020-09-08",NULL,NULL,"AL41183","Finn","1");
+INSERT INTO alumno VALUES("1701","Herman",NULL,"9478391",NULL,"2020-09-08",NULL,NULL,"AL41184","Eve","1");
+INSERT INTO alumno VALUES("1702","hernandez",NULL,"26065721",NULL,"2020-09-08",NULL,NULL,"AL41185","daniel","1");
+INSERT INTO alumno VALUES("1703","Herring",NULL,"36503934",NULL,"2020-09-08",NULL,NULL,"AL41186","Oliver","1");
+INSERT INTO alumno VALUES("1704","Hewitt",NULL,"46508041",NULL,"2020-09-08",NULL,NULL,"AL41187","Isadora","1");
+INSERT INTO alumno VALUES("1705","Hickman",NULL,"48459517",NULL,"2020-09-08",NULL,NULL,"AL41188","Ariana","1");
+INSERT INTO alumno VALUES("1706","Hilord",NULL,"11680657",NULL,"2020-09-08",NULL,NULL,"AL41189","Akeem","1");
+INSERT INTO alumno VALUES("1707","Horton",NULL,"10527975",NULL,"2020-09-08",NULL,NULL,"AL41190","Curran","1");
+INSERT INTO alumno VALUES("1708","Howe",NULL,"13320912",NULL,"2020-09-08",NULL,NULL,"AL41191","Rowan","1");
+INSERT INTO alumno VALUES("1709","Howell",NULL,"21001931",NULL,"2020-09-08",NULL,NULL,"AL41192","Stacy","1");
+INSERT INTO alumno VALUES("1710","Huff",NULL,"29820020",NULL,"2020-09-08",NULL,NULL,"AL41193","Jerry","1");
+INSERT INTO alumno VALUES("1711","Hurley",NULL,"31082253",NULL,"2020-09-08",NULL,NULL,"AL41194","Tamara","1");
+INSERT INTO alumno VALUES("1712","Irwin",NULL,"49176547",NULL,"2020-09-08",NULL,NULL,"AL41195","Shea","1");
+INSERT INTO alumno VALUES("1713","Jacobs",NULL,"22905831",NULL,"2020-09-08",NULL,NULL,"AL41196","Lane","1");
+INSERT INTO alumno VALUES("1714","Jarvis",NULL,"23521654",NULL,"2020-09-08",NULL,NULL,"AL41197","Cathleen","1");
+INSERT INTO alumno VALUES("1715","Johnson",NULL,"7528332",NULL,"2020-09-08",NULL,NULL,"AL41198","Leslie","1");
+INSERT INTO alumno VALUES("1716","Jones",NULL,"16835660",NULL,"2020-09-08",NULL,NULL,"AL41199","Grant","1");
+INSERT INTO alumno VALUES("1717","Joseph",NULL,"13084195",NULL,"2020-09-08",NULL,NULL,"AL41200","Burke","1");
+INSERT INTO alumno VALUES("1718","Joyner",NULL,"26067341",NULL,"2020-09-08",NULL,NULL,"AL41201","Kaitlin","1");
+INSERT INTO alumno VALUES("1719","Juarez",NULL,"27612120",NULL,"2020-09-08",NULL,NULL,"AL41202","Alisa","1");
+INSERT INTO alumno VALUES("1720","Kelley",NULL,"46067823",NULL,"2020-09-08",NULL,NULL,"AL41203","Sydney","1");
+INSERT INTO alumno VALUES("1721","Kidd",NULL,"8544513",NULL,"2020-09-08",NULL,NULL,"AL41204","Cruz","1");
+INSERT INTO alumno VALUES("1722","King",NULL,"36097579",NULL,"2020-09-08",NULL,NULL,"AL41205","Shea","1");
+INSERT INTO alumno VALUES("1723","Klein",NULL,"14523329",NULL,"2020-09-08",NULL,NULL,"AL41206","Vivian","1");
+INSERT INTO alumno VALUES("1724","Klein",NULL,"32614691",NULL,"2020-09-08",NULL,NULL,"AL41207","Zelda","1");
+INSERT INTO alumno VALUES("1725","Lamb",NULL,"28074424",NULL,"2020-09-08",NULL,NULL,"AL41208","Demetria","1");
+INSERT INTO alumno VALUES("1726","Lamb",NULL,"40646382",NULL,"2020-09-08",NULL,NULL,"AL41209","Kuame","1");
+INSERT INTO alumno VALUES("1727","Leach",NULL,"45293197",NULL,"2020-09-08",NULL,NULL,"AL41210","Renee","1");
+INSERT INTO alumno VALUES("1728","Lee",NULL,"27781028",NULL,"2020-09-08",NULL,NULL,"AL41211","Aline","1");
+INSERT INTO alumno VALUES("1729","Lucas",NULL,"28726855",NULL,"2020-09-08",NULL,NULL,"AL41212","Keiko","1");
+INSERT INTO alumno VALUES("1730","Macdonald",NULL,"31524309",NULL,"2020-09-08",NULL,NULL,"AL41213","Hilda","1");
+INSERT INTO alumno VALUES("1731","Malone",NULL,"21060218",NULL,"2020-09-08",NULL,NULL,"AL41214","Pearl","1");
+INSERT INTO alumno VALUES("1732","marin",NULL,"31975106",NULL,"2020-09-08",NULL,NULL,"AL41215","raquel","1");
+INSERT INTO alumno VALUES("1733","Marks",NULL,"40319991",NULL,"2020-09-08",NULL,NULL,"AL41216","Samuel","1");
+INSERT INTO alumno VALUES("1734","martinez",NULL,"22330766",NULL,"2020-09-08",NULL,NULL,"AL41217","marta ","1");
+INSERT INTO alumno VALUES("1735","Mcdonald",NULL,"21106410",NULL,"2020-09-08",NULL,NULL,"AL41218","Ria","1");
+INSERT INTO alumno VALUES("1736","Mcfadden",NULL,"13815202",NULL,"2020-09-08",NULL,NULL,"AL41219","Quamar","1");
+INSERT INTO alumno VALUES("1737","Mcintosh",NULL,"47093288",NULL,"2020-09-08",NULL,NULL,"AL41220","Channing","1");
+INSERT INTO alumno VALUES("1738","Mckenzie",NULL,"25376667",NULL,"2020-09-08",NULL,NULL,"AL41221","Harriet","1");
+INSERT INTO alumno VALUES("1739","Mclean",NULL,"42651808",NULL,"2020-09-08",NULL,NULL,"AL41222","Avram","1");
+INSERT INTO alumno VALUES("1740","Meadows",NULL,"41420760",NULL,"2020-09-08",NULL,NULL,"AL41223","Blaze","1");
+INSERT INTO alumno VALUES("1741","Melendez",NULL,"21680638",NULL,"2020-09-08",NULL,NULL,"AL41224","Fay","1");
+INSERT INTO alumno VALUES("1742","Melton",NULL,"6038948",NULL,"2020-09-08",NULL,NULL,"AL41225","Jelani","1");
+INSERT INTO alumno VALUES("1743","Mercado",NULL,"34567537",NULL,"2020-09-08",NULL,NULL,"AL41226","Jameson","1");
+INSERT INTO alumno VALUES("1744","Mercer",NULL,"48837147",NULL,"2020-09-08",NULL,NULL,"AL41227","Howard","1");
+INSERT INTO alumno VALUES("1745","Mercer",NULL,"8388803",NULL,"2020-09-08",NULL,NULL,"AL41228","Quail","1");
+INSERT INTO alumno VALUES("1746","Merritt",NULL,"13556299",NULL,"2020-09-08",NULL,NULL,"AL41229","Hamish","1");
+INSERT INTO alumno VALUES("1747","Meyer",NULL,"11891058",NULL,"2020-09-08",NULL,NULL,"AL41230","Reese","1");
+INSERT INTO alumno VALUES("1748","Miles",NULL,"9612128",NULL,"2020-09-08",NULL,NULL,"AL41231","Rana","1");
+INSERT INTO alumno VALUES("1749","Mooney",NULL,"21527247",NULL,"2020-09-08",NULL,NULL,"AL41232","Katelyn","1");
+INSERT INTO alumno VALUES("1750","Mooney",NULL,"34541073",NULL,"2020-09-08",NULL,NULL,"AL41233","Magee","1");
+INSERT INTO alumno VALUES("1751","Morales",NULL,"34969826",NULL,"2020-09-08",NULL,NULL,"AL41234","Nathan","1");
+INSERT INTO alumno VALUES("1752","Moralez",NULL,"49207332",NULL,"2020-09-08",NULL,NULL,"AL41235","manuela","1");
+INSERT INTO alumno VALUES("1753","Moreno",NULL,"32484160",NULL,"2020-09-08",NULL,NULL,"AL41236","maria pilar","1");
+INSERT INTO alumno VALUES("1754","Morgan",NULL,"23808848",NULL,"2020-09-08",NULL,NULL,"AL41237","Coby","1");
+INSERT INTO alumno VALUES("1755","Mueller",NULL,"48882260",NULL,"2020-09-08",NULL,NULL,"AL41238","Gail","1");
+INSERT INTO alumno VALUES("1756","Mullen",NULL,"16244592",NULL,"2020-09-08",NULL,NULL,"AL41239","Nina","1");
+INSERT INTO alumno VALUES("1757","Muñoz",NULL,"44888501",NULL,"2020-09-08",NULL,NULL,"AL41240","Juan Jose","1");
+INSERT INTO alumno VALUES("1758","Murphy",NULL,"24556744",NULL,"2020-09-08",NULL,NULL,"AL41241","Ayanna","1");
+INSERT INTO alumno VALUES("1759","Murphy",NULL,"10507943",NULL,"2020-09-08",NULL,NULL,"AL41242","Demetrius","1");
+INSERT INTO alumno VALUES("1760","Nelson",NULL,"45757180",NULL,"2020-09-08",NULL,NULL,"AL41243","Germane","1");
+INSERT INTO alumno VALUES("1761","Newton",NULL,"31400914",NULL,"2020-09-08",NULL,NULL,"AL41244","Timothy","1");
+INSERT INTO alumno VALUES("1762","Nielsen",NULL,"18843297",NULL,"2020-09-08",NULL,NULL,"AL41245","Pascale","1");
+INSERT INTO alumno VALUES("1763","Oliver",NULL,"7905790",NULL,"2020-09-08",NULL,NULL,"AL41246","Ursa","1");
+INSERT INTO alumno VALUES("1764","Oneal",NULL,"33431495",NULL,"2020-09-08",NULL,NULL,"AL41247","Nathaniel","1");
+INSERT INTO alumno VALUES("1765","Oneil",NULL,"15651752",NULL,"2020-09-08",NULL,NULL,"AL41248","Madeson","1");
+INSERT INTO alumno VALUES("1766","Ortega",NULL,"46287308",NULL,"2020-09-08",NULL,NULL,"AL41249","Marta","1");
+INSERT INTO alumno VALUES("1767","Ortiz",NULL,"34755891",NULL,"2020-09-08",NULL,NULL,"AL41250","Encarnacion","1");
+INSERT INTO alumno VALUES("1768","Ortiz",NULL,"45968273",NULL,"2020-09-08",NULL,NULL,"AL41251","Hammett","1");
+INSERT INTO alumno VALUES("1769","Ortiz ",NULL,"22047023",NULL,"2020-09-08",NULL,NULL,"AL41252","Pablo ","1");
+INSERT INTO alumno VALUES("1770","Parker",NULL,"23141185",NULL,"2020-09-08",NULL,NULL,"AL41253","Kato","1");
+INSERT INTO alumno VALUES("1771","Parsons",NULL,"40338231",NULL,"2020-09-08",NULL,NULL,"AL41254","Lynn","1");
+INSERT INTO alumno VALUES("1772","Patterson",NULL,"20699148",NULL,"2020-09-08",NULL,NULL,"AL41255","Octavia","1");
+INSERT INTO alumno VALUES("1773","Patterson",NULL,"40274537",NULL,"2020-09-08",NULL,NULL,"AL41256","Rosalyn","1");
+INSERT INTO alumno VALUES("1774","Paul",NULL,"14150114",NULL,"2020-09-08",NULL,NULL,"AL41257","Leila","1");
+INSERT INTO alumno VALUES("1775","Payne",NULL,"40817811",NULL,"2020-09-08",NULL,NULL,"AL41258","Portia","1");
+INSERT INTO alumno VALUES("1776","Perez",NULL,"14597246",NULL,"2020-09-08",NULL,NULL,"AL41259","Gray","1");
+INSERT INTO alumno VALUES("1777","Perez",NULL,"33124056",NULL,"2020-09-08",NULL,NULL,"AL41260","Paula","1");
+INSERT INTO alumno VALUES("1778","Petersen",NULL,"34224227",NULL,"2020-09-08",NULL,NULL,"AL41261","Blossom","1");
+INSERT INTO alumno VALUES("1779","Petty",NULL,"21111049",NULL,"2020-09-08",NULL,NULL,"AL41262","Cameran","1");
+INSERT INTO alumno VALUES("1780","Picazo",NULL,"12821197",NULL,"2020-09-08",NULL,NULL,"AL41263","Elena","1");
+INSERT INTO alumno VALUES("1781","Puckett",NULL,"47537619",NULL,"2020-09-08",NULL,NULL,"AL41264","Zahir","1");
+INSERT INTO alumno VALUES("1782","Ramirez",NULL,"12693189",NULL,"2020-09-08",NULL,NULL,"AL41265","Mariela","1");
+INSERT INTO alumno VALUES("1783","Ramsey",NULL,"28423363",NULL,"2020-09-08",NULL,NULL,"AL41266","Kenyon","1");
+INSERT INTO alumno VALUES("1784","Ray",NULL,"27150078",NULL,"2020-09-08",NULL,NULL,"AL41267","Marny","1");
+INSERT INTO alumno VALUES("1785","Raymond",NULL,"8874625",NULL,"2020-09-08",NULL,NULL,"AL41268","Gary","1");
+INSERT INTO alumno VALUES("1786","Raymond",NULL,"13772878",NULL,"2020-09-08",NULL,NULL,"AL41269","Theodore","1");
+INSERT INTO alumno VALUES("1787","Reeves",NULL,"30943501",NULL,"2020-09-08",NULL,NULL,"AL41270","Dominic","1");
+INSERT INTO alumno VALUES("1788","Reilly",NULL,"25018737",NULL,"2020-09-08",NULL,NULL,"AL41271","Hanna","1");
+INSERT INTO alumno VALUES("1789","Richards",NULL,"9971350",NULL,"2020-09-08",NULL,NULL,"AL41272","Jesse","1");
+INSERT INTO alumno VALUES("1790","Robbins",NULL,"23049612",NULL,"2020-09-08",NULL,NULL,"AL41273","Amir","1");
+INSERT INTO alumno VALUES("1791","Roberson",NULL,"38627621",NULL,"2020-09-08",NULL,NULL,"AL41274","Mollie","1");
+INSERT INTO alumno VALUES("1792","Robertson",NULL,"12148427",NULL,"2020-09-08",NULL,NULL,"AL41275","Eliana","1");
+INSERT INTO alumno VALUES("1793","Robles",NULL,"22562138",NULL,"2020-09-08",NULL,NULL,"AL41276","Naomi","1");
+INSERT INTO alumno VALUES("1794","Romero",NULL,"46294563",NULL,"2020-09-08",NULL,NULL,"AL41277","Ana Maria","1");
+INSERT INTO alumno VALUES("1795","Roth",NULL,"7845681",NULL,"2020-09-08",NULL,NULL,"AL41278","Eaton","1");
+INSERT INTO alumno VALUES("1796","Rubio",NULL,"8647566",NULL,"2020-09-08",NULL,NULL,"AL41279","Lucia","1");
+INSERT INTO alumno VALUES("1797","Rutledge",NULL,"11604323",NULL,"2020-09-08",NULL,NULL,"AL41280","Gregory","1");
+INSERT INTO alumno VALUES("1798","Ryan",NULL,"21717906",NULL,"2020-09-08",NULL,NULL,"AL41281","Mariko","1");
+INSERT INTO alumno VALUES("1799","Saez",NULL,"8726399",NULL,"2020-09-08",NULL,NULL,"AL41282","Luis","1");
+INSERT INTO alumno VALUES("1800","Sampson",NULL,"26275883",NULL,"2020-09-08",NULL,NULL,"AL41283","Ryan","1");
+INSERT INTO alumno VALUES("1801","Sanchez",NULL,"37824311",NULL,"2020-09-08",NULL,NULL,"AL41284","Pedro","1");
+INSERT INTO alumno VALUES("1802","Sanchez",NULL,"45843775",NULL,"2020-09-08",NULL,NULL,"AL41285","Pedro ","1");
+INSERT INTO alumno VALUES("1803","Sears",NULL,"44060633",NULL,"2020-09-08",NULL,NULL,"AL41286","Colette","1");
+INSERT INTO alumno VALUES("1804","Sears",NULL,"47835848",NULL,"2020-09-08",NULL,NULL,"AL41288","Uriel","1");
+INSERT INTO alumno VALUES("1805","Sgroi","$2y$10$sfKIZ5rzF7wWPqWSsB6nFOn6o3uaIH5nhaXvaiFr3ICiHJSAADng.","40102196","lean@mail.com","2020-09-08",NULL,NULL,"AL41414","Leandro","1");
+INSERT INTO alumno VALUES("1806","Skinner",NULL,"41288968",NULL,"2020-09-08",NULL,NULL,"AL41289","Ruth","1");
+INSERT INTO alumno VALUES("1807","Sloan",NULL,"7949419",NULL,"2020-09-08",NULL,NULL,"AL41290","Clare","1");
+INSERT INTO alumno VALUES("1808","Solomon",NULL,"29770639",NULL,"2020-09-08",NULL,NULL,"AL41291","Ulla","1");
+INSERT INTO alumno VALUES("1809","Stephens",NULL,"25644254",NULL,"2020-09-08",NULL,NULL,"AL41292","Channing","1");
+INSERT INTO alumno VALUES("1810","Stone",NULL,"25933535",NULL,"2020-09-08",NULL,NULL,"AL41293","Dawn","1");
+INSERT INTO alumno VALUES("1811","Stone",NULL,"8553228",NULL,"2020-09-08",NULL,NULL,"AL41294","Denton","1");
+INSERT INTO alumno VALUES("1812","Stout",NULL,"42720207",NULL,"2020-09-08",NULL,NULL,"AL41295","Cassidy","1");
+INSERT INTO alumno VALUES("1813","Sutton",NULL,"43904374",NULL,"2020-09-08",NULL,NULL,"AL41296","Scarlet","1");
+INSERT INTO alumno VALUES("1814","Tanner",NULL,"6986876",NULL,"2020-09-08",NULL,NULL,"AL41297","Adam","1");
+INSERT INTO alumno VALUES("1815","Taylor",NULL,"45575547",NULL,"2020-09-08",NULL,NULL,"AL41298","Stephen","1");
+INSERT INTO alumno VALUES("1816","Thornton",NULL,"36467874",NULL,"2020-09-08",NULL,NULL,"AL41299","Cameron","1");
+INSERT INTO alumno VALUES("1817","Torres",NULL,"8258764",NULL,"2020-09-08",NULL,NULL,"AL41300","Francisco Javier","1");
+INSERT INTO alumno VALUES("1818","Townsend",NULL,"41565942",NULL,"2020-09-08",NULL,NULL,"AL41301","Jacqueline","1");
+INSERT INTO alumno VALUES("1819","Turner",NULL,"32277550",NULL,"2020-09-08",NULL,NULL,"AL41302","Macy","1");
+INSERT INTO alumno VALUES("1820","Valenzuela",NULL,"30039298",NULL,"2020-09-08",NULL,NULL,"AL41303","Aurora","1");
+INSERT INTO alumno VALUES("1821","Vargas",NULL,"38898965",NULL,"2020-09-08",NULL,NULL,"AL41304","Lars","1");
+INSERT INTO alumno VALUES("1822","Vasquez",NULL,"9568854",NULL,"2020-09-08",NULL,NULL,"AL41305","Iris","1");
+INSERT INTO alumno VALUES("1823","Vega",NULL,"49671795",NULL,"2020-09-08",NULL,NULL,"AL41306","Joy","1");
+INSERT INTO alumno VALUES("1824","Velazquez",NULL,"16303341",NULL,"2020-09-08",NULL,NULL,"AL41307","Carter","1");
+INSERT INTO alumno VALUES("1825","Velez",NULL,"19266093",NULL,"2020-09-08",NULL,NULL,"AL41308","Hashim","1");
+INSERT INTO alumno VALUES("1826","Velez",NULL,"23014472",NULL,"2020-09-08",NULL,NULL,"AL41309","Wynter","1");
+INSERT INTO alumno VALUES("1827","Ward",NULL,"41100921",NULL,"2020-09-08",NULL,NULL,"AL41310","Clare","1");
+INSERT INTO alumno VALUES("1828","Ward",NULL,"44786239",NULL,"2020-09-08",NULL,NULL,"AL41311","Zachery","1");
+INSERT INTO alumno VALUES("1829","Watson",NULL,"16968661",NULL,"2020-09-08",NULL,NULL,"AL41312","Candice","1");
+INSERT INTO alumno VALUES("1830","Watts",NULL,"37404149",NULL,"2020-09-08",NULL,NULL,"AL41313","Cairo","1");
+INSERT INTO alumno VALUES("1831","Weeks",NULL,"20445652",NULL,"2020-09-08",NULL,NULL,"AL41314","Ignatius","1");
+INSERT INTO alumno VALUES("1832","Wells",NULL,"30607549",NULL,"2020-09-08",NULL,NULL,"AL41315","Hamilton","1");
+INSERT INTO alumno VALUES("1833","Wheeler",NULL,"17613236",NULL,"2020-09-08",NULL,NULL,"AL41316","Benjamin","1");
+INSERT INTO alumno VALUES("1834","Whitney",NULL,"31491848",NULL,"2020-09-08",NULL,NULL,"AL41317","Willow","1");
+INSERT INTO alumno VALUES("1835","Wilkinson",NULL,"6691125",NULL,"2020-09-08",NULL,NULL,"AL41318","Christen","1");
+INSERT INTO alumno VALUES("1836","Witt",NULL,"48725746",NULL,"2020-09-08",NULL,NULL,"AL41319","Illana","1");
+INSERT INTO alumno VALUES("1837","Wolf",NULL,"17524543",NULL,"2020-09-08",NULL,NULL,"AL41320","Whitney","1");
+INSERT INTO alumno VALUES("1838","Woodard","EwcyB5UOJEIAo23KgrruaQ==","19255872","algo@mail.com","2020-09-08","2020-09-30",NULL,"AL41321","Amethyst","1");
+INSERT INTO alumno VALUES("1839","Wooten",NULL,"33285501",NULL,"2020-09-08",NULL,NULL,"AL41322","Preston","1");
 INSERT INTO alumno VALUES("1840","Wynn","$2y$10$Kw9QS1UpfLl/2looKv7n/OxaAJp0jaEBEneYCGLmw2v0s.Vsyv1Hm","49914939","pwynn@mail.com","2020-09-08","2020-09-30","2012-06-30","AL41324","Pamela","1");
-INSERT INTO alumno VALUES("1841","Yang","","25159132","","2020-09-08","","","AL41325","Ferris","1");
-INSERT INTO alumno VALUES("1842","Richards","","45612398","","2020-09-08","","","AL95123","Estefania","1");
-INSERT INTO alumno VALUES("1613","Aguirre","$2y$10$3Yb9yW0c.gzoQtuIkuxgVOGUltzajvG0KFdbU3hSaKfeI/9o29a8O","48637507","iaguirre@mail.com","2020-09-08","","1998-06-11","AL41096","Imelda","1");
-INSERT INTO alumno VALUES("1852","ortiz","","20001243","","2020-09-11","","","AL41414","leandro","1");
-INSERT INTO alumno VALUES("1853","Sears","","47835848","","2020-09-22","","","AL41287","Uriel","1");
-INSERT INTO alumno VALUES("1851","Sanchez","$2y$10$7TAPZqLqyC3qidPfmBZs0u6489E/LPVVahRs3SkmtuaCGXF7pqL..","7512360","asanchez@mail.com","2020-09-09","","1989-11-20","AL89600","Arnaldo","1");
-INSERT INTO alumno VALUES("1854","Sgroi","","40102196","","2020-09-22","","","AL41288","Leandro ","1");
-INSERT INTO alumno VALUES("1855","Wuito","","25704075","","2020-09-30","","","AL41329","Esteban ","1");
+INSERT INTO alumno VALUES("1841","Yang",NULL,"25159132",NULL,"2020-09-08",NULL,NULL,"AL41325","Ferris","1");
+INSERT INTO alumno VALUES("1842","Richards",NULL,"45612398",NULL,"2020-09-08",NULL,NULL,"AL95123","Estefania","1");
+INSERT INTO alumno VALUES("1613","Aguirre","$2y$10$3Yb9yW0c.gzoQtuIkuxgVOGUltzajvG0KFdbU3hSaKfeI/9o29a8O","48637507","iaguirre@mail.com","2020-09-08",NULL,"1998-06-11","AL41096","Imelda","1");
+INSERT INTO alumno VALUES("1852","ortiz",NULL,"20001243",NULL,"2020-09-11",NULL,NULL,"AL41414","leandro","1");
+INSERT INTO alumno VALUES("1853","Sears",NULL,"47835848",NULL,"2020-09-22",NULL,NULL,"AL41287","Uriel","1");
+INSERT INTO alumno VALUES("1851","Sanchez","$2y$10$7TAPZqLqyC3qidPfmBZs0u6489E/LPVVahRs3SkmtuaCGXF7pqL..","7512360","asanchez@mail.com","2020-09-09",NULL,"1989-11-20","AL89600","Arnaldo","1");
+INSERT INTO alumno VALUES("1854","Sgroi",NULL,"40102196",NULL,"2020-09-22",NULL,NULL,"AL41288","Leandro ","1");
+INSERT INTO alumno VALUES("1855","Wuito",NULL,"25704075",NULL,"2020-09-30",NULL,NULL,"AL41329","Esteban ","1");
 
 
 
@@ -411,44 +411,44 @@ CREATE TABLE `asistencia` (
   KEY `FK5inf5bn7xwmwnrnebu1rk5cjj` (`curso_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=345 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO asistencia VALUES("339","","1732","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("338","","1731","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("337","","1730","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("336","","1729","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("335","","1715","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("334","","1714","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("333","","1713","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("332","","1712","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("326","","1851","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("327","","1805","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("328","","1851","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("329","","1613","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("330","","1614","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("331","","1615","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("340","","1733","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("341","","1734","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("342","","1735","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("344","","1737","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("343","","1736","20","2020-10-31","2020-09-17");
-INSERT INTO asistencia VALUES("315","","1715","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("314","","1714","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("313","","1713","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("312","","1712","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("311","","1615","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("310","","1614","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("309","","1613","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("316","","1729","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("317","","1730","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("318","","1731","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("325","","1805","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("324","","1737","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("323","","1736","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("322","","1735","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("321","","1734","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("320","","1733","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("319","","1732","18","2020-11-30","2020-08-10");
-INSERT INTO asistencia VALUES("308","","1851","25","2020-11-30","2020-09-01");
-INSERT INTO asistencia VALUES("307","","1805","25","2020-11-30","2020-09-01");
+INSERT INTO asistencia VALUES("339",NULL,"1732","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("338",NULL,"1731","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("337",NULL,"1730","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("336",NULL,"1729","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("335",NULL,"1715","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("334",NULL,"1714","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("333",NULL,"1713","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("332",NULL,"1712","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("326",NULL,"1851","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("327",NULL,"1805","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("328",NULL,"1851","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("329",NULL,"1613","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("330",NULL,"1614","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("331",NULL,"1615","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("340",NULL,"1733","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("341",NULL,"1734","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("342",NULL,"1735","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("344",NULL,"1737","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("343",NULL,"1736","20","2020-10-31","2020-09-17");
+INSERT INTO asistencia VALUES("315",NULL,"1715","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("314",NULL,"1714","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("313",NULL,"1713","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("312",NULL,"1712","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("311",NULL,"1615","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("310",NULL,"1614","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("309",NULL,"1613","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("316",NULL,"1729","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("317",NULL,"1730","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("318",NULL,"1731","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("325",NULL,"1805","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("324",NULL,"1737","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("323",NULL,"1736","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("322",NULL,"1735","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("321",NULL,"1734","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("320",NULL,"1733","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("319",NULL,"1732","18","2020-11-30","2020-08-10");
+INSERT INTO asistencia VALUES("308",NULL,"1851","25","2020-11-30","2020-09-01");
+INSERT INTO asistencia VALUES("307",NULL,"1805","25","2020-11-30","2020-09-01");
 
 
 
@@ -717,12 +717,12 @@ CREATE TABLE `cargo` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO cargo VALUES("1","2020-07-31","","Titular");
-INSERT INTO cargo VALUES("2","2020-07-31","","JTP");
-INSERT INTO cargo VALUES("3","2020-08-23","","Auxiliar");
-INSERT INTO cargo VALUES("4","2020-08-23","","Adjunto");
-INSERT INTO cargo VALUES("8","2020-09-24","","Ayudante de 1era");
-INSERT INTO cargo VALUES("7","2020-09-15","","Suplente");
+INSERT INTO cargo VALUES("1","2020-07-31",NULL,"Titular");
+INSERT INTO cargo VALUES("2","2020-07-31",NULL,"JTP");
+INSERT INTO cargo VALUES("3","2020-08-23",NULL,"Auxiliar");
+INSERT INTO cargo VALUES("4","2020-08-23",NULL,"Adjunto");
+INSERT INTO cargo VALUES("8","2020-09-24",NULL,"Ayudante de 1era");
+INSERT INTO cargo VALUES("7","2020-09-15",NULL,"Suplente");
 
 
 
@@ -741,16 +741,16 @@ CREATE TABLE `cargoprofesor` (
   KEY `FKjcr7feyg610sv4gde6ts2lvbj` (`profesor_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO cargoprofesor VALUES("23","2020-09-21","","1","23","238");
+INSERT INTO cargoprofesor VALUES("23","2020-09-21",NULL,"1","23","238");
 INSERT INTO cargoprofesor VALUES("22","2020-09-21","2020-09-27","2","20","238");
 INSERT INTO cargoprofesor VALUES("21","2020-09-21","2020-09-21","1","20","238");
 INSERT INTO cargoprofesor VALUES("20","2020-09-21","2020-09-27","1","20","231");
-INSERT INTO cargoprofesor VALUES("19","2020-09-20","","1","18","226");
-INSERT INTO cargoprofesor VALUES("29","2020-09-29","","1","27","238");
-INSERT INTO cargoprofesor VALUES("28","2020-09-27","","1","20","238");
-INSERT INTO cargoprofesor VALUES("26","2020-09-22","","4","25","250");
-INSERT INTO cargoprofesor VALUES("27","2020-09-22","","7","25","238");
-INSERT INTO cargoprofesor VALUES("30","2020-10-01","","7","18","227");
+INSERT INTO cargoprofesor VALUES("19","2020-09-20",NULL,"1","18","226");
+INSERT INTO cargoprofesor VALUES("29","2020-09-29",NULL,"1","27","238");
+INSERT INTO cargoprofesor VALUES("28","2020-09-27",NULL,"1","20","238");
+INSERT INTO cargoprofesor VALUES("26","2020-09-22",NULL,"4","25","250");
+INSERT INTO cargoprofesor VALUES("27","2020-09-22",NULL,"7","25","238");
+INSERT INTO cargoprofesor VALUES("30","2020-10-01",NULL,"7","18","227");
 
 
 
@@ -765,16 +765,16 @@ CREATE TABLE `cargoprofesorestado` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-INSERT INTO cargoprofesorestado VALUES("21","2020-09-20","","1","19");
-INSERT INTO cargoprofesorestado VALUES("22","2020-09-21","","1","20");
-INSERT INTO cargoprofesorestado VALUES("23","2020-09-21","","1","28");
-INSERT INTO cargoprofesorestado VALUES("24","2020-09-21","","1","23");
-INSERT INTO cargoprofesorestado VALUES("25","2020-09-22","","1","24");
-INSERT INTO cargoprofesorestado VALUES("26","2020-09-22","","1","25");
-INSERT INTO cargoprofesorestado VALUES("27","2020-09-22","","1","26");
-INSERT INTO cargoprofesorestado VALUES("28","2020-09-22","","1","27");
-INSERT INTO cargoprofesorestado VALUES("31","2020-09-29","","1","29");
-INSERT INTO cargoprofesorestado VALUES("32","2020-10-01","","1","30");
+INSERT INTO cargoprofesorestado VALUES("21","2020-09-20",NULL,"1","19");
+INSERT INTO cargoprofesorestado VALUES("22","2020-09-21",NULL,"1","20");
+INSERT INTO cargoprofesorestado VALUES("23","2020-09-21",NULL,"1","28");
+INSERT INTO cargoprofesorestado VALUES("24","2020-09-21",NULL,"1","23");
+INSERT INTO cargoprofesorestado VALUES("25","2020-09-22",NULL,"1","24");
+INSERT INTO cargoprofesorestado VALUES("26","2020-09-22",NULL,"1","25");
+INSERT INTO cargoprofesorestado VALUES("27","2020-09-22",NULL,"1","26");
+INSERT INTO cargoprofesorestado VALUES("28","2020-09-22",NULL,"1","27");
+INSERT INTO cargoprofesorestado VALUES("31","2020-09-29",NULL,"1","29");
+INSERT INTO cargoprofesorestado VALUES("32","2020-10-01",NULL,"1","30");
 
 
 
@@ -832,13 +832,13 @@ CREATE TABLE `curso` (
   KEY `FK48osbikkitlflgwqf0vh8qt7j` (`materia_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO curso VALUES("18","2020-08-23","","Lengua - 4K10","2","4","2020-08-10","2020-11-30");
-INSERT INTO curso VALUES("20","2020-09-01","","Matemática - 4K10","2","6","2020-09-17","2020-10-31");
+INSERT INTO curso VALUES("18","2020-08-23",NULL,"Lengua - 4K10","2","4","2020-08-10","2020-11-30");
+INSERT INTO curso VALUES("20","2020-09-01",NULL,"Matemática - 4K10","2","6","2020-09-17","2020-10-31");
 INSERT INTO curso VALUES("21","2020-09-05","2020-09-15","Lengua - 4K13","4","4","2020-08-10","2020-11-30");
-INSERT INTO curso VALUES("22","2020-09-20","","Lengua - 4K9","1","4","2020-08-20","2020-11-30");
-INSERT INTO curso VALUES("23","2020-09-21","","Matemática - 4K9","1","6","2020-09-01","2020-10-31");
-INSERT INTO curso VALUES("25","2020-09-22","","Biología - 5E10","5","9","2020-09-01","2020-11-30");
-INSERT INTO curso VALUES("27","2020-09-27","","Matemática - 5E9","6","7","","");
+INSERT INTO curso VALUES("22","2020-09-20",NULL,"Lengua - 4K9","1","4","2020-08-20","2020-11-30");
+INSERT INTO curso VALUES("23","2020-09-21",NULL,"Matemática - 4K9","1","6","2020-09-01","2020-10-31");
+INSERT INTO curso VALUES("25","2020-09-22",NULL,"Biología - 5E10","5","9","2020-09-01","2020-11-30");
+INSERT INTO curso VALUES("27","2020-09-27",NULL,"Matemática - 5E9","6","7",NULL,NULL);
 
 
 
@@ -888,11 +888,11 @@ CREATE TABLE `division` (
   KEY `FKfr54cpkq6e5mmhivhi546oboy` (`modalidad_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO division VALUES("1","2020-07-31","","4K9","1");
-INSERT INTO division VALUES("2","2020-08-13","","4K10","1");
-INSERT INTO division VALUES("4","2020-08-15","","4K13","1");
-INSERT INTO division VALUES("5","2020-09-22","","5E10","2");
-INSERT INTO division VALUES("6","2020-09-22","","5E9","2");
+INSERT INTO division VALUES("1","2020-07-31",NULL,"4K9","1");
+INSERT INTO division VALUES("2","2020-08-13",NULL,"4K10","1");
+INSERT INTO division VALUES("4","2020-08-15",NULL,"4K13","1");
+INSERT INTO division VALUES("5","2020-09-22",NULL,"5E10","2");
+INSERT INTO division VALUES("6","2020-09-22",NULL,"5E9","2");
 
 
 
@@ -1019,13 +1019,13 @@ CREATE TABLE `materia` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO materia VALUES("4","2020-08-23","","1","Lengua","16");
-INSERT INTO materia VALUES("5","2020-08-23","","2","Lengua","");
-INSERT INTO materia VALUES("6","2020-09-01","","1","Matemática","8");
-INSERT INTO materia VALUES("7","2020-09-05","","2","Matemática","36");
-INSERT INTO materia VALUES("8","2020-09-21","","3","Matemática","6");
-INSERT INTO materia VALUES("9","2020-09-21","","1","Biología","8");
-INSERT INTO materia VALUES("10","2020-09-22","","3","Ciencias Sociales","6");
+INSERT INTO materia VALUES("4","2020-08-23",NULL,"1","Lengua","16");
+INSERT INTO materia VALUES("5","2020-08-23",NULL,"2","Lengua",NULL);
+INSERT INTO materia VALUES("6","2020-09-01",NULL,"1","Matemática","8");
+INSERT INTO materia VALUES("7","2020-09-05",NULL,"2","Matemática","36");
+INSERT INTO materia VALUES("8","2020-09-21",NULL,"3","Matemática","6");
+INSERT INTO materia VALUES("9","2020-09-21",NULL,"1","Biología","8");
+INSERT INTO materia VALUES("10","2020-09-22",NULL,"3","Ciencias Sociales","6");
 
 
 
@@ -1039,9 +1039,9 @@ CREATE TABLE `modalidad` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO modalidad VALUES("1","2020-07-31","","Sistemas");
-INSERT INTO modalidad VALUES("2","2020-08-27","","Enonomia");
-INSERT INTO modalidad VALUES("3","2020-09-01","","Humanidades");
+INSERT INTO modalidad VALUES("1","2020-07-31",NULL,"Sistemas");
+INSERT INTO modalidad VALUES("2","2020-08-27",NULL,"Enonomia");
+INSERT INTO modalidad VALUES("3","2020-09-01",NULL,"Humanidades");
 
 
 
@@ -1095,9 +1095,11 @@ CREATE TABLE `paramminimoasistencia` (
   `cursoEstadoAlumno_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKdsdauip557b770enom24gw1h8` (`cursoEstadoAlumno_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO paramminimoasistencia VALUES("2","2020-09-13","","0.85","");
+INSERT INTO paramminimoasistencia VALUES("2","2020-09-13","2020-10-03","0.85",NULL);
+INSERT INTO paramminimoasistencia VALUES("6","2020-10-03","2020-10-03","0.3",NULL);
+INSERT INTO paramminimoasistencia VALUES("7","2020-10-03",NULL,"0.85",NULL);
 
 
 
@@ -1111,9 +1113,9 @@ CREATE TABLE `permiso` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO permiso VALUES("1","2020-07-30","","ALUMNO");
-INSERT INTO permiso VALUES("2","2020-07-30","","DOCENTE");
-INSERT INTO permiso VALUES("3","2020-07-30","","ADMINISTRADOR");
+INSERT INTO permiso VALUES("1","2020-07-30",NULL,"ALUMNO");
+INSERT INTO permiso VALUES("2","2020-07-30",NULL,"DOCENTE");
+INSERT INTO permiso VALUES("3","2020-07-30",NULL,"ADMINISTRADOR");
 
 
 
@@ -1135,68 +1137,68 @@ CREATE TABLE `profesor` (
   KEY `FK62q9qdgk50ph2cra8pt464rpp` (`permiso_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=288 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO profesor VALUES("232","Barnes","","14467596","","2020-09-20","","","PR90006","Daria","2");
-INSERT INTO profesor VALUES("233","Barry","","11537358","","2020-09-20","","","PR90007","Vance","2");
-INSERT INTO profesor VALUES("231","Barlow","","20684890","","2020-09-20","","","PR90005","Nash","2");
-INSERT INTO profesor VALUES("228","Andrews","","11700237","","2020-09-20","","","PR90002","Arden","2");
-INSERT INTO profesor VALUES("229","Anthony","","16529441","","2020-09-20","","","PR90003","Faith","2");
-INSERT INTO profesor VALUES("270","Higgins","","20557761","","2020-09-20","","","PR90044","Shad","2");
-INSERT INTO profesor VALUES("269","Herman","","17350654","","2020-09-20","","","PR90043","Pearl","2");
-INSERT INTO profesor VALUES("268","Hatfield","","10462925","","2020-09-20","","","PR90042","Kasimir","2");
-INSERT INTO profesor VALUES("267","Hartman","","21185275","","2020-09-20","","","PR90041","Darrel","2");
-INSERT INTO profesor VALUES("266","Hardy","","21262344","","2020-09-20","","","PR90040","Lars","2");
-INSERT INTO profesor VALUES("265","Griffin","","23432540","","2020-09-20","","","PR90039","Jaquelyn","2");
-INSERT INTO profesor VALUES("264","Good","","23523841","","2020-09-20","","","PR90038","Hayley","2");
-INSERT INTO profesor VALUES("263","Gentry","","19947972","","2020-09-20","","","PR90037","Anastasia","2");
-INSERT INTO profesor VALUES("262","Franco","","23803239","","2020-09-20","","","PR90036","Prescott","2");
-INSERT INTO profesor VALUES("261","Foreman","","19085599","","2020-09-20","","","PR90035","Oliver","2");
-INSERT INTO profesor VALUES("260","Fisher","","20574466","","2020-09-20","","","PR90034","Emmanuel","2");
-INSERT INTO profesor VALUES("259","Fields","","20752043","","2020-09-20","","","PR90033","Ivana","2");
-INSERT INTO profesor VALUES("258","Farley","","20318629","","2020-09-20","","","PR90032","Madonna","2");
-INSERT INTO profesor VALUES("257","Drake","","14628685","","2020-09-20","","","PR90031","Hilda","2");
-INSERT INTO profesor VALUES("256","Doyle","","13667844","","2020-09-20","","","PR90030","Rashad","2");
-INSERT INTO profesor VALUES("255","Daniels","","24602983","","2020-09-20","","","PR90029","Nicole","2");
-INSERT INTO profesor VALUES("254","Crane","","24842771","","2020-09-20","","","PR90028","Drake","2");
-INSERT INTO profesor VALUES("253","Cotton","","20277607","","2020-09-20","","","PR90027","Savannah","2");
-INSERT INTO profesor VALUES("252","Cortez","","12921202","","2020-09-20","","","PR90026","Nadine","2");
-INSERT INTO profesor VALUES("251","Collins","","16572676","","2020-09-20","","","PR90025","Price","2");
-INSERT INTO profesor VALUES("250","Clarke","","10725176","","2020-09-20","","","PR90024","Hedley","2");
-INSERT INTO profesor VALUES("249","Chambers","","11080178","","2020-09-20","","","PR90023","Owen","2");
-INSERT INTO profesor VALUES("248","Cervantes","","13206018","","2020-09-20","","","PR90022","Fuller","2");
-INSERT INTO profesor VALUES("247","Carlson","","19247224","","2020-09-20","","","PR90021","Garrett","2");
-INSERT INTO profesor VALUES("246","Cameron","","24904907","","2020-09-20","","","PR90020","Elvis","2");
-INSERT INTO profesor VALUES("245","Bullock","","17032877","","2020-09-20","","","PR90019","Gail","2");
-INSERT INTO profesor VALUES("244","Buchanan","","19763883","","2020-09-20","","","PR90018","Abigail","2");
-INSERT INTO profesor VALUES("243","Bruce","","14187665","","2020-09-20","","","PR90017","Louis","2");
-INSERT INTO profesor VALUES("242","Brown","","15583560","","2020-09-20","","","PR90016","Boris","2");
-INSERT INTO profesor VALUES("241","Brooks","","15630879","","2020-09-20","","","PR90015","Ian","2");
-INSERT INTO profesor VALUES("240","Bray","","23758230","","2020-09-20","","","PR90014","Drake","2");
-INSERT INTO profesor VALUES("239","Brady","","24306617","","2020-09-20","","","PR90013","Lenore","2");
-INSERT INTO profesor VALUES("238","Bradshaw","$2y$10$Wmo5Ss7YxiLrTHksBg9rHuY.GfnjicERCIFYdx92eB3Uuf622HeYi","15151583","sbrad@mail.com","2020-09-20","","1987-02-21","PR90012","Samantha","2");
-INSERT INTO profesor VALUES("237","Bradford","","24157590","","2020-09-20","","","PR90011","Kathleen","2");
-INSERT INTO profesor VALUES("236","Bond","","12618030","","2020-09-20","","","PR90010","Giselle","2");
-INSERT INTO profesor VALUES("235","Beard","","19617326","","2020-09-20","","","PR90009","Brock","2");
-INSERT INTO profesor VALUES("234","Bauer","","20609060","","2020-09-20","","","PR90008","Len","2");
-INSERT INTO profesor VALUES("230","Ballard","","21669268","","2020-09-20","","","PR90004","Petra","2");
-INSERT INTO profesor VALUES("226","Aguirre","$2y$10$jUZsqLYkV4YVGB0vVPo9/uDZ0jpKMSOjxIvEjFHDqR1kJ1tWo8v66","14248800","cobyaguirre@mail.com","2020-09-20","","1960-11-18","PR90000","Coby","2");
-INSERT INTO profesor VALUES("227","Alvarado","","23234845","","2020-09-20","","","PR90001","Rana","2");
-INSERT INTO profesor VALUES("271","Higgins","","11546781","","2020-09-20","","","PR90045","Kalia","2");
-INSERT INTO profesor VALUES("272","Hogan","","18531701","","2020-09-20","","","PR90046","Sydnee","2");
-INSERT INTO profesor VALUES("273","Holcomb","","15395201","","2020-09-20","","","PR90047","Anastasia","2");
-INSERT INTO profesor VALUES("274","Hood","","16763857","","2020-09-20","","","PR90048","Uriah","2");
-INSERT INTO profesor VALUES("275","Hopkins","","10892106","","2020-09-20","","","PR90049","Fritz","2");
-INSERT INTO profesor VALUES("276","Hubbard","","22865049","","2020-09-20","","","PR90050","Wendy","2");
-INSERT INTO profesor VALUES("277","Huffman","","20484134","","2020-09-20","","","PR90051","Bradley","2");
-INSERT INTO profesor VALUES("278","Hutchinson","","15838695","","2020-09-20","","","PR90052","Jolie","2");
-INSERT INTO profesor VALUES("279","Hyde","","12406334","","2020-09-20","","","PR90053","Warren","2");
-INSERT INTO profesor VALUES("280","Jefferson","","16737751","","2020-09-20","","","PR90054","Deborah","2");
-INSERT INTO profesor VALUES("281","Johnson","","12809807","","2020-09-20","","","PR90055","Gavin","2");
-INSERT INTO profesor VALUES("282","Kaufman","","11865383","","2020-09-20","","","PR90056","Dieter","2");
-INSERT INTO profesor VALUES("283","Kent","","18306692","","2020-09-20","","","PR90057","Blaze","2");
-INSERT INTO profesor VALUES("284","Kinney","","12295784","","2020-09-20","","","PR90058","Colleen","2");
-INSERT INTO profesor VALUES("285","Klein","","11858591","","2020-09-20","","","PR90059","Emi","2");
-INSERT INTO profesor VALUES("286","Knapp","","19115260","","2020-09-20","","","PR90060","Lillith","2");
-INSERT INTO profesor VALUES("287","Knapp","","19110060","","2020-09-30","2020-09-30","","PR90069","Lillith","2");
+INSERT INTO profesor VALUES("232","Barnes",NULL,"14467596",NULL,"2020-09-20",NULL,NULL,"PR90006","Daria","2");
+INSERT INTO profesor VALUES("233","Barry",NULL,"11537358",NULL,"2020-09-20",NULL,NULL,"PR90007","Vance","2");
+INSERT INTO profesor VALUES("231","Barlow",NULL,"20684890",NULL,"2020-09-20",NULL,NULL,"PR90005","Nash","2");
+INSERT INTO profesor VALUES("228","Andrews",NULL,"11700237",NULL,"2020-09-20",NULL,NULL,"PR90002","Arden","2");
+INSERT INTO profesor VALUES("229","Anthony",NULL,"16529441",NULL,"2020-09-20",NULL,NULL,"PR90003","Faith","2");
+INSERT INTO profesor VALUES("270","Higgins",NULL,"20557761",NULL,"2020-09-20",NULL,NULL,"PR90044","Shad","2");
+INSERT INTO profesor VALUES("269","Herman",NULL,"17350654",NULL,"2020-09-20",NULL,NULL,"PR90043","Pearl","2");
+INSERT INTO profesor VALUES("268","Hatfield",NULL,"10462925",NULL,"2020-09-20",NULL,NULL,"PR90042","Kasimir","2");
+INSERT INTO profesor VALUES("267","Hartman",NULL,"21185275",NULL,"2020-09-20",NULL,NULL,"PR90041","Darrel","2");
+INSERT INTO profesor VALUES("266","Hardy",NULL,"21262344",NULL,"2020-09-20",NULL,NULL,"PR90040","Lars","2");
+INSERT INTO profesor VALUES("265","Griffin",NULL,"23432540",NULL,"2020-09-20",NULL,NULL,"PR90039","Jaquelyn","2");
+INSERT INTO profesor VALUES("264","Good",NULL,"23523841",NULL,"2020-09-20",NULL,NULL,"PR90038","Hayley","2");
+INSERT INTO profesor VALUES("263","Gentry",NULL,"19947972",NULL,"2020-09-20",NULL,NULL,"PR90037","Anastasia","2");
+INSERT INTO profesor VALUES("262","Franco",NULL,"23803239",NULL,"2020-09-20",NULL,NULL,"PR90036","Prescott","2");
+INSERT INTO profesor VALUES("261","Foreman",NULL,"19085599",NULL,"2020-09-20",NULL,NULL,"PR90035","Oliver","2");
+INSERT INTO profesor VALUES("260","Fisher",NULL,"20574466",NULL,"2020-09-20",NULL,NULL,"PR90034","Emmanuel","2");
+INSERT INTO profesor VALUES("259","Fields",NULL,"20752043",NULL,"2020-09-20",NULL,NULL,"PR90033","Ivana","2");
+INSERT INTO profesor VALUES("258","Farley",NULL,"20318629",NULL,"2020-09-20",NULL,NULL,"PR90032","Madonna","2");
+INSERT INTO profesor VALUES("257","Drake",NULL,"14628685",NULL,"2020-09-20",NULL,NULL,"PR90031","Hilda","2");
+INSERT INTO profesor VALUES("256","Doyle",NULL,"13667844",NULL,"2020-09-20",NULL,NULL,"PR90030","Rashad","2");
+INSERT INTO profesor VALUES("255","Daniels",NULL,"24602983",NULL,"2020-09-20",NULL,NULL,"PR90029","Nicole","2");
+INSERT INTO profesor VALUES("254","Crane",NULL,"24842771",NULL,"2020-09-20",NULL,NULL,"PR90028","Drake","2");
+INSERT INTO profesor VALUES("253","Cotton",NULL,"20277607",NULL,"2020-09-20",NULL,NULL,"PR90027","Savannah","2");
+INSERT INTO profesor VALUES("252","Cortez",NULL,"12921202",NULL,"2020-09-20",NULL,NULL,"PR90026","Nadine","2");
+INSERT INTO profesor VALUES("251","Collins",NULL,"16572676",NULL,"2020-09-20",NULL,NULL,"PR90025","Price","2");
+INSERT INTO profesor VALUES("250","Clarke",NULL,"10725176",NULL,"2020-09-20",NULL,NULL,"PR90024","Hedley","2");
+INSERT INTO profesor VALUES("249","Chambers",NULL,"11080178",NULL,"2020-09-20",NULL,NULL,"PR90023","Owen","2");
+INSERT INTO profesor VALUES("248","Cervantes",NULL,"13206018",NULL,"2020-09-20",NULL,NULL,"PR90022","Fuller","2");
+INSERT INTO profesor VALUES("247","Carlson",NULL,"19247224",NULL,"2020-09-20",NULL,NULL,"PR90021","Garrett","2");
+INSERT INTO profesor VALUES("246","Cameron",NULL,"24904907",NULL,"2020-09-20",NULL,NULL,"PR90020","Elvis","2");
+INSERT INTO profesor VALUES("245","Bullock",NULL,"17032877",NULL,"2020-09-20",NULL,NULL,"PR90019","Gail","2");
+INSERT INTO profesor VALUES("244","Buchanan",NULL,"19763883",NULL,"2020-09-20",NULL,NULL,"PR90018","Abigail","2");
+INSERT INTO profesor VALUES("243","Bruce",NULL,"14187665",NULL,"2020-09-20",NULL,NULL,"PR90017","Louis","2");
+INSERT INTO profesor VALUES("242","Brown",NULL,"15583560",NULL,"2020-09-20",NULL,NULL,"PR90016","Boris","2");
+INSERT INTO profesor VALUES("241","Brooks",NULL,"15630879",NULL,"2020-09-20",NULL,NULL,"PR90015","Ian","2");
+INSERT INTO profesor VALUES("240","Bray",NULL,"23758230",NULL,"2020-09-20",NULL,NULL,"PR90014","Drake","2");
+INSERT INTO profesor VALUES("239","Brady",NULL,"24306617",NULL,"2020-09-20",NULL,NULL,"PR90013","Lenore","2");
+INSERT INTO profesor VALUES("238","Bradshaw","$2y$10$Wmo5Ss7YxiLrTHksBg9rHuY.GfnjicERCIFYdx92eB3Uuf622HeYi","15151583","sbrad@mail.com","2020-09-20",NULL,"1987-02-21","PR90012","Samantha","2");
+INSERT INTO profesor VALUES("237","Bradford",NULL,"24157590",NULL,"2020-09-20",NULL,NULL,"PR90011","Kathleen","2");
+INSERT INTO profesor VALUES("236","Bond",NULL,"12618030",NULL,"2020-09-20",NULL,NULL,"PR90010","Giselle","2");
+INSERT INTO profesor VALUES("235","Beard",NULL,"19617326",NULL,"2020-09-20",NULL,NULL,"PR90009","Brock","2");
+INSERT INTO profesor VALUES("234","Bauer",NULL,"20609060",NULL,"2020-09-20",NULL,NULL,"PR90008","Len","2");
+INSERT INTO profesor VALUES("230","Ballard",NULL,"21669268",NULL,"2020-09-20",NULL,NULL,"PR90004","Petra","2");
+INSERT INTO profesor VALUES("226","Aguirre","$2y$10$jUZsqLYkV4YVGB0vVPo9/uDZ0jpKMSOjxIvEjFHDqR1kJ1tWo8v66","14248800","cobyaguirre@mail.com","2020-09-20",NULL,"1960-11-18","PR90000","Coby","2");
+INSERT INTO profesor VALUES("227","Alvarado",NULL,"23234845",NULL,"2020-09-20",NULL,NULL,"PR90001","Rana","2");
+INSERT INTO profesor VALUES("271","Higgins",NULL,"11546781",NULL,"2020-09-20",NULL,NULL,"PR90045","Kalia","2");
+INSERT INTO profesor VALUES("272","Hogan",NULL,"18531701",NULL,"2020-09-20",NULL,NULL,"PR90046","Sydnee","2");
+INSERT INTO profesor VALUES("273","Holcomb",NULL,"15395201",NULL,"2020-09-20",NULL,NULL,"PR90047","Anastasia","2");
+INSERT INTO profesor VALUES("274","Hood",NULL,"16763857",NULL,"2020-09-20",NULL,NULL,"PR90048","Uriah","2");
+INSERT INTO profesor VALUES("275","Hopkins",NULL,"10892106",NULL,"2020-09-20",NULL,NULL,"PR90049","Fritz","2");
+INSERT INTO profesor VALUES("276","Hubbard",NULL,"22865049",NULL,"2020-09-20",NULL,NULL,"PR90050","Wendy","2");
+INSERT INTO profesor VALUES("277","Huffman",NULL,"20484134",NULL,"2020-09-20",NULL,NULL,"PR90051","Bradley","2");
+INSERT INTO profesor VALUES("278","Hutchinson",NULL,"15838695",NULL,"2020-09-20",NULL,NULL,"PR90052","Jolie","2");
+INSERT INTO profesor VALUES("279","Hyde",NULL,"12406334",NULL,"2020-09-20",NULL,NULL,"PR90053","Warren","2");
+INSERT INTO profesor VALUES("280","Jefferson",NULL,"16737751",NULL,"2020-09-20",NULL,NULL,"PR90054","Deborah","2");
+INSERT INTO profesor VALUES("281","Johnson",NULL,"12809807",NULL,"2020-09-20",NULL,NULL,"PR90055","Gavin","2");
+INSERT INTO profesor VALUES("282","Kaufman",NULL,"11865383",NULL,"2020-09-20",NULL,NULL,"PR90056","Dieter","2");
+INSERT INTO profesor VALUES("283","Kent",NULL,"18306692",NULL,"2020-09-20",NULL,NULL,"PR90057","Blaze","2");
+INSERT INTO profesor VALUES("284","Kinney",NULL,"12295784",NULL,"2020-09-20",NULL,NULL,"PR90058","Colleen","2");
+INSERT INTO profesor VALUES("285","Klein",NULL,"11858591",NULL,"2020-09-20",NULL,NULL,"PR90059","Emi","2");
+INSERT INTO profesor VALUES("286","Knapp",NULL,"19115260",NULL,"2020-09-20",NULL,NULL,"PR90060","Lillith","2");
+INSERT INTO profesor VALUES("287","Knapp",NULL,"19110060",NULL,"2020-09-30","2020-09-30",NULL,"PR90069","Lillith","2");
 
 
 
@@ -1216,14 +1218,14 @@ CREATE TABLE `programamateria` (
 INSERT INTO programamateria VALUES("17","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("16","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("15","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
-INSERT INTO programamateria VALUES("14","2020","Programa Matematica 1","","6","2020-09-23");
-INSERT INTO programamateria VALUES("13","2020","Programa Lengua 1","","4","2020-09-20");
+INSERT INTO programamateria VALUES("14","2020","Programa Matematica 1",NULL,"6","2020-09-23");
+INSERT INTO programamateria VALUES("13","2020","Programa Lengua 1",NULL,"4","2020-09-20");
 INSERT INTO programamateria VALUES("18","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("19","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("20","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("21","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("22","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
-INSERT INTO programamateria VALUES("23","2020","Programa Biología 1","","9","2020-09-24");
+INSERT INTO programamateria VALUES("23","2020","Programa Biología 1",NULL,"9","2020-09-24");
 
 
 
@@ -1245,11 +1247,11 @@ INSERT INTO temadia VALUES("8","Explicación y ejemplos, páginas 80 a 90 del li
 INSERT INTO temadia VALUES("9","Paginas 99 a 120 del libro de texto de la materia.\nFalta explicar página 119 a 120.","2020-09-21 00:00:00","18","133","226");
 INSERT INTO temadia VALUES("10","solo primeros conceptos","2020-09-23 00:00:00","20","153","238");
 INSERT INTO temadia VALUES("11","Primera clase explicación muy general, no profundice mucho","2020-09-24 19:58:52","25","194","238");
-INSERT INTO temadia VALUES("12","","2020-09-27 12:54:25","18","136","226");
+INSERT INTO temadia VALUES("12",NULL,"2020-09-27 12:54:25","18","136","226");
 INSERT INTO temadia VALUES("13","se da el tema completo ","2020-09-28 08:07:00","20","153","238");
 INSERT INTO temadia VALUES("14","trabajo practico Nro 1, para hacer ","2020-09-28 08:07:21","20","158","238");
-INSERT INTO temadia VALUES("15","","2020-10-01 16:59:32","18","137","226");
-INSERT INTO temadia VALUES("16","","2020-10-02 08:09:33","25","194","238");
+INSERT INTO temadia VALUES("15",NULL,"2020-10-01 16:59:32","18","137","226");
+INSERT INTO temadia VALUES("16",NULL,"2020-10-02 08:09:33","25","194","238");
 
 
 
@@ -1367,9 +1369,9 @@ CREATE TABLE `tipoasistencia` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO tipoasistencia VALUES("1","2020-08-03","","PRESENTE");
-INSERT INTO tipoasistencia VALUES("2","2020-08-03","","AUSENTE");
-INSERT INTO tipoasistencia VALUES("3","2020-09-01","","JUSTIFICADO");
+INSERT INTO tipoasistencia VALUES("1","2020-08-03",NULL,"PRESENTE");
+INSERT INTO tipoasistencia VALUES("2","2020-08-03",NULL,"AUSENTE");
+INSERT INTO tipoasistencia VALUES("3","2020-09-01",NULL,"JUSTIFICADO");
 
 
 
@@ -1379,8 +1381,9 @@ CREATE TABLE `vigenciasesion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `duracionSesion` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO vigenciasesion VALUES("1","40");
 
 
 

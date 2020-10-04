@@ -59,6 +59,22 @@ include "../../../databaseConection.php";
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al crear el backup de datos.</h5>";
                 break;
+            case 3:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Restauración exitosa de la Base de Datos.</h5>";
+                break;
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió al restaurar la Base de Datos.</h5>";
+                break;
+            case 5:
+                echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay ninguna copia almacenafa para restaurar.</h5>";
+                break;
+             case 6:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error del sistema, contancte al administrador de base de datos, para restauracion manual.</h5>";
+                break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
@@ -109,11 +125,11 @@ include "../../../databaseConection.php";
                     
                     <div class="container">
                         <div class="radio">
-                            <label><input type="radio" id="guardado" name="optradio" checked onclick='hide()'> Copia guadada en el sistema.</label>
+                            <label onclick='hide()'><input type="radio" id="guardado" name="optradio" checked onclick='hide()'> Copia guadada en el sistema.</label>
                         </div>
 
                         <div class="radio">
-                            <label><input type="radio" id="subir" name="optradio" onclick='unHide()'> Subir copia guadada.</label>
+                            <label onclick='unHide()'><input type="radio" id="subir" name="optradio" onclick='unHide()'> Subir copia guadada.</label>
                         </div>
                     </div>
                     
