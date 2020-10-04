@@ -1,4 +1,5 @@
 <?php
+echo "<div hidden>";
 include "../../../databaseConection.php";
 
 include "../../class.upload.php";
@@ -10,7 +11,6 @@ $descripcion = $_POST["inputDescripPrograma"];
 $currentDateTime = date('Y-m-d');
 $id_materia = $_POST["idMateria"];
 
-
 $consProgramaAnt = $con->query("SELECT * FROM `programamateria` WHERE programamateria.materia_id = '$id_materia' AND fechaHastaPrograma IS NULL");
 
 //si existe otro programa asociado a esa materia, se lo da de baja 
@@ -20,7 +20,6 @@ if(($consProgramaAnt->num_rows) != 0){
     $id_programaAnt =  $programaAnt["id"];
     $finalizarProgramaAnt = $con->query("UPDATE `programamateria` SET `fechaHastaPrograma`= '$currentDateTime' WHERE programamateria.materia_id = '$id_materia' AND fechaHastaPrograma IS NULL AND programamateria.id = '$id_programaAnt'");
 }
-
 
 // Se crea la instancia del programa para despues asociarle los temas
 $rtdo1 = $con->query("INSERT INTO `programamateria`(`anioPrograma`, `descripcionPrograma`, `fechaDesdePrograma`, `materia_id`) VALUES ('$anioprograma','$descripcion','$currentDateTime','$id_materia');");
@@ -63,15 +62,11 @@ if (isset($_FILES["inpGetFile"])) {
             echo $unidad_p;
             echo $tema_p;
             
-            
             if($unidad_p == "unidad" && $tema_p == "tema"){
-                echo "entra al id";
-                
                 $rtdo2 = false;
                 for ($row = 2; $row <= $highestRow; $row++) {
                     $unidadPrograma = $sheet->getCell("A" . $row)->getValue();
                     $temaPrograma = $sheet->getCell("B" . $row)->getValue();
-                    
                     
                     if(($unidadPrograma != "" || $unidadPrograma != null) && ($temaPrograma != "" || $temaPrograma != null)){
                         $sql2 = "INSERT INTO `temasmateria`(`nombreTema`, `programaMateria_id`, `unidadTema`) VALUES ('$temaPrograma','$id_programa','$unidadPrograma')";
@@ -79,25 +74,26 @@ if (isset($_FILES["inpGetFile"])) {
                     }
                     
                 }
-
+                
                 if($rtdo2){
                     //insercion correcta del tema 
-                    header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=1");
+                    //header("Location:/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=1");
+                    echo "<script>location.href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=1'</script>";
                 }else{
                     //fallo en la insercion
-                    header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=2");
+                    //header("Location:/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=2");
+                    echo "<script>location.href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=2'</script>";
                 }
                 
             }else{
                //falla en el formato de la hoja de calculo 
-                header("location: /DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=3");
+                //header("Location:/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=3");
+                echo "<script>location.href='/DayClass/Administrador/MateriaCurso/Materia/verMateria.php?id=$id_materia&&resultado=3'</script>";
             }
             
             unlink($archivo);
         }
     }
 }
-
-
-
+echo "</div>";
 ?>
