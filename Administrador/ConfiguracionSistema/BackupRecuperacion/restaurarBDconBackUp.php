@@ -84,5 +84,6 @@ if($pos !== false){
      echo "La cadena 'exists' no fue encontrada en la cadena '$msjError'";
 }
 
+//fuente: http://facturacionweb.site/blog/como-restaurar-una-base-de-datos-mysql-usando-php/
  
 ?>
