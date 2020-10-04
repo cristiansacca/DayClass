@@ -15,7 +15,7 @@ function cambiarContenidoNavbar() {
             "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Alumnos/configAlum.php'><i class='fa fa-user-alt mr-2'></i>Alumnos</a><div class='dropdown-divider'></div>"+
             "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php'><i class='fa fa-user-tie mr-2'></i>Administradores</a><div class='dropdown-divider'></div>"+
             "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php'><i class='fa fa-sliders mr-2'></i>Parámetros</a><div class='dropdown-divider'></div>"+
-            "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php'><i class='fa fa-database mr-2'></i>Backup y recuperación</a>"+
+            "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php'><i class='fa fa-database mr-2'></i>Copia de seguridad</a>"+
         "</div>"+
     "</li>";
     

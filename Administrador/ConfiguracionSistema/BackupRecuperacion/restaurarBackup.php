@@ -11,7 +11,7 @@ if(is_uploaded_file($_FILES['inputSQL']['tmp_name'])){
     $lines = file($lines);
     
 }else{
-   //archivo guarado en el server 
+   //archivo guardado en el server 
     $file = glob('backupDB/*');
     if(count($file) !== 0){
         foreach($file as $file){
@@ -30,16 +30,16 @@ if($lines !== null){
     $enlace = new mysqli("localhost","root","");
     if ($enlace) {
         //tirar la base de datos original
-        $dropDB = 'DROP DATABASE leandrobd';
+        $dropDB = 'DROP DATABASE dayclass';
         if ($enlace->query($dropDB)){
             echo "La base de datos mi_bd fue eliminada con éxito\n";
             //levantar la nueva base de datos que se llama igual que la que se tiró
-            $createDB = 'CREATE DATABASE leandrobd';
+            $createDB = 'CREATE DATABASE dayclass';
             if ($enlace->query($createDB)) {
                 echo 'La base de datos mi_bd fue creada con éxito\n';
                 
                 //conectarse a la nueva base de datos creada 
-                $conn = new mysqli("localhost","root","","leandrobd");
+                $conn = new mysqli("localhost","root","","dayclass");
                 
                 if($conn){
                     //variable use to store queries from our sql file
@@ -108,7 +108,7 @@ if($lines !== null){
                 }
 
             }else{
-               // echo 'Error al crear la base de datos';
+               //echo 'Error al crear la base de datos';
                 header("Location:/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php?resultado=6");
             }
             

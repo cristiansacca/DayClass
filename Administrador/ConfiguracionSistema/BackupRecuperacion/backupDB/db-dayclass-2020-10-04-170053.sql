@@ -462,7 +462,7 @@ CREATE TABLE `asistenciadia` (
   PRIMARY KEY (`id`),
   KEY `FKq321ay6csahth7tshhr0rbn6w` (`asistencia_id`),
   KEY `FKtqtd79xsh4ircl22go5jyx1qh` (`tipoAsistencia_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=843 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=863 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO asistenciadia VALUES("842","2020-10-03 18:19:32","307","1");
 INSERT INTO asistenciadia VALUES("822","2020-10-03 18:18:07","325","2");
@@ -538,6 +538,26 @@ INSERT INTO asistenciadia VALUES("791","2020-10-02 08:00:35","333","1");
 INSERT INTO asistenciadia VALUES("790","2020-10-02 08:00:35","332","1");
 INSERT INTO asistenciadia VALUES("789","2020-10-02 08:00:35","331","2");
 INSERT INTO asistenciadia VALUES("805","2020-10-03 18:18:07","309","2");
+INSERT INTO asistenciadia VALUES("859","2020-10-04 15:56:51","326","1");
+INSERT INTO asistenciadia VALUES("858","2020-10-04 15:56:51","324","2");
+INSERT INTO asistenciadia VALUES("857","2020-10-04 15:56:51","323","1");
+INSERT INTO asistenciadia VALUES("856","2020-10-04 15:56:51","322","2");
+INSERT INTO asistenciadia VALUES("855","2020-10-04 15:56:51","321","2");
+INSERT INTO asistenciadia VALUES("854","2020-10-04 15:56:51","320","1");
+INSERT INTO asistenciadia VALUES("853","2020-10-04 15:56:51","319","2");
+INSERT INTO asistenciadia VALUES("852","2020-10-04 15:56:51","318","1");
+INSERT INTO asistenciadia VALUES("851","2020-10-04 15:56:51","317","2");
+INSERT INTO asistenciadia VALUES("850","2020-10-04 15:56:51","316","2");
+INSERT INTO asistenciadia VALUES("849","2020-10-04 15:56:51","315","1");
+INSERT INTO asistenciadia VALUES("848","2020-10-04 15:56:51","314","2");
+INSERT INTO asistenciadia VALUES("847","2020-10-04 15:56:51","313","1");
+INSERT INTO asistenciadia VALUES("846","2020-10-04 15:56:51","312","2");
+INSERT INTO asistenciadia VALUES("845","2020-10-04 15:56:51","311","1");
+INSERT INTO asistenciadia VALUES("844","2020-10-04 15:56:51","310","2");
+INSERT INTO asistenciadia VALUES("860","2020-10-04 15:56:51","325","1");
+INSERT INTO asistenciadia VALUES("861","2020-10-04 15:57:47","308","2");
+INSERT INTO asistenciadia VALUES("862","2020-10-04 15:57:47","307","2");
+INSERT INTO asistenciadia VALUES("843","2020-10-04 15:56:51","309","1");
 INSERT INTO asistenciadia VALUES("759","2020-09-30 08:30:41","339","2");
 INSERT INTO asistenciadia VALUES("758","2020-09-30 08:30:41","338","1");
 INSERT INTO asistenciadia VALUES("757","2020-09-30 08:30:41","337","1");
@@ -1213,7 +1233,7 @@ CREATE TABLE `programamateria` (
   `fechaDesdePrograma` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKfqb3t1us027qjp8jctlqi46ui` (`materia_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO programamateria VALUES("17","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("16","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
@@ -1226,6 +1246,9 @@ INSERT INTO programamateria VALUES("20","2020","Programa Biología 1","2020-09-2
 INSERT INTO programamateria VALUES("21","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("22","2020","Programa Biología 1","2020-09-24","9","2020-09-24");
 INSERT INTO programamateria VALUES("23","2020","Programa Biología 1",NULL,"9","2020-09-24");
+INSERT INTO programamateria VALUES("24","2020","programa lengua 2","2020-10-04","5","2020-10-04");
+INSERT INTO programamateria VALUES("25","2020","programa lengua 2","2020-10-04","5","2020-10-04");
+INSERT INTO programamateria VALUES("26","2020","programa lengua 2",NULL,"5","2020-10-04");
 
 
 
@@ -1264,7 +1287,7 @@ CREATE TABLE `temasmateria` (
   `unidadTema` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK23mxrw3xvlmkaiyy284c4r0w7` (`programaMateria_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=210 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=273 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO temasmateria VALUES("155","Racionalización de denominadores.","14","1");
 INSERT INTO temasmateria VALUES("153","Números irracionales.","14","1");
@@ -1344,6 +1367,69 @@ INSERT INTO temasmateria VALUES("206","Células vegetales y células animales","
 INSERT INTO temasmateria VALUES("207","La nutrición en el nivel celular: localización de los procesos de endocitosis, fotosíntesis y respiración celular.","23","5");
 INSERT INTO temasmateria VALUES("208","Unidad y diversidad de funciones y estructuras.","23","6");
 INSERT INTO temasmateria VALUES("209","La diversidad biológica como consecuencia de la evolución.","23","6");
+INSERT INTO temasmateria VALUES("210","Coherencia y cohesión.","24","1");
+INSERT INTO temasmateria VALUES("211","Linealidad y complejidad de los textos. Elipsis. Sustitución pronominal y sinomia. Uso de conectores.","24","1");
+INSERT INTO temasmateria VALUES("212","Tipologías textuales. Trama descriptiva, narrativa, explicativa, argumentativa y conversacional.","24","1");
+INSERT INTO temasmateria VALUES("213","La literatura, tragedia, orígen. Historias trágicas. Características.","24","1");
+INSERT INTO temasmateria VALUES("214","El cuento. Características. Esquema básico. Secuencia narrativa.","24","2");
+INSERT INTO temasmateria VALUES("215","Reseña literaria. Recursos.","24","2");
+INSERT INTO temasmateria VALUES("216","Subjetivemas. Tesis y argumentos.","24","2");
+INSERT INTO temasmateria VALUES("217","Literatura precolombina, los mayas. Leyendas y mitos de sus orígenes.","24","3");
+INSERT INTO temasmateria VALUES("218","Los mayas como civilización. Elementos mitológicos.","24","3");
+INSERT INTO temasmateria VALUES("219","La creación de los hombres.","24","3");
+INSERT INTO temasmateria VALUES("220","Lenguaje utilizados.","24","3");
+INSERT INTO temasmateria VALUES("221","Lecturas comparadas de otras civilizaciones.","24","3");
+INSERT INTO temasmateria VALUES("222","Género lírico. Estructura. Verso y estrofa. Ritma y métrica.","24","4");
+INSERT INTO temasmateria VALUES("223","Epica española. Temas. El héroe. Cantares de gesta. Creación de la prosa romance.","24","4");
+INSERT INTO temasmateria VALUES("224","Tragedia española.","24","5");
+INSERT INTO temasmateria VALUES("225","Carácteristicas.","24","5");
+INSERT INTO temasmateria VALUES("226","Autores destacados. La mirada trágica en el texto dramático.","24","5");
+INSERT INTO temasmateria VALUES("227","Contexto histórico-social.","24","5");
+INSERT INTO temasmateria VALUES("228","Mitos. Definición. Características.","24","6");
+INSERT INTO temasmateria VALUES("229","Mitos argentinos. Valoreación de los mismos. Interpretación . Autores.","24","6");
+INSERT INTO temasmateria VALUES("230","Recreación de los mitos en el género narrativo: la novela.","24","6");
+INSERT INTO temasmateria VALUES("231","Coherencia y cohesión.","25","1");
+INSERT INTO temasmateria VALUES("232","Linealidad y complejidad de los textos. Elipsis. Sustitución pronominal y sinomia. Uso de conectores.","25","1");
+INSERT INTO temasmateria VALUES("233","Tipologías textuales. Trama descriptiva, narrativa, explicativa, argumentativa y conversacional.","25","1");
+INSERT INTO temasmateria VALUES("234","La literatura, tragedia, orígen. Historias trágicas. Características.","25","1");
+INSERT INTO temasmateria VALUES("235","El cuento. Características. Esquema básico. Secuencia narrativa.","25","2");
+INSERT INTO temasmateria VALUES("236","Reseña literaria. Recursos.","25","2");
+INSERT INTO temasmateria VALUES("237","Subjetivemas. Tesis y argumentos.","25","2");
+INSERT INTO temasmateria VALUES("238","Literatura precolombina, los mayas. Leyendas y mitos de sus orígenes.","25","3");
+INSERT INTO temasmateria VALUES("239","Los mayas como civilización. Elementos mitológicos.","25","3");
+INSERT INTO temasmateria VALUES("240","La creación de los hombres.","25","3");
+INSERT INTO temasmateria VALUES("241","Lenguaje utilizados.","25","3");
+INSERT INTO temasmateria VALUES("242","Lecturas comparadas de otras civilizaciones.","25","3");
+INSERT INTO temasmateria VALUES("243","Género lírico. Estructura. Verso y estrofa. Ritma y métrica.","25","4");
+INSERT INTO temasmateria VALUES("244","Epica española. Temas. El héroe. Cantares de gesta. Creación de la prosa romance.","25","4");
+INSERT INTO temasmateria VALUES("245","Tragedia española.","25","5");
+INSERT INTO temasmateria VALUES("246","Carácteristicas.","25","5");
+INSERT INTO temasmateria VALUES("247","Autores destacados. La mirada trágica en el texto dramático.","25","5");
+INSERT INTO temasmateria VALUES("248","Contexto histórico-social.","25","5");
+INSERT INTO temasmateria VALUES("249","Mitos. Definición. Características.","25","6");
+INSERT INTO temasmateria VALUES("250","Mitos argentinos. Valoreación de los mismos. Interpretación . Autores.","25","6");
+INSERT INTO temasmateria VALUES("251","Recreación de los mitos en el género narrativo: la novela.","25","6");
+INSERT INTO temasmateria VALUES("252","Coherencia y cohesión.","26","1");
+INSERT INTO temasmateria VALUES("253","Linealidad y complejidad de los textos. Elipsis. Sustitución pronominal y sinomia. Uso de conectores.","26","1");
+INSERT INTO temasmateria VALUES("254","Tipologías textuales. Trama descriptiva, narrativa, explicativa, argumentativa y conversacional.","26","1");
+INSERT INTO temasmateria VALUES("255","La literatura, tragedia, orígen. Historias trágicas. Características.","26","1");
+INSERT INTO temasmateria VALUES("256","El cuento. Características. Esquema básico. Secuencia narrativa.","26","2");
+INSERT INTO temasmateria VALUES("257","Reseña literaria. Recursos.","26","2");
+INSERT INTO temasmateria VALUES("258","Subjetivemas. Tesis y argumentos.","26","2");
+INSERT INTO temasmateria VALUES("259","Literatura precolombina, los mayas. Leyendas y mitos de sus orígenes.","26","3");
+INSERT INTO temasmateria VALUES("260","Los mayas como civilización. Elementos mitológicos.","26","3");
+INSERT INTO temasmateria VALUES("261","La creación de los hombres.","26","3");
+INSERT INTO temasmateria VALUES("262","Lenguaje utilizados.","26","3");
+INSERT INTO temasmateria VALUES("263","Lecturas comparadas de otras civilizaciones.","26","3");
+INSERT INTO temasmateria VALUES("264","Género lírico. Estructura. Verso y estrofa. Ritma y métrica.","26","4");
+INSERT INTO temasmateria VALUES("265","Epica española. Temas. El héroe. Cantares de gesta. Creación de la prosa romance.","26","4");
+INSERT INTO temasmateria VALUES("266","Tragedia española.","26","5");
+INSERT INTO temasmateria VALUES("267","Carácteristicas.","26","5");
+INSERT INTO temasmateria VALUES("268","Autores destacados. La mirada trágica en el texto dramático.","26","5");
+INSERT INTO temasmateria VALUES("269","Contexto histórico-social.","26","5");
+INSERT INTO temasmateria VALUES("270","Mitos. Definición. Características.","26","6");
+INSERT INTO temasmateria VALUES("271","Mitos argentinos. Valoreación de los mismos. Interpretación . Autores.","26","6");
+INSERT INTO temasmateria VALUES("272","Recreación de los mitos en el género narrativo: la novela.","26","6");
 
 
 

@@ -39,7 +39,7 @@ include "../../../databaseConection.php";
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        <h1>Backup y recuperación de datos<i class="fa fa-database ml-2"></i></h1>
+        <h1>Copia de seguridad y recuperación de datos<i class="fa fa-database ml-2"></i></h1>
         <a href="../../index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
@@ -65,15 +65,15 @@ include "../../../databaseConection.php";
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió al restaurar la Base de Datos.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al restaurar la Base de Datos.</h5>";
                 break;
             case 5:
                 echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay ninguna copia almacenafa para restaurar.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay ninguna copia almacenada para restaurar.</h5>";
                 break;
              case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error del sistema, contancte al administrador de base de datos, para restauracion manual.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error del sistema. Contante al administrador de base de datos, para restauración manual.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -84,15 +84,15 @@ include "../../../databaseConection.php";
 
     ?>
 
-    <a href="descargaBackup.php" class="btn btn-primary"><i class="fa fa-database mr-1"></i>Realizar backup</a>
-    <a href="descargaBackup.php?download=true" class="btn btn-secondary"><i class="fa fa-download mr-1"></i>Descargar backup</a>
-    <button class="btn btn-success" data-toggle="modal" data-target="#restoreDataBase"><i class="fa fa-upload mr-1"></i>Restaurar backup</button>
+    <a href="descargaBackup.php" class="btn btn-primary"><i class="fa fa-database mr-1"></i>Realizar copia</a>
+    <a href="descargaBackup.php?download=true" class="btn btn-secondary"><i class="fa fa-download mr-1"></i>Descargar copia</a>
+    <button class="btn btn-success" data-toggle="modal" data-target="#restoreDataBase"><i class="fa fa-upload mr-1"></i>Restaurar base de datos</button>
     
 
     <div class="mt-4">
         <table class="table table-bordered bg-light">
             <tr>
-                <td><b>Último backup generado:</b></td>
+                <td><b>Última copia de seguridad generada:</b></td>
                 <td><?php 
                     $files = glob('backupDB/*'); //obtenemos todos los nombres de los ficheros
 
@@ -136,7 +136,7 @@ include "../../../databaseConection.php";
                         <div class="container" name="msgLastBackUp" id="msgLastBackUp">
                             <table class="table table-bordered bg-light">
                                 <tr>
-                                    <td>Backup que se va a restaurar:</td>
+                                    <td>Copia de seguridad que se va a restaurar:</td>
                                     <td><?php 
                                         
                                         $files = glob('backupDB/*'); //obtenemos todos los nombres de los ficheros
@@ -161,7 +161,7 @@ include "../../../databaseConection.php";
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="btnImportar" type="submit" class="btn btn-primary">Importar</button>
+                    <button id="btnImportar" type="submit" class="btn btn-primary">Restaurar</button>
                 </div>
 
             </form>
