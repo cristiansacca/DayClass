@@ -84,29 +84,52 @@ include "../../../databaseConection.php";
 
     ?>
 
-    <a href="descargaBackup.php" class="btn btn-primary"><i class="fa fa-database mr-1"></i>Realizar copia</a>
-    <a href="descargaBackup.php?download=true" class="btn btn-secondary"><i class="fa fa-download mr-1"></i>Descargar copia</a>
-    <button class="btn btn-success" data-toggle="modal" data-target="#restoreDataBase"><i class="fa fa-upload mr-1"></i>Restaurar base de datos</button>
-    
-
     <div class="mt-4">
+        <h5>Última copia de seguridad generada</h5> 
         <table class="table table-bordered bg-light">
             <tr>
-                <td><b>Última copia de seguridad generada:</b></td>
+                
                 <td><?php 
                     $files = glob('backupDB/*'); //obtenemos todos los nombres de los ficheros
+                    $archivo = null;
 
                     if(count($files) !== 0){
                         foreach($files as $file){
                             if(is_file($file))
-                            echo $file;
+                            //echo $file;
+                            
+                            $archivo = strval($file);
+                            $archivo = explode("/",$archivo);
+                            $nombreArchivo = $archivo[1];
+                            echo $nombreArchivo;
                          }
-                    } else {
+                    }else{
                         echo "No se ha generado ningún backup";
                     }?></td>
+                <td>Fecha: <?php 
+                    
+                    $fechaArchivo = substr($nombreArchivo, 12,17);
+                    
+                   echo strftime("%d / %m / %Y", strtotime($fechaArchivo));
+                   
+
+                    ?></td>
             </tr>
         </table>
     </div>
+    
+    
+    <div class="mt-4">
+      <h5>Generar copia de seguridad</h5> 
+        <a href="descargaBackup.php" class="btn btn-primary"><i class="fa fa-database mr-1"></i>Realizar copia</a>
+    <a href="descargaBackup.php?download=true" class="btn btn-secondary"><i class="fa fa-download mr-1"></i>Descargar copia</a>
+    </div>
+    
+    <div class="mt-4">
+        <h5>Restaurar base de datos anterior</h5> 
+        <button class="btn btn-success" data-toggle="modal" data-target="#restoreDataBase"><i class="fa fa-upload mr-1"></i>Restaurar base de datos</button>
+    </div>
+
 
 </div>
 
