@@ -34,6 +34,7 @@ include "../../../databaseConection.php";
 ?>
 
 <script src="../../administrador.js"></script>
+<script src="fnBackup.js"></script>
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
@@ -69,6 +70,8 @@ include "../../../databaseConection.php";
 
     <a href="descargaBackup.php" class="btn btn-primary"><i class="fa fa-database mr-1"></i>Realizar backup</a>
     <a href="descargaBackup.php?download=true" class="btn btn-secondary"><i class="fa fa-download mr-1"></i>Descargar backup</a>
+    <button class="btn btn-success" data-toggle="modal" data-target="#restoreDataBase"><i class="fa fa-upload mr-1"></i>Restaurar backup</button>
+    
 
     <div class="mt-4">
         <table class="table table-bordered bg-light">
@@ -84,12 +87,71 @@ include "../../../databaseConection.php";
                          }
                     } else {
                         echo "No se ha generado ningún backup";
-                    }
-                ?></td>
+                    }?></td>
             </tr>
         </table>
     </div>
 
+</div>
+
+<!-- Modal para seleccionar el modo de recuperacion de la BD -->
+<div class="modal fade" id="restoreDataBase" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h3 class="modal-title " id="staticBackdropLabel">Recuperación de base de datos</h3>
+            </div>
+            
+             <form method="POST" id="uploadBackup" name="uploadBackup" action="restaurarBackup.php" enctype="multipart/form-data" role="form">
+            
+                <div class="modal-body">
+                <h9>Seleccione la forma de recuperación:</h9>
+                    
+                    <div class="container">
+                        <div class="radio">
+                            <label><input type="radio" id="guardado" name="optradio" checked onclick='hide()'> Copia guadada en el sistema.</label>
+                        </div>
+
+                        <div class="radio">
+                            <label><input type="radio" id="subir" name="optradio" onclick='unHide()'> Subir copia guadada.</label>
+                        </div>
+                    </div>
+                    
+                        <div class="container" name="msgLastBackUp" id="msgLastBackUp">
+                            <table class="table table-bordered bg-light">
+                                <tr>
+                                    <td>Backup que se va a restaurar:</td>
+                                    <td><?php 
+                                        
+                                        $files = glob('backupDB/*'); //obtenemos todos los nombres de los ficheros
+
+                                        if(count($files) !== 0){
+                                            foreach($files as $file){
+                                                if(is_file($file))
+                                                echo $file;
+                                             }
+                                        } else {
+                                            echo nl2br ("<b> No hay ningún backup guardado en el sistema.\n Revise si tiene copias locales descaragdas.</b>");
+                                        }?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    
+                    <div class="container" name="inputFile" id="inputFile" style="display:none">
+                        <div class="custom-file">
+                            <input type="file" class="form-control-file" id="inputSQL" name="inputSQL" placeholder="base de datos que deseas restaurar" accept=".sql" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="btnImportar" type="submit" class="btn btn-primary">Importar</button>
+                </div>
+
+            </form>
+            
+        </div>
+    </div>
 </div>
 
 <script>
