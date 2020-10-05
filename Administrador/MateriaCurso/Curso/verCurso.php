@@ -248,7 +248,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="window.location.href='/DayClass/Administrador/MateriaCurso/Curso/verCurso.php?id_curso=<?php echo "$id_curso"; ?>';"> Cancelar </button>
-                    <button type="submit" class="btn btn-primary"> Crear </button>
+                    <button type="submit" class="btn btn-primary"> Guardar </button>
                 </div>
             </form>
         </div>
@@ -360,8 +360,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
                     <input type="submit" value="Guardar" class="btn btn-primary" <?php  
                                         if($rtdo){
-                                            echo "style='display:none'";}
-                                   ?>>
+                                            echo "style='display:none'";}?>>
                 </div>
             </form>
         </div>
