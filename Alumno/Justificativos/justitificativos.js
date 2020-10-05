@@ -97,3 +97,45 @@ function validarCampos(){
         return false;
     }
 }
+
+function validarAusentes(){
+    var desde = document.getElementById("fechaDesde").value;
+    var hasta = document.getElementById("fechaHasta").value;
+    var cont = document.getElementsByClassName("checkMateria");
+    var materias = [];
+
+    for (let index = 0; index < cont.length; index++) {
+        if (cont[index].checked) {
+            materias.push(cont[index].value);
+        }   
+    }
+
+    var datos = {
+        'fechaDesde': desde,
+        'fechaHasta': hasta,
+        'materias': materias
+    }
+
+    var respuesta;
+    
+    $.ajax({
+        url:'consultaAusentes.php',
+        type: 'POST',
+        async: false,
+        data: datos,
+        success: function(datosRecibidos) {
+            json = JSON.parse(datosRecibidos);
+            if(json.ausentes == 0){
+                location.href = "#";
+                document.getElementById("sinAusentes").hidden = false;
+                respuesta = false;
+            } else {
+                document.getElementById("sinAusentes").hidden = true;
+                respuesta = true;
+            }
+        }
+    })
+
+    return respuesta?  true : false;
+
+}

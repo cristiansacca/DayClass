@@ -69,7 +69,14 @@ $_SESSION['tiempo'] = time();
       }
     ?>
 
-  <form enctype="multipart/form-data" action="cargaJustificativo.php" method="POST">
+    <div id="sinAusentes" class='alert alert-danger alert-dismissible fade show' role='alert' hidden>
+      <h5><i class='fa fa-exclamation-circle mr-2'></i>No se registran inasistencias en el período seleccionado.</h5>
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span>
+      </button>
+    </div>
+
+  <form enctype="multipart/form-data" action="cargaJustificativo.php" method="POST" onsubmit="return validarAusentes();">
     <h4>Cargar justificativo de inasistencias</h4>
     <div class="row">
       <div class="col-lg-6 col-md-6 mb-6 my-2">
