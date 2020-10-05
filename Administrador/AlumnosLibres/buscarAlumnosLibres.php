@@ -79,7 +79,7 @@ if($selectParamMinimoAsistencia != null){
                     $estadoAlumno = $selectEstadoAlumno["nombreEstado"];
                     
                     if($estadoAlumno == "INSCRIPTO"){
-                        $selectCantInasistenciasAlumno = $con->query("SELECT COUNT(asistenciadia.tipoAsistencia_id) AS cantAusentes FROM asistencia, asistenciadia, tipoasistencia WHERE asistencia.alumno_id = '$id_alumno' AND asistenciadia.asistencia_id = asistencia.id AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'AUSENTE'");
+                        $selectCantInasistenciasAlumno = $con->query("SELECT COUNT(asistenciadia.tipoAsistencia_id) AS cantAusentes FROM asistencia, asistenciadia, tipoasistencia WHERE asistencia.alumno_id = '$id_alumno' AND asistencia.curso_id = '$id_curso' AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis <= asistenciadia.fechaHoraAsisDia AND asistencia.fechaHastaFichaAsis >= asistenciadia.fechaHoraAsisDia AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'AUSENTE'");
                         
                         if(mysqli_num_rows($selectCantInasistenciasAlumno) != 0){
                             $selectCantInasistenciasAlumno2 = $selectCantInasistenciasAlumno->fetch_assoc();
@@ -181,10 +181,10 @@ function calcularDiasCursado($idCurso){
         //echo "cant real de clases: $cantDiasCursado\r\n";
         
         //se quita una cantidad de dias por los dias que no hay clases y por la aproximacion de semanas
-        $diasEfectivosCursado = $cantDiasCursado - 5;
+        $diasEfectivosCursado = $cantDiasCursado - 1;
         //echo "post resta de 5 dias: $diasEfectivosCursado";
         
-        return $diasEfectivosCursado;
+        return $cantDiasCursado;
         
         
     }else{
