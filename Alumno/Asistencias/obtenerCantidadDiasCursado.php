@@ -60,9 +60,9 @@ function calcularDiasCursado($curso_id){
         $cantDiasCursado = $cantSemanasCursado * $clasesPorSemana;
         
         //se quita una cantidad de dias por los dias que no hay clases y por la aproximacion de semanas
-        $diasEfectivosCursado = $cantDiasCursado - 5;
+        //$diasEfectivosCursado = $cantDiasCursado - 1;
         
-        return $diasEfectivosCursado;
+        return $cantDiasCursado;
         
         
     }else{

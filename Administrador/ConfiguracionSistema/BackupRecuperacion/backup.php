@@ -33,8 +33,9 @@ $_SESSION['tiempo'] = time();
 include "../../../databaseConection.php";
 ?>
 
-<script src="../../administrador.js"></script>
 <script src="fnBackup.js"></script>
+<script src="../../administrador.js"></script>
+
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
@@ -143,7 +144,7 @@ include "../../../databaseConection.php";
                 <h3 class="modal-title " id="staticBackdropLabel">Recuperación de base de datos</h3>
             </div>
 
-            <form method="POST" id="uploadBackup" name="uploadBackup" action="restaurarBackup.php" enctype="multipart/form-data" role="form">
+            <form method="POST" id="uploadBackup" name="uploadBackup" action="restaurarBackup.php" enctype="multipart/form-data" role="form" onsubmit="return confirmRestaurar()">
 
                 <div class="modal-body">
                     <h9>Seleccione la forma de recuperación:</h9>
@@ -185,7 +186,7 @@ include "../../../databaseConection.php";
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>
                     <button id="btnImportar" type="submit" class="btn btn-primary">Restaurar</button>
                 </div>
 

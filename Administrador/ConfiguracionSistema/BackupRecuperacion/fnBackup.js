@@ -14,3 +14,13 @@ function hide(){
     document.getElementById('msgLastBackUp').style.display='block';
 
 }
+
+function confirmRestaurar(){
+   var confirmar = confirm("¿Realmente desea restaurar la base de datos? ");
+    if (confirmar) {
+        return true;
+    } else {
+        return false;
+    }
+    
+}

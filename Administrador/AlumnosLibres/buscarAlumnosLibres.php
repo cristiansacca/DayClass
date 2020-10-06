@@ -181,7 +181,7 @@ function calcularDiasCursado($idCurso){
         //echo "cant real de clases: $cantDiasCursado\r\n";
         
         //se quita una cantidad de dias por los dias que no hay clases y por la aproximacion de semanas
-        $diasEfectivosCursado = $cantDiasCursado - 1;
+        //$diasEfectivosCursado = $cantDiasCursado - 1;
         //echo "post resta de 5 dias: $diasEfectivosCursado";
         
         return $cantDiasCursado;
