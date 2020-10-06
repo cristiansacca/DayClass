@@ -119,27 +119,28 @@ $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
 $pdf->SetFont( 'Arial', '', 15 );
 
-$codigo = utf8_decode("Código");
-$pdf->Ln(2);
-$numeroReporte = generateReportNumber();//generar automaticamente el codigo del reporte
+
 $pdf->Ln(16);
-$pdf->Write(10, "$codigo reporte: $numeroReporte" );
-$pdf->Ln(6);
-$pdf->SetFont( 'Arial', '', 12 );
-$pdf->Write(10, "Fecha: $currentDateTime" );
-$pdf->Ln(5);
-
+//$pdf->Write(10, "$codigo reporte: $numeroReporte" );
 
 $pdf->SetFont( 'Arial', '', 12 );
 
-$pdf->Ln(5);
+$fechaArchivo = date_create($currentDateTime);
+$fechaArchivo = date_format($fechaArchivo, "d/m/Y H:i:s");
+
+$pdf->Write(10, "Fecha reporte: $fechaArchivo" );
+
+$pdf->Ln(7);
+
+$pdf->SetFont( 'Arial', '', 12 );
+
 $pdf->Write( 6, "Alumno: $nombreAlumno $apellidoAlumno" );
 $pdf->Ln(5);
 $pdf->Write( 6, "Legajo: $legajoAlumno" );
 $pdf->Ln(5);
 $pdf->Write( 6, "Curso: $nombreCurso" );
 $pdf->Ln(5);
-$pdf->Write( 6, "Fechas Reporte: $fechaDesdeReporte - $fechaHastaReporte" );
+$pdf->Write( 6, "Periodo reporte: $fechaDesdeReporte - $fechaHastaReporte" );
 
 $pdf->Ln(10);
 
@@ -295,25 +296,26 @@ $pdf->SetTextColor( $headerColour[0], $headerColour[1], $headerColour[2] );
 $pdf->SetFont( 'Arial', '', 17 );
 $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
-$pdf->SetFont( 'Arial', '', 15 );
+$pdf->SetFont( 'Arial', '', 12 );
 
 
 //datos del reporte 
 $codigo = utf8_decode("Código");
-$pdf->Ln(2);
+
 $numeroReporte = generateReportNumber();//generar automaticamente el codigo del reporte
 $pdf->Ln(16);
-$pdf->Write(10, "$codigo reporte: $numeroReporte" );
+//$pdf->Write(10, "$codigo reporte: $numeroReporte" );
 $pdf->Ln(6);
 
-$pdf->SetFont( 'Arial', '', 12 );
+
 $currentDateTime = date_create($currentDateTime);
 $currentDateTime =  date_format($currentDateTime,"d/m/Y H:i:s");
-$pdf->Write(10, "Fecha: $currentDateTime" );
+$pdf->Write(10, "Fecha reporte: $currentDateTime" );
 $pdf->Ln(7);
+$pdf->SetFont( 'Arial', '', 12 );
 $pdf->Write( 6, "Curso: $nombreCurso" );
 $pdf->Ln(5);
-$pdf->Write( 6, "Fechas Reporte: $fechaDesdeReporteC - $fechaHastaReporteC" );
+$pdf->Write( 6, "Periodo reporte: $fechaDesdeReporteC - $fechaHastaReporteC" );
 $pdf->Ln(5);
 $pdf->Write( 6, "Referencias:" );
 $pdf->Ln(5);
@@ -608,30 +610,25 @@ $pdf->SetTextColor( $headerColour[0], $headerColour[1], $headerColour[2] );
 $pdf->SetFont( 'Arial', '', 17 );
 $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
-$pdf->SetFont( 'Arial', '', 15 );
 
+$pdf->SetFont( 'Arial', '', 12 );
 
 //datos del reporte 
-$codigo = utf8_decode("Código");
-$pdf->Ln(2);
-$numeroReporte = generateReportNumber();//generar automaticamente el codigo del reporte
-$pdf->Ln(16);
-$pdf->Write(10, "$codigo reporte: $numeroReporte" );
-$pdf->Ln(6);
-$pdf->SetFont( 'Arial', '', 12 );
-$pdf->Write(10, "Fecha: $currentDateTime" );
-$pdf->Ln(5);
 
+$fechaArchivo = date_create($currentDateTime);
+$fechaArchivo = date_format($fechaArchivo, "d/m/Y H:i:s");
 
-$pdf->SetFont( 'Arial', '', 12 );
-$pdf->Ln(5);
+$pdf->Ln(15);
+
+$pdf->Write(10, "Fecha reporte: $fechaArchivo" );
+$pdf->Ln(7);
 $pdf->Write( 6, "Nombre Materia: $nombreMateria" );
 $pdf->Ln(5);
 $pdf->Write( 6, "Nivel materia: $nivelMateria" );
 $pdf->Ln(5);
 $pdf->Write( 6, "Cantidad de cursos de esa materia: $cantCursosMateria" );
 $pdf->Ln(5);
-$pdf->Write( 6, "Fechas Reporte: $fechaDesdeReporteC - $fechaHastaReporteC" );
+$pdf->Write( 6, "Periodo reporte: $fechaDesdeReporteC - $fechaHastaReporteC" );
 
 
 $pdf->Ln(10);
@@ -695,6 +692,8 @@ $currentDate = date('Y-m-d');
 $currentDateTime = date('Y-m-d H:i:s');
 $currentYear = date('Y');
 
+
+
 $fechaDesdeReporte = $fechaDesde;
 $fechaHastaReporte = $fechaHasta . ' 23:59:59';
 
@@ -749,23 +748,19 @@ $pdf->SetTextColor( $headerColour[0], $headerColour[1], $headerColour[2] );
 $pdf->SetFont( 'Arial', '', 17 );
 $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
-$pdf->SetFont( 'Arial', '', 15 );
-
+$pdf->SetFont( 'Arial', '', 12 );
 
 //datos del reporte 
-$codigo = utf8_decode("Código");
-$pdf->Ln(2);
-$numeroReporte = generateReportNumber();//generar automaticamente el codigo del reporte
-$pdf->Ln(16);
-$pdf->Write(10, "$codigo reporte: $numeroReporte" );
-$pdf->Ln(6);
-$pdf->SetFont( 'Arial', '', 12 );
-$pdf->Write(10, "Fecha: $currentDateTime" );
+    
+$fechaArchivo = date_create($currentDateTime);
+$fechaArchivo = date_format($fechaArchivo, "d/m/Y H:i:s");
+
+$pdf->Ln(15);
+
+$pdf->Write(10, "Fecha reporte: $fechaArchivo" );
 $pdf->Ln(7);
 
-
-$pdf->SetFont( 'Arial', '', 12 );
-$pdf->Write( 6, "Fechas Reporte: $fechaDesdeReporteC - $fechaHastaReporteC" );
+$pdf->Write( 6, "Periodo reporte: $fechaDesdeReporteC - $fechaHastaReporteC" );
 $pdf->Ln(10);
 
 
