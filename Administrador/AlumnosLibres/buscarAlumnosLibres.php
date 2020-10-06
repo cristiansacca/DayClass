@@ -11,347 +11,321 @@ if (!isset($_SESSION['administrador'])) {
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-  
+
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if($vida_session > $_SESSION['limite'])
-    {
+    if ($vida_session > $_SESSION['limite']) {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();              
+        session_destroy();
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-  
+
         exit();
     }
-  }
-  $_SESSION['tiempo'] = time();
-  
+}
+$_SESSION['tiempo'] = time();
+
 ?>
 
 <div class="container">
 
-<div class="jumbotron my-4 py-4">
+    <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         <h1>Revisión de alumnos libres</h1>
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-</div>
+    </div>
 
-<?php
-include "../../databaseConection.php";
+    <?php
+    include "../../databaseConection.php";
 
-date_default_timezone_set('America/Argentina/Buenos_Aires');
-$currentDate = date('Y-m-d');
-$cantLibres = 0;
-$cantJustos = 0;
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $currentDate = date('Y-m-d');
+    $cantLibres = 0;
+    $cantJustos = 0;
 
-$selectParamMinimoAsistencia = $con->query("SELECT * FROM `paramminimoasistencia` WHERE paramminimoasistencia.fechaAltaMinimoAsistencia <= '$currentDate' AND paramminimoasistencia.fechaBajaMinimoAsistencia IS NULL")->fetch_assoc();
+    $selectParamMinimoAsistencia = $con->query("SELECT * FROM `paramminimoasistencia` WHERE paramminimoasistencia.fechaAltaMinimoAsistencia <= '$currentDate' AND paramminimoasistencia.fechaBajaMinimoAsistencia IS NULL")->fetch_assoc();
 
-if($selectParamMinimoAsistencia != null){
-    $porcentajeMinAsistencia = $selectParamMinimoAsistencia["porcentajeAsistencia"];
-    
-    $selectCursosVigentes = $con->query("SELECT * FROM `curso` WHERE curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado > '$currentDate'");
-    
-    if(mysqli_num_rows($selectCursosVigentes) != 0){
-        while($selectCursosVigentes2 = $selectCursosVigentes->fetch_assoc()){
-            $id_curso = $selectCursosVigentes2["id"];
-            $nombre_curso = $selectCursosVigentes2["nombreCurso"];
-            $totalDiasCursado = calcularDiasCursado($id_curso);
-            
-            //echo "$id_curso";
-            //echo "$totalDiasCursado";
-            
-            if($totalDiasCursado != null){
-               $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id, asistencia.alumno_id FROM asistencia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND curso.fechaDesdeCursado = asistencia.fechaDesdeFichaAsis AND curso.fechaHastaCursado = asistencia.fechaHastaFichaAsis");
-            
-            if(mysqli_num_rows($selectAsistenciasAlumnoCurso) != 0){
-                while($selectAsistenciasAlumnoCurso2= $selectAsistenciasAlumnoCurso->fetch_assoc()){
-                    $id_alumno = $selectAsistenciasAlumnoCurso2["alumno_id"];
-                    
-                    //echo "$id_alumno";
-                                    
-                    $selectEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM alumno, alumnocursoactual, curso, alumnocursoestado, cursoestadoalumno WHERE curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumno.id = '$id_alumno' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.fechaDesdeAlumCurAc = curso.fechaDesdeCursado AND alumnocursoactual.fechaHastaAlumCurAc = curso.fechaHastaCursado AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
-                    
-                    $estadoAlumno = $selectEstadoAlumno["nombreEstado"];
-                    
-                    if($estadoAlumno == "INSCRIPTO"){
-                        $selectCantInasistenciasAlumno = $con->query("SELECT COUNT(asistenciadia.tipoAsistencia_id) AS cantAusentes FROM asistencia, asistenciadia, tipoasistencia WHERE asistencia.alumno_id = '$id_alumno' AND asistencia.curso_id = '$id_curso' AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis <= asistenciadia.fechaHoraAsisDia AND asistencia.fechaHastaFichaAsis >= asistenciadia.fechaHoraAsisDia AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'AUSENTE'");
-                        
-                        if(mysqli_num_rows($selectCantInasistenciasAlumno) != 0){
-                            $selectCantInasistenciasAlumno2 = $selectCantInasistenciasAlumno->fetch_assoc();
-                            $cantAusentes = $selectCantInasistenciasAlumno2["cantAusentes"];
-                            $rtdoCompararDias = compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantAusentes);
-                            
-                            switch($rtdoCompararDias){
-                                case "JUSTO":
-                                    $envioMail = alumnoSinInasistencias($id_alumno, $id_curso);
-                                    $cantJustos ++;
-                                    //echo "entro por justo";
-                                    break;
-                                 
-                                case "LIBRE": 
-                                   $envioMail = alumnoLibre($id_alumno, $id_curso);
-                                    $cantLibres ++;
-                                    //echo "entro libre";
-                                    break;
-                                    
-                                default:
-                                    //echo "entro default";
-                                    break;
-                                    
-                            }  
-                        }else{
-                            //alumno que no registra ausentes
-                            
+    if ($selectParamMinimoAsistencia != null) {
+        $porcentajeMinAsistencia = $selectParamMinimoAsistencia["porcentajeAsistencia"];
+
+        $selectCursosVigentes = $con->query("SELECT * FROM `curso` WHERE curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado > '$currentDate'");
+
+        if (mysqli_num_rows($selectCursosVigentes) != 0) {
+            while ($selectCursosVigentes2 = $selectCursosVigentes->fetch_assoc()) {
+                $id_curso = $selectCursosVigentes2["id"];
+                $nombre_curso = $selectCursosVigentes2["nombreCurso"];
+                $totalDiasCursado = calcularDiasCursado($id_curso);
+
+                if ($totalDiasCursado != null) {
+                    $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id, asistencia.alumno_id FROM asistencia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND curso.fechaDesdeCursado = asistencia.fechaDesdeFichaAsis AND curso.fechaHastaCursado = asistencia.fechaHastaFichaAsis");
+
+                    if (mysqli_num_rows($selectAsistenciasAlumnoCurso) != 0) {
+                        while ($selectAsistenciasAlumnoCurso2 = $selectAsistenciasAlumnoCurso->fetch_assoc()) {
+                            $id_alumno = $selectAsistenciasAlumnoCurso2["alumno_id"];
+
+                            $selectEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM alumno, alumnocursoactual, curso, alumnocursoestado, cursoestadoalumno WHERE curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumno.id = '$id_alumno' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.fechaDesdeAlumCurAc = curso.fechaDesdeCursado AND alumnocursoactual.fechaHastaAlumCurAc = curso.fechaHastaCursado AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
+
+                            $estadoAlumno = $selectEstadoAlumno["nombreEstado"];
+
+                            if ($estadoAlumno == "INSCRIPTO") {
+                                $selectCantInasistenciasAlumno = $con->query("SELECT COUNT(asistenciadia.tipoAsistencia_id) AS cantAusentes FROM asistencia, asistenciadia, tipoasistencia WHERE asistencia.alumno_id = '$id_alumno' AND asistencia.curso_id = '$id_curso' AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis <= asistenciadia.fechaHoraAsisDia AND asistencia.fechaHastaFichaAsis >= asistenciadia.fechaHoraAsisDia AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'AUSENTE'");
+
+                                if (mysqli_num_rows($selectCantInasistenciasAlumno) != 0) {
+                                    $selectCantInasistenciasAlumno2 = $selectCantInasistenciasAlumno->fetch_assoc();
+                                    $cantAusentes = $selectCantInasistenciasAlumno2["cantAusentes"];
+                                    $rtdoCompararDias = compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantAusentes);
+
+                                    switch ($rtdoCompararDias) {
+                                        case "JUSTO":
+                                            $envioMail = alumnoSinInasistencias($id_alumno, $id_curso);
+                                            $cantJustos++;
+                                            break;
+
+                                        case "LIBRE":
+                                            $envioMail = alumnoLibre($id_alumno, $id_curso);
+                                            $cantLibres++;
+                                            break;
+
+                                        default:
+                                            break;
+                                    }
+                                } else {
+                                    //alumno que no registra ausentes
+
+                                }
+                            } else {
+                                //el alumno ya esta libre, no continua 
+                                //echo "alumno libre";
+
+                            }
                         }
-                    }else{
-                        //el alumno ya esta libre, no continua 
-                        //echo "alumno libre";
-                        
-                    }
-                    
-                
-                }
-                
-            }else{
-                //no alumnos inscriptos en ese curso
-                echo "<div class='alert alert-info' role='alert'>
+                    } else {
+                        //no alumnos inscriptos en ese curso
+                        echo "<div class='alert alert-info' role='alert'>
                     <h5><i class='fa fa-exclamation-circle mr-2'></i>El curso $nombre_curso no tiene alumnos inscriptos.</h5>
                 </div>";
-                
-            } 
-            
-                
-            }else{
-                //no hay dias de cursado
-                echo "<div class='alert alert-warning' role='alert'>
+                    }
+                } else {
+                    //no hay dias de cursado
+                    echo "<div class='alert alert-warning' role='alert'>
                     <h5><i class='fa fa-exclamation-circle mr-2'></i>El curso $id_curso no tiene días de cursado definidos.</h5>
                 </div>";
-            } 
-           
-            
-        }
-        
-    }else{
-        //no hay cursos vigentes
-         echo "<div class='alert alert-warning' role='alert'>
+                }
+            }
+        } else {
+            //no hay cursos vigentes
+            echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay cursos con fechas de cursado vigentes.</h5>
         </div>";
-    }
-    
-}else{
-    //no hay porcentaje de minimo de asistencia
-    echo "<div class='alert alert-warning' role='alert'>
+        }
+    } else {
+        //no hay porcentaje de minimo de asistencia
+        echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay un porcentaje mínimo de asistencias definido.</h5>
         </div>";
-}
-
-
-
-function calcularDiasCursado($idCurso){
-    include "../../databaseConection.php";
-    
-    //contar la cantidad de clases que se tiene por semana
-    $selectCantClasesPorSemana = $con->query("SELECT COUNT(id) AS cantDias FROM `horariocurso` WHERE horariocurso.curso_id = '$idCurso'")->fetch_assoc();
-    
-    //si hay dias de la semana definidos para ese curso 
-    if($selectCantClasesPorSemana != null){
-        
-        //leer la cantidad de clases que hay en una semana 
-        $clasesPorSemana = $selectCantClasesPorSemana["cantDias"];
-        
-        //traer las fechas de cursado del curso en cuestion 
-        $selectFechasCursadoCurso = $con->query("SELECT curso.fechaDesdeCursado, curso.fechaHastaCursado FROM `curso` WHERE curso.id = '$idCurso'")->fetch_assoc();
-        $fechaDesdeCursado = $selectFechasCursadoCurso["fechaDesdeCursado"];
-        $fechaHastaCursado = $selectFechasCursadoCurso["fechaHastaCursado"];
-        
-        //sacar la cantidad de semanas de cursado que hay entre las fechas de cursado
-        $semanasCursado = (strtotime($fechaHastaCursado) - strtotime($fechaDesdeCursado) ) / (60 * 60 * 24 * 7);
-        
-        //redondear el numero de semanas, a un numero "redondo"
-        $cantSemanasCursado = ceil($semanasCursado);
-        //echo "cant semanas cursado:  $cantSemanasCursado\r\n";
-        
-        //sacar los dias de cursado, multiplicando las semanas de cursado por la cantidad de clases semanales
-        $cantDiasCursado = $cantSemanasCursado * $clasesPorSemana;
-        //echo "cant real de clases: $cantDiasCursado\r\n";
-        
-        //se quita una cantidad de dias por los dias que no hay clases y por la aproximacion de semanas
-        //$diasEfectivosCursado = $cantDiasCursado - 1;
-        //echo "post resta de 5 dias: $diasEfectivosCursado";
-        
-        return $cantDiasCursado;
-        
-        
-    }else{
-        //el curso no tiene definido horarios 
-        return null;
     }
-     
-}
 
-function compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantInasistenciasAlumno){
-    
-    //echo "porcenyaje inasistencia: $porcentajeMinAsistencia";
-   // echo "total dias cursado: $totalDiasCursado";
-    //echo "cantidad inasistencias del alumno: $cantInasistenciasAlumno";
-    
-     //calculo de dias 
-    $porcentajeInasistencias = 1-$porcentajeMinAsistencia;
-    $maxInasistencias = ceil($totalDiasCursado * $porcentajeInasistencias);
 
-    
-   
-    //echo "Ausentes permitidos: $maxInasistencias";
-    
-    if($cantInasistenciasAlumno == $maxInasistencias){
-        //el alumno esta en el limite, enviar informativo de que no le quedan mas inasistencias
-        //echo "Justo";
-        return "JUSTO";
-    }else{
-        //echo "entra al else de cantInasistenciasAlumno == maxInasistencias";
-        if($maxInasistencias < $cantInasistenciasAlumno){
-           //alumnos libre, CAMBIAR ESTADO, ENVIAR MAIL  }}
-            //echo "Libre";
-            return "LIBRE";
-        }else{
-            
-            //$cantInasistenciasAlumno < $ausentesPermitidos
-            //le quedan inasistencias al alumno, NO HACE NADA 
-            //echo "Nada";
-            return "NADA";
-            
+
+    function calcularDiasCursado($idCurso)
+    {
+        include "../../databaseConection.php";
+
+        //contar la cantidad de clases que se tiene por semana
+        $selectCantClasesPorSemana = $con->query("SELECT COUNT(id) AS cantDias FROM `horariocurso` WHERE horariocurso.curso_id = '$idCurso'")->fetch_assoc();
+
+        //si hay dias de la semana definidos para ese curso 
+        if ($selectCantClasesPorSemana != null) {
+
+            //leer la cantidad de clases que hay en una semana 
+            $clasesPorSemana = $selectCantClasesPorSemana["cantDias"];
+
+            //traer las fechas de cursado del curso en cuestion 
+            $selectFechasCursadoCurso = $con->query("SELECT curso.fechaDesdeCursado, curso.fechaHastaCursado FROM `curso` WHERE curso.id = '$idCurso'")->fetch_assoc();
+            $fechaDesdeCursado = $selectFechasCursadoCurso["fechaDesdeCursado"];
+            $fechaHastaCursado = $selectFechasCursadoCurso["fechaHastaCursado"];
+
+            //sacar la cantidad de semanas de cursado que hay entre las fechas de cursado
+            $semanasCursado = (strtotime($fechaHastaCursado) - strtotime($fechaDesdeCursado)) / (60 * 60 * 24 * 7);
+
+            //redondear el numero de semanas, a un numero "redondo"
+            $cantSemanasCursado = ceil($semanasCursado);
+
+            //sacar los dias de cursado, multiplicando las semanas de cursado por la cantidad de clases semanales
+            $cantDiasCursado = $cantSemanasCursado * $clasesPorSemana;
+
+            //se quita una cantidad de dias por los dias que no hay clases y por la aproximacion de semanas
+            //$diasEfectivosCursado = $cantDiasCursado - 1;
+
+            return $cantDiasCursado;
+        } else {
+            //el curso no tiene definido horarios 
+            return null;
         }
     }
-}
+
+    function compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantInasistenciasAlumno) {
+        //calculo de dias 
+        $porcentajeInasistencias = 1 - $porcentajeMinAsistencia;
+        $maxInasistencias = ceil($totalDiasCursado * $porcentajeInasistencias);
+
+        if ($cantInasistenciasAlumno == $maxInasistencias) {
+            //el alumno esta en el limite, enviar informativo de que no le quedan mas inasistencias
+            return "JUSTO";
+        } else {
+
+            if ($maxInasistencias < $cantInasistenciasAlumno) {
+                //alumnos libre, CAMBIAR ESTADO, ENVIAR MAIL  }}
+                return "LIBRE";
+            } else {
+
+                //$cantInasistenciasAlumno < $ausentesPermitidos
+                //le quedan inasistencias al alumno, NO HACE NADA 
+                return "NADA";
+            }
+        }
+    }
 
 
-function alumnoSinInasistencias($id_alumno, $id_curso){
-    include "../../databaseConection.php";
-    //buscar los datos del alumno
-    $selectDatosAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno'")->fetch_assoc();
-    $nombreAlumno = $selectDatosAlumno["nombreAlum"];
-    $apellidoAlumno = $selectDatosAlumno["apellidoAlum"];
-    $mailAlumno = $selectDatosAlumno["emailAlum"];
-    
-    //buscar los datos del curso
-    $selectDatosCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso'")->fetch_assoc();
-    $nombreCurso =  $selectDatosCurso["nombreCurso"];
-    
-    // Mensaje al alumno 
-    $mensaje = "$nombreAlumno $apellidoAlumno, \r\nEste correo electronico es para informale que NO le quedan mas inasistencias en $nombreCurso \r\nAnte una proxima ausencia pasará a quedar libre, puede revertir su situación justificando las ausencias que registra, en la sección correspondiente. \r\nEste correo electronico fue generado de mananera automatica, por favor no lo responda. \r\nSaludos.";
+    function alumnoSinInasistencias($id_alumno, $id_curso) {
+        include "../../databaseConection.php";
+        //buscar los datos del alumno
+        $selectDatosAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno'")->fetch_assoc();
+        $nombreAlumno = $selectDatosAlumno["nombreAlum"];
+        $apellidoAlumno = $selectDatosAlumno["apellidoAlum"];
+        $mailAlumno = $selectDatosAlumno["emailAlum"];
 
-    // Si cualquier línea es más larga de 200 caracteres, se debería usar wordwrap()
-    $mensaje = wordwrap($mensaje, 200, "\r\n");
+        //buscar los datos del curso
+        $selectDatosCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso'")->fetch_assoc();
+        $nombreCurso =  $selectDatosCurso["nombreCurso"];
 
-    //direccion de mail destino, cambiar por el mail propio para porbar 
-    $destino = "lea220197@gmail.com,$mailAlumno,dayclassdev@gmail.com";
+        // Mensaje al alumno 
+        $mensaje = "Hola, $nombreAlumno $apellidoAlumno. 
 
-    // Enviamos el email
-    $rtdo = mail($destino, 'Aviso de limite de inasistencias alcanzado', $mensaje);
-    
-    
-    echo "<div class='alert alert-info' role='alert'>
+Se le informa que ha llegado al máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima ausencia quedará en estado LIBRE. 
+Puede revertir su situación justificando las ausencias que registra hasta el momento, en la sección correspondiente. 
+Este correo fue enviado de mananera automática, por favor no responda. 
+
+Saludos. 
+Equipo de DayClass.";
+
+        // Si cualquier línea es más larga de 200 caracteres, se debería usar wordwrap()
+        $mensaje = wordwrap($mensaje, 200, "\r\n");
+
+        //direccion de mail destino, cambiar por el mail propio para porbar 
+        $destino = "lea220197@gmail.com,$mailAlumno,dayclassdev@gmail.com";
+
+        // Enviamos el email
+        $rtdo = mail($destino, 'Aviso de limite de inasistencias alcanzado', $mensaje);
+
+
+        echo "<div class='alert alert-info' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Se le ha informado a $nombreAlumno $apellidoAlumno que ha llegado al máximo de insistencias en $nombreCurso.</h5>
         </div>";
 
-    return $rtdo;
-}
+        return $rtdo;
+    }
 
-function alumnoLibre($id_alumno, $id_curso){
-    
-    include "../../databaseConection.php";
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $currentDateTime = date('Y-m-d');
-    
-   $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$id_alumno' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
+    function alumnoLibre($id_alumno, $id_curso) {
 
-    if(!($selectAlumnoCursoEstado->num_rows) == 0){
-        $alumnoCursoEstado = $selectAlumnoCursoEstado->fetch_assoc();
-        $id_alumnoCursoEstado = $alumnoCursoEstado["idAlumnoCursoEstado"];
-        $fechaFinAlumnoCursoEstado = $alumnoCursoEstado["fechaFinEstado"];
-        $id_alumnoCursoActual = $alumnoCursoEstado["alumnoCursoActual_id"];
+        include "../../databaseConection.php";
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $currentDateTime = date('Y-m-d');
 
-        //actulizar la fecha hasta del estado inscripto hasta hoy 
-        $updateAlumnoCursoEstado = $con->query("UPDATE `alumnocursoestado` SET `fechaFinEstado`='$currentDateTime' WHERE `id` = $id_alumnoCursoEstado");
+        $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$id_alumno' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
-        if($updateAlumnoCursoEstado){
-            //crear una instancia nueva de estado, relacionada a estado = libre, a partir de hoy y hasta el fin del cursado
-            $insertAlumnoCursoEstado = $con->query("INSERT INTO `alumnocursoestado`(`fechaFinEstado`, `fechaInicioEstado`, `alumnoCursoActual_id`, `cursoEstadoAlumno_id`) VALUES ('$fechaFinAlumnoCursoEstado','$currentDateTime','$id_alumnoCursoActual','2')");
+        if (!($selectAlumnoCursoEstado->num_rows) == 0) {
+            $alumnoCursoEstado = $selectAlumnoCursoEstado->fetch_assoc();
+            $id_alumnoCursoEstado = $alumnoCursoEstado["idAlumnoCursoEstado"];
+            $fechaFinAlumnoCursoEstado = $alumnoCursoEstado["fechaFinEstado"];
+            $id_alumnoCursoActual = $alumnoCursoEstado["alumnoCursoActual_id"];
 
-                if($insertAlumnoCursoEstado){
+            //actulizar la fecha hasta del estado inscripto hasta hoy 
+            $updateAlumnoCursoEstado = $con->query("UPDATE `alumnocursoestado` SET `fechaFinEstado`='$currentDateTime' WHERE `id` = $id_alumnoCursoEstado");
+
+            if ($updateAlumnoCursoEstado) {
+                //crear una instancia nueva de estado, relacionada a estado = libre, a partir de hoy y hasta el fin del cursado
+                $insertAlumnoCursoEstado = $con->query("INSERT INTO `alumnocursoestado`(`fechaFinEstado`, `fechaInicioEstado`, `alumnoCursoActual_id`, `cursoEstadoAlumno_id`) VALUES ('$fechaFinAlumnoCursoEstado','$currentDateTime','$id_alumnoCursoActual','2')");
+
+                if ($insertAlumnoCursoEstado) {
                     //se dio de baja al alumno en el curso
                     //disparar la funcion mail 
                     return avisoAlumnoLibre($id_alumno, $id_curso);
-
-                }else{
+                } else {
                     //error 
                     //header("Location:/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso&&resultado=4");
                 }
-        }else{
+            } else {
                 //error 
                 //header("Location:/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso&&resultado=4");
+            }
+        } else {
+            //error 
+            // header("Location:/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso&&resultado=4");
         }
+    }
 
-    }else{
-        //error 
-       // header("Location:/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso&&resultado=4");
-    } 
-}
+    function avisoAlumnoLibre($id_alumno, $id_curso) {
+        include "../../databaseConection.php";
+        //buscar los datos del alumno
+        $selectDatosAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno'")->fetch_assoc();
+        $nombreAlumno = $selectDatosAlumno["nombreAlum"];
+        $apellidoAlumno = $selectDatosAlumno["apellidoAlum"];
+        $mailAlumno = $selectDatosAlumno["emailAlum"];
 
-function avisoAlumnoLibre($id_alumno, $id_curso){
-    include "../../databaseConection.php";
-    //buscar los datos del alumno
-    $selectDatosAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno'")->fetch_assoc();
-    $nombreAlumno = $selectDatosAlumno["nombreAlum"];
-    $apellidoAlumno = $selectDatosAlumno["apellidoAlum"];
-    $mailAlumno = $selectDatosAlumno["emailAlum"];
-    
-    //buscar los datos del curso
-    $selectDatosCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso'")->fetch_assoc();
-    $nombreCurso =  $selectDatosCurso["nombreCurso"];
-    
-    // Mensaje al alumno 
-    $mensaje = "$nombreAlumno $apellidoAlumno, \r\nEste correo electrónico es para informale que que ha quedado LIBRE en $nombreCurso \r\nSu asistencia ya no será contabilizada, ante un error en esta situacion pongase en contacto con administración. \r\nEste correo electronico fue generado de mananera automatica, por favor no lo responda. \r\nSaludos. ";
+        //buscar los datos del curso
+        $selectDatosCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso'")->fetch_assoc();
+        $nombreCurso =  $selectDatosCurso["nombreCurso"];
 
-    // Si cualquier línea es más larga de 200 caracteres, se debería usar wordwrap()
-    $mensaje = wordwrap($mensaje, 200, "\r\n");
+        // Mensaje al alumno 
+        $mensaje = "Hola, $nombreAlumno $apellidoAlumno. 
 
-    //direccion de mail destino, cambiar por el mail propio para porbar 
-    $destino = "lea220197@gmail.com,$mailAlumno,dayclassdev@gmail.com";
+Se le informa que que ha quedado LIBRE en el curso $nombreCurso por lo que su asistencia ya no será contabilizada. 
+Ante un error en esta situación póngase en contacto con administración. 
 
-    // Enviamos el email
-    $rtdo = mail($destino, 'Aviso de estado libre', $mensaje);
-    
-    
-    echo "<div class='alert alert-warning' role='alert'>
+Este correo fue enviado de mananera automática, por favor no responda. 
+
+Saludos. 
+Equipo de DayClass";
+
+        // Si cualquier línea es más larga de 200 caracteres, se debería usar wordwrap()
+        $mensaje = wordwrap($mensaje, 200, "\r\n");
+
+        //direccion de mail destino, cambiar por el mail propio para porbar 
+        $destino = "lea220197@gmail.com,$mailAlumno,dayclassdev@gmail.com";
+
+        // Enviamos el email
+        $rtdo = mail($destino, 'Aviso de estado libre', $mensaje);
+
+        echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Se le ha informado a $nombreAlumno $apellidoAlumno que ha quedado libre en $nombreCurso.</h5>
         </div>";
 
-    return $rtdo;
-}
+        return $rtdo;
+    }
 
-?>
+    ?>
 
-<?php
-    if($cantLibres == 0){
+    <?php
+    if ($cantLibres == 0) {
         echo "<div class='alert alert-success' role='alert'>
                     <h5><i class='fa fa-exclamation-circle mr-2'></i>Ningún alumno ha quedado libre el día de hoy.</h5>
             </div>";
     }
-    
-    if($cantJustos == 0){
+
+    if ($cantJustos == 0) {
         echo "<div class='alert alert-success' role='alert'>
                     <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay alumnos que tengan la cantidad máxima de faltas permitidas.</h5>
             </div>";
     }
-?>
-    
-    
+    ?>
+
+
 </div>
 
 <script>

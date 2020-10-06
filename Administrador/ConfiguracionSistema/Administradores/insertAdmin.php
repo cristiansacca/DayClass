@@ -9,9 +9,6 @@ $fchNac = $_POST["inputDate"];
 $email = $_POST["inputEmail"];
 $currentDateTime = date('Y-m-d H:i:s');
 
-
-
-
 $consultaAlumL = $con->query("SELECT id FROM `alumno` WHERE legajoAlumno = $legajo");
 $consultaAlumD = $con->query("SELECT id FROM `alumno` WHERE dniAlum = $dni");
 
@@ -35,13 +32,18 @@ if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 
         $pass = passAleatoria();
         $Pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
 
-
-        $cadenaMail = "$nombre $apellido, \r\nSe ha dado de alta su cuenta de administrativo en Dayclass \r\nSu contraseña es la siguiente: $pass";
+        $cadenaMail = "Hola, $nombre $apellido.
+        \r\n
+        \r\nSe ha dado de alta su cuenta de administrador en DayClass. 
+        \r\nSu contraseña es la siguiente: $pass
+        \r\nPuede cambiarla en cualquier momento accediendo a la sección de editar perfil.
+        \r\n
+        \r\nSaludos.
+        \r\nEquipo de DayClass.";
 
         $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "ADMINISTRADOR"');
         $resultado1 = $consulta1->fetch_assoc();
         $id_permiso = $resultado1['id'];
-    
     
         $resultadoMail = enviarMail($email,$cadenaMail);
     
@@ -51,8 +53,6 @@ if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 
         }else{
              header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=5");
         }
-        
-        
         
     }else{
         header("Location:/DayClass/Administrador/ConfiguracionSistema/Administradores/configAdmin.php?resultado=6");
@@ -76,7 +76,7 @@ function enviarMail($mail,$mensajeEnviar){
     $destino = "lea220197@gmail.com,$mail,dayclassdev@gmail.com";
 
     // Enviamos el email
-    $rtdo = mail($destino, 'Alta de cuenta Administrativo en Dayclass', $mensaje);
+    $rtdo = mail($destino, 'Alta de cuenta Administrador en DayClass', $mensaje);
 
     return $rtdo;
 }

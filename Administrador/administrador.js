@@ -54,7 +54,7 @@ window.onload = function(){
                     placement: 'bottom',
                     title: 'Justificativos',
                     html: true,
-                    content: '<a href="/DayClass/Administrador/Justificativos/validar_justificativos.php">Hay justificativos pendientes de revisión</a>'
+                    content: '<a href="/DayClass/Administrador/Justificativos/validar_justificativos.php"><i class="fa fa-exclamation-circle mr-1"></i>Hay justificativos pendientes de revisión ('+datosRecibidos+')</a>'
                 });
                 document.getElementById("nroNoti").innerHTML = datosRecibidos;
                 $('#nroNoti').removeAttr("hidden");
@@ -64,7 +64,7 @@ window.onload = function(){
                     placement: 'bottom',
                     title: 'Justificativos',
                     html: true,
-                    content: 'No hay justificativos pendientes de revisión.'
+                    content: '<i class="fa fa-info-circle mr-1"></i>No hay justificativos pendientes de revisión.'
                 });
             }           
         }
