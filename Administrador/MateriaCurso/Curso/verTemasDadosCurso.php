@@ -103,7 +103,7 @@ $curso = $consulta1->fetch_assoc();
 </div>
 
 <script src="../../administrador.js"></script>
-<script src="../../paginadoDataTable.js"></script>
+<script src="paginadoDataTable.js"></script>
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
