@@ -32,14 +32,15 @@ if(mysqli_num_rows($consultaAlumL) == 0 && mysqli_num_rows($consultaAlumD) == 0 
         $pass = passAleatoria();
         $Pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
 
+        //No tabular texto porque toma los espacios
         $cadenaMail = "Hola, $nombre $apellido.
-        \r\n
-        \r\nSe ha dado de alta su cuenta de administrador en DayClass. 
-        \r\nSu contraseña es la siguiente: $pass
-        \r\nPuede cambiarla en cualquier momento accediendo a la sección de editar perfil.
-        \r\n
-        \r\nSaludos.
-        \r\nEquipo de DayClass.";
+
+Se ha dado de alta su cuenta de administrador en DayClass. 
+Su contraseña es la siguiente: $pass
+Puede cambiarla en cualquier momento accediendo a la sección de editar perfil.
+
+Saludos.
+Equipo de DayClass.";
 
         $consulta1 = $con->query('SELECT id FROM `permiso` WHERE nombrePermiso = "ADMINISTRADOR"');
         $resultado1 = $consulta1->fetch_assoc();
