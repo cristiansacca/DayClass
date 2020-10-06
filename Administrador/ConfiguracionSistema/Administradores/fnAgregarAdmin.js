@@ -255,12 +255,16 @@ function validarA(){
         if (v_dni && v_name && v_surname && v_mail && v_pass && v_fchNac) {
             var dni = document.getElementById('inputDNI').value;
             document.getElementById('inputLegajo').value = dni;
+            var contenido = "<span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span>Cargando...";
+            document.getElementById("btnSpinner").innerHTML = contenido;
             return true;
         }else{
             return false;
         }
     }else{
         if(v_dni && v_name && v_surname && v_mail && v_pass && v_fchNac && v_legajo) {
+            var contenido = "<span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span>Cargando...";
+            document.getElementById("btnSpinner").innerHTML = contenido;
             return true;
         } else {
            return false;

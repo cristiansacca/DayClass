@@ -370,6 +370,8 @@ function validarRestPass(){
     var legDNI  = validarDNIyLegajo();
     
     if(mail && legDNI){
+        var contenido = "<span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span>Cargando...";
+        document.getElementById("btnSpinner").innerHTML = contenido;
         return true;
     }else{
         return false;

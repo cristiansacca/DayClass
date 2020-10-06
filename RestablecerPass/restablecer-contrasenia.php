@@ -59,10 +59,10 @@ include "../header.html";
 
             switch ($_GET["resultado"]) {
                 case 1:
-                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                    echo "<div class='alert alert-success alert-dismissible fade show mx-auto' role='alert' style='width: 50%;'>
                              <h4 class='alert-heading'>¡Correo enviado! <i class='fa fa-paper-plane'></i></h4>
-                            <p>Se acaba de enviar una contraseña provisoria al correo indicado.</p>
-                            <p class='mb-0'>Revise su bandeja de entrada o spam.</p>
+                            <h6>Se acaba de enviar una contraseña provisoria al correo indicado.</h6>
+                            <h6 class='mb-0'>Revise su bandeja de entrada o spam.</h6>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -109,7 +109,7 @@ include "../header.html";
         <br>
         
     
-        <input type="submit" class="btn btn-primary my-4" value="Restablecer contraseña">
+        <button id="btnSpinner" type="submit" class="btn btn-primary my-2"><i class="fa fa-key mr-1"></i>Restablecer contraseña</button>
     </form>
   </div>
 </div>

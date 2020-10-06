@@ -53,9 +53,8 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
       
     <div class="form-inline">
         <a href="/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
-        <form method="POST" enctype="multipart/form-data" role="form" action="AlumnosLibres/buscarAlumnosLibres.php" class="ml-2">
-            <button type="submit" class="btn-dayclass my-3"><i class="fa fa-user-times mr-1"></i>Alumnos libres</button>
-
+        <form method="POST" enctype="multipart/form-data" role="form" action="AlumnosLibres/buscarAlumnosLibres.php" class="ml-2" onsubmit="return spinnerCargando();">
+            <button id="btnSpinner" type="submit" class="btn-dayclass my-3"><i class="fa fa-user-times mr-1"></i>Alumnos libres</button>
         </form>
     </div>
   </div>
@@ -119,6 +118,14 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+</script>
+
+<script>
+  function spinnerCargando(){
+    var contenido = "<span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span>Cargando...";
+    document.getElementById("btnSpinner").innerHTML = contenido;
+    return true;
+  }
 </script>
 
 <?php
