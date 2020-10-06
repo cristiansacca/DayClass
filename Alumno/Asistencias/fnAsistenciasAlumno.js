@@ -37,8 +37,17 @@ function mostrarAsistencias() {
                     var ausentes = json.ausentes;
                     var totalDias = json.diasCursado;
                     var porcentajeMinimo = json.minimoAsistencias;
+                    
+                    /*alert(ausentes);
+                    alert(totalDias);
+                    alert(porcentajeMinimo);
                     var presentesMinimos = Math.ceil(porcentajeMinimo*totalDias);
-                    var faltasDisponibles=totalDias-presentesMinimos-ausentes;
+                    var faltasDisponibles=totalDias-presentesMinimos-ausentes;*/
+                    
+                    
+                    var maxInasist = 1 - porcentajeMinimo;
+                    var ausentesMaximos = Math.ceil(maxInasist*totalDias);
+                    var faltasDisponibles=ausentesMaximos-ausentes;
 
                     if(faltasDisponibles >= 10) {
                         contenido += "<div class='alert alert-success' role='alert'>"+

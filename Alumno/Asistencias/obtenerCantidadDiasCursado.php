@@ -21,7 +21,9 @@ $fichaAsistencia = $con->query("SELECT * FROM asistencia WHERE curso_id = '$curs
 fechaDesdeFichaAsis <= '$currentDateTime' AND fechaHastaFichaAsis >= '$currentDateTime'")->fetch_assoc();
 
 $ausentes = $con->query("SELECT id FROM asistenciadia WHERE asistencia_id = '".$fichaAsistencia['id']."' AND tipoAsistencia_id = '".$tipoAusente['id']."'");
-$cantidadAusentes = ($ausentes->num_rows) !== 0 ? ($ausentes->num_rows) : 0;
+
+
+$cantidadAusentes = ($ausentes->num_rows) /*!== 0 ? ($ausentes->num_rows) : 0*/;
 
 $datos = array(
     'diasCursado'=> calcularDiasCursado($curso_id),
@@ -33,11 +35,11 @@ $myJSON = json_encode($datos);
 
 echo $myJSON;
 
-function calcularDiasCursado($curso_id){
+function calcularDiasCursado($idCurso){
     include "../../databaseConection.php";
     
     //contar la cantidad de clases que se tiene por semana
-    $selectCantClasesPorSemana = $con->query("SELECT COUNT(id) AS cantDias FROM `horariocurso` WHERE horariocurso.curso_id = '$curso_id'")->fetch_assoc();
+    $selectCantClasesPorSemana = $con->query("SELECT COUNT(id) AS cantDias FROM `horariocurso` WHERE horariocurso.curso_id = '$idCurso'")->fetch_assoc();
     
     //si hay dias de la semana definidos para ese curso 
     if($selectCantClasesPorSemana != null){
@@ -46,21 +48,27 @@ function calcularDiasCursado($curso_id){
         $clasesPorSemana = $selectCantClasesPorSemana["cantDias"];
         
         //traer las fechas de cursado del curso en cuestion 
-        $selectFechasCursadoCurso = $con->query("SELECT curso.fechaDesdeCursado, curso.fechaHastaCursado FROM `curso` WHERE curso.id = '$curso_id'")->fetch_assoc();
+        $selectFechasCursadoCurso = $con->query("SELECT curso.fechaDesdeCursado, curso.fechaHastaCursado FROM `curso` WHERE curso.id = '$idCurso'")->fetch_assoc();
         $fechaDesdeCursado = $selectFechasCursadoCurso["fechaDesdeCursado"];
         $fechaHastaCursado = $selectFechasCursadoCurso["fechaHastaCursado"];
+        
+        //echo "INICIO CURSADO:  $fechaDesdeCursado\r\n";
+        //echo "FIN CURSADO:  $fechaHastaCursado\r\n";
         
         //sacar la cantidad de semanas de cursado que hay entre las fechas de cursado
         $semanasCursado = (strtotime($fechaHastaCursado) - strtotime($fechaDesdeCursado) ) / (60 * 60 * 24 * 7);
         
         //redondear el numero de semanas, a un numero "redondo"
-        $cantSemanasCursado = round($semanasCursado);
+        $cantSemanasCursado = ceil($semanasCursado);
+        //echo "cant semanas cursado:  $cantSemanasCursado\r\n";
         
         //sacar los dias de cursado, multiplicando las semanas de cursado por la cantidad de clases semanales
         $cantDiasCursado = $cantSemanasCursado * $clasesPorSemana;
+        //echo "cant real de clases: $cantDiasCursado\r\n";
         
         //se quita una cantidad de dias por los dias que no hay clases y por la aproximacion de semanas
         //$diasEfectivosCursado = $cantDiasCursado - 1;
+        //echo "post resta de 5 dias: $diasEfectivosCursado";
         
         return $cantDiasCursado;
         
@@ -71,4 +79,5 @@ function calcularDiasCursado($curso_id){
     }
      
 }
+
 ?>
