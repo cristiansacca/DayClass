@@ -50,13 +50,13 @@ if (isset($_SESSION['administrador'])) {
          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
          switch ($_GET["error"]) {
             case 0:
-               echo "<h6><i class='fa fa-exclamation-circle mr-2'></i>Contraseña incorrecta.</h6>";
+               echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Contraseña incorrecta.</h5>";
                break;
             case 1:
-               echo "<h6><i class='fa fa-exclamation-circle mr-2'></i>Correo electrónico no registrado.</h6>";
+               echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Correo electrónico no registrado.</h5>";
                break;
             case 2:
-               echo "<h6><i class='fa fa-exclamation-circle mr-2'></i>Cuenta dada de baja.</h6>";
+               echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Cuenta dada de baja.</h5>";
                break;
          }
          echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
