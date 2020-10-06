@@ -18,6 +18,8 @@ function hide(){
 function confirmRestaurar(){
    var confirmar = confirm("¿Realmente desea restaurar la base de datos? ");
     if (confirmar) {
+        var contenido = "<span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span>Restaurando...";
+        document.getElementById("btnImportar").innerHTML = contenido;
         return true;
     } else {
         return false;
