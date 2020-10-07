@@ -131,7 +131,7 @@ while($temaDia = $selectTemasDia->fetch_assoc()){
 }
     
 }else{
-    $mensaje = "No se registra información de asistencias en el periodo seleccionado"; 
+    $mensaje = "No se registra información de que se hayan registrado temas en el periodo seleccionado"; 
     
     $mensaje = utf8_decode($mensaje);
     $pdf -> SetTextColor(255, 0,0);
@@ -141,6 +141,6 @@ while($temaDia = $selectTemasDia->fetch_assoc()){
 }
 
 /*Serve the PDF*/
-$pdf->Output( "reporteAsistencias.pdf", "I" );
+$pdf->Output( "reporteTemasDados$nombreCurso.pdf", "I" );
 
 ?>
