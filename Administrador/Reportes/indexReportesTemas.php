@@ -46,6 +46,8 @@ $_SESSION['tiempo'] = time();
     
     
     <h4>Seleccione los datos para generar el reporte </h4>
+    
+    <div id="resultadoMostrar"></div>
 
     <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportesTemas.php" enctype="multipart/form-data" role="form" onsubmit="return enviarReporte()">
         

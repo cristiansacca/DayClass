@@ -5,6 +5,9 @@ document.getElementById("materia").onchange = function(){
     document.getElementById("curso").innerHTML = contenido;
     $("#curso").attr("disabled", "disabled" );
     
+    
+    document.getElementById("resultadoMostrar").innerHTML = "";
+    
     var id_materia = document.getElementById("materia").value;
     var datos = {
         id_materia: id_materia
@@ -29,6 +32,7 @@ document.getElementById("materia").onchange = function(){
                 contenido="<option value='' selected>Curso</option>";
                 document.getElementById("curso").innerHTML = contenido;
                 $("#curso").attr("disabled", "disabled" );
+                document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Esta materia no tiene cursos disponibles.</h5></div>";
             }
             
         }
