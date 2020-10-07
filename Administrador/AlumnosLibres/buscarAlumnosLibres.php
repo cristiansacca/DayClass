@@ -32,6 +32,8 @@ $_SESSION['tiempo'] = time();
 
 ?>
 
+<script src="../administrador.js"></script>
+
 <div class="container">
 
     <div class="jumbotron my-4 py-4">

@@ -173,7 +173,7 @@ include "../../../databaseConection.php";
                                                 echo $file;
                                         }
                                     } else {
-                                        echo nl2br("<b> No hay ningún backup guardado en el sistema.\n Revise si tiene copias locales descaragdas.</b>");
+                                        echo nl2br("<b>No hay ninguna copia de seguridad guardada en el servidor.\n Revise si tiene copias locales descargadas.</b>");
                                     } ?></td>
                             </tr>
                         </table>
