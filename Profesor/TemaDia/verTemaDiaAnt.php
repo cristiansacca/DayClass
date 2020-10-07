@@ -34,6 +34,7 @@ if (!isset($_SESSION['profesor'])) {
         <h1>Tema dados anteriormente</h1>
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Profesor/TemaDia/verDatosReportesTemas.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Reporte</a>
          
     </div>
 
