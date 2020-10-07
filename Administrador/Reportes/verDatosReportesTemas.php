@@ -28,6 +28,7 @@ $nombreCurso = utf8_decode($curso["nombreCurso"]);
 
 require_once("../../fpdf/fpdf.php");
 
+
 // Begin configuration
 $textColour = array(0, 0, 0);
 $headerColour = array(100, 100, 100);
@@ -104,19 +105,24 @@ if (($selectTemasDia->num_rows) != 0) {
 
 
         $tema = utf8_decode($temaDia['nombreTema']);
-
+        $nb = $pdf->wordwrap($tema, 100);
+        
         $docente = $temaDia['apellidoProf'] . ", " . $temaDia['nombreProf'];
         $comentario = utf8_decode($temaDia['comentarioTema']);
 
         if ($comentario == "" || $comentario == null) {
             $comentario = "-";
+        }else{
+            $comentario = wordwrap($comentario, 50, "\r\n");
         }
 
         $pdf->Cell(20, 6, $fechas, 1, 0, 'L', 0);
-        $pdf->Cell(150, 6, $tema, 1, 0, 'C', 0);
+        $pdf->Cell(150, 6, $tema , 1, 0, 'C', 0);
         $pdf->Cell(40, 6, $docente, 1, 0, 'C', 0);
         $pdf->Cell(70, 6, $comentario, 1, 0, 'C', 0);
         $pdf->Ln(6);
+        
+        
     }
 } else {
     $mensaje = "No se registra información de temas en el periodo seleccionado.";
