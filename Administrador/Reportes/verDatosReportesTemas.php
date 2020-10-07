@@ -59,7 +59,7 @@ $pdf->Cell(0, 25, "$nombreCurso - $currentYear ", 0, 0, 'C');
 
 /*Create the page header, main heading, and intro text*/
 
-$pdf->AddPage('L', 'A4');
+$pdf->AddPage('P', 'A4');
 $pdf->SetTextColor($headerColour[0], $headerColour[1], $headerColour[2]);
 $pdf->SetFont('Arial', '', 17);
 $pdf->Cell(0, 15, $reportName, 0, 0, 'C');
@@ -86,13 +86,10 @@ if (($selectTemasDia->num_rows) != 0) {
     //cabecera de la tabla del reporte
     $pdf->SetFillColor(148, 112, 220);
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(20, 6, 'Fecha', 1, 0, 'L', 1);
+    /*$pdf->Cell(20, 6, 'Fecha', 1, 0, 'L', 1);
     $pdf->Cell(150, 6, 'Tema', 1, 0, 'C', 1);
     $pdf->Cell(40, 6, 'Docente', 1, 0, 'C', 1);
-    $pdf->Cell(70, 6, 'Comentario', 1, 0, 'C', 1);
-
-    $pdf->Ln(6);
-
+    $pdf->Cell(70, 6, 'Comentario', 1, 0, 'C', 1);*/
 
     $pdf->SetFont('Arial', '', 10);
     //codigo que va llenando la tabla 
@@ -103,9 +100,7 @@ if (($selectTemasDia->num_rows) != 0) {
         $fechas = date_create($fechas);
         $fechas =  date_format($fechas, "d/m/Y");
 
-
         $tema = utf8_decode($temaDia['nombreTema']);
-        $nb = $pdf->wordwrap($tema, 100);
         
         $docente = $temaDia['apellidoProf'] . ", " . $temaDia['nombreProf'];
         $comentario = utf8_decode($temaDia['comentarioTema']);
@@ -116,10 +111,15 @@ if (($selectTemasDia->num_rows) != 0) {
             $comentario = wordwrap($comentario, 50, "\r\n");
         }
 
-        $pdf->Cell(20, 6, $fechas, 1, 0, 'L', 0);
-        $pdf->Cell(150, 6, $tema , 1, 0, 'C', 0);
-        $pdf->Cell(40, 6, $docente, 1, 0, 'C', 0);
-        $pdf->Cell(70, 6, $comentario, 1, 0, 'C', 0);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(190, 6, $fechas, 1, 0, 'L', 1);
+        $pdf->Ln(6);
+        $pdf->SetFont('Arial', '', 11);
+        $pdf->Write(6, "Tema: $tema");
+        $pdf->Ln(6);
+        $pdf->Write(6, "Docente: $docente");
+        $pdf->Ln(6);
+        $pdf->Write(6, "Comentario: $comentario");
         $pdf->Ln(6);
         
         

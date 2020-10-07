@@ -89,16 +89,14 @@ $pdf->SetTextColor( $headerColour[0], $headerColour[1], $headerColour[2] );
 $pdf->SetFont( 'Arial', '', 17 );
 $pdf->Cell( 0, 15, $reportName, 0, 0, 'C' );
 $pdf->SetTextColor( $textColour[0], $textColour[1], $textColour[2] );
-$pdf->SetFont( 'Arial', '', 15 );
+$pdf->SetFont( 'Arial', '', 12 );
 
 
 //datos del reporte 
-$codigo = utf8_decode("Código");
+
 $pdf->Ln(2);
-$numeroReporte = generateReportNumber();//generar automaticamente el codigo del reporte
+
 $pdf->Ln(16);
-$pdf->Write(10, "$codigo reporte: $numeroReporte" );
-$pdf->Ln(6);
 
 $pdf->SetFont( 'Arial', '', 12 );
 $currentDateTime = date_create($currentDateTime);
