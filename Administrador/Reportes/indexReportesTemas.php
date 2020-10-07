@@ -40,14 +40,14 @@ $_SESSION['tiempo'] = time();
     
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        <h1>Reportes de asistencia</h1>
+        <h1>Reportes de Temas Dados</h1>
         <a href="../../index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     
     
     <h4>Seleccione los datos para generar el reporte </h4>
 
-    <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportesTemas.php" enctype="multipart/form-data" role="form">
+    <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportesTemas.php" enctype="multipart/form-data" role="form" onsubmit="return enviarReporte()">
         
         <div class="form-row">
         <div class="form-group col-md-6">

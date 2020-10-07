@@ -26,7 +26,7 @@ document.getElementById("materia").onchange = function(){
                     $("#curso").removeAttr("disabled"); 
                 }
             }else {
-                contenido="<option value='vacio' selected>Curso</option>";
+                contenido="<option value='' selected>Curso</option>";
                 document.getElementById("curso").innerHTML = contenido;
                 $("#curso").attr("disabled", "disabled" );
             }
@@ -42,4 +42,20 @@ function habilitarFechaHasta(){
     document.getElementById('inputFechaHastaReporte').value = fchDesde;
     document.getElementById('inputFechaHastaReporte').min = fchDesde;
     document.getElementById('inputFechaHastaReporte').disabled = false;
+}
+
+function enviarReporte(){
+    eval("debugger;");
+    var materia = document.getElementById("materia").value;
+    var curso = document.getElementById("curso").value;
+    var fchDesde = document.getElementById('inputFechaDesdeReporte').value;
+    var fchHasta = document.getElementById('inputFechaHastaReporte').value 
+    
+    if(materia != "" && curso != "" && fchDesde != "" && fchHasta != ""){
+        return true;
+    }else{
+        return false;
+    }
+    
+    
 }
