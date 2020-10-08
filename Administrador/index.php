@@ -59,9 +59,41 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
     </div>
   </div>
 
+<?php
+    if (isset($_GET['resultado'])) {
+        switch ($_GET['resultado']) {
+            case '1':
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos librese el dia de hoy, intente nuevamente mañana.</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                break;
+
+            case '2':
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al guardar los datos de asistencia.</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                break;
+            case '3':
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se tomó asistencia el día de hoy en este curso.</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                break;
+        }
+    }
+    ?>
+    
   <!-- Page Features -->
   <div class="row text-center">
-
+    
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
         <img class="card-img-top" src="../images/materiasycursos.png" alt="Cursos" oncontextmenu="return false">

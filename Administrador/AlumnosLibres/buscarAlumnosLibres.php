@@ -32,6 +32,25 @@ $_SESSION['tiempo'] = time();
 
 ?>
 
+<?php
+    include "../../databaseConection.php";
+
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $currentDate = date('Y-m-d');
+    $currentDateTime = date('Y-m-d H:i:s');
+
+
+    $selectAlumnosLibresHoy = $con->query("SELECT `id`, `fechaAlumnosLibres`, `id_admin` FROM `alumnosLibres` WHERE alumnoslibres.fechaAlumnosLibres LIKE '$currentDate%'");
+    
+    echo "SELECT `id`, `fechaAlumnosLibres`, `id_admin` FROM `alumnosLibres` WHERE alumnoslibres.fechaAlumnosLibres LIKE '$currentDate%'";
+    
+    if(($selectAlumnosLibresHoy->num_rows) != 0){
+        header("location: /DayClass/Administrador/index.php?resultado=1");
+    }
+
+?>
+
+
 <script src="../administrador.js"></script>
 
 <div class="container">
@@ -43,10 +62,11 @@ $_SESSION['tiempo'] = time();
     </div>
 
     <?php
+    
+    if(($selectAlumnosLibresHoy->num_rows) == 0){
+        
     include "../../databaseConection.php";
 
-    date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $currentDate = date('Y-m-d');
     $cantLibres = 0;
     $cantJustos = 0;
 
@@ -130,6 +150,8 @@ $_SESSION['tiempo'] = time();
         echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay un porcentaje mínimo de asistencias definido.</h5>
         </div>";
+    }
+        
     }
 
 
@@ -314,6 +336,7 @@ Equipo de DayClass";
     ?>
 
     <?php
+    if(($selectAlumnosLibresHoy->num_rows) == 0){
     if ($cantLibres == 0) {
         echo "<div class='alert alert-success' role='alert'>
                     <h5><i class='fa fa-exclamation-circle mr-2'></i>Ningún alumno ha quedado libre el día de hoy.</h5>
@@ -324,6 +347,11 @@ Equipo de DayClass";
         echo "<div class='alert alert-success' role='alert'>
                     <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay alumnos que tengan la cantidad máxima de faltas permitidas.</h5>
             </div>";
+    }
+    
+    $id_admin = $_SESSION['administrador']['id'];
+    
+    $insertAlumnosLibres = $con->query("INSERT INTO `alumnosLibres`(`fechaAlumnosLibres`, `id_admin`) VALUES ('$currentDateTime','$id_admin')");
     }
     ?>
 
