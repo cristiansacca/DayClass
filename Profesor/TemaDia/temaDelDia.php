@@ -338,14 +338,8 @@ if(($fechaD > $currentDateTime)){
 
 
                     <div class="modal-footer">
-                        <form action="verTemaDiaAnt.php" method="POST" class=" form-group">
                         
-                        <input type="text" name="idCurso" id="idCurso" <?php echo "value='$id_curso'" ?> hidden >
-                            
-                            <button type="submit" class="btn btn-success">Ver mas...</button>
-                        
-                        
-                        </form>
+                        <a <?php echo "href='/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso'"; ?> class="btn btn-success">Ver mas ...</a>
                         
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                         
