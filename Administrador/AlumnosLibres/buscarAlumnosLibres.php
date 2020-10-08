@@ -42,8 +42,6 @@ $_SESSION['tiempo'] = time();
 
     $selectAlumnosLibresHoy = $con->query("SELECT `id`, `fechaAlumnosLibres`, `id_admin` FROM `alumnosLibres` WHERE alumnoslibres.fechaAlumnosLibres LIKE '$currentDate%'");
     
-    echo "SELECT `id`, `fechaAlumnosLibres`, `id_admin` FROM `alumnosLibres` WHERE alumnoslibres.fechaAlumnosLibres LIKE '$currentDate%'";
-    
     if(($selectAlumnosLibresHoy->num_rows) != 0){
         header("location: /DayClass/Administrador/index.php?resultado=1");
     }

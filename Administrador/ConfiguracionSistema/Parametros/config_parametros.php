@@ -131,6 +131,8 @@ include "../../../databaseConection.php";
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#vigenciaSesion"><i class="fa fa-sign-out fa-lg mr-2"></i>Vigencia de sesión</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#asistenciasMinimas"><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos de docentes</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#"><i class="fa fa-times-circle-o fa-lg mr-2"></i>Motivos días sin clases</a>
+            <a class="list-group-item list-group-item-action" href=""><i class="fa fa-calendar fa-lg mr-2"></i>Días sin clases y feriados</a>
         </div>
     </div>
 </div>
@@ -537,6 +539,44 @@ include "../../../databaseConection.php";
                         <?php
                         if ($tiempoVigenciaAnterior != null) {
                             echo "<h6>La vigencia actual es de $tiempoVigenciaAnterior minutos.</h6>";
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="Submit" class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal nuevo motivo dia sin clases -->
+<div class="modal fade" id="nuevaModalidad" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title " id="staticBackdropLabel">Nueva modalidad</h5>
+            </div>
+            <form action="nuevaModalidad.php" method="POST">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="nombreModalidad">Nombre modalidad</label>
+                        <input type="text" placeholder="Modalidad" name="nombreModalidad" class="form-control" required>
+                    </div>
+                    <div class="my-2">
+                        <?php
+                        $consultaMod = $con->query("SELECT * FROM modalidad WHERE fechaBajaModalidad IS NULL");
+                        if (!($consultaMod->num_rows) == 0) {
+                            echo "<label>Modalidades existentes</label>";
+                            echo "<div class='list-group' >";
+                            while ($modalidades = $consultaMod->fetch_assoc()) {
+                                echo "<a class='list-group-item list-group-item-action'>" . $modalidades['nombre'] . "</a>";
+                            }
+                            echo "</div>";
+                        } else {
+                            echo "<div class='alert alert-warning'>No hay modalidades existentes</div>";
                         }
                         ?>
                     </div>

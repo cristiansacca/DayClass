@@ -64,7 +64,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         switch ($_GET['resultado']) {
             case '1':
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos librese el dia de hoy, intente nuevamente mañana.</h5>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos libres el dia de hoy, intente nuevamente mañana.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
