@@ -46,6 +46,7 @@ function validarPeriodo (){
 }
 
 document.getElementById("btnGenerar").onclick = function () {
+    
     var curso = document.getElementById('curso').value;
     var materia = document.getElementById('materia').value;
     var fechaDesde = document.getElementById('fechaDesde').value;
@@ -61,6 +62,8 @@ document.getElementById("btnGenerar").onclick = function () {
         document.getElementById("btnLimpiar").click();
         generarPieChart(datos);
         $("#faltanDatos").attr("hidden", "hidden" );
+        $("#oculto").removeAttr("hidden");
+        location.href = "#estadistica";
     } else {
         $("#faltanDatos").removeAttr("hidden");
     }
@@ -159,7 +162,7 @@ function generarPieChart(datosEntrada) {
             document.getElementById("periodo").innerHTML = json.periodo;
             document.getElementById("fechaHora").innerHTML = json.fechaHora;
             document.getElementById("txtCurso").innerHTML = json.nombreCurso;
-            document.getElementById("txtMateria").innerHTML = json.nombreMateria+" "+json.nivelMateria;
+            document.getElementById("txtMateria").innerHTML = json.nombreMateria+" (Nivel "+json.nivelMateria+")";
             document.getElementById("btnLimpiar").onclick = function(){myChart.destroy();}
 
         }

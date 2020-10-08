@@ -59,7 +59,7 @@ $currentDate = date('Y-m-d');
                     <?php
                     $conMat = $con->query("SELECT * FROM materia WHERE fechaBajaMateria IS NULL");
                     while ($materias = $conMat->fetch_assoc()) {
-                        echo "<option value='" . $materias['id'] . "'>" . $materias['nombreMateria'] . " " . $materias['nivelMateria'] . "</option>";
+                        echo "<option value='" . $materias['id'] . "'>" . $materias['nombreMateria'] . " (Nivel " . $materias['nivelMateria'] . ")</option>";
                     }
                     ?>
                 </select>
@@ -91,30 +91,29 @@ $currentDate = date('Y-m-d');
         </div>
     </div>
 
-    <button class="btn btn-primary mt-2 mr-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
-    <button class="btn btn-secondary mt-2 mr-2" id="btnLimpiar" hidden><i class="fa fa-eraser mr-1"></i>Limpiar</button>
-
-    <div class="my-4">
-        <div class="card ">
-            <div class="card-header">
-                <b> Datos de la estadística </b>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action font-weight-bold">Materia:<label class="ml-1 font-weight-normal" id="txtMateria"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Curso:<label class="ml-1 font-weight-normal" id="txtCurso"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Fecha y hora:<label class="ml-1 font-weight-normal" id="fechaHora"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Periodo:<label class="ml-1 font-weight-normal" id="periodo"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Presentes:<label class="ml-1 font-weight-normal" id="cantPresentes"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Ausentes:<label class="ml-1 font-weight-normal" id="cantAusentes"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Justificados:<label class="ml-1 font-weight-normal" id="cantJustificados"></label></li>
-                </ul>
+    <section id="estadistica">
+        <button class="btn btn-primary my-2 mr-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
+        <button class="btn btn-secondary mt-2 mr-2" id="btnLimpiar" hidden><i class="fa fa-eraser mr-1"></i>Limpiar</button>
+        <div class="my-4" id="oculto" hidden>
+            <div class="card ">
+                <div class="card-header">
+                    <h5> Datos de la estadística </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action font-weight-bold">Materia:<label class="ml-1 font-weight-normal" id="txtMateria"></label></li>
+                        <li class="list-group-item list-group-item-action font-weight-bold">Curso:<label class="ml-1 font-weight-normal" id="txtCurso"></label></li>
+                        <li class="list-group-item list-group-item-action font-weight-bold">Fecha y hora:<label class="ml-1 font-weight-normal" id="fechaHora"></label></li>
+                        <li class="list-group-item list-group-item-action font-weight-bold">Periodo:<label class="ml-1 font-weight-normal" id="periodo"></label></li>
+                        <li class="list-group-item list-group-item-action font-weight-bold">Presentes:<label class="ml-1 font-weight-normal" id="cantPresentes"></label></li>
+                        <li class="list-group-item list-group-item-action font-weight-bold">Ausentes:<label class="ml-1 font-weight-normal" id="cantAusentes"></label></li>
+                        <li class="list-group-item list-group-item-action font-weight-bold">Justificados:<label class="ml-1 font-weight-normal" id="cantJustificados"></label></li>
+                        <li class="list-group-item list-group-item-action font-weight-bold">Gráfico:<canvas id="myChart"></canvas></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="jumbotron py-2 my-2">
-        <canvas id="myChart"></canvas>
-    </div>
+    </section>
 </div>
 
 <script src="../administrador.js"></script>
