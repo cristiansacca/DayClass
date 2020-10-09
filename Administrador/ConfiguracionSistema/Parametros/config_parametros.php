@@ -144,7 +144,7 @@ include "../../../databaseConection.php";
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#asistenciasMinimas"><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos de docentes</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#motivosDiaSinClases"><i class="fa fa-times-circle-o fa-lg mr-2"></i>Motivos días sin clases</a>
-            <a class="list-group-item list-group-item-action" href="feriadosDiaSinClase.php"><i class="fa fa-calendar fa-lg mr-2"></i>Días sin clases y feriados</a>
+            <a class="list-group-item list-group-item-action" href="feriadosDiaSinClase.php"><i class="fa fa-calendar fa-lg mr-2"></i>Feriados y días sin clases</a>
         </div>
     </div>
 </div>
