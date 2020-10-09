@@ -15,6 +15,8 @@ $fechaHastaReporte = $fechaHastaReporte . " 23:59:59";
 
 $selectTemasDia = $con->query("SELECT temadia.fechaTemaDia, temasmateria.nombreTema, profesor.nombreProf, profesor.apellidoProf, temadia.comentarioTema FROM `temadia`, curso, temasmateria, profesor WHERE curso.id = '$curso' AND temadia.curso_id = curso.id AND temadia.fechaTemaDia >= '$fechaDesdeReporte' AND temadia.fechaTemaDia <= '$fechaHastaReporte' AND temadia.temasMateria_id = temasmateria.id AND temadia.profesor_id = profesor.id ORDER BY temadia.fechaTemaDia ASC");
 
+//echo "SELECT temadia.fechaTemaDia, temasmateria.nombreTema, profesor.nombreProf, profesor.apellidoProf, temadia.comentarioTema FROM `temadia`, curso, temasmateria, profesor WHERE curso.id = '$curso' AND temadia.curso_id = curso.id AND temadia.fechaTemaDia >= '$fechaDesdeReporte' AND temadia.fechaTemaDia <= '$fechaHastaReporte' AND temadia.temasMateria_id = temasmateria.id AND temadia.profesor_id = profesor.id ORDER BY temadia.fechaTemaDia ASC";
+
 //cambiar formato fechas 
 $fechaDesdeReporte = date_create($fechaDesdeReporte);
 $fechaDesdeReporte = date_format($fechaDesdeReporte, "d/m/Y");
@@ -107,8 +109,6 @@ if (($selectTemasDia->num_rows) != 0) {
 
         if ($comentario == "" || $comentario == null) {
             $comentario = "-";
-        }else{
-            $comentario = wordwrap($comentario, 50, "\r\n");
         }
 
         $pdf->SetFont('Arial', 'B', 12);

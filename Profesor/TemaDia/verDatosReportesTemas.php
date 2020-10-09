@@ -105,8 +105,6 @@ if (($selectTemasDia->num_rows) != 0) {
 
         if ($comentario == "" || $comentario == null) {
             $comentario = "-";
-        }else{
-            $comentario = wordwrap($comentario, 50, "\r\n");
         }
 
         $pdf->SetFont('Arial', 'B', 12);
