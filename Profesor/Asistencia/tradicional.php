@@ -122,6 +122,13 @@ if (isset($_GET["id_curso"])) {
 
 ?>
 
+<style>
+   .abajo-pagina{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+   }
+</style>
 
 <div class="container">
 
@@ -153,7 +160,7 @@ if (isset($_GET["id_curso"])) {
             $presente = "Presente";
 
             echo "<div class='mySlides'>
-                <i class='fa fa-user-circle-o fa-5x'></i>
+                <i class='fa fa-user-circle fa-5x'></i>
                 <br>
                 <label id='labelLegajo' style='font-size:xx-large;'>$legajoAlum</label>
                 <br>
