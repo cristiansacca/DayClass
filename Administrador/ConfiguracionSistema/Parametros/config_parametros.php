@@ -112,6 +112,18 @@ include "../../../databaseConection.php";
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al establecer la vigencia de sesión.</h5>";
                 break;
+            case 17:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Motivo creada correctamente.</h5>";
+                break;
+            case 18:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al crear el motivo.</h5>";
+                break;
+            case 19:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un motivo con el mismo nombre.</h5>";
+                break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
@@ -131,8 +143,8 @@ include "../../../databaseConection.php";
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#vigenciaSesion"><i class="fa fa-sign-out fa-lg mr-2"></i>Vigencia de sesión</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#asistenciasMinimas"><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos de docentes</a>
-            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#"><i class="fa fa-times-circle-o fa-lg mr-2"></i>Motivos días sin clases</a>
-            <a class="list-group-item list-group-item-action" href=""><i class="fa fa-calendar fa-lg mr-2"></i>Días sin clases y feriados</a>
+            <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#motivosDiaSinClases"><i class="fa fa-times-circle-o fa-lg mr-2"></i>Motivos días sin clases</a>
+            <a class="list-group-item list-group-item-action" href="feriadosDiaSinClase.php"><i class="fa fa-calendar fa-lg mr-2"></i>Días sin clases y feriados</a>
         </div>
     </div>
 </div>
@@ -212,14 +224,26 @@ include "../../../databaseConection.php";
                         $consultaMod = $con->query("SELECT * FROM modalidad WHERE fechaBajaModalidad IS NULL");
                         if (!($consultaMod->num_rows) == 0) {
                             echo "<label>Modalidades existentes</label>";
-                            echo "<div class='list-group' >";
+                            
+                            echo "<table class='table table-sm bg-light table-bordered'>
+                                        <thead>
+                                            <th>Modalidades</th>
+                                        </thead>
+                                        <tbody>";
                             while ($modalidades = $consultaMod->fetch_assoc()) {
-                                echo "<a class='list-group-item list-group-item-action'>" . $modalidades['nombre'] . "</a>";
+                               
+                            echo "<tr>
+                                            <td>" . $modalidades['nombre']. "</td>
+                                        </tr>";
                             }
-                            echo "</div>";
+                            echo "</tbody>
+                                </table>";
                         } else {
                             echo "<div class='alert alert-warning'>No hay modalidades existentes</div>";
                         }
+                        
+                        
+                        
                         ?>
                     </div>
                 </div>
@@ -552,31 +576,40 @@ include "../../../databaseConection.php";
     </div>
 </div>
 
-<!-- Modal nuevo motivo dia sin clases -->
-<div class="modal fade" id="nuevaModalidad" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal motivo dia sin clases -->
+<div class="modal fade" id="motivosDiaSinClases" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Nueva modalidad</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Nuevo motivo día sin clases.</h5>
             </div>
-            <form action="nuevaModalidad.php" method="POST">
+            <form action="insertMotivoDiaSinClases.php" method="POST">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="nombreModalidad">Nombre modalidad</label>
-                        <input type="text" placeholder="Modalidad" name="nombreModalidad" class="form-control" required>
+                        <label for="nombreModalidad">Nombre motivo</label>
+                        <input type="text" placeholder="Motivo" name="nombreMotivo" id="nombreMotivo" onchange="capitalize(this.id)" class="form-control" required>
                     </div>
                     <div class="my-2">
                         <?php
-                        $consultaMod = $con->query("SELECT * FROM modalidad WHERE fechaBajaModalidad IS NULL");
-                        if (!($consultaMod->num_rows) == 0) {
-                            echo "<label>Modalidades existentes</label>";
-                            echo "<div class='list-group' >";
-                            while ($modalidades = $consultaMod->fetch_assoc()) {
-                                echo "<a class='list-group-item list-group-item-action'>" . $modalidades['nombre'] . "</a>";
+                        $consultaMotivo = $con->query("SELECT * FROM `motivodiasinclases` WHERE motivodiasinclases.fechaHastaMotivoDiaSinClases IS NULL ");
+                        if (!($consultaMotivo->num_rows) == 0) {
+                            echo "<label>Motivos existentes</label>";
+                            echo "<table class='table table-sm bg-light table-bordered'>
+                                        <thead>
+                                            <th>Motivos</th>
+                                        </thead>
+                                        <tbody>";
+                            while ($motivo = $consultaMotivo->fetch_assoc()) {
+                               
+                            echo "<tr>
+                                            <td>" . $motivo['nombreMotivoDiaSinClases']. "</td>
+                                        </tr>";
                             }
-                            echo "</div>";
+                            echo "</tbody>
+                                </table>";
+                            
                         } else {
-                            echo "<div class='alert alert-warning'>No hay modalidades existentes</div>";
+                            echo "<div class='alert alert-warning'>No hay motivos existentes</div>";
                         }
                         ?>
                     </div>

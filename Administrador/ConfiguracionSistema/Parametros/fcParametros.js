@@ -166,6 +166,7 @@ function capitalize(id){
     var restoPalabra = elem.substring(1);
     
     primerLetra = primerLetra.toUpperCase();
+    restoPalabra = restoPalabra.toLowerCase();
     
     document.getElementById(id).value = primerLetra + restoPalabra;
     
