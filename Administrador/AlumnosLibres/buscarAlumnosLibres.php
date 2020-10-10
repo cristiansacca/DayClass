@@ -163,6 +163,16 @@ $_SESSION['tiempo'] = time();
 
         //si hay dias de la semana definidos para ese curso 
         if ($selectCantClasesPorSemana != null) {
+            
+            //traer todos los dias de la semana que se dicta ese curso
+            $selectDiasClasePorSemana = $con->query("SELECT cursodia.dayName FROM `horariocurso`, cursodia WHERE horariocurso.curso_id = '$idCurso' AND cursodia.id = horariocurso.cursoDia_id");
+            
+            //armar un arreglo con los dias de cursado de la semana 
+            $arregloDiasClasePorSemana = [];
+            while ($row = $selectDiasClasePorSemana->fetch_assoc()) {
+                $dayName = $row["dayName"];
+                array_push($arregloDiasClasePorSemana, $dayName);
+            }
 
             //leer la cantidad de clases que hay en una semana 
             $clasesPorSemana = $selectCantClasesPorSemana["cantDias"];
@@ -175,16 +185,51 @@ $_SESSION['tiempo'] = time();
             //sacar la cantidad de semanas de cursado que hay entre las fechas de cursado
             $semanasCursado = (strtotime($fechaHastaCursado) - strtotime($fechaDesdeCursado)) / (60 * 60 * 24 * 7);
 
-            //redondear el numero de semanas, a un numero "redondo"
+            //redondear el numero de semanas, al entero mas cercano
             $cantSemanasCursado = ceil($semanasCursado);
 
             //sacar los dias de cursado, multiplicando las semanas de cursado por la cantidad de clases semanales
             $cantDiasCursado = $cantSemanasCursado * $clasesPorSemana;
 
-            //se quita una cantidad de dias por los dias que no hay clases y por la aproximacion de semanas
-            //$diasEfectivosCursado = $cantDiasCursado - 1;
-
-            return $cantDiasCursado;
+            //traer los dias sin clases que entran durante el cursado de la materia 
+            $selectDiasSinClases= $con->query("SELECT diassinclases.fechaDiaSinClases FROM diassinclases,curso WHERE curso.id = '$idCurso' AND diassinclases.fechaDiaSinClases >= curso.fechaDesdeCursado AND diassinclases.fechaDiaSinClases <= curso.fechaHastaCursado AND diassinclases.fechaBajaDiaSinClases IS NULL");
+            
+            $cantDiaSinClases = 0;
+            
+            if(($selectDiasSinClases->num_rows) != 0){
+                
+                while($diaSinClases = $selectDiasSinClases->fetch_assoc()){
+                    $noClasesDay = $diaSinClases["fechaDiaSinClases"];
+                    
+                    $nombreDiaSinClases = date('l', strtotime($noClasesDay));
+                    
+                    //echo "Nombre dia sin clases: ".$nombreDiaSinClases;
+                    for($i = 0; $i < count($arregloDiasClasePorSemana); $i++){
+                        
+                        $nombreDiaClases = $arregloDiasClasePorSemana[$i];
+                        
+                        //echo "Nombre dia de clases: " . $nombreDiaClases;
+                        
+                        //si el nombre del dia feriado/sinClases coincide un un dia de cusado se aumenta la cantidad de dias sin clases
+                        if($nombreDiaClases == $nombreDiaSinClases){
+                            $cantDiaSinClases ++;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            
+            //se le resta a los dias de cursado calculados (clasePorSemana * cantSemanas) los dias caen feriado o dia sin clases, de los que se cursa esa materia
+            $diasEfectivosCursado = $cantDiasCursado - $cantDiaSinClases;
+            
+            //echo "Cantidad dias cursado: " . $cantDiasCursado;
+            
+            //echo "Cantidad dias sin clases: " . $cantDiaSinClases;
+            
+            //echo "Cantidad total de clases: " . $diasEfectivosCursado;
+            
+            return $diasEfectivosCursado;
         } else {
             //el curso no tiene definido horarios 
             return null;

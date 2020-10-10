@@ -59,9 +59,15 @@ function mostrarAsistencias() {
                                 "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
                             "</div>";
                         }else{
-                            contenido += "<div class='alert alert-danger' role='alert'>"+
-                                "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
-                            "</div>";
+                            if(faltasDisponibles < 0){
+                                contenido += "<div class='alert alert-danger' role='alert'>"+
+                                    "<h5><i class='fa fa-info-circle mr-2'></i>Ha llegado al máximo permitido de faltas en esta materia, su estado es LIBRE.</h5>"+
+                                "</div>";
+                            }else{
+                                contenido += "<div class='alert alert-danger' role='alert'>"+
+                                    "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
+                                "</div>";
+                            }
                         }
                     }
                 }
