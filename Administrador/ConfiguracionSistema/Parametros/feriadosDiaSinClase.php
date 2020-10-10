@@ -43,7 +43,6 @@ include "../../../databaseConection.php";
     </div>
     
     <?php
-
             if (isset($_GET["resultado"])) {
                 switch ($_GET["resultado"]) {
                     case 1:
@@ -69,6 +68,16 @@ include "../../../databaseConection.php";
     
     <div>
         <a class="btn btn-success mb-3" href="" data-toggle="modal" data-target="#nuevoFeriadoDiaSinClase"><i class="fa fa-plus mr-2"></i>Agregar</a>
+        
+        
+        
+        <?php
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+            $currentDate = date('Y-m-d');
+                                
+            $consulta = $con->query("SELECT diassinclases.fechaDiaSinClases, diassinclases.comentarioDiaSinClases, diassinclases.id AS idDiaSinClases, motivodiasinclases.nombreMotivoDiaSinClases FROM diassinclases, motivodiasinclases WHERE diassinclases.fechaAltaDiaSinClases <= '$currentDate' AND diassinclases.fechaBajaDiaSinClases IS NULL AND diassinclases.id_motivo = motivodiasinclases.id AND motivodiasinclases.fechaDesdeMotivoDiaSinClases <= '$currentDate' AND motivodiasinclases.fechaHastaMotivoDiaSinClases IS NULL ORDER BY diassinclases.fechaDiaSinClases ASC");
+
+        ?>
         
         <table class="table table-bordered table-secondary">
             <thead>
