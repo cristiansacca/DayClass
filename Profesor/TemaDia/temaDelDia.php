@@ -12,33 +12,31 @@ if (!isset($_SESSION['profesor'])) {
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-  
+
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if($vida_session > $_SESSION['limite'])
-    {
+    if ($vida_session > $_SESSION['limite']) {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();              
+        session_destroy();
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-  
+
         exit();
     }
-  }
-  $_SESSION['tiempo'] = time();
-  
+}
+$_SESSION['tiempo'] = time();
+
 //Si la variable id_curso no está definida se vuelve al index
-if(isset($_GET["id_curso"])){
+if (isset($_GET["id_curso"])) {
     $id_curso = $_GET["id_curso"];
 
     $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
     $curso = $consulta1->fetch_assoc();
-    
 } else {
     header("location:/DayClass/Profesor/index.php");
 }
@@ -46,17 +44,17 @@ if(isset($_GET["id_curso"])){
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDate = date('Y-m-d');
 
-$consultaMateria = $con->query("SELECT * FROM materia WHERE id = '".$curso["materia_id"]."'");
+$consultaMateria = $con->query("SELECT * FROM materia WHERE id = '" . $curso["materia_id"] . "'");
 $materia = $consultaMateria->fetch_assoc();
 $materia_id = $materia["id"];
-               
+
 $consultaPrograma = $con->query("SELECT * FROM programamateria WHERE materia_id = '$materia_id' AND programamateria.fechaDesdePrograma <= '$currentDate' AND programamateria.fechaHastaPrograma IS NULL");
 $programa = $consultaPrograma->fetch_assoc();
 $programa_id = $programa["id"];
 
 
-$hab =false;
-if($programa_id != "" || $programa_id != null){
+$hab = false;
+if ($programa_id != "" || $programa_id != null) {
     $hab = true;
 }
 
@@ -84,29 +82,28 @@ $tieneDiaHora = false;
 $diaHoraBien = false;
 $diaBien = false;
 $horaBien = false;
-if(!($consultaDiasHorasCurso)==0){
+if (!($consultaDiasHorasCurso) == 0) {
     $tieneDiaHora = true;
     $curretDay = date('l', strtotime($currentDateTime));
     $currentTime = date('H:i:s');
-    while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()){
+    while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()) {
         $dayName = $rtdoDiasHoras['dayName'];
-        
-        if($dayName == $curretDay){
+
+        if ($dayName == $curretDay) {
             $diaBien = true;
             $horaInicio = $rtdoDiasHoras['horaInicioCurso'];
             $horaFin = $rtdoDiasHoras['horaFinCurso'];
-            
-            if($currentTime >= $horaInicio && $currentTime <=$horaFin ){
-                $horaBien = true; 
-                
-                
-                if ($horaBien && $diaBien){
-                    $diaHoraBien= true;
-                    
+
+            if ($currentTime >= $horaInicio && $currentTime <= $horaFin) {
+                $horaBien = true;
+
+
+                if ($horaBien && $diaBien) {
+                    $diaHoraBien = true;
+
                     break;
                 }
             }
-            
         }
     }
 }
@@ -124,22 +121,22 @@ $fechaH = $cursoFechas["fechaHastaCursado"];
 $fechaDesdeCursado = date_create($cursoFechas["fechaDesdeCursado"]);
 $fechaHastaCursado = date_create($cursoFechas["fechaHastaCursado"]);
 
-$fechaDesdeCursadoF = date_format($fechaDesdeCursado,"d/m/Y");
-$fechaHastaCursadoF = date_format($fechaHastaCursado,"d/m/Y");
+$fechaDesdeCursadoF = date_format($fechaDesdeCursado, "d/m/Y");
+$fechaHastaCursadoF = date_format($fechaHastaCursado, "d/m/Y");
 
-if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
+if (($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)) {
     $hayFechasCursado = true;
-    
+
     $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaD' AND `fechaHastaAlumCurAc` = '$fechaH'  AND `curso_id` = '$id_curso' ");
-    
-    if(mysqli_num_rows($consultaAlumnos) != 0 ){
+
+    if (mysqli_num_rows($consultaAlumnos) != 0) {
         $hayAlumnos = true;
     }
 }
 
 $cursadoFuturo = true;
 
-if(($fechaD > $currentDateTime)){
+if (($fechaD > $currentDateTime)) {
     $cursadoFuturo = false;
 }
 
@@ -153,117 +150,117 @@ if(($fechaD > $currentDateTime)){
         <h1>Tema del día</h1>
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas dados</button>
+        <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas dados</button>
     </div>
 
     <?php
-        if(isset($_GET['resultado'])){
-            if($_GET['resultado'] == 1){
-                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    if (isset($_GET['resultado'])) {
+        if ($_GET['resultado'] == 1) {
+            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>El tema se cargó correctamente</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div>";
-            } elseif($_GET['resultado'] == 0) {
-                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        } elseif ($_GET['resultado'] == 0) {
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al cargar el tema</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div>";
-            }
         }
+    }
     ?>
-    
+
     <?php
-        if(!$hab){
-                echo "<div class='alert alert-warning' role='alert'>
+    if (!$hab) {
+        echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Aún no se ha cargado el programa de esta materia, no podrá seleccionar temas de clase.</h5>
                 </div>";
-        }
-    
-        if (!$habP) {
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+    }
+
+    if (!$habP) {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Su estado el dia de hoy es $estadoCargo, no puede cargar temas, solo verlos.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
             </div>";
-        }
-        
-        if(!$hayAlumnos){
-           echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+    }
+
+    if (!$hayAlumnos) {
+        echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos para este periodo.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
-            </div>"; 
-        }
-    
-    
-    if(!$tieneDiaHora){
-            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            </div>";
+    }
+
+
+    if (!$tieneDiaHora) {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay horario definido para este curso. No puede cargar temas.</h5>
             </div>";
-        }else{
-           if(!$diaHoraBien){
-                            
-               if($diaBien && !$horaBien){
-                   echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+    } else {
+        if (!$diaHoraBien) {
+
+            if ($diaBien && !$horaBien) {
+                echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el horario de cursado. No puede cargar temas nuevos.</h5>
                     </div>";
-               }
-               
-               if(!$diaBien && !$horaBien){
-                   echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+            }
+
+            if (!$diaBien && !$horaBien) {
+                echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el día ni horario de cursado. No puede cargar temas nuevos.</h5>
-                    </div>"; 
-               }
-               
-            }else{
-               if(!$diaBien){
-                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                    </div>";
+            }
+        } else {
+            if (!$diaBien) {
+                echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>Este curso no se dicta este día, no puede cargar temas.</h5>
                     </div>";
-                }
-               
-           }  
+            }
         }
+    }
     ?>
 
-    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo)){ }else{echo "hidden";}  ?>>
+    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo)) {
+                                                                        } else {
+                                                                            echo "hidden";
+                                                                        }  ?>>
         <h5><i class='fa fa-exclamation-circle mr-2'></i>Indique el tema del día</h5>
-        <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden >
+        <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden>
         <div class="my-2  form-inline">
             <select id="unidadTema" name="unidadTema" class="custom-select" class="custom-select" style="width:15%" required>
                 <option value="" selected>Unidad</option>
                 <?php
-                
+
                 $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
 
-                while($temas = $consultaTemas->fetch_assoc()){
-                    echo "<option value='".$temas["unidadTema"]."'>".$temas["unidadTema"]."</option>";
+                while ($temas = $consultaTemas->fetch_assoc()) {
+                    echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
                 }
 
                 ?>
             </select>
-            
+
             <select id="nombreTema" name="nombreTema" class="custom-select" style="width:85%" required disabled>
                 <option value="" selected>Tema</option>
-                
+
             </select>
-            
-            
-            
+
+
+
         </div>
         <div class="my-2">
-            <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline"
-                placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
-            
+            <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline" placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
+
         </div>
-        
-        <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden >
-        <input type="text" name="idProfesor" id="idProfesor" <?php echo "value='$id_prof'" ?> hidden >
-        
+
+        <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden>
+        <input type="text" name="idProfesor" id="idProfesor" <?php echo "value='$id_prof'" ?> hidden>
+
         <button class="btn btn-primary my-2" type="submit">Aceptar</button>
     </form>
 
@@ -279,72 +276,65 @@ if(($fechaD > $currentDateTime)){
             </div>
             <div class="modal-body">
 
-                <div>
-                    
+                <div class="table-responsive">
 
                     <table class="table text-center table-striped">
-                        
-                        
-                        
-                            <?php
-                                include "../../databaseConection.php";
-                                $id_curso = $_GET["id_curso"];
 
-                                $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC LIMIT 2");
-                                //https://www.tutorialspoint.com/how-to-select-first-10-elements-from-a-mysql-database#:~:text=To%20select%20first%2010%20elements%20from%20a%20database%20using,BY%20clause%20with%20LIMIT%2010.&text=Insert%20some%20records%20in%20the%20table%20using%20insert%20command.&text=Display%20all%20records%20from%20the%20table%20using%20select%20statement.&text=Here%20is%20the%20alternate%20query%20to%20select%20first%2010%20elements.
-                            
-                                if(($consulta1->num_rows) == 0){
-                                    echo "<div class='alert alert-warning' role='alert'>
+                        <?php
+                        include "../../databaseConection.php";
+                        $id_curso = $_GET["id_curso"];
+
+                        $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC LIMIT 2");
+                        //https://www.tutorialspoint.com/how-to-select-first-10-elements-from-a-mysql-database#:~:text=To%20select%20first%2010%20elements%20from%20a%20database%20using,BY%20clause%20with%20LIMIT%2010.&text=Insert%20some%20records%20in%20the%20table%20using%20insert%20command.&text=Display%20all%20records%20from%20the%20table%20using%20select%20statement.&text=Here%20is%20the%20alternate%20query%20to%20select%20first%2010%20elements.
+
+                        if (($consulta1->num_rows) == 0) {
+                            echo "<div class='alert alert-warning' role='alert'>
                                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han cargado temas en este curso.</h5>
                                         </div>";
-                                }else{
-                                    echo "<h9>Temas dados anteriormente</h9>";
-                                   echo "<thead>
+                        } else {
+                            echo "<h9>Temas dados anteriormente</h9>";
+                            echo "<thead>
                                             <th>Fecha</th>
                                             <th>Tema</th>
                                             <th>Comentario</th>
                                             <th>Docente</th> 
                                         </thead>
                                        <tbody> ";
-                                
 
-                                    while ($resultado1 = $consulta1->fetch_assoc()) {
-                                        $profTema = $resultado1['profesor_id'];
-                                        $datosProf = $con->query("SELECT * FROM `profesor` WHERE profesor.id = '$profTema'")->fetch_assoc();
-                                        
-                                        $nombreProf = $datosProf["nombreProf"];
-                                        $apellidoProf = $datosProf["apellidoProf"];
-                                        
-                                        
-                                        $date=date_create($resultado1['fechaTemaDia']);
-                                        $fecha = date_format($date,"d/m/Y");
 
-                                        echo "<tr>
+                            while ($resultado1 = $consulta1->fetch_assoc()) {
+                                $profTema = $resultado1['profesor_id'];
+                                $datosProf = $con->query("SELECT * FROM `profesor` WHERE profesor.id = '$profTema'")->fetch_assoc();
+
+                                $nombreProf = $datosProf["nombreProf"];
+                                $apellidoProf = $datosProf["apellidoProf"];
+
+
+                                $date = date_create($resultado1['fechaTemaDia']);
+                                $fecha = date_format($date, "d/m/Y");
+
+                                echo "<tr>
                                         <td>" . $fecha . "</td>
                                         <td>" . $resultado1['nombreTema'] . "</td>
                                         <td>" . $resultado1['comentarioTema'] . "</td>
-                                        <td>" . $nombreProf ." ". $apellidoProf . "</td>
+                                        <td>" . $nombreProf . " " . $apellidoProf . "</td>
                                         </tr>";
-                                    }
-                                    
-                                    echo " </tbody>";
-                                }
-                            ?>
-                        
-                       
+                            }
+
+                            echo " </tbody>";
+                        }
+                        ?>
+
                     </table>
 
                 </div>
 
+                <div class="modal-footer">
 
-                    <div class="modal-footer">
-                        
-                        <a <?php echo "href='/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso'"; ?> class="btn btn-success">Ver mas ...</a>
-                        
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                        
-                        
-                        
+                    <a <?php echo "href='/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso'"; ?> class="btn btn-success"><i class="fas fa-search-plus mr-1"></i>Ver más</a>
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+
                 </div>
             </div>
 
@@ -358,7 +348,7 @@ if(($fechaD > $currentDateTime)){
 <script src="../profesor.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['profesor']['nombreProf'] . " " . $_SESSION['profesor']['apellidoProf'] . "'" ?>
 </script>
 <script src="fnTemaDia.js"></script>
 <?php

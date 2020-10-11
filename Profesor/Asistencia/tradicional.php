@@ -11,32 +11,31 @@ if (!isset($_SESSION['profesor'])) {
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-  
+
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if($vida_session > $_SESSION['limite'])
-    {
+    if ($vida_session > $_SESSION['limite']) {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();              
+        session_destroy();
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-  
+
         exit();
     }
-  }
-  $_SESSION['tiempo'] = time();
-  
+}
+$_SESSION['tiempo'] = time();
+
 if (isset($_GET["id_curso"])) {
     $id_curso = $_GET["id_curso"];
 
     $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
     $curso = $consulta1->fetch_assoc();
-    
+
     $id_curso = $_GET["id_curso"];
 
     $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
@@ -48,10 +47,9 @@ if (isset($_GET["id_curso"])) {
 
     $consultaAsistMismoDia = $con->query("SELECT * FROM `asistenciadia`, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
 
-    if(($consultaAsistMismoDia->num_rows)!=0){
+    if (($consultaAsistMismoDia->num_rows) != 0) {
         header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=3");
     }
-    
 } else {
     header("location:/DayClass/Profesor/index.php");
 }
@@ -61,7 +59,7 @@ if (isset($_GET["id_curso"])) {
 
     $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
     $curso = $consulta1->fetch_assoc();
-    
+
     $id_prof = $_SESSION['profesor']["id"];
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $currentDateTime = date('Y-m-d');
@@ -84,24 +82,24 @@ if (isset($_GET["id_curso"])) {
     $diaHoraBien = false;
     $diaBien = false;
     $horaBien = false;
-    if(!($consultaDiasHorasCurso)==0){
+    if (!($consultaDiasHorasCurso) == 0) {
         $tieneDiaHora = true;
         $curretDay = date('l', strtotime($currentDateTime));
         $currentTime = date('H:i:s');
-        while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()){
+        while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()) {
             $dayName = $rtdoDiasHoras['dayName'];
 
-            if($dayName == $curretDay){
+            if ($dayName == $curretDay) {
                 $diaBien = true;
                 $horaInicio = $rtdoDiasHoras['horaInicioCurso'];
                 $horaFin = $rtdoDiasHoras['horaFinCurso'];
 
-                if($currentTime >= $horaInicio && $currentTime <=$horaFin ){
-                    $horaBien = true; 
+                if ($currentTime >= $horaInicio && $currentTime <= $horaFin) {
+                    $horaBien = true;
 
 
-                    if ($horaBien && $diaBien){
-                        $diaHoraBien= true;
+                    if ($horaBien && $diaBien) {
+                        $diaHoraBien = true;
 
                         break;
                     }
@@ -110,25 +108,13 @@ if (isset($_GET["id_curso"])) {
         }
     }
 
-    if($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien){
-        
-    }else{
+    if ($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien) {
+    } else {
         header("location:/DayClass/Profesor/indexCurso.php?id_curso=$id_curso");
-    }   
-} 
-
-
-
+    }
+}
 
 ?>
-
-<style>
-   .abajo-pagina{
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-   }
-</style>
 
 <div class="container">
 
@@ -139,12 +125,12 @@ if (isset($_GET["id_curso"])) {
     </div>
     <div class="text-center">
         <?php
-        
+
         echo " <input type='text' hidden id='idCurso' name='idCurso' value='$id_curso'>";
 
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDateTime = date('Y-m-d H:i:s');
-        
+
 
         $consulta1 = $con->query("SELECT alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado WHERE alumno.id = alumnocursoactual.alumno_id AND alumnocursoactual.curso_id = curso.id AND curso.id = '$id_curso' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDateTime' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO' ORDER BY apellidoAlum ASC");
 
@@ -166,9 +152,9 @@ if (isset($_GET["id_curso"])) {
                 <br>
                 <label id='labelNombreApellido' style='font-size:xx-large;'>$apellidoAlum, $nombreAlum</label>
                 
-                <div>".
-                    '<button class="btn btn-lg btn-danger mx-2" id="'.$ausente.'-'.$nombreAlum.'-'.$apellidoAlum.'" onclick="currentSlide('.$aux.',this.id,\''.$legajoAlum.'\')"><i class="fa fa-ban mr-1"></i>Ausente</button>
-                    <button class="btn btn-lg btn-success mx-2" id="'.$presente.'-'.$nombreAlum.'-'.$apellidoAlum.'" onclick="currentSlide('.$aux.',this.id,\''.$legajoAlum.'\')"><i class="fa fa-check mr-1"></i>Presente</button>
+                <div>" .
+                '<button class="btn btn-lg btn-danger mx-2" id="' . $ausente . '-' . $nombreAlum . '-' . $apellidoAlum . '" onclick="currentSlide(' . $aux . ',this.id,\'' . $legajoAlum . '\')"><i class="fa fa-ban mr-1"></i>Ausente</button>
+                    <button class="btn btn-lg btn-success mx-2" id="' . $presente . '-' . $nombreAlum . '-' . $apellidoAlum . '" onclick="currentSlide(' . $aux . ',this.id,\'' . $legajoAlum . '\')"><i class="fa fa-check mr-1"></i>Presente</button>
                 </div>
             </div>';
 
@@ -177,22 +163,22 @@ if (isset($_GET["id_curso"])) {
 
         ?>
     </div>
-   
 
-<div id="dvTable" class="justify-content-center"></div>
-    
+
+    <div id="dvTable" class="justify-content-center table-responsive"></div>
+
 
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../profesor.js"></script>
 <script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';"; ?>
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script src="funciones_tradicional.js"></script>
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['profesor']['nombreProf'] . " " . $_SESSION['profesor']['apellidoProf'] . "'" ?>
 </script>
 
 <?php

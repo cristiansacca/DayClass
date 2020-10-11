@@ -12,33 +12,31 @@ if (!isset($_SESSION['alumno'])) {
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-  
+
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if($vida_session > $_SESSION['limite'])
-    {
+    if ($vida_session > $_SESSION['limite']) {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();              
+        session_destroy();
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-  
+
         exit();
     }
-  }
-  $_SESSION['tiempo'] = time();
-  
+}
+$_SESSION['tiempo'] = time();
+
 //Si la variable id_curso no está definida se vuelve al index
-if(isset($_GET["id_curso"])){
+if (isset($_GET["id_curso"])) {
     $id_curso = $_GET["id_curso"];
 
     $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
     $curso = $consulta1->fetch_assoc();
-    
 } else {
     header("location:/DayClass/Alumno/index.php");
 }
@@ -52,53 +50,54 @@ if(isset($_GET["id_curso"])){
         <a <?php echo "href='/DayClass/Alumno/materiasAlumno.php'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
-    
-        <?php
-            setlocale(LC_ALL, 'Spanish');//Formato de fechas en español strftime("%A %d %B %Y %H:%M:%S", strtotime(fecha));
-            $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso' AND fechaHoraNotif >= '".$curso['fechaDesdeCursado']."' 
-            AND fechaHoraNotif <= '".$curso['fechaHastaCursado']."' ORDER BY (fechaHoraNotif) DESC");
-            
-            if (($consulta2->num_rows) > 0) {
-        ?>
-    <table class="table table-secondary table-hover table-bordered text-center">
-        <thead>
-            <tr>
-                <th style="width: 50%;">Tema</th>
-                <th></th>
-                <th>Fecha</th>
-                <th>Docente</th>
-            </tr>
-        </thead>
-        <tbody id= "Publicaciones">
-            <?php
-                while ($resultado2 = $consulta2->fetch_assoc()) {
-                    $profesor = $con->query("SELECT * FROM profesor WHERE id = '".$resultado2['profesor_id']."'")->fetch_assoc();
-                    $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
-                    echo "<tr>
-                    <td><a>" . $resultado2['asunto'] . "</a></td>
-                    <td><a class='btn btn-primary text-light' onclick='setearPublicacion(".$resultado2['id'].");' data-toggle='modal' data-target='#modalVerPublicacion'><i class='fa fa-eye mr-1 text-light'></i>Ver</a></td>
-                    <td>" . $fechaFormateada . "</td>  
-                    <td>". $profesor['apellidoProf'].", ". $profesor['nombreProf'] ."</td> 
-                    </tr>";
-                }
-                ?>
-        </tbody>
-    </table>
-                <?php
-            } else {
-                
-                echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
+
+    <?php
+    setlocale(LC_ALL, 'Spanish'); //Formato de fechas en español strftime("%A %d %B %Y %H:%M:%S", strtotime(fecha));
+    $consulta2 = $con->query("SELECT * FROM notificacionprofe WHERE curso_id = '$id_curso' AND fechaHoraNotif >= '" . $curso['fechaDesdeCursado'] . "' 
+            AND fechaHoraNotif <= '" . $curso['fechaHastaCursado'] . "' ORDER BY (fechaHoraNotif) DESC");
+
+    if (($consulta2->num_rows) > 0) {
+    ?>
+        <div class="table-responsive">
+            <table class="table table-secondary table-hover table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Tema</th>
+                        <th></th>
+                        <th>Fecha</th>
+                        <th>Docente</th>
+                    </tr>
+                </thead>
+                <tbody id="Publicaciones">
+                    <?php
+                    while ($resultado2 = $consulta2->fetch_assoc()) {
+                        $profesor = $con->query("SELECT * FROM profesor WHERE id = '" . $resultado2['profesor_id'] . "'")->fetch_assoc();
+                        $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
+                        echo "<tr>
+                        <td><a>" . $resultado2['asunto'] . "</a></td>
+                        <td><a class='btn btn-primary text-light' onclick='setearPublicacion(" . $resultado2['id'] . ");' data-toggle='modal' data-target='#modalVerPublicacion'><i class='fa fa-eye mr-1 text-light'></i>Ver</a></td>
+                        <td>" . $fechaFormateada . "</td>  
+                        <td>" . $profesor['apellidoProf'] . ", " . $profesor['nombreProf'] . "</td> 
+                        </tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    <?php
+    } else {
+
+        echo "<br><div class='alert alert-warning alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No se han realizado publicaciones</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
                 </button></div> ";
-            }
-        ?>
+    }
+    ?>
 </div>
 
 <!-- Modal para ver publicación-->
-<div class="modal fade" id="modalVerPublicacion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalVerPublicacion" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">

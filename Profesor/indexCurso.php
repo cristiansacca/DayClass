@@ -12,26 +12,25 @@ if (!isset($_SESSION['profesor'])) {
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-  
+
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if($vida_session > $_SESSION['limite'])
-    {
+    if ($vida_session > $_SESSION['limite']) {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();              
+        session_destroy();
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-  
+
         exit();
     }
-  }
-  $_SESSION['tiempo'] = time();
-  
+}
+$_SESSION['tiempo'] = time();
+
 if (isset($_GET["id_curso"])) {
     $id_curso = $_GET["id_curso"];
 
@@ -65,29 +64,28 @@ $tieneDiaHora = false;
 $diaHoraBien = false;
 $diaBien = false;
 $horaBien = false;
-if(!($consultaDiasHorasCurso)==0){
+if (!($consultaDiasHorasCurso) == 0) {
     $tieneDiaHora = true;
     $curretDay = date('l', strtotime($currentDateTime));
     $currentTime = date('H:i:s');
-    while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()){
+    while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()) {
         $dayName = $rtdoDiasHoras['dayName'];
-        
-        if($dayName == $curretDay){
+
+        if ($dayName == $curretDay) {
             $diaBien = true;
             $horaInicio = $rtdoDiasHoras['horaInicioCurso'];
             $horaFin = $rtdoDiasHoras['horaFinCurso'];
-            
-            if($currentTime >= $horaInicio && $currentTime <=$horaFin ){
-                $horaBien = true; 
-                
-                
-                if ($horaBien && $diaBien){
-                    $diaHoraBien= true;
-                    
+
+            if ($currentTime >= $horaInicio && $currentTime <= $horaFin) {
+                $horaBien = true;
+
+
+                if ($horaBien && $diaBien) {
+                    $diaHoraBien = true;
+
                     break;
                 }
             }
-            
         }
     }
 }
@@ -105,22 +103,22 @@ $fechaH = $cursoFechas["fechaHastaCursado"];
 $fechaDesdeCursado = date_create($cursoFechas["fechaDesdeCursado"]);
 $fechaHastaCursado = date_create($cursoFechas["fechaHastaCursado"]);
 
-$fechaDesdeCursadoF = date_format($fechaDesdeCursado,"d/m/Y");
-$fechaHastaCursadoF = date_format($fechaHastaCursado,"d/m/Y");
+$fechaDesdeCursadoF = date_format($fechaDesdeCursado, "d/m/Y");
+$fechaHastaCursadoF = date_format($fechaHastaCursado, "d/m/Y");
 
-if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
+if (($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)) {
     $hayFechasCursado = true;
-    
+
     $consultaAlumnos = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaD' AND `fechaHastaAlumCurAc` = '$fechaH'  AND `curso_id` = '$id_curso' ");
-    
-    if(mysqli_num_rows($consultaAlumnos) != 0 ){
+
+    if (mysqli_num_rows($consultaAlumnos) != 0) {
         $hayAlumnos = true;
     }
 }
 
 $cursadoFuturo = true;
 
-if(($fechaD > $currentDateTime)){
+if (($fechaD > $currentDateTime)) {
     $cursadoFuturo = false;
 }
 
@@ -132,17 +130,17 @@ if(($fechaD > $currentDateTime)){
 
     <div class="jumbotron my-4 py-4">
         <h1><?php echo $curso["nombreCurso"] ?></h1>
-        
+
         <?php
-        if(!$hayFechasCursado){              
+        if (!$hayFechasCursado) {
             echo "<div class='alert alert-danger' role='alert'>
                     <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han definido las fechas de inicio y fin del cursado.</h5>
                 </div>";
         }
-            if(($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)){
-                echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b> $fechaDesdeCursadoF </h6>";
-                echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> $fechaHastaCursadoF </h6>";
-            }
+        if (($fechaD != null && $fechaH != null) && ($fechaH >= $currentDateTime)) {
+            echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b> $fechaDesdeCursadoF </h6>";
+            echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> $fechaHastaCursadoF </h6>";
+        }
         ?>
 
         <?php
@@ -154,37 +152,36 @@ if(($fechaD > $currentDateTime)){
                         </button>
             </div>";
         }
-            
-        if(!$tieneDiaHora){
+
+        if (!$tieneDiaHora) {
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay horario definido para este curso. No puede tomar asistencia.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
             </div>";
-        }else{
-           if(!$diaHoraBien){
-                            
-               if($diaBien && !$horaBien){
-                   echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        } else {
+            if (!$diaHoraBien) {
+
+                if ($diaBien && !$horaBien) {
+                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el horario de cursado. No puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
                     </div>";
-               }
-               
-               if(!$diaBien && !$horaBien){
-                   echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                }
+
+                if (!$diaBien && !$horaBien) {
+                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el día ni horario de cursado. No puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
-                    </div>"; 
-               }
-               
-            }else{
-               if(!$diaBien){
+                    </div>";
+                }
+            } else {
+                if (!$diaBien) {
                     echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>Este curso no se dicta este día, no puede tomar asistencia.</h5>
                         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -192,40 +189,39 @@ if(($fechaD > $currentDateTime)){
                         </button>
                     </div>";
                 }
-               
-           }  
+            }
         }
-        
-        if(!$hayAlumnos){
-           echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+
+        if (!$hayAlumnos) {
+            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos para este período.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
-            </div>"; 
+            </div>";
         }
-        
-        if(($fechaD > $currentDateTime)){
-           echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+
+        if (($fechaD > $currentDateTime)) {
+            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>El cursado todavía no empieza.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
-            </div>"; 
+            </div>";
         }
-        
+
         ?>
         <a class="btn btn-info" href="/DayClass/Profesor/index.php"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <a <?php 
-           
-           if(!$hayAlumnos){
-             echo 'class="btn btn-success disabled" ';  
-           }else{
-               echo 'class="btn btn-success" ';
-               echo "href='inscriptos.php?id_curso=$id_curso'";
-           }
-           ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
-        
+        <a <?php
+
+            if (!$hayAlumnos) {
+                echo 'class="btn btn-success disabled" ';
+            } else {
+                echo 'class="btn btn-success" ';
+                echo "href='inscriptos.php?id_curso=$id_curso'";
+            }
+            ?>><i class="fa fa-list-alt mr-1"></i>Ver inscriptos</a>
+
         <button class="btn btn-warning" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-clock-o mr-1"></i>Horarios</button>
     </div>
 
@@ -263,7 +259,7 @@ if(($fechaD > $currentDateTime)){
 
     <!-- Page Features -->
     <div class="row text-center">
-        
+
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <img class="card-img-top" src="../images/reportes.png" alt="" oncontextmenu="return false">
@@ -273,23 +269,22 @@ if(($fechaD > $currentDateTime)){
                 </div>
 
                 <div class="card-footer">
-                    <a <?php 
+                    <a <?php
                         if ($hab && $hayFechasCursado && $hayAlumnos) {
                             echo 'class="btn btn-primary"';
                             echo "href='/DayClass/Profesor/Reportes/reporte_curso.php?id_curso=$id_curso' ";
                         } else {
                             echo 'class="btn btn-primary disabled"';
-                        } 
-                        ?>>Reportes</a>
-                    <a
-                       <?php 
+                        }
+                        ?>><i class="fas fa-file-invoice mr-1"></i>Reportes</a>
+                    <a <?php
                         if ($hab && $hayFechasCursado && $hayAlumnos) {
                             echo 'class="btn btn-success"';
                             echo "href='/DayClass/Profesor/Estadisticas/estadistica_curso.php?id_curso=$id_curso' ";
-                        }else {
+                        } else {
                             echo 'class="btn btn-success disabled"';
-                        } 
-                        ?>>Estadísticas</a>
+                        }
+                        ?>><i class="fas fa-chart-pie mr-1"></i>Estadísticas</a>
                 </div>
             </div>
         </div>
@@ -302,14 +297,14 @@ if(($fechaD > $currentDateTime)){
                     <p class="card-text">Publica novedades para los alumnos del curso.</p>
                 </div>
                 <div class="card-footer">
-                    <a <?php 
+                    <a <?php
                         if ($hab && $hayFechasCursado && $hayAlumnos) {
                             echo 'class="btn btn-primary"';
                             echo "href='/DayClass/Profesor/PizarraNovedades/pizarra.php?id_curso=$id_curso'";
                         } else {
                             echo 'class="btn btn-primary disabled"';
-                        } 
-                        ?>>Ingresar</a>
+                        }
+                        ?>><i class="fa fa-newspaper mr-1"></i>Ingresar</a>
                 </div>
             </div>
         </div>
@@ -329,7 +324,7 @@ if(($fechaD > $currentDateTime)){
                         } else {
                             echo 'class="btn btn-primary disabled"';
                         }
-                        ?>>Autoasistencia</a>
+                        ?>><i class="fas fa-clock mr-1"></i>Autoasistencia</a>
                     <a <?php
                         if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $cursadoFuturo) {
                             echo 'class="btn btn-success"';
@@ -337,7 +332,7 @@ if(($fechaD > $currentDateTime)){
                         } else {
                             echo 'class="btn btn-success disabled"';
                         }
-                        ?>>Tradicional</a>
+                        ?>><i class="fas fa-tasks mr-1"></i>Tradicional</a>
 
                 </div>
             </div>
@@ -356,39 +351,36 @@ if(($fechaD > $currentDateTime)){
             </div>
             <div class="modal-body">
 
-                <div>
-                    <h9></h9>
-                    
+                <div class="table-responsive">
                     <table class="table text-center table-bordered bg-light table-striped">
 
-                    
                         <?php
-                            include "../databaseConection.php";
+                        include "../databaseConection.php";
 
-                            $id_curso = $_GET["id_curso"];
+                        $id_curso = $_GET["id_curso"];
 
-                            date_default_timezone_set('America/Argentina/Buenos_Aires');
-                            $currentDateTime = date('Y-m-d');
+                        date_default_timezone_set('America/Argentina/Buenos_Aires');
+                        $currentDateTime = date('Y-m-d');
 
-                            $consulta3 = $con->query("SELECT horariocurso.horaInicioCurso, horariocurso.horaFinCurso, cursodia.nombreDia FROM `curso`, horariocurso, cursodia WHERE curso.id = $id_curso AND curso.id = horariocurso.curso_id AND horariocurso.cursoDia_id = cursodia.id ORDER BY cursodia.ordenDia ASC");
+                        $consulta3 = $con->query("SELECT horariocurso.horaInicioCurso, horariocurso.horaFinCurso, cursodia.nombreDia FROM `curso`, horariocurso, cursodia WHERE curso.id = $id_curso AND curso.id = horariocurso.curso_id AND horariocurso.cursoDia_id = cursodia.id ORDER BY cursodia.ordenDia ASC");
 
-                            $contador = 0;
+                        $contador = 0;
 
 
-                            if(($consulta3->num_rows) == 0){
-                                echo "<div class='alert alert-warning' role='alert'>
+                        if (($consulta3->num_rows) == 0) {
+                            echo "<div class='alert alert-warning' role='alert'>
                                         <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han definido horarios para este curso.</h5>
                                     </div>";
-                            }else{
+                        } else {
 
-                                echo "<thead>
+                            echo "<thead>
                                             <th>Día</th>
                                             <th>Hora desde</th>
                                             <th>Hora hasta</th>
                                         </thead>
                                        <tbody> ";
-                                while ($horarioCurso = $consulta3->fetch_assoc()) {
-                                
+                            while ($horarioCurso = $consulta3->fetch_assoc()) {
+
                                 $dia = $horarioCurso["nombreDia"];
                                 $horaDesde = $horarioCurso["horaInicioCurso"];
                                 $horaHasta = $horarioCurso["horaFinCurso"];
@@ -398,23 +390,21 @@ if(($fechaD > $currentDateTime)){
                                         <td>" . strftime("%H:%M", strtotime($horaHasta)) . "</td>
                                     </tr>";
 
-                                $contador ++;
-
-                                }
-                               
-                                echo " </tbody>";
-                                
+                                $contador++;
                             }
-                        
-                        ?> 
-                        
-                        </table>
+
+                            echo " </tbody>";
+                        }
+
+                        ?>
+
+                    </table>
 
                 </div>
 
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
 
@@ -423,11 +413,11 @@ if(($fechaD > $currentDateTime)){
 </div>
 
 <script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
+    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';"; ?>
     $("#icono").addClass("fa fa-clipboard mr-1");
 </script>
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['profesor']['nombreProf'] . " " . $_SESSION['profesor']['apellidoProf'] . "'" ?>
 </script>
 <?php
 include "../footer.html";

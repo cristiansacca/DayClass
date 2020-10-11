@@ -23,15 +23,8 @@ if (isset($_SESSION['administrador'])) {
 
 ?>
 
-<style>
-   .abajo-pagina{
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-   }
-</style>
 
-<div class="text-center m-auto h-100 d-flex justify-content-center" style="width: 20rem;">
+<div class="text-center mx-auto h-100 d-flex justify-content-center my-auto py-4" style="width: 20rem;">
    <form action="login.php" method="POST" class="form-group m-4">
       <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
       <h1 class="font-weight-normal my-2">Inicio de sesión</h1>
@@ -42,7 +35,7 @@ if (isset($_SESSION['administrador'])) {
          <input type="checkbox" id="show_password" class="mr-1" onchange="mostrarPassword()"><label onclick="mostrarPassword()">Mostrar contraseña</label>
       </div>
 
-      <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-2"></i>Ingresar</button><br>
+      <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-1"></i>Ingresar</button><br>
       <a class="btn btn-link my-2" href="RestablecerPass/restablecer-contrasenia.php">Olvidé mi contraseña</a>
 
       <?php
@@ -93,7 +86,6 @@ if (isset($_SESSION['administrador'])) {
                             </button>
                         </div>";
                break;
-            
          }
       }
 

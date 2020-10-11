@@ -1,22 +1,16 @@
 <?php
 include "../header.html";
 ?>
-<style>
-    .abajo-pagina {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-</style>
+
 <script src="signIn_funciones.js"></script>
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <h1>Registro de nuevo usuario</h1>
         <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución. Evite cualquier falsedad en los mismos.</h6>
-        <a href="/DayClass/index.php" class="btn btn-success"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
-    <div class="m-auto" style="width: 20rem;">
+    <div class="m-auto py-4" style="width: 20rem;">
         <form action="sign_inParte2.php" method="POST" onsubmit="return validarDNIyLegajo()">
 
             <!--Mensajes de error o exito de registro-->

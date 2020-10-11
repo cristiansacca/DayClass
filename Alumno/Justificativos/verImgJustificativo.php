@@ -75,28 +75,30 @@ include "../../header.html";
         <a class="btn btn-info" href="/DayClass/Alumno/Justificativos/justificativos.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
 
-    <table class="table bg-light table-bordered">
-        <tr>
-            <td class="font-weight-bold">Fecha de presetación:</td>
-            <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaPresentacion'])) ?></td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Periodo a justificar:</td>
-            <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaDesdeJustificativo']))." - ".strftime("%d/%m/%Y", strtotime($imagen['fechaHastaJustificativo'])) ?></td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Fecha de revisión:</td>
-            <td><?php echo $fechaRevision ?></td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Estado:</td>
-            <td class="<?php echo $color ?>"><?php echo $estado ?></td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Comentario:</td>
-            <td class="font-italic"><?php echo $imagen['comentarioJustificativo']==''? 'Sin comentario':$imagen['comentarioJustificativo'].""; ?></td>
-        </tr>
-    </table>
+    <div class="table-responsive">
+        <table class="table bg-light table-bordered">
+            <tr>
+                <td class="font-weight-bold">Fecha de presetación:</td>
+                <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaPresentacion'])) ?></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Periodo a justificar:</td>
+                <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaDesdeJustificativo']))." - ".strftime("%d/%m/%Y", strtotime($imagen['fechaHastaJustificativo'])) ?></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Fecha de revisión:</td>
+                <td><?php echo $fechaRevision ?></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Estado:</td>
+                <td class="<?php echo $color ?>"><?php echo $estado ?></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Comentario:</td>
+                <td class="font-italic"><?php echo $imagen['comentarioJustificativo']==''? 'Sin comentario':$imagen['comentarioJustificativo'].""; ?></td>
+            </tr>
+        </table>
+    </div>
 
     <div class="my-2">
         <h4>Imagen:</h4>

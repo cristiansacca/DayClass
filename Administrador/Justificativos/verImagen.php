@@ -68,24 +68,26 @@ include "../../header.html";
         <input type="text" id="idJustificativo" <?php echo "value='$idImagen'"; ?> hidden>   
     </div>
 
-    <table class="table bg-light table-bordered">
-        <tr>
-            <td class="font-weight-bold">Alumno:</td>
-            <td><?php echo "".$alumno['apellidoAlum'].", ".$alumno['nombreAlum']."" ?></td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Legajo:</td>
-            <td><?php echo "".$alumno['legajoAlumno']."" ?></td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Fecha de presetación:</td>
-            <td><?php echo strftime("%d de %B del %Y", strtotime($imagen['fechaPresentacion'])) ?></td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Periodo a justificar:</td>
-            <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaDesdeJustificativo']))." - ".strftime("%d/%m/%Y", strtotime($imagen['fechaHastaJustificativo'])) ?></td>
-        </tr>
-    </table>
+    <div class="table-responsive">
+        <table class="table bg-light table-bordered">
+            <tr>
+                <td class="font-weight-bold">Alumno:</td>
+                <td><?php echo "".$alumno['apellidoAlum'].", ".$alumno['nombreAlum']."" ?></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Legajo:</td>
+                <td><?php echo "".$alumno['legajoAlumno']."" ?></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Fecha de presetación:</td>
+                <td><?php echo strftime("%d de %B del %Y", strtotime($imagen['fechaPresentacion'])) ?></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Periodo a justificar:</td>
+                <td><?php echo strftime("%d/%m/%Y", strtotime($imagen['fechaDesdeJustificativo']))." - ".strftime("%d/%m/%Y", strtotime($imagen['fechaHastaJustificativo'])) ?></td>
+            </tr>
+        </table>
+    </div>
 
     <div class="my-2">
         <h4>Imagen:</h4>

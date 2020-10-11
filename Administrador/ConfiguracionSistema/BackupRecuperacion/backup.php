@@ -50,23 +50,23 @@ include "../../../databaseConection.php";
         switch ($_GET["resultado"]) {
             case 0:
                 echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha generado ningún backup.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha generado ninguna copia de seguridad.</h5>";
                 break;
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Backup de datos creado correctamente.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Copia de seguridad creada correctamente.</h5>";
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al crear el backup de datos.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al crear la copia de seguridad.</h5>";
                 break;
             case 3:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Restauración exitosa de la Base de Datos.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Restauración exitosa de la base de datos.</h5>";
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al restaurar la Base de Datos.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al restaurar la base de datos.</h5>";
                 break;
             case 5:
                 echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
@@ -74,7 +74,7 @@ include "../../../databaseConection.php";
                 break;
             case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error del sistema. Contante al administrador de base de datos, para restauración manual.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error del sistema. Contante al administrador de base de datos para restauración manual.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>

@@ -97,7 +97,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     </div>
 
-    <div id="tablaAsistenciasCompleta">
+    <div id="tablaAsistenciasCompleta" class="table-responsive">
         <h5>Asistencia por día</h5>
         <table class="table table-bordered text-center table-secondary table-sm" id="dataTable">
             <thead>

@@ -83,7 +83,7 @@ if(($institucion->num_rows)==0){
 
     ?>
 
-    <div>
+    <div class="table-responsive">
         <table class="table bg-light table-bordered table-striped">
             <tr>
                 <td class="font-weight-bold">Nombre:</td>

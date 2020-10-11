@@ -12,30 +12,30 @@ if (!isset($_SESSION['alumno'])) {
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-  
+
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if($vida_session > $_SESSION['limite']){
+    if ($vida_session > $_SESSION['limite']) {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();              
+        session_destroy();
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-  
+
         exit();
     }
 }
 $_SESSION['tiempo'] = time();
-  
+
 $id_curso = $_GET["id_curso"];
 
 $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
 $curso = $consulta1->fetch_assoc();
-    
+
 
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
@@ -49,60 +49,60 @@ $curso = $consulta1->fetch_assoc();
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
-        
+
         <h1><?php echo " " . $curso["nombreCurso"] ?></h1>
-        
+
         <h3 class='font-weight-normal'>Tema dados anteriormente</h3>
         <a class="btn btn-info" <?php echo "href='/DayClass/Alumno/cursoInfo.php?id_curso=$id_curso'"; ?>><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
-         
+
     </div>
 
-    
-    <div>
+
+    <div class="table-responsive">
         <table class="table text-center table-striped table-light" id="dataTable">
             <?php
-            
+
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $currentDate = date('Y-m-d H:i:s');
-                $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC");
-                                
-                    if(($consulta1->num_rows) == 0){
-                        echo "<div class='alert alert-warning' role='alert'>
+            $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC");
+
+            if (($consulta1->num_rows) == 0) {
+                echo "<div class='alert alert-warning' role='alert'>
                                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han cargado temas en este curso.</h5>
                                 </div>";
-                        }else{
-                            echo "<thead>
+            } else {
+                echo "<thead>
                                     <th>Fecha</th>
                                     <th>Tema</th>
                                     <th>Comentario</th>
                                 </thead>
                                 <tbody> ";
-                                
-                            while ($resultado1 = $consulta1->fetch_assoc()) {
-                                $profTema = $resultado1['profesor_id'];
-                                
-                                        
-                                $date=date_create($resultado1['fechaTemaDia']);
-                                $fecha = date_format($date,"d/m/Y");
 
-                                echo "<tr>
+                while ($resultado1 = $consulta1->fetch_assoc()) {
+                    $profTema = $resultado1['profesor_id'];
+
+
+                    $date = date_create($resultado1['fechaTemaDia']);
+                    $fecha = date_format($date, "d/m/Y");
+
+                    echo "<tr>
                                     <td>" . $fecha . "</td>
                                     <td>" . $resultado1['nombreTema'] . "</td>
                                     <td>" . $resultado1['comentarioTema'] . "</td>
                                 </tr>";
-                            }
-                                echo " </tbody>";
-                        }
-            ?>               
+                }
+                echo " </tbody>";
+            }
+            ?>
         </table>
-    </div>   
+    </div>
 </div>
 
 <script src="alumno.js"></script>
 <script src="paginadoDataTable.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['alumno']['nombreAlum']." ".$_SESSION['alumno']['apellidoAlum']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['alumno']['nombreAlum'] . " " . $_SESSION['alumno']['apellidoAlum'] . "'" ?>
 </script>
 
 <?php
