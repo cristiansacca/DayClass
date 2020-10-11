@@ -36,10 +36,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
   
 ?>
 
-
-
-
-
 <div class="container" hidden>
 <?php
 include "../../../databaseConection.php";
