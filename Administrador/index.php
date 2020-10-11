@@ -126,8 +126,8 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
           <h5 class="card-text">Generar reportes </h5>
         </div>
         <div class="card-footer">
-          <a href="/DayClass/Administrador/Reportes/indexReporteAsistencia.php" class="btn btn-primary">Asistencia</a>
-             <a href="/DayClass/Administrador/Reportes/indexReportesTemas.php" class="btn btn-success">Temas</a>
+            <a href="/DayClass/Administrador/Reportes/indexReporteAsistencia.php" class="btn btn-primary mb-1">Asistencia</a>
+            <a href="/DayClass/Administrador/Reportes/indexReportesTemas.php" class="btn btn-success mb-1">Temas</a>
         </div>
       </div>
     </div>
