@@ -18,15 +18,15 @@ $consulta1 = $con->query("SELECT * FROM justificativoasistenciadia WHERE justifi
 
 if ($validacion == 1) {
     //registrar que el justificativo esta aprobado
-    $update = $con->query("UPDATE `justificativo` SET `aprobado`= 1,`fechaRevision`= '$currentDateTime',
+    $update = $con->query("UPDATE `justificativo` SET `aprobado`= '1',`fechaRevision`= '$currentDateTime',
     `comentarioJustificativo`= '$comentario' WHERE id = '$id_justificativo'");
 } elseif ($validacion == 0) {
     //registrar que el justificativo fue rechazado
-    $update = $con->query("UPDATE `justificativo` SET `aprobado`= 0,`fechaRevision`= '$currentDateTime',
+    $update = $con->query("UPDATE `justificativo` SET `aprobado`= '0',`fechaRevision`= '$currentDateTime',
     `comentarioJustificativo`= '$comentario' WHERE id = '$id_justificativo'");
 }
 
-if ($update) {
+if ($update){
     if ($validacion == 1) {
         //si se aprueba el justificativo, justificar todas las faltas del alumno asociadas al justificativo
         while ($justAsistDia = $consulta1->fetch_assoc()) {
@@ -44,46 +44,52 @@ if ($update) {
             $porcentajeMinAsistencia = $selectParamMinimoAsistencia["porcentajeAsistencia"];
 
             //traer datos del estado del alumno
-            $cursoAlumnoLibre = $selectCursoAlumnoLibre->fetch_assoc();
-            $id_curso = $cursoAlumnoLibre["idCurso"];
-            $id_alumnoCursoEstado = $cursoAlumnoLibre["idAlumnoCursoEstado"];
-            $fechaFinAlumnoCursoEstado = $cursoAlumnoLibre["fechaFinEstado"];
-            $id_alumnoCursoActual = $cursoAlumnoLibre["alumnoCursoActual_id"];
+            while($cursoAlumnoLibre = $selectCursoAlumnoLibre->fetch_assoc()){
+                $id_curso = $cursoAlumnoLibre["idCurso"];
+                $id_alumnoCursoEstado = $cursoAlumnoLibre["idAlumnoCursoEstado"];
+                $fechaFinAlumnoCursoEstado = $cursoAlumnoLibre["fechaFinEstado"];
+                $id_alumnoCursoActual = $cursoAlumnoLibre["alumnoCursoActual_id"];
 
-            //calcular los dias de cursado del curso en el que el alumno esta libre
-            $totalDiasCursado = calcularDiasCursado($id_curso);
+                //calcular los dias de cursado del curso en el que el alumno esta libre
+                $totalDiasCursado = calcularDiasCursado($id_curso);
 
-            if ($totalDiasCursado != null) {
-                $selectCantInasistenciasAlumno = $con->query("SELECT COUNT(asistenciadia.tipoAsistencia_id) AS cantAusentes FROM asistencia, asistenciadia, tipoasistencia WHERE asistencia.alumno_id = '$alumno_id' AND asistencia.curso_id = '$id_curso' AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis <= asistenciadia.fechaHoraAsisDia AND asistencia.fechaHastaFichaAsis >= asistenciadia.fechaHoraAsisDia AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'AUSENTE'");
+                if ($totalDiasCursado != null) {
+                    $selectCantInasistenciasAlumno = $con->query("SELECT COUNT(asistenciadia.tipoAsistencia_id) AS cantAusentes FROM asistencia, asistenciadia, tipoasistencia WHERE asistencia.alumno_id = '$alumno_id' AND asistencia.curso_id = '$id_curso' AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis <= asistenciadia.fechaHoraAsisDia AND asistencia.fechaHastaFichaAsis >= asistenciadia.fechaHoraAsisDia AND asistenciadia.tipoAsistencia_id = tipoasistencia.id AND tipoasistencia.nombreTipoAsistencia = 'AUSENTE'");
 
-                $selectCantInasistenciasAlumno2 = $selectCantInasistenciasAlumno->fetch_assoc();
-                $cantAusentes = $selectCantInasistenciasAlumno2["cantAusentes"];
-                $rtdoCompararDias = compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantAusentes);
+                    $selectCantInasistenciasAlumno2 = $selectCantInasistenciasAlumno->fetch_assoc();
+                    $cantAusentes = $selectCantInasistenciasAlumno2["cantAusentes"];
+                    $rtdoCompararDias = compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantAusentes);
 
-                switch ($rtdoCompararDias) {
-                    case "REINCORPORAR":
-                        $resultado = reincorporarAlumnoCurso($id_alumnoCursoEstado, $fechaFinAlumnoCursoEstado, $id_alumnoCursoActual);
-                        if ($resultado) {
-                            //el alumno es reincoporado
+                    switch ($rtdoCompararDias) {
+                        case "REINCORPORAR":
+                            $resultado = reincorporarAlumnoCurso($id_alumnoCursoEstado, $fechaFinAlumnoCursoEstado, $id_alumnoCursoActual);
+                            if ($resultado) {
+                                //el alumno es reincoporado
+                                echo 1;
+                            } else {
+                                //error al reincorporar al alumno, tratar manualmente
+                                echo 2;
+                            }
+                            break;
+
+                        default:
+                            //el alumno sigue estando libre, con la justificacion no alcanza para reincorporar
                             echo 1;
-                        } else {
-                            //error al reincorporar al alumno, tratar manualmente
-                            echo 2;
-                        }
-                        break;
-
-                    default:
-                        //el alumno sigue estando libre, con la justificacion no alcanza para reincorporar
-                        echo 1;
-                        break;
+                            break;
+                    }
+                }else{
+                    
                 }
             }
-        } else {
+        }else{
             //el alumno no esta libre en ninguna materia
             echo 1;
         }
+    }else{
+       //se rechaza el justificativo, pero el programa funciona correctamente
+        echo 1; 
     }
-} else {
+}else{
     //error al cargar la validacion del justificativo
     echo 0;
 }

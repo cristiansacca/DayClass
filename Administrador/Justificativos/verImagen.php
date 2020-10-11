@@ -102,6 +102,8 @@ include "../../header.html";
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
 </script>
+
+
 <script>
     document.getElementById("btnValidar").onclick = function () {
         setValidacion(1);
