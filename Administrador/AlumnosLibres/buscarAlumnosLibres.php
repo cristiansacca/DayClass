@@ -154,8 +154,7 @@ $_SESSION['tiempo'] = time();
 
 
 
-    function calcularDiasCursado($idCurso)
-    {
+    function calcularDiasCursado($idCurso){
         include "../../databaseConection.php";
 
         //contar la cantidad de clases que se tiene por semana
