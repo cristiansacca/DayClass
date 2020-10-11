@@ -1,4 +1,46 @@
-<div hidden>
+<?php
+//Se inicia o restaura la sesión
+session_start();
+
+include "../../../databaseConection.php";
+include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
+include "../../../header.html";
+
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+if (!isset($_SESSION['administrador'])) 
+{
+   //Nos envía a la página de inicio
+   header("location:/DayClass/index.php"); 
+}
+
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+  
+?>
+
+
+
+
+
+<div class="container" hidden>
 <?php
 include "../../../databaseConection.php";
 include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
@@ -133,7 +175,7 @@ if (isset($_FILES["inpGetFile"])) {
         }
     }
 }
-include "../../../header.html";
+
 ?>
 </div>
 
@@ -185,6 +227,13 @@ if(count($correcto) > 0){
 <a class="btn btn-primary" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso'" ?> ><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 
 </div>
+
+<script src="../../administrador.js"></script>
+
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+</script>
+
 <?php
 include "../../../footer.html";
 ?>
