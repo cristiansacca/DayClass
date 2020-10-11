@@ -1,3 +1,4 @@
+<div hidden>
 <?php
 include "../../../databaseConection.php";
 include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
@@ -134,6 +135,7 @@ if (isset($_FILES["inpGetFile"])) {
 }
 include "../../../header.html";
 ?>
+</div>
 
 
 <div class="container">
