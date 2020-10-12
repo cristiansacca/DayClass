@@ -64,6 +64,8 @@ $tieneDiaHora = false;
 $diaHoraBien = false;
 $diaBien = false;
 $horaBien = false;
+$diaSinClases = false;
+
 if (!($consultaDiasHorasCurso) == 0) {
     $tieneDiaHora = true;
     $curretDay = date('l', strtotime($currentDateTime));
@@ -81,7 +83,15 @@ if (!($consultaDiasHorasCurso) == 0) {
 
 
                 if ($horaBien && $diaBien) {
+                    
                     $diaHoraBien = true;
+                    
+                    $consultaDiasHorasCurso = $con->query("SELECT * FROM `diassinclases` WHERE `fechaDiaSinClases` LIKE '$currentDateTime%'");
+                    
+                    if(($consultaDiasHorasCurso->num_rows) != 0){
+                        $diaSinClases = true;
+                    }
+                    
 
                     break;
                 }
@@ -92,7 +102,6 @@ if (!($consultaDiasHorasCurso) == 0) {
 
 $hayFechasCursado = false;
 $hayAlumnos = false;
-
 
 $consulta2 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
 $cursoFechas = $consulta2->fetch_assoc();
@@ -180,6 +189,8 @@ if (($fechaD > $currentDateTime)) {
                         </button>
                     </div>";
                 }
+                
+                
             } else {
                 if (!$diaBien) {
                     echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
@@ -189,8 +200,18 @@ if (($fechaD > $currentDateTime)) {
                         </button>
                     </div>";
                 }
+                 if ($diaSinClases) {
+                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Este día esta registrado como sin clases, no se puede tomar asistencia.</h5>
+                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>";
+                }
             }
         }
+        
+       
 
         if (!$hayAlumnos) {
             echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
@@ -318,7 +339,7 @@ if (($fechaD > $currentDateTime)) {
                 </div>
                 <div class="card-footer">
                     <a <?php
-                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $cursadoFuturo) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $cursadoFuturo && !$diaSinClases) {
                             echo 'class="btn btn-primary"';
                             echo "href='/DayClass/Profesor/Asistencia/habilitar_autoasistencia.php?id_curso=$id_curso'";
                         } else {
@@ -326,7 +347,7 @@ if (($fechaD > $currentDateTime)) {
                         }
                         ?>><i class="fas fa-clock mr-1"></i>Autoasistencia</a>
                     <a <?php
-                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $cursadoFuturo) {
+                        if ($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $cursadoFuturo && !$diaSinClases) {
                             echo 'class="btn btn-success"';
                             echo "href='/DayClass/Profesor/Asistencia/tradicional.php?id_curso=$id_curso'";
                         } else {

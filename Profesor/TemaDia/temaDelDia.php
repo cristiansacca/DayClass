@@ -100,6 +100,12 @@ if (!($consultaDiasHorasCurso) == 0) {
 
                 if ($horaBien && $diaBien) {
                     $diaHoraBien = true;
+                    
+                    $consultaDiasHorasCurso = $con->query("SELECT * FROM `diassinclases` WHERE `fechaDiaSinClases` LIKE '$currentDateTime%'");
+                    
+                    if(($consultaDiasHorasCurso->num_rows) != 0){
+                        $diaSinClases = true;
+                    }
 
                     break;
                 }
@@ -189,7 +195,7 @@ if (($fechaD > $currentDateTime)) {
 
     if (!$hayAlumnos) {
         echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos para este periodo.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos para este periodo. No puede cargar temas.</h5>
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                         </button>
@@ -221,11 +227,16 @@ if (($fechaD > $currentDateTime)) {
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>Este curso no se dicta este día, no puede cargar temas.</h5>
                     </div>";
             }
+            if ($diaSinClases) {
+                    echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Este día esta registrado como sin clases, no se pueden cargar temas nuevos.</h5>
+                    </div>";
+                }
         }
     }
     ?>
 
-    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo)) {
+    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo && !$diaSinClases)) {
                                                                         } else {
                                                                             echo "hidden";
                                                                         }  ?>>

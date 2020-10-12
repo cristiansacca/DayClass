@@ -51,9 +51,6 @@ document.getElementById("btnVerificarCodIngresado").onclick = function(){
     }
 }
 
-
-
-
 function validarLongCodIngresado() {
     eval("debugger;");
     var codigoIngresado = document.getElementById('inputCodigoIngresado').value;
