@@ -25,7 +25,7 @@ document.getElementById("btnVerificarCodIngresado").onclick = function(){
                         document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-danger alert-dismissible fade show' role='alert'><h5><i class='fa fa-exclamation-circle mr-2'></i>Se ingresó un código para un curso en el que no está inscripto.</h5></div>";
                         break;
                     case "alumnoLibre":
-                        document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-danger alert-dismissible fade show' role='alert'><h5><i class='fa fa-exclamation-circle mr-2'></i>Actualmente se encuentra libre en esta materia. No puedes registrar tu presente.</h5></div>";
+                        document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-danger alert-dismissible fade show' role='alert'><h5><i class='fa fa-exclamation-circle mr-2'></i>Actualmente se encuentra libre en este curso. No se puede registrar su presente.</h5></div>";
                         break;
                     case "exito":
                         document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-success alert-dismissible fade show' role='alert'><h5><i class='fa fa-exclamation-circle mr-2'></i>Código de asistencia ingresado correctamente. Se ha registrado su presente.</div>";
@@ -66,9 +66,9 @@ function validarLongCodIngresado() {
         if (codigoIngresado.length < 11 || codigoIngresado.length > 11){
             
             if(codigoIngresado.length < 11){
-               document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-danger'><h5><i class='fa fa-exclamation-circle mr-2'></i>Faltan caracteres para ser un código valido.</h5></div>";  
+               document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-danger'><h5><i class='fa fa-exclamation-circle mr-2'></i>Faltan caracteres para ser un código válido.</h5></div>";  
             }else{
-                document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-danger'><h5><i class='fa fa-exclamation-circle mr-2'></i>Sobran caracteres para ser un código valido.</h5></div>";  
+                document.getElementById("resultadoMostrar").innerHTML ="<div class='alert alert-danger'><h5><i class='fa fa-exclamation-circle mr-2'></i>Sobran caracteres para ser un código válido.</h5></div>";  
                 
             }
         } else {

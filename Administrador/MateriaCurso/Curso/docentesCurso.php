@@ -148,7 +148,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 break;
             case 9:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se puede dar de baja al docente, es el unico asociado al curso.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se puede dar de baja al docente, es el único asociado al curso.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
