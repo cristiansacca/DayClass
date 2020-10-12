@@ -74,7 +74,7 @@ include "../../../databaseConection.php";
                 break;
             case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error del sistema. Contante al administrador de base de datos para restauración manual.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error del sistema. Contacte al administrador de base de datos para restauración manual.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -105,7 +105,7 @@ include "../../../databaseConection.php";
                             echo $nombreArchivo;
                         }
                     } else {
-                        echo "No se ha generado ningún backup";
+                        echo "No se ha generado ninguna copia de seguridad";
                     } ?></td>
                 <td><b>Fecha:</b> 
                     <?php
@@ -113,7 +113,7 @@ include "../../../databaseConection.php";
                             $fechaArchivo = date_create_from_format ("Y-m-d-His", substr($nombreArchivo, 12, 17));
                             echo date_format($fechaArchivo, "d/m/Y H:i:s");   
                         } else {
-                            echo "No se ha generado ningún backup";
+                            echo "No se ha generado ninguna copia de seguridad";
                         }    
                     ?>
                 </td>
