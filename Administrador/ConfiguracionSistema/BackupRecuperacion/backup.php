@@ -151,11 +151,11 @@ include "../../../databaseConection.php";
 
                     <div class="container">
                         <div class="radio">
-                            <label onclick='hide()'><input type="radio" id="guardado" name="optradio" checked onclick='hide()'> Copia guadada en el sistema.</label>
+                            <label onclick='hide()'><input type="radio" id="guardado" name="optradio" checked onclick='hide()'> Copia guardada en el sistema.</label>
                         </div>
 
                         <div class="radio">
-                            <label onclick='unHide()'><input type="radio" id="subir" name="optradio" onclick='unHide()'> Subir copia guadada.</label>
+                            <label onclick='unHide()'><input type="radio" id="subir" name="optradio" onclick='unHide()'> Subir copia guardada.</label>
                         </div>
                     </div>
 
@@ -181,7 +181,7 @@ include "../../../databaseConection.php";
 
                     <div class="container" name="inputFile" id="inputFile" style="display:none">
                         <div class="custom-file">
-                            <input type="file" class="form-control-file" id="inputSQL" name="inputSQL" placeholder="base de datos que deseas restaurar" accept=".sql" value="">
+                            <input type="file" class="form-control-file" id="inputSQL" name="inputSQL" accept=".sql" value="">
                         </div>
                     </div>
                 </div>
