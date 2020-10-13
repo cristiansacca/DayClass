@@ -144,7 +144,7 @@ include "../../../databaseConection.php";
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#asistenciasMinimas"><i class="fa fa-info-circle fa-lg mr-2"></i>Mínimo de asistencia</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#cargoDocente"><i class="fa fa-users fa-lg mr-2"></i>Cargos de docentes</a>
             <a class="list-group-item list-group-item-action" href="" data-toggle="modal" data-target="#motivosDiaSinClases"><i class="fa fa-times-circle-o fa-lg mr-2"></i>Motivos días sin clases</a>
-            <a class="list-group-item list-group-item-action" href="feriadosDiaSinClase.php"><i class="fa fa-calendar fa-lg mr-2"></i>Feriados y días sin clases</a>
+            <a class="list-group-item list-group-item-action" href="feriadosDiaSinClase.php"><i class="fa fa-calendar fa-lg mr-2"></i>Días sin clases</a>
         </div>
     </div>
 </div>
@@ -159,9 +159,9 @@ include "../../../databaseConection.php";
             <form action="nuevaDivision.php" method="POST">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="nombreNombreDivision">Nombre división</label>
+                        <label for="nombreNombreDivision">Nombre:</label>
                         <input type="text" placeholder="División" name="nombreDivision" class="form-control" required>
-                        <label for="comboModalidad">Modalidad</label>
+                        <label for="comboModalidad">Modalidad:</label>
                         <select name="comboModalidad" class="custom-select" required>
                             <option value="" selected>Seleccione...</option>
                             <?php
@@ -176,7 +176,7 @@ include "../../../databaseConection.php";
                         <?php
                         $consultaDiv = $con->query("SELECT division.nombreDivision, modalidad.nombre FROM division, modalidad WHERE division.modalidad_id = modalidad.id");
                         if (!($consultaDiv->num_rows) == 0) {
-                            echo "<label>Divisiones existentes</label>";
+                            echo "<label>Divisiones existentes:</label>";
                             echo "<table class='table table-sm bg-light table-bordered'>
                                         <thead>
                                             <th>División</th>
@@ -216,18 +216,18 @@ include "../../../databaseConection.php";
             <form action="nuevaModalidad.php" method="POST">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="nombreModalidad">Nombre modalidad</label>
+                        <label for="nombreModalidad">Nombre:</label>
                         <input type="text" placeholder="Modalidad" name="nombreModalidad" class="form-control" required>
                     </div>
                     <div class="my-2">
                         <?php
                         $consultaMod = $con->query("SELECT * FROM modalidad WHERE fechaBajaModalidad IS NULL");
                         if (!($consultaMod->num_rows) == 0) {
-                            echo "<label>Modalidades existentes</label>";
+                            echo "<label>Modalidades existentes:</label>";
                             
                             echo "<table class='table table-sm bg-light table-bordered'>
                                         <thead>
-                                            <th>Modalidades</th>
+                                            <th>Nombre</th>
                                         </thead>
                                         <tbody>";
                             while ($modalidades = $consultaMod->fetch_assoc()) {
@@ -239,7 +239,7 @@ include "../../../databaseConection.php";
                             echo "</tbody>
                                 </table>";
                         } else {
-                            echo "<div class='alert alert-warning'>No hay modalidades existentes</div>";
+                            echo "<div class='alert alert-warning'>No hay modalidades existentes.</div>";
                         }
                         
                         
@@ -425,7 +425,7 @@ include "../../../databaseConection.php";
             <form action="nuevoCargoDocente.php" method="POST" onsubmit="capitalize(inputNombreCargo)">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="nombreNombreDivision">Nombre del cargo</label>
+                        <label for="nombreNombreDivision">Nombre del cargo:</label>
                         <input type="text" placeholder="Cargo" name="inputNombreCargo" id="inputNombreCargo" class="form-control" onchange="capitalize(this.id)" required>
                     </div>
                     <div class="my-2">
@@ -434,10 +434,10 @@ include "../../../databaseConection.php";
                         $currentDate = date('Y-m-d');
                         $consultaCargos = $con->query("SELECT * FROM `cargo` WHERE `fechaAltaCargo` <= '$currentDate' AND `fechaFinCargo` IS NULL");
                         if (!($consultaCargos->num_rows) == 0) {
-                            echo "<label>Cargos existentes</label>";
+                            echo "<label>Cargos existentes:</label>";
                             echo "<table class='table table-sm bg-light table-bordered'>
                                         <thead>
-                                            <th>Cargos</th>
+                                            <th>Nombre</th>
                                         </thead>
                                         <tbody>";
                             while ($cargo = $consultaCargos->fetch_assoc()) {
@@ -586,14 +586,14 @@ include "../../../databaseConection.php";
             <form action="insertMotivoDiaSinClases.php" method="POST">
                 <div class="modal-body">
                     <div class="my-2">
-                        <label for="nombreModalidad">Nombre motivo</label>
+                        <label for="nombreModalidad">Nombre:</label>
                         <input type="text" placeholder="Motivo" name="nombreMotivo" id="nombreMotivo" onchange="capitalize(this.id)" class="form-control" required>
                     </div>
                     <div class="my-2">
                         <?php
                         $consultaMotivo = $con->query("SELECT * FROM `motivodiasinclases` WHERE motivodiasinclases.fechaHastaMotivoDiaSinClases IS NULL ");
                         if (!($consultaMotivo->num_rows) == 0) {
-                            echo "<label>Motivos existentes</label>";
+                            echo "<label>Motivos existentes:</label>";
                             echo "<table class='table table-sm bg-light table-bordered'>
                                         <thead>
                                             <th>Motivos</th>

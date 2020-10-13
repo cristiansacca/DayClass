@@ -38,7 +38,7 @@ include "../../../databaseConection.php";
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
-        <h1>Feriados y días sin clases</h1>
+        <h1>Días sin clases</h1>
         <a href="config_parametros.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     
@@ -66,44 +66,61 @@ include "../../../databaseConection.php";
 
         ?>
     
-    <div>
-        <a class="btn btn-success mb-3" href="" data-toggle="modal" data-target="#nuevoFeriadoDiaSinClase"><i class="fa fa-plus mr-2"></i>Agregar</a>
-        
-        
-        
+    <a class="btn btn-success mb-3" href="" data-toggle="modal" data-target="#nuevoFeriadoDiaSinClase"><i class="fa fa-plus mr-1"></i>Agregar</a>
+    <div class="table-responsive">      
         <?php
             date_default_timezone_set('America/Argentina/Buenos_Aires');
+            setlocale(LC_ALL, 'Spanish');
             $currentDate = date('Y-m-d');
                                 
-            $consulta = $con->query("SELECT diassinclases.fechaDiaSinClases, diassinclases.comentarioDiaSinClases, diassinclases.id AS idDiaSinClases, motivodiasinclases.nombreMotivoDiaSinClases FROM diassinclases, motivodiasinclases WHERE diassinclases.fechaAltaDiaSinClases <= '$currentDate' AND diassinclases.fechaBajaDiaSinClases IS NULL AND diassinclases.id_motivo = motivodiasinclases.id AND motivodiasinclases.fechaDesdeMotivoDiaSinClases <= '$currentDate' AND motivodiasinclases.fechaHastaMotivoDiaSinClases IS NULL ORDER BY diassinclases.fechaDiaSinClases ASC");
+            $consulta = $con->query("SELECT * FROM diassinclases WHERE fechaAltaDiaSinClases <= '$currentDate' AND fechaBajaDiaSinClases IS NULL ORDER BY fechaDiaSinClases ASC");
+        
+            if(!($consulta->num_rows)==0){
+        ?>
+            <table class="table table-bordered table-secondary">
+                <thead>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Día</th>
+                    <th>Motivo</th>
+                    <th>Acciones</th>
+                </thead>
+                <tbody>
+                    
+                    <?php
+                        while($feriados = $consulta->fetch_assoc()){
+                            $id = $feriados['id'];
+                    ?>
+                            <tr>
+                                <td><?php echo "<label id='evento$id'>".$feriados['comentarioDiaSinClases']."</label>"?></td>
+                                <td><?php echo "<label id='fecha$id'>".strftime("%d/%m/%Y", strtotime($feriados['fechaDiaSinClases']))."</label>"?></td>
+                                <td><?php echo ucwords(strftime("%A", strtotime($feriados['fechaDiaSinClases'])))?></td>
+                                <td><?php echo "<label id='motivo$id'>".$con->query("SELECT nombreMotivoDiaSinClases FROM motivodiasinclases WHERE id = '".$feriados['id_motivo']."'")->fetch_assoc()['nombreMotivoDiaSinClases']."</label>" ?></td>
+                                <td>
+                                    <button class="btn btn-primary mb-1" <?php echo "onclick='cargarDatos($id)'"; ?> data-toggle="modal" data-target="#editarFeriadoDiaSinClase"><i class="fa fa-edit mr-1"></i>Editar</button>
+                                    <button class="btn btn-danger mb-1"><i class="fa fa-trash mr-1"></i>Baja</button>
+                                </td>
+                            </tr>
+                    <?php 
+                        }; 
+                    ?>
 
+                </tbody>
+            </table>
+        <?php
+            } else {
+                echo "<br><div class='alert alert-warning' role='alert'>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>No se han registrado feriados ni días sin clases.</h5>
+                </div> ";
+            }
         ?>
         
-        <table class="table table-bordered table-secondary">
-            <thead>
-                <th></th>
-                <th>Evento</th>
-                <th>Fecha</th>
-                <th>Día</th>
-                <th>Motivo</th>
-            </thead>
-            <tbody>
-                <td>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1">Editar</label>
-                    </div>
-                </td>
-                <td><input class="form-control" type="date" readonly></td>
-                <td><input class="form-control" type="text" readonly></td>
-                <td><input class="form-control" type="text" readonly></td>
-                <td><input class="form-control" type="text" readonly></td>
-            </tbody>
-        </table>
+        
 
     </div>
 </div>
 
+<!-- Modal nuevo feriado -->
 <div class="modal fade" id="nuevoFeriadoDiaSinClase" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content ">
@@ -139,11 +156,52 @@ include "../../../databaseConection.php";
     </div>
 </div>
 
+<!-- Modal editar -->
+<div class="modal fade" id="editarFeriadoDiaSinClase" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title">Editar feriado o día sin clases</h5>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label>Fecha:</label>
+                        <input type="date" placeholder="fecha" name="txtFecha" id="txtFecha" class="form-control" required>
+                        <label>Descripción:</label>
+                        <input type="text" placeholder="Descripción" name="txtComentario" id="txtComentario" class="form-control" required>
+                        <label>Motivo:</label>
+                        <select name="cboMotivo" id="cboMotivo" class="custom-select" required>
+                            <option value="" selected>Seleccione...</option>
+                            <?php
+                                $consultaMotivo = $con->query("SELECT * FROM `motivodiasinclases` WHERE `fechaHastaMotivoDiaSinClases` IS NULL");
+                                while ($motivo = $consultaMotivo->fetch_assoc()) {
+                                    echo "<option value='" . $motivo["id"] . "'>" . $motivo["nombreMotivoDiaSinClases"] . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
 </script>
 
+<script>
+    function cargarDatos(id){
+        
+    }
+</script>
 <?php
 include "../../../footer.html";
 ?>
