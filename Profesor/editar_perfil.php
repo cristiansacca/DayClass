@@ -42,8 +42,6 @@ $_SESSION['profesor']= $resultado1;
 
 ?>
 
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="profesor.js"></script>
 <script>
     $("#temaDia").attr("hidden", "hidden")

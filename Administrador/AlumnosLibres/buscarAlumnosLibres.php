@@ -273,7 +273,7 @@ $_SESSION['tiempo'] = time();
         // Mensaje al alumno 
         $mensaje = "Hola, $nombreAlumno $apellidoAlumno. 
 
-Se le informa que ha llegado al máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima ausencia quedará en estado LIBRE. 
+Se le informa que ha alcanzado el máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima inasistencia quedará en estado LIBRE. 
 Puede revertir su situación justificando las ausencias que registra hasta el momento, en la sección correspondiente. 
 Este correo fue enviado de mananera automática, por favor no responda. 
 

@@ -61,12 +61,18 @@ function mostrarAsistencias() {
                         }else{
                             if(faltasDisponibles < 0){
                                 contenido += "<div class='alert alert-danger' role='alert'>"+
-                                    "<h5><i class='fa fa-info-circle mr-2'></i>Ha llegado al máximo permitido de faltas en esta materia, su estado es LIBRE.</h5>"+
+                                    "<h5><i class='fa fa-info-circle mr-2'></i>Ha alcanzado el máximo de faltas permitidas en este curso. Su estado es LIBRE.</h5>"+
                                 "</div>";
                             }else{
-                                contenido += "<div class='alert alert-danger' role='alert'>"+
-                                    "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
-                                "</div>";
+                                if(faltasDisponibles == 0){
+                                    contenido += "<div class='alert alert-danger' role='alert'>"+
+                                        "<h5><i class='fa fa-info-circle mr-2'></i>Ha llegado al máximo de faltas permitidas. No puede volver a faltar a este curso.</h5>"+
+                                    "</div>";
+                                }else{
+                                    contenido += "<div class='alert alert-danger' role='alert'>"+
+                                        "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
+                                    "</div>";
+                                }
                             }
                         }
                     }

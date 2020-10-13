@@ -66,9 +66,9 @@ $_SESSION['tiempo'] = time();
 
 
         <a class="btn btn-info" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=$id_materia'"; ?>><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
-        <a class="btn btn-warning" data-toggle="modal" data-target="#modifFechasCurso"><i class="fa fa-calendar mr-2"></i>Fechas cursado</a>
-        <a href="" class="btn btn-success" data-toggle="modal" data-target="#modifHorariosCurso"><i class="fa fa-clock-o mr-1"></i>Horarios cursado</a>
-        <a class="btn btn-light" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/verTemasDadosCurso.php?id_curso=$id_curso'"; ?>><i class="fa fa-bookmark mr-2"></i>Temas Dados</a>
+        <a class="btn btn-warning" data-toggle="modal" data-target="#modifFechasCurso"><i class="fa fa-calendar mr-2"></i>Fechas de cursado</a>
+        <a href="" class="btn btn-success" data-toggle="modal" data-target="#modifHorariosCurso"><i class="fa fa-clock-o mr-1"></i>Horarios de cursado</a>
+        <a class="btn btn-light" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/verTemasDadosCurso.php?id_curso=$id_curso'"; ?>><i class="fa fa-bookmark mr-2"></i>Temas dados</a>
 
 
     </div>
@@ -361,12 +361,7 @@ $_SESSION['tiempo'] = time();
     </div>
 </div>
 
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="../../administrador.js"></script>
-
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
