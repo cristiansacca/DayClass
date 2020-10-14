@@ -82,6 +82,7 @@ $tieneDiaHora = false;
 $diaHoraBien = false;
 $diaBien = false;
 $horaBien = false;
+$diaSinClases = false;
 if (!($consultaDiasHorasCurso) == 0) {
     $tieneDiaHora = true;
     $curretDay = date('l', strtotime($currentDateTime));
