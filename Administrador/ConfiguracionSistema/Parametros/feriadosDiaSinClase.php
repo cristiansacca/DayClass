@@ -89,7 +89,7 @@ include "../../../databaseConection.php";
             setlocale(LC_ALL, 'Spanish');
             $currentDate = date('Y-m-d');
                                 
-            $consulta = $con->query("SELECT * FROM diassinclases WHERE fechaAltaDiaSinClases <= '$currentDate' AND fechaBajaDiaSinClases IS NULL ORDER BY fechaDiaSinClases ASC");
+            $consulta = $con->query("SELECT * FROM diassinclases WHERE fechaAltaDiaSinClases <= '$currentDate' AND fechaBajaDiaSinClases IS NULL ORDER BY fechaDiaSinClases DESC");
         
             if(!($consulta->num_rows)==0){
         ?>
