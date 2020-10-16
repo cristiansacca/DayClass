@@ -39,12 +39,12 @@ $curso = $consulta1->fetch_assoc();
 
 
     <div class="table-responsive">
-        <table class="table text-center table-striped table-light" id="dataTable">
+        <table class="table text-center table-striped table-bordered table-light" id="dataTable">
             <?php
 
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $currentDate = date('Y-m-d H:i:s');
-            $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC");
+            $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema, temasmateria.unidadTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC");
 
             if (($consulta1->num_rows) == 0) {
                 echo "<div class='alert alert-warning' role='alert'>
@@ -53,6 +53,7 @@ $curso = $consulta1->fetch_assoc();
             } else {
                 echo "<thead>
                                     <th>Fecha</th>
+                                    <th>Unidad</th>
                                     <th>Tema</th>
                                     <th>Comentario</th>
                                     <th>Docente</th> 
@@ -71,6 +72,7 @@ $curso = $consulta1->fetch_assoc();
 
                     echo "<tr>
                                     <td>" . $fecha . "</td>
+                                    <td>" . $resultado1['unidadTema'] . "</td>
                                     <td>" . $resultado1['nombreTema'] . "</td>
                                     <td>" . $resultado1['comentarioTema'] . "</td>
                                     <td>" . $nombreProf . " " . $apellidoProf . "</td>

@@ -47,16 +47,32 @@ include "../../../databaseConection.php";
                 switch ($_GET["resultado"]) {
                     case 1:
                         echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Feriado o día sin clase creado correctamente.</h5>";
+                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Día sin clase creado correctamente.</h5>";
                         break;
                     case 2:
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al crear el feriado o día sin clases.</h5>";
+                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al crear el día sin clases.</h5>";
                         break;
                     case 3:
                         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un feriado o día sin clases con el mismo nombre y motivo, modifique el existente.</h5>";
+                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un día sin clases con el mismo nombre y motivo, modifique el existente.</h5>";
                         break;
+                    case 4:
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Día sin clases modificado exitosamente.</h5>";
+                        break;
+                    case 5:
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Error al modificar día sin clase.</h5>";
+                        break;
+                    case 6:
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>La baja se realizó correctamente.</h5>";
+                        break;
+                    case 7:
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la baja.</h5>";
+                        break;     
                 }
                 echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
@@ -98,7 +114,7 @@ include "../../../databaseConection.php";
                                 <td><?php echo "<label id='motivo$id'>".$con->query("SELECT nombreMotivoDiaSinClases FROM motivodiasinclases WHERE id = '".$feriados['id_motivo']."'")->fetch_assoc()['nombreMotivoDiaSinClases']."</label>" ?></td>
                                 <td>
                                     <button class="btn btn-primary mb-1" <?php echo "onclick='cargarDatos($id)'"; ?> data-toggle="modal" data-target="#editarFeriadoDiaSinClase"><i class="fa fa-edit mr-1"></i>Editar</button>
-                                    <button class="btn btn-danger mb-1"><i class="fa fa-trash mr-1"></i>Baja</button>
+                                    <button class="btn btn-danger mb-1" <?php echo "onclick='darBaja($id)'"; ?>><i class="fa fa-trash mr-1"></i>Baja</button>
                                 </td>
                             </tr>
                     <?php 
@@ -125,7 +141,7 @@ include "../../../databaseConection.php";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Nuevo feriado o día sin clases</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">Nuevo día sin clases</h5>
             </div>
             <form action="insertFeriadoDiaSinClases.php" method="POST">
                 <div class="modal-body">
@@ -161,9 +177,9 @@ include "../../../databaseConection.php";
     <div class="modal-dialog">
         <div class="modal-content ">
             <div class="modal-header ">
-                <h5 class="modal-title">Editar feriado o día sin clases</h5>
+                <h5 class="modal-title">Editar día sin clases</h5>
             </div>
-            <form action="" method="POST">
+            <form action="editarDiaSinClases.php" method="POST">
                 <div class="modal-body">
                     <div class="my-2">
                         <label>Fecha:</label>
@@ -172,7 +188,6 @@ include "../../../databaseConection.php";
                         <input type="text" placeholder="Descripción" name="txtComentario" id="txtComentario" class="form-control" required>
                         <label>Motivo:</label>
                         <select name="cboMotivo" id="cboMotivo" class="custom-select" required>
-                            <option value="" selected>Seleccione...</option>
                             <?php
                                 $consultaMotivo = $con->query("SELECT * FROM `motivodiasinclases` WHERE `fechaHastaMotivoDiaSinClases` IS NULL");
                                 while ($motivo = $consultaMotivo->fetch_assoc()) {
@@ -180,6 +195,7 @@ include "../../../databaseConection.php";
                                 }
                             ?>
                         </select>
+                        <input type="text" id="txtId" name="txtId" hidden>
                     </div>
                     
                 </div>
@@ -199,7 +215,25 @@ include "../../../databaseConection.php";
 
 <script>
     function cargarDatos(id){
-        
+        document.getElementById("txtId").value = id;
+        $.ajax({
+            url: 'obtenerDatosDiaSinClases.php',
+            type: 'POST',
+            data: {id: id},
+            success: function(datosRecibidos) {
+                json = JSON.parse(datosRecibidos);
+                document.getElementById("txtFecha").value = json.fecha;
+                document.getElementById("txtComentario").value = json.comentario;    
+                document.getElementById("cboMotivo").value = json.motivo;
+            }
+        })
+    }
+
+    function darBaja(id){
+        var r = confirm("¿Seguro que quiere gestionar la baja?");
+        if (r == true) {
+        location.href = "/DayClass/Administrador/ConfiguracionSistema/Parametros/bajaDiaSinClases.php?id="+id;
+        }
     }
 </script>
 <?php
