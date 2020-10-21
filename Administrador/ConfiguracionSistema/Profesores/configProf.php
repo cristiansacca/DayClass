@@ -101,6 +101,22 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             </button>
                         </div>";
                     break;
+                case 7:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Reincorporación exitosa.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 8:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la reincorporación.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
         }
     }
 
@@ -124,20 +140,54 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 <?php
                 
                 include "../../../databaseConection.php";
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDate = date('Y-m-d');
 
-                $consulta1 = $con->query("SELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf`, `id` FROM `profesor` WHERE `fechaBajaProf` IS NULL ORDER by apellidoProf ASC");
+                $consulta1 = $con->query("SELECT `apellidoProf`,`nombreProf`,`legajoProf`,`dniProf`, `id`, `fechaBajaProf` FROM `profesor` ORDER by apellidoProf ASC");
                 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     
-                    $url = 'bajaProf.php?id='.$resultado1["id"];
-                    $id = $resultado1["id"];
-                        echo "<tr>
-                    <td>" . $resultado1['legajoProf'] . "</td>
-                    <td>" . $resultado1['apellidoProf'] . "</td>
-                    <td>" . $resultado1['nombreProf'] . "</td>
-                    <td>" . $resultado1['dniProf'] . "</td>
-                    <td class='text-center'><a class='btn btn-danger' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a></td>
-                    </tr>";
+                    
+                    $id_prof = $resultado1["id"];
+                    
+                    if($resultado1["fechaBajaProf"] == NULL || $resultado1["fechaBajaProf"] == ""){
+                        //habilitado para dar de baja
+                        //verificar que no este dictando un curso actualemnte
+                        $selectCargosPorfesor = $con->query("SELECT * FROM `cargoprofesor`, profesor WHERE profesor.id = '$id_prof' AND profesor.id = cargoprofesor.profesor_id AND cargoprofesor.fechaDesdeCargo <= '$currentDate' AND cargoprofesor.fechaHastaCargo IS NULL");
+                        if(($selectCargosPorfesor->num_rows) == 0){
+                            //se puede dar de baja 
+                            $urlBaja = 'bajaProf.php?id='.$resultado1["id"];
+                            echo "<tr>
+                            <td>" . $resultado1['legajoProf'] . "</td>
+                            <td>" . $resultado1['apellidoProf'] . "</td>
+                            <td>" . $resultado1['nombreProf'] . "</td>
+                            <td>" . $resultado1['dniProf'] . "</td>
+                            <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Baja</a></td>
+                            </tr>";
+                            
+                        }else{
+                            //esta asociado actualmente a al menos un curso, no se puede dar de baja 
+                            echo "<tr>
+                            <td>" . $resultado1['legajoProf'] . "</td>
+                            <td>" . $resultado1['apellidoProf'] . "</td>
+                            <td>" . $resultado1['nombreProf'] . "</td>
+                            <td>" . $resultado1['dniProf'] . "</td>
+                            <td class='text-center'><a class='btn btn-danger disabled'><i class='fa fa-trash mr-1'></i>Baja</a></td>
+                            </tr>";
+                            
+                        }
+                    }else{
+                       //habilitado para reincoporacion  
+                        $urlReinc = 'reincProf.php?id='.$resultado1["id"];
+                        echo "<tr class='table-danger'>
+                        <td>" . $resultado1['legajoProf'] . "</td>
+                        <td>" . $resultado1['apellidoProf'] . "</td>
+                        <td>" . $resultado1['nombreProf'] . "</td>
+                        <td>" . $resultado1['dniProf'] . "</td>
+                        <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
+                        </tr>";
+                    }
+                     
                 }
                 ?>
             </tbody>
