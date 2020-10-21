@@ -104,6 +104,22 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             </button>
                         </div>";
                     break;
+                case 7:
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Reincorporación exitosa.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
+                case 8:
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la reincorporación.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    break;
         }
     
     }
@@ -130,11 +146,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 <?php
                 include "../../../databaseConection.php";
 
-                $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum`,`id` FROM `alumno` WHERE `fechaBajaAlumno` IS NULL ORDER BY legajoAlumno ASC");
+                $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum`,`id`,`fechaBajaAlumno` FROM `alumno` ORDER BY legajoAlumno ASC");
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     
-                    $url = 'bajaAlum.php?id='.$resultado1["id"];
+                    /*$url = 'bajaAlum.php?id='.$resultado1["id"];
                     $id = $resultado1["id"];
                     //echo "$url";
                     
@@ -145,6 +161,28 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     <td>" . $resultado1['dniAlum'] . "</td> 
                     <td class='text-center'><a class='btn btn-danger' data-emp-id=".$id." onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a></td>
                     </tr>";
+                    */
+                    
+                    
+                    if($resultado1['fechaBajaAlumno'] != NULL || $resultado1['fechaBajaAlumno'] != ""){
+                            $urlReinc = 'reincAlum.php?id='.$resultado1["id"];
+                            echo "<tr class='table-danger'>
+                                <td>" . $resultado1['legajoAlumno'] . "</td>
+                                <td>" . $resultado1['apellidoAlum'] . "</td>
+                                <td>" . $resultado1['nombreAlum'] . "</td>
+                                <td>" . $resultado1['dniAlum'] . "</td> 
+                                <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
+                            </tr>";
+                        }else{
+                            $urlBaja = 'bajaAlum.php?id='.$resultado1["id"];
+                           echo "<tr>
+                                <td>" . $resultado1['legajoAlumno'] . "</td>
+                                <td>" . $resultado1['apellidoAlum'] . "</td>
+                                <td>" . $resultado1['nombreAlum'] . "</td>
+                                <td>" . $resultado1['dniAlum'] . "</td> 
+                                <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Baja</a></td>
+                            </tr>"; 
+                        }
                 }
                 ?>
             </tbody>
