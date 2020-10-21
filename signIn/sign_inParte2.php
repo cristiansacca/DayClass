@@ -62,6 +62,7 @@ if (mysqli_num_rows($consultaAlum) == 0) {
     <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
     <a href="/DayClass/index.php" class="btn btn-success"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>
+  <h6 class="text-muted">Complete los datos faltantes: </h6>
   <form action="updateUser.php" method="POST" onsubmit="return valiarCampos()">
     <div class="fill_fields text-center m-auto">
       <div class="form-row">
@@ -78,7 +79,6 @@ if (mysqli_num_rows($consultaAlum) == 0) {
         </div>
       </div>
 
-      <h6 class="text-muted">Sus Datos</h6>
       <div class="form-row" id="nombreApellido">
         <div class="form-group col-md-6">
           <label for="inputName4">Nombre</label>
@@ -92,8 +92,6 @@ if (mysqli_num_rows($consultaAlum) == 0) {
         </div>
       </div>
 
-
-      <h6 class="text-muted">Complete: </h6>
       <div class="form-row" id="MailPass">
         <div class="form-group col-md-6">
           <label for="inputEmail4">Email</label>
@@ -105,7 +103,7 @@ if (mysqli_num_rows($consultaAlum) == 0) {
           <div class="input-group">
             <input type="password" class="form-control" id="inputPassword4" name="inputPassword" placeholder="Contraseña" onchange="validarContrasenia()" required>
             <div class="input-group-append">
-              <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"><span class="fa fa-eye-slash icon"></span></button>
+              <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"><span class="fa fa-eye icon"></span></button>
             </div>
           </div>
           <h9 class="msg" id="msjValidacionPass"></h9>
@@ -136,10 +134,10 @@ if (mysqli_num_rows($consultaAlum) == 0) {
     var cambio = document.getElementById("inputPassword4");
     if (cambio.type == "password") {
       cambio.type = "text";
-      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     } else {
       cambio.type = "password";
-      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
     }
   }
 </script>

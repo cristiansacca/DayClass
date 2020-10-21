@@ -139,8 +139,12 @@ $_SESSION['profesor']= $resultado1;
 
           <div class="form-group col-md-6">
             <label for="inputPassNew">Nueva contraseña</label>
-            <input type="password" class="form-control" id="inputPassNew" name="inputPassNew" placeholder="Escribir Contraseña"
-              onchange="validarContrasenia()">
+            <div class="input-group">
+              <input type="password" class="form-control" id="inputPassNew" name="inputPassNew" placeholder="Escribir contraseña" onchange="validarContrasenia()">
+              <div class="input-group-append">
+                <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"><span class="fa fa-eye icon"></span></button>
+              </div>
+            </div>
             <h9 class="msg" id="msjValidacionPass"></h9>
           </div>
 
@@ -160,6 +164,18 @@ $_SESSION['profesor']= $resultado1;
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
 </script>
+<script type="text/javascript">
+      function mostrarPassword() {
+        var cambio = document.getElementById("inputPassNew");
+        if (cambio.type == "password") {
+          cambio.type = "text";
+          $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        } else {
+          cambio.type = "password";
+          $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        }
+      }
+    </script>
 
 <?php
 include "../footer.html";
