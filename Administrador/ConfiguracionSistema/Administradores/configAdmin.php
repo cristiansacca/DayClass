@@ -102,6 +102,30 @@ $_SESSION['tiempo'] = time();
                             </button>
                         </div>";
                 break;
+            case 7:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se puede dar de baja al administrativo, es el único activo.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 8:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Reincorporación exitosa.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+             case 9:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la reincorporación.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
         }
     }
 
@@ -126,11 +150,11 @@ $_SESSION['tiempo'] = time();
                 <?php
                 include "../../../databaseConection.php";
 
-                $consulta1 = $con->query("SELECT `legajoAdm`,`apellidoAdm`,`nombreAdm`,`dniAdm`,`id`  FROM `administrativo` where `fechaBajaAdm` IS NULL ORDER BY apellidoAdm ASC");
+                $consulta1 = $con->query("SELECT `legajoAdm`,`apellidoAdm`,`nombreAdm`,`dniAdm`,`id`, `fechaBajaAdm` FROM administrativo ORDER BY apellidoAdm ASC");
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
 
-                    $url = 'bajaAdmin.php?id=' . $resultado1["id"];
+                    /*$url = 'bajaAdmin.php?id=' . $resultado1["id"];
                     $id = $resultado1["id"];
                     echo "<tr>
                     <td>" . $resultado1['legajoAdm'] . "</td>
@@ -138,7 +162,27 @@ $_SESSION['tiempo'] = time();
                     <td>" . $resultado1['nombreAdm'] . "</td>
                     <td>" . $resultado1['dniAdm'] . "</td>
                     <td class='text-center'><a class='btn btn-danger' data-emp-id=" . $id . " onclick='return confirmDelete()' href='$url'><i class='fa fa-trash mr-1'></i>Baja</a></td>
-                    </tr>";
+                    </tr>";*/
+                    
+                    if($resultado1['fechaBajaAdm'] != NULL || $resultado1['fechaBajaAdm'] != ""){
+                            $urlReinc = 'reincAdmin.php?id='.$resultado1["id"];
+                            echo "<tr class='table-danger'>
+                                <td>" . $resultado1['legajoAdm'] . "</td>
+                                <td>" . $resultado1['apellidoAdm'] . "</td>
+                                <td>" . $resultado1['nombreAdm'] . "</td>
+                                <td>" . $resultado1['dniAdm'] . "</td> 
+                                <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
+                            </tr>";
+                        }else{
+                            $urlBaja = 'bajaAdmin.php?id='.$resultado1["id"];
+                           echo "<tr>
+                                <td>" . $resultado1['legajoAdm'] . "</td>
+                                <td>" . $resultado1['apellidoAdm'] . "</td>
+                                <td>" . $resultado1['nombreAdm'] . "</td>
+                                <td>" . $resultado1['dniAdm'] . "</td> 
+                                <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Baja</a></td>
+                            </tr>"; 
+                        }
                 }
                 ?>
             </tbody>
