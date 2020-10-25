@@ -39,7 +39,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <div class="container" hidden>
 <?php
 include "../../../databaseConection.php";
-include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
+//include "../../class.upload.php"; //libreria para subir el archivo excel al servidor
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $id_curso = $_POST["cursoId"];
