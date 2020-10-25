@@ -131,7 +131,17 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-upload mr-1"></i>Importar lista</button>
     </div>
 
-    <div class="my-4 table-responsive">
+    <?php
+        include "../../../databaseConection.php";
+        $cantidadActivos = $con->query("SELECT id FROM alumno WHERE fechaBajaAlumno IS NULL")->num_rows;
+        $cantidadInactivos = $con->query("SELECT id FROM alumno WHERE fechaBajaAlumno IS NOT NULL")->num_rows;
+    ?>
+
+    <div class="mb-2">
+        <label><?php echo "Activos: ".$cantidadActivos." Inactivos: ".$cantidadInactivos ?></label>
+    </div>
+
+    <div class="mb-4 table-responsive">
 
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
             <thead>
@@ -144,7 +154,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
             <tbody>
                 <?php
-                include "../../../databaseConection.php";
 
                 $consulta1 = $con->query("SELECT `legajoAlumno`,`apellidoAlum`,`nombreAlum`,`dniAlum`,`id`,`fechaBajaAlumno` FROM `alumno` ORDER BY legajoAlumno ASC");
 

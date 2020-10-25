@@ -135,7 +135,17 @@ $_SESSION['tiempo'] = time();
         <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-1"></i>Crear nuevo</button>
     </div>
 
-    <div class="my-4 table-responsive">
+    <?php
+        include "../../../databaseConection.php";
+        $cantidadActivos = $con->query("SELECT id FROM administrativo WHERE fechaBajaAdm IS NULL")->num_rows;
+        $cantidadInactivos = $con->query("SELECT id FROM administrativo WHERE fechaBajaAdm IS NOT NULL")->num_rows;
+    ?>
+
+    <div class="mb-2">
+        <label><?php echo "Activos: ".$cantidadActivos." Inactivos: ".$cantidadInactivos ?></label>
+    </div>
+
+    <div class="mb-4 table-responsive">
 
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
             <thead>
@@ -148,7 +158,6 @@ $_SESSION['tiempo'] = time();
 
             <tbody>
                 <?php
-                include "../../../databaseConection.php";
 
                 $consulta1 = $con->query("SELECT `legajoAdm`,`apellidoAdm`,`nombreAdm`,`dniAdm`,`id`, `fechaBajaAdm` FROM administrativo ORDER BY apellidoAdm ASC");
 

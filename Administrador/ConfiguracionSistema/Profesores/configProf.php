@@ -127,7 +127,17 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-upload mr-1"></i>Importar lista</button>
     </div>
 
-    <div class="my-4 table-responsive">
+    <?php
+        include "../../../databaseConection.php";
+        $cantidadActivos = $con->query("SELECT id FROM profesor WHERE fechaBajaProf IS NULL")->num_rows;
+        $cantidadInactivos = $con->query("SELECT id FROM profesor WHERE fechaBajaProf IS NOT NULL")->num_rows;
+    ?>
+
+    <div class="mb-2">
+        <label><?php echo "Activos: ".$cantidadActivos." Inactivos: ".$cantidadInactivos ?></label>
+    </div>
+
+    <div class="mb-4 table-responsive">
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
             <thead>
                 <th>Legajo</th>
@@ -138,8 +148,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             </thead>
             <tbody>
                 <?php
-                
-                include "../../../databaseConection.php";
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDate = date('Y-m-d');
 
@@ -172,7 +180,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             <td>" . $resultado1['apellidoProf'] . "</td>
                             <td>" . $resultado1['nombreProf'] . "</td>
                             <td>" . $resultado1['dniProf'] . "</td>
-                            <td class='text-center'><a class='btn btn-danger disabled'><i class='fa fa-trash mr-1'></i>Baja</a></td>
+                            <td class='text-center text-light'><a class='btn btn-danger disabled'><i class='fa fa-trash mr-1'></i>Baja</a></td>
                             </tr>";
                             
                         }

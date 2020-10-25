@@ -94,6 +94,15 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     ?>
 
     <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-plus-square mr-1"></i>Nueva materia</button>
+    
+    <?php
+        $cantidadActivos = $con->query("SELECT id FROM materia WHERE fechaBajaMateria IS NULL")->num_rows;
+    ?>
+
+    <div class="mt-4">
+        <label><?php echo "Existentes: ".$cantidadActivos ?></label>
+    </div>
+    
     <div class="my-2 table-responsive">
         <?php
         
