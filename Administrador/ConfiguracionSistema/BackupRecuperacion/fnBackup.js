@@ -16,7 +16,14 @@ function hide(){
 }
 
 function confirmRestaurar(){
-   var confirmar = confirm("¿Realmente desea restaurar la base de datos? ");
+    var radioBtn = document.getElementById("guardado").checked;
+    var confirmar;
+    if(radioBtn){
+        confirmar = confirm("¿Realmente desea restaurar la base de datos? ");
+    } else {
+        confirmar = confirm("Está a punto de restaurar una copia de seguridad que podría ser antigua ¿Desea continuar? ");
+    }
+   
     if (confirmar) {
         var contenido = "<span class='spinner-border spinner-border-sm mr-1' role='status' aria-hidden='true'></span>Restaurando...";
         document.getElementById("btnImportar").innerHTML = contenido;
