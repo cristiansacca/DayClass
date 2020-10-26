@@ -8,7 +8,7 @@ $cargaHoraria = $_POST["inputCargaHoraria"];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $fechaHora= date('Y-m-d H:i:s');
 
-$consulta = $con->query("SELECT id FROM `materia` WHERE nombreMateria = '$materia' AND nivelMateria = '$nivel'");
+$consulta = $con->query("SELECT id FROM `materia` WHERE nombreMateria = '$materia' AND nivelMateria = '$nivel' AND materia.fechaBajaMateria IS NULL");
 
 if(($consulta->num_rows) == 0){
     
