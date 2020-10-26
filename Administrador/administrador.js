@@ -77,7 +77,7 @@ document.getElementById("btnCampana").onclick = function(){
 }
 
 function letters(letras) {
-    var patron = /^[A-Za-zÑñáéíóúñüàè]*$/;
+    var patron = /^[A-Za-zÑñáéíóúñüàè' ]*$/;
     return patron.test(letras);
 }
 
