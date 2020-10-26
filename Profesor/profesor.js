@@ -12,7 +12,7 @@ function cambiarContenidoNavbar(){
 }
 
 function letters(letras){
-	var patron = /^[A-Za-z]*$/;
+	var patron = /^[A-Za-zÑñáéíóúñüàè]*$/;
 	return patron.test(letras);
 }
 
