@@ -381,7 +381,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2" required disabled>
                             <h9 id="msgHasta"></h9>
                         </div>
-                        <div class="my-2" id="tablaLastLicencia table-responsive"></div>
+                        <div class="my-2 table-responsive" id="tablaLastLicencia"></div>
                     </div>
 
                     <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
