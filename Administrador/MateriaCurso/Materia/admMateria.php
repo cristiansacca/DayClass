@@ -108,7 +108,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDate = date('Y-m-d');          
-        $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL  ORDER BY id ASC");
+        $consulta1 = $con->query("SELECT * FROM `materia` WHERE `fechaBajaMateria` IS NULL ORDER BY materia.nombreMateria, materia.nivelMateria ASC");
         
         if(($consulta1->num_rows)!=0){
         echo "<table id='dataTable' class='table table-secondary table-bordered table-hover'>";
