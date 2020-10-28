@@ -310,34 +310,25 @@ $_SESSION['tiempo'] = time();
                         ?>
 
                     </div>
-
-
                     <div class="fill_fields">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputInicio">Inicio de cursado:</label>
-                                <input type="date" class="form-control" id="inputInicioCursado" name="inputInicioCursado" placeholder="Fecha Inicio Cursado" <?php
-                                                                                                                                                                if ($rtdo) {
-                                                                                                                                                                    echo " disabled ";
-                                                                                                                                                                    echo " value='" . $fchDesde . "' ";
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo " onchange='habilitarSegundaFecha()' required ";
-                                                                                                                                                                    echo " min='" . date("Y") . "-01-01' " . "max='" . date("Y") . "-12-31'";
-                                                                                                                                                                }
-                                                                                                                                                                ?>>
-
+                                <input type="date" class="form-control" id="inputInicioCursado" name="inputInicioCursado" placeholder="Fecha Inicio Cursado"> <?php  if ($rtdo){ 
+                                    echo " disabled ";
+                                    echo " value='" . $fchDesde . "' ";
+                                }else {
+                                    echo " onchange='habilitarSegundaFecha()' required "}; 
+                                    echo " min='" . date("Y") . "-01-01' " . "max='" . date("Y") . "-12-31'";?>
                                 <h9 class="msg" id="msjValidacionFechaI"></h9>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="inputHasta">Fin de cursado:</label>
                                 <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled <?php
-                                                                                                                                                                if ($rtdo) {
-                                                                                                                                                                    echo " value='" . $fchHasta . "' ";
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo " required ";
-                                                                                                                                                                    echo " min='" . date("Y") . "-01-01' " . "max='" . date("Y") . "-12-31'";
-                                                                                                                                                                }  ?>>
+                                if ($rtdo) {                                                                                                                                 echo " value='" . $fchHasta . "' ";
+                                echo " required ";
+                                    echo " min='" . date("Y") . "-01-01' " . "max='" . date("Y") . "-12-31'";}  ?>>
                                 <h9 class="msg" id="msjValidacionFechaH"></h9>
                             </div>
                         </div>
