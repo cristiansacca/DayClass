@@ -57,7 +57,8 @@ $_SESSION['tiempo'] = time();
 
         $selectPermiso = $con->query("SELECT * FROM permiso WHERE permiso.id = '$id_permiso'");
         $permiso = $selectPermiso->fetch_assoc();
-        $nombrePermiso = $permiso["nombrePermiso"];
+        
+        $nombrePermiso = ucfirst(strtolower($permiso["nombrePermiso"]));
         
         
         echo "<h1>$nombrePermiso<i class='fa fa-user-tie ml-2'></i></h1>"

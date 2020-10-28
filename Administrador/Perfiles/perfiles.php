@@ -71,6 +71,8 @@ $_SESSION['tiempo'] = time();
             while($permisos = $selectPermisos->fetch_assoc()){
                 
                 $id_permiso = $permisos["id"];
+                $nombrePermiso = ucfirst(strtolower($permisos["nombrePermiso"]));
+                
 
                 if ($contador == 4) {
                     $contador = 0;
@@ -79,7 +81,7 @@ $_SESSION['tiempo'] = time();
                     echo "<div class='col-lg-6 col-md-3 mb-4' >
                         <div class='card color$contador' >
                             <div class='card-body'>
-                                <h4 class='card-title'>".$permisos["nombrePermiso"]."</h4>
+                                <h4 class='card-title'>".$nombrePermiso."</h4>
                                 <h5 class='font-weight-normal'></h5>
                             </div>
                             <div class='card-footer'>
