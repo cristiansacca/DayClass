@@ -2,7 +2,7 @@ function enviarRoles(){
 eval("debugger;");
     var arregloFunciones = [];
     var funciones = document.getElementsByClassName("checkFuncion");
-    var erroneos = 0;
+    //var erroneos = 0;
     var chequeados = 0;
     
         for(let index = 0; index < funciones.length; index++){

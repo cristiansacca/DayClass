@@ -67,63 +67,55 @@ $_SESSION['tiempo'] = time();
         
         <a href="../../index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <button type="button" class="btn btn-warning" onclick="habilitarFunciones()">Modificar Permisos</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUnUsuario"><i class="fa fa-user-plus mr-1"></i>Agregar Usuarios</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUnUsuario"><i class="fa fa-user-plus mr-1"></i>Agregar Usuario</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUsuarios"><i class="fa fa-user-plus mr-1"></i>Importar Lista de Usuarios</button>
         
     </div>
     <!-- Page Features -->
     <h2>Permisos del Rol</h2>
-    
-    
-    <div>
-    
-        
-        <form class="form-inline">
-        <div class="py-4 my-3 jumbotron overflow-auto col-sm-6" style="background-color:PowderBlue; height: 200px">
-        <?php
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $currentDate = date('Y-m-d');
-        $id_permiso = $_GET["id_permiso"];
+    <div>  
+        <div>
+            <form class="form-inline" onsubmit="return enviarRoles()" method="POST" id="insertPermisoFuncion" name="insertPermisoFuncion" action="insertFuncionesPerfiles.php" enctype="multipart/form-data" role="form">
+                <div class="py-4 my-3 jumbotron overflow-auto col-sm-6" style="background-color:PowderBlue; height: 200px">
+                    <?php
+                        date_default_timezone_set('America/Argentina/Buenos_Aires');
+                        $currentDate = date('Y-m-d');
+                        $id_permiso = $_GET["id_permiso"];
 
-        $selectPermisosFuncion = $con->query("SELECT funcion.nombreFuncion, funcion.id FROM permiso, permisofuncion, funcion WHERE permiso.id = '$id_permiso' AND permiso.id = permisofuncion.id_permiso AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDate' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND permisofuncion.id_funcion = funcion.id AND funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL");
-        
-        $selectFuncion = $con->query("SELECT funcion.nombreFuncion, funcion.id FROM funcion WHERE funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL ORDER BY nombreFuncion ASC");
-        
-        
-        $contador = 0;
-        while($funciones = $selectFuncion->fetch_assoc()){
-            $nombreFuncion = $funciones["nombreFuncion"];
-            $id_funcion = $funciones["id"];
-            
-            $selectFuncionesDePermiso = $con->query("SELECT * FROM `permisofuncion` WHERE `id_permiso` = '$id_permiso' AND `id_funcion` = '$id_funcion' AND `fechaDesdePermisoFuncion` <= '$currentDate' AND `fechaHastaPermisoFuncion` IS NULL");
-                
-            
-                echo "<div class='form-inline'>";
-                if(($selectFuncionesDePermiso -> num_rows) == 1){
-                    echo "
-                    <input class='checkFuncion' type='checkbox' id='".$id_funcion."' checked disabled>
-                    <label class='ml-2'>" .  $nombreFuncion. "</label> 
-                    </div>";
-                }else{
-                    echo "
-                    <input class='checkFuncion' type='checkbox' id='".$id_funcion."' disabled>
-                    <label class='ml-2'>" .  $nombreFuncion. "</label> </div>";
-                }
-                echo "";
-            
-            
-            
-        }
-    
-        ?>
-         </div>   
-        <div class="col-sm-6" style="height: 200px; display:inline-block"> 
-            <button type="submit" class="btn btn-success" id="btnGuardar" style="display: none;">Guardar Cambios</button>
-        </div>   
-       </form> 
-        
-    
-    
+                        //$selectPermisosFuncion = $con->query("SELECT funcion.nombreFuncion, funcion.id FROM permiso, permisofuncion, funcion WHERE permiso.id = '$id_permiso' AND permiso.id = permisofuncion.id_permiso AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDate' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND permisofuncion.id_funcion = funcion.id AND funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL");
+
+                        $selectFuncion = $con->query("SELECT funcion.nombreFuncion, funcion.id FROM funcion WHERE funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL ORDER BY nombreFuncion ASC");
+
+                        $contador = 0;
+                        while($funciones = $selectFuncion->fetch_assoc()){
+                            $nombreFuncion = $funciones["nombreFuncion"];
+                            $id_funcion = $funciones["id"];
+
+                            $selectFuncionesDePermiso = $con->query("SELECT * FROM `permisofuncion` WHERE `id_permiso` = '$id_permiso' AND `id_funcion` = '$id_funcion' AND `fechaDesdePermisoFuncion` <= '$currentDate' AND `fechaHastaPermisoFuncion` IS NULL");
+
+                                echo "<div class='form-inline'>";
+                                if(($selectFuncionesDePermiso -> num_rows) == 1){
+                                    echo "
+                                    <input class='checkFuncion' type='checkbox' id='".$id_funcion."' checked disabled>
+                                    <label class='ml-2'>" .  $nombreFuncion. "</label> 
+                                    </div>";
+                                }else{
+                                    echo "
+                                    <input class='checkFuncion' type='checkbox' id='".$id_funcion."' disabled>
+                                    <label class='ml-2'>" .  $nombreFuncion. "</label> </div>";
+                                }
+                                echo "";
+                        }
+                    ?>
+                </div>  
+                    <input type="text" name="permisoId" id="permisoId" <?php echo "value= '$id_permiso'"; ?> hidden>
+                    <input type="text" id="arregloFunciones" name="arregloFunciones" hidden>
+
+                <div class="col-sm-6" style="height: 200px; display:inline-block"> 
+                    <button type="submit" class="btn btn-success" id="btnGuardar" style="display: none;">Guardar Cambios</button>
+                </div>   
+            </form> 
+        </div>  
     <div>
         <h2>Usuarios asignados al Rol</h2>
         <div class="mb-4 table-responsive">
@@ -185,7 +177,7 @@ $_SESSION['tiempo'] = time();
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Agregar un usuario a Rol</h5>
             </div>
-            <form method="POST" id="insertAlumno" name="insertAlumno" action="inscribirUnAlumnoCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
+            <form method="POST" id="insertUsuarioRol" name="insertUsuarioRol" action="insertUsuarioRol.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
                 <?php
 
                 $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");

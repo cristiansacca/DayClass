@@ -1,8 +1,6 @@
 <?php
 include "../../databaseConection.php";
 
-
-
 $nombrePermiso = $_POST["inputNombrePermiso"];
 $nombrePermiso = strtoupper($nombrePermiso);
 echo $nombrePermiso;
@@ -42,7 +40,7 @@ if(($selectPermiso->num_rows) == 0){
 }else{
     //ya existe ese permiso hay q modificar existente
     echo "entra a else de existente";
-    header("location: /DayClass/Administrador/Perfiles/perfiles.php");	
+    header("location: DayClass/Administrador/Perfiles/perfiles.php");	
 }
     
    //header("location: /DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=$id_materia&&resultado=1");	
