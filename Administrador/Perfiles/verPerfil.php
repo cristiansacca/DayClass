@@ -43,7 +43,7 @@ $_SESSION['tiempo'] = time();
 
 
 <link rel="stylesheet" href="../../styleCards.css">
-<script src="fnValidarDiasCurso.js"></script>
+
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
@@ -51,17 +51,17 @@ $_SESSION['tiempo'] = time();
         
         
         <?php
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $currentDate = date('Y-m-d');
-        $id_permiso = $_GET["id_permiso"];
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+            $currentDate = date('Y-m-d');
+            $id_permiso = $_GET["id_permiso"];
 
-        $selectPermiso = $con->query("SELECT * FROM permiso WHERE permiso.id = '$id_permiso'");
-        $permiso = $selectPermiso->fetch_assoc();
-        
-        $nombrePermiso = ucfirst(strtolower($permiso["nombrePermiso"]));
-        
-        
-        echo "<h1>$nombrePermiso<i class='fa fa-user-tie ml-2'></i></h1>"
+            $selectPermiso = $con->query("SELECT * FROM permiso WHERE permiso.id = '$id_permiso'");
+            $permiso = $selectPermiso->fetch_assoc();
+
+            $nombrePermiso = ucfirst(strtolower($permiso["nombrePermiso"]));
+
+
+            echo "<h1>$nombrePermiso<i class='fa fa-user-tie ml-2'></i></h1>"
         
         ?>
         
@@ -69,8 +69,6 @@ $_SESSION['tiempo'] = time();
         
     </div>
     <!-- Page Features -->
-
-    
     <h2>Permisos del Rol</h2>
     <div class="py-4 my-3 jumbotron" style="background-color:PowderBlue;">
         <?php
@@ -78,20 +76,72 @@ $_SESSION['tiempo'] = time();
         $currentDate = date('Y-m-d');
         $id_permiso = $_GET["id_permiso"];
 
-        $selectPermisosFuncion = $con->query("SELECT funcion.nombreFuncion FROM permiso, permisofuncion, funcion WHERE permiso.id = '$id_permiso' AND permiso.id = permisofuncion.id_permiso AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDate' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND permisofuncion.id_funcion = funcion.id AND funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL");
+        $selectPermisosFuncion = $con->query("SELECT funcion.nombreFuncion, funcion.id FROM permiso, permisofuncion, funcion WHERE permiso.id = '$id_permiso' AND permiso.id = permisofuncion.id_permiso AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDate' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND permisofuncion.id_funcion = funcion.id AND funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL");
         
-        
-        
+        $contador = 0;
         while($permisosFuncion = $selectPermisosFuncion->fetch_assoc()){
             $nombreFuncion = $permisosFuncion["nombreFuncion"];
-            
-            echo   "<div class='form-group col-md-6'>
-            <label for='inputInicio'>$nombreFuncion</label>
-            </div>";
-        
+            $id_funcion = $permisosFuncion["id"];
+                
+           echo "<div class='col-lg-2 my-3' >
+                <div class='card h-100 color$contador'>
+                    <div class='card-body text-left'>
+                        <label class='card-title'>$nombreFuncion</label>
+                    </div>
+                </div>
+            </div>";    
         }
-        
+    
         ?>
+    </div>
+    
+    <div>
+        <h2>Usuarios asignados al Rol</h2>
+        <div class="mb-4 table-responsive">
+
+            <table id="dataTable" class="table table-secondary table-bordered table-hover">
+                <thead>
+                    <th>Legajo</th>
+                    <th>Apellido</th>
+                    <th>Nombre </th>
+                    <th>DNI</th>
+                    <th></th>
+                </thead>
+
+                <tbody>
+                    <?php
+
+                    $consulta1 = $con->query("SELECT * FROM `usuario` WHERE id_permiso = '$id_permiso' ORDER BY legajoUsuario ASC");
+
+                    while ($resultado1 = $consulta1->fetch_assoc()) {
+                        if($resultado1['fechaBajaUsuario'] != NULL || $resultado1['fechaBajaUsuario'] != ""){
+                                $urlReinc = 'reincAlum.php?id='.$resultado1["id"];
+                                echo "<tr class='table-danger'>
+                                    <td>" . $resultado1['legajoUsuario'] . "</td>
+                                    <td>" . $resultado1['apellidoUsuario'] . "</td>
+                                    <td>" . $resultado1['nombreUsuario'] . "</td>
+                                    <td>" . $resultado1['dniUsuario'] . "</td> 
+                                    <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
+                                </tr>";
+                            }else{
+                                $urlBaja = 'bajaAlum.php?id='.$resultado1["id"];
+                               echo "<tr>
+                                    <td>" . $resultado1['legajoUsuario'] . "</td>
+                                    <td>" . $resultado1['apellidoUsuario'] . "</td>
+                                    <td>" . $resultado1['nombreUsuario'] . "</td>
+                                    <td>" . $resultado1['dniUsuario'] . "</td> 
+                                    <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Baja</a></td>
+                                </tr>"; 
+                            }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    
+    
+    
+    
     </div>
 
     
@@ -101,7 +151,7 @@ $_SESSION['tiempo'] = time();
 
 
 
-<script src="../../administrador.js"></script>
+<script src="../administrador.js"></script>
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
