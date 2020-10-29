@@ -65,12 +65,48 @@ $_SESSION['tiempo'] = time();
         
         ?>
         
-        <a href="../../index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Administrador/Perfiles/perfiles.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <button type="button" class="btn btn-warning" onclick="habilitarFunciones()">Modificar Permisos</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUnUsuario"><i class="fa fa-user-plus mr-1"></i>Agregar Usuario</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUsuarios"><i class="fa fa-user-plus mr-1"></i>Importar Lista de Usuarios</button>
         
     </div>
+    
+    <?php
+
+    if (isset($_GET["resultado"])) {
+        switch ($_GET["resultado"]) {
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa de las funciones del rol.</h5>";
+                break;
+            
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Falla en la asignación de funciones al rol.</h5>";
+                break;
+            case 3:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Rol asignado a usuario exitosamente.</h5>";
+                break;
+
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la asignación del Rol</h5>";
+                break;
+            case 5:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuario no existente.</h5>";
+                break;
+        }
+        echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>";
+    }
+
+    ?>
+    
     <!-- Page Features -->
     <h2>Permisos del Rol</h2>
     <div>  
@@ -345,6 +381,7 @@ $_SESSION['tiempo'] = time();
 
 
 <script src="../administrador.js"></script>
+<script src="../fnInscribirAlumno.js"></script>
 <script src="perfiles.js"></script>
 
 
