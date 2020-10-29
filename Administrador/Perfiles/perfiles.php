@@ -106,7 +106,7 @@ $_SESSION['tiempo'] = time();
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Nuevo rol</h5>
             </div>
-            <form method="POST" id="insertRol" name="insertRol" action="insertPerfil.php" enctype="multipart/form-data" role="form" onsubmit="return enviarRoles()">
+            <form method="POST" id="insertRol" name="insertRol" action="insertPerfil.php" enctype="multipart/form-data" role="form">
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="form-group col-md-12">
@@ -115,21 +115,6 @@ $_SESSION['tiempo'] = time();
                             <h9 class="msg" id="msjValidacionNombreRol"></h9>
                         </div>
                         
-                    </div>
-                    
-                    <label class='ml-2'>Seleccione los permisos del rol:</label>
-
-                    <div>
-                        <?php
-                            $selectFunciones = $con->query("SELECT * FROM `funcion` WHERE `fechaDesdeFuncion` <= '$currentDate' AND `fechaHastaFuncion` IS NULL ORDER BY nombreFuncion ASC");
-                            while ($funciones =  $selectFunciones->fetch_assoc()) {
-                                echo "<div>
-                                    <input class='checkFuncion' type='checkbox' id='".$funciones["id"]."'>
-                                    <label class='ml-2'>" .  $funciones["nombreFuncion"]. "</label> 
-                                    </div>";
-                                $contador++;
-                            }
-                        ?>
                     </div>
                 </div>
                 <input type="text" id="arregloFunciones" name="arregloFunciones" hidden>

@@ -22,3 +22,20 @@ eval("debugger;");
     }
             
 }
+
+
+function habilitarFunciones(){
+    eval("debugger;");
+    var funciones = document.getElementsByClassName("checkFuncion");
+    
+    for(let index = 0; index < funciones.length; index++){
+            
+            if(funciones[index].disabled){
+                funciones[index].disabled = false;
+                document.getElementById("btnGuardar").style.display="block";
+            }else{
+                funciones[index].disabled = true;
+                document.getElementById("btnGuardar").style.display="none";
+            }       
+        }
+}
