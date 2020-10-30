@@ -50,6 +50,14 @@ include "../header.html";
                                 </button>
                             </div>";
                         break;
+                    case 5:
+                        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Usted no tiene ningún rol asignado. Contáctese con el administrador.</h5>
+                                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                                </button>
+                            </div>";
+                        break;
                 }
             }
 
