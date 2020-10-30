@@ -10,7 +10,7 @@ if (!isset($_SESSION['administrador'])) {
     header("location:/DayClass/index.php");
 }
 
-//Comprobamos si esta definida la sesión 'tiempo'.
+/*//Comprobamos si esta definida la sesión 'tiempo'.
 if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
@@ -28,7 +28,7 @@ if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
         exit();
     }
 }
-$_SESSION['tiempo'] = time();
+$_SESSION['tiempo'] = time();*/
 
 ?>
 
@@ -63,7 +63,8 @@ $_SESSION['tiempo'] = time();
     
         $selectPermisos = $con->query("SELECT * FROM `permiso` WHERE `fechaDesdePer` <= '$currentDate' AND `fechaHastaPer` IS NULL AND nombrePermiso <> 'ADMINISTRADOR' ORDER BY nombrePermiso ASC");
     
-    
+        $classHabilitado = "btn btn-secondary";
+                    
         if(($selectPermisos->num_rows) > 0){
             
         $contador = 0;
@@ -77,6 +78,26 @@ $_SESSION['tiempo'] = time();
                 if ($contador == 4) {
                     $contador = 0;
                 }
+                
+                $selectUsuariosPermiso = $con->query("SELECT * FROM `usuario` WHERE usuario.fechaBajaUsuario IS NULL AND usuario.id_permiso = '$id_permiso'");
+                
+                //echo "SELECT * FROM `usuario` WHERE usuario.fechaBajaUsuario IS NULL AND usuario.id_permiso = '$id_permiso'";
+                
+                if((($selectUsuariosPermiso->num_rows) > 0)){
+                    
+                    if($permisos["nombrePermiso"] == "DOCENTE" || $permisos["nombrePermiso"] == "ALUMNO"){
+                        $classHabilitado = "btn btn-secondary disabled";
+                    }else{
+                       $classHabilitado = "btn btn-secondary"; 
+                    }
+                    
+                }else{
+                    if($permisos["nombrePermiso"] == "DOCENTE" || $permisos["nombrePermiso"] == "ALUMNO"){
+                        $classHabilitado = "btn btn-secondary disabled";
+                    }else{
+                       $classHabilitado = "btn btn-secondary"; 
+                    }
+                }
                             
                     echo "<div class='col-lg-6 col-md-3 mb-4' >
                         <div class='card color$contador' >
@@ -85,9 +106,8 @@ $_SESSION['tiempo'] = time();
                                 <h5 class='font-weight-normal'></h5>
                             </div>
                             <div class='card-footer'>
-                                <a href='verPerfil.php?id_permiso=$id_permiso' class='btn btn-success'>Ver</a>
-                                <a href='' class='btn btn-primary'>Modificar</a>
-                                <a href='' class='btn btn-secondary'>Eliminar</a>
+                                <a href='verPerfil.php?id_permiso=$id_permiso' class='btn btn-success'>Ver Rol</a>
+                                <a href='' class='$classHabilitado'>Eliminar Rol</a>
                             </div>
                         </div>
                     </div>";

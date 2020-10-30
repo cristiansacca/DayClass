@@ -66,7 +66,7 @@ $_SESSION['tiempo'] = time();
         ?>
         
         <a href="/DayClass/Administrador/Perfiles/perfiles.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <button type="button" class="btn btn-warning" onclick="habilitarFunciones()">Modificar Permisos</button>
+        <button type="button" class="btn btn-warning" onclick="habilitarFunciones()" <?php if($permiso["nombrePermiso"] == "ALUMNO"){echo "disabled";} ?>>Modificar Permisos</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUnUsuario"><i class="fa fa-user-plus mr-1"></i>Agregar Usuario</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUsuarios"><i class="fa fa-user-plus mr-1"></i>Importar Lista de Usuarios</button>
         
@@ -97,6 +97,15 @@ $_SESSION['tiempo'] = time();
             case 5:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuario no existente.</h5>";
+                break;
+            case 6:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Rol removido a usuario exitosamente.</h5>";
+                break;
+
+            case 7:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la remoción del Rol</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -172,7 +181,7 @@ $_SESSION['tiempo'] = time();
 
                     while ($resultado1 = $consulta1->fetch_assoc()) {
                         if($resultado1['fechaBajaUsuario'] != NULL || $resultado1['fechaBajaUsuario'] != ""){
-                                $urlReinc = 'reincAlum.php?id='.$resultado1["id"];
+                                $urlReinc = 'reincUsuarioPerfil.php?id='.$resultado1["id"];
                                 echo "<tr class='table-danger'>
                                     <td>" . $resultado1['legajoUsuario'] . "</td>
                                     <td>" . $resultado1['apellidoUsuario'] . "</td>
@@ -181,7 +190,7 @@ $_SESSION['tiempo'] = time();
                                     <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
                                 </tr>";
                             }else{
-                                $urlBaja = 'bajaAlum.php?id='.$resultado1["id"];
+                                $urlBaja = 'bajaUsuarioPerfil.php?id='.$resultado1["id"].'&&permiso='.$id_permiso;
                                echo "<tr>
                                     <td>" . $resultado1['legajoUsuario'] . "</td>
                                     <td>" . $resultado1['apellidoUsuario'] . "</td>
