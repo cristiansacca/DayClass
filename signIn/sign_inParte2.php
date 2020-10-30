@@ -52,7 +52,7 @@ if (mysqli_num_rows($consultaUsuario) == 0) {
 <div class="container">
   <div class="jumbotron my-4 py-4">
     <h1>Registro de nuevo usuario</h1>
-    <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la misma.</h6>
+    <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución. Evite cualquier falsedad en los mismos.</h6>
     <a href="/DayClass/index.php" class="btn btn-success"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>
   <h6 class="text-muted">Complete los datos faltantes: </h6>
