@@ -6,60 +6,53 @@ include "../header.html";
 
 <?php
 include "../databaseConection.php";
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDate = date('Y-m-d');
 
 $legajo = $_POST["inputLegajo"];
 
 $dni = $_POST["inputDNI"];
 
-$consultaAlum = $con->query("SELECT * FROM `alumno` WHERE legajoAlumno = '$legajo' AND dniAlum = '$dni'");
 
+$consultaUsuario = $con->query("SELECT * FROM `usuario` WHERE legajoUsuario = '$legajo' AND dniUsuario = '$dni' AND bloqueado = 0");
 
-
-if (mysqli_num_rows($consultaAlum) == 0) {
-  $consultaProf = $con->query("SELECT * FROM `profesor` WHERE legajoProf = '$legajo' AND dniProf = '$dni'");
-
-  if (mysqli_num_rows($consultaProf) == 0) {
+if (mysqli_num_rows($consultaUsuario) == 0) {
     //no existe esa combinacion 
     //enviar a pagina anterior con mensaje de error
     header("location: /DayClass/signIn/sign_in.php?resultado=2");
-  } else {
-    //es docente 
-    $resultado2 = $consultaProf->fetch_assoc();
-    $nombre = $resultado2['nombreProf'];
-    $apellido = $resultado2['apellidoProf'];
-    $rol = "Profesor";
-
-    $pass = $resultado2['contraseniaProf'];
-    $mail = $resultado2['emailProf'];
-    $nac = $resultado2['fechaNacProf'];
-
-
-    if ($pass != "" && $mail != "" && nac != "") {
-      header("location: /DayClass/signIn/sign_in.php?resultado=3");
+  
+}else {
+  //es   
+    $resultado1 = $consultaUsuario->fetch_assoc();
+    
+    $id_permiso = $resultado1['id_permiso'];
+    $nombre = $resultado1['nombreUsuario'];
+    $apellido = $resultado1['apellidoUsuario'];
+    $pass = $resultado1['contraseniaUsuario'];
+    $mail = $resultado1['emailUsuario'];
+    $nac = $resultado1['fechaNacUsuario'];
+    $cuentaHabilitada = $resultado1["cuentaHabilitada"];
+    $nombrePermiso = null;
+    
+    if($cuentaHabilitada == 0){
+            if($id_permiso == NULL || $id_permiso == ""){
+                header("location: /DayClass/signIn/sign_in.php?resultado=5");
+            }else{
+                $selectPermiso = $con->query("SELECT * FROM `permiso` WHERE permiso.id = '$id_permiso' AND permiso.fechaDesdePer <= '$currentDate' AND permiso.fechaHastaPer IS NULL");
+                $permiso = $selectPermiso->fetch_assoc();
+                $nombrePermiso = $permiso["nombrePermiso"];
+            }
+        }else{
+            header("location: /DayClass/signIn/sign_in.php?resultado=3");
+        }
     }
-  }
-} else {
-  //es alumno  
-  $resultado1 = $consultaAlum->fetch_assoc();
-  $nombre = $resultado1['nombreAlum'];
-  $apellido = $resultado1['apellidoAlum'];
-  $rol = "Alumno";
-  $pass = $resultado1['contraseniaAlum'];
-  $mail = $resultado1['emailAlum'];
-  $nac = $resultado1['fechaNacAlumno'];
-
-
-  if ($pass != "" && $mail != "" && $nac != "") {
-    header("location: /DayClass/signIn/sign_in.php?resultado=3");
-  }
-}
 
 ?>
 
 <div class="container">
   <div class="jumbotron my-4 py-4">
     <h1>Registro de nuevo usuario</h1>
-    <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la institución.</h6>
+    <h6 class="text-muted">Los datos aquí ingresados serán validados con los de la institución, cualquier falsedad en los mismos puede derivar en una panalización por parte de la misma.</h6>
     <a href="/DayClass/index.php" class="btn btn-success"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>
   <h6 class="text-muted">Complete los datos faltantes: </h6>
@@ -118,7 +111,7 @@ if (mysqli_num_rows($consultaAlum) == 0) {
         </div>
         <div class="form-group col-md-6">
           <label for="inputSurname4">Rol</label>
-          <input type="text" class="form-control" id="inputRol" name="inputRol" <?php echo "value= '$rol'"; ?> readonly>
+          <input type="text" class="form-control" id="inputRol" name="inputRol" <?php echo "value= '$nombrePermiso'"; ?> readonly>
           <h9 class="msg" id="msjValidacionApellido"></h9>
         </div>
       </div>
