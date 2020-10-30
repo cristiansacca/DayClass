@@ -47,7 +47,9 @@ $_SESSION['tiempo'] = time();
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
-        <p class="card-text">Administrador</p>
+        <p class="card-text">Administrador</p> <!--Cambiar para que se vea el nombre del rol del usuario logueado-->
+        
+        <h5 class="card-text">Administrar roles</h5>
         
         
         <?php

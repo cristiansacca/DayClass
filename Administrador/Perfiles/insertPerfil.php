@@ -17,31 +17,16 @@ if(($selectPermiso->num_rows) == 0){
    $crearPermiso = $con->query("INSERT INTO `permiso`(`fechaDesdePer`, `nombrePermiso`) VALUES ('$currentDateTime','$nombrePermiso')");
     
     if($crearPermiso){
-        /*$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = '$nombrePermiso' AND fechaDesdePer = '$currentDateTime'");
-        
-        if($selectPermiso){
-            $permiso = $selectPermiso->fetch_assoc();
-            $id_permiso = $permiso["id"];
-            echo "id permiso creado: $id_permiso";
-            
-            for($i = 0; $i < $tamanioArreglo; $i++){
-        
-                $id_funcion = $arrayLimpio[$i];
-                
-                $insertPermisoFuncion = $con->query("INSERT INTO `permisofuncion`(`id_permiso`, `id_funcion`, `fechaDesdePermisoFuncion`) VALUES ('$id_permiso','$id_funcion','$currentDateTime')");
-                
-            }
-        }*/
-         header("location: /DayClass/Administrador/Perfiles/perfiles.php");	
+        //creacion exitosa del permiso
+         header("Location:/DayClass/Administrador/Perfiles/perfiles.php?resultado=1");
     }else{
-         header("location: /DayClass/Administrador/Perfiles/perfiles.php");	
+        //falla en la creacion del permiso
+         header("Location:/DayClass/Administrador/Perfiles/perfiles.php?resultado=2");
     }
     
 }else{
-    //ya existe ese permiso hay q modificar existente
-    echo "entra a else de existente";
-    header("location: DayClass/Administrador/Perfiles/perfiles.php");	
-}
+    //ya existe ese permiso
     
-   //header("location: /DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=$id_materia&&resultado=1");	
+    header("Location:/DayClass/Administrador/Perfiles/perfiles.php?resultado=5");
+}
 ?>

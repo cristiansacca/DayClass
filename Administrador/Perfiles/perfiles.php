@@ -55,6 +55,43 @@ $_SESSION['tiempo'] = time();*/
     <div class="my-3">
         <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-1"></i>Crear nuevo rol</button>
     </div>
+    
+    <?php
+
+    if (isset($_GET["resultado"])) {
+        switch ($_GET["resultado"]) {
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Creación exitosa del rol.</h5>";
+                break;
+            
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Falla en la creación del rol.</h5>";
+                break;
+            case 3:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Rol eliminado exitosamente.</h5>";
+                break;
+
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la eliminacion del Rol</h5>";
+                break;
+            case 5:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe ese Rol</h5>";
+                break;
+        }
+        echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>";
+    }
+
+    ?>
+    
+    
 <div class="row text-center">
     <?php
         include "../../databaseConection.php";
@@ -107,7 +144,7 @@ $_SESSION['tiempo'] = time();*/
                             </div>
                             <div class='card-footer'>
                                 <a href='verPerfil.php?id_permiso=$id_permiso' class='btn btn-success'>Ver Rol</a>
-                                <a href='' class='$classHabilitado'>Eliminar Rol</a>
+                                <a href='bajaPerfil.php?id=$id_permiso' class='$classHabilitado'>Eliminar Rol</a>
                             </div>
                         </div>
                     </div>";
