@@ -68,9 +68,10 @@ $_SESSION['tiempo'] = time();
         ?>
         
         <a href="/DayClass/Administrador/Perfiles/perfiles.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <button type="button" class="btn btn-warning" onclick="habilitarFunciones()" <?php if($permiso["nombrePermiso"] == "ALUMNO"){echo "disabled";} ?>>Modificar Permisos</button>
+        <button type="button" class="btn btn-warning" onclick="habilitarFunciones()" <?php if($permiso["nombrePermiso"] == "ALUMNO"){echo "disabled";} ?>><i class="fa fa-pencil-square-o mr-1"></i>Modificar Permisos</button>
+        <button class="btn btn-secondary" data-toggle="modal" data-target="#modificarRol" <?php if($permiso["nombrePermiso"] == "ALUMNO" || $permiso["nombrePermiso"] == "DOCENTE"){echo "disabled";} ?>><i class="fa fa-pencil-square-o mr-1"></i>Modificar Rol</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUnUsuario"><i class="fa fa-user-plus mr-1"></i>Agregar Usuario</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUsuarios"><i class="fa fa-user-plus mr-1"></i>Importar Lista de Usuarios</button>
+        <button class="btn btn-success" data-toggle="modal" data-target="#ingresarUsuarios"><i class="fa fa-upload mr-1"></i>Importar Lista de Usuarios</button>
         
     </div>
     
@@ -128,8 +129,6 @@ $_SESSION['tiempo'] = time();
                         date_default_timezone_set('America/Argentina/Buenos_Aires');
                         $currentDate = date('Y-m-d');
                         $id_permiso = $_GET["id_permiso"];
-
-                        //$selectPermisosFuncion = $con->query("SELECT funcion.nombreFuncion, funcion.id FROM permiso, permisofuncion, funcion WHERE permiso.id = '$id_permiso' AND permiso.id = permisofuncion.id_permiso AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDate' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND permisofuncion.id_funcion = funcion.id AND funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL");
 
                         $selectFuncion = $con->query("SELECT funcion.nombreFuncion, funcion.id FROM funcion WHERE funcion.fechaDesdeFuncion <= '$currentDate' AND funcion.fechaHastaFuncion IS NULL ORDER BY nombreFuncion ASC");
 
@@ -386,6 +385,34 @@ $_SESSION['tiempo'] = time();
                 </form>
             
 
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar Rol-->
+<div class="modal fade" id="modificarRol" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar rol</h5>
+            </div>
+            <form method="POST" id="modifRol" name="modifRol" action="modifPerfil.php" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                    <div class="my-2">
+                        <label for="inputNombreRol">Nombre</label>
+                        <input type="text" name="inputNombreRol" id="inputNombreRol" class="form-control" <?php echo "value = '$nombrePermiso'"; ?> required>
+                    </div>
+                    
+
+                    <input id="idPermiso" name="idPermiso" <?php echo "value = '$id_permiso'"; ?> hidden>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
+                        <button type="submit" class="btn btn-primary" id="btnCrear"> Aceptar </button>
+                    </div>
+
+                </div>
+            </form>
         </div>
     </div>
 </div>
