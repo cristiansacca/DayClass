@@ -18,7 +18,7 @@ $pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
 $mail_cifrado = password_hash($email, PASSWORD_DEFAULT);
 
 
-$insertUsuario = $con->query("UPDATE `usuario` SET `contraseniaUsuario`= '$pass_cifrada',`emailUsuario`= '$email',`fechaNacUsuario`='$fchNac' WHERE legajoUsuario = '$legajo' AND dniUsuario = '$dni'");
+$insertUsuario = $con->query("UPDATE `usuario` SET `contraseniaUsuario`= '$pass_cifrada',`emailUsuario`= '$email',`fechaNacimientoUsuario`='$fchNac' WHERE legajoUsuario = '$legajo' AND dniUsuario = '$dni'");
 
 if($insertUsuario){
     $cadenaMail = "Hola, $nombre $apellido.
@@ -28,7 +28,7 @@ Su usaurio es el siguiente: $email
 Su contraseña es la siguiente: $pass
 Puede cambiarla en cualquier momento accediendo a la sección de editar perfil.
 
-Para activar su cuenta hace click en el siguiente link: http://localhost/DayClass/activarCuenta.php?mail=$mail_cifrado&&pass=$pass_cifrada&&di=$dni
+Para activar su cuenta hace click en el siguiente link: http://localhost/DayClass/activarCuenta.php?mail=$mail_cifrado&&di=$dni&&pass=$pass_cifrada
 
 Saludos.
 Equipo de DayClass.";
@@ -62,7 +62,7 @@ function enviarMail($mail,$mensajeEnviar){
     $destino = "lea220197@gmail.com,$mail,dayclassdev@gmail.com";
 
     // Enviamos el email
-    $rtdo = mail($destino, 'Alta de cuenta Administrador en DayClass', $mensaje);
+    $rtdo = mail($destino, 'Activación de cuenta en DayClass', $mensaje);
 
     return $rtdo;
 }

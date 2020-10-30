@@ -30,7 +30,7 @@ if (mysqli_num_rows($consultaUsuario) == 0) {
     $apellido = $resultado1['apellidoUsuario'];
     $pass = $resultado1['contraseniaUsuario'];
     $mail = $resultado1['emailUsuario'];
-    $nac = $resultado1['fechaNacUsuario'];
+    $nac = $resultado1['fechaNacimientoUsuario'];
     $cuentaHabilitada = $resultado1["cuentaHabilitada"];
     $nombrePermiso = null;
     

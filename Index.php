@@ -38,7 +38,12 @@ if (isset($_SESSION['administrador'])) {
       <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-1"></i>Ingresar</button><br>
       <a class="btn btn-link my-2" href="RestablecerPass/restablecer-contrasenia.php">Olvidé mi contraseña</a>
 
-      <?php
+      
+   </form>
+</div>
+
+<div class="text-center mx-auto h-100 d-flex justify-content-center my-auto" style="width: 40rem;">
+<?php
       if (isset($_GET["error"])) {
          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
          switch ($_GET["error"]) {
@@ -108,9 +113,7 @@ if (isset($_SESSION['administrador'])) {
       }
 
       ?>
-   </form>
 </div>
-
 <script type="text/javascript">
    function mostrarPassword() {
       var cambio = document.getElementById("txtPassword");
