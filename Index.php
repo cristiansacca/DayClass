@@ -63,13 +63,15 @@ if (isset($_SESSION['administrador'])) {
 
          switch ($_GET["resultado"]) {
             case 1:
-               echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Registro exitoso.</h5>
+                    echo "<div class='alert alert-success alert-dismissible fade show mx-auto' role='alert' style='width: 50%;'>
+                             <h4 class='alert-heading'>¡Correo enviado! <i class='fa fa-paper-plane'></i></h4>
+                            <h6>Se acaba de enviar una mail de acctivacion de cuenta al correo electrónico provisto.</h6>
+                            <h6 class='mb-0'>Revise su bandeja de entrada o spam.</h6>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-               break;
+                    break;
             case 2:
                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Datos no localizados.</h5>
