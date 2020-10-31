@@ -1,18 +1,18 @@
 <?php
 //Se inicia o restaura la sesión
-session_start();
+//session_start();
 
 include "../../header.html";
 include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+/*if (!isset($_SESSION['administrador'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-/*if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
+if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
@@ -72,7 +72,7 @@ $_SESSION['tiempo'] = time();*/
         <div class="alert alert-danger" role="alert">
             <h5><i class='fa fa-exclamation-circle mr-2'></i>No se registran asistencias para la fecha seleccionada.</h5>
         </div>
-        <form action="#" method="POST">
+        <form action="cargarAsistencias.php" method="POST">
             <input type="number" name="idCursoCargar" hidden>
             <input type="date" name="fechaCargar" hidden>
             <button type="submit" class="btn btn-primary"><i class="fa fa-tasks mr-1"></i>Cargar asistencia</button>
@@ -80,7 +80,7 @@ $_SESSION['tiempo'] = time();*/
     </div>
 
     <div id="tablaAsistencia" class="table-responsive" hidden>
-        <form action="#" method="POST">
+        <form action="editarAsistencias.php" method="POST">
             <input type="number" name="idCursoEditar" hidden>
             <input type="date" name="fechaEditar" hidden>
             <button type="submit" class="btn btn-success my-3"><i class="fa fa-edit mr-1"></i>Editar asistencias</button>
