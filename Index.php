@@ -56,6 +56,9 @@ if (isset($_SESSION['administrador'])) {
             case 2:
                echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Cuenta dada de baja.</h5>";
                break;
+            case 3:
+               echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Su cuenta no se encuentra habilitada. Diríjase a su email para habilitarla.</h5>";
+               break;
          }
          echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
