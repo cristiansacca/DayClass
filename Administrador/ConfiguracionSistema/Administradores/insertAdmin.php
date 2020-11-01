@@ -7,6 +7,8 @@ $legajo = $_POST["inputLegajo"];
 $dni = $_POST["inputDNI"];
 $fchNac = $_POST["inputDate"];
 $email = $_POST["inputEmail"];
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d H:i:s');
 
 $consultaAlumL = $con->query("SELECT id FROM `alumno` WHERE legajoAlumno = $legajo");

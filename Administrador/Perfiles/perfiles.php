@@ -5,7 +5,7 @@ session_start();
 include "../../header.html";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
