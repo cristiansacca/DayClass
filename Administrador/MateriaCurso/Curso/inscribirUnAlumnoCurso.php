@@ -13,15 +13,13 @@ $fchDesde = $resultado1['fechaDesdeCursado'];
 $fchHasta = $resultado1['fechaHastaCursado'];
 
 echo "$fchDesde";
+
+$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+$permiso = $selectPermiso->fetch_assoc();
+$id_permiso = $permiso["id"];
+
 //consultar existencia del alumno (habilitado = fecha de baja null) en la BD  de dayclass
-$consultaAlumID = $con->query("SELECT id FROM `alumno` WHERE dniAlum = '$dni' AND legajoAlumno = '$legajo' AND fechaBajaAlumno IS NULL");
-
-
-
-echo "$id_curso";
-echo "$legajo";
-echo "$dni";
-echo "SELECT id FROM `alumno` WHERE dniAlum = $dni AND legajoAlumno = $legajo AND fechaBajaAlumno IS NULL";
+$consultaAlumID = $con->query("SELECT id FROM usuario WHERE dniUsuario = '$dni' AND legajoUsuario = '$legajo' AND fechaBajaUsuario IS NULL AND id_permiso = '$id_permiso'");
 
 if(($consultaAlumID->num_rows) == 0){
     //si la cosnulta es vacia, el alumno no existe o esta dado de baja, error 2 = alumno inexistente o dado de baja 
@@ -31,9 +29,6 @@ if(($consultaAlumID->num_rows) == 0){
 }else{
     $resultado3= $consultaAlumID->fetch_assoc();
     $id_alumno = $resultado3["id"];
-    
-    echo "$id_alumno";
-    echo "$id_curso";
     
     //verificar que el alumno no vaya a estar inscripto en el ese curso 
     $consultaAlumCursAct = $con->query("SELECT id FROM `alumnocursoactual` WHERE fechaDesdeAlumCurAc = '$fchDesde' AND fechaHastaAlumCurAc = '$fchHasta' AND alumno_id = '$id_alumno' AND curso_id = '$id_curso'");
@@ -49,11 +44,11 @@ if(($consultaAlumID->num_rows) == 0){
         
         
         //se crea la instancia de alumnocursoestado
-                                //traigo la instanccia recien creada de AlumnoCursoActual
+            //traigo la instanccia recien creada de AlumnoCursoActual
             $consultaAlumCurAct = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fchDesde' AND `fechaHastaAlumCurAc` = '$fchHasta' AND `alumno_id` = '$id_alumno' AND `curso_id` = '$id_curso'");               $alumnoCursoActual = $consultaAlumCurAct->fetch_assoc();
             $id_alumnoCursoActual = $alumnoCursoActual['id'];
 
-                                //traigo la instancia de EstadoAlumno con nombre INSCRIPTO
+            //traigo la instancia de EstadoAlumno con nombre INSCRIPTO
             $consultaEstadoAlumno = $con->query("SELECT * FROM `cursoestadoalumno` WHERE `nombreEstado` = 'INSCRIPTO'");
             $estadoAlumno = $consultaEstadoAlumno->fetch_assoc();
             $id_estadoAlumno = $estadoAlumno['id'];
