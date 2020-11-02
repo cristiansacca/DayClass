@@ -320,18 +320,12 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
                 ?>
 
-                <div class="modal-body" <?php
-                                        if ($dni == null) {
-                                            echo "hidden ";
-                                        } ?>>
+                <div class="modal-body" <?php if ($dni == null) { echo "hidden ";} ?>>
 
                     <div class="my-2">
                         <h5 class="msg">Ingrese los datos solicitados</h5>
                     </div>
-                    <div class="my-2" <?php
-                                        if ($dni) {
-                                            echo "hidden ";
-                                        } ?>>
+                    <div class="my-2" <?php if ($dni) { echo "hidden ";} ?>>
                         <label for="inputLegajo">Legajo</label>
                         <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajoIns()" placeholder="Legajo" onkeydown="return event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" >
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
