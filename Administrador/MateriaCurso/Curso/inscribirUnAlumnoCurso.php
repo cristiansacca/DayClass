@@ -12,8 +12,6 @@ $resultado1 = $consulta1->fetch_assoc();
 $fchDesde = $resultado1['fechaDesdeCursado'];
 $fchHasta = $resultado1['fechaHastaCursado'];
 
-echo "$fchDesde";
-
 $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
 $permiso = $selectPermiso->fetch_assoc();
 $id_permiso = $permiso["id"];

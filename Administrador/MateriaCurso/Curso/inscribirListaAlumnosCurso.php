@@ -52,6 +52,7 @@ $fchHasta = $resultado1['fechaHastaCursado'];
 $correcto = [];
 $yaInscriptos = [];
 $inexistente = [];
+$sinPermiso = [];
 
 //echo "llega al archivo";
 
@@ -87,6 +88,12 @@ if (isset($_FILES["inpGetFile"])) {
             $legajo = $sheet->getCell("B" . $first_row)->getValue();
             $apellido = $sheet->getCell("C" . $first_row)->getValue();
             $nombre = $sheet->getCell("D" . $first_row)->getValue();
+            
+            
+            $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+            $permiso = $selectPermiso->fetch_assoc();
+            $id_permiso = $permiso["id"];
+
 
             $contador = 0;
 
@@ -106,7 +113,7 @@ if (isset($_FILES["inpGetFile"])) {
 
 
                     //consultar existencia del alumno (habilitado = fecha de baja null) en la BD  de dayclass
-                    $consultaAlumID = $con->query("SELECT id FROM `alumno` WHERE (dniAlum = '$dniA' AND legajoAlumno = '$legajoA') AND fechaBajaAlumno IS NULL");
+                    $consultaAlumID = $con->query("SELECT * FROM `usuario` WHERE dniUsuario = '$dniA' AND legajoUsuario = '$legajoA' AND fechaBajaUsuario IS NULL AND id_permiso = '$id_permiso'");
 
                     if (mysqli_num_rows($consultaAlumID) == 0) {
                         //si la cosnulta es vacia, el alumno no existe o esta dado de baja, error 2 = alumno inexistente o dado de baja 
@@ -114,7 +121,15 @@ if (isset($_FILES["inpGetFile"])) {
                         array_push($inexistente, $legajoA);
                         //echo "entra al de no existe ese alumno";
                     } else {
+                        
                         $resultado3 = $consultaAlumID->fetch_assoc();
+                        
+                        if($resultado3["id"] != $id_permiso){
+                             //el usuario no es alumno 
+                            array_push($sinPermiso, $legajoA);
+                        
+                        }else{
+                        
                         $id_alumno = $resultado3["id"];
 
                         //verificar que el alumno no vaya a estar inscripto en el ese curso 
@@ -158,6 +173,7 @@ if (isset($_FILES["inpGetFile"])) {
 
                             array_push($yaInscriptos, $legajoA);
                         }
+                        }
                     }
                 }
             } else {
@@ -180,7 +196,7 @@ if (isset($_FILES["inpGetFile"])) {
 <?php
 if(count($inexistente) > 0){
     echo "<div class='alert alert-danger mt-4' role='alert'>
-        <h5><i class='fa fa-exclamation-circle mr-2'></i>Alumnos inexistentes</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios inexistentes</h5>
     <ul>";
     
     for ($i=0; $i < count($inexistente) ; $i++) { 
@@ -190,15 +206,29 @@ if(count($inexistente) > 0){
     echo "</ul>
     </div>";
 }
+    
+if(count($sinPermiso) > 0){
+    echo "<div class='alert alert-danger mt-4' role='alert'>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios sin rol de alumno</h5>
+    <ul>";
+    
+    for ($i=0; $i < count($sinPermiso) ; $i++) { 
+       $consultaSinPer = $con->query("SELECT * FROM usuario WHERE legajoUsuario = '".$sinPermiso[$i]."'")->fetch_assoc();
+        echo "<li>".$consultaSinPer['apellidoUsuario'].", ".$consultaSinPer['nombreUsuario']."</li>";
+    }
+
+    echo "</ul>
+    </div>";
+}
 
 if(count($yaInscriptos) > 0){
     echo "<div class='alert alert-warning mt-4' role='alert'>
-        <h5><i class='fa fa-exclamation-circle mr-2'></i>Alumnos inscriptos anteriormente</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios ya inscriptos</h5>
     <ul>";
     
     for ($i=0; $i < count($yaInscriptos) ; $i++) { 
-        $consultaIns = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '".$yaInscriptos[$i]."'")->fetch_assoc();
-        echo "<li>".$consultaIns['apellidoAlum'].", ".$consultaIns['nombreAlum']."</li>";
+        $consultaIns = $con->query("SELECT * FROM usuario WHERE legajoUsuario = '".$yaInscriptos[$i]."'")->fetch_assoc();
+        echo "<li>".$consultaIns['apellidoUsuario'].", ".$consultaIns['nombreUsuario']."</li>";
     }
 
     echo "</ul>
@@ -207,12 +237,12 @@ if(count($yaInscriptos) > 0){
 
 if(count($correcto) > 0){
     echo "<div class='alert alert-success mt-4' role='alert'>
-        <h5><i class='fa fa-exclamation-circle mr-2'></i>Alumnos inscriptos satisfactoriamente</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios inscriptos satisfactoriamente</h5>
     <ul>";
     
     for ($i=0; $i < count($correcto) ; $i++) { 
-        $consultaCorrecto = $con->query("SELECT * FROM alumno WHERE legajoAlumno = '".$correcto[$i]."'")->fetch_assoc();
-        echo "<li>".$consultaCorrecto['apellidoAlum'].", ".$consultaCorrecto['nombreAlum']."</li>";
+        $consultaCorrecto = $con->query("SELECT * FROM usuario WHERE legajoUsuario = '".$correcto[$i]."'")->fetch_assoc();
+        echo "<li>".$consultaCorrecto['apellidoUsuario'].", ".$consultaCorrecto['nombreUsuario']."</li>";
     }
 
     echo "</ul>
@@ -227,7 +257,7 @@ if(count($correcto) > 0){
 <script src="../../administrador.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>
 
 <?php

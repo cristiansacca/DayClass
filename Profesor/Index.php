@@ -6,7 +6,7 @@ include "../header.html";
 include "../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['profesor'])) {
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -59,7 +59,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 
         <?php
         
-        $id_prof = $_SESSION['profesor']['id'];
+        $id_prof = $_SESSION['usuario']['id'];
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDateTime = date('Y-m-d');
         $consultaCargo = $con->query("SELECT * FROM cargoprofesor WHERE profesor_id= '$id_prof' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL");
@@ -106,7 +106,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 <script src="profesor.js"></script>
 <script>
     $("#temaDia").attr("hidden", "hidden");
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['profesor']['nombreProf']." ".$_SESSION['profesor']['apellidoProf']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>
 
 <?php

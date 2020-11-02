@@ -209,6 +209,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 $consulta2 = $con->query("SELECT alumno_id FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fechaDesdeCursado' AND `fechaHastaAlumCurAc` = '$fechaHastaCursado' AND `curso_id` =  $id_curso");
                                 
                 if(!($consulta2 ->num_rows) == 0){
+                    
+                    $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+                    $permiso = $selectPermiso->fetch_assoc();
+                    $id_permiso = $permiso["id"];
+                    
                     echo "<thead>
                             <th>Legajo</th>
                             <th>Apellido</th>
@@ -221,25 +226,26 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                         
                        $alumno_id = $alumnocursoactual['alumno_id'];
                         
+                        $alumno = $con->query("SELECT cursoestadoalumno.nombreEstado, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, usuario.dniUsuario FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno WHERE usuario.id = '$alumno_id' AND usuario.id_permiso = '$id_permiso' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = usuario.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND ('$currentDateTime' >= alumnocursoestado.fechaInicioEstado) AND ('$currentDateTime' < alumnocursoestado.fechaFinEstado) AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
                         
-                        $alumno = $con->query("SELECT cursoestadoalumno.nombreEstado, alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum, alumno.dniAlum FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$alumno_id' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND ('$currentDateTime' >= alumnocursoestado.fechaInicioEstado) AND ('$currentDateTime' < alumnocursoestado.fechaFinEstado) AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
+                        
                         
                         if($alumno['nombreEstado'] == "LIBRE"){
                             $urlReinc = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=2';
                             echo "<tr class='table-danger'>
-                                <td>" . $alumno['legajoAlumno'] . "</td>
-                                <td>" . $alumno['apellidoAlum'] . "</td>
-                                <td>" . $alumno['nombreAlum'] . "</td>
-                                <td>" . $alumno['dniAlum'] . "</td>
+                                <td>" . $alumno['legajoUsuario'] . "</td>
+                                <td>" . $alumno['apellidoUsuario'] . "</td>
+                                <td>" . $alumno['nombreUsuario'] . "</td>
+                                <td>" . $alumno['dniUsuario'] . "</td>
                                 <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
                             </tr>";
                         }else{
                             $urlBaja = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=1';
                            echo "<tr>
-                                <td>" . $alumno['legajoAlumno'] . "</td>
-                                <td>" . $alumno['apellidoAlum'] . "</td>
-                                <td>" . $alumno['nombreAlum'] . "</td>
-                                <td>" . $alumno['dniAlum'] . "</td>
+                                <td>" . $alumno['legajoUsuario'] . "</td>
+                                <td>" . $alumno['apellidoUsuario'] . "</td>
+                                <td>" . $alumno['nombreUsuario'] . "</td>
+                                <td>" . $alumno['dniUsuario'] . "</td>
                                 <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Baja</a></td>
                             </tr>"; 
                         }
@@ -276,6 +282,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 <h5 class="modal-title " id="staticBackdropLabel">Inscribir alumno</h5>
             </div>
             <form method="POST" id="insertAlumno" name="insertAlumno" action="inscribirUnAlumnoCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
+                
                 <?php
 
                 $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
@@ -321,6 +328,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 ?>
 
                 <div class="modal-body" <?php if ($dni == null) { echo "hidden ";} ?>>
+                    
+                    <div id="resultadoMostrar"></div>
 
                     <div class="my-2">
                         <h5 class="msg">Ingrese los datos solicitados</h5>

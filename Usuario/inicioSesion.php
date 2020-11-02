@@ -99,17 +99,18 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                 $funcion = $consultaFuncion->fetch_assoc();
                 $nombreFuncion = $funcion["nombreFuncion"];
                     $imagenFuncion = $funcion["refImagen"];
+                    $paginaFuncion = $funcion["refPagina"];
 
                 echo 
                     "<div class='col-lg-4 col-md-6 mb-4' >
-                        <div class='card h-100 color$contador' >
+                        <div class='card h-100' >
                         <img class='card-img-top imagen' src='$imagenFuncion' alt='' oncontextmenu='return false'>
                             <div class='card-body'>
                                 <h4 class='card-title'>".$nombreFuncion."</h4>
                                 <h5 class='font-weight-normal'></h5>
                             </div>
                             <div class='card-footer'>
-                                <a href='' class='btn btn-success'>Ver Rol</a>
+                                <a href='$paginaFuncion' class='btn btn-success'>Ver Rol</a>
                             </div>
                         </div>
                     </div>";

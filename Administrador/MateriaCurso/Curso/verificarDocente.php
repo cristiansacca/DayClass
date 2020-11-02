@@ -3,7 +3,7 @@ include "../../../databaseConection.php";
 
 $legajo = $_POST["legajo"];
 
-$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'DOCENTE'");
 $permiso = $selectPermiso->fetch_assoc();
 $id_permiso = $permiso["id"];
 

@@ -5,7 +5,7 @@ session_start();
 include "../../../header.html";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -171,11 +171,15 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDateTime = date('Y-m-d'); 
             
-                $consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+                $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'DOCENTE'");
+                $permiso = $selectPermiso->fetch_assoc();
+                $id_permiso = $permiso["id"];
+            
+                $consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = usuario.id AND usuario.id_permiso = '$id_permiso' AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
             
             
                 if(($consulta1->num_rows) != 0){
-                    
+
                 echo "<thead>
                     <th>Legajo</th>
                     <th>Docente</th>
@@ -189,7 +193,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 echo "<input type='date' name='impIDprof' id='hoy' value='$currentDateTime' hidden>";
                 echo "<input type='text' name='cursid' id='cursoid' value='$id_curso' hidden>";
                 while ($resultadoProf = $consulta1->fetch_assoc()) {
-                    $nombreCompleto = $resultadoProf['apellidoProf'] . ", " . $resultadoProf['nombreProf'];
+                    $nombreCompleto = $resultadoProf['apellidoUsuario'] . ", " . $resultadoProf['nombreUsuario'];
                     $id = $resultadoProf['id'];
 
                     $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Activo'");
@@ -210,7 +214,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     $urlBaja = 'bajaDocenteCurso.php?docenteId='.$id.'&&cursoId='.$id_curso;
 
                     echo "<tr>
-                    <td>" . $resultadoProf['legajoProf'] . "</td>
+                    <td>" . $resultadoProf['legajoUsuario'] . "</td>
                     <td>" . $nombreCompleto . "</td>
                     <td>" . $resultadoProf['nombreCargo'] . "</td>
                     <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
@@ -308,6 +312,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 <div class="modal-body" <?php if ($dni == null || $cargos == null) {
                                             echo "hidden ";
                                         } ?>>
+                    <div id="resultadoMostrar"></div>
 
                     <div class="my-2">
                         <h5 class="msg" id="msjValidacionApellido">Ingrese los datos del docente a agregar y su cargo en esta materia.</h5>
@@ -444,7 +449,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
 <?php
