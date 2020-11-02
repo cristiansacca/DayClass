@@ -22,7 +22,7 @@ if(($consultaSesion->num_rows) == 0){
 
 if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verifica la contraseña
     $resultado1 = $consulta1->fetch_assoc();
-    $resultado1 = $resultado1["cuentaHabilitada"];
+    $cuentaHabilitada = $resultado1["cuentaHabilitada"];
     
     
     if($cuentaHabilitada == 1){
@@ -38,10 +38,17 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
 
                 //Se define la variable de sesión con el tiempo límite de inactividad en minutos
                 $_SESSION['limite'] = ($limiteSesion*60);
-
-                //Se redirigue a la página principal correspondiente al usuario
-                header("Location: /DayClass/inicioSesion.php");
-
+                
+                 $bloqueado = $resultado1["bloqueado"];
+                
+                if($bloqueado == 1){
+                    //Se redirigue a la página principal correspondiente al usuario
+                    header("Location: /DayClass/Administrador/index.php");
+                }else{
+                    //Se redirigue a la página principal correspondiente al usuario
+                    header("Location: /DayClass/Usuario/inicioSesion.php");
+                
+                }
             } else {
                 header("Location: /DayClass/index.php?error=0");
             }

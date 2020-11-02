@@ -36,7 +36,8 @@ if (mysqli_num_rows($consultaUsuario) == 0) {
     
     if($cuentaHabilitada == 0){
             if($id_permiso == NULL || $id_permiso == ""){
-                header("location: /DayClass/signIn/sign_in.php?resultado=5");
+                //header("location: /DayClass/signIn/sign_in.php?resultado=5");
+                $nombrePermiso ="Sin rol asignado";
             }else{
                 $selectPermiso = $con->query("SELECT * FROM `permiso` WHERE permiso.id = '$id_permiso' AND permiso.fechaDesdePer <= '$currentDate' AND permiso.fechaHastaPer IS NULL");
                 $permiso = $selectPermiso->fetch_assoc();
