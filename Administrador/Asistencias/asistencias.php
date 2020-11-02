@@ -38,6 +38,48 @@ $_SESSION['tiempo'] = time();*/
         <h1>Asistencias</h1>
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
+
+    <?php
+
+    if (isset($_GET["resultado"])) {
+        switch ($_GET["resultado"]) {
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Datos de asistencia guardados correctamente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al guardar los datos de asistencia.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 3:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Datos de asistencia actualizados correctamente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 4:
+                echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ningún dato fue actualizado.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+        }
+    }
+
+    ?>
+
     <div class="my-3">
         <h4 class="font-weight-normal">Seleccione una materia, un curso y una fecha para ver las asistencias.</h4>
     </div>
@@ -48,11 +90,11 @@ $_SESSION['tiempo'] = time();*/
                 <option value="">Materias</option>
                 <?php
                 $consultaMateria = $con->query("SELECT * FROM materia WHERE fechaBajaMateria IS NULL ORDER BY nombreMateria, nivelMateria ASC");
-            
+
                 while ($materia = $consultaMateria->fetch_assoc()) {
                     echo "<option value='" . $materia['id'] . "'>" . $materia['nombreMateria'] . " (Nivel " . $materia['nivelMateria'] . ")</option>";
                 }
-            
+
                 ?>
             </select>
         </div>
@@ -69,20 +111,20 @@ $_SESSION['tiempo'] = time();*/
     </div>
 
     <div class="mb-4" id="sinAsistencias" hidden>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-warning" role="alert">
             <h5><i class='fa fa-exclamation-circle mr-2'></i>No se registran asistencias para la fecha seleccionada.</h5>
         </div>
         <form action="cargarAsistencias.php" method="POST">
-            <input type="number" name="idCursoCargar" hidden>
-            <input type="date" name="fechaCargar" hidden>
+            <input type="number" name="idCursoCargar" id="idCursoCargar" hidden>
+            <input type="date" name="fechaCargar" id="fechaCargar" hidden>
             <button type="submit" class="btn btn-primary"><i class="fa fa-tasks mr-1"></i>Cargar asistencia</button>
         </form>
     </div>
 
     <div id="tablaAsistencia" class="table-responsive" hidden>
         <form action="editarAsistencias.php" method="POST">
-            <input type="number" name="idCursoEditar" hidden>
-            <input type="date" name="fechaEditar" hidden>
+            <input type="number" name="idCursoEditar" id="idCursoEditar" hidden>
+            <input type="date" name="fechaEditar" id="fechaEditar" hidden>
             <button type="submit" class="btn btn-success my-3"><i class="fa fa-edit mr-1"></i>Editar asistencias</button>
         </form>
         <table class="table table-secondary table-bordered">
@@ -96,6 +138,10 @@ $_SESSION['tiempo'] = time();*/
 
             </tbody>
         </table>
+    </div>
+
+    <div class="alert alert-danger" role="alert" id="diaCursado" hidden>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>La fecha seleccionada no corresponde para un día de cursado. No puede ver ni cargar asistencias.</h5>
     </div>
 
 </div>
@@ -114,49 +160,74 @@ $_SESSION['tiempo'] = time();*/
             fecha: fecha
         }
 
+        var x;
         $.ajax({
-            url: 'obtenerAsistencia.php',
+            url: 'validarDiasCursado.php',
             type: 'POST',
             data: datos,
+            async: false,
             success: function(datosRecibidos) {
                 //alert(datosRecibidos);
                 json = JSON.parse(datosRecibidos);
-                var contenido = "";
-                if (json.length != 0) {
-                    for (let index = 0; index < json.length; index++) {
-                        var color;
-                        if(json[index].estado == "PRESENTE"){
-                            color = 'text-success';
-                        } else {
-                            if(json[index].estado == "AUSENTE"){
-                                color = 'text-danger';
-                            } else {
-                                color = 'text-warning';
-                            }
-                        }
-                        contenido+="<tr>";
-                        contenido += "<td>"+json[index].legajo+"</td>";
-                        contenido += "<td>"+json[index].apellido+"</td>";
-                        contenido += "<td>"+json[index].nombre+"</td>";
-                        contenido += "<td class='"+color+"'><b>"+json[index].estado+"</b></td>";
-                        contenido += "</tr>";
-                    }
-                    document.getElementById("tbodyAsistencia").innerHTML = contenido;
-                    document.getElementById("sinAsistencias").hidden = true;
-                    document.getElementById("tablaAsistencia").hidden = false;
-                    document.getElementById("idCursoEditar").value = id_curso;
-                    document.getElementById("fechaEditar").value = fecha;
-                                        
+                if(json.resultado == 1){
+                    x = 1;
                 } else {
-                    document.getElementById("tbodyAsistencia").innerHTML = contenido;
-                    document.getElementById("tablaAsistencia").hidden = true;
-                    document.getElementById("sinAsistencias").hidden = false;
-                    document.getElementById("idCursoCargar").value = id_curso;
-                    document.getElementById("fechaCargar").value = fecha;
+                    x = 0;
                 }
-
             }
         })
+
+        if (x == 1) {
+            $.ajax({
+                url: 'obtenerAsistencia.php',
+                type: 'POST',
+                data: datos,
+                success: function(datosRecibidos) {
+                    //alert(datosRecibidos);
+                    json = JSON.parse(datosRecibidos);
+                    var contenido = "";
+                    if (json.length != 0) {
+                        for (let index = 0; index < json.length; index++) {
+                            var color;
+                            if (json[index].estado == "PRESENTE") {
+                                color = 'text-success';
+                            } else {
+                                if (json[index].estado == "AUSENTE") {
+                                    color = 'text-danger';
+                                } else {
+                                    color = 'text-warning';
+                                }
+                            }
+                            contenido += "<tr>";
+                            contenido += "<td>" + json[index].legajo + "</td>";
+                            contenido += "<td>" + json[index].apellido + "</td>";
+                            contenido += "<td>" + json[index].nombre + "</td>";
+                            contenido += "<td class='" + color + "'><b>" + json[index].estado + "</b></td>";
+                            contenido += "</tr>";
+                        }
+                        document.getElementById("tbodyAsistencia").innerHTML = contenido;
+                        document.getElementById("sinAsistencias").hidden = true;
+                        document.getElementById("tablaAsistencia").hidden = false;
+                        document.getElementById("diaCursado").hidden = true;
+                        document.getElementById("idCursoEditar").value = id_curso;
+                        document.getElementById("fechaEditar").value = fecha;
+
+                    } else {
+                        document.getElementById("tbodyAsistencia").innerHTML = contenido;
+                        document.getElementById("tablaAsistencia").hidden = true;
+                        document.getElementById("sinAsistencias").hidden = false;
+                        document.getElementById("diaCursado").hidden = true;
+                        document.getElementById("idCursoCargar").value = id_curso;
+                        document.getElementById("fechaCargar").value = fecha;
+                    }
+
+                }
+            })
+        } else {
+            document.getElementById("tablaAsistencia").hidden = true;
+            document.getElementById("sinAsistencias").hidden = true;
+            document.getElementById("diaCursado").hidden = false;
+        }
     }
 
     document.getElementById("materia").onchange = function() {
@@ -210,9 +281,9 @@ $_SESSION['tiempo'] = time();*/
                     var fechaDesde = json.fechaDesdeCursado;
                     var fechaHasta = json.fechaHastaCursado;
                     var fechaActual = json.fechaActual;
-                    if(fechaDesde != null && fechaHasta != null){
+                    if (fechaDesde != null && fechaHasta != null) {
                         document.getElementById("fecha").min = fechaDesde;
-                        if(fechaHasta < fechaActual){
+                        if (fechaHasta < fechaActual) {
                             document.getElementById("fecha").max = fechaHasta;
                         } else {
                             document.getElementById("fecha").max = fechaActual;

@@ -2,15 +2,22 @@
 include "../../databaseConection.php";
 include "../../header.html";
 
-$id_curso = $_POST['idCursoCargar'];
-$fecha = $_POST['fechaCargar'];
+$id_curso = $_POST['idCursoEditar'];
+$fecha = $_POST['fechaEditar'];
 //$id_curso = 1;
 //$fecha = '2020-10-31';
+$fecha1 = $fecha.' 00:00:00';
+$fecha2 = $fecha.' 23:59:59';
 
-$consultaInscriptos = $con->query("SELECT alumno.id, legajoAlumno, nombreAlum, apellidoAlum, nombreCurso
-FROM alumno, asistencia, curso 
-WHERE asistencia.alumno_id = alumno.id AND asistencia.curso_id = curso.id AND curso.id = '$id_curso'
-ORDER BY apellidoAlum ASC");
+$consultaAsistencias = $con->query("SELECT alumno.id, alumno.apellidoAlum, alumno.nombreAlum, alumno.legajoAlumno, asistenciadia.tipoAsistencia_id, tipoasistencia.nombreTipoAsistencia
+FROM asistenciadia, alumno, asistencia, tipoasistencia
+WHERE asistencia.curso_id = '$id_curso'
+    AND asistencia.alumno_id = alumno.id 
+    AND asistenciadia.fechaHoraAsisDia >= '$fecha1' 
+    AND asistenciadia.fechaHoraAsisDia <= '$fecha2' 
+    AND asistenciadia.asistencia_id = asistencia.id
+    AND asistenciadia.tipoAsistencia_id = tipoasistencia.id
+    ORDER BY alumno.apellidoAlum ASC");
 
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
 
@@ -18,7 +25,7 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
-        <h1>Carga de asistencias</h1>   
+        <h1>Editar datos de asistencias</h1>   
         <a href="/DayClass/Administrador/Asistencias/asistencias.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
     <div class="my-4">
@@ -36,12 +43,12 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
             </thead>
             <tbody>
             <?php
-                while($i = $consultaInscriptos->fetch_assoc()){
+                while($i = $consultaAsistencias->fetch_assoc()){
                     echo "<tr>
                         <td>".$i['legajoAlumno']."</td>
                         <td>".$i['apellidoAlum']."</td>
                         <td>".$i['nombreAlum']."</td>
-                        <td name='asistencias' id='".$i['id']."'>PRESENTE</td>
+                        <td name='asistencias' id='".$i['id']."'>".$i['nombreTipoAsistencia']."</td>
                         <td class='text-center'><button onclick='modificar(".$i['id'].");' class='btn btn-warning'><i class='fa fa-retweet'></i></button></td>
                     </tr>";
                 }
@@ -69,16 +76,16 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
         //alert(JSON.stringify(datos));
         var json = "json_string=" + (JSON.stringify(datos))
         $.ajax({
-            url: <?php echo "'/DayClass/Administrador/Asistencias/guardarCambios.php?fecha=".$fecha."&&curso=".$id_curso."'";?>,
+            url: <?php echo "'/DayClass/Administrador/Asistencias/actualizarCambios.php?fecha=".$fecha."&&curso=".$id_curso."'";?>,
             type: 'POST',
             data: json,
             success: function(datosRecibidos) {
-                //alert(datosRecibidos);
+                alert(datosRecibidos);
                 json = JSON.parse(datosRecibidos);
-                if(json.actualizados == json.total){
-                    location.href = '/DayClass/Administrador/Asistencias/asistencias.php?resultado=1';
+                if(json.actualizados > 0){
+                    location.href = '/DayClass/Administrador/Asistencias/asistencias.php?resultado=3';
                 } else {
-                    location.href = '/DayClass/Administrador/Asistencias/asistencias.php?resultado=2';
+                    location.href = '/DayClass/Administrador/Asistencias/asistencias.php?resultado=4';
                 }
                 
             }
