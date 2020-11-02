@@ -7,8 +7,21 @@ include "../header.html";
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['usuario'])) 
 {
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
+    
+    $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ADMINISTRADOR'");
+    $permiso = $selectPermiso->fetch_assoc();
+    $id_permiso = $permiso["id"];
+    
+    $permiso = $_SESSION['usuario']["id_permiso"];
+    
+    
+    if($permiso != $id_permiso){
+        //Nos envía a la página de inicio
+        header("location:/DayClass/index.php"); 
+    }
+    
+    
+   
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -94,7 +107,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
   <!-- Page Features -->
   <div class="row text-center">
     
-    <div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
         <img class="card-img-top" src="../images/materiasycursos.png" alt="Cursos" oncontextmenu="return false">
         <div class="card-body">
@@ -107,7 +120,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
         <img class="card-img-top imagen" src="../images/estadisticas.png" oncontextmenu="return false" alt="Estadisticas">
         <div class="card-body">
@@ -119,7 +132,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
       </div>
     </div>    
 
-    <div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
         <img class="card-img-top imagen" src="../images/reportes1.png" oncontextmenu="return false" alt="Reportes">
         <div class="card-body">
@@ -132,7 +145,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 mb-4">
+    <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
         <img class="card-img-top" src="../images/justificativo.png" oncontextmenu="return false" alt="Justificativos">
         <div class="card-body">
@@ -144,6 +157,33 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         </div>
       </div>
     </div>
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="/DayClass/images/administrarAsistencias.png" oncontextmenu="return false" alt="Justificativos">
+        <div class="card-body">
+          <h5 class="card-text">Creación y modificación de asistencias</h5>
+        </div>
+
+        <div class="card-footer">
+          <a href="/DayClass/Administrador/Asistencias/asistencias.php" class="btn btn-primary">Ingresar</a>
+        </div>
+      </div>
+    </div>
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="../images/administrarRoles.png" oncontextmenu="return false" alt="Justificativos">
+        <div class="card-body">
+          <h5 class="card-text">Administración de roles</h5>
+        </div>
+
+        <div class="card-footer">
+          <a href="/DayClass/Administrador/Perfiles/perfiles.php" class="btn btn-primary">Ingresar</a>
+        </div>
+      </div>
+    </div>
+      
   </div>
 </div>
 

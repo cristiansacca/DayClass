@@ -6,10 +6,10 @@ include "../../header.html";
 include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+/*if (!isset($_SESSION['administrador'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
-}
+}*/
 
 //Comprobamos si esta definida la sesión 'tiempo'.
 if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
@@ -424,7 +424,7 @@ $_SESSION['tiempo'] = time();
 
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
 <?php

@@ -41,13 +41,29 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
                 
                  $bloqueado = $resultado1["bloqueado"];
                 
+                
+                
                 if($bloqueado == 1){
                     //Se redirigue a la página principal correspondiente al usuario
                     header("Location: /DayClass/Administrador/index.php");
                 }else{
-                    //Se redirigue a la página principal correspondiente al usuario
-                    header("Location: /DayClass/Usuario/inicioSesion.php");
-                
+                    
+                    $id_permiso = $resultado1["id_permiso"];
+                    $selectRol = $con->query("SELECT * FROM permiso WHERE permiso.id = '".$id_permiso."'");
+                    $rol = $selectRol->fetch_assoc();
+                    $nombreRol = $rol["nombrePermiso"];
+                    
+                    switch ($nombreRol){
+                        case "ALUMNO":
+                            header("Location: /DayClass/Alumno/Index.php");
+                            break;
+                        case "DOCENTE":
+                            header("Location: /DayClass/Profesor/indexCurso.php");
+                            break;
+                        default:
+                            header("Location: /DayClass/Usuario/inicioSesion.php");
+                            break;
+                    }
                 }
             } else {
                 header("Location: /DayClass/index.php?error=0");
@@ -64,6 +80,11 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
     }
 }else{
     header("Location: /DayClass/index.php?error=1");
+}
+
+
+function buscarRoles($id_permiso){
+    
 }
 
 

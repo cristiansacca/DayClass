@@ -5,11 +5,11 @@ session_start();
 include "../header.html";
  
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['alumno'])) 
+/*if (!isset($_SESSION['alumno'])) 
 {
    //Nos envía a la página de inicio
    header("location:/DayClass/index.php"); 
-}
+}*/
 
 //Comprobamos si esta definida la sesión 'tiempo'.
 if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {

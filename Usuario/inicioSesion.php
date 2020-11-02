@@ -84,7 +84,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         if($id_permiso != NULL || $id_permiso != ""){
             $contador = 0;
             
-            $selectFuncionPermiso = $con->query("SELECT id_funcion FROM `permisofuncion` WHERE permisofuncion.id_permiso = '$id_permiso' AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDateTime' AND permisofuncion.fechaHastaPermisoFuncion IS NULL");
+            $selectFuncionPermiso = $con->query("SELECT id_funcion FROM `permisofuncion`, funcion WHERE permisofuncion.id_permiso = '$id_permiso' AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDateTime' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND funcion.id = permisofuncion.id_funcion ORDER BY nombreFuncion ASC");
             
             if(($selectFuncionPermiso->num_rows) != 1){
                 while ($funcionPermiso = $selectFuncionPermiso->fetch_assoc()) {

@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario'])) {
     header("location:/DayClass/index.php");
 }
 
-/*//Comprobamos si esta definida la sesión 'tiempo'.
+//Comprobamos si esta definida la sesión 'tiempo'.
 if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
@@ -28,7 +28,7 @@ if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
         exit();
     }
 }
-$_SESSION['tiempo'] = time();*/
+$_SESSION['tiempo'] = time();
 
 ?>
 
@@ -49,7 +49,7 @@ $_SESSION['tiempo'] = time();*/
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         <h1>Administrar roles</h1>
-        <a href="../../index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <div class="my-3">
@@ -98,7 +98,7 @@ $_SESSION['tiempo'] = time();*/
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDate = date('Y-m-d');
     
-        $selectPermisos = $con->query("SELECT * FROM `permiso` WHERE `fechaDesdePer` <= '$currentDate' AND `fechaHastaPer` IS NULL AND nombrePermiso <> 'ADMINISTRADOR' ORDER BY nombrePermiso ASC");
+        $selectPermisos = $con->query("SELECT * FROM `permiso` WHERE `fechaDesdePer` <= '$currentDate' AND `fechaHastaPer` IS NULL ORDER BY nombrePermiso ASC");
     
         $classHabilitado = "btn btn-secondary";
                     
@@ -207,7 +207,7 @@ $_SESSION['tiempo'] = time();*/
 </script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 <?php
 include "../../footer.html";
