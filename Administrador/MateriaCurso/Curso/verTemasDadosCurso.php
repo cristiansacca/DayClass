@@ -5,7 +5,7 @@ session_start();
 include "../../../header.html";
 include "../../../databaseConection.php";
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -77,10 +77,10 @@ $curso = $consulta1->fetch_assoc();
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     $profTema = $resultado1['profesor_id'];
-                    $datosProf = $con->query("SELECT * FROM `profesor` WHERE profesor.id = '$profTema'")->fetch_assoc();
+                    $datosProf = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$profTema'")->fetch_assoc();
 
-                    $nombreProf = $datosProf["nombreProf"];
-                    $apellidoProf = $datosProf["apellidoProf"];
+                    $nombreProf = $datosProf["nombreUsuario"];
+                    $apellidoProf = $datosProf["apellidoUsuario"];
 
                     $date = date_create($resultado1['fechaTemaDia']);
                     $fecha = date_format($date, "d/m/Y");
@@ -103,7 +103,7 @@ $curso = $consulta1->fetch_assoc();
 <script src="paginadoDataTable.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
 <?php
