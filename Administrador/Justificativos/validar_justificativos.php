@@ -33,6 +33,7 @@ if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_perm
 }
 
 if(!$funcionCorrecta){
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -139,7 +140,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <script src="../administrador.js"></script>
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>
 <?php
 include "../../footer.html";

@@ -1,65 +1,69 @@
 <?php
 include "../../databaseConection.php";
+header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=1");
+
 
 $legajoTraido = $_POST["inputLegajo"];
 
 $pasNueva = $_POST["inputPassNew"];
 $email = $_POST["inputEmailNew"];
 
-$consulta1 = $con->query("SELECT id FROM administrativo WHERE legajoAdm = '$legajoTraido'");
+$consulta1 = $con->query("SELECT id FROM usuario WHERE legajoUsuario = '$legajoTraido'");
 $resultado1 = $consulta1->fetch_assoc();
 $id_usuario = $resultado1['id'];
 
 if ($pasNueva == "") {
-    $consultaAdmin = $con->query("SELECT legajoAdm FROM administrativo WHERE emailAdm = '$email'");
+    $consultaUsuario = $con->query("SELECT legajoUsuario FROM usuario WHERE emailUsuario = '$email'");
 
-    if (mysqli_num_rows($consultaAdmin) == 0) {
-
-        $mailAlumno = $con->query("SELECT id FROM alumno WHERE emailAlum = '$email'");
-        $mailProf = $con->query("SELECT id FROM profesor WHERE emailProf = '$email'");
-
-        if (mysqli_num_rows($mailAlumno) == 0 && mysqli_num_rows($mailProf) == 0) {
-
-            $actualizacion = $con->query("UPDATE administrativo SET emailAdm = '$email' WHERE id='$id_usuario'");
-
-            //echo "entra a actaulizar el mail";
-            header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=1");
-        } else {
-            header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=2");
-        }
-    } else {
-        $resultado2 =  $consultaAdmin->fetch_assoc();
-        $legajoConsulta = $resultado2['legajoAdm'];
-        if ($legajoTraido == $legajoConsulta) {
-
-            header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php");
-        } else {
-            header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=2");
-        }
+    if (mysqli_num_rows($consultaUsuario) == 0){
+       $actualizacion = $con->query("UPDATE usuario SET emailUsuario = '$email' WHERE id='$id_usuario'");
+            if ($actualizacion) {
+                 header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=1");
+            }else{
+                header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=3");
+            }
+    }else{
+        $resultado2 = $consultaUsuario->fetch_assoc();
+        $legajoConsulta = $resultado2['legajoUsuario'];
+            if ($legajoTraido == $legajoConsulta) {           
+                header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php");
+            } else {
+                header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=2");
+            }
     }
-} else {
+}else{
     $newPass_cifrada = password_hash($pasNueva, PASSWORD_DEFAULT);
-    $consultaAdmin = $con->query("SELECT legajoAdm FROM administrativo WHERE emailAdm = '$email'");
+    $consultaAlumno = $con->query("SELECT legajoUsuario FROM usuario WHERE emailUsuario = '$email'");
 
-    if (mysqli_num_rows($consultaAdmin) == 0) {
-        $mailAlumno = $con->query("SELECT id FROM alumno WHERE emailAlumno = '$email'");
-        $mailProf = $con->query("SELECT id FROM profesor WHERE emailProf = '$email'");
+    if (mysqli_num_rows($consultaAlumno) == 0) {
+        
+        $actualizacion = $con->query("UPDATE usuario SET emailUsuario = '$email', contraseniaUsuario = '$newPass_cifrada' WHERE id='$id_usuario'");
+        
+            if ($actualizacion) {
+                header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=1");
+            }else{
+                header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=3");
+            }
 
-        if (mysqli_num_rows($mailAlumno) == 0 && mysqli_num_rows($mailAdmin) == 0) {
-            $actualizacion = $con->query("UPDATE administrativo SET emailAdm = '$email', contraseniaAdm = '$newPass_cifrada' WHERE id='$id_usuario'");
-            header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=1");
-        } else {
-            header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=2");
-        }
-    } else {
-        $resultado2 = $consultaAdmin->fetch_assoc();
-        $legajoConsulta = $resultado2['legajoAdm'];
+    }else{
+        $resultado2 = $consultaAlumno->fetch_assoc();
+        $legajoConsulta = $resultado2['legajoUsuario'];
         if ($legajoTraido == $legajoConsulta) {
-            $actualizacion = $con->query("UPDATE administrativo SET contraseniaAdm = '$newPass_cifrada' WHERE id='$id_usuario'");
-            header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=1");
-        } else {
+            $actualizacion = $con->query("UPDATE usuario SET contraseniaUsuario = '$newPass_cifrada' WHERE id='$id_usuario'");
+            
+            if ($actualizacion) {
+                header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=1");
+            
+            }else{
+                header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=3");
+            }
+
+        }else{
             header("Location:/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php?resultado=2");
         }
     }
 }
+
+
+
 ?>

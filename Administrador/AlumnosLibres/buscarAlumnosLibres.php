@@ -5,7 +5,7 @@ session_start();
 include "../../header.html";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -391,7 +391,7 @@ Equipo de DayClass";
             </div>";
     }
     
-    $id_admin = $_SESSION['administrador']['id'];
+    $id_admin = $_SESSION['usuario']['id'];
     
     $insertAlumnosLibres = $con->query("INSERT INTO `alumnosLibres`(`fechaAlumnosLibres`, `id_admin`) VALUES ('$currentDateTime','$id_admin')");
     }
@@ -401,7 +401,7 @@ Equipo de DayClass";
 </div>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
 <?php
