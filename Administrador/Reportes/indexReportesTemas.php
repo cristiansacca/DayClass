@@ -9,7 +9,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDate = date('Y-m-d');
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -105,7 +105,7 @@ $_SESSION['tiempo'] = time();
 <script src="fnReporteTemas.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['usuario']." ".$_SESSION['usuario']['usuario']."'" ?>
 </script>
 
 <?php
