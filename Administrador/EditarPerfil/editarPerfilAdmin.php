@@ -31,12 +31,12 @@ if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
 }
 $_SESSION['tiempo'] = time();
 
-$id_admin = $_SESSION['administrador']["id"];
+$id_admin = $_SESSION['usuario']["id"];
 
-$consulta1 = $con->query("SELECT `legajoAdm`,`apellidoAdm`,`nombreAdm`,`dniAdm`, `emailAdm`, `fechaNacAdm`, `id` FROM `administrativo` WHERE id = '$id_admin'");
+$consulta1 = $con->query("SELECT `legajoUsuario`,`apellidoUsuario`,`nombreUsuario`,`dniUsuario`, `emailUsuario`, `fechaNacimientoUsuario`, `id` FROM `usuario` WHERE id = '$id_admin'");
 $resultado1 = $consulta1->fetch_assoc();
 
-$_SESSION['administrador'] = $resultado1;
+$_SESSION['usuario'] = $resultado1;
 
 
 ?>
@@ -88,12 +88,12 @@ $_SESSION['administrador'] = $resultado1;
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputName4">Nombre</label>
-            <input type="text" readonly class="form-control" id="inputName" name="inputName" placeholder="Nombre" required <?php echo "value='" . $_SESSION["administrador"]["nombreAdm"] . "'"; ?>>
+            <input type="text" readonly class="form-control" id="inputName" name="inputName" placeholder="Nombre" required <?php echo "value='" . $_SESSION["usuario"]["nombreUsuario"] . "'"; ?>>
             <h9 class="msg" id="msjValidacionNombre"></h9>
           </div>
           <div class="form-group col-md-6">
             <label for="inputSurname4">Apellido</label>
-            <input type="text" readonly class="form-control" id="inputSurname" name="inputSurname" placeholder="Apellido" required <?php echo "value='" . $_SESSION["administrador"]["apellidoAdm"] . "'"; ?>>
+            <input type="text" readonly class="form-control" id="inputSurname" name="inputSurname" placeholder="Apellido" required <?php echo "value='" . $_SESSION["usuario"]["apellidoUsuario"] . "'"; ?>>
             <h9 class="msg" id="msjValidacionApellido"></h9>
           </div>
         </div>
@@ -101,12 +101,12 @@ $_SESSION['administrador'] = $resultado1;
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputDNI">DNI</label>
-            <input type="number" readonly class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" required <?php echo "value='" . $_SESSION["administrador"]["dniAdm"] . "'"; ?>>
+            <input type="number" readonly class="form-control" id="inputDNI" name="inputDNI" placeholder="Documento Nacional de Identidad" required <?php echo "value='" . $_SESSION["usuario"]["dniUsuario"] . "'"; ?>>
             <h9 class="msg" id="msjValidacionDNI"></h9>
           </div>
           <div class="form-group col-md-6">
             <label for="inputLegajo">Legajo</label>
-            <input type="text" readonly class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" required <?php echo "value='" . $_SESSION["administrador"]["legajoAdm"] . "'"; ?>>
+            <input type="text" readonly class="form-control" id="inputLegajo" name="inputLegajo" placeholder="Legajo" required <?php echo "value='" . $_SESSION["usuario"]["legajoUsuario"] . "'"; ?>>
             <h9 class="msg" id="msjValidacionLegajo"></h9>
           </div>
         </div>
@@ -114,12 +114,12 @@ $_SESSION['administrador'] = $resultado1;
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputDate">Fecha de nacimiento</label>
-            <input id="inputDate" name="inputDate" type="date" readonly class="form-control" required <?php echo "value='" . $_SESSION["administrador"]["fechaNacAdm"] . "'"; ?>>
+            <input id="inputDate" name="inputDate" type="date" readonly class="form-control" required <?php echo "value='" . $_SESSION["usuario"]["fechaNacimientoUsuario"] . "'"; ?>>
             <h9 class="msg" id="msjValidacionFchNac"></h9>
           </div>
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmailNew" name="inputEmailNew" placeholder="Email" onchange="validarEmail()" required <?php echo "value='" . $_SESSION["administrador"]["emailAdm"] . "'"; ?>>
+            <input type="email" class="form-control" id="inputEmailNew" name="inputEmailNew" placeholder="Email" onchange="validarEmail()" required <?php echo "value='" . $_SESSION["usuario"]["emailUsuario"] . "'"; ?>>
             <h9 class="msg" id="msjValidacionEmail"></h9>
           </div>
         </div>
@@ -154,7 +154,7 @@ $_SESSION['administrador'] = $resultado1;
   </div>
 </div>
 <script>
-  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['administrador']['nombreAdm'] . " " . $_SESSION['administrador']['apellidoAdm'] . "'" ?>
+  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
 <script type="text/javascript">

@@ -11,7 +11,7 @@ include "../../databaseConection.php";
 $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
 $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
 
-$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 24")->fetch_assoc(); // <-- Cambia
+$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 22")->fetch_assoc(); // <-- Cambia
 $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
 
 if (!isset($_SESSION['usuario'])) {
