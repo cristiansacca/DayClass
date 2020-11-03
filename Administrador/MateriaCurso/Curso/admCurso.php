@@ -1,14 +1,34 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../../header.html";
- 
+include "../../../header.html"; // <-- Cambia
+include "../../../databaseConection.php"; // <-- Cambia
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['usuario'])) 
-{
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
+$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
+$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+$funcionCorrecta = false;
+while ($fn = $consultaFunciones->fetch_assoc()) {
+    if ($fn['id_funcion'] == $idFuncionNecesaria) {
+        $funcionCorrecta = true;
+        break;
+    }
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -31,6 +51,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
   
 include "../../../databaseConection.php";
                 

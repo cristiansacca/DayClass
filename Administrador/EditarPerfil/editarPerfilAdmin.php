@@ -6,7 +6,7 @@ include "../../header.html";
 include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) {
+if (!isset($_SESSION['usuario']) && $_SESSION['usuario']["id_permiso"] != 3) {
   //Nos envía a la página de inicio
   header("location:/DayClass/index.php");
 }

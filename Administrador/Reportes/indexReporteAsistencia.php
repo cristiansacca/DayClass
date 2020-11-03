@@ -1,15 +1,38 @@
 <?php
+
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDate = date('Y-m-d');
+
 //Se inicia o restaura la sesión
 session_start();
 
 include "../../header.html";
 include "../../databaseConection.php";
 
-date_default_timezone_set('America/Argentina/Buenos_Aires');
-$currentDate = date('Y-m-d');
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
+$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 2")->fetch_assoc(); // <-- Cambia
+$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
 if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+$funcionCorrecta = false;
+while ($fn = $consultaFunciones->fetch_assoc()) {
+    if ($fn['id_funcion'] == $idFuncionNecesaria) {
+        $funcionCorrecta = true;
+        break;
+    }
+}
+
+if(!$funcionCorrecta){
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -17,23 +40,25 @@ if (!isset($_SESSION['usuario'])) {
 //Comprobamos si esta definida la sesión 'tiempo'.
 if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
-  //Calculamos tiempo de vida inactivo.
-  $vida_session = time() - $_SESSION['tiempo'];
-
-  //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-  if($vida_session > $_SESSION['limite'])
-  {
-      //Removemos sesión.
-      session_unset();
-      //Destruimos sesión.
-      session_destroy();              
-      //Redirigimos pagina.
-      header("Location: /DayClass/index.php?resultado=3");
-
-      exit();
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
   }
-}
-$_SESSION['tiempo'] = time();
+  $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 ?>
 <div class="container">

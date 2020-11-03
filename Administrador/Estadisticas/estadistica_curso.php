@@ -3,9 +3,31 @@
 session_start();
 
 include "../../header.html";
+include "../../databaseConection.php";
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
+$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 10")->fetch_assoc(); // <-- Cambia
+$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
 if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+$funcionCorrecta = false;
+while ($fn = $consultaFunciones->fetch_assoc()) {
+    if ($fn['id_funcion'] == $idFuncionNecesaria) {
+        $funcionCorrecta = true;
+        break;
+    }
+}
+
+if(!$funcionCorrecta){
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -30,8 +52,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
   
-include "../../databaseConection.php";
+
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDate = date('Y-m-d');
 ?>

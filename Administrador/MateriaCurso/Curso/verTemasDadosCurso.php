@@ -1,40 +1,58 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../../header.html";
-include "../../../databaseConection.php";
+include "../../../header.html"; // <-- Cambia
+include "../../../databaseConection.php"; // <-- Cambia
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
+$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
+$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
 if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
+$funcionCorrecta = false;
+while ($fn = $consultaFunciones->fetch_assoc()) {
+    if ($fn['id_funcion'] == $idFuncionNecesaria) {
+        $funcionCorrecta = true;
+        break;
+    }
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
 //Comprobamos si esta definida la sesión 'tiempo'.
-if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-
+  
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if ($vida_session > $_SESSION['limite']) {
+    if($vida_session > $_SESSION['limite'])
+    {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();
+        session_destroy();              
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-
+  
         exit();
     }
-}
-$_SESSION['tiempo'] = time();
+  }
+  $_SESSION['tiempo'] = time();
 
-$id_curso = $_GET["id_curso"];
-
-$consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
-$curso = $consulta1->fetch_assoc();
-
+//-----------------------------------------------------------------------------------------------------------------------------
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
