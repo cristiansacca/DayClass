@@ -8,23 +8,29 @@ include "../../databaseConection.php";
 //-----------------------------------------------------------------------------------------------------------------------------
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
-
-$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 22")->fetch_assoc(); // <-- Cambia
-$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
 
 if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
-$funcionCorrecta = false;
-while ($fn = $consultaFunciones->fetch_assoc()) {
-    if ($fn['id_funcion'] == $idFuncionNecesaria) {
-        $funcionCorrecta = true;
-        break;
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 22")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
     }
+
+    $nombreRol = $permiso['nombrePermiso'];
 }
 
 if(!$funcionCorrecta){
@@ -71,7 +77,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
-        <p class="card-text">Administrador</p> <!--Cambiar para que se vea el nombre del rol del usuario logueado-->
+        <p class="card-text"><?php echo $nombreRol;?></p> <!--Cambiar para que se vea el nombre del rol del usuario logueado-->
         
         <h5 class="card-text">Administrar roles</h5>
         

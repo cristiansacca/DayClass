@@ -9,23 +9,29 @@ include "../../../header.html";
 //-----------------------------------------------------------------------------------------------------------------------------
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
-
-$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
-$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
 
 if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
-$funcionCorrecta = false;
-while ($fn = $consultaFunciones->fetch_assoc()) {
-    if ($fn['id_funcion'] == $idFuncionNecesaria) {
-        $funcionCorrecta = true;
-        break;
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
     }
+
+    $nombreRol = $permiso['nombrePermiso'];
 }
 
 if(!$funcionCorrecta){
@@ -215,6 +221,11 @@ if (isset($_FILES["inpGetFile"])) {
 
 
 <div class="container">
+    <div class="jumbotron my-4 py-4">
+        <p class="card-text"><?php echo $nombreRol;?></p>
+        <h1>Inscripción a curso</h1>
+        <a class="btn btn-info" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso'" ?> ><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
+    </div>
 <?php
 if(count($inexistente) > 0){
     echo "<div class='alert alert-danger mt-4' role='alert'>

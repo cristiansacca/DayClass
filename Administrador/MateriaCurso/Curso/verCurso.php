@@ -6,24 +6,32 @@ session_start();
 include "../../../header.html"; // <-- Cambia
 include "../../../databaseConection.php"; // <-- Cambia
 
-//Si la variable sesión está vacía es porque no se ha iniciado sesión
-$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+//-----------------------------------------------------------------------------------------------------------------------------
 
-$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
-$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
 
 if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
-$funcionCorrecta = false;
-while ($fn = $consultaFunciones->fetch_assoc()) {
-    if ($fn['id_funcion'] == $idFuncionNecesaria) {
-        $funcionCorrecta = true;
-        break;
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
     }
+
+    $nombreRol = $permiso['nombrePermiso'];
 }
 
 if(!$funcionCorrecta){
@@ -53,7 +61,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
   $_SESSION['tiempo'] = time();
 
 //-----------------------------------------------------------------------------------------------------------------------------
-
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
@@ -70,7 +77,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
-        <p class="card-text">Administrador</p>
+        <p class="card-text"><?php echo $nombreRol;?></p>
         <?php
         $id_curso = $_GET["id_curso"];
 

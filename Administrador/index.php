@@ -19,9 +19,6 @@ if (!isset($_SESSION['usuario']))
         //Nos envía a la página de inicio
         header("location:/DayClass/index.php"); 
     }
-    
-    
-   
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -60,7 +57,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 <div class="container">
 
   <div class="jumbotron my-4 py-4">
-    <p class="card-text">Administrador</p>
+    <p class="card-text">ADMINISTRADOR</p>
     <h1><?php echo "$saludo, ".$_SESSION["usuario"]["nombreUsuario"] ?></h1>
     
       

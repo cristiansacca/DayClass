@@ -1,4 +1,11 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
+//Se inicia o restaura la sesión
+session_start();
+
+include "../../header.html"; // <-- Cambia
+include "../../databaseConection.php"; // <-- Cambia
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 $funcionCorrecta = false;
 $nombreRol = "Sin rol asignado";
@@ -58,7 +65,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <h6>Rol: <?php echo "$nombreRol" ?></h6>
+        <p class="card-text"><?php echo $nombreRol;?></p>
         <h1>Validar justificativos</h1>
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
