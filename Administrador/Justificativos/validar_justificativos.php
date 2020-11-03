@@ -1,11 +1,4 @@
 <?php
-//-----------------------------------------------------------------------------------------------------------------------------
-//Se inicia o restaura la sesión
-session_start();
-
-include "../../header.html"; // <-- Cambia
-include "../../databaseConection.php"; // <-- Cambia
-
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 $funcionCorrecta = false;
 $nombreRol = "Sin rol asignado";
@@ -33,7 +26,6 @@ if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_perm
 }
 
 if(!$funcionCorrecta){
-if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -57,7 +49,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         exit();
     }
   }
-}
   $_SESSION['tiempo'] = time();
 
 //-----------------------------------------------------------------------------------------------------------------------------
