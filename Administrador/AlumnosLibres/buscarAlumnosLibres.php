@@ -64,6 +64,10 @@ $_SESSION['tiempo'] = time();
     if(($selectAlumnosLibresHoy->num_rows) == 0){
         
     include "../../databaseConection.php";
+        
+    $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+    $permiso = $selectPermiso->fetch_assoc();
+    $id_permiso = $permiso["id"];
 
     $cantLibres = 0;
     $cantJustos = 0;
@@ -88,7 +92,7 @@ $_SESSION['tiempo'] = time();
                         while ($selectAsistenciasAlumnoCurso2 = $selectAsistenciasAlumnoCurso->fetch_assoc()) {
                             $id_alumno = $selectAsistenciasAlumnoCurso2["alumno_id"];
 
-                            $selectEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM alumno, alumnocursoactual, curso, alumnocursoestado, cursoestadoalumno WHERE curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumno.id = '$id_alumno' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.fechaDesdeAlumCurAc = curso.fechaDesdeCursado AND alumnocursoactual.fechaHastaAlumCurAc = curso.fechaHastaCursado AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
+                            $selectEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM usuario, alumnocursoactual, curso, alumnocursoestado, cursoestadoalumno WHERE curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.fechaDesdeAlumCurAc = curso.fechaDesdeCursado AND alumnocursoactual.fechaHastaAlumCurAc = curso.fechaHastaCursado AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
 
                             $estadoAlumno = $selectEstadoAlumno["nombreEstado"];
 
@@ -260,11 +264,21 @@ $_SESSION['tiempo'] = time();
 
     function alumnoSinInasistencias($id_alumno, $id_curso) {
         include "../../databaseConection.php";
+        
+        $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+        $permiso = $selectPermiso->fetch_assoc();
+        $id_permiso = $permiso["id"];
+        
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $currentDate = date('Y-m-d');
+        $fechaAlumnoLibre = date_create($currentDate);
+        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y");
+        
         //buscar los datos del alumno
-        $selectDatosAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno'")->fetch_assoc();
-        $nombreAlumno = $selectDatosAlumno["nombreAlum"];
-        $apellidoAlumno = $selectDatosAlumno["apellidoAlum"];
-        $mailAlumno = $selectDatosAlumno["emailAlum"];
+        $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND id_permiso = '$id_permiso'")->fetch_assoc();
+        $nombreAlumno = $selectDatosAlumno["nombreUsuario"];
+        $apellidoAlumno = $selectDatosAlumno["apellidoUsuario"];
+        $mailAlumno = $selectDatosAlumno["emailUsuario"];
 
         //buscar los datos del curso
         $selectDatosCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso'")->fetch_assoc();
@@ -273,7 +287,7 @@ $_SESSION['tiempo'] = time();
         // Mensaje al alumno 
         $mensaje = "Hola, $nombreAlumno $apellidoAlumno. 
 
-Se le informa que ha alcanzado el máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima inasistencia quedará en estado LIBRE. 
+Se le informa que el día $fechaAlumnoLibre ha alcanzado el máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima inasistencia quedará en estado LIBRE. 
 Puede revertir su situación justificando las ausencias que registra hasta el momento, en la sección correspondiente. 
 Este correo fue enviado de mananera automática, por favor no responda. 
 
@@ -302,8 +316,14 @@ Equipo de DayClass.";
         include "../../databaseConection.php";
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDateTime = date('Y-m-d');
+        
+        $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+        $permiso = $selectPermiso->fetch_assoc();
+        $id_permiso = $permiso["id"];
+        
+        
 
-        $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, alumno, curso, alumnocursoestado, cursoestadoalumno WHERE alumno.id = '$id_alumno' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
+        $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
         if (!($selectAlumnoCursoEstado->num_rows) == 0) {
             $alumnoCursoEstado = $selectAlumnoCursoEstado->fetch_assoc();
@@ -338,11 +358,21 @@ Equipo de DayClass.";
 
     function avisoAlumnoLibre($id_alumno, $id_curso) {
         include "../../databaseConection.php";
+        
+        
+        $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+        $permiso = $selectPermiso->fetch_assoc();
+        $id_permiso = $permiso["id"];
+        
+        $currentDate = date('Y-m-d');
+        $fechaAlumnoLibre = date_create($currentDate);
+        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y");
+        
         //buscar los datos del alumno
-        $selectDatosAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno'")->fetch_assoc();
-        $nombreAlumno = $selectDatosAlumno["nombreAlum"];
-        $apellidoAlumno = $selectDatosAlumno["apellidoAlum"];
-        $mailAlumno = $selectDatosAlumno["emailAlum"];
+        $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' ")->fetch_assoc();
+        $nombreAlumno = $selectDatosAlumno["nombreUsuario"];
+        $apellidoAlumno = $selectDatosAlumno["apellidoUsuario"];
+        $mailAlumno = $selectDatosAlumno["emailUsuario"];
 
         //buscar los datos del curso
         $selectDatosCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso'")->fetch_assoc();
@@ -351,7 +381,7 @@ Equipo de DayClass.";
         // Mensaje al alumno 
         $mensaje = "Hola, $nombreAlumno $apellidoAlumno. 
 
-Se le informa que que ha quedado LIBRE en el curso $nombreCurso por lo que su asistencia ya no será contabilizada. 
+Se le informa que el día $fechaAlumnoLibre ha quedado LIBRE en el curso $nombreCurso por lo que su asistencia ya no será contabilizada. 
 Ante un error en esta situación póngase en contacto con administración. 
 
 Este correo fue enviado de mananera automática, por favor no responda. 

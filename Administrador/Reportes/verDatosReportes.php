@@ -1,5 +1,11 @@
 <?php
 
+include "../../databaseConection.php";
+$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
+$permiso = $selectPermiso->fetch_assoc();
+$id_permiso = $permiso["id"];
+
+
 $materia = $_POST["materia"];
 $fechaDesdeReporte = $_POST["inputFechaDesdeReporte"];
 $fechaHastaReporte = $_POST["inputFechaHastaReporte"];
@@ -35,7 +41,6 @@ if ($materia == "Todas") {
 }
 
 
-
 function planillaAlumno($id_curso, $id_alumno, $fechaDesde, $fechaHasta)
 {
     include "../../databaseConection.php";
@@ -50,7 +55,7 @@ function planillaAlumno($id_curso, $id_alumno, $fechaDesde, $fechaHasta)
 
 
     //Datos asistencias en el periodo seleccionado 
-    $selectAsistenciasDiaAlumnoCurso = $con->query("SELECT asistenciadia.id, asistenciadia.fechaHoraAsisDia, tipoasistencia.nombreTipoAsistencia FROM `asistenciadia`, asistencia, alumno, curso, tipoasistencia WHERE alumno.id = '$id_alumno' AND curso.id = '$id_curso' AND alumno.id = asistencia.alumno_id AND curso.id = asistencia.curso_id AND asistenciadia.asistencia_id = asistencia.id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id ORDER BY `fechaHoraAsisDia` ASC");
+    $selectAsistenciasDiaAlumnoCurso = $con->query("SELECT asistenciadia.id, asistenciadia.fechaHoraAsisDia, tipoasistencia.nombreTipoAsistencia FROM `asistenciadia`, asistencia, usuario, curso, tipoasistencia WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' AND curso.id = '$id_curso' AND usuario.id = asistencia.alumno_id AND curso.id = asistencia.curso_id AND asistenciadia.asistencia_id = asistencia.id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id ORDER BY `fechaHoraAsisDia` ASC");
 
 
     //cambiar formato fechas 
@@ -62,12 +67,12 @@ function planillaAlumno($id_curso, $id_alumno, $fechaDesde, $fechaHasta)
 
     //BUSCAR TODOS LOS DATOS  
     //Datos alumno
-    $selectAlumno = $con->query("SELECT * FROM `alumno` WHERE alumno.id = '$id_alumno' AND alumno.fechaAltaAlumno <= '$currentDate' AND alumno.fechaBajaAlumno IS NULL");
+    $selectAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND usuario.fechaAltaUsuario <= '$currentDate' AND usuario.fechaBajaUsuario IS NULL AND usuario.id_permiso = '$id_permiso'");
     $alumno = $selectAlumno->fetch_assoc();
-    $nombreAlumno = utf8_decode($alumno["nombreAlum"]);
-    $apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
-    $legajoAlumno = $alumno["legajoAlumno"];
-    $dniAlumno = $alumno["dniAlum"];
+    $nombreAlumno = utf8_decode($alumno["nombreUsuario"]);
+    $apellidoAlumno = utf8_decode($alumno["apellidoUsuario"]);
+    $legajoAlumno = $alumno["legajoUsuario"];
+    $dniAlumno = $alumno["dniUsuario"];
 
     //Datos curso
     $selectCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL");
@@ -221,7 +226,7 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
     $selectFechas = $con->query("SELECT DISTINCT asistenciadia.fechaHoraAsisDia FROM `asistencia`, asistenciadia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' ORDER BY `fechaHoraAsisDia` ASC");
 
     //Datos asistencias, de los alumnos en el periodo seleccionado
-    $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, alumno.id, alumno.nombreAlum, alumno.apellidoAlum, alumno.legajoAlumno FROM alumno, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = alumno.id ORDER BY alumno.apellidoAlum ASC");
+    $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, usuario.id, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.legajoUsuario FROM usuario, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = usuario.id AND usuario.id_permiso = '$id_permiso' ORDER BY usuario.apellidoUsuario ASC");
 
     //Datos curso
     $selectCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL");
@@ -365,13 +370,13 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
 
                     $id_asistencia = $arregloIdAsistencias[$j];
 
-                    $selectAlumno = $con->query("SELECT alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = alumno.id");
+                    $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id AND usuario.id_permiso = '$id_permiso'");
 
                     $alumno = $selectAlumno->fetch_assoc();
 
-                    $nombreAlumno = utf8_decode($alumno["nombreAlum"]);
-                    $apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
-                    $legajoAlumno = $alumno["legajoAlumno"];
+                    $nombreAlumno = utf8_decode($alumno["nombreUsuario"]);
+                    $apellidoAlumno = utf8_decode($alumno["apellidoUsuario"]);
+                    $legajoAlumno = $alumno["legajoUsuario"];
                     $index = $j + 1;
 
                     $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
@@ -441,13 +446,13 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
 
                     $id_asistencia = $arregloIdAsistencias[$j];
 
-                    $selectAlumno = $con->query("SELECT alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = alumno.id");
+                    $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id AND usuario.id_permiso = '$id_permiso'");
 
                     $alumno = $selectAlumno->fetch_assoc();
 
-                    $nombreAlumno = utf8_decode($alumno["nombreAlum"]);
-                    $apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
-                    $legajoAlumno = $alumno["legajoAlumno"];
+                    $nombreAlumno = utf8_decode($alumno["nombreUsuario"]);
+                    $apellidoAlumno = utf8_decode($alumno["apellidoUsuario"]);
+                    $legajoAlumno = $alumno["legajoUsuario"];
                     $index = $j + 1;
 
                     $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
@@ -667,8 +672,7 @@ function planillaMateria($id_materia, $fechaDesde, $fechaHasta)
     $pdf->Output("reporteAsistencias.pdf", "I");
 }
 
-function planillaInstitucion($fechaDesde, $fechaHasta)
-{
+function planillaInstitucion($fechaDesde, $fechaHasta){
     include "../../databaseConection.php";
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');

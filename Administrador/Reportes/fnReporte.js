@@ -61,7 +61,7 @@ document.getElementById("curso").onchange = function(){
             if(json.length != 0){
                 cantAlumnos = json.length;
                 for (let index = 0; index < json.length; index++) {
-                    contenido += "<option value='"+json[index].id+"'>"+ json[index].apellidoAlum + " " + json[index].nombreAlum+ " " + json[index].legajoAlumno + "</option>";
+                    contenido += "<option value='"+json[index].id+"'>"+ json[index].apellidoUsuario + " " + json[index].nombreUsuario+ " " + json[index].legajoUsuario + "</option>";
                     document.getElementById("alumno").innerHTML = contenido;
                     $("#alumno").removeAttr("disabled");  
                 }
