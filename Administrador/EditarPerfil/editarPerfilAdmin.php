@@ -33,7 +33,7 @@ $_SESSION['tiempo'] = time();
 
 $id_admin = $_SESSION['usuario']["id"];
 
-$consulta1 = $con->query("SELECT `legajoUsuario`,`apellidoUsuario`,`nombreUsuario`,`dniUsuario`, `emailUsuario`, `fechaNacimientoUsuario`, `id` FROM `usuario` WHERE id = '$id_admin'");
+$consulta1 = $con->query("SELECT * FROM `usuario` WHERE id = '$id_admin'");
 $resultado1 = $consulta1->fetch_assoc();
 
 $_SESSION['usuario'] = $resultado1;

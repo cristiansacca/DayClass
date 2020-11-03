@@ -57,6 +57,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         exit();
     }
   }
+}
   $_SESSION['tiempo'] = time();
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -140,8 +141,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <script src="../administrador.js"></script>
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'"; ?>
 </script>
+
 <?php
 include "../../footer.html";
 ?>

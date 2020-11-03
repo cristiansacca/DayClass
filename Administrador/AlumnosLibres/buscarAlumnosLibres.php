@@ -3,6 +3,7 @@
 session_start();
 
 include "../../header.html";
+include "../../databaseConection.php";
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -61,7 +62,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 ?>
 
 <?php
-    include "../../databaseConection.php";
+    
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     $currentDate = date('Y-m-d');
