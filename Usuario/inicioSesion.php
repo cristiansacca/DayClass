@@ -73,7 +73,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
     <div class="jumbotron my-4 py-4">
         <h6>Rol: <?php echo "$nombreRol" ?></h6>
         <h1><?php echo "$saludo, " . $_SESSION["usuario"]["nombreUsuario"]?></h1>
-        <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar Perfil</a>
+        <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
     </div>
     
     <h3 class="font-weight-normal">Accesos asignados:</h3><br>
@@ -110,7 +110,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                                 <h5 class='font-weight-normal'></h5>
                             </div>
                             <div class='card-footer'>
-                                <a href='$paginaFuncion' class='btn btn-success'>Ver Rol</a>
+                                <a href='$paginaFuncion' class='btn btn-success'>Ingresar</a>
                             </div>
                         </div>
                     </div>";

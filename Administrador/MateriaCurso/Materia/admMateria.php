@@ -1,15 +1,34 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../../header.html";
-include "../../../databaseConection.php";
- 
+include "../../../header.html"; // <-- Cambia
+include "../../../databaseConection.php"; // <-- Cambia
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['usuario'])) 
-{
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
+$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+$consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+$consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
+$idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+$funcionCorrecta = false;
+while ($fn = $consultaFunciones->fetch_assoc()) {
+    if ($fn['id_funcion'] == $idFuncionNecesaria) {
+        $funcionCorrecta = true;
+        break;
+    }
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -32,6 +51,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
   
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
@@ -47,7 +68,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     <div class="jumbotron my-4 py-4">
         <p class="card-text">Administrador</p>
         <h1>Materias</h1>
-        <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php

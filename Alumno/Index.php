@@ -1,36 +1,64 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
- 
+include "../header.html"; // <-- Cambia
+include "../databaseConection.php"; // <-- Cambia
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-/*if (!isset($_SESSION['alumno'])) 
-{
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
-}*/
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 12")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
 
 //Comprobamos si esta definida la sesión 'tiempo'.
 if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
-  //Calculamos tiempo de vida inactivo.
-  $vida_session = time() - $_SESSION['tiempo'];
-
-  //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-  if($vida_session > $_SESSION['limite'])
-  {
-      //Removemos sesión.
-      session_unset();
-      //Destruimos sesión.
-      session_destroy();              
-      //Redirigimos pagina.
-      header("Location: /DayClass/index.php?resultado=3");
-
-      exit();
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
   }
-}
-$_SESSION['tiempo'] = time();
+  $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $hora = date('H:i:s');
@@ -47,9 +75,10 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 <div class="container">
 
   <div class="jumbotron my-4 py-4">
-    <h1 class=""><?php echo "$saludo, ".$_SESSION["alumno"]["nombreAlum"]/*." ".$_SESSION["alumno"]["apellidoAlum"]*/ ?></h1>
+    <h6>Rol: <?php echo "$nombreRol" ?></h6>
+    <h1 class=""><?php echo "$saludo, ".$_SESSION["usuario"]["nombreUsuario"] ?></h1>
     <p class="lead"></p>
-    <a href="/Dayclass/Alumno/editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
+    <a href="/Dayclass/index" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
   </div>
 
      <?php

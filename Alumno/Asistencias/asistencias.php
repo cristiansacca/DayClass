@@ -1,11 +1,38 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../header.html";
+include "../../header.html"; // <-- Cambia
+include "../../databaseConection.php"; // <-- Cambia
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['alumno'])) {
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 12")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -30,7 +57,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
-  
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
@@ -39,6 +68,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
 <div class="container">
+    <h6>Rol: <?php echo "$nombreRol" ?></h6>
     <div class="py-4 my-3 jumbotron">
         <h1>Información de asistencias</h1>
         <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
@@ -50,7 +80,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $currentDateTime = date('Y-m-d');
 
         //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
-        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '" . $_SESSION['alumno']['id'] . "' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
+        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE usuario_id = '" . $_SESSION['alumno']['id'] . "' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
 
         if (($consulta1->num_rows) == 0) {
             echo "<div class='alert alert-warning' role='alert'>

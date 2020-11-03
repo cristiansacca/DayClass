@@ -39,9 +39,7 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
                 //Se define la variable de sesión con el tiempo límite de inactividad en minutos
                 $_SESSION['limite'] = ($limiteSesion*60);
                 
-                 $bloqueado = $resultado1["bloqueado"];
-                
-                
+                $bloqueado = $resultado1["bloqueado"];
                 
                 if($bloqueado == 1){
                     //Se redirigue a la página principal correspondiente al usuario

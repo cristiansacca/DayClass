@@ -92,7 +92,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
             }
 
         }else{
-             echo "<div class='alert alert-warning' role='alert'>
+             echo "<div class='alert alert-warning text-left' role='alert'  style='width: 100%;'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no lo han asignado a un curso.</h5>
             </div>";
         }

@@ -3,28 +3,42 @@
 session_start();
 
 include "header.html";
+include "databaseConection.php";
 
 //Si hay una sesión activa no se puede iniciar otra
 
-if (isset($_SESSION['alumno'])) {
-   //Nos envía a la página de inicio de cada usuario
-   header("location:/DayClass/Alumno/index.php");
-}
+if (isset($_SESSION['usuario'])) {
+   $bloqueado = $_SESSION['usuario']["bloqueado"];
 
-if (isset($_SESSION['profesor'])) {
-   //Nos envía a la página de inicio de cada usuario
-   header("location:/DayClass/Profesor/index.php");
-}
+   if ($bloqueado == 1) {
+      //Se redirigue a la página principal correspondiente al usuario
+      header("Location: /DayClass/Administrador/index.php");
+   } else {
 
-if (isset($_SESSION['administrador'])) {
-   //Nos envía a la página de inicio de cada usuario
-   header("location:/DayClass/Administrador/index.php");
+      $id_permiso = $_SESSION['usuario']["id_permiso"];
+      $selectRol = $con->query("SELECT * FROM permiso WHERE permiso.id = '" . $id_permiso . "'");
+      $rol = $selectRol->fetch_assoc();
+      $nombreRol = $rol["nombrePermiso"];
+
+      //Se redirigue a la página principal correspondiente al rol
+      switch ($nombreRol) {
+         case "ALUMNO":
+            header("Location: /DayClass/Alumno/Index.php");
+            break;
+         case "DOCENTE":
+            header("Location: /DayClass/Profesor/indexCurso.php");
+            break;
+         default:
+            header("Location: /DayClass/Usuario/inicioSesion.php");
+            break;
+      }
+   }
 }
 
 ?>
 
 
-<div class="text-center mx-auto h-100 d-flex justify-content-center my-auto py-4" style="width: 20rem;">
+<div class="text-center mx-auto h-100 d-flex justify-content-center my-auto pt-4" style="width: 20rem;">
    <form action="login.php" method="POST" class="form-group m-4">
       <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
       <h1 class="font-weight-normal my-2">Inicio de sesión</h1>
@@ -36,13 +50,11 @@ if (isset($_SESSION['administrador'])) {
       </div>
 
       <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-1"></i>Ingresar</button><br>
-      <a class="btn btn-link my-2" href="RestablecerPass/restablecer-contrasenia.php">Olvidé mi contraseña</a>
-
-      
+      <a class="btn btn-link my-2" href="RestablecerPass/restablecer-contrasenia.php">Olvidé mi contraseña</a>   
    </form>
 </div>
 
-<div class="text-center mx-auto h-100 d-flex justify-content-center my-auto" style="width: 40rem;">
+<div class="text-center mx-auto h-100 d-flex justify-content-center mb-4" style="width: 40rem;">
 <?php
       if (isset($_GET["error"])) {
          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
@@ -71,7 +83,7 @@ if (isset($_SESSION['administrador'])) {
 
          switch ($_GET["resultado"]) {
             case 1:
-                    echo "<div class='alert alert-success alert-dismissible fade show mx-auto' role='alert' style='width: 50%;'>
+                    echo "<div class='alert alert-success alert-dismissible fade show mx-auto' role='alert'>
                              <h4 class='alert-heading'>¡Correo enviado! <i class='fa fa-paper-plane'></i></h4>
                             <h6>Se acaba de enviar una mail de activación al correo electrónico provisto.</h6>
                             <h6 class='mb-0'>Revise su bandeja de entrada o spam.</h6>
