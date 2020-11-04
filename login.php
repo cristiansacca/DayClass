@@ -41,7 +41,9 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
                 
                 $bloqueado = $resultado1["bloqueado"];
                 
-                if($bloqueado == 1){
+                 header("Location: /DayClass/Usuario/inicioSesion.php");
+                
+                /*if($bloqueado == 1){
                     //Se redirigue a la página principal correspondiente al usuario
                     header("Location: /DayClass/Administrador/index.php");
                 }else{
@@ -59,10 +61,12 @@ if (($consulta1->num_rows) == 1) { //Si la consulta 1 obtiene un resultado verif
                             header("Location: /DayClass/Profesor/indexCurso.php");
                             break;
                         default:
-                            header("Location: /DayClass/Usuario/inicioSesion.php");
+                            
                             break;
                     }
-                }
+                    
+                   
+                }*/
             } else {
                 header("Location: /DayClass/index.php?error=0");
             }

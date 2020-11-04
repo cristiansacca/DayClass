@@ -4,10 +4,10 @@ function cambiarContenidoNavbar() {
     var contenido = "";
     contenido +=
     "<li class='nav-item'>"+
-        "<a class='nav-link' href='/DayClass/Administrador/index.php'><i class='fa fa-home mr-1'></i>Inicio</a>"+
+        "<a class='nav-link' href='/DayClass/Usuario/inicioSesion.php'><i class='fa fa-home mr-1'></i>Inicio</a>"+
     "</li>";
     
-    contenido += 
+   /* contenido += 
     "<li class='nav-item dropdown'>"+
         "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-gear mr-1'></i>Configuraciones</a>"+
         "<div class='dropdown-menu' aria-labelledby='navbarDropdown'>"+
@@ -22,7 +22,7 @@ function cambiarContenidoNavbar() {
         "<a id='btnCampana' class='nav-link myPopover'><i id='iconoCampana' class='fa fa-bell fa-fw ml-n2'></i>"+
             "<div hidden id='nroNoti' class='count-container' data-region='count-container'>1</div>"+
         "</a>"+
-    "</li>";
+    "</li>";*/
     
     contenido +=
     "<li>"+
@@ -40,7 +40,7 @@ function cambiarContenidoNavbar() {
     document.getElementById("contenidoNavbar").innerHTML = contenido;
 }
 
-window.onload = function(){
+/*window.onload = function(){
     $.ajax({
         url: '/DayClass/Administrador/Justificativos/buscarJustificativos.php',
         type: 'POST',
@@ -72,7 +72,7 @@ window.onload = function(){
 document.getElementById("btnCampana").onclick = function(){
     $("#nroNoti").attr("hidden", "hidden" );
     document.getElementById("nroNoti").innerHTML = 0;
-}
+}*/
 
 function letters(letras) {
     var patron = /^[A-Za-zÑñáéíóúñüàè' ]*$/;

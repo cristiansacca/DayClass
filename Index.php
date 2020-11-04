@@ -8,7 +8,10 @@ include "databaseConection.php";
 //Si hay una sesión activa no se puede iniciar otra
 
 if (isset($_SESSION['usuario'])) {
-   $bloqueado = $_SESSION['usuario']["bloqueado"];
+    
+    
+    header("Location: /DayClass/Usuario/inicioSesion.php");
+   /*$bloqueado = $_SESSION['usuario']["bloqueado"];
 
    if ($bloqueado == 1) {
       //Se redirigue a la página principal correspondiente al usuario
@@ -29,10 +32,10 @@ if (isset($_SESSION['usuario'])) {
             header("Location: /DayClass/Profesor/indexCurso.php");
             break;
          default:
-            header("Location: /DayClass/Usuario/inicioSesion.php");
+            
             break;
       }
-   }
+   }*/
 }
 
 ?>
