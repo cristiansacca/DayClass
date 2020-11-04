@@ -29,7 +29,7 @@ if(isset($_POST['arregloDatos'])){
         $legajo = $arrayLimpio[$i][0];
         $estado = $arrayLimpio[$i][3];
         
-        $consultaIdAlumno = $con -> query("SELECT id FROM alumno WHERE legajoAlumno = '".$legajo."'");
+        $consultaIdAlumno = $con -> query("SELECT id FROM usuario WHERE legajoUsuario = '".$legajo."'");
         $resultado3 = $consultaIdAlumno->fetch_assoc();
         $id_alumno = $resultado3["id"];
         

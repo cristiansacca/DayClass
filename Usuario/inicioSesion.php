@@ -71,7 +71,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <h6>Rol: <?php echo "$nombreRol" ?></h6>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1><?php echo "$saludo, " . $_SESSION["usuario"]["nombreUsuario"]?></h1>
         <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
     </div>
