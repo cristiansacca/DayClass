@@ -19,7 +19,7 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
     $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 1")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
@@ -210,7 +210,7 @@ if (isset($_FILES["inpGetFile"])) {
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Inscripción a curso</h1>
         <a class="btn btn-info" <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/alumnosCurso.php?id=$id_curso'" ?> ><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>

@@ -18,7 +18,7 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
     $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 13")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
@@ -79,7 +79,7 @@ if(($institucion->num_rows)==0){
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Datos de la institución</h1>
         <a href="config_parametros.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-edit mr-1"></i>Editar</button>

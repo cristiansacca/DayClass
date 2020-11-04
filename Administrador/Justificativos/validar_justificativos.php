@@ -17,7 +17,7 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
     $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 12")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
@@ -67,7 +67,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     <div class="jumbotron my-4 py-4">
         <p class="card-text"><?php echo $nombreRol;?></p>
         <h1>Validar justificativos</h1>
-        <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php

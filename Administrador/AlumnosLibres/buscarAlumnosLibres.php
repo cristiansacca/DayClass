@@ -19,7 +19,7 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
     $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 21")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
@@ -76,7 +76,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     $selectAlumnosLibresHoy = $con->query("SELECT `id`, `fechaAlumnosLibres`, `id_admin` FROM `alumnosLibres` WHERE alumnoslibres.fechaAlumnosLibres LIKE '$currentDate%'");
     
     if(($selectAlumnosLibresHoy->num_rows) != 0){
-        header("location: /DayClass/Administrador/index.php?resultado=1");
+        header("location: /DayClass/Usuario/inicioSesion.php?resultado=1");
     }
 
 ?>
@@ -87,9 +87,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Revisión de alumnos libres</h1>
-        <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php
@@ -98,10 +98,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         
     include "../../databaseConection.php";
         
-    $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
-    $permiso = $selectPermiso->fetch_assoc();
-    $id_permiso = $permiso["id"];
-
     $cantLibres = 0;
     $cantJustos = 0;
 
@@ -125,7 +121,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                         while ($selectAsistenciasAlumnoCurso2 = $selectAsistenciasAlumnoCurso->fetch_assoc()) {
                             $id_alumno = $selectAsistenciasAlumnoCurso2["alumno_id"];
 
-                            $selectEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM usuario, alumnocursoactual, curso, alumnocursoestado, cursoestadoalumno WHERE curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.fechaDesdeAlumCurAc = curso.fechaDesdeCursado AND alumnocursoactual.fechaHastaAlumCurAc = curso.fechaHastaCursado AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
+                            $selectEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM usuario, alumnocursoactual, curso, alumnocursoestado, cursoestadoalumno WHERE curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND usuario.id = '$id_alumno' AND alumnocursoactual.alumno_id = usuario.id AND alumnocursoactual.fechaDesdeAlumCurAc = curso.fechaDesdeCursado AND alumnocursoactual.fechaHastaAlumCurAc = curso.fechaHastaCursado AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
 
                             $estadoAlumno = $selectEstadoAlumno["nombreEstado"];
 
@@ -303,9 +299,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $id_permiso = $permiso["id"];
         
         date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $currentDate = date('Y-m-d');
+        $currentDate = date('Y-m-d H:m:s');
         $fechaAlumnoLibre = date_create($currentDate);
-        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y");
+        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:m:s");
         
         //buscar los datos del alumno
         $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND id_permiso = '$id_permiso'")->fetch_assoc();
@@ -318,7 +314,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $nombreCurso =  $selectDatosCurso["nombreCurso"];
 
         // Mensaje al alumno 
-        $mensaje = "Hola, $nombreAlumno $apellidoAlumno. 
+        $mensaje = "                                                                                                      $fechaAlumnoLibre
+Hola, $nombreAlumno $apellidoAlumno. 
 
 Se le informa que el día $fechaAlumnoLibre ha alcanzado el máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima inasistencia quedará en estado LIBRE. 
 Puede revertir su situación justificando las ausencias que registra hasta el momento, en la sección correspondiente. 
@@ -397,9 +394,9 @@ Equipo de DayClass.";
         $permiso = $selectPermiso->fetch_assoc();
         $id_permiso = $permiso["id"];
         
-        $currentDate = date('Y-m-d');
+        $currentDate = date('Y-m-d H:m:s');
         $fechaAlumnoLibre = date_create($currentDate);
-        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y");
+        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:m:s");
         
         //buscar los datos del alumno
         $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' ")->fetch_assoc();
@@ -412,7 +409,8 @@ Equipo de DayClass.";
         $nombreCurso =  $selectDatosCurso["nombreCurso"];
 
         // Mensaje al alumno 
-        $mensaje = "Hola, $nombreAlumno $apellidoAlumno. 
+        $mensaje = "                                                                                                      $fechaAlumnoLibre
+Hola, $nombreAlumno $apellidoAlumno. 
 
 Se le informa que el día $fechaAlumnoLibre ha quedado LIBRE en el curso $nombreCurso por lo que su asistencia ya no será contabilizada. 
 Ante un error en esta situación póngase en contacto con administración. 

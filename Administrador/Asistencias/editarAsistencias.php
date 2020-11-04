@@ -1,13 +1,10 @@
 <?php
-include "../../databaseConection.php";
-include "../../header.html";
+//Se inicia o restaura la sesión
+session_start();
 
-$id_curso = $_POST['idCursoEditar'];
-$fecha = $_POST['fechaEditar'];
-//$id_curso = 1;
-//$fecha = '2020-10-31';
-$fecha1 = $fecha.' 00:00:00';
-$fecha2 = $fecha.' 23:59:59';
+include "../../header.html";
+include "../../databaseConection.php";
+
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 $funcionCorrecta = false;
@@ -20,7 +17,7 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
     $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 8")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
@@ -80,6 +77,7 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Editar datos de asistencias</h1>   
         <a href="/DayClass/Administrador/Asistencias/asistencias.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>

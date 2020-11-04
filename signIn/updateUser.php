@@ -21,10 +21,16 @@ $mail_cifrado = password_hash($email, PASSWORD_DEFAULT);
 $insertUsuario = $con->query("UPDATE `usuario` SET `contraseniaUsuario`= '$pass_cifrada',`emailUsuario`= '$email',`fechaNacimientoUsuario`='$fchNac' WHERE legajoUsuario = '$legajo' AND dniUsuario = '$dni'");
 
 if($insertUsuario){
-    $cadenaMail = "Hola, $nombre $apellido.
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $currentDate = date('Y-m-d H:m:s');
+    $fechaAlumnoLibre = date_create($currentDate);
+    $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:m:s");
+    
+    $cadenaMail = "                                                                                                       $fechaAlumnoLibre
+Hola, $nombre $apellido.
 
-Se ha dado de alta su cuenta en DayClass. 
-Su usaurio es el siguiente: $email
+El día $fechaAlumnoLibre se ha dado de alta su cuenta en DayClass. 
+Su usuario es el siguiente: $email
 Su contraseña es la siguiente: $pass
 Puede cambiarla en cualquier momento accediendo a la sección de editar perfil.
 

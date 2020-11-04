@@ -10,66 +10,27 @@ $mail = $_POST["inputEmail"];
 $pass = passAleatoria();
 $Pass_cifrada = password_hash($pass, PASSWORD_DEFAULT);
 
-$consultaAlum = $con->query("SELECT * FROM `alumno` WHERE legajoAlumno = '$legajo' AND dniAlum = '$dni' AND emailAlum = '$mail'");
-
+$consultaAlum = $con->query("SELECT * FROM `usuario` WHERE legajoUsuario = '$legajo' AND dniUsuario = '$dni' AND emailUsuario = '$mail'");
 
 if (mysqli_num_rows($consultaAlum) == 0) {
-    $consultaProf = $con->query("SELECT * FROM `profesor` WHERE legajoProf = '$legajo' AND dniProf = '$dni' AND emailProf = '$mail'");
-
-    if (mysqli_num_rows($consultaProf) == 0) {
-
-        $consultaAdmin = $con->query("SELECT * FROM `administrativo` WHERE legajoAdm = '$legajo' AND dniAdm = '$dni' AND emailAdm = '$mail'");
-
-        if (mysqli_num_rows($consultaAdmin) == 0) {
-            //no existe esa combinacion 
-            //enviar a pagina anterior con mensaje de error
-            header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=2");
-        } else {
-            //es administrativo
-            $resultado3 = $consultaAdmin->fetch_assoc();
-            $nombre = $resultado3['nombreAdm'];
-            $apellido = $resultado3['apellidoAdm'];
-            $id = $resultado3['id'];
-
-            $nombreCompleto = "$nombre $apellido.";
-            $rtdoMail = sendEmail($nombreCompleto, $mail, $pass);
-
-            if ($rtdoMail) {
-                $consultaAlum = $con->query("UPDATE `administrativo` SET `contraseniaAdm`='$Pass_cifrada' WHERE id = '$id'");
-                header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=1");
-            } else {
-                header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=3");
-            }
-        }
-    } else {
-        //es docente 
-        $resultado2 = $consultaProf->fetch_assoc();
-        $nombre = $resultado2['nombreProf'];
-        $apellido = $resultado2['apellidoProf'];
-        $id = $resultado2['id'];
-
-        $nombreCompleto = "$nombre $apellido.";
-        $rtdoMail = sendEmail($nombreCompleto, $mail, $pass);
-
-        if ($rtdoMail) {
-            $consultaAlum = $con->query("UPDATE `profesor` SET `contraseniaProf`='$Pass_cifrada' WHERE id = '$id'");
-            header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=1");
-        } else {
-            header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=3");
-        }
-    }
+    //no existe esa combinacion 
+    //enviar a pagina anterior con mensaje de error
+    header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=2");
+        
 } else {
     //es alumno  
     $resultado1 = $consultaAlum->fetch_assoc();
-    $nombre = $resultado1['nombreAlum'];
-    $apellido = $resultado1['apellidoAlum'];
+    $nombre = $resultado1['nombreUsuario'];
+    $apellido = $resultado1['apellidoUsuario'];
     $id = $resultado1['id'];
+    
+    $mail= 'lea220197@gmail.com,'.$mail;
 
     $nombreCompleto = "$nombre $apellido";
     $rtdoMail = sendEmail($nombreCompleto, $mail, $pass);
 
     if ($rtdoMail) {
-        $consultaAlum = $con->query("UPDATE `alumno` SET `contraseniaAlum`='$Pass_cifrada' WHERE id = '$id'");
+        $consultaAlum = $con->query("UPDATE `usuario` SET `contraseniaUsuario`='$Pass_cifrada' WHERE id = '$id'");
         header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=1");
     } else {
         header("location: /DayClass/RestablecerPass/restablecer-contrasenia.php?resultado=3");
@@ -79,9 +40,15 @@ if (mysqli_num_rows($consultaAlum) == 0) {
 
 function sendEmail($nombreC, $eMail, $pass){
     //No tabular el texto, porque toma los espacios.
-    $mensaje =  "Hola, $nombreC.
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $currentDate = date('Y-m-d H:m:s');
+    $fechaAlumnoLibre = date_create($currentDate);
+    $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:m:s");
+    
+    $mensaje =  "                                                                                                         $fechaAlumnoLibre
+Hola, $nombreC.
 
-Se ha restablecido su contraseña en DayClass.
+El día $fechaAlumnoLibre, se ha restablecido su contraseña en DayClass.
 Su nueva contraseña es la siguiente: $pass
 Podrá cambiarla una vez que haya iniciado sesión en la sección de editar perfil
     
