@@ -99,7 +99,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 
         if(isset($_GET['error'])){
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
-            switch ($_GET['resultado']) {
+            switch ($_GET['error']) {
                 case 0:
                     echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No tiene permiso para acceder a la función solicitada.</h5>";
                     break;
