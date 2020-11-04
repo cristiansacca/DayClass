@@ -15,8 +15,7 @@ if (!isset($_SESSION['usuario'])) {
     header("location:/DayClass/index.php");
 }
 
-//$codigoFuncion = $_GET['codFn'];
-$codigoFuncion = 5;
+$codigoFuncion = $_GET['codFn'];
 
 if(isset($codigoFuncion)){
     $href = "";
