@@ -47,9 +47,9 @@ if(isset($_POST['arregloDatos'])){
             
     }
     
-    header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=1");
+    header("location: /DayClass/Usuario/inicioSesion.php?resultado=0");
 } else {
-    header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=2");
+    header("location: /DayClass/Usuario/inicioSesion.php?error=3");
 }
 
 include "../../footer.html";

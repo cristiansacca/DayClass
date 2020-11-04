@@ -5,7 +5,7 @@ session_start();
 include "../../databaseConection.php";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['profesor'])) {
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -56,7 +56,7 @@ try {
         $consulta1 = $con->query("SELECT * FROM tipoasistencia WHERE nombreTipoAsistencia = 'AUSENTE'")->fetch_assoc();
 
         //Todos los alumnos actualmente inscriptos, con estado inscripto en el dia de hoy
-        $consulta2 = $con->query("SELECT asistencia.id AS asistID, alumno.id, apellidoAlum, nombreAlum, legajoAlumno FROM alumno, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado, asistencia WHERE alumno.id = asistencia.alumno_id AND alumno.fechaBajaAlumno IS NULL AND curso.id = asistencia.curso_id AND alumno.id = alumnocursoactual.alumno_id AND alumnocursoactual.curso_id = curso.id AND curso.id = '$id_curso' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDate' AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDate' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
+        $consulta2 = $con->query("SELECT asistencia.id AS asistID, usuario.id, apellidoUsuario, nombreUsuario, legajoUsuario FROM usuario, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado, asistencia WHERE usuario.id = asistencia.alumno_id AND usuario.fechaBajaAlumno IS NULL AND curso.id = asistencia.curso_id AND usuario.id = alumnocursoactual.alumno_id AND alumnocursoactual.curso_id = curso.id AND curso.id = '$id_curso' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDate' AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDate' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
         while($resultado2 = $consulta2->fetch_assoc()){
             

@@ -1,14 +1,23 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../header.html";
-include "../../databaseConection.php";
+include "../../header.html"; // <-- Cambia
+include "../../databaseConection.php"; // <-- Cambia
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['profesor'])) {
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $nombreRol = $permiso['nombrePermiso'];
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -31,6 +40,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
   
 if(isset($_GET["id_curso"])){
     $id_curso = $_GET["id_curso"];
@@ -53,7 +64,7 @@ $currentDate = date('Y-m-d');
     <div class="jumbotron my-4 py-4">
         <h1> Estadística de asistencias</h1>
         <h4 class="font-weight-normal my-2"><?php echo $curso["nombreCurso"] ?></h4>
-        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'" ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Usuario/inicioSesion.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <div class="alert alert-danger" role="alert" id="faltanDatos" hidden>

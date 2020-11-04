@@ -1,35 +1,35 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
-include "../databaseConection.php";
-
-$nombreRol = "Sin rol asignado";
-
-date_default_timezone_set('America/Argentina/Buenos_Aires');
-$currentDateTime = date('Y-m-d H:i:s');
+include "../header.html"; // <-- Cambia
+include "../databaseConection.php"; // <-- Cambia
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
 if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
-}else{
-    
-    //echo $_SESSION["usuario"]["id"];
-    
-    $selectPermiso = $con->query("select id_permiso from usuario where id = ".$_SESSION["usuario"]["id"]);
-    $permiso = $selectPermiso->fetch_assoc();
-    $id_permiso = $permiso["id_permiso"];
-    
-   if( $id_permiso!= NULL || $id_permiso != ""){
-       $selectRol = $con->query("SELECT * FROM permiso WHERE permiso.id = '".$id_permiso."'");
-       $rol = $selectRol->fetch_assoc();
-       $nombreRol = $rol["nombrePermiso"];
-   }else{
-       
-   }
-  
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 5")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -53,7 +53,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
   }
   $_SESSION['tiempo'] = time();
 
+//-----------------------------------------------------------------------------------------------------------------------------
+
 date_default_timezone_set('America/Argentina/Buenos_Aires');
+$id_permiso = $_SESSION['usuario']['id_permiso'];
+$currentDateTime = date('Y-m-d H:i:s');
 $hora = date('H:i:s');
 if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
   $saludo = "Buenos días";
@@ -65,7 +69,6 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
 
 ?>
 
-
 <link rel="stylesheet" href="../styleCards.css">
 
 <div class="container">
@@ -75,6 +78,50 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         <h1><?php echo "$saludo, " . $_SESSION["usuario"]["nombreUsuario"]?></h1>
         <a href="editar_perfil.php" class="btn btn-success"><i class="fa fa-edit mr-1"></i>Editar perfil</a>
     </div>
+
+    <?php
+        if(isset($_GET['resultado'])){
+            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>";
+            switch ($_GET['resultado']) {
+                case 0:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Se guardaron los datos de asistencia correctamente.</h5>";
+                    break;
+                          
+                default:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Resultado correcto.</h5>";
+                    break;
+            }
+            echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>";
+        }
+
+        if(isset($_GET['error'])){
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
+            switch ($_GET['resultado']) {
+                case 0:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No tiene permiso para acceder a la función solicitada.</h5>";
+                    break;
+                case 1:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se tomó asistencia el día de hoy en el curso seleccionado.</h5>";
+                    break;
+                case 2:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No se seleccionó ningún curso.</h5>";
+                    break;
+                case 3:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al guardar los datos de asistencia.</h5>";
+                    break;
+                default:
+                echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Error.</h5>";
+                    break;
+            }
+            echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>";
+        }
+    ?>
     
     <h3 class="font-weight-normal">Accesos asignados:</h3><br>
     <!-- Page Features -->

@@ -17,7 +17,7 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
     $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 5")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
@@ -34,7 +34,7 @@ if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_perm
 
 if(!$funcionCorrecta){
     //Nos envía a la página de inicio
-    header("location:/DayClass/index.php");
+    header("location:/DayClass/Usuario/inicioSesion.php?error=0");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -67,10 +67,8 @@ if(isset($_GET["id_curso"])){
     $curso = $consulta1->fetch_assoc();
     
 } else {
-    header("location:/DayClass/Profesor/index.php");
+    header("location:/DayClass/Usuario/inicioSesion.php?error=2");
 }
-
-
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDate = date('Y-m-d');
@@ -84,7 +82,7 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
     
 }else{
     if(($consultaAsistMismoDia->num_rows)!=0){
-        header("location: /DayClass/Profesor/indexCurso.php?id_curso=$id_curso&&resultado=3");
+        header("location: /DayClass/Usuario/inicioSesion.php?error=1");
     }
 }
 
@@ -183,10 +181,10 @@ if(isset($_GET['codigo']) || isset($_GET['error'])){
 </div>
 
 <script src="../profesor.js"></script>
-<script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
+<!--<script>
+    document.getElementById("temaDia").innerHTML = <?php //echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';";?>
     $("#icono").addClass("fa fa-clipboard mr-1");
-</script>
+</script>-->
 <script src="funciones_habilitarAutoasistencia.js"></script>
 
 <script>
