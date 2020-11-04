@@ -77,7 +77,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
-        <p class="card-text"><?php echo $nombreRol;?></p> <!--Cambiar para que se vea el nombre del rol del usuario logueado-->
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p> <!--Cambiar para que se vea el nombre del rol del usuario logueado-->
         
         <h5 class="card-text">Administrar roles</h5>
         

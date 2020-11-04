@@ -12,12 +12,10 @@ $resultado1 = $consulta1->fetch_assoc();
 $fchDesde = $resultado1['fechaDesdeCursado'];
 $fchHasta = $resultado1['fechaHastaCursado'];
 
-$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
-$permiso = $selectPermiso->fetch_assoc();
-$id_permiso = $permiso["id"];
+
 
 //consultar existencia del alumno (habilitado = fecha de baja null) en la BD  de dayclass
-$consultaAlumID = $con->query("SELECT id FROM usuario WHERE dniUsuario = '$dni' AND legajoUsuario = '$legajo' AND fechaBajaUsuario IS NULL AND id_permiso = '$id_permiso'");
+$consultaAlumID = $con->query("SELECT id FROM usuario WHERE dniUsuario = '$dni' AND legajoUsuario = '$legajo' AND fechaBajaUsuario IS NULL");
 
 if(($consultaAlumID->num_rows) == 0){
     //si la cosnulta es vacia, el alumno no existe o esta dado de baja, error 2 = alumno inexistente o dado de baja 

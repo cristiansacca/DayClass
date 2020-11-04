@@ -73,7 +73,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <?php
         $id_materia = $_GET["id"];
         $consultaMateria = $con->query("SELECT * FROM `materia` WHERE id = $id_materia AND `fechaBajaMateria` IS NULL  ORDER BY id ASC");

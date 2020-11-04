@@ -75,7 +75,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
 
         <?php
         include "../../../databaseConection.php";
@@ -284,7 +284,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Agregar docente</h5>
             </div>
-            <form method="POST" id="asociarProfesor" name="asociarProfesor" action="ingresarDocenteCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajo()">
+            <form method="POST" id="asociarProfesor" name="asociarProfesor" action="ingresarDocenteCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
                 <?php
 
                 include "../../../databaseConection.php";
@@ -365,18 +365,18 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                                             echo "hidden ";
                                         } ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" placeholder="Legajo" onkeydown="return event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110"  <?php if (!($dni)) {"required";} ?>>
+                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajoIns()" placeholder="Legajo" onkeydown="return event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110"  <?php if (!($dni)) {"required";} ?>>
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
                         <label for="inputDNI">DNI</label>
-                        <input type="number" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
+                        <input type="number" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNIIns()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
                         <h9 class="msg" id="msjValidacionDNI"></h9>
                     </div>
 
 
 
-                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
+                    <input type="text" name="cursoId" id="cursoId1" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
 
                 </div>
                 <div class="modal-footer">
@@ -472,6 +472,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 </div>
 
 <script src="../../administrador.js"></script>
+<script src="../../fnInscribirAlumno.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../paginadoDataTable.js"></script>

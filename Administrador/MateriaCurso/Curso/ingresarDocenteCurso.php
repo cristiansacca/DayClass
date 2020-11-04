@@ -16,11 +16,9 @@ $currentDateTime = date('Y-m-d');
 $consulta1 = $con->query("SELECT * FROM `curso` WHERE id = '$id_curso'");
 $resultado1 = $consulta1->fetch_assoc();
 
-$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'DOCENTE'");
-$permiso = $selectPermiso->fetch_assoc();
-$id_permiso = $permiso["id"];
 
-$consultaDocenteID = $con->query("SELECT id FROM `usuario` WHERE dniUsuario = '$dni' AND legajoUsuario = '$legajo' AND fechaBajaUsuario IS NULL AND usuario.id_permiso = '$id_permiso'");
+
+$consultaDocenteID = $con->query("SELECT id FROM `usuario` WHERE dniUsuario = '$dni' AND legajoUsuario = '$legajo' AND fechaBajaUsuario IS NULL");
 
 if(mysqli_num_rows($consultaDocenteID) == 0){
     //si la cosnulta es vacia, el docente no existe o esta dado de baja, error 2 = docente inexistente o dado de baja 

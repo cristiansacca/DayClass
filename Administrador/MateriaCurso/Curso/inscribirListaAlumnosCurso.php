@@ -116,13 +116,7 @@ if (isset($_FILES["inpGetFile"])) {
             $legajo = $sheet->getCell("B" . $first_row)->getValue();
             $apellido = $sheet->getCell("C" . $first_row)->getValue();
             $nombre = $sheet->getCell("D" . $first_row)->getValue();
-            
-            
-            $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
-            $permiso = $selectPermiso->fetch_assoc();
-            $id_permiso = $permiso["id"];
-
-
+        
             $contador = 0;
 
             //valido que la primera fila de la tabla excel sea
@@ -141,22 +135,16 @@ if (isset($_FILES["inpGetFile"])) {
 
 
                     //consultar existencia del alumno (habilitado = fecha de baja null) en la BD  de dayclass
-                    $consultaAlumID = $con->query("SELECT * FROM `usuario` WHERE dniUsuario = '$dniA' AND legajoUsuario = '$legajoA' AND fechaBajaUsuario IS NULL AND id_permiso = '$id_permiso'");
+                    $consultaAlumID = $con->query("SELECT * FROM `usuario` WHERE dniUsuario = '$dniA' AND legajoUsuario = '$legajoA' AND fechaBajaUsuario IS NULL");
 
                     if (mysqli_num_rows($consultaAlumID) == 0) {
                         //si la cosnulta es vacia, el alumno no existe o esta dado de baja, error 2 = alumno inexistente o dado de baja 
 
                         array_push($inexistente, $legajoA);
                         //echo "entra al de no existe ese alumno";
-                    } else {
+                    }else{
                         
                         $resultado3 = $consultaAlumID->fetch_assoc();
-                        
-                        if($resultado3["id"] != $id_permiso){
-                             //el usuario no es alumno 
-                            array_push($sinPermiso, $legajoA);
-                        
-                        }else{
                         
                         $id_alumno = $resultado3["id"];
 
@@ -203,7 +191,7 @@ if (isset($_FILES["inpGetFile"])) {
                         }
                         }
                     }
-                }
+                
             } else {
                  echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en el formato del archivo, por favor cambielo.</h5>

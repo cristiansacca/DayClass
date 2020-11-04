@@ -79,7 +79,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Administrar roles</h1>
         <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
@@ -153,19 +153,10 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 //echo "SELECT * FROM `usuario` WHERE usuario.fechaBajaUsuario IS NULL AND usuario.id_permiso = '$id_permiso'";
                 
                 if((($selectUsuariosPermiso->num_rows) > 0)){
-                    
-                    if($permisos["nombrePermiso"] == "DOCENTE" || $permisos["nombrePermiso"] == "ALUMNO"){
-                        $classHabilitado = "btn btn-secondary disabled";
-                    }else{
-                       $classHabilitado = "btn btn-secondary"; 
-                    }
+                    $classHabilitado = "btn btn-secondary disabled";
                     
                 }else{
-                    if($permisos["nombrePermiso"] == "DOCENTE" || $permisos["nombrePermiso"] == "ALUMNO"){
-                        $classHabilitado = "btn btn-secondary disabled";
-                    }else{
-                       $classHabilitado = "btn btn-secondary"; 
-                    }
+                    $classHabilitado = "btn btn-secondary"; 
                 }
                             
                     echo "<div class='col-lg-6 col-md-3 mb-4' >
@@ -176,7 +167,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             </div>
                             <div class='card-footer'>
                                 <a href='verPerfil.php?id_permiso=$id_permiso' class='btn btn-success'>Ver Rol</a>
-                                <a href='bajaPerfil.php?id=$id_permiso' class='$classHabilitado'>Eliminar Rol</a>
+                                <a href='bajaPerfil.php?id=$id_permiso' class='$classHabilitado' onclick='return confirmDelete()'>Eliminar Rol</a>
                             </div>
                         </div>
                     </div>";

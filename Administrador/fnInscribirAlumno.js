@@ -114,24 +114,26 @@ function validarDNIyLegajoIns(){
     
     if(legajo && dni){
         var datos = {
-            legajo: document.getElementById('inputLegajo').value
+            legajo: document.getElementById('inputLegajo').value,
+            curso: document.getElementById('cursoId1').value
         }
 
         $.ajax({
-            url:'verificarAlumno.php',
+            url:'verificarUsuario.php',
             type: 'POST',
             async: false,
             data: datos,
             success:function(datosRecibidos) {
                 
                 json = JSON.parse(datosRecibidos);
+                alert(datosRecibidos);
                 
                 switch(json){
-                    case "tienePermisoAlumno":
+                    case "noAsociado":
                         rtdo = true;
                         break;
-                    case "noTienePermisoAlumno":
-                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Los datos ingresados no corresponden a un usuario con rol ALUMNO.</h5></div>";
+                    case "siAsociado":
+                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>El usuario ya se encuentra asociado al curso.</h5></div>";
                         rtdo = false;
                         break;
                     case "noExiste":

@@ -444,7 +444,7 @@ function validarDNIyLegajo(){
 //para elimiar registros, la usan config_admin, config_alumno y config_profesor
 
 function confirmDelete() {
-    var confirmar = confirm("¿Realmente desea eliminarlo? ");
+    var confirmar = confirm("¿Realmente desea eliminarlo?");
     if (confirmar) {
         return true;
     } else {
@@ -453,7 +453,7 @@ function confirmDelete() {
 }
 
 function confirmComeBack() {
-    var confirmar = confirm("¿Realmente desea reincorporarlo? ");
+    var confirmar = confirm("¿Realmente desea reincorporarlo?");
     if (confirmar) {
         return true;
     } else {

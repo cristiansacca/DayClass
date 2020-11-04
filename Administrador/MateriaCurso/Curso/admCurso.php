@@ -82,7 +82,7 @@ $materia = $con->query("SELECT * FROM materia WHERE id = '$id_materia'")->fetch_
 <div class="container ">
 
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Cursos</h1>
         <h5 class="font-weight-normal"><?php echo $materia['nombreMateria']." Nivel ".$materia['nivelMateria']; ?></h5>
         <a href="/DayClass/Administrador/MateriaCurso/Materia/admMateria.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>

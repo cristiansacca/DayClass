@@ -2,7 +2,7 @@ function setCargosDisponibles(id){
     eval("debugger;");
     id_prof = id;
     document.getElementById('impIDprofCC').value = id_prof;
-    id_curso = document.getElementById('cursoid').value;
+    id_curso = document.getElementById('cursoId1').value;
     var datos = {
         id_prof: id_prof, id_curso: id_curso
     }

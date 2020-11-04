@@ -77,8 +77,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <p class="card-text"><?php echo $nombreRol;?></p>
-
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <?php
         include "../../../databaseConection.php";
         $id_curso = $_GET['id'];
@@ -378,7 +377,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 
 
-                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '$id_curso'"; ?> hidden>
+                    <input type="text" name="cursoId" id="cursoId1" <?php echo "value= '$id_curso'"; ?> hidden>
 
                 </div>
                 <div class="modal-footer">
@@ -424,7 +423,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                         </div>
                     </div>
 
-                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
+                    <input type="text" name="cursoId" id="cursoId2" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
                     <!-- la funcion comrobar esta en administrador.js -->
 
                     <div class="modal-footer">

@@ -77,7 +77,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
-        <p class="card-text"><?php echo $nombreRol;?></p>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <?php
         $id_curso = $_GET["id_curso"];
 
