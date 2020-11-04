@@ -9,6 +9,61 @@ $fecha = $_POST['fechaEditar'];
 $fecha1 = $fecha.' 00:00:00';
 $fecha2 = $fecha.' 23:59:59';
 
+//Si la variable sesión está vacía es porque no se ha iniciado sesión
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 8")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+//Comprobamos si esta definida la sesión 'tiempo'.
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
+
+    //Calculamos tiempo de vida inactivo.
+    $vida_session = time() - $_SESSION['tiempo'];
+  
+    //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
+    if($vida_session > $_SESSION['limite'])
+    {
+        //Removemos sesión.
+        session_unset();
+        //Destruimos sesión.
+        session_destroy();              
+        //Redirigimos pagina.
+        header("Location: /DayClass/index.php?resultado=3");
+  
+        exit();
+    }
+  }
+  $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
 $consultaAsistencias = $con->query("SELECT alumno.id, alumno.apellidoAlum, alumno.nombreAlum, alumno.legajoAlumno, asistenciadia.tipoAsistencia_id, tipoasistencia.nombreTipoAsistencia
 FROM asistenciadia, alumno, asistencia, tipoasistencia
 WHERE asistencia.curso_id = '$id_curso'
