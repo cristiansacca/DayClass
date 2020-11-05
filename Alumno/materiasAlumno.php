@@ -1,34 +1,64 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../header.html";
+include "../header.html"; // <-- Cambia
+include "../databaseConection.php"; // <-- Cambia
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['alumno'])) {
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 17")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-
+  
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if ($vida_session > $_SESSION['limite']) {
+    if($vida_session > $_SESSION['limite'])
+    {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();
+        session_destroy();              
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-
+  
         exit();
     }
-}
-$_SESSION['tiempo'] = time();
+  }
+  $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 ?>
 
@@ -36,8 +66,9 @@ $_SESSION['tiempo'] = time();
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Materias en las que está inscripto</h1>
-        <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
+        <a class="btn btn-info" href="/DayClass/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
     <!-- Page Features -->
     <div class="row text-center my-5">
@@ -49,7 +80,7 @@ $_SESSION['tiempo'] = time();
         $currentDateTime = date('Y-m-d');
 
         //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
-        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '" . $_SESSION['alumno']['id'] . "' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
+        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '" . $_SESSION['usuario']['id'] . "' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
         $contador = 0;
 
 
@@ -84,9 +115,9 @@ $_SESSION['tiempo'] = time();
 
                     //Por cada CargoProfesor obtiene el profesor
                     $id_prof = $cargoprofesor['profesor_id'];
-                    $profesor = $con->query("SELECT * FROM profesor WHERE id = '$id_prof' AND fechaAltaProf <= '$currentDateTime' AND fechaBajaProf IS NULL")->fetch_assoc();
+                    $profesor = $con->query("SELECT * FROM usuario WHERE id = '$id_prof' AND fechaAltaProf <= '$currentDateTime' AND fechaBajaUsuario IS NULL")->fetch_assoc();
 
-                    echo "<li>" . $cargo['nombreCargo'] . ": " . $profesor['nombreProf'] . " " . $profesor['apellidoProf'] . "</li>";
+                    echo "<li>" . $cargo['nombreCargo'] . ": " . $profesor['nombreUsuario'] . " " . $profesor['apellidoUsuario'] . "</li>";
                 }
                 echo " </ul>
                     </div>
@@ -108,10 +139,9 @@ $_SESSION['tiempo'] = time();
 </div>
 
 <script src="alumno.js"></script>
-
-<?php
-include "modal-autoasistencia.php";
-?>
+<script>
+  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['alumno']['nombreAlum'] . " " . $_SESSION['alumno']['apellidoAlum'] . "'" ?>
+</script>
 
 <?php
 include "../footer.html";

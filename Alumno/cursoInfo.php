@@ -17,9 +17,9 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
-    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 12")->fetch_assoc(); // <-- Cambia
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 17")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
 
     while ($fn = $consultaFunciones->fetch_assoc()) {
@@ -60,6 +60,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
+
+
 ?>
 
 <link rel="stylesheet" href="../styleCards.css">
@@ -68,7 +70,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
-        <h6>Rol: <?php echo "$nombreRol" ?></h6>
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <?php
         $id_curso = $_GET["id_curso"];
 
@@ -97,7 +99,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDateTime = date('Y-m-d');
 
-        $consulta2 = $con->query("SELECT profesor.id, profesor.emailProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+        $consulta2 = $con->query("SELECT usuario.id, usuario.emailUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = usuario.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
 
         if (($consulta2->num_rows) == 0) {
             echo "<div class='alert alert-warning' role='alert'>
@@ -107,10 +109,10 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
             while ($docentesCurso = $consulta2->fetch_assoc()) {
 
-                $nombreDocente = $docentesCurso["nombreProf"];
-                $apellidoDocente = $docentesCurso["apellidoProf"];
+                $nombreDocente = $docentesCurso["nombreUsuario"];
+                $apellidoDocente = $docentesCurso["apellidoUsuario"];
                 $cargoDocente = $docentesCurso["nombreCargo"];
-                $mailDocente = $docentesCurso["emailProf"];
+                $mailDocente = $docentesCurso["emailUsuario"];
 
                 if ($mailDocente == "" || $mailDocente == null) {
                     $mailDocente = "Correo electronico no registrado";
@@ -235,10 +237,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 </div>
 
 <script src="alumno.js"></script>
-
-<?php
-include "modal-autoasistencia.php";
-?>
+<script>
+  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['alumno']['nombreAlum'] . " " . $_SESSION['alumno']['apellidoAlum'] . "'" ?>
+</script>
 
 <?php
 include "../footer.html";
