@@ -4,12 +4,20 @@ session_start();
 
 include "../header.html";
 include "../databaseConection.php";
+$nombreRol = "Sin rol asignado";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
+
+$permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'");
+if(($permiso->num_rows) !=0){
+    $permiso = $permiso->fetch_assoc();
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
 
 //Comprobamos si esta definida la sesión 'tiempo'.
 if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
@@ -47,7 +55,8 @@ $_SESSION['usuario']= $resultado1;
 
 <div class="container">
   
-  <div class="jumbotron my-4 py-4 bg-light">
+  <div class="jumbotron my-3 py-4">
+      <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
       <h1>Editar perfil</h1>
       <a href="inicioSesion.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
   </div>

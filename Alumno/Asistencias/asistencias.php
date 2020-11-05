@@ -17,9 +17,9 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
-    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 12")->fetch_assoc(); // <-- Cambia
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 18")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
 
     while ($fn = $consultaFunciones->fetch_assoc()) {
@@ -60,6 +60,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
+
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
@@ -68,10 +69,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
 <div class="container">
-    <h6>Rol: <?php echo "$nombreRol" ?></h6>
+    
     <div class="py-4 my-3 jumbotron">
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Información de asistencias</h1>
-        <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
+        <a class="btn btn-info" href="/DayClass/Index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
     <div class="form-group">
         <?php
@@ -80,7 +82,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $currentDateTime = date('Y-m-d');
 
         //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
-        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE usuario_id = '" . $_SESSION['alumno']['id'] . "' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
+        $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '" . $_SESSION['usuario']['id'] . "' AND `fechaDesdeAlumCurAc` <= '$currentDateTime' AND  `fechaHastaAlumCurAc` >= '$currentDateTime'");
 
         if (($consulta1->num_rows) == 0) {
             echo "<div class='alert alert-warning' role='alert'>
@@ -139,7 +141,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         </table>
     </div>
 </div>
-<input type="text" id="id_alumno" <?php echo "value='" . $_SESSION['alumno']['id'] . "'"; ?> hidden>
+<input type="text" id="id_alumno" <?php echo "value='" . $_SESSION['usuario']['id'] . "'"; ?> hidden>
 <button class="btn btn-danger mt-2 mr-2" id="btnLimpiar" hidden><i class="fa fa-eraser mr-1"></i>Limpiar graficos</button>
 <button class="btn btn-warning mt-2 mr-2" id="btnLimpiarDT" hidden><i class="fa fa-eraser mr-1"></i>Limpiar DataTable</button>
 
@@ -149,9 +151,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-<?php
-include "../modal-autoasistencia.php";
-?>
+<script>
+  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
+</script>
 
 <?php
 include "../../footer.html";

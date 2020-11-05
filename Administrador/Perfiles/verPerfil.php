@@ -98,8 +98,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         ?>
         
         <a href="/DayClass/Administrador/Perfiles/perfiles.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
-        <button type="button" class="btn btn-warning" onclick="habilitarFunciones()" <?php if($permiso["nombrePermiso"] == "ALUMNO"){echo "disabled";} ?>><i class="fa fa-pencil-square-o mr-1"></i>Modificar Permisos</button>
-        <button class="btn btn-secondary" data-toggle="modal" data-target="#modificarRol" <?php if($permiso["nombrePermiso"] == "ALUMNO" || $permiso["nombrePermiso"] == "DOCENTE"){echo "disabled";} ?>><i class="fa fa-pencil-square-o mr-1"></i>Modificar Rol</button>
+        <button type="button" class="btn btn-warning" onclick="habilitarFunciones()"><i class="fa fa-pencil-square-o mr-1"></i>Modificar Permisos</button>
+        <button class="btn btn-secondary" data-toggle="modal" data-target="#modificarRol"><i class="fa fa-pencil-square-o mr-1"></i>Modificar Rol</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#ingresarUnUsuario"><i class="fa fa-user-plus mr-1"></i>Agregar Usuario</button>
         <button class="btn btn-success" data-toggle="modal" data-target="#ingresarUsuarios"><i class="fa fa-upload mr-1"></i>Importar Lista de Usuarios</button>
         

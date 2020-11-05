@@ -17,7 +17,7 @@ if (!isset($_SESSION['usuario'])) {
 
 if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
-    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."'");
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
     $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 11")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
@@ -68,8 +68,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 </style>
 <div class="container">
     <div class="py-4 my-3 jumbotron">
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Justificativos</h1>
-        <a class="btn btn-info" href="/DayClass/Alumno/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
+        <a class="btn btn-info" href="/DayClass/Index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
 
     <?php
@@ -119,24 +120,34 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
           <label for="materias">Seleccione las materias que correspondan:</label><br>
           <h9 id="msgMaterias"></h9>
           <div class="form-group" id="materias">
-            <div>
-              <input type='checkbox' onchange='seleccionarTodos();' id='checkTodos'><label class='m-2'>Todas</label>
-            </div>
+            
             <?php
               include "../../databaseConection.php";
 
               //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
-              $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['alumno']['id']."'");
+              $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['usuario']['id']."'");
               
-              while ($alumnocursoactual = $consulta1->fetch_assoc()) {
-                  
-                //Por cada instancia de AlumnoCursoActual se obtiene el curso asociado
-                  $curso = $con->query("SELECT * FROM curso WHERE id = '".$alumnocursoactual['curso_id']."'")->fetch_assoc();
+              
+              
+              if(($consulta1->num_rows) == 0){
+                  echo "<div class='alert alert-warning' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no esta asoaciado a ningun curso para cargar justificativos.</h5>
+                        </div>";
+              }else{
+                  while ($alumnocursoactual = $consulta1->fetch_assoc()) {
 
-                  echo "<div>
-                  <input class='checkMateria' type='checkbox' onchange='validar_checkbox()' name='materia[]' value='".$curso['id']."'><label class='m-2'>".$curso['nombreCurso']."</label>
-                </div>";
+                    //Por cada instancia de AlumnoCursoActual se obtiene el curso asociado
+                      $curso = $con->query("SELECT * FROM curso WHERE id = '".$alumnocursoactual['curso_id']."'")->fetch_assoc();
 
+                      echo "
+                      <div>
+                        <input type='checkbox' onchange='seleccionarTodos();' id='checkTodos'><label class='m-2'>Todas</label>
+                    </div>
+                      <div>
+                      <input class='checkMateria' type='checkbox' onchange='validar_checkbox()' name='materia[]' value='".$curso['id']."'><label class='m-2'>".$curso['nombreCurso']."</label>
+                    </div>";
+
+                  }
               }
               date_default_timezone_set('America/Argentina/Buenos_Aires');
             ?>
@@ -172,7 +183,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     <h4>Estado de tus justificativos</h4>
     <div class="table-responsive" id="pendientes">
       <?php
-        $consulta2 = $con->query("SELECT * FROM justificativo WHERE alumno_id ='".$_SESSION['alumno']['id']."' ORDER BY fechaPresentacion");
+        $consulta2 = $con->query("SELECT * FROM justificativo WHERE alumno_id ='".$_SESSION['usuario']['id']."' ORDER BY fechaPresentacion");
         if(!$consulta2->num_rows == 0){
           echo "<table class='table table-bordered table-secondary table-hover'>
           <thead>
@@ -214,9 +225,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <script src="../alumno.js"></script>
 <script src="justitificativos.js"></script>
 
-<?php
-include "../modal-autoasistencia.php";
-?>
+<script>
+  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
+</script>
 
 <?php
 include "../../footer.html";

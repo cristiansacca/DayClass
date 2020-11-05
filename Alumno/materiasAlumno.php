@@ -67,8 +67,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <div class="container ">
     <div class="py-4 my-3 jumbotron">
         <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
-        <h1>Materias en las que está inscripto</h1>
-        <a class="btn btn-info" href="/DayClass/index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
+        <h1>Cursos en los que está inscripto</h1>
+        <a class="btn btn-info" href="/DayClass/Index.php"><i class="fa fa-arrow-circle-left mr-2"></i>Volver</a>
     </div>
     <!-- Page Features -->
     <div class="row text-center my-5">
@@ -86,7 +86,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
         if (($consulta1->num_rows) == 0) {
             echo "<div class='alert alert-warning' role='alert'>
-                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no esta inscripto a ninguna materia.</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no esta inscripto a ningun curso.</h5>
                 </div>";
         } else {
             while ($alumnocursoactual = $consulta1->fetch_assoc()) {
@@ -115,7 +115,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
                     //Por cada CargoProfesor obtiene el profesor
                     $id_prof = $cargoprofesor['profesor_id'];
-                    $profesor = $con->query("SELECT * FROM usuario WHERE id = '$id_prof' AND fechaAltaProf <= '$currentDateTime' AND fechaBajaUsuario IS NULL")->fetch_assoc();
+                    $profesor = $con->query("SELECT * FROM usuario WHERE id = '$id_prof' AND fechaAltaUsuario <= '$currentDateTime' AND fechaBajaUsuario IS NULL")->fetch_assoc();
 
                     echo "<li>" . $cargo['nombreCargo'] . ": " . $profesor['nombreUsuario'] . " " . $profesor['apellidoUsuario'] . "</li>";
                 }
@@ -140,7 +140,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <script src="alumno.js"></script>
 <script>
-  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['alumno']['nombreAlum'] . " " . $_SESSION['alumno']['apellidoAlum'] . "'" ?>
+  <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
 <?php
