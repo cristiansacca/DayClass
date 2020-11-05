@@ -112,6 +112,10 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                 case 3:
                     echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al guardar los datos de asistencia.</h5>";
                     break;
+                case 4:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos libres el dia de hoy, intente nuevamente mañana.</h5>";
+                    break;
+                
                 default:
                 echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Error.</h5>";
                     break;
@@ -157,7 +161,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                                 <h5 class='font-weight-normal'></h5>
                             </div>
                             <div class='card-footer'>
-                                <a href='$paginaFuncion' class='btn btn-success'>Ingresar</a>
+                                <a href='$paginaFuncion' class='btn btn-primary'><i class='fa fa-chevron-circle-right mr-1'></i>Ingresar</a>
                             </div>
                         </div>
                     </div>";

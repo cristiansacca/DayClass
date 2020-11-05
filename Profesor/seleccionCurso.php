@@ -32,6 +32,14 @@ if(isset($codigoFuncion)){
         case 15:
             $href = "/DayClass/Profesor/PizarraNovedades/pizarra.php";
             break;
+        case 16:
+            $href = "/DayClass/Profesor/Estadisticas/estadistica_curso.php";
+            break;
+        case 23:
+            $href = "/DayClass/Profesor/Reportes/reporte_curso.php";
+            break;
+        
+        
         default:
             $href = "/DayClass/Profesor/seleccionCurso.php?error=1";
             break;

@@ -76,7 +76,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     $selectAlumnosLibresHoy = $con->query("SELECT `id`, `fechaAlumnosLibres`, `id_admin` FROM `alumnosLibres` WHERE alumnoslibres.fechaAlumnosLibres LIKE '$currentDate%'");
     
     if(($selectAlumnosLibresHoy->num_rows) != 0){
-        header("location: /DayClass/Usuario/inicioSesion.php?resultado=1");
+        header("location: /DayClass/Usuario/inicioSesion.php?error=4");
     }
 
 ?>
