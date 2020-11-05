@@ -59,7 +59,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
   $_SESSION['tiempo'] = time();
 
 //-----------------------------------------------------------------------------------------------------------------------------
-
+$id_curso = $_POST['idCursoEditar'];
+$fecha = $_POST['fechaEditar'];
 
 $consultaAsistencias = $con->query("SELECT alumno.id, alumno.apellidoAlum, alumno.nombreAlum, alumno.legajoAlumno, asistenciadia.tipoAsistencia_id, tipoasistencia.nombreTipoAsistencia
 FROM asistenciadia, alumno, asistencia, tipoasistencia

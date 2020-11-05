@@ -110,8 +110,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     ?>
 
-    <div class="my-3">
-        <h4 class="font-weight-normal">Seleccione una materia, un curso y una fecha para ver las asistencias.</h4>
+    <div class="alert alert-info my-3" role="alert">
+        <h5 class="font-weight-normal"><i class="fa fa-info-circle mr-2"></i>Seleccione una materia, un curso y una fecha para ver las asistencias.</h5>
     </div>
     <div class="row mb-2">
         <div class="col-md-4 mb-2">
@@ -262,8 +262,12 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     document.getElementById("materia").onchange = function() {
         $("#fecha").attr("disabled", "disabled");
+        $("#fecha").val("");
         $("#curso").attr("disabled", "disabled");
+        $("#curso").val("");
         document.getElementById("tablaAsistencia").hidden = true;
+        document.getElementById("sinAsistencias").hidden = true;
+        document.getElementById("diaCursado").hidden = true;
         document.getElementById("tbodyAsistencia").innerHTML = "";
         var id_materia = document.getElementById("materia").value;
         var datos = {
@@ -297,6 +301,10 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     document.getElementById("curso").onchange = function() {
         var id_curso = document.getElementById("curso").value;
+        document.getElementById("tablaAsistencia").hidden = true;
+        document.getElementById("sinAsistencias").hidden = true;
+        document.getElementById("diaCursado").hidden = true;
+        $("#fecha").val("");
         var datos = {
             id_curso: id_curso
         }

@@ -60,6 +60,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
+$id_curso = $_POST['idCursoCargar'];
+$fecha = $_POST['fechaCargar'];
+
 $consultaInscriptos = $con->query("SELECT alumno.id, legajoAlumno, nombreAlum, apellidoAlum, nombreCurso FROM alumno, asistencia, curso  WHERE asistencia.alumno_id = alumno.id AND asistencia.curso_id = curso.id AND curso.id = '$id_curso' ORDER BY apellidoAlum ASC");
 
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
@@ -76,7 +79,11 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
         <h4 class="font-weight-normal"><b>Curso: </b><?php echo $nombreCurso['nombreCurso'] ?></h4>
         <h4 class="font-weight-normal"><b>Fecha: </b><?php echo $fecha ?></h4>
     </div>
-    <div class="table-responsive">
+    <input type="text" id="cantInscriptos" <?php echo "value='".$consultaInscriptos->num_rows."'"; ?> hidden>
+    <div id="sinInscriptos" class="alert alert-warning" role="alert" hidden>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay alumnos inscriptos en el curso seleccionado.</h5>
+    </div>
+    <div class="table-responsive" id="tablaAsistencias" hidden>
         <table class="table table-secondary table-bordered">
             <thead>
                 <th>Legajo</th>
@@ -105,6 +112,18 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
 
 <script>
     colorearAsistencia();
+    verificarSiHayInscriptos();
+
+    function verificarSiHayInscriptos(){
+        var cantidad = document.getElementById("cantInscriptos").value;
+        if(cantidad == 0){
+            document.getElementById('sinInscriptos').hidden = false;
+            document.getElementById('tablaAsistencias').hidden = true;
+        } else {
+            document.getElementById('tablaAsistencias').hidden = false;
+            document.getElementById('sinInscriptos').hidden = true;
+        }
+    }
 
     function guardarCambios(){
         var datos = [];
