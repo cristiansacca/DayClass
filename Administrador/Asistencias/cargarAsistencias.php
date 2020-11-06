@@ -63,7 +63,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 $id_curso = $_POST['idCursoCargar'];
 $fecha = $_POST['fechaCargar'];
 
-$consultaInscriptos = $con->query("SELECT alumno.id, legajoAlumno, nombreAlum, apellidoAlum, nombreCurso FROM alumno, asistencia, curso  WHERE asistencia.alumno_id = alumno.id AND asistencia.curso_id = curso.id AND curso.id = '$id_curso' ORDER BY apellidoAlum ASC");
+$consultaInscriptos = $con->query("SELECT usuario.id, legajoUsuario, nombreUsuario, apellidoUsuario, nombreCurso FROM usuario, asistencia, curso  WHERE asistencia.alumno_id = usuario.id AND asistencia.curso_id = curso.id AND curso.id = '$id_curso' ORDER BY apellidoUsuario ASC");
 
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
 
@@ -96,9 +96,9 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
             <?php
                 while($i = $consultaInscriptos->fetch_assoc()){
                     echo "<tr>
-                        <td>".$i['legajoAlumno']."</td>
-                        <td>".$i['apellidoAlum']."</td>
-                        <td>".$i['nombreAlum']."</td>
+                        <td>".$i['legajoUsuario']."</td>
+                        <td>".$i['apellidoUsuario']."</td>
+                        <td>".$i['nombreUsuario']."</td>
                         <td name='asistencias' id='".$i['id']."'>PRESENTE</td>
                         <td class='text-center'><button onclick='modificar(".$i['id'].");' class='btn btn-warning'><i class='fa fa-retweet'></i></button></td>
                     </tr>";

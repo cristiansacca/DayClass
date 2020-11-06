@@ -61,16 +61,18 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 //-----------------------------------------------------------------------------------------------------------------------------
 $id_curso = $_POST['idCursoEditar'];
 $fecha = $_POST['fechaEditar'];
+$fecha1 = $fecha.' 00:00:00';
+$fecha2 = $fecha.' 23:59:59';
 
-$consultaAsistencias = $con->query("SELECT alumno.id, alumno.apellidoAlum, alumno.nombreAlum, alumno.legajoAlumno, asistenciadia.tipoAsistencia_id, tipoasistencia.nombreTipoAsistencia
-FROM asistenciadia, alumno, asistencia, tipoasistencia
+$consultaAsistencias = $con->query("SELECT usuario.id, usuario.apellidoUsuario, usuario.nombreUsuario, usuario.legajoUsuario, asistenciadia.tipoAsistencia_id, tipoasistencia.nombreTipoAsistencia
+FROM asistenciadia, usuario, asistencia, tipoasistencia
 WHERE asistencia.curso_id = '$id_curso'
-    AND asistencia.alumno_id = alumno.id 
+    AND asistencia.alumno_id = usuario.id 
     AND asistenciadia.fechaHoraAsisDia >= '$fecha1' 
     AND asistenciadia.fechaHoraAsisDia <= '$fecha2' 
     AND asistenciadia.asistencia_id = asistencia.id
     AND asistenciadia.tipoAsistencia_id = tipoasistencia.id
-    ORDER BY alumno.apellidoAlum ASC");
+    ORDER BY usuario.apellidoUsuario ASC");
 
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
 
@@ -99,9 +101,9 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
             <?php
                 while($i = $consultaAsistencias->fetch_assoc()){
                     echo "<tr>
-                        <td>".$i['legajoAlumno']."</td>
-                        <td>".$i['apellidoAlum']."</td>
-                        <td>".$i['nombreAlum']."</td>
+                        <td>".$i['legajoUsuario']."</td>
+                        <td>".$i['apellidoUsuario']."</td>
+                        <td>".$i['nombreUsuario']."</td>
                         <td name='asistencias' id='".$i['id']."'>".$i['nombreTipoAsistencia']."</td>
                         <td class='text-center'><button onclick='modificar(".$i['id'].");' class='btn btn-warning'><i class='fa fa-retweet'></i></button></td>
                     </tr>";
