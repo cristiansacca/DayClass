@@ -113,7 +113,10 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al guardar los datos de asistencia.</h5>";
                     break;
                 case 4:
-                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos libres el dia de hoy, intente nuevamente mañana.</h5>";
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos libres el día de hoy, intente nuevamente mañana.</h5>";
+                    break;
+                case 5:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No es el día u horario de cursado.</h5>";
                     break;
                 
                 default:

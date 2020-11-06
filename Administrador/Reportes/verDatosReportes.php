@@ -55,7 +55,7 @@ function planillaAlumno($id_curso, $id_alumno, $fechaDesde, $fechaHasta)
 
 
     //Datos asistencias en el periodo seleccionado 
-    $selectAsistenciasDiaAlumnoCurso = $con->query("SELECT asistenciadia.id, asistenciadia.fechaHoraAsisDia, tipoasistencia.nombreTipoAsistencia FROM `asistenciadia`, asistencia, usuario, curso, tipoasistencia WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' AND curso.id = '$id_curso' AND usuario.id = asistencia.alumno_id AND curso.id = asistencia.curso_id AND asistenciadia.asistencia_id = asistencia.id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id ORDER BY `fechaHoraAsisDia` ASC");
+    $selectAsistenciasDiaAlumnoCurso = $con->query("SELECT asistenciadia.id, asistenciadia.fechaHoraAsisDia, tipoasistencia.nombreTipoAsistencia FROM `asistenciadia`, asistencia, usuario, curso, tipoasistencia WHERE usuario.id = '$id_alumno'  AND curso.id = '$id_curso' AND usuario.id = asistencia.alumno_id AND curso.id = asistencia.curso_id AND asistenciadia.asistencia_id = asistencia.id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id ORDER BY `fechaHoraAsisDia` ASC");
 
 
     //cambiar formato fechas 
@@ -67,7 +67,7 @@ function planillaAlumno($id_curso, $id_alumno, $fechaDesde, $fechaHasta)
 
     //BUSCAR TODOS LOS DATOS  
     //Datos alumno
-    $selectAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND usuario.fechaAltaUsuario <= '$currentDate' AND usuario.fechaBajaUsuario IS NULL AND usuario.id_permiso = '$id_permiso'");
+    $selectAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND usuario.fechaAltaUsuario <= '$currentDate' AND usuario.fechaBajaUsuario IS NULL");
     $alumno = $selectAlumno->fetch_assoc();
     $nombreAlumno = utf8_decode($alumno["nombreUsuario"]);
     $apellidoAlumno = utf8_decode($alumno["apellidoUsuario"]);
@@ -226,7 +226,7 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
     $selectFechas = $con->query("SELECT DISTINCT asistenciadia.fechaHoraAsisDia FROM `asistencia`, asistenciadia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' ORDER BY `fechaHoraAsisDia` ASC");
 
     //Datos asistencias, de los alumnos en el periodo seleccionado
-    $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, usuario.id, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.legajoUsuario FROM usuario, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = usuario.id AND usuario.id_permiso = '$id_permiso' ORDER BY usuario.apellidoUsuario ASC");
+    $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, usuario.id, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.legajoUsuario FROM usuario, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = usuario.id ORDER BY usuario.apellidoUsuario ASC");
 
     //Datos curso
     $selectCurso = $con->query("SELECT * FROM `curso` WHERE curso.id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL");
@@ -524,8 +524,7 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
     $pdf->Output("report.pdf", "I");
 }
 
-function planillaMateria($id_materia, $fechaDesde, $fechaHasta)
-{
+function planillaMateria($id_materia, $fechaDesde, $fechaHasta){
     include "../../databaseConection.php";
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');

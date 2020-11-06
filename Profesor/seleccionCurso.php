@@ -38,6 +38,9 @@ if(isset($codigoFuncion)){
         case 23:
             $href = "/DayClass/Profesor/Reportes/reporte_curso.php";
             break;
+        case 24:
+            $href = "/DayClass/Profesor/verDatosCurso.php";
+            break;
         
         
         default:

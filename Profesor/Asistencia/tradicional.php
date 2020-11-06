@@ -75,7 +75,7 @@ if (isset($_GET["id_curso"])) {
         header("location:/DayClass/Usuario/inicioSesion.php?error=1");
     }
 } else {
-    header("location:/DayClass/Usuario/inicioSesion.php?error=3");
+    header("location:/DayClass/Usuario/inicioSesion.php?error=2");
 }
 
 if (isset($_GET["id_curso"])) {
@@ -147,7 +147,7 @@ if (isset($_GET["id_curso"])) {
 
     if ($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien) {
     } else {
-        header("location:/DayClass/Usuario/inicioSesion.php?error=2");
+        header("location:/DayClass/Usuario/inicioSesion.php?error=5");
     }
 }
 

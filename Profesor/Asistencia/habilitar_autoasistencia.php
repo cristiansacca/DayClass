@@ -60,29 +60,94 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 //-----------------------------------------------------------------------------------------------------------------------------
   
-if(isset($_GET["id_curso"])){
+if (isset($_GET["id_curso"])) {
     $id_curso = $_GET["id_curso"];
 
     $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
     $curso = $consulta1->fetch_assoc();
-    
+
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $currentDate = date('Y-m-d');
+
+    $consultaAsistMismoDia = $con->query("SELECT * FROM asistenciadia, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
+
+    if (($consultaAsistMismoDia->num_rows) != 0) {
+        header("location:/DayClass/Usuario/inicioSesion.php?error=1");
+    }
 } else {
     header("location:/DayClass/Usuario/inicioSesion.php?error=2");
 }
 
-date_default_timezone_set('America/Argentina/Buenos_Aires');
-$currentDate = date('Y-m-d');
+if (isset($_GET["id_curso"])) {
+    $id_curso = $_GET["id_curso"];
 
-//se consulta si ya se tomo asistencia en ese curso en el dia de hoy
-$consultaAsistMismoDia = $con->query("SELECT * FROM `asistenciadia`, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
+    $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+    $curso = $consulta1->fetch_assoc();
 
-//si ya se tomo asistencia, redirige al index curso con mensaje de error
+    $id_prof = $_SESSION['usuario']["id"];
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $currentDateTime = date('Y-m-d');
 
-if(isset($_GET['codigo']) || isset($_GET['error'])){  
-    
-}else{
-    if(($consultaAsistMismoDia->num_rows)!=0){
-        header("location: /DayClass/Usuario/inicioSesion.php?error=1");
+    $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
+    FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
+    WHERE usuario.id = '$id_prof' 
+        AND cargoprofesor.profesor_id = usuario.id 
+        AND cargoprofesor.curso_id = curso.id 
+        AND cargoprofesor.cargo_id = cargo.id 
+        AND cargoprofesor.curso_id = '$id_curso' 
+        AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
+        AND cargoprofesor.fechaHastaCargo IS NULL 
+        AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id 
+        AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id 
+        AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' 
+        AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' 
+            OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+
+    $resultadoProf = $consulta3->fetch_assoc();
+    $estadoCargo = $resultadoProf['nombreEstadoCargoProfe'];
+
+    $hab = false;
+    //si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
+    if ($estadoCargo == "Activo") {
+        $hab = true;
+    }
+
+
+    $consultaDiasHorasCurso = $con->query("SELECT cursodia.dayName, horariocurso.horaInicioCurso, horariocurso.horaFinCurso FROM horariocurso, cursodia, curso WHERE curso.id ='$id_curso' AND horariocurso.curso_id = curso.id AND horariocurso.cursoDia_id = cursodia.id ");
+
+    $tieneDiaHora = false;
+    $diaHoraBien = false;
+    $diaBien = false;
+    $horaBien = false;
+    if (!($consultaDiasHorasCurso) == 0) {
+        $tieneDiaHora = true;
+        $curretDay = date('l', strtotime($currentDateTime));
+        $currentTime = date('H:i:s');
+        while ($rtdoDiasHoras = $consultaDiasHorasCurso->fetch_assoc()) {
+            $dayName = $rtdoDiasHoras['dayName'];
+
+            if ($dayName == $curretDay) {
+                $diaBien = true;
+                $horaInicio = $rtdoDiasHoras['horaInicioCurso'];
+                $horaFin = $rtdoDiasHoras['horaFinCurso'];
+
+                if ($currentTime >= $horaInicio && $currentTime <= $horaFin) {
+                    $horaBien = true;
+
+
+                    if ($horaBien && $diaBien) {
+                        $diaHoraBien = true;
+
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if ($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien) {
+    } else {
+        header("location:/DayClass/Usuario/inicioSesion.php?error=5");
     }
 }
 
