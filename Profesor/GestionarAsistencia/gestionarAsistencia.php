@@ -1,11 +1,11 @@
 <?php
 //Se inicia o restaura la sesión
-session_start();
+
 
 include "../../header.html";
 include "../../databaseConection.php";
 
-
+session_start();
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
 $funcionCorrecta = false;
 $nombreRol = "Sin rol asignado";
@@ -19,7 +19,7 @@ if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_perm
     $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
     $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
 
-    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 8")->fetch_assoc(); // <-- Cambia
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 25")->fetch_assoc(); // <-- Cambia
     $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
 
     while ($fn = $consultaFunciones->fetch_assoc()) {
@@ -66,7 +66,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     <div class="jumbotron my-4 py-4">
         <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Asistencias</h1>
-        <a href="/DayClass/Index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php
@@ -113,32 +113,53 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     <div class="alert alert-info my-3" role="alert">
         <h5 class="font-weight-normal"><i class="fa fa-info-circle mr-2"></i>Seleccione una materia, un curso y una fecha para ver las asistencias.</h5>
     </div>
-    <div class="row mb-2">
-        <div class="col-md-4 mb-2">
-            <label for="materia">Materia:</label>
-            <select name="materia" id="materia" class="custom-select">
-                <option value="">Materias</option>
+    <div class="mb-2">
+        
+            
+                
                 <?php
-                $consultaMateria = $con->query("SELECT * FROM materia WHERE fechaBajaMateria IS NULL ORDER BY nombreMateria, nivelMateria ASC");
+                
+                $id_prof = $_SESSION['usuario']['id'];
+                date_default_timezone_set('America/Argentina/Buenos_Aires');
+                $currentDateTime = date('Y-m-d');
+                $consultaCargo = $con->query("SELECT * FROM cargoprofesor WHERE profesor_id= '$id_prof' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL");
+        
 
-                while ($materia = $consultaMateria->fetch_assoc()) {
-                    echo "<option value='" . $materia['id'] . "'>" . $materia['nombreMateria'] . " (Nivel " . $materia['nivelMateria'] . ")</option>";
+                if(mysqli_num_rows($consultaCargo)>0){
+                    echo "
+                    <div class=' row mb-2'>
+                        <div class='col-md-6 mb-2'>
+                            <label for='curso'>Curso:</label>
+                                <select name='curso' id='curso' class='custom-select'>
+                                    <option value=''>Curso</option>";
+
+                                        while ($cargos = $consultaCargo->fetch_assoc()) {
+
+                                            $consultaCursos = $con->query("SELECT * FROM curso WHERE id='" . $cargos['curso_id'] . "' AND fechaHastaCurActul IS NULL");
+                                            $resultadoCursos = $consultaCursos->fetch_assoc();
+                                            $cargoProf = $con->query("SELECT * FROM cargo WHERE id='" . $cargos['cargo_id'] . "'")->fetch_assoc();
+
+                                            echo "<option value='" . $resultadoCursos["id"]  . "'>" . $resultadoCursos["nombreCurso"] . "</option>";
+                                        }
+
+                    echo "</select> 
+                        </div>
+                            <div class='col-md-6 mb-2'>
+                                <label for='fecha'>Fecha:</label>
+                                    <input type='date' name='fecha' id='fecha' class='form-control' disabled>
+                            </div> 
+                         </div>";
+
+                }else{
+                     echo "<div class='alert alert-warning text-left' role='alert'  style='width: 100%;'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no lo han asignado a un curso.</h5>
+                    </div>";
                 }
-
                 ?>
-            </select>
+            
         </div>
-        <div class="col-md-4 mb-2">
-            <label for="curso">Curso:</label>
-            <select name="curso" id="curso" class="custom-select" disabled>
-                <option value="">Cursos</option>
-            </select>
-        </div>
-        <div class="col-md-4 mb-2">
-            <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" id="fecha" class="form-control" disabled>
-        </div>
-    </div>
+        
+        
 
     <div class="mb-4" id="sinAsistencias" hidden>
         <div class="alert alert-warning" role="alert">
@@ -176,7 +197,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 </div>
 
-<script src="../administrador.js"></script>
+<script src="../profesor.js"></script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
@@ -258,45 +279,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             document.getElementById("sinAsistencias").hidden = true;
             document.getElementById("diaCursado").hidden = false;
         }
-    }
-
-    document.getElementById("materia").onchange = function() {
-        $("#fecha").attr("disabled", "disabled");
-        $("#fecha").val("");
-        $("#curso").attr("disabled", "disabled");
-        $("#curso").val("");
-        document.getElementById("tablaAsistencia").hidden = true;
-        document.getElementById("sinAsistencias").hidden = true;
-        document.getElementById("diaCursado").hidden = true;
-        document.getElementById("tbodyAsistencia").innerHTML = "";
-        var id_materia = document.getElementById("materia").value;
-        var datos = {
-            id_materia: id_materia
-        }
-
-        $.ajax({
-            url: '/DayClass/Administrador/Estadisticas/listarCursos.php',
-            type: 'POST',
-            data: datos,
-            success: function(datosRecibidos) {
-                //alert(datosRecibidos);
-                json = JSON.parse(datosRecibidos);
-                var contenido;
-                if (json.length != 0) {
-                    contenido = "<option value='' selected>Seleccione</option>";
-                    for (let index = 0; index < json.length; index++) {
-                        contenido += "<option value='" + json[index].id + "'>" + json[index].nombreCurso + "</option>";
-                        document.getElementById("curso").innerHTML = contenido;
-                        $("#curso").removeAttr("disabled");
-                    }
-                } else {
-                    contenido = "<option value='' selected>No hay cursos</option>";
-                    document.getElementById("curso").innerHTML = contenido;
-                    $("#curso").attr("disabled", "disabled");
-                }
-
-            }
-        })
     }
 
     document.getElementById("curso").onchange = function() {
