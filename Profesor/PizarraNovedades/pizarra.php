@@ -76,7 +76,7 @@ $_SESSION["usuario"] = $con->query("SELECT * FROM usuario WHERE id = '" . $_SESS
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <h6><b>Rol: </b> <?php echo $nombreRol ?></h6>
+        <p><b>Rol: </b> <?php echo $nombreRol ?></p>
         <h1>Pizarra de novedades</h1>
         <h4 class="font-weight-normal"><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>

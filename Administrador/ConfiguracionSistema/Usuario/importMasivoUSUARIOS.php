@@ -1,4 +1,5 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
@@ -7,10 +8,34 @@ include "../../class.upload.php"; //libreria para subir el archivo excel al serv
 include "../../../header.html";
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['usuario'])) 
-{
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 19")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/Usuario/inicioSesion.php?error=0");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -33,6 +58,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
   
 ?>
 <div class="container" hidden><!--Oculta todos los Notice que muestra por el error en la libreria-->
@@ -253,7 +280,7 @@ function validarDNI($dni){
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
-        <p class="card-text">Administrador</p>
+        <p><b>Rol: </b><?php echo $nombreRol ?></p>
         <h1>Alta de usuarios</h1>
         <a href="/DayClass/Administrador/ConfiguracionSistema/Usuario/configUsuario.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
@@ -274,7 +301,7 @@ function validarDNI($dni){
     
     if(count($formatoIncorrecto) > 0){
         echo "<div class='alert alert-warning mt-4' role='alert'>
-            <h5><i class='fa fa-exclamation-circle mr-2'></i>usuarios que tienen formato de legajo o DNI incorrecto:</h5>
+            <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios que tienen formato de legajo o DNI incorrecto:</h5>
         <ul>";
 
         for ($i=0; $i < count($formatoIncorrecto) ; $i++) { 
@@ -288,7 +315,7 @@ function validarDNI($dni){
 
     if (count($correcto) > 0) {
         echo "<div class='alert alert-success mt-4' role='alert'>
-        <h5><i class='fa fa-exclamation-circle mr-2'></i>usuarios ingresados en el sistema satisfactoriamente:</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios ingresados en el sistema correctamente:</h5>
     <ul>";
 
         for ($i = 0; $i < count($correcto); $i++) {

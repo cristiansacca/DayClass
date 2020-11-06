@@ -79,7 +79,7 @@ $currentDate = date('Y-m-d');
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
-        <h6><b>Rol: </b> <?php echo $nombreRol ?></h6>
+        <p><b>Rol: </b> <?php echo $nombreRol ?></p>
         <h1> Estadística de asistencias</h1>
         <h4 class="font-weight-normal my-2"><?php echo $curso["nombreCurso"] ?></h4>
         <a href="/DayClass/Usuario/inicioSesion.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
