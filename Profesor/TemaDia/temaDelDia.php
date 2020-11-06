@@ -5,31 +5,60 @@ session_start();
 include "../../header.html";
 include "../../databaseConection.php";
 
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['profesor'])) {
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 4")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
-if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-
+  
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if ($vida_session > $_SESSION['limite']) {
+    if($vida_session > $_SESSION['limite'])
+    {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();
+        session_destroy();              
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-
+  
         exit();
     }
-}
-$_SESSION['tiempo'] = time();
+  }
+  $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //Si la variable id_curso no está definida se vuelve al index
 if (isset($_GET["id_curso"])) {
@@ -59,12 +88,12 @@ if ($programa_id != "" || $programa_id != null) {
 }
 
 
-$id_prof = $_SESSION['profesor']["id"];
+$id_prof = $_SESSION['usuario']["id"];
 $id_curso = $_GET["id_curso"];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d');
 
-$consulta1 = $con->query("SELECT profesor.id, profesor.legajoProf, profesor.apellidoProf, profesor.nombreProf, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, profesor, cargoprofesorestado, estadocargoprofesor, cargo WHERE profesor.id = '$id_prof' AND cargoprofesor.profesor_id = profesor.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+$consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo WHERE usuario.id = '$id_prof' AND cargoprofesor.profesor_id = usuario.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
 
 $resultadoProf = $consulta1->fetch_assoc();
 $estadoCargo = $resultadoProf['nombreEstadoCargoProfe'];
@@ -149,13 +178,15 @@ if (($fechaD > $currentDateTime)) {
 
 
 ?>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
+        <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Tema del día</h1>
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
-        <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Index.php'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <button class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop1"><i class="fa fa-bookmark mr-2"></i>Temas dados</button>
     </div>
 
@@ -236,10 +267,7 @@ if (($fechaD > $currentDateTime)) {
     }
     ?>
 
-    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo && !$diaSinClases)) {
-                                                                        } else {
-                                                                            echo "hidden";
-                                                                        }  ?>>
+    <form action="cargarTemaDia.php" method="POST" class=" form-group" <?php if (($hab && $diaHoraBien && $tieneDiaHora && $hayFechasCursado && $hayAlumnos && $habP && $cursadoFuturo && !$diaSinClases)) {} else {echo "hidden";}  ?>>
         <h5><i class='fa fa-exclamation-circle mr-2'></i>Indique el tema del día</h5>
         <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden>
         <div class="my-2  form-inline">
@@ -315,10 +343,10 @@ if (($fechaD > $currentDateTime)) {
 
                             while ($resultado1 = $consulta1->fetch_assoc()) {
                                 $profTema = $resultado1['profesor_id'];
-                                $datosProf = $con->query("SELECT * FROM `profesor` WHERE profesor.id = '$profTema'")->fetch_assoc();
+                                $datosProf = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$profTema'")->fetch_assoc();
 
-                                $nombreProf = $datosProf["nombreProf"];
-                                $apellidoProf = $datosProf["apellidoProf"];
+                                $nombreProf = $datosProf["nombreUsuario"];
+                                $apellidoProf = $datosProf["apellidoUsuario"];
 
 
                                 $date = date_create($resultado1['fechaTemaDia']);
@@ -359,7 +387,7 @@ if (($fechaD > $currentDateTime)) {
 <script src="../profesor.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['profesor']['nombreProf'] . " " . $_SESSION['profesor']['apellidoProf'] . "'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 <script src="fnTemaDia.js"></script>
 <?php

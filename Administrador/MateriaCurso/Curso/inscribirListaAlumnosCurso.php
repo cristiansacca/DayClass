@@ -163,8 +163,6 @@ if (isset($_FILES["inpGetFile"])) {
                             //se crea la instancia de planilla de asistencia que llevara la cuenta de las asistencias de los alumnos 
                             $resultadoInsertAsist = $con->query("INSERT INTO `asistencia`( `alumno_id`, `curso_id`, `fechaHastaFichaAsis`,`fechaDesdeFichaAsis`) VALUES ('$id_alumno','$id_curso','$fchHasta','$fchDesde')");
                             
-                            
-                            
                             //se crea la instancia de alumnocursoestado
                                 //traigo la instanccia recien creada de AlumnoCursoActual
                             $consultaAlumCurAct = $con->query("SELECT * FROM `alumnocursoactual` WHERE `fechaDesdeAlumCurAc` = '$fchDesde' AND `fechaHastaAlumCurAc` = '$fchHasta' AND `alumno_id` = '$id_alumno' AND `curso_id` = '$id_curso'");

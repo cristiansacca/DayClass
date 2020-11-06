@@ -21,7 +21,7 @@ $fechaHastaReporte = $currentDate . ' 23:59:59';
 $selectFechas = $con->query("SELECT DISTINCT asistenciadia.fechaHoraAsisDia FROM `asistencia`, asistenciadia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' ORDER BY `fechaHoraAsisDia` ASC");
 
 //Datos asistencias, de los alumnos en el periodo seleccionado
-$selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, alumno.id, alumno.nombreAlum, alumno.apellidoAlum, alumno.legajoAlumno FROM alumno, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = alumno.id ORDER BY alumno.apellidoAlum ASC");
+$selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, usuario.id, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.legajoUsuario FROM usuario, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = usuario.id ORDER BY usuario.apellidoUsuario ASC");
 
 
 //cambiar formato fechas 
@@ -160,13 +160,13 @@ while($cont < $cantFechas){
             
             $id_asistencia = $arregloIdAsistencias[$j];
             
-            $selectAlumno = $con->query("SELECT alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = alumno.id");
+            $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, usuario WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id");
 
             $alumno = $selectAlumno->fetch_assoc();
 
-            $nombreAlumno = utf8_decode($alumno["nombreAlum"]);
-            $apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
-            $legajoAlumno = $alumno["legajoAlumno"];
+            $nombreAlumno = utf8_decode($alumno["nombreUsuario"]);
+            $apellidoAlumno = utf8_decode($alumno["apellidoUsuario"]);
+            $legajoAlumno = $alumno["legajoUsuario"];
             $index = $j +1;
 
             $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
@@ -240,13 +240,13 @@ while($cont < $cantFechas){
             
             $id_asistencia = $arregloIdAsistencias[$j];
 
-            $selectAlumno = $con->query("SELECT alumno.legajoAlumno, alumno.apellidoAlum, alumno.nombreAlum FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = alumno.id");
+            $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, usuario WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id");
 
             $alumno = $selectAlumno->fetch_assoc();
 
-            $nombreAlumno = utf8_decode($alumno["nombreAlum"]);
-            $apellidoAlumno = utf8_decode($alumno["apellidoAlum"]);
-            $legajoAlumno = $alumno["legajoAlumno"];
+            $nombreAlumno = utf8_decode($alumno["nombreUsuario"]);
+            $apellidoAlumno = utf8_decode($alumno["apellidoUsuario"]);
+            $legajoAlumno = $alumno["legajoUsuario"];
             $index = $j +1;
 
             $nombreLista = "$index) $legajoAlumno - $nombreAlumno $apellidoAlumno";
@@ -304,13 +304,13 @@ while($cont < $cantFechas){
 }else{
     $mensaje = null;
     if(count($arregloFechasHoras) == 0 && count($arregloIdAsistencias) == 0){
-        $mensaje = "El curso no registra información de alumnos inscriptos, ni de asistencias";
+        $mensaje = "El curso no registra información de alumnos inscriptos, ni de asistencias.";
      
     }else{
         if(count($arregloFechasHoras) == 0){
-          $mensaje = "El curso no registra información de asistencias en el periodo seleccionado"; 
+          $mensaje = "El curso no registra información de asistencias en el periodo seleccionado."; 
         }else{
-           $mensaje = "El curso no registra información alumnos inscriptos en el periodo seleccionado" ;  
+           $mensaje = "El curso no registra información alumnos inscriptos en el periodo seleccionado." ;  
         }
     }
     
