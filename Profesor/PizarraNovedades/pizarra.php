@@ -1,35 +1,64 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
-include "../../header.html";
-include "../../databaseConection.php";
+include "../../header.html"; // <-- Cambia
+include "../../databaseConection.php"; // <-- Cambia
 
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['profesor'])) {
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
 
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 15")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/Usuario/inicioSesion.php?error=0");
+}
+
 //Comprobamos si esta definida la sesión 'tiempo'.
-if (isset($_SESSION['tiempo']) && isset($_SESSION['limite'])) {
+if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     //Calculamos tiempo de vida inactivo.
     $vida_session = time() - $_SESSION['tiempo'];
-
+  
     //Compraración para redirigir página, si la vida de sesión sea mayor a el tiempo insertado en inactivo.
-    if ($vida_session > $_SESSION['limite']) {
+    if($vida_session > $_SESSION['limite'])
+    {
         //Removemos sesión.
         session_unset();
         //Destruimos sesión.
-        session_destroy();
+        session_destroy();              
         //Redirigimos pagina.
         header("Location: /DayClass/index.php?resultado=3");
-
+  
         exit();
     }
-}
-$_SESSION['tiempo'] = time();
+  }
+  $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //Si la variable id_curso no está definida se vuelve al index
 if (isset($_GET["id_curso"])) {
@@ -38,15 +67,16 @@ if (isset($_GET["id_curso"])) {
     $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
     $curso = $consulta1->fetch_assoc();
 } else {
-    header("location:/DayClass/Profesor/index.php");
+    header("location:/DayClass/Usuario/inicioSesion.php?error=2");
 }
 
-$_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '" . $_SESSION['profesor']['id'] . "'")->fetch_assoc();
+$_SESSION["usuario"] = $con->query("SELECT * FROM usuario WHERE id = '" . $_SESSION['usuario']['id'] . "'")->fetch_assoc();
 
 ?>
 <div class="container">
 
     <div class="jumbotron my-4 py-4">
+        <h6><b>Rol: </b> <?php echo $nombreRol ?></h6>
         <h1>Pizarra de novedades</h1>
         <h4 class="font-weight-normal"><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/indexCurso.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
@@ -91,7 +121,7 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '" . $_SE
                         </thead>
                         <tbody id= 'Publicaciones'>";
                 while ($resultado2 = $consulta2->fetch_assoc()) {
-                    $profesor = $con->query("SELECT * FROM profesor WHERE id='" . $resultado2['profesor_id'] . "'")->fetch_assoc();
+                    $profesor = $con->query("SELECT * FROM usuario WHERE id='" . $resultado2['profesor_id'] . "'")->fetch_assoc();
                     $fechaFormateada = strftime("%d de %B del %Y %H:%M", strtotime($resultado2['fechaHoraNotif']));
                     echo "<tr>
                         <td><a>" . $resultado2['asunto'] . "</a></td>
@@ -168,12 +198,9 @@ $_SESSION["profesor"] = $con->query("SELECT * FROM profesor WHERE id = '" . $_SE
 
 <script src="../profesor.js"></script>
 <script src="fnVerNovedades.js"></script>
+
 <script>
-    document.getElementById("temaDia").innerHTML = <?php echo "'<a class=nav-link href=/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=" . $id_curso . "><i id=icono ></i>Tema del día</a>';"; ?>
-    $("#icono").addClass("fa fa-clipboard mr-1");
-</script>
-<script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['profesor']['nombreProf'] . " " . $_SESSION['profesor']['apellidoProf'] . "'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 <?php
 include "../../footer.html";

@@ -166,8 +166,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                                 <h5 class='font-weight-normal'></h5>
                             </div>
                             <div class='card-footer'>
-                                <a href='verPerfil.php?id_permiso=$id_permiso' class='btn btn-success'>Ver Rol</a>
-                                <a href='bajaPerfil.php?id=$id_permiso' class='$classHabilitado' onclick='return confirmDelete()'>Eliminar Rol</a>
+                                <a href='verPerfil.php?id_permiso=$id_permiso' class='btn btn-success'>Ver rol</a>
+                                <a href='bajaPerfil.php?id=$id_permiso' class='$classHabilitado' onclick='return confirmDelete()'>Eliminar rol</a>
                             </div>
                         </div>
                     </div>";
