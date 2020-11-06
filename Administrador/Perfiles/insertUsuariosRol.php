@@ -6,11 +6,37 @@ include "../../databaseConection.php";
 include "../class.upload.php"; //libreria para subir el archivo excel al servidor
 include "../../header.html";
 
+//-----------------------------------------------------------------------------------------------------------------------------
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
-if (!isset($_SESSION['administrador'])) 
-{
-   //Nos envía a la página de inicio
-   header("location:/DayClass/index.php"); 
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
+if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 22")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
 }
 
 //Comprobamos si esta definida la sesión 'tiempo'.
@@ -33,6 +59,10 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
   
 ?>
 
@@ -46,6 +76,7 @@ $id_permiso = $_POST["permisoId"];
 $correcto = [];
 $yaInscriptos = [];
 $inexistente = [];
+$cambioRol = [];
 
 //echo "llega al archivo";
 
@@ -96,7 +127,7 @@ if (isset($_FILES["inpGetFile"])) {
                     
 
                     //consultar existencia del usuario(habilitado = fecha de baja null) en la BD  de dayclass
-                    $consultaAlumID = $con->query("SELECT id FROM `usuario` WHERE (dniUsuario = '$dniA' AND legajoUsuario = '$legajoA') AND fechaBajaAlumno IS NULL");
+                    $consultaAlumID = $con->query("SELECT * FROM `usuario` WHERE dniUsuario = '$dniA' AND legajoUsuario = '$legajoA' AND fechaBajaUsuario IS NULL");
 
                     if (($consultaAlumID->num_rows) == 0) {
                         //si la cosnulta es vacia, el usuario no existe o esta dado de baja
@@ -106,17 +137,21 @@ if (isset($_FILES["inpGetFile"])) {
                     } else {
                         $resultado3 = $consultaAlumID->fetch_assoc();
                         $id_usuario = $resultado3["id"];
+                        $id_permisoUsuario = $resultado3["id_permiso"];
+                        
+                        if($id_permisoUsuario != NULL || $id_permisoUsuario != ""){
+                            if($id_permisoUsuario != $id_permiso){
+                                array_push($cambioRol, $legajoA);
+                            }else{
+                                array_push($yaInscriptos, $legajoA);
+                            }
+                        }else{
+                            array_push($correcto, $legajoA);
+                        }
 
                             //se actualiza el rol del alumno
                             $updateRolUsuario = $con->query("UPDATE `usuario` SET `id_permiso`='$id_permiso' WHERE usuario.id = '$id_usuario'");
-
-                        if ($updateRolUsuario) {
-                            //Se asigna correctamente
-                            array_push($correcto, $legajoA);
-                        } else {
-                            //falla en la asignacion
-                            array_push($yaInscriptos, $legajoA);
-                        }
+                        
                     }
                 }
             } else {
@@ -135,6 +170,11 @@ if (isset($_FILES["inpGetFile"])) {
 
 
 <div class="container">
+<div class="jumbotron my-4 py-4">
+        <p><b>Rol: </b><?php echo $nombreRol ?></p>
+        <h1>Alta de usuarios en rol</h1>
+        <a <?php echo "href='/DayClass/Administrador/Perfiles/verPerfil.php?id_permiso=$id_permiso'" ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+    </div>
 <?php
 if(count($inexistente) > 0){
     echo "<div class='alert alert-danger mt-4' role='alert'>
@@ -149,23 +189,39 @@ if(count($inexistente) > 0){
     </div>";
 }
 
-if(count($yaInscriptos) > 0){
+if(count($cambioRol) > 0){
     echo "<div class='alert alert-warning mt-4' role='alert'>
-        <h5><i class='fa fa-exclamation-circle mr-2'></i>Falla en la asigancion de rol</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios a los que se les cambio el rol</h5>
     <ul>";
     
-    for ($i=0; $i < count($yaInscriptos) ; $i++) { 
-        $consultaIns = $con->query("SELECT * FROM usuario WHERE legajoUusuario = '".$yaInscriptos[$i]."'")->fetch_assoc();
+    for ($i=0; $i < count($cambioRol) ; $i++) { 
+        $consultaIns = $con->query("SELECT * FROM usuario WHERE legajoUusuario = '".$cambioRol[$i]."'")->fetch_assoc();
         echo "<li>".$consultaIns['apellidoUsuario'].", ".$consultaIns['nombreUsuario']."</li>";
     }
 
     echo "</ul>
     </div>";
 }
+    
+if(count($yaInscriptos) > 0){
+    echo "<div class='alert alert-warning mt-4' role='alert'>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios que ya poseen este rol</h5>
+    <ul>";
+    
+    for ($i=0; $i < count($yaInscriptos) ; $i++) { 
+        $consultaIns = $con->query("SELECT * FROM usuario WHERE legajoUsuario = '".$yaInscriptos[$i]."'")->fetch_assoc();
+        echo "<li>".$consultaIns['apellidoUsuario'].", ".$consultaIns['nombreUsuario']."</li>";
+    }
+
+    echo "</ul>
+    </div>";
+}
+   
+
 
 if(count($correcto) > 0){
     echo "<div class='alert alert-success mt-4' role='alert'>
-        <h5><i class='fa fa-exclamation-circle mr-2'></i>Alumnos inscriptos satisfactoriamente</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuarios agregados exitosamente</h5>
     <ul>";
     
     for ($i=0; $i < count($correcto) ; $i++) { 
@@ -178,13 +234,14 @@ if(count($correcto) > 0){
 }
 ?>
 
+<a <?php echo "href='/DayClass/Administrador/Perfiles/verPerfil.php?id_permiso=$id_permiso'" ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
 
 </div>
 
 <script src="../administrador.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['administrador']['nombreAdm']." ".$_SESSION['administrador']['apellidoAdm']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>
 
 <?php
