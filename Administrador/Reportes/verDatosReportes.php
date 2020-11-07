@@ -1,10 +1,6 @@
 <?php
 
 include "../../databaseConection.php";
-$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
-$permiso = $selectPermiso->fetch_assoc();
-$id_permiso = $permiso["id"];
-
 
 $materia = $_POST["materia"];
 $fechaDesdeReporte = $_POST["inputFechaDesdeReporte"];
@@ -621,9 +617,12 @@ function planillaMateria($id_materia, $fechaDesde, $fechaHasta){
 
 
     $pdf->Ln(10);
-
-
-    if ($cantCursosMateria != 0) {
+    
+    $selectAsistenciasMateria = $con->query("SELECT * FROM curso, materia, asistencia, asistenciadia, tipoasistencia WHERE materia.id = '$id_materia' AND materia.id = curso.materia_id AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '2020-11-06' AND asistencia.curso_id = curso.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte'");
+    
+ 
+        
+    if ($cantCursosMateria != 0 && ($selectAsistenciasMateria->num_rows) != 0) {
 
         //cabecera de la tabla del reporte
         $pdf->SetFillColor(148, 112, 220);
@@ -649,16 +648,32 @@ function planillaMateria($id_materia, $fechaDesde, $fechaHasta){
             $cantPresntes = $selectCantPresentes["cantPresentes"];
             $cantAusentes = $selectCantAusentes["cantAusentes"];
             $cantJustificados = $selectCantJustificados["cantJustificados"];
-
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(80, 6, $nombreCurso, 1, 0, 'L', 0);
-            $pdf->Cell(30, 6, $cantPresntes, 1, 0, 'C', 0);
-            $pdf->Cell(30, 6, $cantAusentes, 1, 0, 'C', 0);
-            $pdf->Cell(30, 6, $cantJustificados, 1, 0, 'C', 0);
-            $pdf->Ln(6);
+            
+            if($cantPresntes == 0 && $cantAusentes == 0 && $cantJustificados == 0){
+                $pdf->SetTextColor(255, 0, 0);
+                $pdf->SetFont('Arial', '', 12);
+                $pdf->Cell(80, 6, $nombreCurso, 1, 0, 'L', 0);
+                $pdf->SetTextColor(255, 0, 0);
+                $pdf->Cell(90, 6, "No registra asistencia", 1, 0, 'C', 0);
+                $pdf->Ln(6);
+            }else{
+                $pdf->SetTextColor(255, 0, 0);
+                $pdf->SetFont('Arial', '', 12);
+                $pdf->Cell(80, 6, $nombreCurso, 1, 0, 'L', 0);
+                $pdf->Cell(30, 6, $cantPresntes, 1, 0, 'C', 0);
+                $pdf->Cell(30, 6, $cantAusentes, 1, 0, 'C', 0);
+                $pdf->Cell(30, 6, $cantJustificados, 1, 0, 'C', 0);
+                $pdf->Ln(6);
+            }
         }
     } else {
-        $mensaje = "No se registran cursos asociados a la materia.";
+        $mensaje = null;
+        if ($cantCursosMateria == 0){
+            $mensaje = "No se registran cursos asociados a la materia.";
+        }else{
+            $mensaje = "No se registran asistencias en las fechas seleccionadas para esta materia.";
+        }
+        
 
         $mensaje = utf8_decode($mensaje);
         $pdf->SetTextColor(255, 0, 0);
@@ -666,6 +681,7 @@ function planillaMateria($id_materia, $fechaDesde, $fechaHasta){
         $pdf->Write(15, $mensaje);
         $pdf->Ln(10);
     }
+    
 
     /*Serve the PDF*/
     $pdf->Output("reporteAsistencias.pdf", "I");
@@ -749,9 +765,13 @@ function planillaInstitucion($fechaDesde, $fechaHasta){
 
     $pdf->Write(6, "Periodo seleccionado: $fechaDesdeReporteC - $fechaHastaReporteC");
     $pdf->Ln(10);
-
-
-    if (($selectMateria->num_rows) != 0) {
+    
+    $selectAsistenciasInstitucion = $con->query("SELECT * FROM asistenciadia WHERE asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte'");
+    
+    
+    
+        
+    if (($selectMateria->num_rows) != 0 && ($selectAsistenciasInstitucion->num_rows) != 0) {
 
         //cabecera de la tabla del reporte
         $pdf->SetFillColor(148, 112, 220);
@@ -778,18 +798,33 @@ function planillaInstitucion($fechaDesde, $fechaHasta){
             $cantPresntes = $selectCantPresentes["cantPresentes"];
             $cantAusentes = $selectCantAusentes["cantAusentes"];
             $cantJustificados = $selectCantJustificados["cantJustificados"];
-
+            
             $materiaNivel = $nombreMateria . " " . $nivelMateria;
-            $pdf->SetFont('Arial', '', 12);
-            $pdf->Cell(80, 6, $materiaNivel, 1, 0, 'L', 0);
-            $pdf->Cell(30, 6, $cantPresntes, 1, 0, 'C', 0);
-            $pdf->Cell(30, 6, $cantAusentes, 1, 0, 'C', 0);
-            $pdf->Cell(30, 6, $cantJustificados, 1, 0, 'C', 0);
-            $pdf->Ln(6);
+            
+            if($cantPresntes == 0 && $cantAusentes == 0 && $cantJustificados == 0){
+                $pdf->SetTextColor(255, 0, 0);
+                $pdf->SetFont('Arial', '', 12);
+                $pdf->Cell(80, 6, $materiaNivel, 1, 0, 'L', 0);
+                $pdf->Cell(90, 6, "No registra asistencias", 1, 0, 'C', 0);
+                $pdf->Ln(6);
+            }else{
+                $pdf->SetTextColor(0, 0, 0);
+                $pdf->SetFont('Arial', '', 12);
+                $pdf->Cell(80, 6, $materiaNivel, 1, 0, 'L', 0);
+                $pdf->Cell(30, 6, $cantPresntes, 1, 0, 'C', 0);
+                $pdf->Cell(30, 6, $cantAusentes, 1, 0, 'C', 0);
+                $pdf->Cell(30, 6, $cantJustificados, 1, 0, 'C', 0);
+                $pdf->Ln(6);
+            }
         }
     } else {
-        $mensaje = "No se registran materias en la institución.";
-
+        $mensaje = null;
+        if (($selectMateria->num_rows) == 0){
+            $mensaje = "No se registran materias en la institución.";
+        }else{
+            $mensaje = "No se registran asistencias en el periodo seleccionado.";
+        }
+        
         $mensaje = utf8_decode($mensaje);
         $pdf->SetTextColor(255, 0, 0);
         $pdf->SetFont('Arial', 'B', 15);

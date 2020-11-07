@@ -66,7 +66,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     <div class="jumbotron my-4 py-4">
         <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <h1>Asistencias</h1>
-        <a href="/DayClass/Administrador/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a href="/DayClass/Index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php
