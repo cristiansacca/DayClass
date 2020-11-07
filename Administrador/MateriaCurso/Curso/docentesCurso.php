@@ -191,7 +191,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     ?>
 
     <div class="my-2">
-        <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Docente</a>
+        <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar docente</a>
     </div>
 
     <div class="my-4 table-responsive">
@@ -206,7 +206,21 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 $permiso = $selectPermiso->fetch_assoc();
                 $id_permiso = $permiso["id"];
             
-                $consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = usuario.id AND usuario.id_permiso = '$id_permiso' AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+                $consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
+                FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
+                WHERE cargoprofesor.profesor_id = usuario.id 
+                     
+                    AND cargoprofesor.curso_id = curso.id 
+                    AND cargoprofesor.cargo_id = cargo.id 
+                    AND cargoprofesor.curso_id = '$id_curso' 
+                    AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
+                    AND cargoprofesor.fechaHastaCargo IS NULL 
+                    AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id 
+                    AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id 
+                    AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' 
+                    AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' 
+                    AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' 
+                        OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
             
             
                 if(($consulta1->num_rows) != 0){

@@ -126,7 +126,7 @@ function validarDNIyLegajoIns(){
             success:function(datosRecibidos) {
                 
                 json = JSON.parse(datosRecibidos);
-                alert(datosRecibidos);
+                //alert(datosRecibidos);
                 
                 switch(json){
                     case "noAsociado":

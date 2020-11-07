@@ -72,7 +72,7 @@ $materia = $con->query("SELECT * FROM materia WHERE id = '$id_materia'")->fetch_
 
 ?>
 
-<script src="../..administrador.js"></script>
+<script src="../../administrador.js"></script>
 <script src="fnValidarDiasCurso.js"></script>
 
 <link rel="stylesheet" href="../../../styleCards.css">

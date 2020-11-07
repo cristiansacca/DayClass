@@ -9,7 +9,7 @@ document.getElementById("materia").onchange = function(){
         url:'listarCursos.php',
         type: 'POST',
         data: datos,
-        success: function(datosRecibidos) {
+        success: function(datosRecibidos) { 
             //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
             contenido="<option value='' selected>Seleccione</option>";
@@ -61,8 +61,8 @@ document.getElementById("btnGenerar").onclick = function () {
         };
         document.getElementById("btnLimpiar").click();
         generarPieChart(datos);
-        $("#faltanDatos").attr("hidden", "hidden" );
-        $("#oculto").removeAttr("hidden");
+        //$("#faltanDatos").attr("hidden", "hidden" );
+        //$("#oculto").removeAttr("hidden");
         location.href = "#estadistica";
     } else {
         $("#faltanDatos").removeAttr("hidden");
@@ -165,6 +165,16 @@ function generarPieChart(datosEntrada) {
             document.getElementById("txtMateria").innerHTML = json.nombreMateria+" (Nivel "+json.nivelMateria+")";
             document.getElementById("btnLimpiar").onclick = function(){myChart.destroy();}
 
+            
+            $("#faltanDatos").attr("hidden", "hidden" );
+            
+            if((json.asistencias+json.inasistencias+json.justificados) == 0){
+                $("#sinAsistencias").removeAttr("hidden");
+                $("#oculto").attr("hidden", "hidden");
+            } else {
+                $("#sinAsistencias").attr("hidden", "hidden");
+                $("#oculto").removeAttr("hidden");
+            }
         }
     })
 }

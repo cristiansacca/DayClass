@@ -78,7 +78,11 @@ $currentDate = date('Y-m-d');
     </div>
 
     <div class="alert alert-danger" role="alert" id="faltanDatos" hidden>
-        <h5><i class='fa fa-exclamation-circle mr-2'></i>Faltan datos por completar</h5>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>Faltan datos por completar.</h5>
+    </div>
+
+    <div class="alert alert-danger" role="alert" id="sinAsistencias" hidden>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>No se registran datos de asistencias en el periodo seleccionado.</h5>
     </div>
 
     <div class="row my-2">
@@ -113,7 +117,7 @@ $currentDate = date('Y-m-d');
         <div class="col-md-6">
             <div class="my-2">
                 <label for="fechaDesde" class="mr-2">Desde:</label><label class="text-danger" id="msgPeriodoDesde"></label>
-                <input type="date" id="fechaDesde" class="form-control inputPeriodo" onchange="validarPeriodo();">
+                <input type="date" id="fechaDesde" class="form-control inputPeriodo" onchange="validarPeriodo();" <?php echo "max='$currentDate'" ?>>
             </div>
             <div class="my-2">
                 <label for="fechaHasta" class="mr-2">Hasta:</label><label class="text-danger" id="msgPeriodoHasta"></label>
