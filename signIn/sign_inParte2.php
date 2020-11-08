@@ -92,29 +92,30 @@ if (mysqli_num_rows($consultaUsuario) == 0) {
           <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" onchange="validarEmail()" required>
           <h9 class="msg" id="msjValidacionEmail"></h9>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Contraseña</label>
-          <div class="input-group">
-            <input type="password" class="form-control" id="inputPassword4" name="inputPassword" placeholder="Contraseña" onchange="validarContrasenia()" required>
-            <div class="input-group-append">
-              <button id="show_password" class="btn btn-secondary" type="button" onclick="mostrarPassword()"><span class="fa fa-eye icon"></span></button>
-            </div>
-          </div>
-          <h9 class="msg" id="msjValidacionPass"></h9>
-        </div>
-      </div>
-
-      <div class="form-row" id="rolNac">
-        <div class="form-group col-md-6">
+          <div class="form-group col-md-6">
           <label for="inputDate">Fecha de nacimiento</label>
           <input id="inputDate" name="inputFechaNac" type="date" class="form-control" onkeydown="return false" onchange="validarFechaNac()" required>
           <h9 class="msg" id="msjValidacionFchNac"></h9>
         </div>
+        
+      </div>
+
+      <div class="form-row" id="rolNac">
         <div class="form-group col-md-6">
-          <label for="inputSurname4">Rol</label>
-          <input type="text" class="form-control" id="inputRol" name="inputRol" <?php echo "value= '$nombrePermiso'"; ?> readonly>
-          <h9 class="msg" id="msjValidacionApellido"></h9>
+          <label for="inputPassword4">Contraseña</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="inputPassword4" name="inputPassword" placeholder="Contraseña" onchange="validarContrasenia()" required>
+          </div>
+          <h9 class="msg" id="msjValidacionPass"></h9>
         </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Repetir contraseña</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="inputPassNew" name="inputPassNew" placeholder="Contraseña" onchange="validarRepeticion()" required>
+          </div>
+          <h9 class="msg" id="msjValidacionRepeticion"></h9>
+        </div>
+        
       </div>
 
       <button type="submit" class="btn btn-primary" id="btnRegistrarse">Registrarse</button>

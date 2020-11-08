@@ -336,8 +336,9 @@ function valiarCampos(){
     var pass = validarContrasenia();
     var fchNac = validarFechaNac() ;
     var mail = validarEmail();
+    var passRep = validarRepeticion();
     
-    if(pass && fchNac && mail){
+    if(pass && fchNac && mail && passRep){
         return true;
     }
     return false;
@@ -362,6 +363,26 @@ function validarDNIyLegajo(){
     }
         return false;
     }
+}
+
+function validarRepeticion() {
+    eval("debugger;");
+    var contrasenna = document.getElementById('inputPassword4').value;
+    var c = document.getElementById('inputPassNew').value;
+    var rtdo = validar_clave(c);
+    var msg = "";
+    var dev = true;
+
+    if (contrasenna != c) {
+        msg = 'Las contraseñas no coinciden.';
+        rtdo = false;
+        dev = false;
+    }
+    
+    changeColor('inputPassNew', rtdo);
+    setValitationMesage('msjValidacionRepeticion', rtdo, msg); 
+    return dev;
+
 }
 
 
