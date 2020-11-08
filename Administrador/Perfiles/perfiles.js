@@ -4,6 +4,7 @@ eval("debugger;");
     var funciones = document.getElementsByClassName("checkFuncion");
     //var erroneos = 0;
     var chequeados = 0;
+    var erroneos = 0;
     
         for(let index = 0; index < funciones.length; index++){
             
@@ -14,7 +15,7 @@ eval("debugger;");
             }        
         }
     
-    if(chequeados > 0){
+    if(chequeados > 0 || erroneos == 0){
         document.getElementById("arregloFunciones").value=JSON.stringify(arregloFunciones);
         return true;
     }else{

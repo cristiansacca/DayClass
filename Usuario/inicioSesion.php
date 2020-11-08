@@ -130,17 +130,20 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         }
     ?>
     
-    <h3 class="font-weight-normal">Accesos asignados:</h3><br>
+    
     <!-- Page Features -->
-    <div class="row text-center">
+    <div>
         <?php
     
         if($id_permiso != NULL || $id_permiso != ""){
             $contador = 0;
             
+            echo "<h2 class='font-weight-normal'>Accesos asignados:</h2><br>";
+            
             $selectFuncionPermiso = $con->query("SELECT id_funcion FROM `permisofuncion`, funcion WHERE permisofuncion.id_permiso = '$id_permiso' AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDateTime' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND funcion.id = permisofuncion.id_funcion ORDER BY nombreFuncion ASC");
             
-            if(($selectFuncionPermiso->num_rows) != 1){
+            if(($selectFuncionPermiso->num_rows) > 0){
+                echo "<div class='row text-center'>";
                 while ($funcionPermiso = $selectFuncionPermiso->fetch_assoc()) {
                     if ($contador == 4) {
                         $contador = 0;
@@ -156,7 +159,8 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     $paginaFuncion = $funcion["refPagina"];
 
                 echo 
-                    "<div class='col-lg-4 col-md-6 mb-4' >
+                    "
+                    <div class='col-lg-4 col-md-6 mb-4' >
                         <div class='card h-100' >
                         <img class='card-img-top imagen' src='$imagenFuncion' alt='' oncontextmenu='return false'>
                             <div class='card-body'>
@@ -170,6 +174,8 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     </div>";
                     $contador++;
                 }
+                
+                echo "</div>";
             }else{
                echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>El rol asignado, actualmente no tiene funciones disponibles.</h5>

@@ -92,7 +92,7 @@ $currentDate = date('Y-m-d');
                 <select class="custom-select" id="materia">
                     <option value="" selected>Seleccione</option>
                     <?php
-                    $conMat = $con->query("SELECT * FROM materia WHERE fechaBajaMateria IS NULL");
+                    $conMat = $con->query("SELECT * FROM materia WHERE fechaBajaMateria IS NULL ORDER BY nombreMateria ASC");
                     while ($materias = $conMat->fetch_assoc()) {
                         echo "<option value='" . $materias['id'] . "'>" . $materias['nombreMateria'] . " (Nivel " . $materias['nivelMateria'] . ")</option>";
                     }

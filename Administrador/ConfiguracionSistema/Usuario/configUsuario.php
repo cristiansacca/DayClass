@@ -166,8 +166,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     <?php
         include "../../../databaseConection.php";
-        $cantidadActivos = $con->query("SELECT id FROM usuario WHERE fechaBajaUsuario IS NULL")->num_rows;
-        $cantidadInactivos = $con->query("SELECT id FROM usuario WHERE fechaBajaUsuario IS NOT NULL")->num_rows;
+        $cantidadActivos = $con->query("SELECT id FROM usuario WHERE usuario.legajoUsuario IS NOT NULL AND fechaBajaUsuario IS NULL")->num_rows;
+        $cantidadInactivos = $con->query("SELECT id FROM usuario WHERE usuario.legajoUsuario IS NOT NULL AND fechaBajaUsuario IS NOT NULL")->num_rows;
     ?>
 
     <div class="mb-2">
@@ -188,7 +188,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             <tbody>
                 <?php
 
-                $consulta1 = $con->query("SELECT `legajoUsuario`,`apellidoUsuario`,`nombreUsuario`,`dniUsuario`,`id`,`fechaBajaUsuario` FROM `usuario` ORDER BY legajoUsuario ASC");
+                $consulta1 = $con->query("SELECT `legajoUsuario`,`apellidoUsuario`,`nombreUsuario`,`dniUsuario`,`id`,`fechaBajaUsuario` FROM `usuario` WHERE usuario.legajoUsuario IS NOT NULL ORDER BY legajoUsuario ASC");
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
                     

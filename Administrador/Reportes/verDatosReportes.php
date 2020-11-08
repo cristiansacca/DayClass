@@ -52,8 +52,7 @@ function planillaAlumno($id_curso, $id_alumno, $fechaDesde, $fechaHasta)
 
     //Datos asistencias en el periodo seleccionado 
     $selectAsistenciasDiaAlumnoCurso = $con->query("SELECT asistenciadia.id, asistenciadia.fechaHoraAsisDia, tipoasistencia.nombreTipoAsistencia FROM `asistenciadia`, asistencia, usuario, curso, tipoasistencia WHERE usuario.id = '$id_alumno'  AND curso.id = '$id_curso' AND usuario.id = asistencia.alumno_id AND curso.id = asistencia.curso_id AND asistenciadia.asistencia_id = asistencia.id AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' AND asistenciadia.tipoAsistencia_id = tipoasistencia.id ORDER BY `fechaHoraAsisDia` ASC");
-
-
+    
     //cambiar formato fechas 
     $fechaDesdeReporte = date_create($fechaDesdeReporte);
     $fechaDesdeReporte =  date_format($fechaDesdeReporte, "d/m/Y");

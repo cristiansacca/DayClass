@@ -12,6 +12,7 @@ $consultaAsistencias = $con->query("SELECT usuario.apellidoUsuario, usuario.nomb
     AND asistenciadia.fechaHoraAsisDia <= '$fecha2' 
     AND asistenciadia.asistencia_id = asistencia.id
     AND asistenciadia.tipoAsistencia_id = tipoasistencia.id
+    AND usuario.fechaBajaUsuario IS NULL
     ORDER BY usuario.apellidoUsuario ASC");
 
 $asistencias = array();

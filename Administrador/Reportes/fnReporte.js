@@ -19,7 +19,7 @@ document.getElementById("materia").onchange = function(){
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
-            alert(datosRecibidos);
+           // alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
             contenido="<option value='vacio' selected>Todos</option>";
             if(json.length != 0){
@@ -55,7 +55,7 @@ document.getElementById("curso").onchange = function(){
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
-            alert(datosRecibidos);
+            //alert(datosRecibidos);
             json = JSON.parse(datosRecibidos);
             contenido="<option value='vacio' selected>Todos</option>";
             if(json.length != 0){

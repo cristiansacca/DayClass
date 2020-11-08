@@ -63,7 +63,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 $id_curso = $_POST['idCursoCargar'];
 $fecha = $_POST['fechaCargar'];
 
-$consultaInscriptos = $con->query("SELECT usuario.id, legajoUsuario, nombreUsuario, apellidoUsuario, nombreCurso FROM usuario, asistencia, curso  WHERE asistencia.alumno_id = usuario.id AND asistencia.curso_id = curso.id AND curso.id = '$id_curso' ORDER BY apellidoUsuario ASC");
+$consultaInscriptos = $con->query("SELECT usuario.id, legajoUsuario, nombreUsuario, apellidoUsuario, nombreCurso FROM usuario, asistencia, curso  WHERE asistencia.alumno_id = usuario.id AND asistencia.curso_id = curso.id AND curso.id = '$id_curso' AND usuario.fechaBajaUsuario IS NULL ORDER BY apellidoUsuario ASC");
 
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
 

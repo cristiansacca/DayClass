@@ -72,6 +72,7 @@ WHERE asistencia.curso_id = '$id_curso'
     AND asistenciadia.fechaHoraAsisDia <= '$fecha2' 
     AND asistenciadia.asistencia_id = asistencia.id
     AND asistenciadia.tipoAsistencia_id = tipoasistencia.id
+    AND usuario.fechaBajaUsuario IS NULL
     ORDER BY usuario.apellidoUsuario ASC");
 
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
