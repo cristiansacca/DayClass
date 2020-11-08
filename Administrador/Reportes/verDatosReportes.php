@@ -365,7 +365,7 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
 
                     $id_asistencia = $arregloIdAsistencias[$j];
 
-                    $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id AND usuario.id_permiso = '$id_permiso'");
+                    $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, usuario WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id");
 
                     $alumno = $selectAlumno->fetch_assoc();
 
@@ -441,7 +441,7 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
 
                     $id_asistencia = $arregloIdAsistencias[$j];
 
-                    $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, alumno WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id AND usuario.id_permiso = '$id_permiso'");
+                    $selectAlumno = $con->query("SELECT usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM `asistencia`, usuario WHERE asistencia.id = '$id_asistencia' AND asistencia.alumno_id = usuario.id ");
 
                     $alumno = $selectAlumno->fetch_assoc();
 
@@ -656,7 +656,7 @@ function planillaMateria($id_materia, $fechaDesde, $fechaHasta){
                 $pdf->Cell(90, 6, "No registra asistencia", 1, 0, 'C', 0);
                 $pdf->Ln(6);
             }else{
-                $pdf->SetTextColor(255, 0, 0);
+                $pdf->SetTextColor(0, 0, 0);
                 $pdf->SetFont('Arial', '', 12);
                 $pdf->Cell(80, 6, $nombreCurso, 1, 0, 'L', 0);
                 $pdf->Cell(30, 6, $cantPresntes, 1, 0, 'C', 0);

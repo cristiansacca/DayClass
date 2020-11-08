@@ -49,6 +49,9 @@ while($alumnosAsistencia = $selectAsistenciasAlumnoCurso->fetch_assoc()){
     
 }
 
+//verificar que haya alumnos y fechas para generar la tabla 
+if(count($arregloFechasHoras) != 0 && count($arregloIdAsistencias) != 0){
+
 //libreria de FPDF 
 require_once( "../../fpdf/fpdf.php" );
 
@@ -113,8 +116,7 @@ $pdf->Write( 6, "P = Presente, A = Ausente, J = Justificado, N = No Registra asi
 $pdf->Ln(10);
 
 
-//verificar que haya alumnos y fechas para generar la tabla 
-if(count($arregloFechasHoras) != 0 && count($arregloIdAsistencias) != 0){
+
     
 //calcular el tamaño de las celdas en funcion de la cantidad de registros 
 $anchoCol = 9.5;
@@ -300,30 +302,32 @@ while($cont < $cantFechas){
     
 }
     
+/*Serve the PDF*/
+$pdf->Output("report.pdf", "I");
+    
     
 }else{
-    $mensaje = null;
+    //$mensaje = null;
     if(count($arregloFechasHoras) == 0 && count($arregloIdAsistencias) == 0){
-        $mensaje = "El curso no registra información de alumnos inscriptos, ni de asistencias.";
+        //$mensaje = "El curso no registra información de alumnos inscriptos, ni de asistencias.";
+        header("location:/DayClass/Usuario/inicioSesion.php?error=6");
+        
      
     }else{
         if(count($arregloFechasHoras) == 0){
-          $mensaje = "El curso no registra información de asistencias en el periodo seleccionado."; 
+          //$mensaje = "El curso no registra información de asistencias en el periodo seleccionado."; 
+            header("location:/DayClass/Usuario/inicioSesion.php?error=7");
         }else{
-           $mensaje = "El curso no registra información alumnos inscriptos en el periodo seleccionado." ;  
+          // $mensaje = "El curso no registra información alumnos inscriptos en el periodo seleccionado." ; 
+            header("location:/DayClass/Usuario/inicioSesion.php?error=8");
         }
     }
     
-    $mensaje = utf8_decode($mensaje);
-    $pdf -> SetTextColor(255, 0,0);
-    $pdf->SetFont( 'Arial', 'B', 15 );
-    $pdf->Write(15, $mensaje);
-    $pdf->Ln(10); 
+    
     
 }
 
-/*Serve the PDF*/
-$pdf->Output("report.pdf", "I");
+
 
 
 

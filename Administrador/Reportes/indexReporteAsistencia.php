@@ -76,8 +76,10 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     
     
     <h4>Seleccione los datos para generar el reporte </h4>
+    
+    <div id="resultadoMostrar"></div>
 
-    <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportes.php" enctype="multipart/form-data" role="form">
+    <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportes.php" enctype="multipart/form-data" role="form" onsubmit="return validarDatos()">
         
         <div class="form-row">
         <div class="form-group col-md-4">

@@ -32,7 +32,7 @@ document.getElementById("materia").onchange = function(){
                 contenido="<option value='' selected>Curso</option>";
                 document.getElementById("curso").innerHTML = contenido;
                 $("#curso").attr("disabled", "disabled" );
-                document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Esta materia no tiene cursos disponibles.</h5></div>";
+                document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'><h5><i class='fa fa-exclamation-circle mr-2'></i>Esta materia no tiene cursos disponibles.</h5></div>";
             }
             
         }
@@ -63,3 +63,41 @@ function enviarReporte(){
     
     
 }
+
+function validarReporte(){
+    var materia = document.getElementById("materia").value;
+    var curso = document.getElementById("curso").value;
+    var fchDesde = document.getElementById('inputFechaDesdeReporte').value;
+    var fchHasta = document.getElementById('inputFechaHastaReporte').value;
+    
+     var datos = {
+        fchDesde: fchDesde,
+        fchHasta: fchHasta,
+        materia: materia,
+        curso: curso,
+    }
+
+    $.ajax({
+        url:'validarReporteTemas.php',
+        type: 'POST',
+        async: false,
+        data: datos,
+        success: function(datosRecibidos) {
+            //alert(datosRecibidos);
+            json = JSON.parse(datosRecibidos);
+            
+            if(json){
+                //alert("hay datos");
+                rtdo =  true;
+            }else{
+                document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>No se encuentran temas registrados, en el periodo seleccionado, para generar el reporte solicitado.</h5></div>";
+                rtdo = false;
+            }
+            
+        }
+    })
+    
+ return rtdo;   
+    
+}
+

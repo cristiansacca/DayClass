@@ -79,7 +79,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     
     <div id="resultadoMostrar"></div>
 
-    <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportesTemas.php" enctype="multipart/form-data" role="form" onsubmit="return enviarReporte()">
+    <form method="POST" id="crearReporte" name="crearReporte" action="verDatosReportesTemas.php" enctype="multipart/form-data" role="form" onsubmit="return (enviarReporte() && validarReporte())">
         
         <div class="form-row">
         <div class="form-group col-md-6">
@@ -135,7 +135,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <script src="fnReporteTemas.js"></script>
 
 <script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['usuario']." ".$_SESSION['usuario']['usuario']."'" ?>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>
 
 <?php

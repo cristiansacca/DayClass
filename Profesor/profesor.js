@@ -2,7 +2,7 @@ cambiarContenidoNavbar();
 
 function cambiarContenidoNavbar(){
     var contenido = "";
-    contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Profesor/index.php'><i class='fa fa-home mr-1'></i>Inicio</a></li>";
+    contenido += "<li class='nav-item'><a class='nav-link' href='/DayClass/Index.php'><i class='fa fa-home mr-1'></i>Inicio</a></li>";
     contenido += "<li class='nav-item' id='temaDia'></li>";
     contenido += "<li><div class='dropdown'>";
     contenido += "<button class='btn btn-primary pb-0 dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i></button>";
