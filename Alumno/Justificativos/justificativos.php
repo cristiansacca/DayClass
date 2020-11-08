@@ -122,13 +122,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
           <div class="form-group" id="materias">
             
             <?php
-              include "../../databaseConection.php";
-
               //Busca todas las instanias de AlumnoCursoActual que están asociadas al alumno que ingresó
               $consulta1 = $con->query("SELECT * FROM alumnocursoactual WHERE alumno_id = '".$_SESSION['usuario']['id']."'");
-              
-              
-              
+     
               if(($consulta1->num_rows) == 0){
                   echo "<div class='alert alert-warning' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no esta asoaciado a ningun curso para cargar justificativos.</h5>
@@ -175,7 +171,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         </div>
       </div>
       <div class="container mb-2">
-        <button type="submit" id="btnCargar" class="btn btn-primary" disabled><i class="fa fa-upload pr-1"></i>Cargar</button>
+        <button type="submit" id="btnCargar" class="btn btn-primary" disabled><i class="fa fa-upload mr-1"></i>Cargar</button>
       </div>
     </div>
   </form>
