@@ -339,6 +339,7 @@ function valiarCampos(){
     var passRep = validarRepeticion();
     
     if(pass && fchNac && mail && passRep){
+        document.getElementById('btnRegistrarse').innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Registrando...';
         return true;
     }
     return false;
@@ -385,7 +386,6 @@ function validarRepeticion() {
 
 }
 
-
 function validarRestPass(){
     var mail = validarEmail();
     var legDNI  = validarDNIyLegajo();
@@ -398,3 +398,4 @@ function validarRestPass(){
         return false;
     }
 }
+

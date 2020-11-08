@@ -89,6 +89,10 @@ $currentDate = date('Y-m-d');
         <h5><i class='fa fa-exclamation-circle mr-2'></i>Faltan datos por completar</h5>
     </div>
 
+    <div class="alert alert-danger" role="alert" id="sinAsistencias" hidden>
+        <h5><i class='fa fa-exclamation-circle mr-2'></i>No se registran datos de asistencias en el periodo seleccionado.</h5>
+    </div>
+
     <div class="row my-2">
         <div class="col-md-6">
             <div class="my-2">
@@ -113,29 +117,33 @@ $currentDate = date('Y-m-d');
         <input type="text" id="curso" <?php echo "value='$id_curso'" ?> hidden>
     </div>
 
-    <button class="btn btn-primary mt-2 mr-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
-    <button class="btn btn-secondary mt-2 mr-2" id="btnLimpiar" hidden><i class="fa fa-eraser mr-1"></i>Limpiar</button>
-
-    <div class="my-4">
-        <div class="card ">
-            <div class="card-header">
-                <b> Datos de la estadística </b>
+    <section id="estadistica">
+        <button class="btn btn-primary mt-2 mr-2" id="btnGenerar" disabled><i class="fa fa-pie-chart mr-1"></i>Generar</button>
+        <button class="btn btn-secondary mt-2 mr-2" id="btnLimpiar" hidden><i class="fa fa-eraser mr-1"></i>Limpiar</button>
+        
+        <div id="oculto" hidden>
+            <div class="my-4">
+                <div class="card ">
+                    <div class="card-header">
+                        <b> Datos de la estadística </b>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-action font-weight-bold">Curso:<label class="ml-1 font-weight-normal" id="txtCurso"></label></li>
+                            <li class="list-group-item list-group-item-action font-weight-bold">Fecha y hora:<label class="ml-1 font-weight-normal" id="fechaHora"></label></li>
+                            <li class="list-group-item list-group-item-action font-weight-bold">Periodo:<label class="ml-1 font-weight-normal" id="periodo"></label></li>
+                            <li class="list-group-item list-group-item-action font-weight-bold">Presentes:<label class="ml-1 font-weight-normal" id="cantPresentes"></label></li>
+                            <li class="list-group-item list-group-item-action font-weight-bold">Ausentes:<label class="ml-1 font-weight-normal" id="cantAusentes"></label></li>
+                            <li class="list-group-item list-group-item-action font-weight-bold">Justificados:<label class="ml-1 font-weight-normal" id="cantJustificados"></label></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action font-weight-bold">Curso:<label class="ml-1 font-weight-normal" id="txtCurso"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Fecha y hora:<label class="ml-1 font-weight-normal" id="fechaHora"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Periodo:<label class="ml-1 font-weight-normal" id="periodo"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Presentes:<label class="ml-1 font-weight-normal" id="cantPresentes"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Ausentes:<label class="ml-1 font-weight-normal" id="cantAusentes"></label></li>
-                    <li class="list-group-item list-group-item-action font-weight-bold">Justificados:<label class="ml-1 font-weight-normal" id="cantJustificados"></label></li>
-                </ul>
+            <div class="jumbotron py-2 my-2">
+                <canvas id="myChart"></canvas>
             </div>
         </div>
-    </div>
-    <div class="jumbotron py-2 my-2">
-        <canvas id="myChart"></canvas>
-    </div>
+    </section>
 </div>
 
 <script src="estadisticas.js"></script>

@@ -118,24 +118,11 @@ if (mysqli_num_rows($consultaUsuario) == 0) {
         
       </div>
 
-      <button type="submit" class="btn btn-primary" id="btnRegistrarse">Registrarse</button>
+      <button type="submit" class="btn btn-primary" id="btnRegistrarse"><i class="fa fa-user-plus mr-1"></i>Registrarse</button>
 
     </div>
   </form>
 </div>
-
-<script type="text/javascript">
-  function mostrarPassword() {
-    var cambio = document.getElementById("inputPassword4");
-    if (cambio.type == "password") {
-      cambio.type = "text";
-      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-    } else {
-      cambio.type = "password";
-      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-    }
-  }
-</script>
 
 <?php
 include "../footer.html";

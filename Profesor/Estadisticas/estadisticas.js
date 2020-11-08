@@ -27,7 +27,8 @@ document.getElementById("btnGenerar").onclick = function () {
         };
         document.getElementById("btnLimpiar").click();
         generarPieChart(datos);
-        $("#faltanDatos").attr("hidden", "hidden" );
+        //$("#faltanDatos").attr("hidden", "hidden" );
+        location.href = "#estadistica";
     } else {
         $("#faltanDatos").removeAttr("hidden");
     }
@@ -127,6 +128,16 @@ function generarPieChart(datosEntrada) {
             document.getElementById("fechaHora").innerHTML = json.fechaHora;
             document.getElementById("txtCurso").innerHTML = json.nombreCurso;
             document.getElementById("btnLimpiar").onclick = function(){myChart.destroy();}
+
+            $("#faltanDatos").attr("hidden", "hidden" );
+            
+            if((json.asistencias+json.inasistencias+json.justificados) == 0){
+                $("#sinAsistencias").removeAttr("hidden");
+                $("#oculto").attr("hidden", "hidden");
+            } else {
+                $("#sinAsistencias").attr("hidden", "hidden");
+                $("#oculto").removeAttr("hidden");
+            }
 
         }
     })
