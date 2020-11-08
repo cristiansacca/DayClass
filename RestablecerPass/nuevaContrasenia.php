@@ -41,9 +41,9 @@ if (mysqli_num_rows($consultaAlum) == 0) {
 function sendEmail($nombreC, $eMail, $pass){
     //No tabular el texto, porque toma los espacios.
     date_default_timezone_set('America/Argentina/Buenos_Aires');
-    $currentDate = date('Y-m-d H:m:s');
+    $currentDate = date('Y-m-d H:i:s');
     $fechaAlumnoLibre = date_create($currentDate);
-    $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:m:s");
+    $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:i:s");
     
     $mensaje =  "                                                                                                         $fechaAlumnoLibre
 Hola, $nombreC.

@@ -299,9 +299,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $id_permiso = $permiso["id"];
         
         date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $currentDate = date('Y-m-d H:m:s');
+        $currentDate = date('Y-m-d H:i:s');
         $fechaAlumnoLibre = date_create($currentDate);
-        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:m:s");
+        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:i:s");
         
         //buscar los datos del alumno
         $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND id_permiso = '$id_permiso'")->fetch_assoc();
@@ -394,9 +394,9 @@ Equipo de DayClass.";
         $permiso = $selectPermiso->fetch_assoc();
         $id_permiso = $permiso["id"];
         
-        $currentDate = date('Y-m-d H:m:s');
+        $currentDate = date('Y-m-d H:i:s');
         $fechaAlumnoLibre = date_create($currentDate);
-        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:m:s");
+        $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:i:s");
         
         //buscar los datos del alumno
         $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' ")->fetch_assoc();
