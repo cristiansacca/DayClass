@@ -9,13 +9,10 @@ $id_prof = $_GET['docenteId'];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d H:i:s');
 
-$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'DOCENTE'");
-$permiso = $selectPermiso->fetch_assoc();
-$id_permiso = $permiso["id"];
 
 
     //traerse todos los docentes de ese curso 
-    $selectDocentesCurso = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsauario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo WHERE usuario.id_permiso = '$id_permiso' AND cargoprofesor.profesor_id = usuario.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+    $selectDocentesCurso = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo WHERE cargoprofesor.profesor_id = usuario.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
 
 
     //si hay mas de un docente asociado al curso, se procede a dar la baja de otro docente
