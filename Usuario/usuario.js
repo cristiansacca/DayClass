@@ -27,6 +27,7 @@ function validateEmail(email)
 }
 
 function validarEmail(){
+    eval("debugger;");
     var elem = document.getElementById('inputEmailNew').value;
     var rtdo = false;
     var msg = "";
@@ -37,8 +38,9 @@ function validarEmail(){
             msg = "Lo que se ha escrito no es una dirección de email válida, revisar @ y .com .";    
     }
     
-    changeColor('inputEmail',rtdo);
+    changeColor('inputEmailNew',rtdo);
     setValitationMesage('msjValidacionEmail', rtdo, msg);
+    return rtdo;
 }
 
 function validarContrasenia()
