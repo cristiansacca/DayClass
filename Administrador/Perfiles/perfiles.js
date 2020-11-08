@@ -40,3 +40,40 @@ function habilitarFunciones(){
             }       
         }
 }
+
+
+function validarCambioRol(){
+    eval("debugger;");
+    var userDNI = document.getElementById("inputDNI").value;
+    var rtdo = false;
+    var datos = {
+            dni: document.getElementById('inputDNI').value,
+            
+        }
+
+        $.ajax({
+            url:'verificarRolAnt.php',
+            type: 'POST',
+            async: false,
+            data: datos,
+            success:function(datosRecibidos) {
+                
+                json = JSON.parse(datosRecibidos);
+                //alert(datosRecibidos);
+                
+                if(json){
+                   var confirmar = confirm("El usuario ya posee rol asignado, ¿Desea cambiarlo?");
+                    if (confirmar) {
+                        rtdo = true;
+                    } else {
+                        rtdo = false;
+                    } 
+                }else{
+                    rtdo = true;
+                }
+                
+            }
+        })
+    
+    return rtdo;
+}

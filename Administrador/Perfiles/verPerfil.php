@@ -250,10 +250,7 @@ $_SESSION['tiempo'] = time();
                     </tbody>
                 </table>
             </div>
-
         </div>
-
-
     </div>
 </div>
 
@@ -265,7 +262,7 @@ $_SESSION['tiempo'] = time();
             <div class="modal-header ">
                 <h5 class="modal-title " id="staticBackdropLabel">Agregar un usuario a rol</h5>
             </div>
-            <form method="POST" id="insertUsuarioRol" name="insertUsuarioRol" action="insertUsuarioRol.php" enctype="multipart/form-data" role="form" onsubmit="return validarDNIyLegajoIns()">
+            <form method="POST" id="insertUsuarioRol" name="insertUsuarioRol" action="insertUsuarioRol.php" enctype="multipart/form-data" role="form" onsubmit="return (validarDNIyLegajo() && validarCambioRol())">
                 <?php
 
                 $consultaParamLeg = $con->query("SELECT * FROM parametrolegajo");
@@ -304,31 +301,25 @@ $_SESSION['tiempo'] = time();
                     }
                 } else {
                     echo "<div class='alert alert-warning' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha definido un formato de legajo, no se puede ingresar un nuevo usuario.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se ha definido un formato de legajo, puede asignar un usuario al rol.</h5>
                         </div>";
                 }
 
                 ?>
 
-                <div class="modal-body" <?php
-                                        if ($dni == null) {
-                                            echo "hidden ";
-                                        } ?>>
+                <div class="modal-body" <?php if ($dni == null) {echo "hidden ";} ?>>
 
                     <div class="my-2">
                         <h5 class="msg">Ingrese los datos solicitados</h5>
                     </div>
-                    <div class="my-2" <?php
-                                        if ($dni) {
-                                            echo "hidden ";
-                                        } ?>>
+                    <div class="my-2" <?php if ($dni) {echo "hidden ";} ?>>
                         <label for="inputLegajo">Legajo</label>
-                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajoIns()" placeholder="Legajo" onkeydown="return event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
+                        <input type="text" name="inputLegajo" id="inputLegajo" class="form-control" onchange="validarLegajo()" placeholder="Legajo" onkeydown="return event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110">
                         <h9 class="msg" id="msjValidacionLegajo"></h9>
                     </div>
                     <div class="my-2">
                         <label for="inputDNI">DNI</label>
-                        <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNIIns()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
+                        <input type="text" name="inputDNI" id="inputDNI" class="form-control" onchange="validarDNI()" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 && event.keyCode !== 110" placeholder="Documento Nacional de Identidad" required>
                         <h9 class="msg" id="msjValidacionDNI"></h9>
                     </div>
 

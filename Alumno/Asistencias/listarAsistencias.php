@@ -33,7 +33,7 @@ while($resultado1 = $consulta1->fetch_assoc()) {
     }
 
     $asistencias[] = array(
-        'fecha'=> strftime("%d de %B de %Y %H:%M", strtotime($resultado1['fechaHoraAsisDia'])),
+        'fecha'=> strftime("%d de %B de %Y", strtotime($resultado1['fechaHoraAsisDia'])),
         'tipoAsistencia'=> $tipoAsistencia
     );
 }

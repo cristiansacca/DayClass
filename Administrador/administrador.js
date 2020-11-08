@@ -401,35 +401,7 @@ function validarDNIyLegajo(){
         var dni = validarDNI();
     
     if(legajo && dni){
-        var datos = {
-            legajo: document.getElementById('inputLegajo').value
-        }
-
-        $.ajax({
-            url:'verificarDocente.php',
-            type: 'POST',
-            async: false,
-            data: datos,
-            success:function(datosRecibidos) {
-                
-                json = JSON.parse(datosRecibidos);
-                
-                switch(json){
-                    case "tienePermisoAlumno":
-                        rtdo = true;
-                        break;
-                    case "noTienePermisoAlumno":
-                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Los datos ingresados no corresponden a un usuario con rol DOCENTE.</h5></div>";
-                        rtdo = false;
-                        break;
-                    case "noExiste":
-                       document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Los datos ingresados no corresponden a un usuario existente.</h5></div>"; 
-                        rtdo = false;
-                        break;
-                }
-            }
-        })
-        
+        rtdo = true;
     }else{
         rtdo = false;
     }
