@@ -11,7 +11,7 @@ document.getElementById("btnVerificarCodIngresado").onclick = function(){
         type: 'POST',
         data: datos,
         success: function(datosRecibidos) {
-             alert (datosRecibidos);
+             //alert (datosRecibidos);
             json = JSON.parse(datosRecibidos);
            
             if(json.length !== 0){
