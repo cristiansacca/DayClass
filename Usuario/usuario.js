@@ -64,6 +64,7 @@ function validarContrasenia()
 
 function validarRepeticion()
 {
+    eval("debugger;");
     var contrasenna = document.getElementById('inputPassNewRep').value;
     var rtdo = validar_clave(contrasenna);
     var c = document.getElementById('inputPassNew').value;
@@ -72,6 +73,7 @@ function validarRepeticion()
 
     if (contrasenna != c) {
         msg = 'Las contraseñas no coinciden.';
+        rtdo = false;
         dev = false;
     }
     
