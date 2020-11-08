@@ -142,6 +142,19 @@ $_SESSION['tiempo'] = time();
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al remover el rol</h5>";
                 break;
+            case 8:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa del nombre del rol.</h5>";
+                break;
+
+            case 9:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al modificar el rol.</h5>";
+                break;
+            case 10:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un rol con ese nombre.</h5>";
+                break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>

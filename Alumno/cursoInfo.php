@@ -103,7 +103,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
         if (($consulta2->num_rows) == 0) {
             echo "<div class='alert alert-warning' role='alert'>
-                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no hay docentes asigandos a este curso, pronto entarán disponibles</h5>
+                    <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no hay docentes asignados a este curso, pronto entarán disponibles.</h5>
                 </div>";
         } else {
 
