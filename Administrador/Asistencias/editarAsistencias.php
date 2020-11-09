@@ -137,7 +137,7 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
             type: 'POST',
             data: json,
             success: function(datosRecibidos) {
-                alert(datosRecibidos);
+               // alert(datosRecibidos);
                 json = JSON.parse(datosRecibidos);
                 if(json.actualizados > 0){
                     location.href = '/DayClass/Administrador/Asistencias/asistencias.php?resultado=3';

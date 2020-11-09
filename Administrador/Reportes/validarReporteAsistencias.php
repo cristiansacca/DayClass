@@ -21,7 +21,7 @@ if ($materia == "Todas") {
         
             $alumno = $_POST["alumno"];
 
-            if ($alumno != "vacio") {
+            if ($alumno == "vacio") {
                 $resultado = planillaCurso($curso, $fechaDesdeReporte, $fechaHastaReporte);
             } else {
                 $resultado = planillaAlumno($curso, $alumno, $fechaDesdeReporte, $fechaHastaReporte);
@@ -78,29 +78,9 @@ function planillaCurso($id_curso, $fechaDesde, $fechaHasta)
 
     //seleccionar todas las fechas de asistencia ese curso 
     $selectFechas = $con->query("SELECT DISTINCT asistenciadia.fechaHoraAsisDia FROM `asistencia`, asistenciadia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND asistenciadia.asistencia_id = asistencia.id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistenciadia.fechaHoraAsisDia >= '$fechaDesdeReporte' AND asistenciadia.fechaHoraAsisDia <= '$fechaHastaReporte' ORDER BY `fechaHoraAsisDia` ASC");
-
-    //Datos asistencias, de los alumnos en el periodo seleccionado
-    $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id AS idAsistencia, usuario.id, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.legajoUsuario FROM usuario, asistencia, curso WHERE curso.id = '$id_curso' AND curso.id = asistencia.curso_id AND asistencia.fechaDesdeFichaAsis = curso.fechaDesdeCursado AND asistencia.fechaHastaFichaAsis = curso.fechaHastaCursado AND asistencia.alumno_id = usuario.id ORDER BY usuario.apellidoUsuario ASC");
-    
-    //crear un arreglo con todas las fechas y horas de asistencia 
-    $arregloFechasHoras = [];
-    while ($row = $selectFechas->fetch_assoc()) {
-
-        $fechaHora = $row["fechaHoraAsisDia"];
-        array_push($arregloFechasHoras, $fechaHora);
-    }
-
-    //crear un arreglo con todos los ID de las planillas de asistencia de ese curso 
-    $arregloIdAsistencias = [];
-    while ($alumnosAsistencia = $selectAsistenciasAlumnoCurso->fetch_assoc()) {
-
-        $id_asistencia = $alumnosAsistencia["idAsistencia"];
-        array_push($arregloIdAsistencias, $id_asistencia);
-    }
-
     
     //verificar que haya alumnos y fechas para generar la tabla 
-    if (count($arregloFechasHoras) == 0 || count($arregloIdAsistencias) == 0) {
+    if (($selectFechas->num_rows) == 0) {
         return false;
     } else {
         return true;
