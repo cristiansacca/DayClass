@@ -61,6 +61,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 //-----------------------------------------------------------------------------------------------------------------------------
 
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
 <div class="container">
     <div class="jumbotron my-4 py-4">
@@ -157,7 +159,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             <input type="date" name="fechaEditar" id="fechaEditar" hidden>
             <button type="submit" class="btn btn-success my-3"><i class="fa fa-edit mr-1"></i>Editar asistencias</button>
         </form>
-        <table class="table table-secondary table-bordered">
+        <table class="table table-secondary table-bordered" id="dataTable">
             <thead>
                 <th>Legajo</th>
                 <th>Apellido</th>
@@ -177,6 +179,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 </div>
 
 <script src="../administrador.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
@@ -335,6 +339,32 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         }
     }
 </script>
+<!--<script>
+    $("#dataTable").DataTable({
+    ordering:false,
+    language: {
+        processing:     "Procesando...",
+        lengthMenu: "Mostrar _MENU_ por página",
+        zeroRecords: "No hay coincidencias",
+        info: "Página _PAGE_ de _PAGES_",
+        infoEmpty: "No se encontraron datos",
+        infoFiltered: "(Filtrada de _MAX_ filas)",
+        loadingRecords: "Cargando...",
+        infoPostFix:    "",
+        search: "Buscar:",
+        paginate: {
+            first: "Primero",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Último"
+        },
+        aria: {
+            sortAscending:  ": Ordenar de manera ascendente",
+            sortDescending: ": Ordenar de manera descendente"
+        }
+    }
+});
+</script>-->
 
 <?php
 include "../../footer.html";

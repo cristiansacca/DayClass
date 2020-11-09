@@ -141,6 +141,12 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         
         if(($consulta1->num_rows)!=0){
         echo "<table id='dataTable' class='table table-secondary table-bordered table-hover'>";
+            echo "<thead hidden>
+                <th>Nombre</th>
+                <th>Nivel</th>
+                <th>Programa</th>
+                <th>Acciones</th>
+            </thead>";
             echo "<tbody>";
                 
                 
@@ -241,7 +247,32 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 <script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../paginadoDataTable.js"></script>
+<script>
+    $("#dataTable").DataTable({
+    ordering:false,
+    language: {
+        processing:     "Procesando...",
+        lengthMenu: "Mostrar _MENU_ por página",
+        zeroRecords: "No hay coincidencias",
+        info: "Página _PAGE_ de _PAGES_",
+        infoEmpty: "No se encontraron datos",
+        infoFiltered: "(Filtrada de _MAX_ filas)",
+        loadingRecords: "Cargando...",
+        infoPostFix:    "",
+        search: "Buscar:",
+        paginate: {
+            first: "Primero",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Último"
+        },
+        aria: {
+            sortAscending:  ": Ordenar de manera ascendente",
+            sortDescending: ": Ordenar de manera descendente"
+        }
+    }
+});
+</script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>

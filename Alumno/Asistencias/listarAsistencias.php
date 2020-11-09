@@ -5,7 +5,7 @@ $curso_id = $_POST["id_curso"];
 $alumno_id = $_POST["id_alumno"];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 setlocale(LC_ALL, 'Spanish');
-$currentDateTime = date('Y-m-d');
+$currentDateTime = date('Y-m-d H:i:s');
 
 $tipoPresente = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'PRESENTE' AND fechaBajaTipoAsistencia IS NULL")->fetch_assoc();
 $tipoAusente = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'AUSENTE' AND fechaBajaTipoAsistencia IS NULL")->fetch_assoc();
@@ -32,8 +32,11 @@ while($resultado1 = $consulta1->fetch_assoc()) {
             break;
     }
 
+    $dayName = date('l', strtotime($resultado1['fechaHoraAsisDia']));
+    $consultaDiaSemana = $con->query("SELECT nombreDia FROM cursodia WHERE dayName = '$dayName'")->fetch_assoc();
+
     $asistencias[] = array(
-        'fecha'=> strftime("%d de %B de %Y", strtotime($resultado1['fechaHoraAsisDia'])),
+        'fecha'=> $consultaDiaSemana['nombreDia']." ".strftime("%d de %B de %Y", strtotime($resultado1['fechaHoraAsisDia'])),
         'tipoAsistencia'=> $tipoAsistencia
     );
 }

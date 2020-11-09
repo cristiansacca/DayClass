@@ -118,6 +118,15 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                 case 5:
                     echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No es el día u horario de cursado.</h5>";
                     break;
+                case 6:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No se puede generar el reporte. El curso no registra información de alumnos inscriptos ni de asistencias.</h5>";
+                    break;
+                case 7:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No se puede generar el reporte. El curso no registra información de asistencias en el periodo seleccionado.</h5>";
+                    break;
+                case 8:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No se puede generar el reporte. El curso no registra información alumnos inscriptos.</h5>";
+                    break;
                 
                 default:
                 echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Error.</h5>";

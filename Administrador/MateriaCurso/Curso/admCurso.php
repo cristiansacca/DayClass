@@ -123,14 +123,13 @@ $materia = $con->query("SELECT * FROM materia WHERE id = '$id_materia'")->fetch_
     </div>
 
     <div class="my-2 table-responsive">
-        <table id="dataTable" class="table table-secondary table-bordered table-hover">
-            <!--<thead>
+        <table id="dataTableCursos" class="table table-secondary table-bordered table-hover">
+            <thead hidden>
                 <th>Nombre</th>
                 <th>División</th>
                 <th>Modalidad</th>
                 <th></th>
-                <th></th>
-            </thead>-->
+            </thead>
             <tbody>
                 <?php
                 
@@ -285,7 +284,32 @@ $materia = $con->query("SELECT * FROM materia WHERE id = '$id_materia'")->fetch_
 <script src="../../administrador.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../paginadoDataTable.js"></script>
+<script>
+    $("#dataTableCursos").DataTable({
+    ordering:false,
+    language: {
+        processing:     "Procesando...",
+        lengthMenu: "Mostrar _MENU_ por página",
+        zeroRecords: "No hay coincidencias",
+        info: "Página _PAGE_ de _PAGES_",
+        infoEmpty: "No se encontraron datos",
+        infoFiltered: "(Filtrada de _MAX_ filas)",
+        loadingRecords: "Cargando...",
+        infoPostFix:    "",
+        search: "Buscar:",
+        paginate: {
+            first: "Primero",
+            previous: "Anterior",
+            next: "Siguiente",
+            last: "Último"
+        },
+        aria: {
+            sortAscending:  ": Ordenar de manera ascendente",
+            sortDescending: ": Ordenar de manera descendente"
+        }
+    }
+});
+</script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>

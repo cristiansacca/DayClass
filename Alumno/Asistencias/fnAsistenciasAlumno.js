@@ -26,7 +26,7 @@ function mostrarAsistencias() {
 
             if(json.minimoAsistencias == 0){
                 contenido += "<div class='alert alert-info' role='alert'>"+
-                    "<h5><i class='fa fa-info-circle mr-2'></i>El porcentaje mínimo de asistencias no se ha definido.</h5>"+
+                    "<h5><i class='fa fa-info-circle mr-2'></i>En este espacio podrá ver cuántas inasistencias le faltan para llegar al máximo permitido cuando su institución establezca el porcentaje requerido.</h5>"+
                 "</div>";
             } else {
                 if(json.diasCursado == null){
