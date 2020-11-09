@@ -71,6 +71,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <a href="/DayClass/Index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
+    <button class="btn btn-warning mt-2 mr-2" id="btnLimpiarDT" hidden><i class="fa fa-eraser mr-1"></i>Limpiar DataTable</button>
+
     <?php
 
     if (isset($_GET["resultado"])) {
@@ -159,7 +161,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             <input type="date" name="fechaEditar" id="fechaEditar" hidden>
             <button type="submit" class="btn btn-success my-3"><i class="fa fa-edit mr-1"></i>Editar asistencias</button>
         </form>
-        <table class="table table-secondary table-bordered" id="dataTable">
+        <table class="table table-secondary table-bordered" id="dataTableAsistencias">
             <thead>
                 <th>Legajo</th>
                 <th>Apellido</th>
@@ -186,7 +188,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 </script>
 
 <script>
+    paginarTabla();
     document.getElementById("fecha").onchange = function() {
+        eval("debugger;");
         var fecha = document.getElementById("fecha").value;
         var id_curso = document.getElementById("curso").value;
         var datos = {
@@ -239,12 +243,14 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             contenido += "<td class='" + color + "'><b>" + json[index].estado + "</b></td>";
                             contenido += "</tr>";
                         }
+                        document.getElementById("btnLimpiarDT").click();
                         document.getElementById("tbodyAsistencia").innerHTML = contenido;
                         document.getElementById("sinAsistencias").hidden = true;
                         document.getElementById("tablaAsistencia").hidden = false;
                         document.getElementById("diaCursado").hidden = true;
                         document.getElementById("idCursoEditar").value = id_curso;
                         document.getElementById("fechaEditar").value = fecha;
+                        paginarTabla();
 
                     } else {
                         document.getElementById("tbodyAsistencia").innerHTML = contenido;
@@ -269,6 +275,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $("#fecha").val("");
         $("#curso").attr("disabled", "disabled");
         $("#curso").val("");
+        //document.getElementById("btnLimpiarDT").click();
         document.getElementById("tablaAsistencia").hidden = true;
         document.getElementById("sinAsistencias").hidden = true;
         document.getElementById("diaCursado").hidden = true;
@@ -309,6 +316,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         document.getElementById("sinAsistencias").hidden = true;
         document.getElementById("diaCursado").hidden = true;
         $("#fecha").val("");
+        //document.getElementById("btnLimpiarDT").click();
         var datos = {
             id_curso: id_curso
         }
@@ -338,33 +346,39 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             $("#fecha").attr("disabled", "disabled");
         }
     }
-</script>
-<!--<script>
-    $("#dataTable").DataTable({
-    ordering:false,
-    language: {
-        processing:     "Procesando...",
-        lengthMenu: "Mostrar _MENU_ por página",
-        zeroRecords: "No hay coincidencias",
-        info: "Página _PAGE_ de _PAGES_",
-        infoEmpty: "No se encontraron datos",
-        infoFiltered: "(Filtrada de _MAX_ filas)",
-        loadingRecords: "Cargando...",
-        infoPostFix:    "",
-        search: "Buscar:",
-        paginate: {
-            first: "Primero",
-            previous: "Anterior",
-            next: "Siguiente",
-            last: "Último"
-        },
-        aria: {
-            sortAscending:  ": Ordenar de manera ascendente",
-            sortDescending: ": Ordenar de manera descendente"
+
+    function paginarTabla(){
+        eval("debugger;");
+        var table;
+        table = $("#dataTableAsistencias").DataTable({
+            "ordering": false,
+            "language": {
+                processing:     "Procesando...",
+                lengthMenu: "Mostrar _MENU_ por página",
+                zeroRecords: "No hay coincidencias",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No se encontraron datos",
+                infoFiltered: "(Filtrada de _MAX_ filas)",
+                loadingRecords: "Cargando...",
+                infoPostFix:    "",
+                search: "Buscar:",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar de manera ascendente",
+                    sortDescending: ": Ordenar de manera descendente"
+                }
+            }
+        });
+        document.getElementById("btnLimpiarDT").onclick = function(){
+            table.destroy();
         }
     }
-});
-</script>-->
+</script>
 
 <?php
 include "../../footer.html";

@@ -62,6 +62,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 ?>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
 <div class="container">
     <div class="jumbotron my-4 py-4">
         <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
@@ -178,7 +181,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             <input type="date" name="fechaEditar" id="fechaEditar" hidden>
             <button type="submit" class="btn btn-success my-3"><i class="fa fa-edit mr-1"></i>Editar asistencias</button>
         </form>
-        <table class="table table-secondary table-bordered">
+        <table class="table table-secondary table-bordered" id="dataTableAsistencias">
             <thead>
                 <th>Legajo</th>
                 <th>Apellido</th>
@@ -191,6 +194,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         </table>
     </div>
 
+    <button class="btn btn-warning mt-2 mr-2" id="btnLimpiarDT" hidden><i class="fa fa-eraser mr-1"></i>Limpiar DataTable</button>
+
     <div class="alert alert-danger" role="alert" id="diaCursado" hidden>
         <h5><i class='fa fa-exclamation-circle mr-2'></i>La fecha seleccionada no corresponde para un día de cursado. No puede ver ni cargar asistencias.</h5>
     </div>
@@ -198,6 +203,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 </div>
 
 <script src="../profesor.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
@@ -256,12 +263,14 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             contenido += "<td class='" + color + "'><b>" + json[index].estado + "</b></td>";
                             contenido += "</tr>";
                         }
+                        document.getElementById("btnLimpiarDT").click();
                         document.getElementById("tbodyAsistencia").innerHTML = contenido;
                         document.getElementById("sinAsistencias").hidden = true;
                         document.getElementById("tablaAsistencia").hidden = false;
                         document.getElementById("diaCursado").hidden = true;
                         document.getElementById("idCursoEditar").value = id_curso;
                         document.getElementById("fechaEditar").value = fecha;
+                        paginarTabla();
 
                     } else {
                         document.getElementById("tbodyAsistencia").innerHTML = contenido;
@@ -314,6 +323,38 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             })
         } else {
             $("#fecha").attr("disabled", "disabled");
+        }
+    }
+    
+    function paginarTabla(){
+        eval("debugger;");
+        var table;
+        table = $("#dataTableAsistencias").DataTable({
+            "ordering": false,
+            "language": {
+                processing:     "Procesando...",
+                lengthMenu: "Mostrar _MENU_ por página",
+                zeroRecords: "No hay coincidencias",
+                info: "Página _PAGE_ de _PAGES_",
+                infoEmpty: "No se encontraron datos",
+                infoFiltered: "(Filtrada de _MAX_ filas)",
+                loadingRecords: "Cargando...",
+                infoPostFix:    "",
+                search: "Buscar:",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar de manera ascendente",
+                    sortDescending: ": Ordenar de manera descendente"
+                }
+            }
+        });
+        document.getElementById("btnLimpiarDT").onclick = function(){
+            table.destroy();
         }
     }
 </script>
