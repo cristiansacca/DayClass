@@ -310,16 +310,16 @@ $pdf->Output("report.pdf", "I");
     //$mensaje = null;
     if(count($arregloFechasHoras) == 0 && count($arregloIdAsistencias) == 0){
         //$mensaje = "El curso no registra información de alumnos inscriptos, ni de asistencias.";
-        header("location:/DayClass/Usuario/inicioSesion.php?error=6");
+        header("location:/DayClass/Profesor/seleccionCurso.php?codFn=23&&error=6");
         
      
     }else{
         if(count($arregloFechasHoras) == 0){
           //$mensaje = "El curso no registra información de asistencias en el periodo seleccionado."; 
-            header("location:/DayClass/Usuario/inicioSesion.php?error=7");
+            header("location:/DayClass/Profesor/seleccionCurso.php?codFn=23&&error=7");
         }else{
           // $mensaje = "El curso no registra información alumnos inscriptos en el periodo seleccionado." ; 
-            header("location:/DayClass/Usuario/inicioSesion.php?error=8");
+            header("location:/DayClass/Profesor/seleccionCurso.php?codFn=23&&error=8");
         }
     }
     

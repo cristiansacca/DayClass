@@ -370,7 +370,8 @@ if (($fechaD > $currentDateTime)) {
 
                 <div class="modal-footer">
 
-                    <a <?php echo "href='/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso'"; ?> class="btn btn-success"><i class="fas fa-search-plus mr-1"></i>Ver más</a>
+                    <a <?php echo "href='/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso'"; 
+                       if(($consulta1->num_rows) == 0){echo "class='btn btn-success disabled'";}else{echo "class='btn btn-success'";} ?> ><i class="fas fa-search-plus mr-1"></i>Ver más</a>
 
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
 
