@@ -30,9 +30,7 @@ if($insertUsuario){
 Hola, $nombre $apellido.
 
 El día $fechaAlumnoLibre se ha dado de alta su cuenta en DayClass. 
-Su usuario es el siguiente: $email
-Su contraseña es la siguiente: $pass
-Puede cambiarla en cualquier momento accediendo a la sección de editar perfil.
+Su usuario es el siguiente: $email.
 
 Para activar su cuenta hace click en el siguiente link: http://localhost/DayClass/activarCuenta.php?mail=$mail_cifrado&&di=$dni&&pass=$pass_cifrada
 
