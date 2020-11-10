@@ -91,12 +91,12 @@ $curso = $consulta1->fetch_assoc();
 
             date_default_timezone_set('America/Argentina/Buenos_Aires');
             $currentDate = date('Y-m-d H:i:s');
-            $consulta1 = $con->query("SELECT temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema, temasmateria.unidadTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC");
+            $consulta1 = $con->query("SELECT temadia.id, temadia.profesor_id, temadia.fechaTemaDia, temadia.comentarioTema, temasmateria.nombreTema, temasmateria.unidadTema FROM `temadia`, temasmateria, curso WHERE temadia.curso_id = '$id_curso' AND curso.fechaDesdeCurActual <= '$currentDate' AND curso.fechaHastaCurActul IS NULL AND curso.fechaDesdeCursado <= '$currentDate' AND curso.fechaHastaCursado >= '$currentDate' AND temadia.curso_id = curso.id AND temadia.temasMateria_id = temasmateria.id AND temadia.fechaTemaDia >= curso.fechaDesdeCursado AND temadia.fechaTemaDia <= curso.fechaHastaCursado ORDER BY temadia.fechaTemaDia DESC");
 
             if (($consulta1->num_rows) == 0) {
                 echo "<div class='alert alert-warning' role='alert'>
-                                <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han cargado temas en este curso.</h5>
-                                </div>";
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no se han cargado temas en este curso.</h5>
+                    </div>";
             } else {
                 echo "<thead>
                                     <th>Fecha</th>
@@ -104,10 +104,13 @@ $curso = $consulta1->fetch_assoc();
                                     <th>Tema</th>
                                     <th>Comentario</th>
                                     <th>Docente</th> 
+                                    <th></th> 
                                 </thead>
                                 <tbody> ";
 
                 while ($resultado1 = $consulta1->fetch_assoc()) {
+                    
+                    $id_tema = $resultado1['id'];
                     $profTema = $resultado1['profesor_id'];
                     $datosProf = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$profTema'")->fetch_assoc();
 
@@ -123,6 +126,10 @@ $curso = $consulta1->fetch_assoc();
                                     <td>" . $resultado1['nombreTema'] . "</td>
                                     <td>" . $resultado1['comentarioTema'] . "</td>
                                     <td>" . $nombreProf . " " . $apellidoProf . "</td>
+                                    <td> <a href='/DayClass/Profesor/TemaDia/borrarTema.php?id_tema=$id_tema' class='btn btn-danger mb-1' ><i class='fas fa-trash mr-1'></i>Eliminar</a>
+                                    <button class='btn btn-primary mb-1' onclick='cargarDatos($id_tema)' data-toggle='modal' data-target='#editarTemaDado'><i class='fa fa-edit mr-1'></i>Editar</button>
+                                    </td>
+                                    
                                 </tr>";
                 }
                 echo " </tbody>";
@@ -132,12 +139,109 @@ $curso = $consulta1->fetch_assoc();
     </div>
 </div>
 
+
+<!-- Modal editar -->
+<div class="modal fade" id="editarTemaDado" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title">Editar tema dado</h5>
+            </div>
+                
+                
+            <form action="modificarTemaDia.php" method="POST" class=" form-group">
+                    
+                <input type="text" name="id_curso"  hidden>
+    
+                <div class="modal-body">
+                    <h6>Datos existentes</h6>
+                    
+                    
+                   <div class="my-2">
+                       
+                       <div>
+                       <label>Unidad:</label>
+                        <input type="text" readonly id="unidadTemaAnt" class="form-control">
+                        </div>
+                       
+                       <div>
+                       <label>Tema:</label>
+                        <input type="text" readonly id="temaAnt" class="form-control">
+                       </div>
+                       
+                       <h6>Datos nuevos</h6>
+                        <select id="unidadTema" name="unidadTema" class="custom-select mb-2" required>
+                            <option value="" selected>Unidad</option>
+                            <?php
+
+                            $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+                            $curso = $consulta1->fetch_assoc();
+
+                            date_default_timezone_set('America/Argentina/Buenos_Aires');
+                            $currentDate = date('Y-m-d');
+
+                            $consultaMateria = $con->query("SELECT * FROM materia WHERE id = '" . $curso["materia_id"] . "'");
+                            $materia = $consultaMateria->fetch_assoc();
+                            $materia_id = $materia["id"];
+
+                            $consultaPrograma = $con->query("SELECT * FROM programamateria WHERE materia_id = '$materia_id' AND programamateria.fechaDesdePrograma <= '$currentDate' AND programamateria.fechaHastaPrograma IS NULL");
+                            $programa = $consultaPrograma->fetch_assoc();
+                            $programa_id = $programa["id"];
+
+                            $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
+
+                            while ($temas = $consultaTemas->fetch_assoc()) {
+                                echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
+                            }
+
+                            ?>
+                        </select>
+                       
+                       
+
+                        <select id="nombreTema" name="nombreTema" class="custom-select" required disabled>
+                            <option value="" selected>Tema</option>
+
+                        </select>
+                       
+                       <div class="my-2">
+                            <textarea name="comentario" id="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline" placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
+                       </div>
+                       
+                       <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden>
+                       <input type="text" name="idTema" id="idTema" hidden>
+                </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script src="../profesor.js"></script>
+<script src="fnTemaDia.js"></script>
 <script src="paginadoDataTable.js"></script>
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
+
+<script>
+    function cargarDatos(id){
+        
+        document.getElementById("idTema").value = id;
+        
+    }
+
+</script>
+
+
+
 <script src="fnTemaDia.js"></script>
 <?php
 include "../../footer.html";
