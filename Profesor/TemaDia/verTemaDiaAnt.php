@@ -63,6 +63,7 @@ $id_curso = $_GET["id_curso"];
 
 $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
 $curso = $consulta1->fetch_assoc();
+$fechaDesdeCursado = $curso["fechaDesdeCursado"];
 
 
 ?>
@@ -81,9 +82,66 @@ $curso = $consulta1->fetch_assoc();
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <a <?php echo "href='/DayClass/Profesor/TemaDia/verDatosReportesTemas.php?id_curso=$id_curso'"; ?> class="btn btn-success"><i class="fa fa-file-text-o mr-1"></i>Reporte</a>
+        <button class='btn btn-warning'  data-toggle='modal' data-target='#agregarTemaDado'><i class='fa fa-edit mr-1'></i>Agregar Tema</button>
 
     </div>
+    
+     <?php
 
+    if (isset($_GET["resultado"])) {
+        switch ($_GET["resultado"]) {
+            case 1:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Modificación exitosa del tema dado.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 2:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al modificar el tema. Intente nuevamente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 3:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Baja exitosa del tema dado.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 4:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la baja del tema dado. Intente nuevamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 5:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Tema agregado exitosamente.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+            case 6:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en registrar el tema. Intente nuevamente</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
+        }
+    }
+
+    ?>
 
     <div class="table-responsive">
         <table class="table text-center table-striped table-bordered table-light" id="dataTable">
@@ -126,7 +184,7 @@ $curso = $consulta1->fetch_assoc();
                                     <td>" . $resultado1['nombreTema'] . "</td>
                                     <td>" . $resultado1['comentarioTema'] . "</td>
                                     <td>" . $nombreProf . " " . $apellidoProf . "</td>
-                                    <td> <a href='/DayClass/Profesor/TemaDia/borrarTema.php?id_tema=$id_tema' class='btn btn-danger mb-1' ><i class='fas fa-trash mr-1'></i>Eliminar</a>
+                                    <td> <a href='/DayClass/Profesor/TemaDia/borrarTema.php?id_tema=$id_tema&&id_curso=$id_curso' class='btn btn-danger mb-1' ><i class='fas fa-trash mr-1'></i>Eliminar</a>
                                     <button class='btn btn-primary mb-1' onclick='cargarDatos($id_tema)' data-toggle='modal' data-target='#editarTemaDado'><i class='fa fa-edit mr-1'></i>Editar</button>
                                     </td>
                                     
@@ -208,6 +266,7 @@ $curso = $consulta1->fetch_assoc();
                             <textarea name="comentario" id="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline" placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
                        </div>
                        
+                       <input type="text" name="id_curso" id="id_curso" <?php echo "value='$id_curso'" ?> hidden>
                        <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden>
                        <input type="text" name="idTema" id="idTema" hidden>
                 </div>
@@ -223,8 +282,93 @@ $curso = $consulta1->fetch_assoc();
 </div>
 
 
+
+<!-- Modal cargar tema de otro dia -->
+<div class="modal fade" id="agregarTemaDado" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h5 class="modal-title">Agregar tema</h5>
+            </div>
+                
+                
+            <form action="agregarTemaDiaDado.php" method="POST" class=" form-group">
+                    
+                <div class="modal-body">
+                    
+                    <div class="mb-4" id="noEsFechaCurso" hidden>
+                        <div class="alert alert-danger" role="alert">
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No es un día que se curse, seleccione otro.</h5>
+                        </div>
+                    </div>
+                    
+                   <div class="my-2">
+                       
+                       <div class="form-inline">
+                       <label>Fecha:</label>
+                        <input type="date" id="fechaTema" name="fechaTema" class="form-control mb-2" <?php echo "max='$currentDate'"; echo "min=$fechaDesdeCursado" ?>>
+                        </div>
+                       
+                        <select id="unidadTemaAgregar" name="unidadTemaAgregar" class="custom-select mb-2" disabled required>
+                            <option value="" selected>Unidad</option>
+                            <?php
+
+                            $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
+                            $curso = $consulta1->fetch_assoc();
+
+                            date_default_timezone_set('America/Argentina/Buenos_Aires');
+                            $currentDate = date('Y-m-d');
+
+                            $consultaMateria = $con->query("SELECT * FROM materia WHERE id = '" . $curso["materia_id"] . "'");
+                            $materia = $consultaMateria->fetch_assoc();
+                            $materia_id = $materia["id"];
+
+                            $consultaPrograma = $con->query("SELECT * FROM programamateria WHERE materia_id = '$materia_id' AND programamateria.fechaDesdePrograma <= '$currentDate' AND programamateria.fechaHastaPrograma IS NULL");
+                            $programa = $consultaPrograma->fetch_assoc();
+                            $programa_id = $programa["id"];
+
+                            $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
+
+                            while ($temas = $consultaTemas->fetch_assoc()) {
+                                echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
+                            }
+
+                            ?>
+                        </select>
+                       
+                       
+
+                        <select id="nombreTemaAgregar" name="nombreTemaAgregar" class="custom-select" required disabled>
+                            <option value="" selected>Tema</option>
+
+                        </select>
+                       
+                       <div class="my-2">
+                            <textarea name="comentarioAgregar" id="comentarioAgregar" cols="60" rows="5" style="resize: none;" class="form-control form-inline" placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
+                       </div>
+                       
+                       <input type="text" name="id_curso2" id="id_curso2" <?php echo "value='$id_curso'" ?> hidden>
+                       <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden>
+                       <input type="text" name="idTema" id="idTema" hidden>
+                       <input type="text" name="idProfesor" id="idProfesor" <?php echo "value='".$_SESSION['usuario']["id"]."'" ?> hidden>
+                       
+                       
+                </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script src="../profesor.js"></script>
 <script src="fnTemaDia.js"></script>
+<script src="fnTemaDiaAgregar.js"></script>
 <script src="paginadoDataTable.js"></script>
 
 <script>
@@ -236,10 +380,52 @@ $curso = $consulta1->fetch_assoc();
         
         document.getElementById("idTema").value = id;
         
+        $.ajax({
+            url: 'buscarTemaAnt.php',
+            type: 'POST',
+            data: {id: id},
+            success: function(datosRecibidos) {
+                json = JSON.parse(datosRecibidos);
+                document.getElementById("unidadTemaAnt").value = json.unidad;
+                document.getElementById("temaAnt").value = json.tema;    
+                document.getElementById("comentario").value = json.comentario;
+            }
+        })
+        
+    }
+    
+    document.getElementById("fechaTema").onchange = function() {
+        eval("debugger;");
+        var fecha = document.getElementById("fechaTema").value;
+        var id_curso = document.getElementById("id_curso2").value;
+        var datos = {
+            id_curso: id_curso,
+            fecha: fecha
+        }
+
+        var x;
+        $.ajax({
+            url: 'validarDiasCursado.php',
+            type: 'POST',
+            data: datos,
+            async: false,
+            success: function(datosRecibidos) {
+                //alert(datosRecibidos);
+                json = JSON.parse(datosRecibidos);
+                if(json.resultado == 1){
+                    x = 1;
+                    document.getElementById("noEsFechaCurso").hidden = true;
+                    document.getElementById("unidadTemaAgregar").disabled = false;
+                } else {
+                    x = 0;
+                    document.getElementById("noEsFechaCurso").hidden = false;
+                    document.getElementById("unidadTemaAgregar").disabled = true;
+                }
+            }
+        })
     }
 
 </script>
-
 
 
 <script src="fnTemaDia.js"></script>
