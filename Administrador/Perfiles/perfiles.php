@@ -130,7 +130,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDate = date('Y-m-d');
     
-        $selectPermisos = $con->query("SELECT * FROM `permiso` WHERE `fechaDesdePer` <= '$currentDate' AND `fechaHastaPer` IS NULL AND nombrePermiso != 'ADMINISTRADOR' ORDER BY nombrePermiso ASC");
+        $selectPermisos = $con->query("SELECT * FROM `permiso` WHERE `fechaDesdePer` <= '$currentDate' AND `fechaHastaPer` IS NULL ORDER BY nombrePermiso ASC");
     
         $classHabilitado = "btn btn-secondary";
                     

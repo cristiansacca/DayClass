@@ -223,7 +223,7 @@ $_SESSION['tiempo'] = time();
                     <tbody>
                         <?php
 
-                        $consulta1 = $con->query("SELECT * FROM `usuario` WHERE id_permiso = '$id_permiso' ORDER BY legajoUsuario ASC");
+                        $consulta1 = $con->query("SELECT * FROM `usuario` WHERE id_permiso = '$id_permiso' AND fechaBajaUsuario IS NULL ORDER BY legajoUsuario ASC");
 
                         while ($resultado1 = $consulta1->fetch_assoc()) {
                             if ($resultado1['fechaBajaUsuario'] != NULL || $resultado1['fechaBajaUsuario'] != "") {
@@ -233,7 +233,7 @@ $_SESSION['tiempo'] = time();
                                     <td>" . $resultado1['apellidoUsuario'] . "</td>
                                     <td>" . $resultado1['nombreUsuario'] . "</td>
                                     <td>" . $resultado1['dniUsuario'] . "</td> 
-                                    <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
+                                    <td>Usuario dado de baja</td>
                                 </tr>";
                             } else {
                                 $urlBaja = 'bajaUsuarioPerfil.php?id=' . $resultado1["id"] . '&&permiso=' . $id_permiso;
