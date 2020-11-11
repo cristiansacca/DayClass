@@ -1,5 +1,5 @@
 function setIdProf(id){
-    
+    eval("debugger;");
     var buscar = "inicLic" + id;
     document.getElementById('impIDprof').value=id;
     var inicioLicencia = document.getElementById(buscar).value;
@@ -14,7 +14,7 @@ function setIdProf(id){
     }
     
     
-    if(inicioLicencia < today){
+    if(inicioLicencia <= today || inicioLicencia == ""){
         /*document.getElementById('fechaDesde').min = today;
         document.getElementById('fechaDesde').value = today;*/
     }else{
@@ -29,15 +29,17 @@ function setIdProf(id){
 
 function habilitarFechaHasta(){
     var fchDesde = document.getElementById('fechaDesde').value;
-    var fchHoy = document.getElementById('todayDate').value;
+    //var fchHoy = document.getElementById('todayDate').value;
     
-    if(fchDesde < fchHoy){
-       document.getElementById('fechaHasta').value = fchHoy;
-        document.getElementById('fechaHasta').min = fchHoy; 
-    }else{
-        document.getElementById('fechaHasta').value = fchDesde;
+    document.getElementById('fechaHasta').value = fchDesde;
         document.getElementById('fechaHasta').min = fchDesde; 
-    }
+    
+    /*if(fchDesde < fchHoy){
+       document.getElementById('fechaHasta').value = fchHoy;
+    document.getElementById('fechaHasta').min = fchHoy; 
+    }else{
+        
+    }*/
     
     
     document.getElementById('fechaHasta').disabled = false;
@@ -92,6 +94,44 @@ function validarFechasLic(){
     var fchHasta = document.getElementById('fechaHasta').value;
     
     if(fchHasta != ""){
+        var datos = {
+            id_curso: document.getElementById('cursoId').value,
+            id_prof: document.getElementById('impIDprof').value,
+            fchDesde: document.getElementById('fechaDesde').value,
+            fchHasta: document.getElementById('fechaHasta').value;
+        }
+
+        $.ajax({
+            url:'validarFechasLicencia.php',
+            type: 'POST',
+            async: false,
+            data: datos,
+            success:function(datosRecibidos) {
+                
+                json = JSON.parse(datosRecibidos);
+                //alert(datosRecibidos);
+                
+                switch(json){
+                    case "noAsociado":
+                        rtdo = true;
+                        break;
+                    case "siAsociado":
+                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>El usuario ya se encuentra asociado al curso.</h5></div>";
+                        rtdo = false;
+                        break;
+                    case "noExiste":
+                       document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Los datos ingresados no corresponden a un usuario existente.</h5></div>"; 
+                        rtdo = false;
+                        break;
+                }
+            }
+        })
+        
+        
+        
+        
+        
+        
         return true;
         
     }else{
