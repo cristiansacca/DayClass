@@ -208,8 +208,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             
                 $consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
                 FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
-                WHERE cargoprofesor.profesor_id = usuario.id 
-                     
+                WHERE cargoprofesor.profesor_id = usuario.id
                     AND cargoprofesor.curso_id = curso.id 
                     AND cargoprofesor.cargo_id = cargo.id 
                     AND cargoprofesor.curso_id = '$id_curso' 
@@ -271,6 +270,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                         <input type='date' name='impIDprof' id='inicLic" . $id . "' value='$inicioLicencia' hidden> 
                         <input type='date' name='impIDprof' id='inicioUltimaLicencia" . $id . "' value='$inicioUtimaLicencia' hidden>
                         <input type='date' name='impIDprof' id='finUltimaLicencia" . $id . "' value='$finUtimaLicencia' hidden>
+                        <input type='date' name='todayDate' id='todayDate' value= '$currentDateTime' hidden>
                         
                 
                     </td> 
@@ -418,12 +418,12 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarDocenteLicenciaCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
                 <div class="modal-body">
 
-                    <label class="text-muted">No se aceptan licencias pasadas, iniciadas antes de la fecha de hoy</label>
+                    <label class="text-muted">No se aceptan licencias pasadas, iniciadas y terminadas antes de la fecha de hoy</label>
 
                     <div class="my-2">
                         <div class="form-inline my-2">
                             <label style="margin-right: 1rem;" for="fechaDesde">Inicio Licencia: </label>
-                            <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" min=<?php $hoy = date("Y-m-d"); echo $hoy; ?> <?php echo "value= '" . $currentDateTime . "'"; ?> required>
+                            <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" required>
                             <h9 id="msgDesde"></h9>
                         </div>
                         <div class="form-inline my-2">

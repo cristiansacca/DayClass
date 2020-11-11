@@ -216,33 +216,27 @@ if (($fechaD > $currentDateTime)) {
     }
 
     if (!$habP) {
-        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        echo "<div class='alert alert-danger fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>Su estado el dia de hoy es $estadoCargo, no puede cargar temas, solo verlos.</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                        </button>
             </div>";
     }
 
     if (!$hayAlumnos) {
-        echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos para este periodo. No puede cargar temas.</h5>
-                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                        </button>
+        echo "<div class='alert alert-warning fade show' role='alert'>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay alumnos inscriptos en este curso. No puede cargar temas.</h5>
             </div>";
     }
 
 
     if (!$tieneDiaHora) {
-        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        echo "<div class='alert alert-danger fade show' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay horario definido para este curso. No puede cargar temas.</h5>
             </div>";
     } else {
         if (!$diaHoraBien) {
 
             if ($diaBien && !$horaBien) {
-                echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                echo "<div class='alert alert-warning fade show' role='alert'>
                         <h5><i class='fa fa-exclamation-circle mr-2'></i>No es el horario de cursado. No puede cargar temas nuevos.</h5>
                     </div>";
             }

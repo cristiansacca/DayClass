@@ -355,10 +355,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
                             <div class="form-group col-md-6">
                                 <label for="inputHasta">Fin de cursado:</label>
-                                <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled <?php
-                                if ($rtdo) {                                                                                                                                 echo " value='" . $fchHasta . "' ";
-                                echo " required ";
-                                    echo " min='" . date("Y") . "-01-01' " . "max='" . date("Y") . "-12-31'";}  ?>>
+                                <input type="date" class="form-control" id="inputFinCursado" name="inputFinCursado" placeholder="Fecha Fin Cursado" disabled <?php if ($rtdo) { echo " value='" . $fchHasta . "' "; echo " required "; echo " min='" . date("Y") . "-01-01' " . "max='" . date("Y") . "-12-31'";}  ?>>
                                 <h9 class="msg" id="msjValidacionFechaH"></h9>
                             </div>
                         </div>
@@ -372,10 +369,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
-                    <input type="submit" value="Guardar" class="btn btn-primary" <?php
-                                                                                    if ($rtdo) {
-                                                                                        echo "style='display:none'";
-                                                                                    } ?>>
+                    <input type="submit" value="Guardar" class="btn btn-primary" <?php if ($rtdo) { echo "style='display:none'";} ?>>
                 </div>
             </form>
         </div>

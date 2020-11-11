@@ -184,7 +184,7 @@ $fechaDesdeCursado = $curso["fechaDesdeCursado"];
                                     <td>" . $resultado1['nombreTema'] . "</td>
                                     <td>" . $resultado1['comentarioTema'] . "</td>
                                     <td>" . $nombreProf . " " . $apellidoProf . "</td>
-                                    <td> <a href='/DayClass/Profesor/TemaDia/borrarTema.php?id_tema=$id_tema&&id_curso=$id_curso' class='btn btn-danger mb-1' ><i class='fas fa-trash mr-1'></i>Eliminar</a>
+                                    <td> <a href='/DayClass/Profesor/TemaDia/borrarTema.php?id_tema=$id_tema&&id_curso=$id_curso' class='btn btn-danger mb-1' onclick='return confirmDeleteTemaDia()'><i class='fas fa-trash mr-1'></i>Eliminar</a>
                                     <button class='btn btn-primary mb-1' onclick='cargarDatos($id_tema)' data-toggle='modal' data-target='#editarTemaDado'><i class='fa fa-edit mr-1'></i>Editar</button>
                                     </td>
                                     
@@ -376,6 +376,15 @@ $fechaDesdeCursado = $curso["fechaDesdeCursado"];
 </script>
 
 <script>
+    function confirmDeleteTemaDia(){
+        var confirmar = confirm("¿Realmente desea eliminarlo?");
+        if (confirmar) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     function cargarDatos(id){
         
         document.getElementById("idTema").value = id;

@@ -15,8 +15,8 @@ function setIdProf(id){
     
     
     if(inicioLicencia < today){
-        document.getElementById('fechaDesde').min = today;
-        document.getElementById('fechaDesde').value = today;
+        /*document.getElementById('fechaDesde').min = today;
+        document.getElementById('fechaDesde').value = today;*/
     }else{
         document.getElementById('fechaDesde').min = inicioLicencia;
         document.getElementById('fechaDesde').value = inicioLicencia;
@@ -28,14 +28,20 @@ function setIdProf(id){
 
 
 function habilitarFechaHasta(){
-
-   var fchDesde = document.getElementById('fechaDesde').value;
-   
-    var fechaSig = new Date(fchDesde);
-    fechaSig.setDate(fechaSig.getDate() + 1);
-    document.getElementById('fechaHasta').value = fchDesde;
-    document.getElementById('fechaHasta').min = fchDesde;
+    var fchDesde = document.getElementById('fechaDesde').value;
+    var fchHoy = document.getElementById('todayDate').value;
+    
+    if(fchDesde < fchHoy){
+       document.getElementById('fechaHasta').value = fchHoy;
+        document.getElementById('fechaHasta').min = fchHoy; 
+    }else{
+        document.getElementById('fechaHasta').value = fchDesde;
+        document.getElementById('fechaHasta').min = fchDesde; 
+    }
+    
+    
     document.getElementById('fechaHasta').disabled = false;
+    document.getElementById('fechaHasta').readonly = false;  
 }
 
 function ultimaLicencia(id){
