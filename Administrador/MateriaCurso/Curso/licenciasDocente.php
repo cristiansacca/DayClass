@@ -205,7 +205,12 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     ?>
 
     <div class="my-2">
-        <a href="" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1"></i>Agregar Licencia</a>
+        <a href="" class="btn btn-success mb-2" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-plus-square mr-1 "></i>Agregar Licencia</a>
+    </div>
+    
+    <div>
+        <h4>Licencias actuales y futuras del docente en el curso:</h4>
+    
     </div>
 
     <div class="my-4 table-responsive">
@@ -232,39 +237,28 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 if(($consulta2->num_rows) != 0){
 
                 echo "<thead>
-                    <th>Fecha Desde</th>
-                    <th>Fecha Hasta</th>
+                    <th>Fecha Desde Licencia</th>
+                    <th>Fecha Hasta Licencia</th>
                     <th></th>
                 </thead>
                 <tbody>";
                     
                     
                     while($resultadoLicencia = $consulta2->fetch_assoc()){
-                        $inicioLicencia = $resultadoLicencia["fechaDesdeCargoProfesorEstado"];
-                        $finLicencia = $resultadoLicencia["fechaHastaCargoProfesorEstado"];
+                        $fechaAlumnoLibre = date_create($resultadoLicencia["fechaDesdeCargoProfesorEstado"]);
+                        $inicioLicencia = date_format($fechaAlumnoLibre, "d/m/Y");
+                        
+                        $fechaAlumnoLibre = date_create($resultadoLicencia["fechaHastaCargoProfesorEstado"]);
+                        $finLicencia = date_format($fechaAlumnoLibre, "d/m/Y");
                         $nombreEstado = $resultadoLicencia["nombreEstadoCargoProfe"];
                         
-                    
-                        
-                        
-                        
-                    if($nombreEstado == "Licencia"){
-                            //$urlReinc = 'reincAlum.php?id='.$resultado1["id"];
-                            echo "<tr>
-                    <td>" . $inicioLicencia . "</td>
-                    <td>" . $finLicencia  . "</td>
-                    <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href=''><i class='fa fa-trash mr-1'></i>Eliminar Licencia</a></td>
-                    </tr>";
-                        }else{
-                            //urlBaja = 'bajaAlum.php?id='.$resultado1["id"];
+                    $urlBaja = 'bajaLicencia.php?id='.$resultadoLicencia["id"];
                            echo "<tr>
                     <td>" . $inicioLicencia . "</td>
                     <td>" . $finLicencia  . "</td>
-                    <td>" . $nombreEstado . "</td>
-                    <td class='text-center'><a class='btn btn-warning' onclick='return confirmDelete()' href=''><i class='fa fa-trash mr-1'></i>Ingresar Licencia</a></td>
+                    
+                    <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Eliminar Licencia</a></td>
                     </tr>"; 
-                        }
-                        
                         
                         echo "</tbody>";
                         
