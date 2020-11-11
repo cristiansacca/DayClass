@@ -37,20 +37,7 @@ if(mysqli_num_rows($consultaDocenteID) == 0){
         
         //se crea la instancia de cargoprofesor de ese curso 
         $resultadoInsertCargoProfesor = $con->query("INSERT INTO `cargoprofesor`(`fechaDesdeCargo`, `profesor_id`, `curso_id`, `cargo_id`) VALUES ('$currentDateTime','$id_profesor','$id_curso','$cargo')");
-        
-        
-        $consultaCargoProfesorCreado = $con -> query("SELECT * FROM cargoprofesor WHERE `profesor_id` = '$id_profesor' AND `curso_id` = '$id_curso' AND `cargo_id` = '$cargo' AND `fechaDesdeCargo` = '$currentDateTime'");
-        $resultado6 = $consultaCargoProfesorCreado->fetch_assoc();
-        $cargoProfesorCreadoID = $resultado6["id"];
-        // 
-        
-        $consultaEstadoCargoProfesor = $con->query("SELECT id FROM `estadocargoprofesor` WHERE nombreEstadoCargoProfe = 'Activo'");
-        $resultado7 = $consultaEstadoCargoProfesor->fetch_assoc();
-        $estadoCargoProf = $resultado7["id"];
-        
-        
-        $resultadoInsertEstadoCargo = $con->query("INSERT INTO `cargoprofesorestado`(`fechaDesdeCargoProfesorEstado`, `estadoCargoProfesor_id`, `cargoProfesor_id`) VALUES ('$currentDateTime','$estadoCargoProf','$cargoProfesorCreadoID')");
-        
+            
         //volver a la pagina que llamo, exito 1 = crwacion exitosa 
         header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=1");
         

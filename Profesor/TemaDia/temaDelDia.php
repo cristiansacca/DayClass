@@ -93,17 +93,28 @@ $id_curso = $_GET["id_curso"];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d');
 
-$consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo WHERE usuario.id = '$id_prof' AND cargoprofesor.profesor_id = usuario.id AND cargoprofesor.curso_id = curso.id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+$$consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
+    FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
+    WHERE usuario.id = '$id_prof' 
+        AND cargoprofesor.profesor_id = usuario.id 
+        AND cargoprofesor.curso_id = curso.id 
+        AND cargoprofesor.cargo_id = cargo.id 
+        AND cargoprofesor.curso_id = '$id_curso' 
+        AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
+        AND cargoprofesor.fechaHastaCargo IS NULL ");
+    
+    $resultadoProf = $consulta3->fetch_assoc();
+    
+    
+    
+    $consulta4 = $con->query("SELECT cargoprofesorestado.id, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND fechaDesdeCargoProfesorEstado <='$currentDateTime' AND fechaHastaCargoProfesorEstado >='$currentDateTime' AND `estadoCargoProfesor_id` = 2");
+    
 
-$resultadoProf = $consulta1->fetch_assoc();
-$estadoCargo = $resultadoProf['nombreEstadoCargoProfe'];
-
-$habP = false;
-//si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
-if ($estadoCargo == "Activo") {
-    $habP = true;
-}
-
+    $hab = false;
+    //si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
+    if (($consulta4->num_rows) == 0) {
+        $hab = true;
+    }
 
 $consultaDiasHorasCurso = $con->query("SELECT cursodia.dayName, horariocurso.horaInicioCurso, horariocurso.horaFinCurso FROM horariocurso, cursodia, curso WHERE curso.id ='$id_curso' AND horariocurso.curso_id = curso.id AND horariocurso.cursoDia_id = cursodia.id ");
 

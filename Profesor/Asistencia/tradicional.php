@@ -96,19 +96,18 @@ if (isset($_GET["id_curso"])) {
         AND cargoprofesor.cargo_id = cargo.id 
         AND cargoprofesor.curso_id = '$id_curso' 
         AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
-        AND cargoprofesor.fechaHastaCargo IS NULL 
-        AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id 
-        AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id 
-        AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' 
-        AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' 
-            OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
-
+        AND cargoprofesor.fechaHastaCargo IS NULL ");
+    
     $resultadoProf = $consulta3->fetch_assoc();
-    $estadoCargo = $resultadoProf['nombreEstadoCargoProfe'];
+    
+    
+    
+    $consulta4 = $con->query("SELECT cargoprofesorestado.id, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND fechaDesdeCargoProfesorEstado <='$currentDateTime' AND fechaHastaCargoProfesorEstado >='$currentDateTime' AND `estadoCargoProfesor_id` = 2");
+    
 
     $hab = false;
     //si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
-    if ($estadoCargo == "Activo") {
+    if (($consulta4->num_rows) == 0) {
         $hab = true;
     }
     
