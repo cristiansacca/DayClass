@@ -90,15 +90,19 @@ function armarFecha(fecha){
 }
 
 function validarFechasLic(){
+    
+    eval("debugger;");
     var fchDesde = document.getElementById('fechaDesde').value;
     var fchHasta = document.getElementById('fechaHasta').value;
+    
+    var rtdo;
     
     if(fchHasta != ""){
         var datos = {
             id_curso: document.getElementById('cursoId').value,
             id_prof: document.getElementById('impIDprof').value,
             fchDesde: document.getElementById('fechaDesde').value,
-            fchHasta: document.getElementById('fechaHasta').value;
+            fchHasta: document.getElementById('fechaHasta').value,
         }
 
         $.ajax({
@@ -112,27 +116,26 @@ function validarFechasLic(){
                 //alert(datosRecibidos);
                 
                 switch(json){
-                    case "noAsociado":
+                    case "NINGUNA":
                         rtdo = true;
                         break;
-                    case "siAsociado":
-                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>El usuario ya se encuentra asociado al curso.</h5></div>";
+                    case "AMBAS":
+                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Las fechas de inicio y fin coinciden con licencias existentes.</h5></div>";
                         rtdo = false;
                         break;
-                    case "noExiste":
-                       document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Los datos ingresados no corresponden a un usuario existente.</h5></div>"; 
+                    case "DESDE":
+                       document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>La fecha de inicio coincide con una licencia ya existente.</h5></div>"; 
+                        rtdo = false;
+                        break;
+                    case "HASTA":
+                       document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>La fecha de fin coincide con una licencia ya existente.</h5></div>"; 
                         rtdo = false;
                         break;
                 }
             }
         })
         
-        
-        
-        
-        
-        
-        return true;
+        return rtdo;
         
     }else{
         return false;

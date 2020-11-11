@@ -264,7 +264,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
                     
                     <td class='text-center'>
-                        <a href='' class='btn btn-warning mb-1' data-toggle='modal' data-target='#staticBackdrop2' onclick='setIdProf(" . $id . ")'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
+                        <a href='/DayClass/Administrador/MateriaCurso/Curso/licenciasDocente.php?id_curso=$id_curso&&id_prof=$id' class='btn btn-warning mb-1'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
                         <a href='' class='btn btn-primary mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
                         <a href='$urlBaja' class='btn btn-danger mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
                         <input type='date' name='impIDprof' id='inicLic" . $id . "' value='$inicioLicencia' hidden> 

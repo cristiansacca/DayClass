@@ -82,30 +82,41 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDateTime = date('Y-m-d');
         $id_curso = $_GET['id_curso'];
+        $id_prof = $_GET["id_prof"];
+
 
         $consultaCurso = $con->query("SELECT * FROM `curso` WHERE `id` =  $id_curso");
         $resultado = $consultaCurso->fetch_assoc();
         $fchDesde = $resultado["fechaDesdeCursado"];
         $fchHasta = $resultado["fechaHastaCursado"];
         $nombreCurso = $resultado["nombreCurso"];
-
-        echo "<h1>Administrar Licencias</h1>";
-        echo "<h3>$nombreCurso</h3>";
+            
+        $consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
+                FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
+                WHERE usuario.id = $id_prof 
+                    AND cargoprofesor.profesor_id = usuario.id
+                    AND cargoprofesor.curso_id = curso.id 
+                    AND cargoprofesor.cargo_id = cargo.id 
+                    AND cargoprofesor.curso_id = '$id_curso' 
+                    AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
+                    AND cargoprofesor.fechaHastaCargo IS NULL 
+                    AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id 
+                    AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id 
+                    AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' 
+                    AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' 
+                    AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' 
+                        OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+         $resultadoProf = $consulta1->fetch_assoc();   
+        $nombreProf = $resultadoProf["nombreUsuario"];
+        $apellidoProf = $resultadoProf["apellidoUsuario"];
         
-        
 
-        if(($fchDesde != null && $fchHasta != null) && ($fchHasta >= $currentDateTime)){
-            echo "<h6 class='font-weight-normal'><b>Inicio del cursado:</b> " . strftime('%d/%m/%Y', strtotime($fchDesde)) . " </h6>";
-            echo "<h6 class='font-weight-normal'><b>Finalización del cursado:</b> " . strftime('%d/%m/%Y', strtotime($fchHasta)) . " </h6>";
-        }else{
-            echo "<div class='alert alert-warning' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay fechas de cursado vigentes.</h5>
-                            <h7>Puede agregar docentes, pero recuerde colocar las fechas nuevas.</h7>
-                        </div>";
-        }
+        echo "<h1>Administrar licencias docente</h1>";
+        echo "<h3>$nombreCurso - $nombreProf $apellidoProf</h3>";
+        
 
         ?>
-        <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/admCurso.php?id=".$resultado['materia_id']."'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
+        <a <?php echo "href='/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=".$id_curso."'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 
     <?php
@@ -114,7 +125,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         switch ($_GET["resultado"]) {
             case 1:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Docente agregado exitosamente.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Licencia cargada exitosamente.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -122,15 +133,15 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 break;
             case 2:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El documento o legajo ingresado no existen o el docente ha sido dado de baja.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i> Erro al registrar la licencia.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
                 break;
             case 3:
-                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El docente seleccionado ya dicta esa materia.</h5>
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Baja exitosa de la licencia.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
@@ -138,12 +149,14 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la baja.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Error en la baja de la licencia.</h5>
                             <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
                 break;
+                
+                //hasta aca se usan
             case 5:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Licencia cargada exitosamente.</h5>
@@ -199,26 +212,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <table id="dataTable" class="table table-secondary table-bordered table-hover">
            <?php
                 $id_curso = $_GET["id_curso"];
-                $id_prof = $_GET["id_prof"];
-
+                
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDateTime = date('Y-m-d'); 
             
-                $consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
-                FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
-                WHERE usuario.id = $id_prof 
-                    AND cargoprofesor.profesor_id = usuario.id
-                    AND cargoprofesor.curso_id = curso.id 
-                    AND cargoprofesor.cargo_id = cargo.id 
-                    AND cargoprofesor.curso_id = '$id_curso' 
-                    AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
-                    AND cargoprofesor.fechaHastaCargo IS NULL 
-                    AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id 
-                    AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id 
-                    AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' 
-                    AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' 
-                    AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' 
-                        OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+                
             
             
             
@@ -228,17 +226,18 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 //$nombreCompleto = $resultadoProf['apellidoUsuario'] . ", " . $resultadoProf['nombreUsuario'];
                 //$id = $resultadoProf['id'];
             
+                $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaDesdeCargoProfesorEstado ASC");
             
-                if(($consulta1->num_rows) != 0){
+            
+                if(($consulta2->num_rows) != 0){
 
                 echo "<thead>
                     <th>Fecha Desde</th>
                     <th>Fecha Hasta</th>
-                    <th>Estado</th>
                     <th></th>
                 </thead>
                 <tbody>";
-                    $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL) AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaDesdeCargoProfesorEstado ASC");
+                    
                     
                     while($resultadoLicencia = $consulta2->fetch_assoc()){
                         $inicioLicencia = $resultadoLicencia["fechaDesdeCargoProfesorEstado"];
@@ -254,7 +253,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             echo "<tr>
                     <td>" . $inicioLicencia . "</td>
                     <td>" . $finLicencia  . "</td>
-                    <td>" . $nombreEstado . "</td>
                     <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href=''><i class='fa fa-trash mr-1'></i>Eliminar Licencia</a></td>
                     </tr>";
                         }else{
@@ -275,7 +273,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 
                 }else{
                     echo "<div class='alert alert-warning' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay docentes en este curso.</h5>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>El docente no registra licencias presentes o futuras.</h5>
                         </div>";
                 }
 
@@ -300,6 +298,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 <div class="modal-body">
 
                     <label class="text-muted text-center">Ingrese las fechas de la nueva licencia del docente</label>
+                    
+                    <div id="resultadoMostrar"></div>
 
                     <div class="my-2">
                         <div class="form-inline my-2">

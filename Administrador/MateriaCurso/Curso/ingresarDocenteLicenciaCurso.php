@@ -15,17 +15,17 @@ $resultado2 = $consulta2->fetch_assoc();
 $idCargoProfEstado = $resultado2["id"];
 $idCargoProf = $resultado2["cargoProfesor_id"];
 
-echo "$idCargoProf";
-echo "$idCargoProfEstado";
-
-
-$consultaEstadoDocente1 = $con->query("UPDATE `cargoprofesorestado` SET `fechaHastaCargoProfesorEstado` = '$fchDesdeLicencia' WHERE id = '$idCargoProfEstado'");
               
 $consultaEstadoDocente2 = $con->query("INSERT INTO `cargoprofesorestado`(`fechaDesdeCargoProfesorEstado`, `fechaHastaCargoProfesorEstado`, `estadoCargoProfesor_id`, `cargoProfesor_id`) VALUES ('$fchDesdeLicencia','$fchHastaLicencia','2','$idCargoProf')"); 
+
+
+
+if($consultaEstadoDocente2){
+    header("Location:/DayClass/Administrador/MateriaCurso/Curso/licenciasDocente.php?id_curso=$id_curso&&id_prof=$id_docente&&resultado=1");
+}else{
+    header("Location:/DayClass/Administrador/MateriaCurso/Curso/licenciasDocente.php?id_curso=$id_curso&&id_prof=$id_docente&&resultado=2");
+}
             
-$consultaEstadoDocente3 = $con->query("INSERT INTO `cargoprofesorestado`(`fechaDesdeCargoProfesorEstado`, `estadoCargoProfesor_id`, `cargoProfesor_id`) VALUES ('$fchHastaLicencia','1','$idCargoProf')"); 
 
-
-header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=5");
             	
 ?>
