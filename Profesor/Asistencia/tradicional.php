@@ -111,8 +111,7 @@ if (isset($_GET["id_curso"])) {
     if ($estadoCargo == "Activo") {
         $hab = true;
     }
-
-
+    
     $consultaDiasHorasCurso = $con->query("SELECT cursodia.dayName, horariocurso.horaInicioCurso, horariocurso.horaFinCurso FROM horariocurso, cursodia, curso WHERE curso.id ='$id_curso' AND horariocurso.curso_id = curso.id AND horariocurso.cursoDia_id = cursodia.id ");
 
     $tieneDiaHora = false;
@@ -144,10 +143,27 @@ if (isset($_GET["id_curso"])) {
             }
         }
     }
+    
+    //echo $tieneDiaHora $diaHoraBien $diaBien $horaBien;
 
     if ($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien) {
+        //esta todo bien continua la ejecucion 
     } else {
-        header("location:/DayClass/Usuario/inicioSesion.php?error=5");
+        if(!$hab){
+          header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=9");  
+        }else{
+            if(!$tieneDiaHora){
+                header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=9");
+            }else{
+                    if(!$diaBien){
+                       header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=10"); 
+                    }else{
+                        header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=11");
+                    }
+            }
+        }
+        
+        //header("location:/DayClass/Usuario/inicioSesion.php?error=5");
     }
 }
 
@@ -184,31 +200,38 @@ if (isset($_GET["id_curso"])) {
             AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id 
             AND cursoestadoalumno.nombreEstado = 'INSCRIPTO' ORDER BY apellidoUsuario ASC");
 
-        $contador = 1;
-        while ($resultado1 = $consulta1->fetch_assoc()) {
-            $nombreAlum = $resultado1["nombreUsuario"];
-            $apellidoAlum = $resultado1["apellidoUsuario"];
-            $idAlum = $resultado1["id"];
-            $legajoAlum = $resultado1["legajoUsuario"];
+        
+        if(($consulta1->num_rows)==0){
+            echo "<div class='alert alert-warning' role='alert'>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>No hay alumnos incriptos en este curso, no se puede tomar asistencia.</h5>
+            </div>";
+        }else{  
+            $contador = 1;
+            while ($resultado1 = $consulta1->fetch_assoc()) {
+                $nombreAlum = $resultado1["nombreUsuario"];
+                $apellidoAlum = $resultado1["apellidoUsuario"];
+                $idAlum = $resultado1["id"];
+                $legajoAlum = $resultado1["legajoUsuario"];
 
-            $aux = $contador + 1;
-            $ausente = "Ausente";
-            $presente = "Presente";
+                $aux = $contador + 1;
+                $ausente = "Ausente";
+                $presente = "Presente";
 
-            echo "<div class='mySlides'>
-                <i class='fa fa-user-circle fa-5x'></i>
-                <br>
-                <label id='labelLegajo' style='font-size:xx-large;'>$legajoAlum</label>
-                <br>
-                <label id='labelNombreApellido' style='font-size:xx-large;'>$apellidoAlum, $nombreAlum</label>
-                
-                <div>" .
-                '<button class="btn btn-lg btn-danger mx-2" id="' . $ausente . '-' . $nombreAlum . '-' . $apellidoAlum . '" onclick="currentSlide(' . $aux . ',this.id,\'' . $legajoAlum . '\')"><i class="fa fa-ban mr-1"></i>Ausente</button>
-                    <button class="btn btn-lg btn-success mx-2" id="' . $presente . '-' . $nombreAlum . '-' . $apellidoAlum . '" onclick="currentSlide(' . $aux . ',this.id,\'' . $legajoAlum . '\')"><i class="fa fa-check mr-1"></i>Presente</button>
-                </div>
-            </div>';
+                echo "<div class='mySlides'>
+                    <i class='fa fa-user-circle fa-5x'></i>
+                    <br>
+                    <label id='labelLegajo' style='font-size:xx-large;'>$legajoAlum</label>
+                    <br>
+                    <label id='labelNombreApellido' style='font-size:xx-large;'>$apellidoAlum, $nombreAlum</label>
 
-            $contador++;
+                    <div>" .
+                    '<button class="btn btn-lg btn-danger mx-2" id="' . $ausente . '-' . $nombreAlum . '-' . $apellidoAlum . '" onclick="currentSlide(' . $aux . ',this.id,\'' . $legajoAlum . '\')"><i class="fa fa-ban mr-1"></i>Ausente</button>
+                        <button class="btn btn-lg btn-success mx-2" id="' . $presente . '-' . $nombreAlum . '-' . $apellidoAlum . '" onclick="currentSlide(' . $aux . ',this.id,\'' . $legajoAlum . '\')"><i class="fa fa-check mr-1"></i>Presente</button>
+                    </div>
+                </div>';
+
+                $contador++;
+            }
         }
 
         ?>
