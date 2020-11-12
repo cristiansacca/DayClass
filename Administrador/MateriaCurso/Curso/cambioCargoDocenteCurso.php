@@ -8,7 +8,7 @@ $id_prof = $_POST["impIDprofCC"];
 $fechaHoy = date('Y-m-d');
 
 //bajar el cargo actual
-$consultaCargoActual = $con->query("SELECT cargoprofesor.id FROM curso, cargo, profesor, cargoprofesor WHERE profesor.id = '$id_prof' AND curso.id = '$id_curso' AND curso.id = cargoprofesor.curso_id AND profesor.id = cargoprofesor.profesor_id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.fechaDesdeCargo <= '$fechaHoy' AND cargoprofesor.fechaHastaCargo IS NULL");
+$consultaCargoActual = $con->query("SELECT cargoprofesor.id FROM curso, cargo, usuario, cargoprofesor WHERE usuario.id = '$id_prof' AND curso.id = '$id_curso' AND curso.id = cargoprofesor.curso_id AND usuario.id = cargoprofesor.profesor_id AND cargoprofesor.cargo_id = cargo.id AND cargoprofesor.fechaDesdeCargo <= '$fechaHoy' AND cargoprofesor.fechaHastaCargo IS NULL");
 $cargoProfesor = $consultaCargoActual->fetch_assoc();
 $id_cargoProfesor = $cargoProfesor["id"];
 
@@ -24,7 +24,6 @@ if(!($consultaCargoActual->num_rows) == 0){
             $selectCargoNuevo = $con->query("SELECT cargoprofesor.id FROM `cargoprofesor` WHERE cargoprofesor.fechaDesdeCargo = '$fechaHoy' AND cargoprofesor.cargo_id = '$id_cargo' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.fechaHastaCargo IS NULL")->fetch_assoc();
 
             $id_cargoNuevoProfesor = $selectCargoNuevo["id"];
-
 
             if($selectCargoNuevo != null){
                  //cerrar el estado cargo profesor anterior 
@@ -46,12 +45,12 @@ if(!($consultaCargoActual->num_rows) == 0){
                     header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=6");
 
                 }else{
-                    echo "error en asociar los estados viejos al cargo nuevo";
+                    //echo "error en asociar los estados viejos al cargo nuevo";
                     header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=7");
                 }
 
             }else{
-               echo "error en encontrar el cargo recien creado"; 
+               //echo "error en encontrar el cargo recien creado"; 
                 header("location: /DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=7");
             }
            

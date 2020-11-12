@@ -206,20 +206,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 $permiso = $selectPermiso->fetch_assoc();
                 $id_permiso = $permiso["id"];
             
-                $consulta1 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
-                FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
-                WHERE cargoprofesor.profesor_id = usuario.id
-                    AND cargoprofesor.curso_id = curso.id 
-                    AND cargoprofesor.cargo_id = cargo.id 
-                    AND cargoprofesor.curso_id = '$id_curso' 
-                    AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
-                    AND cargoprofesor.fechaHastaCargo IS NULL 
-                    AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id 
-                    AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id 
-                    AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' 
-                    AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' 
-                    AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' 
-                        OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+                $consulta1 = $con->query("SELECT usuario.id, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.legajoUsuario, cargo.nombreCargo FROM `cargoprofesor`, curso, usuario, cargo WHERE `fechaDesdeCargo` <= '$currentDateTime' AND `fechaHastaCargo` IS NULL AND `curso_id` = '$id_curso' AND cargoprofesor.curso_id = curso.id AND cargoprofesor.profesor_id = usuario.id AND cargoprofesor.cargo_id = cargo.id");
             
             
                 if(($consulta1->num_rows) != 0){
@@ -237,55 +224,56 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 echo "<input type='date' name='impIDprof' id='hoy' value='$currentDateTime' hidden>";
                 echo "<input type='text' name='cursid' id='cursoid' value='$id_curso' hidden>";
                 while ($resultadoProf = $consulta1->fetch_assoc()) {
-                    $nombreCompleto = $resultadoProf['apellidoUsuario'] . ", " . $resultadoProf['nombreUsuario'];
-                    $id = $resultadoProf['id'];
-
-                    $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Activo'");
-                    $resultadoLicencia = $consulta2->fetch_assoc();
-                    $inicioLicencia = $resultadoLicencia["fechaDesdeCargoProfesorEstado"];
-
-
-                    $ultimaLicencia = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaHastaCargoProfesorEstado DESC");
-                    $resultadoUltimaLicencia = $ultimaLicencia->fetch_assoc();
-                    if (($ultimaLicencia->num_rows) == 0) {
-                        $inicioUtimaLicencia = "";
-                        $finUtimaLicencia = "";
-                    } else {
-                        $inicioUtimaLicencia = $resultadoUltimaLicencia["fechaDesdeCargoProfesorEstado"];
-                        $finUtimaLicencia = $resultadoUltimaLicencia["fechaHastaCargoProfesorEstado"];
-                    }
                     
-                    $urlBaja = 'bajaDocenteCurso.php?docenteId='.$id.'&&cursoId='.$id_curso;
-
-                    echo "<tr>
+                    
+                    $nombreCompleto = $resultadoProf['apellidoUsuario'] . ", " . $resultadoProf['nombreUsuario'];
+                    $id_prof = $resultadoProf['id'];
+                    
+                    $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaDesdeCargoProfesorEstado ASC");
+                    
+                    $urlBaja = 'bajaDocenteCurso.php?docenteId='.$id_prof.'&&cursoId='.$id_curso;
+                    
+                    if (($consulta2->num_rows) == 0) {
+                       echo "<tr>
                     <td>" . $resultadoProf['legajoUsuario'] . "</td>
                     <td>" . $nombreCompleto . "</td>
                     <td>" . $resultadoProf['nombreCargo'] . "</td>
-                    <td>" . $resultadoProf['nombreEstadoCargoProfe'] . "</td>
+                    <td> Activo </td>
                     
                     <td class='text-center'>
-                        <a href='/DayClass/Administrador/MateriaCurso/Curso/licenciasDocente.php?id_curso=$id_curso&&id_prof=$id' class='btn btn-warning mb-1'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
-                        <a href='' class='btn btn-primary mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a href='/DayClass/Administrador/MateriaCurso/Curso/licenciasDocente.php?id_curso=$id_curso&&id_prof=$id_prof' class='btn btn-warning mb-1'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
+                        <a href='' class='btn btn-primary mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id_prof . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
                         <a href='$urlBaja' class='btn btn-danger mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
-                        <input type='date' name='impIDprof' id='inicLic" . $id . "' value='$inicioLicencia' hidden> 
-                        <input type='date' name='impIDprof' id='inicioUltimaLicencia" . $id . "' value='$inicioUtimaLicencia' hidden>
-                        <input type='date' name='impIDprof' id='finUltimaLicencia" . $id . "' value='$finUtimaLicencia' hidden>
-                        <input type='date' name='todayDate' id='todayDate' value= '$currentDateTime' hidden>
                         
                 
                     </td> 
-                    </tr>
-                    </tbody>";
+                    </tr>"; 
+                    } else {
+                        echo "<tr>
+                    <td>" . $resultadoProf['legajoUsuario'] . "</td>
+                    <td>" . $nombreCompleto . "</td>
+                    <td>" . $resultadoProf['nombreCargo'] . "</td>
+                    <td>Licencia</td>
+                    
+                    <td class='text-center'>
+                        <a href='/DayClass/Administrador/MateriaCurso/Curso/licenciasDocente.php?id_curso=$id_curso&&id_prof=$id_prof' class='btn btn-warning mb-1'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
+                        <a href='' class='btn btn-primary mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id_prof . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
+                        <a href='$urlBaja' class='btn btn-danger mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
+                        
+                
+                    </td> 
+                    </tr>";
+                    }
+                    
+                    
+
+                    echo "</tbody>";
                 }
                 }else{
                     echo "<div class='alert alert-warning' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavía no hay docentes en este curso.</h5>
                         </div>";
                 }
-
-                
-
-            
                 ?>
         </table>
     </div>
