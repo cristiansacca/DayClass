@@ -229,7 +229,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     $nombreCompleto = $resultadoProf['apellidoUsuario'] . ", " . $resultadoProf['nombreUsuario'];
                     $id_prof = $resultadoProf['id'];
                     
-                    $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaDesdeCargoProfesorEstado ASC");
+                    $consulta2 = $con->query("SELECT cargoprofesorestado.id, estadocargoprofesor.nombreEstadoCargoProfe, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, estadocargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' AND cargoprofesorestado.fechaHastaCargoProfesorEstado >= '$currentDateTime' AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id AND estadocargoprofesor.nombreEstadoCargoProfe = 'Licencia' ORDER BY cargoprofesorestado.fechaDesdeCargoProfesorEstado ASC");
                     
                     $urlBaja = 'bajaDocenteCurso.php?docenteId='.$id_prof.'&&cursoId='.$id_curso;
                     
@@ -244,8 +244,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                         <a href='/DayClass/Administrador/MateriaCurso/Curso/licenciasDocente.php?id_curso=$id_curso&&id_prof=$id_prof' class='btn btn-warning mb-1'><i class='fa fa-address-book-o mr-1'></i>Licencia</a> 
                         <a href='' class='btn btn-primary mb-1' data-toggle='modal' data-target='#cambioCargoProf' onclick='setCargosDisponibles(" . $id_prof . ")'><i class='fa fa-edit mr-1'></i>Editar</a>
                         <a href='$urlBaja' class='btn btn-danger mb-1'><i class='fa fa-trash mr-1'></i>Baja</a>
-                        
-                
                     </td> 
                     </tr>"; 
                     } else {

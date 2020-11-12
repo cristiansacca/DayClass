@@ -27,7 +27,7 @@ if(!($consultaCargoActual->num_rows) == 0){
 
             if($selectCargoNuevo != null){
                  //cerrar el estado cargo profesor anterior 
-                $selectEstadoCargoProfesor = $con->query("SELECT cargoprofesorestado.id FROM `cargoprofesorestado` WHERE cargoprofesorestado.cargoProfesor_id = '$id_cargoProfesor' AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$fechaHoy' AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$fechaHoy' OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
+                $selectEstadoCargoProfesor = $con->query("SELECT cargoprofesorestado.id FROM `cargoprofesorestado` WHERE cargoprofesorestado.cargoProfesor_id = '$id_cargoProfesor' AND cargoprofesorestado.fechaHastaCargoProfesorEstado >= '$fechaHoy'");
 
 
                 if(!($selectEstadoCargoProfesor->num_rows) == 0){
