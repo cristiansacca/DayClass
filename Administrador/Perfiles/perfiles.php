@@ -86,6 +86,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     <div class="my-3">
         <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-user-plus mr-1"></i>Crear nuevo rol</button>
+        <a href="/DayClass/Administrador/Perfiles/Permisos/permisos.php" class="btn btn-secondary"><i class="fa fa-clipboard-check mr-1"></i>Permisos</a>
     </div>
     
     <?php

@@ -147,7 +147,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
         if($id_permiso != NULL || $id_permiso != ""){
             $contador = 0;
             
-            echo "<h2 class='font-weight-normal'>Accesos asignados:</h2><br>";
+            //echo "<h3 class='font-weight-normal'>Accesos asignados:</h3><br>";
             
             $selectFuncionPermiso = $con->query("SELECT id_funcion FROM `permisofuncion`, funcion WHERE permisofuncion.id_permiso = '$id_permiso' AND permisofuncion.fechaDesdePermisoFuncion <= '$currentDateTime' AND permisofuncion.fechaHastaPermisoFuncion IS NULL AND funcion.id = permisofuncion.id_funcion ORDER BY nombreFuncion ASC");
             

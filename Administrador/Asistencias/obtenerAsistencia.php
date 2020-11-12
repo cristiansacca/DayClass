@@ -6,7 +6,9 @@ $fecha = $_POST['fecha'];
 $fecha1 = $fecha.' 00:00:00';
 $fecha2 = $fecha.' 23:59:59';
 
-$consultaAsistencias = $con->query("SELECT usuario.apellidoUsuario, usuario.nombreUsuario, usuario.legajoUsuario, asistenciadia.tipoAsistencia_id, tipoasistencia.nombreTipoAsistencia AS estado FROM `asistenciadia`, `usuario`, `asistencia`, `tipoasistencia` WHERE asistencia.curso_id = '$id_curso' 
+$consultaAsistencias = $con->query("SELECT usuario.apellidoUsuario, usuario.nombreUsuario, usuario.legajoUsuario, asistenciadia.tipoAsistencia_id, tipoasistencia.nombreTipoAsistencia AS estado 
+FROM `asistenciadia`, `usuario`, `asistencia`, `tipoasistencia` 
+WHERE asistencia.curso_id = '$id_curso' 
     AND asistencia.alumno_id = usuario.id 
     AND asistenciadia.fechaHoraAsisDia >= '$fecha1' 
     AND asistenciadia.fechaHoraAsisDia <= '$fecha2' 
