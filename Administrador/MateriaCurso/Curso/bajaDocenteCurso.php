@@ -18,8 +18,12 @@ $currentDateTime = date('Y-m-d H:i:s');
     //si hay mas de un docente asociado al curso, se procede a dar la baja de otro docente
     if(($selectDocentesCurso->num_rows) > 1){
         
+        $selectDocenteUltimoEstado = $con->query("SELECT cargoprofesor.id FROM cargoprofesor WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL")->fetch_assoc();
+        
+        $id_cargoDocente = $selectDocenteUltimoEstado["id"];
+        
         //actulizar la fecha hasta del estado inscripto hasta hoy 
-        $finalizarCargoDocente = $con->query("UPDATE `cargoprofesor` SET `fechaHastaCargo`='$currentDateTime' WHERE `profesor_id` = '$id_prof'");
+        $finalizarCargoDocente = $con->query("UPDATE `cargoprofesor` SET `fechaHastaCargo`='$currentDateTime' WHERE `id` = '$id_cargoDocente'");
         
         if($finalizarCargoDocente){
             header("Location:/DayClass/Administrador/MateriaCurso/Curso/docentesCurso.php?id=$id_curso&&resultado=8");
