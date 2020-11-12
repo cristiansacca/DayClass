@@ -9,8 +9,6 @@ $id_prof = $_GET['docenteId'];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d H:i:s');
 
-
-
     //traerse todos los docentes de ese curso 
     $selectDocentesCurso = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario FROM cargoprofesor, curso, usuario WHERE cargoprofesor.profesor_id = usuario.id AND cargoprofesor.curso_id = curso.id  AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL");
 

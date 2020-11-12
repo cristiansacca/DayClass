@@ -59,13 +59,39 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
   $_SESSION['tiempo'] = time();
 
 //-----------------------------------------------------------------------------------------------------------------------------
+
 $id_curso = $_GET["id_curso"];
 
 $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
 $curso = $consulta1->fetch_assoc();
 $fechaDesdeCursado = $curso["fechaDesdeCursado"];
 
+$id_prof = $_SESSION['usuario']["id"];
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+$currentDateTime = date('Y-m-d');
 
+$consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
+    FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
+    WHERE usuario.id = '$id_prof' 
+        AND cargoprofesor.profesor_id = usuario.id 
+        AND cargoprofesor.curso_id = curso.id 
+        AND cargoprofesor.cargo_id = cargo.id 
+        AND cargoprofesor.curso_id = '$id_curso' 
+        AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
+        AND cargoprofesor.fechaHastaCargo IS NULL ");
+    
+    $resultadoProf = $consulta3->fetch_assoc();
+    
+    
+    
+    $consulta4 = $con->query("SELECT cargoprofesorestado.id, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND fechaDesdeCargoProfesorEstado <='$currentDateTime' AND fechaHastaCargoProfesorEstado >='$currentDateTime' AND `estadoCargoProfesor_id` = 2");
+    
+
+    $habP = false;
+    //si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
+    if (($consulta4->num_rows) == 0) {
+        $habP = true;
+    }
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
@@ -82,7 +108,7 @@ $fechaDesdeCursado = $curso["fechaDesdeCursado"];
         <h4><?php echo " " . $curso["nombreCurso"] ?></h4>
         <a <?php echo "href='/DayClass/Profesor/TemaDia/temaDelDia.php?id_curso=$id_curso'"; ?> class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
         <a <?php echo "href='/DayClass/Profesor/TemaDia/verDatosReportesTemas.php?id_curso=$id_curso'"; ?> class="btn btn-success"><i class="fa fa-file-text-o mr-1"></i>Reporte</a>
-        <button class='btn btn-warning'  data-toggle='modal' data-target='#agregarTemaDado'><i class='fa fa-edit mr-1'></i>Agregar Tema</button>
+        <button data-toggle='modal' data-target='#agregarTemaDado' class="btn btn-warning"><i class='fa fa-edit mr-1'></i>Agregar Tema</button>
 
     </div>
     
@@ -306,7 +332,7 @@ $fechaDesdeCursado = $curso["fechaDesdeCursado"];
                        
                        <div class="form-inline">
                        <label>Fecha:</label>
-                        <input type="date" id="fechaTema" name="fechaTema" class="form-control mb-2" <?php echo "max='$currentDate'"; echo "min=$fechaDesdeCursado" ?>>
+                        <input type="date" id="fechaTema" name="fechaTema" class="form-control mb-2 ml-2" <?php echo "max='$currentDate'"; echo "min=$fechaDesdeCursado" ?>>
                         </div>
                        
                         <select id="unidadTemaAgregar" name="unidadTemaAgregar" class="custom-select mb-2" disabled required>

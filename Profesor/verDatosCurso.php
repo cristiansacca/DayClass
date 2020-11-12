@@ -82,7 +82,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $nombreDivision = $curso["nombreDivision"];
         $nombreModalidad = $curso["nombreModalidad"];
 
-        echo "<h6>$nombreCurso</h6>";
+        echo "<h3>$nombreCurso</h3>";
         echo "";
 
         ?>

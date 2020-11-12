@@ -393,48 +393,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     </div>
 </div>
 
-<!-- Modal de licencias -->
-<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content ">
-            <div class="modal-header ">
-                <h5 class="modal-title " id="staticBackdropLabel">Licencia docente</h5>
-
-            </div>
-            <form method="POST" id="ingresarLicenciaDocente" name="ingresarLicenciaDocente" action="ingresarDocenteLicenciaCurso.php" enctype="multipart/form-data" role="form" onsubmit="return validarFechasLic()">
-                <div class="modal-body">
-
-                    <label class="text-muted">No se aceptan licencias pasadas, iniciadas y terminadas antes de la fecha de hoy</label>
-
-                    <div class="my-2">
-                        <div class="form-inline my-2">
-                            <label style="margin-right: 1rem;" for="fechaDesde">Inicio Licencia: </label>
-                            <input type="date" id="fechaDesde" name="fechaDesde" onchange="habilitarFechaHasta()" class="form-control mr-2" required>
-                            <h9 id="msgDesde"></h9>
-                        </div>
-                        <div class="form-inline my-2">
-                            <label style="margin-right: 1.2rem;" for="fechaHasta">Fin Licencia: </label>
-                            <input type="date" id="fechaHasta" name="fechaHasta" onchange="validarFechasJustificativo();" class="form-control mr-2" required disabled>
-                            <h9 id="msgHasta"></h9>
-                        </div>
-                        <div class="my-2 table-responsive" id="tablaLastLicencia"></div>
-                    </div>
-
-                    <input type="text" name="cursoId" id="cursoId" <?php echo "value= '" . $id_curso . "'"; ?> hidden>
-                    <input type="text" name="impIDprof" id="impIDprof" hidden>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="btnCrearLicencia">Agregar</button>
-                </div>
-            </form>
-
-        </div>
-
-    </div>
-</div>
-
 <!-- Modal de modificar cargo profesor -->
 <div class="modal fade" id="cambioCargoProf" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
