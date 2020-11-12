@@ -72,7 +72,7 @@ if (isset($_GET["id_curso"])) {
     $consultaAsistMismoDia = $con->query("SELECT * FROM asistenciadia, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
 
     if (($consultaAsistMismoDia->num_rows) != 0) {
-        header("location:/DayClass/Usuario/inicioSesion.php?error=1");
+        header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=1");
     }
 } else {
     header("location:/DayClass/Usuario/inicioSesion.php?error=2");
@@ -145,8 +145,30 @@ if (isset($_GET["id_curso"])) {
 
     if ($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien) {
     } else {
-        header("location:/DayClass/Usuario/inicioSesion.php?error=5");
+        header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=5");
     }
+    
+     
+        $consulta1 = $con->query("SELECT usuario.id, apellidoUsuario, nombreUsuario, legajoUsuario 
+        FROM usuario, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado 
+        WHERE usuario.id = alumnocursoactual.alumno_id 
+            AND usuario.fechaBajaUsuario IS NULL 
+            AND alumnocursoactual.curso_id = curso.id 
+            AND curso.id = '$id_curso' 
+            AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' 
+            AND alumnocursoactual.fechaDesdeAlumCurAc<= '$currentDateTime' 
+            AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id 
+            AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' 
+            AND alumnocursoestado.fechaFinEstado > '$currentDateTime' 
+            AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id 
+            AND cursoestadoalumno.nombreEstado = 'INSCRIPTO' ORDER BY apellidoUsuario ASC");
+
+        
+        if(($consulta1->num_rows)==0){
+            header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=12");
+        }
+    
+    
 }
 
 ?>

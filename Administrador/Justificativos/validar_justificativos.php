@@ -121,9 +121,9 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         <tbody>
             <?php
             while($justificativo = $consulta1->fetch_assoc()){
-                $alumno = $con->query("SELECT * FROM alumno WHERE id = '".$justificativo['alumno_id']."'")->fetch_assoc();
+                $alumno = $con->query("SELECT * FROM usuario WHERE id = '".$justificativo['alumno_id']."'")->fetch_assoc();
                 echo "<tr>
-                    <td>".$alumno['apellidoAlum'].", ".$alumno['nombreAlum']."</td>
+                    <td>".$alumno['apellidoUsuario'].", ".$alumno['nombreUsuario']."</td>
                     <td>".strftime("%d/%m/%Y", strtotime($justificativo['fechaPresentacion']))."</td>
                     <td class='text-center'><a class='btn btn-primary' href='verImagen.php?id=".$justificativo['id']."'><i class='fa fa-eye mr-1'></i>Ver</a></td>
                 </tr>";

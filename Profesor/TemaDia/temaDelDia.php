@@ -93,7 +93,7 @@ $id_curso = $_GET["id_curso"];
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d');
 
-$$consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
+$consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apellidoUsuario, usuario.nombreUsuario, estadocargoprofesor.nombreEstadoCargoProfe, cargo.nombreCargo 
     FROM cargoprofesor, curso, usuario, cargoprofesorestado, estadocargoprofesor, cargo 
     WHERE usuario.id = '$id_prof' 
         AND cargoprofesor.profesor_id = usuario.id 
@@ -110,10 +110,10 @@ $$consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.ape
     $consulta4 = $con->query("SELECT cargoprofesorestado.id, cargoprofesor.profesor_id, cargoprofesorestado.cargoProfesor_id, cargoprofesorestado.fechaDesdeCargoProfesorEstado, cargoprofesorestado.fechaHastaCargoProfesorEstado FROM cargoprofesor, cargoprofesorestado WHERE cargoprofesor.profesor_id = '$id_prof' AND cargoprofesor.curso_id = '$id_curso' AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesorestado.cargoProfesor_id = cargoprofesor.id AND fechaDesdeCargoProfesorEstado <='$currentDateTime' AND fechaHastaCargoProfesorEstado >='$currentDateTime' AND `estadoCargoProfesor_id` = 2");
     
 
-    $hab = false;
+    $habP = false;
     //si el docente no tiene estado activo en ese materia en esa fecha, se desabilitaran los botones de asistencia 
     if (($consulta4->num_rows) == 0) {
-        $hab = true;
+        $habP = true;
     }
 
 $consultaDiasHorasCurso = $con->query("SELECT cursodia.dayName, horariocurso.horaInicioCurso, horariocurso.horaFinCurso FROM horariocurso, cursodia, curso WHERE curso.id ='$id_curso' AND horariocurso.curso_id = curso.id AND horariocurso.cursoDia_id = cursodia.id ");
@@ -228,7 +228,7 @@ if (($fechaD > $currentDateTime)) {
 
     if (!$habP) {
         echo "<div class='alert alert-danger fade show' role='alert'>
-                <h5><i class='fa fa-exclamation-circle mr-2'></i>Su estado el dia de hoy es $estadoCargo, no puede cargar temas, solo verlos.</h5>
+                <h5><i class='fa fa-exclamation-circle mr-2'></i>Registra una licencia en el día de hoy, no puede cargar temas, solo verlos.</h5>
             </div>";
     }
 

@@ -156,6 +156,9 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                 case 11:
                     echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No es el horario de cursado, no puede tomar asistencia.</h5>";
                     break;
+                case 12:
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>El curso no cuenta con alumnos inscriptos actualmente.</h5>";
+                    break;
                 
                 default:
                 echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Error.</h5>";
