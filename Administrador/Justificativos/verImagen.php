@@ -1,9 +1,38 @@
 <?php
+//-----------------------------------------------------------------------------------------------------------------------------
 //Se inicia o restaura la sesión
 session_start();
 
+include "../../header.html"; // <-- Cambia
+include "../../databaseConection.php"; // <-- Cambia
+
 //Si la variable sesión está vacía es porque no se ha iniciado sesión
+$funcionCorrecta = false;
+$nombreRol = "Sin rol asignado";
+
 if (!isset($_SESSION['usuario'])) {
+    //Nos envía a la página de inicio
+    header("location:/DayClass/index.php");
+}
+
+if(!($_SESSION['usuario']['id_permiso'] == NULL || $_SESSION['usuario']['id_permiso'] == "")){
+    $permiso = $con->query("SELECT * FROM permiso WHERE id = '".$_SESSION['usuario']['id_permiso']."'")->fetch_assoc();
+    $consultaFunciones = $con->query("SELECT * FROM permisofuncion WHERE id_permiso = '".$permiso['id']."' AND fechaHastaPermisoFuncion IS NULL");
+
+    $consultaFuncionNecesaria = $con->query("SELECT * FROM funcion WHERE codigoFuncion = 12")->fetch_assoc(); // <-- Cambia
+    $idFuncionNecesaria = $consultaFuncionNecesaria['id'];
+
+    while ($fn = $consultaFunciones->fetch_assoc()) {
+        if ($fn['id_funcion'] == $idFuncionNecesaria) {
+            $funcionCorrecta = true;
+            break;
+        }
+    }
+
+    $nombreRol = $permiso['nombrePermiso'];
+}
+
+if(!$funcionCorrecta){
     //Nos envía a la página de inicio
     header("location:/DayClass/index.php");
 }
@@ -28,8 +57,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     }
   }
   $_SESSION['tiempo'] = time();
-  
-include "../../databaseConection.php";
+
+//-----------------------------------------------------------------------------------------------------------------------------
 //Funcion para recuperar el mime
 function fObtenerMime($wfParamCadena){//creamos una función que recibira un parametro en este caso la extensiÃ³n del archivo
     $fsExtension = $wfParamCadena;	
@@ -48,7 +77,7 @@ $result = $con->query("SELECT * FROM justificativo WHERE id = '$idImagen'");//Re
 $imagen =  $result->fetch_assoc();//recuperamos los registros de la consulta
 $mime = fObtenerMime($imagen['extensionImagen']);//Obtenemos el mime del archivo.
 $contenido = $imagen['imagenJustificativo'];//Obtenemos el contenido almacenado en el campo Binario.
-$alumno = $con->query("SELECT * FROM alumno WHERE id = '".$imagen['alumno_id']."'")->fetch_assoc();
+$alumno = $con->query("SELECT * FROM usuario WHERE id = '".$imagen['alumno_id']."'")->fetch_assoc();
 setlocale(LC_ALL, 'Spanish');
 
 include "../../header.html";
@@ -56,7 +85,7 @@ include "../../header.html";
 
 <div class='container'>
     <div class="jumbotron my-4 py-4">
-        <p class="card-text">Administrador</p>
+        <p class="card-text"><?php echo $nombreRol;?></p>
         <h1>Datos del justificativo</h1>
         <a href="/DayClass/Administrador/Justificativos/validar_justificativos.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
@@ -72,11 +101,11 @@ include "../../header.html";
         <table class="table bg-light table-bordered">
             <tr>
                 <td class="font-weight-bold">Alumno:</td>
-                <td><?php echo "".$alumno['apellidoAlum'].", ".$alumno['nombreAlum']."" ?></td>
+                <td><?php echo "".$alumno['apellidoUsuario'].", ".$alumno['nombreUsuario']."" ?></td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Legajo:</td>
-                <td><?php echo "".$alumno['legajoAlumno']."" ?></td>
+                <td><?php echo "".$alumno['legajoUsuario']."" ?></td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Fecha de presetación:</td>
