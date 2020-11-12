@@ -11,7 +11,21 @@ $currentDateTime = date('Y-m-d H:i:s');
 
 if($id_mov == 1){
     //traerse el estado de ese alumno en ese curso al dia de hoy
-    $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno WHERE usuario.id = '$id_alumno' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = usuario.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
+    $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado 
+    
+    FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno 
+    WHERE usuario.id = '$id_alumno' AND curso.id = '$id_curso' 
+    AND alumnocursoactual.curso_id = curso.id 
+    AND alumnocursoactual.alumno_id = usuario.id 
+    AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id 
+    AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' 
+    AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' 
+    AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) 
+    AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) 
+    AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' 
+    AND alumnocursoestado.fechaFinEstado > '$currentDateTime' 
+    AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id 
+    AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
     if(!($selectAlumnoCursoEstado->num_rows) == 0){
         $alumnoCursoEstado = $selectAlumnoCursoEstado->fetch_assoc();
@@ -45,7 +59,9 @@ if($id_mov == 1){
     }
 }else{
     //traerse el estado de ese alumno en ese curso al dia de hoy
-    $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno WHERE usuario.id = '$id_alumno' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'LIBRE'");
+    $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno 
+    WHERE usuario.id = '$id_alumno' 
+    AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = usuario.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'LIBRE'");
 
     if(!($selectAlumnoCursoEstado->num_rows) == 0){
         $alumnoCursoEstado = $selectAlumnoCursoEstado->fetch_assoc();

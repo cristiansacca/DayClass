@@ -198,8 +198,9 @@ if (isset($_GET["id_curso"])) {
             AND alumnocursoestado.fechaFinEstado > '$currentDateTime' 
             AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id 
             AND cursoestadoalumno.nombreEstado = 'INSCRIPTO' ORDER BY apellidoUsuario ASC");
-
-        
+            
+    
+                
         if(($consulta1->num_rows)==0){
            header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=12");
         }else{  

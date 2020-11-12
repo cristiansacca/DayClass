@@ -30,7 +30,7 @@ if ($update){
     if ($validacion == 1) {
         //si se aprueba el justificativo, justificar todas las faltas del alumno asociadas al justificativo
         while ($justAsistDia = $consulta1->fetch_assoc()) {
-            $con->query("UPDATE asistenciadia SET tipoAsistencia_id = '" . $tipoJustificado['id'] . "' WHERE id = '" . $justAsistDia['asistenciaDia_id'] . "'");
+                $con->query("UPDATE asistenciadia SET tipoAsistencia_id = '" . $tipoJustificado['id'] . "' WHERE id = '" . $justAsistDia['asistenciaDia_id'] . "'");
         }
 
         //INICIO DEL CAMBIO DE ESTADO DEL ALUMNO EN EL CURSO

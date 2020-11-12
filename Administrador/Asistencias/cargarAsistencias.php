@@ -78,6 +78,8 @@ $consultaInscriptos = $con->query("SELECT usuario.id, apellidoUsuario, nombreUsu
             AND UPPER(cursoestadoalumno.nombreEstado) = 'INSCRIPTO' 
         ORDER BY apellidoUsuario ASC"); 
 
+
+
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
 
 ?>
