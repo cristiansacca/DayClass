@@ -1,54 +1,64 @@
 <?php
-session_start();
 include "../../../databaseConection.php";
 
-$file = $_FILES['inputImagen']; //Asignamos el contenido del parametro a una variable para su mejor manejo
-    
-$temName = $file['tmp_name']; //Obtenemos el directorio temporal en donde se ha almacenado el archivo;
-$fileName = $file['name']; //Obtenemos el nombre del archivo
-$fileExtension = substr(strrchr($fileName, '.'), 1); //Obtenemos la extensión del archivo.
+//Si se quiere subir una imagen
+if (isset($_POST['inputNombre']) && isset($_POST['inputLink']) && isset($_FILES['inputImagen'])) {
+    $nombrePermiso = $_POST['inputNombre'];
+    $linkPermiso = $_POST['inputLink'];
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $currentDate = date('Y-m-d');
 
-//Comenzamos a extraer la información del archivo
-$fp = fopen($temName, "rb");//abrimos el archivo con permiso de lectura
-$contenido = fread($fp, filesize($temName));//leemos el contenido del archivo
-//Una vez leido el archivo se obtiene un string con caracteres especiales.
-$contenido = addslashes($contenido);//se escapan los caracteres especiales
-fclose($fp);//Cerramos el archivo
+    $consultaNombreFuncion = $con->query("SELECT * FROM funcion WHERE fechaHastaFuncion IS NULL AND nombreFuncion = '$nombrePermiso'");
 
-$fechaDesde = $_POST['fechaDesde'];
-$fechaHasta = $_POST['fechaHasta'].' 23:59:59';
-date_default_timezone_set('America/Argentina/Buenos_Aires');
-$hoy = date('Y-m-d');
+    if (($consultaNombreFuncion->num_rows) == 0) {
+        $consultaCodigo = $con->query("SELECT MAX(codigoFuncion) as maxCodigo FROM funcion")->fetch_assoc();
+        $codigoPermiso = $consultaCodigo['maxCodigo'] + 1;
 
-echo $_SESSION['usuario']['id'];
+        //Recogemos el archivo enviado por el formulario
+        $archivo = $_FILES['inputImagen']['name'];
+        //Si el archivo contiene algo y es diferente de vacio
+        if (isset($archivo) && $archivo != "") {
+            //Obtenemos algunos datos necesarios sobre el archivo
+            $tipo = $_FILES['inputImagen']['type'];
+            $tamano = $_FILES['inputImagen']['size'];
+            $temp = $_FILES['inputImagen']['tmp_name'];
+            //Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
+            if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamano < 2000000))) {
+                echo "Error";
+                header("location:/DayClass/Administrador/Perfiles/Permisos/permisos.php?resultado=3");
+            } else {
+                //Si la imagen es correcta en tamaño y tipo
+                //Se intenta subir al servidor
+                if (move_uploaded_file($temp, '../../../images/' . $archivo)) {
+                    //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                    chmod('../../../images/' . $archivo, 0777);
 
-$justificativo = $con->query("INSERT INTO justificativo (fechaPresentacion, imagenJustificativo, descripcionImagen, extensionImagen, fechaDesdeJustificativo, fechaHastaJustificativo, alumno_id) VALUES ('$hoy','$contenido', '$fileName', '$fileExtension', '$fechaDesde', '$fechaHasta', '".$_SESSION['usuario']['id']."')");
-$id_justificativo = $con->insert_id;
-$tipoasistencia = $con->query("SELECT * FROM tipoasistencia WHERE UPPER(nombreTipoAsistencia) = 'AUSENTE' AND fechaBajaTipoAsistencia IS NULL");
+                    $insert = $con->query("INSERT INTO funcion (nombreFuncion, codigoFuncion, refImagen, refPagina, fechaDesdeFuncion) 
+                VALUES ('$nombrePermiso', '$codigoPermiso', '/DayClass/images/$archivo', '$linkPermiso', '$currentDate')");
 
-if($justificativo && $id_justificativo!==null && ($tipoasistencia->num_rows)!==0){
-    $ausente = $tipoasistencia->fetch_assoc();
-    foreach($_POST['materia'] as $id_curso){
-        $consulta1 = $con->query("SELECT id FROM asistencia WHERE alumno_id ='".$_SESSION['usuario']['id']."' AND curso_id = '$id_curso'");
-        $asistencia = $consulta1->fetch_assoc();   
-        
-        $consulta2 = $con->query("SELECT * FROM asistenciadia 
-        WHERE tipoasistencia_id ='".$ausente['id']."' AND asistencia_id = '".$asistencia['id']."' AND 
-        fechaHoraAsisDia >= '$fechaDesde' AND fechaHoraAsisDia <= '$fechaHasta'");
-        
-        while($asistenciadia = $consulta2->fetch_assoc()){
-
-            $con->query("INSERT INTO justificativoasistenciadia (justificativo_id, asistenciaDia_id) 
-            VALUES ('$id_justificativo','".$asistenciadia['id']."')");
-
+                    if ($insert) {
+                        echo "Bien";
+                        header("location:/DayClass/Administrador/Perfiles/Permisos/permisos.php?resultado=1");
+                    } else {
+                        echo "Error";
+                        header("location:/DayClass/Administrador/Perfiles/Permisos/permisos.php?resultado=2");
+                    }
+                } else {
+                    echo "Error";
+                    header("location:/DayClass/Administrador/Perfiles/Permisos/permisos.php?resultado=2");
+                }
+            }
+        } else {
+            echo "Error";
+            header("location:/DayClass/Administrador/Perfiles/Permisos/permisos.php?resultado=2");
         }
+    } else {
+        echo "Error";
+        header("location:/DayClass/Administrador/Perfiles/Permisos/permisos.php?resultado=4");
     }
-
-   header("Location:/DayClass/Alumno/Justificativos/justificativos.php?resultado=1");
-    
 } else {
-
-   header("Location:/DayClass/Alumno/Justificativos/justificativos.php?resultado=0");
-
+    echo "Error";
+    header("location:/DayClass/Administrador/Perfiles/Permisos/permisos.php?resultado=2");
 }
+
 ?>
