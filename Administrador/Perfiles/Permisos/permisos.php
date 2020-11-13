@@ -63,6 +63,10 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 
 ?>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
 <style>
   .custom-file-label::after {
     content: "Seleccionar archivo";
@@ -104,7 +108,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     ?>
 
     <div class="table-responsive">
-        <table class="table table-secondary table-bordered">
+        <table class="table table-secondary table-bordered" id="dataTable">
             <thead>
                 <th>Código</th>
                 <th>Nombre</th>
@@ -134,7 +138,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Alta de permiso</h5>
       </div>
-      <form action="" method="post">
+      <form action="altaPermiso.php" method="post">
         <div class="modal-body">
             <div class="mb-2">
                 <label for="inputNombre">Nombre</label>
@@ -167,11 +171,17 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     });
 </script>
 
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../paginadoDataTable.js"></script>
+
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
+<script>
 
+</script>
 
 <?php
 include "../../../footer.html";
