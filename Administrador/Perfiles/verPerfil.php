@@ -79,7 +79,7 @@ $_SESSION['tiempo'] = time();
         <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <!--Cambiar para que se vea el nombre del rol del usuario logueado-->
 
-        <h5 class="card-text">Administrar roles</h5>
+        <h1 class="card-text">Administrar rol</h1>
 
 
         <?php
@@ -93,7 +93,7 @@ $_SESSION['tiempo'] = time();
         $nombrePermiso = ucfirst(strtolower($permiso["nombrePermiso"]));
 
 
-        echo "<h1>$nombrePermiso<i class='fa fa-user-tie ml-2'></i></h1>"
+        echo "<h3>$nombrePermiso<i class='fa fa-user-tie ml-2'></i></h3>"
 
         ?>
 
@@ -224,16 +224,7 @@ $_SESSION['tiempo'] = time();
                         $consulta1 = $con->query("SELECT * FROM `usuario` WHERE id_permiso = '$id_permiso' AND fechaBajaUsuario IS NULL ORDER BY legajoUsuario ASC");
 
                         while ($resultado1 = $consulta1->fetch_assoc()) {
-                            if ($resultado1['fechaBajaUsuario'] != NULL || $resultado1['fechaBajaUsuario'] != "") {
-                                $urlReinc = 'reincUsuarioPerfil.php?id=' . $resultado1["id"];
-                                echo "<tr class='table-danger'>
-                                    <td>" . $resultado1['legajoUsuario'] . "</td>
-                                    <td>" . $resultado1['apellidoUsuario'] . "</td>
-                                    <td>" . $resultado1['nombreUsuario'] . "</td>
-                                    <td>" . $resultado1['dniUsuario'] . "</td> 
-                                    <td>Usuario dado de baja</td>
-                                </tr>";
-                            } else {
+                            
                                 $urlBaja = 'bajaUsuarioPerfil.php?id=' . $resultado1["id"] . '&&permiso=' . $id_permiso;
                                 echo "<tr>
                                     <td>" . $resultado1['legajoUsuario'] . "</td>
@@ -242,7 +233,7 @@ $_SESSION['tiempo'] = time();
                                     <td>" . $resultado1['dniUsuario'] . "</td> 
                                     <td class='text-center'><a class='btn btn-danger' onclick='return confirmDelete()' href='$urlBaja'><i class='fa fa-trash mr-1'></i>Baja</a></td>
                                 </tr>";
-                            }
+                            
                         }
                         ?>
                     </tbody>
@@ -365,12 +356,7 @@ $_SESSION['tiempo'] = time();
             ?>
             <form method="POST" id="importPlanilla" name="importPlanilla" action="insertUsuariosRol.php" enctype="multipart/form-data" role="form">
 
-                <div class="modal-body" <?php
-                                        if ($dni == null) {
-                                            echo "hidden ";
-                                        } ?>>
-
-
+                <div class="modal-body" <?php if ($dni == null) { echo "hidden ";} ?>>
 
                     <div>
                         <h9>La extension para la lista debe ser .xlsx y los campos deben estar ordenados como se muestra a continuación: </h9>
@@ -411,9 +397,7 @@ $_SESSION['tiempo'] = time();
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="btnImportar" type="submit" class="btn btn-primary " disabled <?php if ($dni == null) {
-                                                                                                    echo "style='display:none' ";
-                                                                                                } ?>>Aceptar</button>
+                    <button id="btnImportar" type="submit" class="btn btn-primary " disabled <?php if ($dni == null) { echo "style='display:none' ";} ?>>Aceptar</button>
                 </div>
 
             </form>
