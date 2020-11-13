@@ -71,9 +71,14 @@ if (isset($_GET["id_curso"])) {
 
     $consultaAsistMismoDia = $con->query("SELECT * FROM asistenciadia, asistencia, curso WHERE curso.id = $id_curso AND curso.id = asistencia.curso_id AND asistencia.id = asistenciadia.asistencia_id AND asistenciadia.fechaHoraAsisDia LIKE '$currentDate%'");
 
-    if (($consultaAsistMismoDia->num_rows) != 0) {
-        header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=1");
+    if(isset($_GET['codigo'])){
+        
+    }else{
+        if (($consultaAsistMismoDia->num_rows) != 0) {
+            header("location:/DayClass/Profesor/seleccionCurso.php?codFn=5&&error=1");
+        }
     }
+    
 } else {
     header("location:/DayClass/Usuario/inicioSesion.php?error=2");
 }
@@ -143,9 +148,24 @@ if (isset($_GET["id_curso"])) {
         }
     }
 
-    if ($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien) {
+     if ($hab && $tieneDiaHora && $diaHoraBien && $diaBien && $horaBien) {
+        //esta todo bien continua la ejecucion 
     } else {
-        header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=5");
+        if(!$hab){
+          header("location:/DayClass/Profesor/seleccionCurso.php?codFn=5&&error=9");  
+        }else{
+            if(!$tieneDiaHora){
+                header("location:/DayClass/Profesor/seleccionCurso.php?codFn=5&&error=9");
+            }else{
+                    if(!$diaBien){
+                       header("location:/DayClass/Profesor/seleccionCurso.php?codFn=5&&error=10"); 
+                    }else{
+                        header("location:/DayClass/Profesor/seleccionCurso.php?codFn=5&&error=11");
+                    }
+            }
+        }
+        
+        //header("location:/DayClass/Usuario/inicioSesion.php?error=5");
     }
     
      
@@ -165,7 +185,7 @@ if (isset($_GET["id_curso"])) {
 
         
         if(($consulta1->num_rows)==0){
-            header("location:/DayClass/Profesor/seleccionCurso.php?codFn=6&&error=12");
+            header("location:/DayClass/Profesor/seleccionCurso.php?codFn=5&&error=12");
         }
     
     
