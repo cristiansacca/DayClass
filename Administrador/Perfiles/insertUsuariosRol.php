@@ -195,7 +195,7 @@ if(count($cambioRol) > 0){
     <ul>";
     
     for ($i=0; $i < count($cambioRol) ; $i++) { 
-        $consultaIns = $con->query("SELECT * FROM usuario WHERE legajoUusuario = '".$cambioRol[$i]."'")->fetch_assoc();
+        $consultaIns = $con->query("SELECT * FROM usuario WHERE legajoUsuario = '".$cambioRol[$i]."'")->fetch_assoc();
         echo "<li>".$consultaIns['apellidoUsuario'].", ".$consultaIns['nombreUsuario']."</li>";
     }
 
