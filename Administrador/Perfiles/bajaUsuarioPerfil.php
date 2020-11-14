@@ -11,10 +11,10 @@ $string = "UPDATE `usuario` SET `id_permiso`= NULL WHERE `id`= '$id'";
 //echo "$consulta";
 
 if($consulta){
-  header("Location:/DayClass/Administrador/Perfiles/verPerfil.php?id_permiso=$permiso&&resultado=3");
+  header("Location:/DayClass/Administrador/Perfiles/verPerfil.php?id_permiso=$permiso&&resultado=6");
   
 }else{
-    header("Location:/DayClass/Administrador/Perfiles/verPerfil.php?id_permiso=$permiso&&resultado=4");
+    header("Location:/DayClass/Administrador/Perfiles/verPerfil.php?id_permiso=$permiso&&resultado=7");
 
 }
 

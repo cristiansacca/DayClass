@@ -129,7 +129,7 @@ $_SESSION['tiempo'] = time();
                 break;
             case 5:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuario inxistente.</h5>";
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Usuario inexistente.</h5>";
                 break;
             case 6:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
