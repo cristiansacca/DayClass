@@ -130,15 +130,16 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Todavia no esta asoaciado a ningun curso para cargar justificativos.</h5>
                         </div>";
               }else{
+                  echo "
+                      <div>
+                        <input type='checkbox' onchange='seleccionarTodos();' id='checkTodos'><label class='m-2'>Todas</label>
+                    </div>";
                   while ($alumnocursoactual = $consulta1->fetch_assoc()) {
 
                     //Por cada instancia de AlumnoCursoActual se obtiene el curso asociado
                       $curso = $con->query("SELECT * FROM curso WHERE id = '".$alumnocursoactual['curso_id']."'")->fetch_assoc();
 
                       echo "
-                      <div>
-                        <input type='checkbox' onchange='seleccionarTodos();' id='checkTodos'><label class='m-2'>Todas</label>
-                    </div>
                       <div>
                       <input class='checkMateria' type='checkbox' onchange='validar_checkbox()' name='materia[]' value='".$curso['id']."'><label class='m-2'>".$curso['nombreCurso']."</label>
                     </div>";
