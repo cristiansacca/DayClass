@@ -99,14 +99,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     AND cargoprofesor.cargo_id = cargo.id 
                     AND cargoprofesor.curso_id = '$id_curso' 
                     AND cargoprofesor.fechaDesdeCargo <= '$currentDateTime' 
-                    AND cargoprofesor.fechaHastaCargo IS NULL 
-                    AND cargoprofesor.id = cargoprofesorestado.cargoProfesor_id 
-                    AND cargoprofesorestado.estadoCargoProfesor_id = estadocargoprofesor.id 
-                    AND estadocargoprofesor.nombreEstadoCargoProfe <> 'Baja' 
-                    AND cargoprofesorestado.fechaDesdeCargoProfesorEstado <= '$currentDateTime' 
-                    AND (cargoprofesorestado.fechaHastaCargoProfesorEstado > '$currentDateTime' 
-                        OR cargoprofesorestado.fechaHastaCargoProfesorEstado IS NULL)");
-         $resultadoProf = $consulta1->fetch_assoc();   
+                    AND cargoprofesor.fechaHastaCargo IS NULL");
+        $resultadoProf = $consulta1->fetch_assoc();   
         $nombreProf = $resultadoProf["nombreUsuario"];
         $apellidoProf = $resultadoProf["apellidoUsuario"];
         
