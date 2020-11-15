@@ -1,7 +1,11 @@
 document.getElementById("unidadTema").onchange = function(){
+    eval("debugger;");
     var nro_unidad = document.getElementById("unidadTema").value;
     var id_programa = document.getElementById("idPrograma").value;
     
+    var contenido = null;
+    
+if(nro_unidad !== "" && nro_unidad >= 0){
     var datos = {
         nro_unidad: nro_unidad, id_programa: id_programa
     }
@@ -27,4 +31,23 @@ document.getElementById("unidadTema").onchange = function(){
             
         }
     })
+}else{
+   var codTema = null;
+        if(nro_unidad == "examen"){
+            contenido="<option value='1' selected>Tema</option>";
+            codTema = 1;
+        }else{
+            contenido="<option value='2' selected>Tema</option>";
+            codTema = 2;
+        }
+         
+        $("#comentario").attr("required", "required" );
+        document.getElementById("nombreTema").innerHTML = contenido;
+        document.getElementById("idTemaEspecial").value = codTema;
+        
+       $("#nombreTema").removeAttr("required");      
 }
+    
+    
+}
+    

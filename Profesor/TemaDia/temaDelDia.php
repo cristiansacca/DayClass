@@ -281,6 +281,9 @@ if (($fechaD > $currentDateTime)) {
                 <?php
 
                 $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
+               
+               echo "<option value='examen'>Examen</option>";
+               echo "<option value='claseEspecial'>Clase especial</option>";
 
                 while ($temas = $consultaTemas->fetch_assoc()) {
                     echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
@@ -301,7 +304,8 @@ if (($fechaD > $currentDateTime)) {
             <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline" placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
 
         </div>
-
+        
+        <input type="text" name="idTemaEspecial" id="idTemaEspecial" hidden>
         <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden>
         <input type="text" name="idProfesor" id="idProfesor" <?php echo "value='$id_prof'" ?> hidden>
 

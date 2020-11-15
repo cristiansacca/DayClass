@@ -254,7 +254,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                        </div>
                        
                        <h6>Datos nuevos</h6>
-                        <select id="unidadTema" name="unidadTema" class="custom-select mb-2" required>
+                        <select id="unidadTema" name="unidadTema" class="custom-select mb-2">
                             <option value="" selected>Unidad</option>
                             <?php
 
@@ -273,6 +273,9 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                             $programa_id = $programa["id"];
 
                             $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
+                            
+                            echo "<option value='examen'>Examen</option>";
+                            echo "<option value='claseEspecial'>Clase especial</option>";
 
                             while ($temas = $consultaTemas->fetch_assoc()) {
                                 echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
@@ -283,7 +286,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                        
                        
 
-                        <select id="nombreTema" name="nombreTema" class="custom-select" required disabled>
+                        <select id="nombreTema" name="nombreTema" class="custom-select" disabled>
                             <option value="" selected>Tema</option>
 
                         </select>
@@ -295,6 +298,8 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                        <input type="text" name="id_curso" id="id_curso" <?php echo "value='$id_curso'" ?> hidden>
                        <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden>
                        <input type="text" name="idTema" id="idTema" hidden>
+                       <input type="text" name="idTemaEspecial" id="idTemaEspecial" hidden>
+                       
                 </div>
                     
                 </div>
@@ -318,7 +323,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
             </div>
                 
                 
-            <form action="agregarTemaDiaDado.php" method="POST" class=" form-group">
+            <form action="agregarTemaDiaDado.php" method="POST" class="form-group">
                     
                 <div class="modal-body">
                     
@@ -332,7 +337,8 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                        
                        <div class="form-inline">
                        <label>Fecha:</label>
-                        <input type="date" id="fechaTema" name="fechaTema" class="form-control mb-2 ml-2" <?php echo "max='$currentDate'"; echo "min=$fechaDesdeCursado" ?>>
+                        <input type="date" id="fechaTema" name="fechaTema" class="form-control mb-2 ml-2" 
+                               <?php echo "max='".date('Y-m-j', strtotime( '-1 days' ))."'"; echo "min=$fechaDesdeCursado" ?>>
                         </div>
                        
                         <select id="unidadTemaAgregar" name="unidadTemaAgregar" class="custom-select mb-2" disabled required>
@@ -354,6 +360,9 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                             $programa_id = $programa["id"];
 
                             $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
+                              
+                            echo "<option value='examen'>Examen</option>";
+                            echo "<option value='claseEspecial'>Clase especial</option>";
 
                             while ($temas = $consultaTemas->fetch_assoc()) {
                                 echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
@@ -375,6 +384,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                        
                        <input type="text" name="id_curso2" id="id_curso2" <?php echo "value='$id_curso'" ?> hidden>
                        <input type="text" name="idPrograma" id="idPrograma" <?php echo "value='$programa_id'" ?> hidden>
+                       <input type="text" name="idTemaEspecialCrear" id="idTemaEspecialCrear" hidden>
                        <input type="text" name="idTema" id="idTema" hidden>
                        <input type="text" name="idProfesor" id="idProfesor" <?php echo "value='".$_SESSION['usuario']["id"]."'" ?> hidden>
                        
