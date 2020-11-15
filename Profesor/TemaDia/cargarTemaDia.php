@@ -17,9 +17,9 @@ if(isset($_POST["nombreTema"])){
 }else{
     $id_tema = $_POST["idTemaEspecial"];
     if(isset($comentario)){
-        $insert = $con->query("INSERT INTO temadia (comentarioTema, fechaTemaDia, curso_id, temasMateria_id, profesor_id) VALUES ('$comentario', '$fechaTema', '$id_curso', '$id_tema','$id_prof')");
+        $insert = $con->query("INSERT INTO temadia (comentarioTema, fechaTemaDia, curso_id, temasMateria_id, profesor_id) VALUES ('$comentario', '$fechaHoy', '$id_curso', '$id_tema','$id_prof')");
     } else {
-        $insert = $con->query("INSERT INTO temadia (fechaTemaDia, curso_id, temasMateria_id, profesor_id) VALUES ('$fechaTema', '$id_curso', '$id_tema','$id_prof')");
+        $insert = $con->query("INSERT INTO temadia (fechaTemaDia, curso_id, temasMateria_id, profesor_id) VALUES ('$fechaHoy', '$id_curso', '$id_tema','$id_prof')");
     }
 }
 
