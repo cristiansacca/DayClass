@@ -113,6 +113,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 $id_curso = $selectCursosVigentes2["id"];
                 $nombre_curso = $selectCursosVigentes2["nombreCurso"];
                 $totalDiasCursado = calcularDiasCursado($id_curso);
+                
+                //echo  "CURSO:" . $id_curso;
 
                 if ($totalDiasCursado != null) {
                     $selectAsistenciasAlumnoCurso = $con->query("SELECT asistencia.id, asistencia.alumno_id FROM asistencia, curso WHERE curso.id = '$id_curso' AND asistencia.curso_id = curso.id AND curso.fechaDesdeCursado = asistencia.fechaDesdeFichaAsis AND curso.fechaHastaCursado = asistencia.fechaHastaFichaAsis");
@@ -120,6 +122,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                     if (mysqli_num_rows($selectAsistenciasAlumnoCurso) != 0) {
                         while ($selectAsistenciasAlumnoCurso2 = $selectAsistenciasAlumnoCurso->fetch_assoc()) {
                             $id_alumno = $selectAsistenciasAlumnoCurso2["alumno_id"];
+                            
+                            //echo "ALUMNO: ".$id_alumno . " - ";
 
                             $selectEstadoAlumno = $con->query("SELECT cursoestadoalumno.nombreEstado FROM usuario, alumnocursoactual, curso, alumnocursoestado, cursoestadoalumno WHERE curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND usuario.id = '$id_alumno' AND alumnocursoactual.alumno_id = usuario.id AND alumnocursoactual.fechaDesdeAlumCurAc = curso.fechaDesdeCursado AND alumnocursoactual.fechaHastaAlumCurAc = curso.fechaHastaCursado AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado > '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
 
@@ -131,6 +135,8 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                                 if (mysqli_num_rows($selectCantInasistenciasAlumno) != 0) {
                                     $selectCantInasistenciasAlumno2 = $selectCantInasistenciasAlumno->fetch_assoc();
                                     $cantAusentes = $selectCantInasistenciasAlumno2["cantAusentes"];
+                                    
+                                    //echo "CANT AUSENTES: " .$cantAusentes;
                                     $rtdoCompararDias = compararDias($porcentajeMinAsistencia, $totalDiasCursado, $cantAusentes);
 
                                     switch ($rtdoCompararDias) {
@@ -272,6 +278,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         //calculo de dias 
         $porcentajeInasistencias = 1 - $porcentajeMinAsistencia;
         $maxInasistencias = ceil($totalDiasCursado * $porcentajeInasistencias);
+        //echo $maxInasistencias;
 
         if ($cantInasistenciasAlumno == $maxInasistencias) {
             //el alumno esta en el limite, enviar informativo de que no le quedan mas inasistencias
@@ -294,17 +301,13 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     function alumnoSinInasistencias($id_alumno, $id_curso) {
         include "../../databaseConection.php";
         
-        $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
-        $permiso = $selectPermiso->fetch_assoc();
-        $id_permiso = $permiso["id"];
-        
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDate = date('Y-m-d H:i:s');
         $fechaAlumnoLibre = date_create($currentDate);
         $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:i:s");
         
         //buscar los datos del alumno
-        $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND id_permiso = '$id_permiso'")->fetch_assoc();
+        $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno'")->fetch_assoc();
         $nombreAlumno = $selectDatosAlumno["nombreUsuario"];
         $apellidoAlumno = $selectDatosAlumno["apellidoUsuario"];
         $mailAlumno = $selectDatosAlumno["emailUsuario"];
@@ -314,7 +317,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $nombreCurso =  $selectDatosCurso["nombreCurso"];
 
         // Mensaje al alumno 
-        $mensaje = "                                                                                                      $fechaAlumnoLibre
+        $mensaje = "                                                                              $fechaAlumnoLibre
 Hola, $nombreAlumno $apellidoAlumno. 
 
 Se le informa que el día $fechaAlumnoLibre ha alcanzado el máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima inasistencia quedará en estado LIBRE. 
@@ -325,7 +328,7 @@ Saludos.
 Equipo de DayClass.";
 
         // Si cualquier línea es más larga de 200 caracteres, se debería usar wordwrap()
-        $mensaje = wordwrap($mensaje, 200, "\r\n");
+        $mensaje = wordwrap($mensaje, 100, "\r\n");
 
         //direccion de mail destino, cambiar por el mail propio para porbar 
         $destino = "lea220197@gmail.com,$mailAlumno,dayclassdev@gmail.com";
@@ -347,13 +350,7 @@ Equipo de DayClass.";
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $currentDateTime = date('Y-m-d');
         
-        $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
-        $permiso = $selectPermiso->fetch_assoc();
-        $id_permiso = $permiso["id"];
-        
-        
-
-        $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = alumno.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
+        $selectAlumnoCursoEstado = $con->query("SELECT cursoestadoalumno.nombreEstado, alumnocursoestado.id AS idAlumnoCursoEstado, alumnocursoestado.alumnoCursoActual_id, alumnocursoestado.fechaFinEstado, alumnocursoestado.fechaInicioEstado FROM alumnocursoactual, usuario, curso, alumnocursoestado, cursoestadoalumno WHERE usuario.id = '$id_alumno' AND curso.id = '$id_curso' AND alumnocursoactual.curso_id = curso.id AND alumnocursoactual.alumno_id = usuario.id AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDateTime' AND alumnocursoactual.fechaHastaAlumCurAc > '$currentDateTime' AND (alumnocursoactual.fechaDesdeAlumCurAc <= alumnocursoestado.fechaInicioEstado) AND (alumnocursoactual.fechaHastaAlumCurAc >= alumnocursoestado.fechaFinEstado) AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime' AND alumnocursoestado.fechaFinEstado > '$currentDateTime' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado = 'INSCRIPTO'");
 
         if (!($selectAlumnoCursoEstado->num_rows) == 0) {
             $alumnoCursoEstado = $selectAlumnoCursoEstado->fetch_assoc();
@@ -389,17 +386,12 @@ Equipo de DayClass.";
     function avisoAlumnoLibre($id_alumno, $id_curso) {
         include "../../databaseConection.php";
         
-        
-        $selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = 'ALUMNO'");
-        $permiso = $selectPermiso->fetch_assoc();
-        $id_permiso = $permiso["id"];
-        
         $currentDate = date('Y-m-d H:i:s');
         $fechaAlumnoLibre = date_create($currentDate);
         $fechaAlumnoLibre =  date_format($fechaAlumnoLibre, "d/m/Y H:i:s");
         
         //buscar los datos del alumno
-        $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno' AND usuario.id_permiso = '$id_permiso' ")->fetch_assoc();
+        $selectDatosAlumno = $con->query("SELECT * FROM `usuario` WHERE usuario.id = '$id_alumno'")->fetch_assoc();
         $nombreAlumno = $selectDatosAlumno["nombreUsuario"];
         $apellidoAlumno = $selectDatosAlumno["apellidoUsuario"];
         $mailAlumno = $selectDatosAlumno["emailUsuario"];
@@ -409,7 +401,7 @@ Equipo de DayClass.";
         $nombreCurso =  $selectDatosCurso["nombreCurso"];
 
         // Mensaje al alumno 
-        $mensaje = "                                                                                                      $fechaAlumnoLibre
+        $mensaje = "                                                                              $fechaAlumnoLibre
 Hola, $nombreAlumno $apellidoAlumno. 
 
 Se le informa que el día $fechaAlumnoLibre ha quedado LIBRE en el curso $nombreCurso por lo que su asistencia ya no será contabilizada. 
@@ -421,7 +413,7 @@ Saludos.
 Equipo de DayClass";
 
         // Si cualquier línea es más larga de 200 caracteres, se debería usar wordwrap()
-        $mensaje = wordwrap($mensaje, 200, "\r\n");
+        $mensaje = wordwrap($mensaje, 100, "\r\n");
 
         //direccion de mail destino, cambiar por el mail propio para porbar 
         $destino = "lea220197@gmail.com,$mailAlumno,dayclassdev@gmail.com";

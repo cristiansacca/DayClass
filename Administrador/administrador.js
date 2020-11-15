@@ -253,7 +253,7 @@ function validarDNI() {
         }
 
     } else {
-        msg = "El número de DNI debe contener más de 7 números.";
+        msg = "El número de DNI debe contener de 7 a 8 números.";
     }
 
     changeColor('inputDNI', rtdo);

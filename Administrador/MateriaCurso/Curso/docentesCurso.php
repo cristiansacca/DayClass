@@ -440,6 +440,10 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
+    
+$('#staticBackdrop').on('hidden.bs.modal', function() {
+  location.reload();
+});
 </script>
 
 <?php

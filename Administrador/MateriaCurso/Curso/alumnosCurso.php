@@ -281,7 +281,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                                 <td>" . $alumno['apellidoUsuario'] . "</td>
                                 <td>" . $alumno['nombreUsuario'] . "</td>
                                 <td>" . $alumno['dniUsuario'] . "</td>
-                                <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Alta</a></td>
+                                <td class='text-center'><a class='btn btn-primary' onclick='return confirmComeBack()' href='$urlReinc'><i class='fa fa-undo mr-1'></i>Reincorporar</a></td>
                             </tr>";
                         }else{
                             $urlBaja = 'movAlumnoCurso.php?alumnoId='.$alumno_id.'&&cursoId='.$id_curso.'&&movId=1';
@@ -454,6 +454,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
 <script>
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
+    
+    
+$('#staticBackdrop').on('hidden.bs.modal', function() {
+  location.reload();
+});
 </script>
 
 <?php

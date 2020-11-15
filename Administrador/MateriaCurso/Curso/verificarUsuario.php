@@ -16,25 +16,31 @@ if (($selectUsuario->num_rows)!=0) {
     $usuario = $selectUsuario->fetch_assoc();
     $id_usuario = $usuario["id"];
     
+    $fechaBajaUsuario = $usuario["fechaBajaUsuario"];
+    
+    if($fechaBajaUsuario == NULL || $fechaBajaUsuario == ""){
+    
     $selectAlumnoCursoActual = $con->query("SELECT * FROM alumnocursoactual, alumnocursoestado,cursoestadoalumno WHERE alumnocursoactual.alumno_id = '$id_usuario' AND alumnocursoactual.fechaDesdeAlumCurAc <= '$currentDate' AND alumnocursoactual.fechaHastaAlumCurAc >= '$currentDate' AND alumnocursoactual.curso_id = '$curso' AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id AND alumnocursoestado.fechaInicioEstado <= '$currentDate' AND alumnocursoestado.fechaFinEstado >= '$currentDate' AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id AND cursoestadoalumno.nombreEstado <> 'LIBRE'");
     
-    if(($selectAlumnoCursoActual->num_rows) == 0){
-        
-        $selectCargoDocente = $con->query("SELECT * FROM `cargoprofesor` WHERE cargoprofesor.profesor_id = '$id_usuario' AND cargoprofesor.fechaDesdeCargo <= '$currentDate' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.curso_id = '$curso'");
-        
-        if(($selectCargoDocente->num_rows) == 0){
-            $existe = "noAsociado";
+        if(($selectAlumnoCursoActual->num_rows) == 0){
+
+            $selectCargoDocente = $con->query("SELECT * FROM `cargoprofesor` WHERE cargoprofesor.profesor_id = '$id_usuario' AND cargoprofesor.fechaDesdeCargo <= '$currentDate' AND cargoprofesor.fechaHastaCargo IS NULL AND cargoprofesor.curso_id = '$curso'");
+
+            if(($selectCargoDocente->num_rows) == 0){
+                $existe = "noAsociado";
+            }else{
+                $existe = "siAsociado";
+            }  
         }else{
             $existe = "siAsociado";
-        }  
-    }else{
-        $existe = "siAsociado";
-    }
+        }
      
+    }else{
+        $existe = "deBaja";
+    }
 }else{
-    $existe = "noExiste";
+    $existe = "noExiste"; 
 }
-
 $myJSON = json_encode($existe);
     
 echo $myJSON;  

@@ -12,7 +12,7 @@ function validarDNIIns() {
         }
 
     } else {
-        msg = "El número de DNI debe ser mayor a 7 números.";
+        msg = "El número de DNI deben ser entre 7 y 8 números.";
     }
 
     changeColor('inputDNI', rtdo);
@@ -138,6 +138,10 @@ function validarDNIyLegajoIns(){
                         break;
                     case "noExiste":
                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>Los datos ingresados no corresponden a un usuario existente.</h5></div>"; 
+                        rtdo = false;
+                        break;
+                    case "deBaja":
+                        document.getElementById("resultadoMostrar").innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert' ><h5><i class='fa fa-exclamation-circle mr-2'></i>El usuario se encuentra dado de baja del sistema, reincorporar antes de asignar a un curso.</h5></div>"; 
                         rtdo = false;
                         break;
                 }
