@@ -103,7 +103,7 @@ $_SESSION['tiempo'] = time();
                 break;
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un permiso con el mismo nombre.</h5>";
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un permiso con el mismo nombre y/o código. Intente nuevamente.</h5>";
                 break;
             case 5:
                 echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -112,6 +112,15 @@ $_SESSION['tiempo'] = time();
             case 6:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al dar de baja el permiso.</h5>";
+                break;
+            case 7:
+                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Permiso actualizado correctamente.</h5>";
+                break;
+
+            case 8:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al actualizar los datos del permiso.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -137,7 +146,7 @@ $_SESSION['tiempo'] = time();
                         <td>" . $funcion['codigoFuncion'] . "</td>
                         <td>" . $funcion['nombreFuncion'] . "</td>
                         <td>
-                            <button class='btn btn-success mr-1 mb-1' onclick='editar(" . $funcion['id'] . ");'><i class='fa fa-edit mr-1'></i>Editar</button>
+                            <button data-toggle='modal' data-target='#modalEditar' class='btn btn-success mr-1 mb-1' onclick='editar(" . $funcion['id'] . ");'><i class='fa fa-edit mr-1'></i>Editar</button>
                             <button class='btn btn-danger mr-1 mb-1' onclick='darBaja(" . $funcion['id'] . ");'><i class='fa fa-trash mr-1'></i>Baja</button>
                         </td>
                     </tr>";
@@ -188,21 +197,32 @@ $_SESSION['tiempo'] = time();
             <div class="modal-header">
                 <h5 class="modal-title">Editar permiso</h5>
             </div>
-            <form enctype="multipart/form-data" action="altaPermiso.php" method="post">
+            <form enctype="multipart/form-data" action="editarPermiso.php" method="post">
                 <div class="modal-body">
                     <div class="mb-2">
                         <label for="editarNombre">Nombre</label>
                         <input type="text" name="editarNombre" id="editarNombre" class="form-control" required>
                     </div>
                     <div class="mb-2">
+                        <label for="editarCodigo">Código</label>
+                        <input type="number" name="editarCodigo" id="editarCodigo" class="form-control" min="0" readonly>
+                    </div>
+                    <div class="mb-2">
                         <label for="editarLink">Vínculo a la página principal</label>
                         <input type="text" name="editarLink" id="editarLink" class="form-control" required>
                     </div>
-                    <label>Cargar imagen</label>
+                    <div class="mb-2">
+                        <label for="imagenGuardada">Imagen</label><br>
+                        <div class="text-center">
+                            <img  id="imagenGuardada" class='img-thumbnail' src="" width="60%">
+                        </div>
+                    </div>
+                    <label>Nueva imagen</label>
                     <div class="custom-file mb-2">
-                        <input type="file" name="editarImagen" id="editarImagen" accept="image/*" class="custom-file-input" required>
+                        <input type="file" name="editarImagen" id="editarImagen" accept="image/*" class="custom-file-input">
                         <label for="editarImagen" class="custom-file-label"></label>
                     </div>
+                    <input type="text" name="idPermisoEditar" id="idPermisoEditar" hidden>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -214,20 +234,6 @@ $_SESSION['tiempo'] = time();
 </div>
 
 <script src="../../administrador.js"></script>
-<script>
-    $(".custom-file-input").on("change", function() {
-        let fileName = $(this).val().split('\\').pop();
-        $(this).next(".custom-file-label").addClass("selected").html(fileName);
-    });
-</script>
-
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../paginadoDataTable.js"></script>
-
-<script>
-    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
-</script>
 
 <script>
     function darBaja(id) {
@@ -255,23 +261,42 @@ $_SESSION['tiempo'] = time();
     }
 
     function editar(id) {
+        eval("debugger;");
         var datos = {
-            idFuncion: id
+            id: id
         }
-        if (confirmacion) {
-            $.ajax({
-                url: 'editarPermiso.php',
-                type: 'POST',
-                //async: false,
-                data: datos,
-                success: function(datosRecibidos) {
-                    //json = JSON.parse(datosRecibidos);
-                    //alert(datosRecibidos);  
-                    
-                }
-            })
-        }
+        
+        $.ajax({
+            url: 'obtenerDatos.php',
+            type: 'POST',
+            async: false,
+            data: datos,
+            success: function(datosRecibidos) {
+                json = JSON.parse(datosRecibidos);
+                //alert(datosRecibidos);
+                document.getElementById('editarNombre').value = json.nombreFuncion;
+                document.getElementById('editarCodigo').value = json.codigoFuncion;
+                document.getElementById('editarLink').value = json.refPagina;
+                document.getElementById('imagenGuardada').src = json.refImagen;
+                document.getElementById('idPermisoEditar').value = id;                   
+            }
+        });
     }
+</script>
+
+<script>
+    $(".custom-file-input").on("change", function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../paginadoDataTable.js"></script>
+
+<script>
+    <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '" . $_SESSION['usuario']['nombreUsuario'] . " " . $_SESSION['usuario']['apellidoUsuario'] . "'" ?>
 </script>
 
 <?php
