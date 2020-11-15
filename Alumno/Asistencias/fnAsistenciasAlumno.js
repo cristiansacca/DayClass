@@ -38,10 +38,10 @@ function mostrarAsistencias() {
                     var totalDias = json.diasCursado;
                     var porcentajeMinimo = json.minimoAsistencias;
                     
-                    /*alert(ausentes);
-                    alert(totalDias);
-                    alert(porcentajeMinimo);
-                    var presentesMinimos = Math.ceil(porcentajeMinimo*totalDias);
+                    /*alert("Cant ausentes:" + ausentes);
+                    alert("Cant total dias: " + totalDias);
+                    alert("Porcentaje minimo: " +porcentajeMinimo);
+                    /*var presentesMinimos = Math.ceil(porcentajeMinimo*totalDias);
                     var faltasDisponibles=totalDias-presentesMinimos-ausentes;*/
                     
                     

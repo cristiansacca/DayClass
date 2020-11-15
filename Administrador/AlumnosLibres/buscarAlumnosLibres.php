@@ -261,11 +261,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
             //se le resta a los dias de cursado calculados (clasePorSemana * cantSemanas) los dias caen feriado o dia sin clases, de los que se cursa esa materia
             $diasEfectivosCursado = $cantDiasCursado - $cantDiaSinClases;
             
-            //echo "Cantidad dias cursado: " . $cantDiasCursado;
+            /*echo "Cantidad dias cursado: " . $cantDiasCursado;
             
-            //echo "Cantidad dias sin clases: " . $cantDiaSinClases;
+            echo "Cantidad dias sin clases: " . $cantDiaSinClases;
             
-            //echo "Cantidad total de clases: " . $diasEfectivosCursado;
+            echo "Cantidad total de clases: " . $diasEfectivosCursado;*/
             
             return $diasEfectivosCursado;
         } else {
@@ -317,7 +317,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
         $nombreCurso =  $selectDatosCurso["nombreCurso"];
 
         // Mensaje al alumno 
-        $mensaje = "                                                                              $fechaAlumnoLibre
+        $mensaje = "                                                                               $fechaAlumnoLibre 
 Hola, $nombreAlumno $apellidoAlumno. 
 
 Se le informa que el día $fechaAlumnoLibre ha alcanzado el máximo de inasistencias permitidas en el curso $nombreCurso. Luego de la próxima inasistencia quedará en estado LIBRE. 
