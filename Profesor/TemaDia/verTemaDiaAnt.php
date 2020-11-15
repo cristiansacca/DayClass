@@ -238,6 +238,11 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                 <input type="text" name="id_curso"  hidden>
     
                 <div class="modal-body">
+                    <div>
+                       <label>Fecha dada:</label>
+                        <input type="text" readonly id="fechaTemaAnt" class="form-control">
+                    </div>
+                    
                     <h6>Datos existentes</h6>
                     
                     
@@ -434,6 +439,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                 document.getElementById("unidadTemaAnt").value = json.unidad;
                 document.getElementById("temaAnt").value = json.tema;    
                 document.getElementById("comentario").value = json.comentario;
+                document.getElementById("fechaTemaAnt").value = json.fecha;
             }
         })
         
