@@ -328,7 +328,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
             </div>
                 
                 
-            <form action="agregarTemaDiaDado.php" method="POST" class="form-group">
+            <form action="agregarTemaDiaDado.php" method="POST" class="form-group" onsubmit="return validarFecha()">
                     
                 <div class="modal-body">
                     
@@ -480,7 +480,43 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
             }
         })
     }
+    
+    
+    function validarFecha(){
+        var fecha = document.getElementById("fechaTema").value;
+        var id_curso = document.getElementById("id_curso2").value;
+        var rtdo = true;
+        var datos = {
+            id_curso: id_curso,
+            fecha: fecha
+        }
 
+        var x;
+        $.ajax({
+            url: 'validarDiasCursado.php',
+            type: 'POST',
+            data: datos,
+            async: false,
+            success: function(datosRecibidos) {
+                //alert(datosRecibidos);
+                json = JSON.parse(datosRecibidos);
+                if(json.resultado == 1){
+                    x = 1;
+                    document.getElementById("noEsFechaCurso").hidden = true;
+                    document.getElementById("unidadTemaAgregar").disabled = false;
+                    rtdo = true;
+                } else {
+                    x = 0;
+                    document.getElementById("noEsFechaCurso").hidden = false;
+                    document.getElementById("unidadTemaAgregar").disabled = true;
+                    rtdo = false;
+                }
+            }
+        })
+        
+        return rtdo;
+    }
+    
 </script>
 
 
