@@ -113,7 +113,7 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error al guardar los datos de asistencia.</h5>";
                     break;
                 case 4:
-                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos libres el día de hoy, intente nuevamente mañana.</h5>";
+                    echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>Ya se revisaron los alumnos libres el día de hoy. Intente nuevamente mañana.</h5>";
                     break;
                 case 5:
                     echo "<h5><i class='fa fa-exclamation-circle mr-2'></i>No es el día u horario de cursado.</h5>";
@@ -144,12 +144,12 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
     <!-- Page Features -->
     <div>
         <?php
-    
-        if($id_permiso != NULL || $id_permiso != ""){
+
+        if ($id_permiso != NULL || $id_permiso != "") {
             $contador = 0;
-            
+
             //echo "<h3 class='font-weight-normal'>Accesos asignados:</h3><br>";
-            
+
             $selectFuncionPermiso = $con->query("SELECT id_funcion 
                 FROM `permisofuncion`, funcion 
                 WHERE permisofuncion.id_permiso = '$id_permiso' 
@@ -158,49 +158,49 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
                     AND funcion.id = permisofuncion.id_funcion 
                     AND funcion.fechaHastaFuncion IS NULL
                 ORDER BY nombreFuncion ASC");
-            
-            if(($selectFuncionPermiso->num_rows) > 0){
+
+            if (($selectFuncionPermiso->num_rows) > 0) {
                 echo "<div class='row text-center'>";
                 while ($funcionPermiso = $selectFuncionPermiso->fetch_assoc()) {
                     if ($contador == 4) {
                         $contador = 0;
                     }
-                    
-                    $id_funcion = $funcionPermiso["id_funcion"];
-                    
 
-                $consultaFuncion = $con->query("SELECT * FROM funcion WHERE id='$id_funcion' AND fechaHastaFuncion IS NULL");
-                $funcion = $consultaFuncion->fetch_assoc();
-                $nombreFuncion = $funcion["nombreFuncion"];
+                    $id_funcion = $funcionPermiso["id_funcion"];
+
+
+                    $consultaFuncion = $con->query("SELECT * FROM funcion WHERE id='$id_funcion' AND fechaHastaFuncion IS NULL");
+                    $funcion = $consultaFuncion->fetch_assoc();
+                    $nombreFuncion = $funcion["nombreFuncion"];
                     $imagenFuncion = $funcion["refImagen"];
                     $paginaFuncion = $funcion["refPagina"];
+                    $codigoFuncion = $funcion['codigoFuncion'];
 
-                echo 
-                    "
+                    echo
+                        "
                     <div class='col-lg-4 col-md-6 mb-4' >
                         <div class='card h-100' >
                         <img class='card-img-top imagen' src='$imagenFuncion' alt='' oncontextmenu='return false'>
                             <div class='card-body'>
-                                <h4 class='card-title'>".$nombreFuncion."</h4>
+                                <h4 class='card-title'>" . $nombreFuncion . "</h4>
                                 <h5 class='font-weight-normal'></h5>
                             </div>
                             <div class='card-footer'>
-                                <a href='$paginaFuncion' class='btn btn-primary'><i class='fa fa-chevron-circle-right mr-1'></i>Ingresar</a>
+                                <a id='btn$codigoFuncion' href='$paginaFuncion' onclick='setSpinner($codigoFuncion);' class='btn btn-primary'><i class='fa fa-chevron-circle-right mr-1'></i>Ingresar</a>
                             </div>
                         </div>
                     </div>";
                     $contador++;
                 }
-                
+
                 echo "</div>";
-            }else{
-               echo "<div class='alert alert-warning' role='alert'>
+            } else {
+                echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>El rol asignado, actualmente no tiene funciones disponibles.</h5>
             </div>";
             }
-                
-        }else{
-             echo "<div class='alert alert-warning' role='alert'>
+        } else {
+            echo "<div class='alert alert-warning' role='alert'>
                 <h5><i class='fa fa-exclamation-circle mr-2'></i>No tiene rol asignado.</h5>
             </div>";
         }
@@ -263,10 +263,16 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
             }
         })
     }
-    
+
     document.getElementById("btnCampana").onclick = function(){
         $("#nroNoti").attr("hidden", "hidden" );
         document.getElementById("nroNoti").innerHTML = 0;
+    }
+
+    function setSpinner(codigoFuncion){
+        if(codigoFuncion == 21){
+            document.getElementById('btn'+codigoFuncion).innerHTML ='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Comprobando...';
+        }
     }
 
 </script>

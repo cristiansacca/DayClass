@@ -79,7 +79,7 @@ $_SESSION['tiempo'] = time();
         <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
         <!--Cambiar para que se vea el nombre del rol del usuario logueado-->
 
-        <h1 class="card-text">Administrar rol</h1>
+        <!--<h1 class="card-text">Administrar rol</h1>-->
 
 
         <?php
@@ -93,7 +93,7 @@ $_SESSION['tiempo'] = time();
         $nombrePermiso = ucfirst(strtolower($permiso["nombrePermiso"]));
 
 
-        echo "<h3>$nombrePermiso<i class='fa fa-user-tie ml-2'></i></h3>"
+        echo "<h1>Administrar rol: $nombrePermiso<i class='fa fa-user-tie ml-2'></i></h1>"
 
         ?>
 

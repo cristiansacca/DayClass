@@ -80,7 +80,6 @@ $contenido = $imagen['imagenJustificativo'];//Obtenemos el contenido almacenado 
 $alumno = $con->query("SELECT * FROM usuario WHERE id = '".$imagen['alumno_id']."'")->fetch_assoc();
 setlocale(LC_ALL, 'Spanish');
 
-include "../../header.html";
 ?>
 
 <div class='container'>

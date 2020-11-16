@@ -94,8 +94,6 @@ if($imagen['fechaRevision'] == null){
         $color = 'font-weight-bold text-danger';
     }
   }
-
-include "../../header.html";
 ?>
 
 <div class="container">
