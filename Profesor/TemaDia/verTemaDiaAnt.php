@@ -483,6 +483,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
     
     
     function validarFecha(){
+        eval("debugger;");
         var fecha = document.getElementById("fechaTema").value;
         var id_curso = document.getElementById("id_curso2").value;
         var rtdo = true;

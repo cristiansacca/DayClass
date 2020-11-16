@@ -49,7 +49,7 @@ document.getElementById("unidadTemaAgregar").onchange = function(){
          
         $("#comentarioAgregar").attr("required", "required" );
         document.getElementById("nombreTemaAgregar").innerHTML = contenido;
-        document.getElementById("idTemaEspecial").value = codTema;
+        document.getElementById("idTemaEspecialCrear").value = codTema;
        $("#nombreTemaAgregar").removeAttr("required"); 
     }
 }
