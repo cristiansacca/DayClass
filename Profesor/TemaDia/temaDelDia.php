@@ -301,7 +301,7 @@ if (($fechaD > $currentDateTime)) {
 
         </div>
         <div class="my-2">
-            <textarea name="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline" placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
+            <textarea name="comentario" id="comentario" cols="60" rows="5" style="resize: none;" class="form-control form-inline" placeholder="Escriba un comentario (Opcional). Máximo 40 carácteres" maxlength="80"></textarea>
 
         </div>
         
