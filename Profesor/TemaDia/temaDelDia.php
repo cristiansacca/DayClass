@@ -277,7 +277,7 @@ if (($fechaD > $currentDateTime)) {
         <input type="text" name="id_curso" <?php echo "value='$id_curso'" ?> hidden>
         <div class="my-2  form-inline">
             <select id="unidadTema" name="unidadTema" class="custom-select" class="custom-select" style="width:15%" required>
-                <option value="" selected>Unidad</option>
+                <option value="" selected>Seleccione</option>
                 <?php
 
                 $consultaTemas = $con->query("SELECT DISTINCT temasmateria.unidadTema FROM temasmateria WHERE programaMateria_id = '$programa_id' ORDER BY temasmateria.unidadTema");
@@ -286,7 +286,7 @@ if (($fechaD > $currentDateTime)) {
                echo "<option value='claseEspecial'>Clase especial</option>";
 
                 while ($temas = $consultaTemas->fetch_assoc()) {
-                    echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
+                    echo "<option value='" . $temas["unidadTema"] . "'>Unidad " . $temas["unidadTema"] . "</option>";
                 }
 
                 ?>

@@ -22,11 +22,14 @@ if(nro_unidad !== "" && nro_unidad >= 0){
                 for (let index = 0; index < json.length; index++) {
                     contenido += "<option value='"+json[index].id+"'>"+json[index].nombreTema+"</option>";
                     document.getElementById("nombreTema").innerHTML = contenido;
-                    $("#nombreTema").removeAttr("disabled");                
+                    $("#nombreTema").removeAttr("disabled"); 
+                    $("#nombreTema").attr("required", "required" );
+                    $("#comentario").removeAttr("required");
                 }
             } else {
                 document.getElementById("nombreTema").innerHTML = contenido;
                 $("#nombreTema").attr("disabled", "disabled" );
+                $("#comentario").removeAttr("required");
             }
             
         }
@@ -35,9 +38,11 @@ if(nro_unidad !== "" && nro_unidad >= 0){
    var codTema = null;
         if(nro_unidad == "examen"){
             contenido="<option value='1' selected>Tema</option>";
+            $("#nombreTema").attr("disabled", "disabled" );
             codTema = 1;
         }else{
             contenido="<option value='2' selected>Tema</option>";
+            $("#nombreTema").attr("disabled", "disabled" );
             codTema = 2;
         }
          

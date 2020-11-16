@@ -260,7 +260,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                        
                        <h6>Datos nuevos</h6>
                         <select id="unidadTema" name="unidadTema" class="custom-select mb-2">
-                            <option value="" selected>Unidad</option>
+                            <option value="" selected>Seleccione</option>
                             <?php
 
                             $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
@@ -283,7 +283,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                             echo "<option value='claseEspecial'>Clase especial</option>";
 
                             while ($temas = $consultaTemas->fetch_assoc()) {
-                                echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
+                                echo "<option value='" . $temas["unidadTema"] . "'>Unidad " . $temas["unidadTema"] . "</option>";
                             }
 
                             ?>
@@ -347,7 +347,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                         </div>
                        
                         <select id="unidadTemaAgregar" name="unidadTemaAgregar" class="custom-select mb-2" disabled required>
-                            <option value="" selected>Unidad</option>
+                            <option value="" selected>Selccione</option>
                             <?php
 
                             $consulta1 = $con->query("SELECT * FROM curso WHERE id = '$id_curso'");
@@ -370,7 +370,7 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                             echo "<option value='claseEspecial'>Clase especial</option>";
 
                             while ($temas = $consultaTemas->fetch_assoc()) {
-                                echo "<option value='" . $temas["unidadTema"] . "'>" . $temas["unidadTema"] . "</option>";
+                                echo "<option value='" . $temas["unidadTema"] . "'>Unidad " . $temas["unidadTema"] . "</option>";
                             }
 
                             ?>
@@ -436,7 +436,12 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
             data: {id: id},
             success: function(datosRecibidos) {
                 json = JSON.parse(datosRecibidos);
-                document.getElementById("unidadTemaAnt").value = json.unidad;
+                
+                if(json.unidad == "" || json.unidad == null){
+                    document.getElementById("unidadTemaAnt").value = "No tiene unidad";
+                }else{
+                    document.getElementById("unidadTemaAnt").value = json.unidad;
+                }
                 document.getElementById("temaAnt").value = json.tema;    
                 document.getElementById("comentario").value = json.comentario;
                 document.getElementById("fechaTemaAnt").value = json.fecha;
