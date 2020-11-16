@@ -215,10 +215,6 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
                 $currentDateTime = date('Y-m-d'); 
             
-                
-            
-            
-            
                 echo "<input type='date' name='impIDprof' id='hoy' value='$currentDateTime' hidden>";
                 echo "<input type='text' name='cursid' id='cursoid' value='$id_curso' hidden>";
                 

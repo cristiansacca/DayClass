@@ -5,7 +5,7 @@ $email = $_POST["eMail"];
 
 
 //verificar que el mail no este registrado por ningun otro tipo de usuario 
-$mailUsuario = $con->query("SELECT id FROM usuario WHERE emailUsuario = '$email'");
+$mailUsuario = $con->query("SELECT id FROM usuario WHERE emailUsuario = '$email' cuentaHabilitada = 1");
 
 
 $existe = false;
