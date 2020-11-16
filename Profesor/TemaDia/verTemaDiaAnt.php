@@ -164,6 +164,14 @@ $consulta3 = $con->query("SELECT usuario.id, usuario.legajoUsuario, usuario.apel
                             </button>
                         </div>";
                 break;
+            case 7:
+                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <h5><i class='fa fa-exclamation-circle mr-2'></i>No se registran temas dados.No se puede generar el reporte.</h5>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                break;
         }
     }
 

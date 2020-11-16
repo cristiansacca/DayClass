@@ -120,17 +120,14 @@ if (($selectTemasDia->num_rows) != 0) {
         
         
     }
-} else {
-    $mensaje = "No se registra información de temas cargados.";
-
-    $mensaje = utf8_decode($mensaje);
-    $pdf->SetTextColor(255, 0, 0);
-    $pdf->SetFont('Arial', 'B', 15);
-    $pdf->Write(15, $mensaje);
-    $pdf->Ln(10);
-}
-
+    
 /*Serve the PDF*/
 $pdf->Output("reporteTemasDados$nombreCurso.pdf", "I");
+} else {
+    header("location:/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso&&resultado=7");
+    
+}
+
+
 
 ?>
