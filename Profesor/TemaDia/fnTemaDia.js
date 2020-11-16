@@ -29,6 +29,7 @@ if(nro_unidad !== "" && nro_unidad >= 0){
             } else {
                 document.getElementById("nombreTema").innerHTML = contenido;
                 $("#nombreTema").attr("disabled", "disabled" );
+                $("#nombreTema").attr("required", "required" );
                 $("#comentario").removeAttr("required");
             }
             

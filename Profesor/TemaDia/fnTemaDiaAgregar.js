@@ -21,11 +21,15 @@ document.getElementById("unidadTemaAgregar").onchange = function(){
                 for (let index = 0; index < json.length; index++) {
                     contenido += "<option value='"+json[index].id+"'>"+json[index].nombreTema+"</option>";
                     document.getElementById("nombreTemaAgregar").innerHTML = contenido;
-                    $("#nombreTemaAgregar").removeAttr("disabled");                
+                    $("#nombreTemaAgregar").removeAttr("disabled"); 
+                    $("#nombreTemaAgregar").attr("required", "required" );
+                    $("#comentarioAgregar").removeAttr("required");
                 }
             } else {
                 document.getElementById("nombreTemaAgregar").innerHTML = contenido;
                 $("#nombreTemaAgregar").attr("disabled", "disabled" );
+                $("#nombreTemaAgregar").attr("required", "required" );
+                $("#comentarioAgregar").removeAttr("required");
             }
             
         }
@@ -40,11 +44,12 @@ document.getElementById("unidadTemaAgregar").onchange = function(){
             contenido="<option value='2' selected>Tema</option>";
             codTema = 2;
         }
+        
+        $("#nombreTemaAgregar").attr("disabled", "disabled" );
          
         $("#comentarioAgregar").attr("required", "required" );
         document.getElementById("nombreTemaAgregar").innerHTML = contenido;
         document.getElementById("idTemaEspecial").value = codTema;
-        
        $("#nombreTemaAgregar").removeAttr("required"); 
     }
 }
