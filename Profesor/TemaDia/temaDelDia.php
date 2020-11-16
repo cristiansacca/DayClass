@@ -379,7 +379,7 @@ if (($fechaD > $currentDateTime)) {
 
                 <div class="modal-footer">
 
-                    <a <?php echo "href='/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso'"; ?> ><i class="fas fa-search-plus mr-1"></i>Ver más</a>
+                    <a class='btn btn-success' <?php echo "href='/DayClass/Profesor/TemaDia/verTemaDiaAnt.php?id_curso=$id_curso'"; ?> ><i class="fas fa-search-plus mr-1"></i>Ver más</a>
 
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
 
