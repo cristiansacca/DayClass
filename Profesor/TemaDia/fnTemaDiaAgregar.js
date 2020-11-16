@@ -24,12 +24,14 @@ document.getElementById("unidadTemaAgregar").onchange = function(){
                     $("#nombreTemaAgregar").removeAttr("disabled"); 
                     $("#nombreTemaAgregar").attr("required", "required" );
                     $("#comentarioAgregar").removeAttr("required");
+                    $('#comentarioAgregar').attr('placeholder','Escriba un comentario. (Opcional) Máximo 40 carácteres');
                 }
             } else {
                 document.getElementById("nombreTemaAgregar").innerHTML = contenido;
                 $("#nombreTemaAgregar").attr("disabled", "disabled" );
                 $("#nombreTemaAgregar").attr("required", "required" );
                 $("#comentarioAgregar").removeAttr("required");
+                $('#comentarioAgregar').attr('placeholder','Escriba un comentario. (Opcional) Máximo 40 carácteres');
             }
             
         }

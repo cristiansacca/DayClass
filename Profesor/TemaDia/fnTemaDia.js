@@ -25,12 +25,15 @@ if(nro_unidad !== "" && nro_unidad >= 0){
                     $("#nombreTema").removeAttr("disabled"); 
                     $("#nombreTema").attr("required", "required" );
                     $("#comentario").removeAttr("required");
+                    $('#comentario').attr('placeholder','Escriba un comentario (Opcional). Máximo 40 carácteres');
+                    
                 }
             } else {
                 document.getElementById("nombreTema").innerHTML = contenido;
                 $("#nombreTema").attr("disabled", "disabled" );
                 $("#nombreTema").attr("required", "required" );
                 $("#comentario").removeAttr("required");
+                $('#comentario').attr('placeholder','Escriba un comentario (Opcional). Máximo 40 carácteres');
             }
             
         }
