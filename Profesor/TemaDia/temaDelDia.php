@@ -78,12 +78,12 @@ $materia = $consultaMateria->fetch_assoc();
 $materia_id = $materia["id"];
 
 $consultaPrograma = $con->query("SELECT * FROM programamateria WHERE materia_id = '$materia_id' AND programamateria.fechaDesdePrograma <= '$currentDate' AND programamateria.fechaHastaPrograma IS NULL");
-$programa = $consultaPrograma->fetch_assoc();
-$programa_id = $programa["id"];
 
 
 $hab = false;
-if ($programa_id != "" || $programa_id != null) {
+if (($consultaPrograma->num_rows) != 0) {
+    $programa = $consultaPrograma->fetch_assoc();
+    $programa_id = $programa["id"];
     $hab = true;
 }
 
