@@ -15,14 +15,14 @@ function cambiarContenidoNavbar() {
             "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php'><i class='fa fa-sliders mr-2'></i>Parámetros</a><div class='dropdown-divider'></div>"+
             "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php'><i class='fa fa-database mr-2'></i>Copia de seguridad</a>"+
         "</div>"+
-    "</li>";*/
+    "</li>";
     
     contenido += 
     "<li id='notificacionJustificativos' class='nav-item' hidden>"+
         "<a id='btnCampana' class='nav-link myPopover'><i id='iconoCampana' class='fa fa-bell fa-fw ml-n2'></i>"+
             "<div hidden id='nroNoti' class='count-container' data-region='count-container'>1</div>"+
         "</a>"+
-    "</li>";
+    "</li>";*/
     
     contenido +=
     "<li>"+
