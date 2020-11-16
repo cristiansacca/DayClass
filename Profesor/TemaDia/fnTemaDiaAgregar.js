@@ -48,6 +48,7 @@ document.getElementById("unidadTemaAgregar").onchange = function(){
         $("#nombreTemaAgregar").attr("disabled", "disabled" );
          
         $("#comentarioAgregar").attr("required", "required" );
+        $('#comentarioAgregar').attr('placeholder','Escriba un comentario. Máximo 40 carácteres');
         document.getElementById("nombreTemaAgregar").innerHTML = contenido;
         document.getElementById("idTemaEspecialCrear").value = codTema;
        $("#nombreTemaAgregar").removeAttr("required"); 

@@ -50,6 +50,7 @@ if(nro_unidad !== "" && nro_unidad >= 0){
         $("#comentario").attr("required", "required" );
         document.getElementById("nombreTema").innerHTML = contenido;
         document.getElementById("idTemaEspecial").value = codTema;
+        $('#comentario').attr('placeholder','Escriba un comentario. Máximo 40 carácteres');
         
        $("#nombreTema").removeAttr("required");      
 }
