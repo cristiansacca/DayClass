@@ -15,14 +15,14 @@ function cambiarContenidoNavbar() {
             "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/Parametros/config_parametros.php'><i class='fa fa-sliders mr-2'></i>Parámetros</a><div class='dropdown-divider'></div>"+
             "<a class='dropdown-item' href='/DayClass/Administrador/ConfiguracionSistema/BackupRecuperacion/backup.php'><i class='fa fa-database mr-2'></i>Copia de seguridad</a>"+
         "</div>"+
-    "</li>";
+    "</li>";*/
     
     contenido += 
-    "<li class='nav-item'>"+
+    "<li id='notificacionJustificativos' class='nav-item' hidden>"+
         "<a id='btnCampana' class='nav-link myPopover'><i id='iconoCampana' class='fa fa-bell fa-fw ml-n2'></i>"+
             "<div hidden id='nroNoti' class='count-container' data-region='count-container'>1</div>"+
         "</a>"+
-    "</li>";*/
+    "</li>";
     
     contenido +=
     "<li>"+
@@ -31,7 +31,7 @@ function cambiarContenidoNavbar() {
                 "<label id='nombreUsuarioNav'>Nombre Apellido</label><i class='fa fa-user-circle fa-lg ml-2'></i>"+
             "</button>"+
             "<div class='dropdown-menu'>"+
-                "<a class='dropdown-item' href='/DayClass/Administrador/EditarPerfil/editarPerfilAdmin.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>"+
+                "<a class='dropdown-item' href='/DayClass/Usuario/editar_perfil.php'><i class='fa fa-edit mr-1'></i>Editar perfil</a><div class='dropdown-divider'></div>"+
                 "<a class='dropdown-item' href='/DayClass/logout.php'><i class='fa fa-sign-out mr-1'></i>Salir</a>"+
             "</div>"+
         "</div>"+

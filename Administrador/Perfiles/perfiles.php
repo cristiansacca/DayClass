@@ -80,7 +80,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
     <div class="jumbotron my-4 py-4">
         <p><b>Rol: </b><?php echo "$nombreRol" ?></p>
-        <h1>Administrar roles</h1>
+        <h1>Administrar roles y permisos</h1>
         <a href="/DayClass/index.php" class="btn btn-info"><i class="fa fa-arrow-circle-left mr-1"></i>Volver</a>
     </div>
 

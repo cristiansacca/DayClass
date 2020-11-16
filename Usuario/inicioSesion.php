@@ -217,6 +217,60 @@ if($hora >= date('06:00:00') && $hora < date('12:00:00')) {
     <?php echo "document.getElementById('nombreUsuarioNav').innerHTML = '".$_SESSION['usuario']['nombreUsuario']." ".$_SESSION['usuario']['apellidoUsuario']."'" ?>
 </script>
 
+<script>
+    window.onload = function(){
+        verificarPermisoNotificaciones();
+        $.ajax({
+            url: '/DayClass/Administrador/Justificativos/buscarJustificativos.php',
+            type: 'POST',
+            success: function(datosRecibidos) {
+                //alert(datosRecibidos);
+                if(datosRecibidos!=0){
+                    //alert("Entra al if");
+                    $('.myPopover').popover({
+                        placement: 'bottom',
+                        title: 'Justificativos',
+                        html: true,
+                        content: '<a href="/DayClass/Administrador/Justificativos/validar_justificativos.php"><i class="fa fa-exclamation-circle mr-1"></i>Hay justificativos pendientes de revisión ('+datosRecibidos+')</a>'
+                    });
+                    document.getElementById("nroNoti").innerHTML = datosRecibidos;
+                    $('#nroNoti').removeAttr("hidden");
+                } else {
+                    $('.myPopover').popover({
+                        //trigger: 'focus',
+                        placement: 'bottom',
+                        title: 'Justificativos',
+                        html: true,
+                        content: '<i class="fa fa-info-circle mr-1"></i>No hay justificativos pendientes de revisión.'
+                    });
+                }           
+            }
+        })
+    }
+
+    function verificarPermisoNotificaciones(){
+        $.ajax({
+            url:'verificarPermisoNotificaciones.php',
+            type: 'POST',
+            async: false,
+            //data: datos,
+            success:function(datosRecibidos) { 
+                json = JSON.parse(datosRecibidos);
+                //alert(datosRecibidos);
+                if(json.resultado == 1){
+                    document.getElementById("notificacionJustificativos").hidden = false;
+                }                               
+            }
+        })
+    }
+    
+    document.getElementById("btnCampana").onclick = function(){
+        $("#nroNoti").attr("hidden", "hidden" );
+        document.getElementById("nroNoti").innerHTML = 0;
+    }
+
+</script>
+
 <?php
 include "../footer.html";
 ?>
