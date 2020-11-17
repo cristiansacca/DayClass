@@ -142,12 +142,17 @@ $_SESSION['tiempo'] = time();
                 <?php
                 $consultaPermisos = $con->query("SELECT * FROM funcion WHERE fechaHastaFuncion IS NULL");
                 while ($funcion = $consultaPermisos->fetch_assoc()) {
+                    $consultaAsignado = $con->query("SELECT * 
+                        FROM permisofuncion 
+                        WHERE id_funcion = '".$funcion['id']."' 
+                        AND fechaHastaPermisoFuncion IS NULL");
+                    $deshabilitado = ($consultaAsignado->num_rows) == 0 ? '' : 'disabled'; 
                     echo "<tr>
                         <td>" . $funcion['codigoFuncion'] . "</td>
                         <td>" . $funcion['nombreFuncion'] . "</td>
                         <td>
                             <button data-toggle='modal' data-target='#modalEditar' class='btn btn-success mr-1 mb-1' onclick='editar(" . $funcion['id'] . ");'><i class='fa fa-edit mr-1'></i>Editar</button>
-                            <button class='btn btn-danger mr-1 mb-1' onclick='darBaja(" . $funcion['id'] . ");'><i class='fa fa-trash mr-1'></i>Baja</button>
+                            <button $deshabilitado class='btn btn-danger mr-1 mb-1' onclick='darBaja(" . $funcion['id'] . ");'><i class='fa fa-trash mr-1'></i>Baja</button>
                         </td>
                     </tr>";
                 }
