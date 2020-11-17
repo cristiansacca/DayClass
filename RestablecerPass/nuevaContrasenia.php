@@ -24,7 +24,7 @@ if (mysqli_num_rows($consultaAlum) == 0) {
     $apellido = $resultado1['apellidoUsuario'];
     $id = $resultado1['id'];
     
-    $mail= 'lea220197@gmail.com,'.$mail;
+    $mail= 'dayclassdev@gmail.com,lea220197@gmail.com,'.$mail;
 
     $nombreCompleto = "$nombre $apellido";
     $rtdoMail = sendEmail($nombreCompleto, $mail, $pass);
