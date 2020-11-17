@@ -10,7 +10,7 @@ echo $nombrePermiso;
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $currentDateTime = date('Y-m-d');
 
-$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = '$nombrePermiso'");
+$selectPermiso = $con->query("SELECT * FROM permiso WHERE nombrePermiso = '$nombrePermiso' AND fechaBajaPermiso IS NULL");
 
 if(($selectPermiso->num_rows) == 0){
     //no existe ese permiso, crear

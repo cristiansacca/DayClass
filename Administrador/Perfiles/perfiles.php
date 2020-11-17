@@ -109,11 +109,11 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 
             case 4:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrio un error en la eliminacion del Rol</h5>";
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ocurrió un error en la eliminacion del rol.</h5>";
                 break;
             case 5:
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe ese Rol</h5>";
+                        <h5><i class='fa fa-exclamation-circle mr-2'></i>Ya existe un rol con el mismo nombre.</h5>";
                 break;
         }
         echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
