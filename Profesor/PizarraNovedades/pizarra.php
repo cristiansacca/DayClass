@@ -127,7 +127,7 @@ $_SESSION["usuario"] = $con->query("SELECT * FROM usuario WHERE id = '" . $_SESS
                         <td><a>" . $resultado2['asunto'] . "</a></td>
                         <td><a class='btn btn-primary text-light' onclick='setearPublicacion(" . $resultado2['id'] . ");' data-toggle='modal' data-target='#modalVerPublicacion'><i class='fa fa-eye mr-1'></i>Ver</a></td>
                         <td>" . $fechaFormateada . "</td>
-                        <td>" . $profesor['apellidoProf'] . ", " . $profesor['nombreProf'] . "</td> 
+                        <td>" . $profesor['apellidoUsuario'] . ", " . $profesor['nombreUsuario'] . "</td> 
                         </tr>";
                 }
             } else {
