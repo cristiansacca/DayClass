@@ -42,39 +42,48 @@ function mostrarAsistencias() {
                     alert("Cant total dias: " + totalDias);
                     alert("Porcentaje minimo: " +porcentajeMinimo);
                     /*var presentesMinimos = Math.ceil(porcentajeMinimo*totalDias);
-                    var faltasDisponibles=totalDias-presentesMinimos-ausentes;*/
-                    
+                    var faltasDisponibles=totalDias-presentesMinimos-ausentes;*/ 
                     
                     var maxInasist = 1 - porcentajeMinimo;
                     var ausentesMaximos = Math.ceil(maxInasist*totalDias);
                     var faltasDisponibles=ausentesMaximos-ausentes;
 
-                    if(faltasDisponibles >= 10) {
-                        contenido += "<div class='alert alert-success' role='alert'>"+
-                            "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
-                        "</div>";
-                    }else{
-                        if(faltasDisponibles < 10 && faltasDisponibles >= 5){
-                            contenido += "<div class='alert alert-warning' role='alert'>"+
+                    var estadoAlumno = json.estadoAlumno;
+
+                    if(!(estadoAlumno == 'LIBRE' && faltasDisponibles >= 0)){
+                        
+                        if(faltasDisponibles >= 10) {
+                            contenido += "<div class='alert alert-success' role='alert'>"+
                                 "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
                             "</div>";
                         }else{
-                            if(faltasDisponibles < 0){
-                                contenido += "<div class='alert alert-danger' role='alert'>"+
-                                    "<h5><i class='fa fa-info-circle mr-2'></i>Ha alcanzado el máximo de faltas permitidas en este curso. Su estado es LIBRE.</h5>"+
+                            if(faltasDisponibles < 10 && faltasDisponibles >= 5){
+                                contenido += "<div class='alert alert-warning' role='alert'>"+
+                                    "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
                                 "</div>";
                             }else{
-                                if(faltasDisponibles == 0){
+                                if(faltasDisponibles < 0){
                                     contenido += "<div class='alert alert-danger' role='alert'>"+
-                                        "<h5><i class='fa fa-info-circle mr-2'></i>Ha llegado al máximo de faltas permitidas. No puede volver a faltar a este curso.</h5>"+
+                                        "<h5><i class='fa fa-info-circle mr-2'></i>Ha alcanzado el máximo de faltas permitidas en este curso. Su estado es LIBRE.</h5>"+
                                     "</div>";
                                 }else{
-                                    contenido += "<div class='alert alert-danger' role='alert'>"+
-                                        "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
-                                    "</div>";
+                                    if(faltasDisponibles == 0){
+                                        contenido += "<div class='alert alert-danger' role='alert'>"+
+                                            "<h5><i class='fa fa-info-circle mr-2'></i>Ha llegado al máximo de faltas permitidas. No puede volver a faltar a este curso.</h5>"+
+                                        "</div>";
+                                    }else{
+                                        contenido += "<div class='alert alert-danger' role='alert'>"+
+                                            "<h5><i class='fa fa-info-circle mr-2'></i>Le quedan "+faltasDisponibles+" inasistencias para llegar al máximo permitido.</h5>"+
+                                        "</div>";
+                                    }
                                 }
                             }
                         }
+                    } else {
+                        contenido += "<div class='alert alert-danger' role='alert'>"+
+                                        "<h5><i class='fa fa-info-circle mr-2'></i>Usted ha sido dado de baja del curso. Su estado es LIBRE.</h5>"+
+                                        "<h5 class='font-weight-normal'>Si cree que esto puede ser un error por favor consulte con alguna autoridad de la institución.</h5>"+
+                                    "</div>";
                     }
                 }
             }

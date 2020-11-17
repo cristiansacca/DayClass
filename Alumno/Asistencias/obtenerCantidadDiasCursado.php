@@ -25,10 +25,22 @@ $ausentes = $con->query("SELECT id FROM asistenciadia WHERE asistencia_id = '".$
 
 $cantidadAusentes = ($ausentes->num_rows) /*!== 0 ? ($ausentes->num_rows) : 0*/;
 
+$consultaEstado = $con->query("SELECT nombreUsuario, nombreEstado 
+    FROM usuario, curso, alumnocursoactual, cursoestadoalumno, alumnocursoestado
+    WHERE usuario.id = '$alumno_id'
+        AND curso.id = '$curso_id'
+        AND alumnocursoactual.alumno_id = usuario.id
+        AND alumnocursoactual.curso_id = curso.id
+        AND alumnocursoestado.fechaInicioEstado <= '$currentDateTime 00:00:00'
+        AND alumnocursoestado.fechaFinEstado >= '$currentDateTime 23:59:59'
+        AND alumnocursoestado.alumnoCursoActual_id = alumnocursoactual.id
+        AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id")->fetch_assoc();
+
 $datos = array(
     'diasCursado'=> calcularDiasCursado($curso_id),
     'ausentes' => $cantidadAusentes,
-    'minimoAsistencias'=> $porcentajeMinimoAsistencias
+    'minimoAsistencias'=> $porcentajeMinimoAsistencias,
+    'estadoAlumno' => $consultaEstado['nombreEstado']
 );
 
 $myJSON = json_encode($datos);

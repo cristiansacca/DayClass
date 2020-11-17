@@ -114,7 +114,7 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
     ?>
 
     <div class="alert alert-info my-3" role="alert">
-        <h5 class="font-weight-normal"><i class="fa fa-info-circle mr-2"></i>Seleccione una materia, un curso y una fecha para ver las asistencias.</h5>
+        <h5><i class="fa fa-info-circle mr-2"></i>Seleccione una materia, un curso y una fecha para ver las asistencias.</h5>
     </div>
     <div class="mb-2">
         

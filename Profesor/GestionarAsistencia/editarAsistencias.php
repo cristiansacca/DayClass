@@ -161,8 +161,6 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
             campo.innerHTML = 'AUSENTE';
         } else {
             if(campo.innerHTML == 'AUSENTE'){
-                campo.innerHTML = 'JUSTIFICADO';
-            } else {
                 campo.innerHTML = 'PRESENTE';
             }
         }

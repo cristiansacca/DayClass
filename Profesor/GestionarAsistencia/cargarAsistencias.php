@@ -63,7 +63,20 @@ if(isset($_SESSION['tiempo'])&&isset($_SESSION['limite'])) {
 $id_curso = $_POST['idCursoCargar'];
 $fecha = $_POST['fechaCargar'];
 
-$consultaInscriptos = $con->query("SELECT usuario.id, legajoUsuario, nombreUsuario, apellidoUsuario, nombreCurso FROM usuario, asistencia, curso  WHERE asistencia.alumno_id = usuario.id AND asistencia.curso_id = curso.id AND curso.id = '$id_curso' ORDER BY apellidoUsuario ASC");
+$consultaInscriptos = $con->query("SELECT usuario.id, apellidoUsuario, nombreUsuario, legajoUsuario 
+FROM usuario, alumnocursoactual, curso, cursoestadoalumno, alumnocursoestado 
+WHERE usuario.id = alumnocursoactual.alumno_id 
+    AND usuario.fechaBajaUsuario IS NULL 
+    AND alumnocursoactual.curso_id = curso.id 
+    AND curso.id = '$id_curso' 
+    AND alumnocursoactual.fechaHastaAlumCurAc > '$fecha' 
+    AND alumnocursoactual.fechaDesdeAlumCurAc<= '$fecha' 
+    AND alumnocursoactual.id = alumnocursoestado.alumnoCursoActual_id 
+    AND alumnocursoestado.fechaInicioEstado <= '$fecha' 
+    AND alumnocursoestado.fechaFinEstado > '$fecha' 
+    AND alumnocursoestado.cursoEstadoAlumno_id = cursoestadoalumno.id 
+    AND UPPER(cursoestadoalumno.nombreEstado) = 'INSCRIPTO' 
+ORDER BY apellidoUsuario ASC");
 
 $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_assoc();
 
@@ -168,10 +181,8 @@ $nombreCurso = $con->query("SELECT * FROM curso WHERE id = '$id_curso'")->fetch_
             campo.innerHTML = 'AUSENTE';
         } else {
             if(campo.innerHTML == 'AUSENTE'){
-                campo.innerHTML = 'JUSTIFICADO';
-            } else {
                 campo.innerHTML = 'PRESENTE';
-            }
+            } 
         }
         colorearAsistencia();
     }
