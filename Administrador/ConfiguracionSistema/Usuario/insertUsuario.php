@@ -7,8 +7,8 @@ $legajo = $_POST["inputLegajo"];
 $dni = $_POST["inputDNI"];
 $currentDateTime = date('Y-m-d H:i:s');
 
-$consultaAlumL = $con->query("SELECT id FROM `usuario` WHERE legajoUsuario = '$legajo' AND fechaBajaUsuario IS NULL");
-$consultaAlumD = $con->query("SELECT id FROM `usuario` WHERE dniUsuario = '$dni' AND fechaBajaUsuario IS NULL");
+$consultaAlumL = $con->query("SELECT id FROM `usuario` WHERE legajoUsuario = '$legajo'");
+$consultaAlumD = $con->query("SELECT id FROM `usuario` WHERE dniUsuario = '$dni'");
 
 
 if(($consultaAlumL->num_rows) == 0 && ($consultaAlumD->num_rows) == 0){
