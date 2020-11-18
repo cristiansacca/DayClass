@@ -8,9 +8,9 @@ include "databaseConection.php";
 //Si hay una sesión activa no se puede iniciar otra
 
 if (isset($_SESSION['usuario'])) {
-    
-    
-    header("Location: /DayClass/Usuario/inicioSesion.php");
+
+
+   header("Location: /DayClass/Usuario/inicioSesion.php");
    /*$bloqueado = $_SESSION['usuario']["bloqueado"];
 
    if ($bloqueado == 1) {
@@ -40,25 +40,25 @@ if (isset($_SESSION['usuario'])) {
 
 ?>
 
+<div class="container">
+   <div class="text-center mx-auto h-100 d-flex justify-content-center my-auto pt-4">
+      <form action="login.php" method="POST" class="form-group m-4">
+         <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
+         <h1 class="font-weight-normal my-2">Inicio de sesión</h1>
+         <input type="email" name="email" class="form-control my-2" placeholder="Correo electrónico" required autofocus>
 
-<div class="text-center mx-auto h-100 d-flex justify-content-center my-auto pt-4" style="width: 20rem;">
-   <form action="login.php" method="POST" class="form-group m-4">
-      <i class="fa fa-user fa-5x" alt="imagen-usuario"></i>
-      <h1 class="font-weight-normal my-2">Inicio de sesión</h1>
-      <input type="email" name="email" class="form-control my-2" placeholder="Correo electrónico" required autofocus>
+         <input type="password" id="txtPassword" name="contrasenia" class="form-control my-2" placeholder="Contraseña" required>
+         <div>
+            <input type="checkbox" id="show_password" class="mr-1" onchange="mostrarPassword()"><label onclick="mostrarPassword()">Mostrar contraseña</label>
+         </div>
 
-      <input type="password" id="txtPassword" name="contrasenia" class="form-control my-2" placeholder="Contraseña" required>
-      <div>
-         <input type="checkbox" id="show_password" class="mr-1" onchange="mostrarPassword()"><label onclick="mostrarPassword()">Mostrar contraseña</label>
-      </div>
+         <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-1"></i>Ingresar</button><br>
+         <a class="btn btn-link my-2" href="RestablecerPass/restablecer-contrasenia.php">Olvidé mi contraseña</a>
+      </form>
+   </div>
 
-      <button class="btn btn-primary m-auto" style="font-size: large;" type="submit"><i class="fa fa-sign-in mr-1"></i>Ingresar</button><br>
-      <a class="btn btn-link my-2" href="RestablecerPass/restablecer-contrasenia.php">Olvidé mi contraseña</a>   
-   </form>
-</div>
-
-<div class="text-center mx-auto h-100 d-flex justify-content-center mb-4" style="width: 40rem;">
-<?php
+   <div class="text-center mx-auto h-100 d-flex justify-content-center mb-4">
+      <?php
       if (isset($_GET["error"])) {
          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>";
          switch ($_GET["error"]) {
@@ -86,7 +86,7 @@ if (isset($_SESSION['usuario'])) {
 
          switch ($_GET["resultado"]) {
             case 1:
-                    echo "<div class='alert alert-success alert-dismissible fade show mx-auto' role='alert'>
+               echo "<div class='alert alert-success alert-dismissible fade show mx-auto' role='alert'>
                              <h4 class='alert-heading'>¡Correo enviado! <i class='fa fa-paper-plane'></i></h4>
                             <h6>Se acaba de enviar una mail de activación al correo electrónico provisto.</h6>
                             <h6 class='mb-0'>Revise su bandeja de entrada o spam.</h6>
@@ -94,7 +94,7 @@ if (isset($_SESSION['usuario'])) {
                             <span aria-hidden='true'>&times;</span>
                             </button>
                         </div>";
-                    break;
+               break;
             case 2:
                echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                             <h5><i class='fa fa-exclamation-circle mr-2'></i>Datos no localizados.</h5>
@@ -131,6 +131,7 @@ if (isset($_SESSION['usuario'])) {
       }
 
       ?>
+   </div>
 </div>
 <script type="text/javascript">
    function mostrarPassword() {
